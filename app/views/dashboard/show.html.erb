@@ -1,0 +1,28 @@
+<br>
+<div class="row">
+  <% @frames.each do |frame| %>
+  <div class="card col-sm-3 kadomaru">
+    <div class="card-block">
+      <br>
+      <% if frame.image.present? %>
+      <div class="row justify-content-sm-center">
+        <%= link_to attachment_image_tag(frame, :image, :fit, 200, 200), frame_path(frame), class: 'mx-auto', data: { turbolinks: false } %>
+      </div>
+      <br>
+      <% end %>
+      <div class="row justify-content-sm-center">
+        <div class="mx-auto">
+          <%= frame.name %>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+  <% end %>
+</div>
+<br>
+<div class="row col-sm-12 justify-content-sm-center">
+  <div class="mx-auto">
+    <%= paginate @frames, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>

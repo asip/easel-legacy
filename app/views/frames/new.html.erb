@@ -1,0 +1,73 @@
+<%= form_with model: @frame, local: true do |form| %>
+<br>
+<div class="card">
+  <div class="card-block">
+    <br>
+    <% @frame.errors.full_messages.each do |message| %>
+    <div class="row justify-content-md-center">
+      <div class="alert alert-warning col-md-6" role="alert">
+        <%= message %>
+      </div>
+    </div>
+    <% end %>
+    <br>
+    <% if @frame.image.present? %>
+    <div class="row justify-content-sm-center justify-content-md-center">
+      <%= attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto') %>
+    </div>
+    <br>
+    <% end %>
+    <% unless @frame.confirming == 'true' %>
+    <div class="row justify-content-md-center">
+      <label for="image" class="col-md-2 label-bg-style">ファイル</label>
+      <div class="form-group col-md-4">
+        <%= form.attachment_field :image, class: 'form-control-file' %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <label for="name" class="col-md-2 label-bg-style">名前</label>
+      <div class="form-group col-md-4">
+        <%= form.text_field :name, placeholder: "名前", class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <label for="comment" class="col-md-2 label-bg-style">コメント</label>
+      <div class="form-group col-md-4">
+        <%= form.text_area :comment, class: 'form-control' %>
+      </div>
+    </div>
+    <br>
+    <div class="row justify-content-md-center">
+      <div class="form-group col-md-6">
+        <%= form.submit '内容を確認', class: 'btn btn-primary' %>
+        <%= link_to '戻る', root_path, method: :get, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+    <%= form.hidden_field :confirming %>
+    <% else %>
+    <%= form.hidden_field :image, value: form.object.image_data.to_json %>
+    <div class="row justify-content-md-center">
+      <label for="name" class="col-md-2 label-bg-style">名前</label>
+      <div class="form-group col-md-4">
+        <%= @frame.name %>
+        <%= form.hidden_field :name %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <label for="comment" class="col-md-2 label-bg-style">コメント</label>
+      <div class="form-group col-md-4">
+        <%= simple_format(h(@frame.comment)) %>
+        <%= form.hidden_field :comment %>
+      </div>
+    </div>
+    <br>
+    <div class="row justify-content-md-center">
+      <div class="form-group col-md-6">
+        <%= form.submit '登録', class: 'btn btn-primary' %>
+        <%= form.submit '戻る', class: 'btn btn-secondary' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<% end %>

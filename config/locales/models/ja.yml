@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      frame: 'イメージ'
+    attributes:
+      frame:
+        id: 'ID'
+        name: '名前'
+        comment: 'コメント'
+        image: 'ファイル'
