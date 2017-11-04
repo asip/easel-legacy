@@ -31,6 +31,12 @@
       </div>
     </div>
     <div class="row justify-content-md-center">
+      <label for="name" class="col-md-2 label-bg-style">タグ</label>
+      <div class="form-group col-md-4">
+        <%= form.text_area :tag_list, id: 'tag_list',class: 'form-control form-control-tag' %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
       <label for="comment" class="col-md-2 label-bg-style">コメント</label>
       <div class="form-group col-md-4">
         <%= form.text_area :comment, class: 'form-control' %>
@@ -46,6 +52,20 @@
     <%= form.hidden_field :confirming %>
     <% else %>
     <%= form.hidden_field :image, value: form.object.image_data.to_json %>
+    <% tags = @frame.tag_list.to_s.split(/\s*,\s*/) %>
+    <% if tags.size > 0 %>
+    <div class="row justify-content-md-center">
+      <div class="col-md-6">
+        <% tags.each do |tag| %>
+          <a class="btn btn-info btn-sm">
+            <%= tag %>
+          </a>
+        <% end %>
+      </div>
+    </div>
+    <br>
+    <% end %>
+    <%= form.hidden_field :tag_list %>
     <div class="row justify-content-md-center">
       <label for="name" class="col-md-2 label-bg-style">名前</label>
       <div class="form-group col-md-4">

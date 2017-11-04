@@ -35,7 +35,6 @@ class FramesController < ApplicationController
     end
 
     if @frame.update(frame_params)
-      @frame.save(validate: false)
       redirect_to @frame
     else
       render :edit
@@ -48,7 +47,7 @@ class FramesController < ApplicationController
   end
 
   def frame_params
-    params.require(:frame).permit(:name, :comment, :image, :confirming)
+    params.require(:frame).permit(:name, :tag_list, :comment, :image, :confirming)
   end
 
   private

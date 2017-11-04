@@ -1,6 +1,7 @@
 class Frame < ApplicationRecord
   #has_one_attached :image
   attachment :image, type: :image
+  acts_as_taggable_on :tags
 
   paginates_per 8
 
