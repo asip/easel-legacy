@@ -16,4 +16,6 @@
 //= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
 //= require @staaky/strip/dist/js/strip.pkgd
+//= require jquery.caret.min
+//= require jquery.tag-editor
 //= require_tree .
