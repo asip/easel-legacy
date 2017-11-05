@@ -2,10 +2,10 @@ class DashboardController < ApplicationController
   before_action :query_params, only: [:show]
 
   def show
+    @frames = Frame.page(params[:page])
+
     if @word.present?
-      @frames = Frame.tagged_with(@word).page(params[:page])
-    else
-      @frames = Frame.page(params[:page])
+      @frames = @frames.ransack({ name_or_tags_name_cont: @word}).result(distinct: true)
     end
   end
 
