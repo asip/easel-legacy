@@ -45,7 +45,7 @@ gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap4-kaminari-views'
 
 # tags
-gem 'acts-as-taggable-on', '~> 4.0'
+gem 'acts-as-taggable-on', '~> 5.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
