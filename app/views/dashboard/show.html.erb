@@ -23,6 +23,6 @@
 <br>
 <div class="row col-sm-12 justify-content-sm-center">
   <div class="mx-auto">
-    <%= paginate @frames, theme: 'twitter-bootstrap-4' %>
+    <%= paginate @frames, params: { word: @word },theme: 'twitter-bootstrap-4' %>
   </div>
 </div>
