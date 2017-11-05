@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
   def show
     if @word.present?
-      @frames = Frame.tagged_with(@word, any: true).page(params[:page])
+      @frames = Frame.tagged_with(@word).page(params[:page])
     else
       @frames = Frame.page(params[:page])
     end
