@@ -10,6 +10,6 @@ class DashboardController < ApplicationController
   end
 
   def query_params
-    @word = params[:word]
+    @word = params[:q]
   end
 end
