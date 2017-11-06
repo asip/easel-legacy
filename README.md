@@ -1,6 +1,6 @@
 # Easel - image viewer
 
-Rails5.1  + Kamnari (paging) + Refile (upload) + Bootstrap4
+Rails5.1  + Kamnari(paging) + Refile(upload) + ActsAsTaggableOn(tag) + Ransack(search) + Bootstrap4
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
