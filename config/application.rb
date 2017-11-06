@@ -17,5 +17,8 @@ module Easel
     # -- all .rb files in that directory are automatically loaded.
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
+    # generate .js instead of .coffee
+    config.generators.javascript_engine = :js
   end
 end

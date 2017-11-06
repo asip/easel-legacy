@@ -8,16 +8,17 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
-#gem 'rails', github: 'rails/rails'
-#gem 'mini_magick'
-#gem 'activestorage'
+# gem 'rails', github: 'rails/rails'
+# gem 'mini_magick'
+# gem 'activestorage'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-gem 'coffee-rails'
+# Use CoffeeScript for .js.coffee assets and views
+# gem 'coffee-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
