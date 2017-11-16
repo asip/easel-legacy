@@ -49,7 +49,7 @@ gem 'bootstrap4-kaminari-views'
 gem 'acts-as-taggable-on', '~> 5.0'
 
 # search
-gem 'ransack'
+# gem 'ransack'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
