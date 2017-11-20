@@ -41,7 +41,7 @@
     <div class="row justify-content-md-center">
       <div class="form-group col-md-6">
         <%= form.submit '内容を確認', class: 'btn btn-primary' %>
-        <%= link_to '戻る', frame_path(@frame), method: :get, class: 'btn btn-secondary' %>
+        <%= link_to '戻る', frame_path(@frame), method: :get, class: 'btn btn-outline-secondary' %>
       </div>
     </div>
     <%= form.hidden_field :confirming %>
@@ -51,7 +51,7 @@
     <div class="row justify-content-md-center">
       <div class="col-md-6">
         <% tags.each do |tag| %>
-        <a class="btn btn-info btn-sm">
+        <a class="btn btn-outline-info btn-sm">
           <%= tag %>
         </a>
         <% end %>
@@ -78,7 +78,7 @@
     <div class="row justify-content-md-center">
       <div class="form-group col-md-6">
         <%= form.submit '更新', class: 'btn btn-primary' %>
-        <%= form.submit '戻る', class: 'btn btn-secondary' %>
+        <%= form.submit '戻る', class: 'btn btn-outline-secondary' %>
       </div>
     </div>
     <% end %>
