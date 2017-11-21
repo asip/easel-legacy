@@ -2,14 +2,12 @@
 <div class="row">
   <% @frames.each do |frame| %>
   <div class="card col-sm-3 kadomaru">
+    <br>
+    <% if frame.image.present? %>
+      <%= link_to attachment_image_tag(frame, :image, :fit, 200, 200, class: 'card-img-top'), frame_path(frame), class: 'mx-auto', data: { turbolinks: false } %>
+      <br>
+    <% end %>
     <div class="card-block">
-      <br>
-      <% if frame.image.present? %>
-      <div class="row justify-content-sm-center">
-        <%= link_to attachment_image_tag(frame, :image, :fit, 200, 200), frame_path(frame), class: 'mx-auto', data: { turbolinks: false } %>
-      </div>
-      <br>
-      <% end %>
       <div class="row justify-content-sm-center">
         <div class="mx-auto">
           <%= frame.name %>
