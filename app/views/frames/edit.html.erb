@@ -46,7 +46,7 @@
     </div>
     <%= form.hidden_field :confirming %>
     <% else %>
-    <% tags = @frame.tag_list.to_s.split(/\s*,\s*/) %>
+    <% tags = @frame.tags_preview %>
     <% if tags.size > 0 %>
     <div class="row justify-content-md-center">
       <div class="col-md-6">

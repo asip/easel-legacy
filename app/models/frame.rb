@@ -12,6 +12,10 @@ class Frame < ApplicationRecord
 
   after_validation :check_confirming
 
+  def tags_preview
+    self.tag_list.to_s.split(/\s*,\s*/)
+  end
+
   def check_confirming
     errors.delete(:confirming)
     self.confirming = errors.empty? ? 'true' : ''
