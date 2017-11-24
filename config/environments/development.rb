@@ -52,5 +52,10 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # for active storage
   #config.active_storage.service = :local
+
+  # Full error reports are disabled
+  # (for error page handling)
+  #config.consider_all_requests_local = false
 end
