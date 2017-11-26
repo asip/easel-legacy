@@ -9,11 +9,13 @@ Things you may want to cover:
 
 * Ruby version : 2.4
 * Rails version : 5.1
-* System dependencies
-* Configuration
-* Database creation
-* Database initialization
-* How to run the test suite
-* Services (job queues, cache servers, search engines, etc.)
+* System dependencies : yarn & mysql
 * Deployment instructions
+  Run `bundle install` to install the required Rubygems
+  Run `yarn install` to install the required NPM packages
+  Run `createdb easel_development` to create a development database
+  Run `bundle exec rails db:migrate` to create database schema and sample records
+  Run `bundle exec rails s` to spin up the Rails dev server
+  Hit [localhost:3000](http://localhost:3000/) and you should be ready to go!
+
 * ...
