@@ -1,8 +1,13 @@
 ja:
   activerecord:
     models:
+      user: 'ユーザー'
       frame: 'イメージ'
     attributes:
+      user:
+        email: 'Eメール'
+        password: 'パスワード'
+        password_confirmation: 'パスワード(確認)'
       frame:
         id: 'ID'
         name: '名前'

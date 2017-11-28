@@ -44,6 +44,9 @@ gem 'rails-i18n', '~> 5.0.0'
 # error page handling
 gem 'rambulance'
 
+# authentication
+gem 'sorcery'
+
 # paging
 gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap4-kaminari-views'

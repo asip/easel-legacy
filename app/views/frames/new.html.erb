@@ -1,6 +1,9 @@
 <%= form_with model: @frame, local: true do |form| %>
 <br>
 <div class="card">
+  <div class="card-header">
+    アップロード
+  </div>
   <div class="card-block">
     <br>
     <% @frame.errors.full_messages.each do |message| %>

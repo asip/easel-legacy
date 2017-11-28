@@ -16,6 +16,8 @@ class Frame < ApplicationRecord
     self.tag_list.to_s.split(/\s*,\s*/)
   end
 
+  private
+
   def check_confirming
     errors.delete(:confirming)
     self.confirming = errors.empty? ? 'true' : ''

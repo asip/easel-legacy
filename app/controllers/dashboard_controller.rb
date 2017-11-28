@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+  skip_before_action :require_login
   before_action :query_params, only: [:show]
 
   def show
@@ -13,6 +14,8 @@ class DashboardController < ApplicationController
 
     @frames = @frames.page(params[:page])
   end
+
+  private
 
   def query_params
     @word = params[:q]

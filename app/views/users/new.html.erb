@@ -1,0 +1,70 @@
+<%= form_with model: @user, local: true do |form| %>
+<br>
+<div class="card">
+  <div class="card-header">
+    ユーザー登録
+  </div>
+  <div class="card-block">
+    <br>
+    <% @user.errors.full_messages.each do |message| %>
+    <div class="row justify-content-md-center">
+      <div class="alert alert-warning col-md-6" role="alert">
+        <%= message %>
+      </div>
+    </div>
+    <% end %>
+    <br>
+    <% unless @user.confirming == 'true' %>
+    <div class="row justify-content-md-center">
+      <label for="name" class="col-md-2 label-bg-style">Eメール</label>
+      <div class="form-group col-md-4">
+        <%= form.text_field :email, placeholder: 'Eメール', class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <label for="comment" class="col-md-2 label-bg-style">パスワード</label>
+      <div class="form-group col-md-4">
+        <%= form.text_field :password, placeholder: 'パスワード', class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <label for="comment" class="col-md-2 label-bg-style">パスワード(確認)</label>
+      <div class="form-group col-md-4">
+        <%= form.text_field :password_confirmation, placeholder: 'パスワード(確認)', class: 'form-control' %>
+      </div>
+    </div>
+    <br>
+    <div class="row justify-content-md-center">
+      <div class="form-group col-md-6">
+        <%= form.submit '内容を確認', class: 'btn btn-primary' %>
+        <%= link_to '戻る', login_path, method: :get, class: 'btn btn-outline-secondary' %>
+      </div>
+    </div>
+    <%= form.hidden_field :confirming %>
+    <% else %>
+    <div class="row justify-content-md-center">
+      <label for="name" class="col-md-2 label-bg-style">Eメール</label>
+      <div class="form-group col-md-4">
+        <%= @user.email %>
+        <%= form.hidden_field :email %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <label for="comment" class="col-md-2 label-bg-style">コメント</label>
+      <div class="form-group col-md-4">
+        <%= @user.password %>
+        <%= form.hidden_field :password %>
+      </div>
+    </div>
+    <%= form.hidden_field :password_confirmation %>
+    <br>
+    <div class="row justify-content-md-center">
+      <div class="form-group col-md-6">
+        <%= form.submit '登録', class: 'btn btn-primary' %>
+        <%= form.submit '戻る', class: 'btn btn-outline-secondary' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<% end %>

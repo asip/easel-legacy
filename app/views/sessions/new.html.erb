@@ -1,0 +1,39 @@
+<%= form_with model: @user, url: sessions_path, method: :post, local: true do |form| %>
+<br>
+<div class="card">
+  <div class="card-header">
+    ログイン
+  </div>
+  <div class="card-block">
+    <br>
+    <% @user.errors.full_messages.each do |message| %>
+    <div class="row justify-content-md-center">
+      <div class="alert alert-warning col-md-6" role="alert">
+        <%= message %>
+      </div>
+    </div>
+    <% end %>
+    <br>
+    <div class="row justify-content-md-center">
+      <label for="name" class="col-md-2 label-bg-style">Eメール</label>
+      <div class="form-group col-md-4">
+        <%= form.text_field :email, placeholder: 'Eメール', class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <label for="comment" class="col-md-2 label-bg-style">パスワード</label>
+      <div class="form-group col-md-4">
+        <%= form.password_field :password, placeholder: 'パスワード', class: 'form-control' %>
+      </div>
+    </div>
+    <br>
+    <div class="row justify-content-md-center">
+      <div class="form-group col-md-6">
+        <%= form.submit 'ログイン', class: 'btn btn-primary' %>
+        <%= link_to 'ユーザー登録', signup_path, class: 'btn btn-primary' %>
+        <%= link_to '戻る', root_path, method: :get, class: 'btn btn-outline-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
