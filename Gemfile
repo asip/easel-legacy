@@ -8,14 +8,11 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0.beta2'
-# gem 'rails', github: 'rails/rails'
-# gem 'mini_magick'
-# gem 'activestorage'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
-
+# Reduces boot times through caching; configured in config/boot.rb
 gem 'bootsnap'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
