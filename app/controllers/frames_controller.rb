@@ -11,13 +11,14 @@ class FramesController < ApplicationController
 
   def create
     @frame = Frame.new(frame_params)
-    @frame.user_id = current_user.id
 
     if params[:commit] == '戻る'
       @frame.confirming = ''
       render :new
       return
     end
+
+    @frame.user_id = current_user.id
 
     if @frame.save
       redirect_to controller: 'dashboard' ,action: :show
