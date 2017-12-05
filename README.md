@@ -5,10 +5,12 @@ Rails5.1 + Sorcery(authentication) + Kamnari(paging) + Refile(upload) + ActsAsTa
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
+★Caution★ ActsAsTaggableOn has bug for Ruby on Rails 5.2 now.
+
 Things you may want to cover:
 
 * Ruby version : 2.4
-* Rails version : 5.1
+* Rails version : 5.2
 * System dependencies : yarn & mysql
 * Deployment instructions
   - Run `bundle install` to install the required Rubygems
