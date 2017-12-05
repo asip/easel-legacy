@@ -1,19 +1,12 @@
 class UsersController < ApplicationController
   skip_before_action :require_login
+  before_action :set_user, only: [:new, :create]
+  before_action :back_to_form, only: [:create]
 
   def new
-    @user = User.new
   end
 
   def create
-    @user = User.new(user_params)
-
-    if params[:commit] == '戻る'
-      @user.confirming = ''
-      render :new
-      return
-    end
-
     if @user.save
       redirect_to login_path
     else
@@ -22,6 +15,22 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    if action_name == 'new'
+      @user = User.new
+    elsif action_name == 'create'
+      @user = User.new(user_params)
+    end
+  end
+
+  def back_to_form
+    if params[:commit] == '戻る'
+      @user.confirming = ''
+      render :new
+      #return
+    end
+  end
 
   def user_params
     params.require(:user).permit(
