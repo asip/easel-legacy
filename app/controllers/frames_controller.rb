@@ -13,7 +13,7 @@ class FramesController < ApplicationController
     @frame.user_id = current_user.id
 
     if @frame.save
-      redirect_to controller: 'dashboard' ,action: :show
+      redirect_to controller: 'dashboard', action: :show
     else
       render :new
     end
@@ -34,7 +34,7 @@ class FramesController < ApplicationController
 
   def destroy
     @frame.destroy
-    redirect_to controller: 'dashboard' ,action: :show
+    redirect_to controller: 'dashboard', action: :show
   end
 
   private
@@ -63,6 +63,12 @@ class FramesController < ApplicationController
   end
 
   def frame_params
-    params.require(:frame).permit(:name, :tag_list, :comment, :image, :confirming)
+    params.require(:frame).permit(
+      :name,
+      :tag_list,
+      :comment,
+      :image,
+      :confirming
+    )
   end
 end
