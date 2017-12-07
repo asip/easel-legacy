@@ -12,9 +12,15 @@ class SessionsController < ApplicationController
     else
       @user = User.find_by(email: params['user']['email'])
       if @user
-        @user.password = ''
+        @user.password = params['user']['password']
+        if @user.valid?(:login)
+          @user.errors.add(:password, 'が間違っています')
+        end
       else
         @user = User.new(user_params)
+        if @user.valid?(:login)
+          @user.errors.add(:email, 'が間違っています')
+        end
       end
 
       render :new
