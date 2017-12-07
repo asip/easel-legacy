@@ -9,6 +9,7 @@ class Frame < ApplicationRecord
 
   validates :name, length: { in: 1..20 }
   validates :image, presence: true
+  validate :check_tag
 
   after_validation :check_confirming
 
@@ -21,5 +22,18 @@ class Frame < ApplicationRecord
   def check_confirming
     errors.delete(:confirming)
     self.confirming = errors.empty? ? 'true' : ''
+  end
+
+  def check_tag
+    if self.tags_preview.size > 5
+      self.errors[:tag_list] << 'は５つまでしかセットできまん'
+    end
+    self.tags_preview.each do |tag|
+      puts tag.to_s
+      if tag.to_s.size > 10
+        self.errors[:tag_list] << 'は10文字以内で入力してください'
+        break
+      end
+    end
   end
 end

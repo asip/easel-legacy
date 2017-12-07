@@ -13,3 +13,4 @@ ja:
         name: '名前'
         comment: 'コメント'
         image: 'ファイル'
+        tag_list: 'タグ'
