@@ -5,6 +5,7 @@ ja:
       frame: 'イメージ'
     attributes:
       user:
+        name: 'ユーザー名'
         email: 'Eメール'
         password: 'パスワード'
         password_confirmation: 'パスワード(確認)'
