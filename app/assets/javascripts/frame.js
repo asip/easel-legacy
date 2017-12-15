@@ -2,6 +2,12 @@
 // All this logic will automatically be available in application.js.
 
 document.addEventListener('turbolinks:load', function() {
+  //$('.strip').on('click',
+  //  function(e){
+  //    e.preventDefault();
+  //    Strip.show($(e.target.href);
+  //  }
+  //);
   $('#tag_list').tagEditor({
     delimiter: ', '
   });
