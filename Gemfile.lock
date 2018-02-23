@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/refile/refile.git
-  revision: 65e392fdca5b6a0a7a45fdae726768fa18045db3
+  revision: 64403c0bcf50a5e7fd669356106d531cd33609ec
   specs:
     refile (0.6.2)
       mime-types
@@ -76,7 +76,7 @@ GEM
     execjs (2.7.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.21)
+    ffi (1.9.22)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     http-cookie (1.0.3)
