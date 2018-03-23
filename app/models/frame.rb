@@ -3,6 +3,9 @@ class Frame < ApplicationRecord
   attachment :image, type: :image
   acts_as_taggable_on :tags
 
+  has_many :comments
+  belongs_to :user
+
   paginates_per 8
 
   validates_acceptance_of :confirming
