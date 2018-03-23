@@ -57,6 +57,9 @@ gem 'acts-as-taggable-on', '~> 5.0'
 # search
 # gem 'ransack'
 
+# json
+gem 'fast_jsonapi'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
