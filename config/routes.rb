@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new', as: 'signup'
   get '/login' => 'sessions#new', as: 'login'
   delete '/logout' => 'sessions#destroy', as: 'logout'
+
+  get '/api/v1/frames/:id/comments' => 'api/v1/comments#index_by_frame_id'
 end
