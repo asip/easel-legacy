@@ -46,5 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+  //Vue.filter('nl2br', value => value.replace(/\n/g, '<br>'));
+
   //console.log(comment_vm.$data);
 });
