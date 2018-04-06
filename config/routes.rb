@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy', as: 'logout'
 
   get '/api/v1/frames/:id/comments' => 'api/v1/comments#index_by_frame_id'
+  post '/api/v1/frames/:id/comments' => 'api/v1/comments#create'
 end
