@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Axios from 'axios'
+import sanitizeHtml from 'sanitize-html'
 
 document.addEventListener('DOMContentLoaded', () => {
   const comment_vm = new Vue({
@@ -46,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-  //Vue.filter('nl2br', value => value.replace(/\n/g, '<br>'));
+  Vue.filter('nl2br', value => value.replace(/\n/g, '<br>'));
+  Vue.prototype.$sanitize = sanitizeHtml;
 
   //console.log(comment_vm.$data);
 });

@@ -91,8 +91,7 @@
       <div class="card-block">
         {{comment.attributes.user_name}}<br>
       </div>
-      <div class="card-footer">
-        {{comment.attributes.body}}
+      <div class="card-footer" v-html="$options.filters.nl2br($sanitize(comment.attributes.body))">
       </div>
     </div>
   </div>
