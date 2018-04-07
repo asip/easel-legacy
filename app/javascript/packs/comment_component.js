@@ -16,9 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
       methods: {
         getComments: function() {
           Axios.get('http://localhost:3000/api/v1/frames/' + this.comment.frame_id + '/comments')
-            .then(response => { 
-              this.comments = response.data.data;
-              //console.log(this.comments);
+            .then(response => {
+              if(response.data){ 
+                this.comments = response.data.data;
+                //console.log(this.comments);
+              }
             });
         },
         postComment: function(){
@@ -32,12 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         },
         setComment: function(){
-          this.comment.frame_id= this.$el.getAttribute('data-frame-id');
-          this.comment.user_id = this.$el.getAttribute('data-user-id');
-          //console.log(this.comment.userId);
-          //console.log(this.comment.frameId);
-          //console.log(this.comment.body);
-          this.postComment();
+          if(this.comment.body != ''){
+            this.comment.frame_id= this.$el.getAttribute('data-frame-id');
+            this.comment.user_id = this.$el.getAttribute('data-user-id');
+            //console.log(this.comment.userId);
+            //console.log(this.comment.frameId);
+            //console.log(this.comment.body);
+            this.postComment();
+          }
         }
       },
       mounted: function(){
