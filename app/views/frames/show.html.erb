@@ -68,3 +68,32 @@
     </div>
   </div>
 </div>
+<br>
+<div id="commentComponent" data-frame-id="<%= @frame.id %>" data-user-id="<%= logged_in? ? current_user.id : '' %>">
+  <% if logged_in? %>
+  <div class="card">
+    <div class="card-block">
+      <div class="row justify-content-sm-center">
+        <div class="col-md-7 text-left">
+          コメント入力
+        </div>
+      </div>
+      <div class="row justify-content-sm-center">
+          <textarea v-model="comment.body" class="form-group col-md-6"></textarea>
+          <button class="form-group col-sm-1" v-on:click="setComment">登録</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <% end %>
+  <div v-for="comment in comments">
+    <div class="card">
+      <div class="card-block">
+        {{comment.attributes.user_name}}<br>
+      </div>
+      <div class="card-footer" v-html="$options.filters.nl2br($sanitize(comment.attributes.body))">
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_pack_tag 'comment_component' %>

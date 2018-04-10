@@ -1,7 +1,23 @@
+# == Schema Information
+#
+# Table name: frames
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  name       :string(255)      not null
+#  comment    :text(65535)
+#  image_id   :string(255)      not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Frame < ApplicationRecord
   #has_one_attached :image
   attachment :image, type: :image
   acts_as_taggable_on :tags
+
+  has_many :comments
+  belongs_to :user
 
   paginates_per 8
 
