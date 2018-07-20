@@ -1,5 +1,6 @@
-class ApiController < ActionController::API
-  
+class ApiController < ActionController::Base
+  protect_from_forgery with: :exception
+
   rescue_from StandardError,
     with: lambda { |e| render_error(e) }
 

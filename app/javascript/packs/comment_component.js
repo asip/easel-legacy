@@ -2,6 +2,11 @@ import Vue from 'vue'
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
 
+Axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const comment_vm = new Vue({
       el: '#commentComponent',
