@@ -51,12 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         deleteComment: function(comment){
           this.current_user_id = this.$el.getAttribute('data-user-id');
-          Axios.delete('http://localhost:3000/api/v1/comments/' + comment.id,
-            {
-              params: {
-                current_user_id: this.current_user_id
-              }
-            })
+          Axios.delete('http://localhost:3000/api/v1/comments/' + comment.id)
             .then(response => {
               this.getComments();
             })

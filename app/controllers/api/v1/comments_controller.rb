@@ -1,4 +1,6 @@
 class Api::V1::CommentsController < ApiController
+  skip_before_action :require_login, only: [:index_by_frame_id]
+  
   def index_by_frame_id
     comments = Comment.where(frame_id: params[:id])
     
@@ -10,7 +12,7 @@ class Api::V1::CommentsController < ApiController
 
   def create
     comment = Comment.new(comment_params)
-    if comment.body.present?
+    if logged_in? && comment.body.present?
       comment.frame_id = params[:id]
       comment.save
     end
@@ -24,7 +26,7 @@ class Api::V1::CommentsController < ApiController
 
   def destroy
     comment = Comment.find_by(id: params[:id])
-    if comment && params[:current_user_id] == comment.user_id.to_s
+    if comment && logged_in? && current_user.id == comment.user_id
       comment.destroy
     end
     head :no_content
