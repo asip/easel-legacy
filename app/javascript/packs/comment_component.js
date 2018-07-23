@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
           frame_id: '',
           body: '',
         },
-        comments: []
+        comments: [],
+        current_user_id: ''
       },
       methods: {
         getComments: function() {
@@ -47,10 +48,24 @@ document.addEventListener('DOMContentLoaded', () => {
             //console.log(this.comment.body);
             this.postComment();
           }
+        },
+        deleteComment: function(comment){
+          this.current_user_id = this.$el.getAttribute('data-user-id');
+          Axios.delete('http://localhost:3000/api/v1/comments/' + comment.id,
+            {
+              params: {
+                current_user_id: this.current_user_id
+              }
+            })
+            .then(response => {
+              this.getComments();
+            })
         }
       },
       mounted: function(){
         this.comment.frame_id = this.$el.getAttribute('data-frame-id')
+        this.comment.user_id = this.$el.getAttribute('data-user-id');
+        this.current_user_id = this.$el.getAttribute('data-user-id');
         this.getComments();
         //this.$forceUpdate();
       }

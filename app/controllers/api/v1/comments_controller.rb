@@ -21,4 +21,12 @@ class Api::V1::CommentsController < ApiController
   def comment_params
     params.require(:comment).permit(:body, :user_id, :frame_id)
   end
+
+  def destroy
+    comment = Comment.find_by(id: params[:id])
+    if comment && params[:current_user_id] == comment.user_id.to_s
+      comment.destroy
+    end
+    head :no_content
+  end
 end
