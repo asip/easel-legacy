@@ -54,7 +54,7 @@ gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap4-kaminari-views'
 
 # tags
-gem 'acts-as-taggable-on', '~> 5.0'
+gem 'acts-as-taggable-on', '~> 6.0'
 
 # search
 # gem 'ransack'
