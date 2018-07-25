@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 
   get '/api/v1/frames/:id/comments' => 'api/v1/comments#index_by_frame_id'
   post '/api/v1/frames/:id/comments' => 'api/v1/comments#create'
+  delete 'api/v1/comments/:id' => 'api/v1/comments#destroy'
 end

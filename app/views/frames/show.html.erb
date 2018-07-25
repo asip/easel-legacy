@@ -79,8 +79,8 @@
         </div>
       </div>
       <div class="row justify-content-sm-center">
-          <textarea v-model="comment.body" class="form-group col-md-6"></textarea>
-          <button class="form-group col-sm-1" v-on:click="setComment">登録</button>
+        <textarea v-model="comment.body" class="form-group col-md-6"></textarea>
+        <button class="form-group col-sm-1" v-on:click="setComment">登録</button>
       </div>
     </div>
   </div>
@@ -89,7 +89,18 @@
   <div v-for="comment in comments">
     <div class="card">
       <div class="card-block">
-        {{comment.attributes.user_name}}<br>
+        <div class="row ">
+          <div class="col-12 clearfix">
+            <div class="float-left"> 
+              &nbsp;{{comment.attributes.user_name}}
+            </div>
+            <% if logged_in? %>
+            <div class="float-right" v-show="comment.attributes.user_id == current_user_id">
+              <button class="btn btn-link" v-on:click="deleteComment(comment)">削除</button>&nbsp;
+            </div>
+            <% end %>
+          </div>
+        </div>
       </div>
       <div class="card-footer" v-html="$options.filters.nl2br($sanitize(comment.attributes.body))">
       </div>

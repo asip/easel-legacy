@@ -2,6 +2,11 @@ import Vue from 'vue'
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
 
+Axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const comment_vm = new Vue({
       el: '#commentComponent',
@@ -11,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
           frame_id: '',
           body: '',
         },
-        comments: []
+        comments: [],
+        current_user_id: ''
       },
       methods: {
         getComments: function() {
@@ -42,10 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
             //console.log(this.comment.body);
             this.postComment();
           }
+        },
+        deleteComment: function(comment){
+          this.current_user_id = this.$el.getAttribute('data-user-id');
+          Axios.delete('http://localhost:3000/api/v1/comments/' + comment.id)
+            .then(response => {
+              this.getComments();
+            })
         }
       },
       mounted: function(){
         this.comment.frame_id = this.$el.getAttribute('data-frame-id')
+        this.comment.user_id = this.$el.getAttribute('data-user-id');
+        this.current_user_id = this.$el.getAttribute('data-user-id');
         this.getComments();
         //this.$forceUpdate();
       }
