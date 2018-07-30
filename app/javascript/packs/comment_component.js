@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
           frame_id: '',
           body: '',
         },
+        error_messages: [],
         comments: [],
         current_user_id: ''
       },
@@ -35,8 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
               comment: this.comment
             })
             .then(response => {
-              this.comment.body = '';
-              this.getComments();
+              if(response.data.data.attributes.error_messages){
+                this.error_messages = response.data.data.attributes.error_messages;
+              } else {
+                this.comment.body = '';
+                this.error_messages.splice(0,this.error_messages.length);
+                this.getComments();
+              }
             });
         },
         setComment: function(){
@@ -47,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
             //console.log(this.comment.frameId);
             //console.log(this.comment.body);
             this.postComment();
+          } else {
+            this.error_messages = ['コメントを入力してください。'];
           }
         },
         deleteComment: function(comment){

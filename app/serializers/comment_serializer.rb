@@ -21,4 +21,8 @@ class CommentSerializer
   attribute :user_name do |object|
     object.user.name
   end
+
+  attribute :error_messages do |object|
+    object.errors.full_messages
+  end
 end

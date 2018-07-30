@@ -12,16 +12,14 @@ class Api::V1::CommentsController < ApiController
 
   def create
     comment = Comment.new(comment_params)
-    if logged_in? && comment.body.present?
-      comment.frame_id = params[:id]
+    comment.frame_id = params[:id]
+    if logged_in? && comment.valid?
       comment.save
     end
-    comment.user = User.find_by(id: comment.user_id)
-    render json: CommentSerializer.new(comment).serializable_hash 
-  end
 
-  def comment_params
-    params.require(:comment).permit(:body, :user_id, :frame_id)
+    #logger.debug CommentSerializer.new(comment).serialized_json
+
+    render json: CommentSerializer.new(comment).serializable_hash
   end
 
   def destroy
@@ -30,5 +28,11 @@ class Api::V1::CommentsController < ApiController
       comment.destroy
     end
     head :no_content
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:body, :user_id, :frame_id)
   end
 end

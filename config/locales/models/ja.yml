@@ -15,3 +15,6 @@ ja:
         comment: 'コメント'
         image: 'ファイル'
         tag_list: 'タグ'
+      comment:
+        id: 'ID'
+        body: 'コメント'

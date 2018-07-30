@@ -74,14 +74,30 @@
   <div class="card">
     <div class="card-block">
       <div class="row justify-content-sm-center">
-        <div class="col-md-7 text-left">
-          コメント入力
+        <div class="clearfix col-10">
+          <div class="float-left">
+            コメント入力
+          </div>
         </div>
       </div>
       <div class="row justify-content-sm-center">
-        <textarea v-model="comment.body" class="form-group col-md-6"></textarea>
-        <button class="form-group col-sm-1" v-on:click="setComment">登録</button>
+        <div class="form-group col-10">
+          <textarea v-model="comment.body" class="col-12"></textarea>     
+        </div>
       </div>
+      <div class="row justify-content-sm-center">
+        <div class="col-10">
+          <div v-for="message in error_messages">
+            <p style="color: red;">{{message}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-sm-center">
+        <div class="form-group  col-10">
+          <button class="col-12" v-on:click="setComment">登録</button>        
+        </div>
+      </div>
+      
     </div>
   </div>
   <br>
