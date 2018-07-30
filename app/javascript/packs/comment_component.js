@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
               comment: this.comment
             })
             .then(response => {
-              if(response.data.data.attributes.error_messages){
+              if(response.data.data.attributes.error_messages && response.data.data.attributes.error_messages.length > 0){
                 this.error_messages = response.data.data.attributes.error_messages;
               } else {
                 this.comment.body = '';
