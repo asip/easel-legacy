@@ -7,6 +7,9 @@ Axios.defaults.headers.common = {
   'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 };
 
+Vue.prototype.$sanitize = sanitizeHtml;
+Vue.filter('nl2br', value => value.replace(/\n/g, '<br>'));
+
 document.addEventListener('DOMContentLoaded', () => {
   const comment_vm = new Vue({
       el: '#commentComponent',
@@ -73,9 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //this.$forceUpdate();
       }
     });
-
-  Vue.filter('nl2br', value => value.replace(/\n/g, '<br>'));
-  Vue.prototype.$sanitize = sanitizeHtml;
 
   //console.log(comment_vm.$data);
 });
