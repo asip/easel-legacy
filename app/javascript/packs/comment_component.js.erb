@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
 
+let api_origin = "<%= Settings.api.origin %>";
+
 Axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
   'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -25,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       methods: {
         getComments: function() {
-          Axios.get('http://localhost:3000/api/v1/frames/' + this.comment.frame_id + '/comments')
+          Axios.get(api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments')
             .then(response => {
               if(response.data){ 
                 this.comments = response.data.data;
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         },
         postComment: function(){
-          Axios.post('http://localhost:3000/api/v1/frames/' + this.comment.frame_id + '/comments',
+          Axios.post(api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments',
             {
               comment: this.comment
             })
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         deleteComment: function(comment){
           this.current_user_id = this.$el.getAttribute('data-user-id');
-          Axios.delete('http://localhost:3000/api/v1/comments/' + comment.id)
+          Axios.delete(api_origin + '/api/v1/comments/' + comment.id)
             .then(response => {
               this.getComments();
             })

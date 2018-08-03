@@ -26,3 +26,12 @@
 
 .idea
 easel.iml
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

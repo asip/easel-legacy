@@ -49,6 +49,9 @@ gem 'rambulance'
 # authentication
 gem 'sorcery'
 
+# settings
+gem 'config'
+
 # paging
 gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap4-kaminari-views'
