@@ -11,7 +11,7 @@
     "jquery": "^3.2.1",
     "popper.js": "^1.12.5",
     "rails-erb-loader": "^5.4.2",
-    "sanitize-html": "1.18.2",
+    "sanitize-html": "^1.18.4",
     "vue": "^2.5.16",
     "vue-loader": "^14.2.2",
     "vue-template-compiler": "^2.5.16"
