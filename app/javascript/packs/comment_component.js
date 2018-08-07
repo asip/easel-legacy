@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
+import * as constants from '../constants.js.erb'
 
-let api_origin = "<%= Settings.api.origin %>";
+//console.log(constants.api_origin);
 
 Axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       methods: {
         getComments: function() {
-          Axios.get(api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments')
+          Axios.get(constants.api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments')
             .then(response => {
               if(response.data){ 
                 this.comments = response.data.data;
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         },
         postComment: function(){
-          Axios.post(api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments',
+          Axios.post(constants.api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments',
             {
               comment: this.comment
             })
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         deleteComment: function(comment){
           this.current_user_id = this.$el.getAttribute('data-user-id');
-          Axios.delete(api_origin + '/api/v1/comments/' + comment.id)
+          Axios.delete(constants.api_origin + '/api/v1/comments/' + comment.id)
             .then(response => {
               this.getComments();
             })
