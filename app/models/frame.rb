@@ -42,10 +42,10 @@ class Frame < ApplicationRecord
 
   def check_tag
     if self.tags_preview.size > 5
-      self.errors[:tag_list] << 'は５つまでしかセットできまん'
+      self.errors[:tag_list] << 'は５つまでしかセットできません'
     end
     self.tags_preview.each do |tag|
-      puts tag.to_s
+      #puts tag.to_s
       if tag.to_s.size > 10
         self.errors[:tag_list] << 'は10文字以内で入力してください'
         break
