@@ -1,8 +1,8 @@
 class Api::V1::CommentsController < ApiController
-  skip_before_action :require_login, only: [:index_by_frame_id]
+  skip_before_action :require_login, only: [:index]
   
-  def index_by_frame_id
-    comments = Comment.where(frame_id: params[:id])
+  def index
+    comments = Comment.where(frame_id: params[:frame_id])
     
     #options = {}
     #options[:include] = [:user]
@@ -12,7 +12,7 @@ class Api::V1::CommentsController < ApiController
 
   def create
     comment = Comment.new(comment_params)
-    comment.frame_id = params[:id]
+    comment.frame_id = params[:frame_id]
     if logged_in? && comment.valid?
       comment.save
     end
