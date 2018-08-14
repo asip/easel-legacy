@@ -22,6 +22,10 @@ class CommentSerializer
     object.user.name
   end
 
+  attribute :updated_at do |object|
+    object.updated_at.strftime('%Y/%m/%d %H:%M:%S')
+  end
+
   attribute :error_messages do |object|
     object.errors.full_messages
   end

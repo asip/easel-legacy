@@ -20,5 +20,8 @@ module Easel
 
     # generate .js instead of .coffee
     config.generators.javascript_engine = :js
+
+    # timezone
+    config.time_zone = 'Tokyo'
   end
 end

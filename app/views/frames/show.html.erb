@@ -117,7 +117,21 @@
           </div>
         </div>
       </div>
-      <div class="card-footer" v-html="$options.filters.nl2br($sanitize(comment.attributes.body))">
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-12 clearfix">
+            <div class="float-left">
+              {{$options.filters.nl2br($sanitize(comment.attributes.body))}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 clearfix">
+            <div class="float-right small">
+              {{comment.attributes.updated_at}}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div> 
