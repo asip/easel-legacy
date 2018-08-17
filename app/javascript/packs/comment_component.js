@@ -49,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.error_messages.splice(0,this.error_messages.length);
                 this.getComments();
               }
+            })
+            .catch(error => {
+              this.error_messages = ['ログインしてください。'];
             });
         },
         setComment: function(){
@@ -69,6 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => {
               this.getComments();
             })
+            .catch(error => {
+              this.error_messages = ['ログインしてください。'];
+            });
         }
       },
       mounted: function(){
