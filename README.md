@@ -11,7 +11,7 @@ Things you may want to cover:
 * Rails version : 5.2
 * System dependencies : yarn & mysql
 * Deployment instructions
-  - Run `bundle install` to install the required Rubygems
+  - Run `bundle install --path vendor/bundle` to install the required Rubygems
   - Run `yarn install` to install the required NPM packages
   - Run `createdb easel_development` to create a development database
   - Run `bundle exec rails db:migrate` to create database schema and sample records

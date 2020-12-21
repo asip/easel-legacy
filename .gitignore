@@ -35,3 +35,5 @@ config/environments/*.local.yml
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+.DS_Store
