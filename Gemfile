@@ -7,12 +7,12 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.1'
+gem 'rails', '~> 6.1.0'
 # gem 'rails', github: 'rails/rails'
 # gem 'mini_magick'
 # gem 'activestorage'
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.3.18', '< 0.5'
+gem 'mysql2', '~> 0.5.3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Reduces boot times through caching; configured in config/boot.rb
@@ -41,7 +41,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # i18n
-gem 'rails-i18n', '~> 5.0.0'
+gem 'rails-i18n', '~> 6.0.0'
 
 # error page handling
 gem 'rambulance'
@@ -57,7 +57,8 @@ gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap4-kaminari-views'
 
 # tags
-gem 'acts-as-taggable-on', '~> 6.0'
+#gem 'acts-as-taggable-on', '~> 6.5.0'
+gem 'acts-as-taggable-on',  github: 'mbleigh/acts-as-taggable-on'
 
 # search
 # gem 'ransack'
