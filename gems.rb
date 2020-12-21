@@ -14,7 +14,7 @@ gem 'rails', '~> 6.1.0'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5.3'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 5.1.1'
 # Reduces boot times through caching; configured in config/boot.rb
 #gem 'bootsnap'
 # Use SCSS for stylesheets
@@ -32,9 +32,9 @@ gem 'refile', github: 'refile/refile' , require: 'refile/rails'
 gem "refile-mini_magick"
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.2.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+# gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -53,7 +53,7 @@ gem 'sorcery'
 gem 'config'
 
 # paging
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 gem 'bootstrap4-kaminari-views'
 
 # tags
