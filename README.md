@@ -1,6 +1,6 @@
 # Easel - image viewer
 
-Rails5.2 + Sorcery(authentication) + Kamnari(paging) + Refile(upload) + ActsAsTaggableOn(tag) + Bootstrap4
+Rails6.1 + Sorcery(authentication) + Kamnari(paging) + Refile(upload) + ActsAsTaggableOn(tag) + Bootstrap4
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
