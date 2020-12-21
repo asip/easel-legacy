@@ -18,7 +18,7 @@ gem 'puma', '~> 3.7'
 # Reduces boot times through caching; configured in config/boot.rb
 #gem 'bootsnap'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails', '~> 2.1.2'
 # Use CoffeeScript for .js.coffee assets and views
 # gem 'coffee-rails'
 # Use Uglifier as compressor for JavaScript assets
