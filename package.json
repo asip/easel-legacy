@@ -2,21 +2,22 @@
   "name": "easel",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.5",
-    "@staaky/strip": "^1.6.4",
-    "axios": "^0.18.0",
-    "bootstrap": "4.0.0",
-    "bootstrap4c-tageditor": "^1.0.1",
-    "coffeescript": "1.12.7",
-    "jquery": "^3.2.1",
-    "popper.js": "^1.12.5",
-    "rails-erb-loader": "^5.4.2",
-    "sanitize-html": "^1.18.4",
-    "vue": "^2.5.16",
-    "vue-loader": "^14.2.2",
-    "vue-template-compiler": "^2.5.16"
+    "@rails/webpacker": "5.2.1",
+    "@staaky/strip": "^1.7.0",
+    "axios": "^0.21.1",
+    "bootstrap": "4.5.3",
+    "bootstrap4c-tageditor": "^1.0.3",
+    "coffeescript": "2.5.1",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "postcss-cssnext": "^3.1.0",
+    "rails-erb-loader": "^5.5.2",
+    "sanitize-html": "^2.3.0",
+    "vue": "^2.6.12",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12"
   },
   "devDependencies": {
-    "webpack-dev-server": "2.11.2"
+    "webpack-dev-server": "^3.11.0"
   }
 }
