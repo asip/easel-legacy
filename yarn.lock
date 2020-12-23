@@ -6534,11 +6534,12 @@ querystringify@^2.1.1:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.2.0.tgz#3345941b4153cb9d082d8eee4cda2016a9aef7f6"
   integrity sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==
 
-rails-erb-loader@usabilityhub/rails-erb-loader:
+rails-erb-loader@^5.5.2:
   version "5.5.2"
-  resolved "https://codeload.github.com/usabilityhub/rails-erb-loader/tar.gz/d6bc30b827f2d8a257d0140eec1d6a24e46127e4"
+  resolved "https://registry.yarnpkg.com/rails-erb-loader/-/rails-erb-loader-5.5.2.tgz#db3fa8ac89600f09d179a1a70a2ca18c592576ea"
+  integrity sha512-cjQH9SuSvRPhnWkvjmmAW/S4AFVDfAtYnQO4XpKJ8xpRdZayT73iXoE+IPc3VzN03noZXhVmyvsCvKvHj4LY6w==
   dependencies:
-    loader-utils "^1.2.3"
+    loader-utils "^1.1.0"
     lodash.defaults "^4.2.0"
 
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
