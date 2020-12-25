@@ -7,7 +7,7 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version : 2.7.2
+* Ruby version : 3.0.0
 * Rails version : 6.1.0
 * System dependencies : yarn & mysql
 * Deployment instructions
