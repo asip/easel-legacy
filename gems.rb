@@ -28,6 +28,7 @@ gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Refile  don't support Ruby3.0.0 yet
 gem 'refile', github: 'refile/refile' , require: 'refile/rails'
 gem "refile-mini_magick"
 
