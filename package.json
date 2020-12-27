@@ -2,6 +2,7 @@
   "name": "easel",
   "private": true,
   "dependencies": {
+    "@rails/ujs": "^6.1.0",
     "@rails/webpacker": "5.2.1",
     "@staaky/strip": "^1.7.0",
     "axios": "^0.21.1",
