@@ -10,6 +10,7 @@
     "bootstrap4c-tageditor": "^1.0.3",
     "coffeescript": "2.5.1",
     "jquery": "^3.5.1",
+    "jquery-tageditor": "^1.0.1",
     "luminous-lightbox": "^2.3.3",
     "popper.js": "^1.16.1",
     "postcss-cssnext": "^3.1.0",
