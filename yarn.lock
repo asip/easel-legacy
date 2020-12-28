@@ -889,11 +889,6 @@
     webpack-cli "^3.3.12"
     webpack-sources "^1.4.3"
 
-"@staaky/strip@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@staaky/strip/-/strip-1.7.0.tgz#be2889820ce779ee07694f6d911ce44e4133b25a"
-  integrity sha512-s6bRNQo0b3oDYz5b8DHJJei7VAhvC4PuKp3CdRf8PlfwyWr++RpXL2uaHtgMtmyYJ/fIpwQFBjBiS8HHv0KZiQ==
-
 "@types/glob@^7.1.1":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.3.tgz#e6ba80f36b7daad2c685acd9266382e68985c183"
@@ -4490,6 +4485,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+luminous-lightbox@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/luminous-lightbox/-/luminous-lightbox-2.3.3.tgz#2a7580282605c7b7b2784e7c6f5d78aa8e921bbe"
+  integrity sha512-cZSXa0APncbwk2BGqfl7+a2cWBVTKJRv5st6CB7U32mJ9JYR5kmMY7ZyQKCPccImzvN6pYqBbXJXWDw1IbX+nQ==
 
 make-dir@^2.0.0:
   version "2.1.0"

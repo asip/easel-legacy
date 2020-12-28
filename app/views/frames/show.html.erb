@@ -4,7 +4,7 @@
     <br>
     <% if @frame.image.present? %>
     <div class="row justify-content-sm-center">
-      <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'strip mx-auto' %>
+      <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'lm-trigger mx-auto' %>
     </div>
     <br>
     <% end %>
