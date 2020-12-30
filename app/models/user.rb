@@ -21,9 +21,11 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  has_secure_token
+
   has_many :frames
   has_many :comments
-
+  
   validates_acceptance_of :confirming
 
   VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
