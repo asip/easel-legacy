@@ -2,7 +2,7 @@
 #
 # Table name: frames
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  user_id    :integer
 #  name       :string(255)      not null
 #  comment    :text(65535)
