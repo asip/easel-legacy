@@ -68,7 +68,7 @@
   </div>
 </div>
 <br>
-<div id="commentComponent" data-frame-id="<%= @frame.id %>" data-user-id="<%= logged_in? ? current_user.id : '' %>" data-user-token="<%= logged_in? ? current_user.token : '' %>">
+<div id="commentComponent" data-frame-id="<%= @frame.id %>" data-user-token="<%= logged_in? ? current_user.token : '' %>">
   <% if logged_in? %>
   <div class="card">
     <div class="card-block">

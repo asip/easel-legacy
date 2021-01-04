@@ -24,10 +24,27 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         error_messages: [],
         comments: [],
+        account: null,
         current_user_id: '',
         current_user_token: ''
       },
       methods: {
+        getAccount: function(){
+          Axios.get(constants.api_origin + '/api/v1/account',
+            {
+              headers: {
+                Authorization: `Bearer ${this.current_user_token}`
+              }
+            })
+            .then(response => {
+              if(response.data){ 
+                this.account = response.data.data;
+                //console.log(this.account);
+                this.current_user_id = this.account.attributes.id;
+                this.comment.user_id = this.current_user_id
+              }
+            });
+        },
         getComments: function() {
           Axios.get(constants.api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments')
             .then(response => {
@@ -88,10 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       },
       mounted: function(){
-        this.current_user_id = this.$el.getAttribute('data-user-id');
         this.current_user_token = this.$el.getAttribute('data-user-token');
-        this.comment.frame_id = this.$el.getAttribute('data-frame-id')
-        this.comment.user_id = this.current_user_id      
+        if (this.current_user_token != null && this.current_user_token != ''){
+          this.getAccount();
+        }
+        this.comment.frame_id = this.$el.getAttribute('data-frame-id')      
         this.getComments();
         //this.$forceUpdate();
       }
