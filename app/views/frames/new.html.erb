@@ -14,12 +14,6 @@
     </div>
     <% end %>
     <br>
-    <% if @frame.image.present? %>
-    <div class="row justify-content-sm-center justify-content-md-center">
-      <%= attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto') %>
-    </div>
-    <br>
-    <% end %>
     <% unless @frame.confirming == 'true' %>
     <div class="row justify-content-md-center">
       <label for="image" class="col-md-2 label-bg-style">ファイル</label>
@@ -27,6 +21,15 @@
         <%= form.attachment_field :image, class: 'form-control-file' %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
       </div>
     </div>
+    <% if @frame.image.present? %>
+    <div class="row justify-content-sm-center justify-content-md-center prev-content">
+      <%= attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'prev-image mx-auto', style: 'max-width: 300px; max-height: 300px;') %>
+    </div>
+    <% else %>
+    <div class="row justify-content-md-center justify-content-sm-center prev-content">
+      <img alt="preview" class="prev-image mx-auto" style="max-width: 300px; max-height: 300px; display: none ">
+    </div>
+    <% end %>
     <div class="row justify-content-md-center">
       <label for="name" class="col-md-2 label-bg-style">名前</label>
       <div class="form-group col-md-4">
@@ -53,8 +56,14 @@
       </div>
     </div>
     <%= form.hidden_field :confirming %>
+    <%= javascript_packs_with_chunks_tag 'image_preview' %>
     <% else %>
     <%= form.hidden_field :image, value: form.object.image_data.to_json %>
+    <% if @frame.image.present? %>
+    <div class="row justify-content-sm-center justify-content-md-center pre-content">
+      <%= attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'pre-image mx-auto', style: 'max-width: 300px; max-height: 300px;') %>
+    </div>
+    <% end %>
     <% tags = @frame.tags_preview %>
     <% if tags.size > 0 %>
     <div class="row justify-content-md-center">
