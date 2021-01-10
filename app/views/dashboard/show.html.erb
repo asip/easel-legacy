@@ -4,7 +4,7 @@
   <div class="card col-sm-3 kadomaru">
     <br>
     <% if frame.image.present? %>
-      <%= link_to attachment_image_tag(frame, :image, :fit, 200, 200, class: 'card-img-top'), frame_path(frame), class: 'mx-auto' %>
+      <%= link_to attachment_image_tag(frame, :image, :fit, 200, 200, class: 'card-img-top'), frame_path(frame), class: 'mx-auto', data: { turbolinks: false } %>
       <br>
     <% end %>
     <div class="card-block">

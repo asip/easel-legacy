@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
 import * as constants from '../constants.js.erb'
@@ -10,10 +11,11 @@ Axios.defaults.headers.common = {
   'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 };
 
+Vue.use(TurbolinksAdapter);
 Vue.prototype.$sanitize = sanitizeHtml;
 Vue.filter('nl2br', value => value.replace(/\n/g, '<br>'));
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   const comment_vm = new Vue({
       el: '#commentComponent',
       data: {

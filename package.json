@@ -18,7 +18,8 @@
     "sanitize-html": "^2.3.0",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.6",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.12",
+    "vue-turbolinks": "^2.2.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
