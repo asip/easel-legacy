@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.0'
+gem 'rails', '~> 6.1'
 # gem 'rails', github: 'rails/rails'
 # gem 'mini_magick'
 # gem 'activestorage'
@@ -65,7 +65,7 @@ gem 'acts-as-taggable-on',  github: 'mbleigh/acts-as-taggable-on'
 # gem 'ransack'
 
 # json
-gem 'fast_jsonapi'
+gem 'jsonapi-serializer'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
