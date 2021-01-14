@@ -9,10 +9,14 @@ class DashboardController < ApplicationController
       #@frames = @frames.ransack({ name_or_tags_name_cont: @word}).result(distinct: true)
       @frames = @frames.joins(:tags)
                      .merge(ActsAsTaggableOn::Tag.where('tags.name like ?', "%#{@word}%"))
-                     .or(Frame.where('frames.name like ?', "%#{@word}%")).distinct
-      #@frames = Frame.includes(:tags)
-      #              .where(tags: {name: @word})
-      #              .or(Frame.where('frames.name like ?', "%#{@word}%")).distinct
+                     .or(Frame.where('frames.name like ?', "%#{@word}%"))
+      ##@frames = Frame.includes(:tags)
+      ##              .where(tags: {name: @word})
+      ##              .or(Frame.where('frames.name like ?', "%#{@word}%")).distinct
+      #@frames = Frame.includes(:tags).references(:tags)
+      #            .where('tags.name like ?', "%#{@word}%")
+      #            .or(Frame.where('frames.name like ?', "%#{@word}%"))
+      
     end
 
     @frames = @frames.page(params[:page])
