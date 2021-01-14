@@ -7,9 +7,12 @@ class DashboardController < ApplicationController
 
     if @word.present?
       #@frames = @frames.ransack({ name_or_tags_name_cont: @word}).result(distinct: true)
-      relation  = @frames.joins(:tags)
-      @frames = relation.merge(ActsAsTaggableOn::Tag.where('tags.name like ?', "%#{@word}%"))
-                        .or(Frame.where('frames.name like ?', "%#{@word}%")).distinct
+      @frames = @frames.joins(:tags)
+                     .merge(ActsAsTaggableOn::Tag.where('tags.name like ?', "%#{@word}%"))
+                     .or(Frame.where('frames.name like ?', "%#{@word}%")).distinct
+      #@frames = Frame.includes(:tags)
+      #              .where(tags: {name: @word})
+      #              .or(Frame.where('frames.name like ?', "%#{@word}%")).distinct
     end
 
     @frames = @frames.page(params[:page])
