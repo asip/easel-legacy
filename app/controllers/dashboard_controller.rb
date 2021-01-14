@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
       #@frames = @frames.ransack({ name_or_tags_name_cont: @word}).result(distinct: true)
       relation  = @frames.joins(:tags)
       @frames = relation.merge(ActsAsTaggableOn::Tag.where('tags.name like ?', "%#{@word}%"))
-                        .or(relation.where('frames.name like ?', "%#{@word}%")).distinct
+                        .or(Frame.where('frames.name like ?', "%#{@word}%")).distinct
     end
 
     @frames = @frames.page(params[:page])
