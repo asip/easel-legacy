@@ -80,8 +80,6 @@ document.addEventListener('turbolinks:load', () => {
         },
         setComment: function(){
           if(this.comment.body != ''){
-            //this.comment.frame_id= this.$el.getAttribute('data-frame-id');
-            //this.comment.user_id = this.$el.getAttribute('data-user-id');
             //console.log(this.comment.userId);
             //console.log(this.comment.frameId);
             //console.log(this.comment.body);
@@ -91,8 +89,6 @@ document.addEventListener('turbolinks:load', () => {
           }
         },
         deleteComment: function(comment){
-          //this.current_user_id = this.$el.getAttribute('data-user-id');
-          //this.current_user_token = this.$el.getAttribute('data-user-token');
           Axios.delete(constants.api_origin + '/api/v1/comments/' + comment.id,{
             headers: {
               Authorization: `Bearer ${this.current_user_token}`
