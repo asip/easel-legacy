@@ -8,7 +8,7 @@ import * as constants from '../constants.js.erb'
 
 Axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 };
 
 Vue.use(TurbolinksAdapter);
@@ -16,7 +16,10 @@ Vue.prototype.$sanitize = sanitizeHtml;
 Vue.filter('nl2br', value => value.replace(/\n/g, '<br>'));
 
 document.addEventListener('turbolinks:load', () => {
-  const comment_vm = new Vue({
+  const template = document.querySelector('#commentComponent')
+  if (template) {
+
+    const comment_vm = new Vue({
       el: '#commentComponent',
       data: {
         comment: {
@@ -31,7 +34,7 @@ document.addEventListener('turbolinks:load', () => {
         current_user_token: ''
       },
       methods: {
-        getAccount: function(){
+        getAccount: function () {
           Axios.get(constants.api_origin + '/api/v1/account',
             {
               headers: {
@@ -39,7 +42,7 @@ document.addEventListener('turbolinks:load', () => {
               }
             })
             .then(response => {
-              if(response.data){ 
+              if (response.data) {
                 this.account = response.data.data;
                 //console.log(this.account);
                 this.current_user_id = this.account.attributes.id;
@@ -47,30 +50,30 @@ document.addEventListener('turbolinks:load', () => {
               }
             });
         },
-        getComments: function() {
+        getComments: function () {
           Axios.get(constants.api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments')
             .then(response => {
-              if(response.data){ 
+              if (response.data) {
                 this.comments = response.data.data;
                 //console.log(this.comments);
               }
             });
         },
-        postComment: function(){
+        postComment: function () {
           Axios.post(constants.api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments',
             {
               comment: this.comment
-            },{
-              headers: {
-                Authorization: `Bearer ${this.current_user_token}`
-              }
-            })
+            }, {
+            headers: {
+              Authorization: `Bearer ${this.current_user_token}`
+            }
+          })
             .then(response => {
-              if(response.data.data.attributes.error_messages && response.data.data.attributes.error_messages.length > 0){
+              if (response.data.data.attributes.error_messages && response.data.data.attributes.error_messages.length > 0) {
                 this.error_messages = response.data.data.attributes.error_messages;
               } else {
                 this.comment.body = '';
-                this.error_messages.splice(0,this.error_messages.length);
+                this.error_messages.splice(0, this.error_messages.length);
                 this.getComments();
               }
             })
@@ -78,8 +81,8 @@ document.addEventListener('turbolinks:load', () => {
               this.error_messages = ['ログインしてください。'];
             });
         },
-        setComment: function(){
-          if(this.comment.body != ''){
+        setComment: function () {
+          if (this.comment.body != '') {
             //console.log(this.comment.userId);
             //console.log(this.comment.frameId);
             //console.log(this.comment.body);
@@ -88,8 +91,8 @@ document.addEventListener('turbolinks:load', () => {
             this.error_messages = ['コメントを入力してください。'];
           }
         },
-        deleteComment: function(comment){
-          Axios.delete(constants.api_origin + '/api/v1/comments/' + comment.id,{
+        deleteComment: function (comment) {
+          Axios.delete(constants.api_origin + '/api/v1/comments/' + comment.id, {
             headers: {
               Authorization: `Bearer ${this.current_user_token}`
             }
@@ -102,16 +105,17 @@ document.addEventListener('turbolinks:load', () => {
             });
         }
       },
-      mounted: function(){
+      mounted: function () {
         this.current_user_token = this.$el.getAttribute('data-user-token');
-        if (this.current_user_token != null && this.current_user_token != ''){
+        if (this.current_user_token != null && this.current_user_token != '') {
           this.getAccount();
         }
-        this.comment.frame_id = this.$el.getAttribute('data-frame-id')      
+        this.comment.frame_id = this.$el.getAttribute('data-frame-id')
         this.getComments();
         //this.$forceUpdate();
       }
     });
 
+  }
   //console.log(comment_vm.$data);
 });
