@@ -16,6 +16,7 @@
     "postcss-cssnext": "^3.1.0",
     "rails-erb-loader": "^5.5.2",
     "sanitize-html": "^2.3.0",
+    "turbolinks": "^5.2.0",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12",
