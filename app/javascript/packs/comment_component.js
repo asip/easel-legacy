@@ -31,7 +31,8 @@ document.addEventListener('turbolinks:load', () => {
         comments: [],
         account: null,
         current_user_id: '',
-        current_user_token: ''
+        current_user_token: '',
+        logged_in: null
       },
       methods: {
         getAccount: function () {
@@ -107,6 +108,11 @@ document.addEventListener('turbolinks:load', () => {
       },
       mounted: function () {
         this.current_user_token = this.$el.getAttribute('data-user-token');
+        if(this.$el.getAttribute('data-login') == 'true'){
+          this.logged_in = true;
+        } else {
+          this.logged_in = false;
+        }
         if (this.current_user_token != null && this.current_user_token != '') {
           this.getAccount();
         }

@@ -68,9 +68,8 @@
   </div>
 </div>
 <br>
-<div id="commentComponent" data-frame-id="<%= @frame.id %>" data-user-token="<%= logged_in? ? current_user.token : '' %>">
-  <% if logged_in? %>
-  <div class="card">
+<div id="commentComponent" data-frame-id="<%= @frame.id %>" data-user-token="<%= logged_in? ? current_user.token : '' %>" data-login="<%= logged_in? ? true : false %>">
+  <div v-show="logged_in" class="card">
     <div class="card-block">
       <div class="row justify-content-sm-center">
         <div class="clearfix col-10">
@@ -100,7 +99,6 @@
     </div>
   </div>
   <br>
-  <% end %>
   <div v-for="comment in comments">
     <div class="card">
       <div class="card-block">
@@ -109,11 +107,9 @@
             <div class="float-left"> 
               &nbsp;{{comment.attributes.user_name}}
             </div>
-            <% if logged_in? %>
-            <div class="float-right" v-show="comment.attributes.user_id == current_user_id">
+            <div class="float-right" v-show="logged_in && comment.attributes.user_id == current_user_id">
               <button class="btn btn-link" v-on:click="deleteComment(comment)">削除</button>&nbsp;
             </div>
-            <% end %>
           </div>
         </div>
       </div>
