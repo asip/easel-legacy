@@ -30,8 +30,10 @@ document.addEventListener('turbolinks:load', () => {
         error_messages: [],
         comments: [],
         account: null,
-        current_user_id: '',
-        current_user_token: '',
+        current_user: {
+          id: '',
+          token: ''
+        },
         logged_in: null
       },
       methods: {
@@ -39,15 +41,15 @@ document.addEventListener('turbolinks:load', () => {
           Axios.get(constants.api_origin + '/api/v1/account',
             {
               headers: {
-                Authorization: `Bearer ${this.current_user_token}`
+                Authorization: `Bearer ${this.current_user.token}`
               }
             })
             .then(response => {
               if (response.data) {
                 this.account = response.data.data;
                 //console.log(this.account);
-                this.current_user_id = this.account.attributes.id;
-                this.comment.user_id = this.current_user_id
+                this.current_user.id = this.account.attributes.id;
+                this.comment.user_id = this.current_user.id
               }
             });
         },
@@ -66,7 +68,7 @@ document.addEventListener('turbolinks:load', () => {
               comment: this.comment
             }, {
             headers: {
-              Authorization: `Bearer ${this.current_user_token}`
+              Authorization: `Bearer ${this.current_user.token}`
             }
           })
             .then(response => {
@@ -95,7 +97,7 @@ document.addEventListener('turbolinks:load', () => {
         deleteComment: function (comment) {
           Axios.delete(constants.api_origin + '/api/v1/comments/' + comment.id, {
             headers: {
-              Authorization: `Bearer ${this.current_user_token}`
+              Authorization: `Bearer ${this.current_user.token}`
             }
           })
             .then(response => {
@@ -107,13 +109,13 @@ document.addEventListener('turbolinks:load', () => {
         }
       },
       mounted: function () {
-        this.current_user_token = this.$el.getAttribute('data-user-token');
+        this.current_user.token = this.$el.getAttribute('data-token');
         if(this.$el.getAttribute('data-login') == 'true'){
           this.logged_in = true;
         } else {
           this.logged_in = false;
         }
-        if (this.current_user_token != null && this.current_user_token != '') {
+        if (this.current_user.token != null && this.current_user.token != '') {
           this.getAccount();
         }
         this.comment.frame_id = this.$el.getAttribute('data-frame-id')
