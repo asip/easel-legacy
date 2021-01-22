@@ -12,8 +12,6 @@ Axios.defaults.headers.common = {
 };
 
 Vue.use(TurbolinksAdapter);
-Vue.prototype.$sanitize = sanitizeHtml;
-Vue.filter('nl2br', value => value.replace(/\n/g, '<br>'));
 
 document.addEventListener('turbolinks:load', () => {
   const template = document.querySelector('#commentComponent')
@@ -37,6 +35,9 @@ document.addEventListener('turbolinks:load', () => {
         logged_in: null
       },
       methods: {
+        getSanitizedCommentBody: function (row) {
+          return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
+        },
         getAccount: function () {
           Axios.get(`${constants.api_origin}/api/v1/account`,
             {

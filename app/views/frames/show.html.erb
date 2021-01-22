@@ -117,7 +117,7 @@
         <div class="row">
           <div class="col-12 clearfix">
             <div class="float-left">
-              {{$options.filters.nl2br($sanitize(comment.attributes.body))}}
+              {{getSanitizedCommentBody(comment)}}
             </div>
           </div>
         </div>
