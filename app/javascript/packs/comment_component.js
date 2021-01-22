@@ -38,7 +38,7 @@ document.addEventListener('turbolinks:load', () => {
       },
       methods: {
         getAccount: function () {
-          Axios.get(constants.api_origin + '/api/v1/account',
+          Axios.get(`${constants.api_origin}/api/v1/account`,
             {
               headers: {
                 Authorization: `Bearer ${this.current_user.token}`
@@ -54,7 +54,7 @@ document.addEventListener('turbolinks:load', () => {
             });
         },
         getComments: function () {
-          Axios.get(constants.api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments')
+          Axios.get(`${constants.api_origin}/api/v1/frames/${this.comment.frame_id}/comments`)
             .then(response => {
               if (response.data) {
                 this.comments = response.data.data;
@@ -63,7 +63,7 @@ document.addEventListener('turbolinks:load', () => {
             });
         },
         postComment: function () {
-          Axios.post(constants.api_origin + '/api/v1/frames/' + this.comment.frame_id + '/comments',
+          Axios.post(`${constants.api_origin}/api/v1/frames/${this.comment.frame_id}/comments`,
             {
               comment: this.comment
             }, {
