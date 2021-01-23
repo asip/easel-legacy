@@ -12,6 +12,8 @@ gem 'puma', '~> 5.1.1'
 gem 'sassc-rails', '~> 2.1.2'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.7'
 
 # Refile  don't support Ruby3.0.0 yet
 gem 'refile', github: 'refile/refile' , require: 'refile/rails'
