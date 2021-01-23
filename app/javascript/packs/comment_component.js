@@ -96,7 +96,7 @@ document.addEventListener('turbolinks:load', () => {
           }
         },
         deleteComment: function (comment) {
-          Axios.delete(constants.api_origin + '/api/v1/comments/' + comment.id, {
+          Axios.delete(`${constants.api_origin}/api/v1/comments/${comment.id}`, {
             headers: {
               Authorization: `Bearer ${this.current_user.token}`
             }
