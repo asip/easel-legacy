@@ -115,13 +115,13 @@ document.addEventListener('turbolinks:load', () => {
         } else {
           this.logged_in = false;
         }
-        console.log(this.current_user.token);
-        console.log(this.logged_in);
+        //console.log(this.current_user.token);
+        //console.log(this.logged_in);
         if (this.current_user.token != null && this.current_user.token != '') {
           this.getAccount();
         }
         this.comment.frame_id = root.getAttribute('data-frame-id');
-        console.log(this.comment.frame_id);
+        //console.log(this.comment.frame_id);
         this.getComments();
         //this.$forceUpdate();
       }
