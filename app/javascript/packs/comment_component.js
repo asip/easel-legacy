@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import {createApp, ref} from 'vue'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
@@ -11,28 +11,27 @@ Axios.defaults.headers.common = {
   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 };
 
-Vue.use(TurbolinksAdapter);
-
 document.addEventListener('turbolinks:load', () => {
-  const template = document.querySelector('#commentComponent')
-  if (template) {
+  const root = document.querySelector('#commentComponent')
+  if (root) {
 
-    const comment_vm = new Vue({
-      el: '#commentComponent',
-      data: {
-        comment: {
-          user_id: '',
-          frame_id: '',
-          body: '',
-        },
-        error_messages: [],
-        comments: [],
-        account: null,
-        current_user: {
-          id: '',
-          token: ''
-        },
-        logged_in: null
+    const comment_vm = createApp({
+      data: function () {
+        return {
+          comment: {
+            user_id: '',
+            frame_id: '',
+            body: '',
+          },
+          error_messages: [],
+          comments: [],
+          account: null,
+          current_user: {
+            id: '',
+            token: ''
+          },
+          logged_in: null
+        }
       },
       methods: {
         getSanitizedCommentBody: function (row) {
@@ -110,21 +109,27 @@ document.addEventListener('turbolinks:load', () => {
         }
       },
       mounted: function () {
-        this.current_user.token = this.$el.getAttribute('data-token');
-        if(this.$el.getAttribute('data-login') == 'true'){
+        this.current_user.token = root.dataset.token;
+        if (root.dataset.login == 'true') {
           this.logged_in = true;
         } else {
           this.logged_in = false;
         }
+        console.log(this.current_user.token);
+        console.log(this.logged_in);
         if (this.current_user.token != null && this.current_user.token != '') {
           this.getAccount();
         }
-        this.comment.frame_id = this.$el.getAttribute('data-frame-id')
+        this.comment.frame_id = root.getAttribute('data-frame-id');
+        console.log(this.comment.frame_id);
         this.getComments();
         //this.$forceUpdate();
       }
     });
 
+    comment_vm.use(TurbolinksAdapter);
+
+    comment_vm.mount('#commentComponent');
   }
   //console.log(comment_vm.$data);
 });
