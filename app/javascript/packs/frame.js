@@ -1,13 +1,18 @@
 
 document.addEventListener('turbolinks:load', function () {
 
-  var trigger = document.querySelector('.lm-trigger')
-  if (trigger) {
-    new Luminous(trigger);
+  const lm_trigger = document.querySelector('.lm-trigger');
+  if (lm_trigger) {
+    new Luminous(lm_trigger);
   }
 
-  $('#tag_list').tagEditor({
-    delimiter: ', '
-  });
+  const te_trigger = document.querySelector('#tag_list')
+  if (te_trigger) {
+    $(te_trigger).tagEditor('destroy');
+    $(te_trigger).tagEditor({
+      placeholder: '',
+      delimiter: ', '
+    });
+  }
 
 });
