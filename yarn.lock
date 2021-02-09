@@ -831,7 +831,7 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@rails/ujs@^6.1.0":
+"@rails/ujs@^6.1.1":
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-6.1.1.tgz#25c4e60018274b37e5ba0850134f6445429de2f5"
   integrity sha512-uF6zEbXpGkNa7Vvxrd9Yqas8xsbc3lsC733V6I7fXgPuj8xXiuZakdE4uIyQSFRVmZKe12qmC6CNJNtIEvt4bA==
@@ -1601,12 +1601,7 @@ bootstrap4c-tageditor@^1.0.3:
   dependencies:
     bootstrap "^4.0.0"
 
-bootstrap@4.5.3:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.3.tgz#c6a72b355aaf323920be800246a6e4ef30997fe6"
-  integrity sha512-o9ppKQioXGqhw8Z7mah6KdTYpNQY//tipnkxppWhPbiSWdD+1raYsnhwEZjkTHYbGee4cVQ0Rx65EhOY/HNLcQ==
-
-bootstrap@^4.0.0:
+bootstrap@4.6.0, bootstrap@^4.0.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.0.tgz#97b9f29ac98f98dfa43bf7468262d84392552fd7"
   integrity sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw==
@@ -7037,7 +7032,7 @@ safe-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sanitize-html@^2.3.0:
+sanitize-html@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/sanitize-html/-/sanitize-html-2.3.2.tgz#a1954aea877a096c408aca7b0c260bef6e4fc402"
   integrity sha512-p7neuskvC8pSurUjdVmbWPXmc9A4+QpOXIL+4gwFC+av5h+lYCXFT8uEneqsFQg/wEA1IH+cKQA60AaQI6p3cg==
@@ -8199,7 +8194,7 @@ webpack-dev-middleware@^3.7.2:
     range-parser "^1.2.1"
     webpack-log "^2.0.0"
 
-webpack-dev-server@^3.11.0:
+webpack-dev-server@^3.11.2:
   version "3.11.2"
   resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-3.11.2.tgz#695ebced76a4929f0d5de7fd73fafe185fe33708"
   integrity sha512-A80BkuHRQfCiNtGBS1EMf2ChTUs0x+B3wGDFmOeT4rmJOHhHTCH2naNxIHhmkr0/UillP4U3yeIyv1pNp+QDLQ==
