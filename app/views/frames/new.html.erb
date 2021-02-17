@@ -59,7 +59,6 @@
       </div>
     </div>
     <%= form.hidden_field :confirming %>
-    <%= javascript_packs_with_chunks_tag 'image_preview' %>
     <% else %>
     <%= form.hidden_field :image, value: form.object.image_data.to_json %>
     <% if @frame.image.present? %>
@@ -107,6 +106,7 @@
   </div>
 </div>
 <% end %>
-<% end %>
+<%= javascript_packs_with_chunks_tag 'image_preview' %>
 <%= javascript_packs_with_chunks_tag 'frame' %>
+<% end %>
 </br>
