@@ -1,11 +1,10 @@
 
-document.addEventListener('turbo:load', () => {
+const pre_content = document.querySelector('.prev-content');
+const pre_image = document.querySelector('.prev-image');
 
-  const pre_content = document.querySelector('.prev-content');
-  const pre_image = document.querySelector('.prev-image');
+const elm_upload = document.querySelector('#frame_image');
 
-  const elm_upload = document.querySelector('#frame_image');
-
+var initImagePreview = () => {
   if (elm_upload) {
     elm_upload.addEventListener('change', function () {
       var file = {};
@@ -34,4 +33,6 @@ document.addEventListener('turbo:load', () => {
       }
     });
   }
-});
+};
+
+document.addEventListener('turbo:load', initImagePreview());

@@ -11,10 +11,10 @@ Axios.defaults.headers.common = {
   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 };
 
-document.addEventListener('turbo:load', () => {
-  const root = document.querySelector('#commentComponent')
-  if (root) {
+const root = document.querySelector('#commentComponent');
 
+var initCommentComponent = () => {
+  if (root) {
     const comment_vm = createApp({
       data: function () {
         return {
@@ -132,4 +132,6 @@ document.addEventListener('turbo:load', () => {
     comment_vm.mount('#commentComponent');
   }
   //console.log(comment_vm.$data);
-});
+};
+
+document.addEventListener('turbo:load', initCommentComponent());

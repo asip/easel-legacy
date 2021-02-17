@@ -39,7 +39,7 @@
       <div class="form-group col-sm-6">
         <%= link_to '戻る', root_path, class: 'btn btn-primary', "data-turbo-frame": "_top" %>
         <% if logged_in? && @frame.user_id == current_user.id %>
-          <%= link_to '変更', edit_frame_path(@frame), class: 'btn btn-primary' %>
+          <%= link_to '変更', edit_frame_path(@frame), class: 'btn btn-primary', data: { turbo: false } %>
           <%# Button trigger modal %>
           <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete_modal">
             削除
@@ -68,6 +68,7 @@
     </div>
   </div>
 </div>
+<%= javascript_packs_with_chunks_tag 'frame' %>
 <% end %>
 <br>
 <div id="commentComponent" data-frame-id="<%= @frame.id %>" data-token="<%= logged_in? ? current_user.token : '' %>" data-login="<%= logged_in? ? true : false %>">
@@ -133,6 +134,5 @@
     </div>
   </div> 
 </div>
-<%= javascript_packs_with_chunks_tag 'frame' %>
 <%= javascript_packs_with_chunks_tag 'comment_component' %>
 <br>

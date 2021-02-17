@@ -1,12 +1,12 @@
+const lm_trigger = document.querySelector('.lm-trigger');
+const te_trigger = document.querySelector('#tag_list');
 
-document.addEventListener('turbo:load', function () {
+var initFrame = () => {
 
-  const lm_trigger = document.querySelector('.lm-trigger');
   if (lm_trigger) {
     new Luminous(lm_trigger);
   }
 
-  const te_trigger = document.querySelector('#tag_list')
   if (te_trigger) {
     $(te_trigger).tagEditor('destroy');
     $(te_trigger).tagEditor({
@@ -15,4 +15,6 @@ document.addEventListener('turbo:load', function () {
     });
   }
 
-});
+};
+
+document.addEventListener('turbo:load', initFrame());
