@@ -1,5 +1,5 @@
 
-document.addEventListener('turbolinks:load', function () {
+document.addEventListener('turbo:load', function () {
 
   const lm_trigger = document.querySelector('.lm-trigger');
   if (lm_trigger) {

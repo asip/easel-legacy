@@ -1,4 +1,5 @@
 <br>
+<%= turbo_frame_tag "frames" do %>
 <div class="card">
   <div class="card-block">
     <br>
@@ -36,7 +37,7 @@
     <br>
     <div class="row justify-content-sm-center">
       <div class="form-group col-sm-6">
-        <%= link_to '戻る', root_path, method: :get, class: 'btn btn-primary' %>
+        <%= link_to '戻る', root_path, class: 'btn btn-primary', "data-turbo-frame": "_top" %>
         <% if logged_in? && @frame.user_id == current_user.id %>
           <%= link_to '変更', edit_frame_path(@frame), class: 'btn btn-primary' %>
           <%# Button trigger modal %>
@@ -67,6 +68,7 @@
     </div>
   </div>
 </div>
+<% end %>
 <br>
 <div id="commentComponent" data-frame-id="<%= @frame.id %>" data-token="<%= logged_in? ? current_user.token : '' %>" data-login="<%= logged_in? ? true : false %>">
   <div v-show="logged_in" class="card">

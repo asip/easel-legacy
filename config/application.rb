@@ -23,6 +23,8 @@ module Easel
     # generate .js instead of .coffee
     config.generators.javascript_engine = :js
 
+    config.action_view.form_with_generates_remote_forms = false
+
     # timezone
     config.time_zone = "Tokyo"
   end

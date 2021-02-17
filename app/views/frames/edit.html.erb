@@ -1,3 +1,4 @@
+<%= turbo_frame_tag "frames" do %>
 <%= form_with model: @frame, local: true do |form| %>
 <br>
 <div class="card">
@@ -41,7 +42,7 @@
     <div class="row justify-content-md-center">
       <div class="form-group col-md-6">
         <%= form.submit '内容を確認', class: 'btn btn-primary' %>
-        <%= link_to '戻る', frame_path(@frame), method: :get, class: 'btn btn-outline-secondary' %>
+        <%= link_to '戻る', frame_path(@frame), class: 'btn btn-outline-secondary' %>
       </div>
     </div>
     <%= form.hidden_field :confirming %>
@@ -86,5 +87,6 @@
 </div>
 <br>
 <%= javascript_packs_with_chunks_tag 'frame' %>
+<% end %>
 <% end %>
 

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     @user = login(params['user']['email'], params['user']['password'])
     if @user
       @user.regenerate_token
-      redirect_back_or_to root_path
+      redirect_to root_path
     else
       @user = User.find_by(email: params['user']['email'])
       if @user

@@ -13,7 +13,7 @@ class FramesController < ApplicationController
     @frame.user_id = current_user.id
 
     if @frame.save
-      redirect_to controller: 'dashboard', action: :show
+      render :show
     else
       render :new
     end

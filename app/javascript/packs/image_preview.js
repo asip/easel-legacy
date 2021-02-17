@@ -1,5 +1,5 @@
 
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener('turbo:load', () => {
 
   const pre_content = document.querySelector('.prev-content');
   const pre_image = document.querySelector('.prev-image');
