@@ -1,5 +1,6 @@
-<%= turbo_frame_tag "frames", "data-controller": "frame preview" do %>
+<%= turbo_frame_tag "frames" do %>
 <br>
+<div data-controller="frame preview">
 <%= form_with model: @frame, local: true, "data-controller": "frame preview" do |form| %>
 <div class="card">
   <div class="card-header">
@@ -106,5 +107,6 @@
   </div>
 </div>
 <% end %>
+</div>
 <% end %>
 </br>
