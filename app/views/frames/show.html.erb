@@ -1,18 +1,18 @@
-<%= turbo_frame_tag "frames" do %>
+<%= turbo_frame_tag "frames", "data-controller": "frame" do %>
 <br>
 <div class="card">
   <div class="card-block">
     <br>
     <% if @frame.image.present? %>
     <div class="row justify-content-sm-center">
-      <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'lm-trigger mx-auto' %>
+      <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'mx-auto', "data-frame-target": "lm" %>
     </div>
     <br>
     <% end %>
     <% tags = @frame.tags %>
     <% if tags.size > 0 %>
-    <div class="row justify-content-md-center">
-      <div class="col-md-6">
+    <div class="row justify-content-sm-center">
+      <div class="col-sm-6" style="display: block;">
         <% tags.each do |tag| %>
         <a class="btn btn-outline-info btn-sm">
           <%= tag.name %>

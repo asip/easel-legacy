@@ -18,6 +18,9 @@ gem 'jbuilder', '~> 2.7'
 # Turbo
 gem 'turbo-rails'
 
+# Stimulus
+gem 'stimulus-rails'
+
 # Refile  don't support Ruby3.0.0 yet
 gem 'refile', github: 'refile/refile' , require: 'refile/rails'
 gem "refile-mini_magick"
