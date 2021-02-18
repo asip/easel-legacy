@@ -19,6 +19,7 @@
     "postcss-cssnext": "^3.1.0",
     "rails-erb-loader": "^5.5.2",
     "sanitize-html": "^2.3.2",
+    "stimulus": "^2.0.0",
     "vue": "^3.0.5",
     "vue-loader": "^16.1.2",
     "vue-turbolinks": "^2.2.1"

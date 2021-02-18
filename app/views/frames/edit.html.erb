@@ -1,6 +1,6 @@
-<%= turbo_frame_tag "frames" do %>
+<%= turbo_frame_tag "frames", "data-controller": "frame" do %>
 <br>
-<%= form_with model: @frame, local: true do |form| %>
+<%= form_with model: @frame, local: true, "data-controller": "frame" do |form| %>
 <div class="card">
   <div class="card-block">
     <br>
@@ -14,7 +14,7 @@
     <br>
     <% if @frame.image.present? %>
     <div class="row justify-content-sm-center justify-content-md-center">
-      <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'lm-trigger mx-auto' %>
+      <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'mx-auto', "data-frame-target": "lm" %>
     </div>
     <%= form.hidden_field :image, value: form.object.image_data.to_json %>
     <br>
@@ -29,7 +29,7 @@
     <div class="row justify-content-md-center">
       <label for="tag_list" class="col-md-2 label-bg-style">タグ</label>
       <div class="form-group col-md-4">
-        <%= form.text_area :tag_list, id: 'tag_list', class: 'form-control form-control-tag' %>
+        <%= form.text_area :tag_list, id: 'tag_list', class: 'form-control form-control-tag', "data-frame-target": "te" %>
       </div>
     </div>
     <div class="row justify-content-md-center">

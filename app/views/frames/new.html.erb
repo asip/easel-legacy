@@ -1,6 +1,6 @@
-<%= turbo_frame_tag "frames" do %>
+<%= turbo_frame_tag "frames", "data-controller": "frame preview" do %>
 <br>
-<%= form_with model: @frame, local: true do |form| %>
+<%= form_with model: @frame, local: true, "data-controller": "frame preview" do |form| %>
 <div class="card">
   <div class="card-header">
     アップロード
@@ -19,17 +19,17 @@
     <div class="row justify-content-md-center">
       <label for="image" class="col-md-2 label-bg-style">ファイル</label>
       <div class="form-group col-md-4">
-        <%= form.attachment_field :image, class: 'form-control-file' %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
+        <%= form.attachment_field :image, class: 'form-control-file', "data-preview-target": "upload" %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
       </div>
     </div>
     <% if @frame.image.present? %>
-    <div class="row justify-content-sm-center justify-content-md-center prev-content" style="display: block;">
-      <%= attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'prev-image mx-auto', style: 'max-width: 300px; max-height: 300px; display: block;') %>
+    <div data-preview-target="content" class="row justify-content-sm-center justify-content-md-center" style="display: block;">
+      <%= attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto', style: 'max-width: 300px; max-height: 300px; display: block;', "data-preview-target": "image " ) %>
       <br>
     </div>
     <% else %>
-    <div class="row justify-content-md-center justify-content-sm-center prev-content" style=" display: none;">
-      <img alt="preview" class="prev-image mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
+    <div data-preview-target="content" class="row justify-content-md-center justify-content-sm-center" style=" display: none;">
+      <img alt="preview" data-preview-target="image" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
       <br>
     </div>
     <% end %>
@@ -42,7 +42,7 @@
     <div class="row justify-content-md-center">
       <label for="tag_list" class="col-md-2 label-bg-style">タグ</label>
       <div class="form-group col-md-4">
-        <%= form.text_area :tag_list, id: 'tag_list', class: 'form-control form-control-tag' %>
+        <%= form.text_area :tag_list, id: 'tag_list', class: 'form-control form-control-tag', "data-frame-target": "te" %>
       </div>
     </div>
     <div class="row justify-content-md-center">
