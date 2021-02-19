@@ -1,6 +1,7 @@
 # Easel - image viewer
 
-Rails6.1 + Sorcery(authentication) + Kamnari(paging) + Refile(upload) + ActsAsTaggableOn(tag) + Vue.js3 + Turbo + Stimulus2 + Bootstrap4
+Rails6.1 + Sorcery(authentication) + Kamnari(paging) + Refile(upload) + ActsAsTaggableOn(tag) + Vue.js 3 + Hotwire (Turbo + Stimulus2) + 
+Bootstrap4
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
