@@ -9,7 +9,7 @@
       <br>
     <% end %>
     <div class="card-block">
-      <div class="row justify-content-sm-center">
+      <div class="d-flex justify-content-sm-center">
         <div class="mx-auto">
           <%= frame.name %>
         </div>
@@ -20,7 +20,7 @@
   <% end %>
 </div>
 <br>
-<div class="row col-sm-12 justify-content-sm-center">
+<div class="d-flex col-sm-12 justify-content-sm-center">
   <div class="mx-auto">
     <%= paginate @frames, params: { q: @word },theme: 'twitter-bootstrap-4' %>
   </div>

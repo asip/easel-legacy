@@ -9,7 +9,7 @@
   <div class="card-block">
     <br>
     <% @frame.errors.full_messages.each do |message| %>
-    <div class="row justify-content-md-center">
+    <div class="d-flex justify-content-md-center">
       <div class="alert alert-warning col-md-6" role="alert">
         <%= message %>
       </div>
@@ -17,43 +17,43 @@
     <% end %>
     <br>
     <% unless @frame.confirming == 'true' %>
-    <div class="row justify-content-md-center">
+    <div class="d-flex justify-content-md-center">
       <label for="image" class="col-md-2 label-bg-style">ファイル</label>
       <div class="form-group col-md-4">
         <%= form.attachment_field :image, class: 'form-control-file', "data-preview-target": "upload" %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
       </div>
     </div>
     <% if @frame.image.present? %>
-    <div data-preview-target="content" class="row justify-content-sm-center justify-content-md-center" style="display: block;">
+    <div data-preview-target="content" class="d-flex justify-content-sm-center justify-content-md-center" style="display: block;">
       <%= attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto', style: 'max-width: 300px; max-height: 300px; display: block;', "data-preview-target": "image " ) %>
       <br>
     </div>
     <% else %>
-    <div data-preview-target="content" class="row justify-content-md-center justify-content-sm-center" style=" display: none;">
-      <img alt="preview" data-preview-target="image" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
+    <div data-preview-target="content" class="d-flex justify-content-md-center justify-content-sm-center" style="display: none;">
+      <img data-preview-target="image" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
       <br>
     </div>
     <% end %>
-    <div class="row justify-content-md-center">
-      <label for="name" class="col-md-2 label-bg-style">名前</label>
+    <div class="d-flex justify-content-md-center">
+      <label for="name" class="form-label col-md-2 label-bg-style">名前</label>
       <div class="form-group col-md-4">
         <%= form.text_field :name, placeholder: "名前", class: 'form-control' %>
       </div>
     </div>
-    <div class="row justify-content-md-center">
-      <label for="tag_list" class="col-md-2 label-bg-style">タグ</label>
+    <div class="d-flex justify-content-md-center">
+      <label for="tag_list" class="form-label col-md-2 label-bg-style">タグ</label>
       <div class="form-group col-md-4">
         <%= form.text_area :tag_list, id: 'tag_list', class: 'form-control form-control-tag', "data-frame-target": "te" %>
       </div>
     </div>
-    <div class="row justify-content-md-center">
-      <label for="comment" class="col-md-2 label-bg-style">コメント</label>
+    <div class="d-flex justify-content-md-center">
+      <label for="comment" class="form-label col-md-2 label-bg-style">コメント</label>
       <div class="form-group col-md-4">
         <%= form.text_area :comment, class: 'form-control' %>
       </div>
     </div>
     <br>
-    <div class="row justify-content-md-center">
+    <div class="d-flex justify-content-md-center">
       <div class="form-group col-md-6">
         <%= form.submit '内容を確認', class: 'btn btn-primary' %>
         <%= link_to '戻る', root_path, class: 'btn btn-outline-secondary', "data-turbo-frame": '_top' %>
@@ -63,14 +63,14 @@
     <% else %>
     <%= form.hidden_field :image, value: form.object.image_data.to_json %>
     <% if @frame.image.present? %>
-    <div class="row justify-content-sm-center justify-content-md-center pre-content" style="display: block;">
+    <div class="d-flex justify-content-sm-center justify-content-md-center pre-content" style="display: block;">
       <%= attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'pre-image mx-auto', style: 'max-width: 300px; max-height: 300px; display: block;') %>
       <br>
     </div>
     <% end %>
     <% tags = @frame.tags_preview %>
     <% if tags.size > 0 %>
-    <div class="row justify-content-md-center">
+    <div class="d-flex justify-content-md-center">
       <div class="col-md-6">
         <% tags.each do |tag| %>
           <a class="btn btn-outline-info btn-sm">
@@ -82,14 +82,14 @@
     <br>
     <% end %>
     <%= form.hidden_field :tag_list %>
-    <div class="row justify-content-md-center">
-      <label for="name" class="col-md-2 label-bg-style">名前</label>
+    <div class="d-flex justify-content-md-center">
+      <label for="name" class="form-label col-md-2 label-bg-style">名前</label>
       <div class="form-group col-md-4">
         <%= @frame.name %>
         <%= form.hidden_field :name %>
       </div>
     </div>
-    <div class="row justify-content-md-center">
+    <div class="d-flex justify-content-md-center">
       <label for="comment" class="col-md-2 label-bg-style">コメント</label>
       <div class="form-group col-md-4">
         <%= simple_format(h(@frame.comment)) %>
@@ -97,16 +97,16 @@
       </div>
     </div>
     <br>
-    <div class="row justify-content-md-center">
+    <div class="d-flex justify-content-md-center">
       <div class="form-group col-md-6">
         <%= form.submit '登録', class: 'btn btn-primary' %>
         <%= form.submit '戻る', class: 'btn btn-outline-secondary' %>
       </div>
     </div>
     <% end %>
+    <br>
   </div>
 </div>
 <% end %>
 </div>
 <% end %>
-</br>

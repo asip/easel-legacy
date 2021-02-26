@@ -7,14 +7,14 @@
   <div class="card-block">
     <br>
     <% if @frame.image.present? %>
-    <div class="row justify-content-sm-center">
+    <div class="d-flex justify-content-sm-center">
       <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'mx-auto', "data-frame-target": "lm" %>
     </div>
     <br>
     <% end %>
     <% tags = @frame.tags %>
     <% if tags.size > 0 %>
-    <div class="row justify-content-sm-center">
+    <div class="d-flex justify-content-sm-center">
       <div class="col-sm-6" style="display: block;">
         <% tags.each do |tag| %>
         <a class="btn btn-outline-info btn-sm">
@@ -25,20 +25,20 @@
     </div>
     <br>
     <% end %>
-    <div class="row justify-content-sm-center">
-      <label for="name" class="col-sm-2 label-bg-style">名前</label>
+    <div class="d-flex justify-content-sm-center">
+      <label for="name" class="form-label col-sm-2 label-bg-style">名前</label>
       <div class="col-sm-4">
         <%= @frame.name %>
       </div>
     </div>
-    <div class="row justify-content-sm-center">
-      <label for="comment" class="col-sm-2 label-bg-style">コメント</label>
+    <div class="d-flex justify-content-sm-center">
+      <label for="comment" class="form-label col-sm-2 label-bg-style">コメント</label>
       <div class="col-sm-4">
         <%= simple_format(h(@frame.comment)) %>
       </div>
     </div>
     <br>
-    <div class="row justify-content-sm-center">
+    <div class="d-flex justify-content-sm-center">
       <div class="form-group col-sm-6">
         <%= link_to '戻る', root_path, class: 'btn btn-primary', "data-turbo-frame": "_top" %>
         <% if logged_in? && @frame.user_id == current_user.id %>
@@ -50,6 +50,7 @@
         <% end %>
       </div>
     </div>
+    <br>
   </div>
 </div>
 <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -77,26 +78,26 @@
 <div id="commentComponent" data-frame-id="<%= @frame.id %>" data-token="<%= logged_in? ? current_user.token : '' %>" data-login="<%= logged_in? ? true : false %>">
   <div v-show="logged_in" class="card">
     <div class="card-block">
-      <div class="row justify-content-sm-center">
+      <div class="d-flex justify-content-sm-center">
         <div class="clearfix col-10">
           <div class="float-left">
             コメント入力
           </div>
         </div>
       </div>
-      <div class="row justify-content-sm-center">
+      <div class="d-flex justify-content-sm-center">
         <div class="form-group col-10">
           <textarea v-model="comment.body" class="col-12"></textarea>     
         </div>
       </div>
-      <div class="row justify-content-sm-center">
+      <div class="d-flex justify-content-sm-center">
         <div class="col-10">
           <div v-for="message in error_messages">
             <p style="color: red;">{{message}}</p>
           </div>
         </div>
       </div>
-      <div class="row justify-content-sm-center">
+      <div class="d-flex justify-content-sm-center">
         <div class="form-group  col-10">
           <button class="col-12" v-on:click="setComment">登録</button>        
         </div>
@@ -107,7 +108,7 @@
   <div v-for="comment in comments">
     <div class="card">
       <div class="card-block">
-        <div class="row ">
+        <div class="d-flex ">
           <div class="col-12 clearfix">
             <div class="float-left"> 
               &nbsp;{{comment.attributes.user_name}}
@@ -119,16 +120,12 @@
         </div>
       </div>
       <div class="card-footer">
-        <div class="row">
-          <div class="col-12 clearfix">
-            <div class="float-left">
+        <div class="d-flex">
+          <div class="col-12">
+            <div class="float-start">
               {{getSanitizedCommentBody(comment)}}
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 clearfix">
-            <div class="float-right small">
+            <div class="float-end small">
               {{comment.attributes.updated_at}}
             </div>
           </div>

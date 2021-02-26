@@ -6,7 +6,7 @@
   <div class="card-block">
     <br>
     <% @frame.errors.full_messages.each do |message| %>
-    <div class="row justify-content-md-center">
+    <div class="d-flex justify-content-md-center">
       <div class="alert alert-warning col-md-6" role="alert">
         <%= message %>
       </div>
@@ -14,34 +14,34 @@
     <% end %>
     <br>
     <% if @frame.image.present? %>
-    <div class="row justify-content-sm-center justify-content-md-center">
+    <div class="d-flex justify-content-sm-center justify-content-md-center">
       <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'mx-auto', "data-frame-target": "lm" %>
     </div>
     <%= form.hidden_field :image, value: form.object.image_data.to_json %>
     <br>
     <% end %>
     <% unless @frame.confirming == 'true' %>
-    <div class="row justify-content-md-center">
-      <label for="name" class="col-md-2 label-bg-style">名前</label>
-      <div class="form-group col-md-4">
+    <div class="d-flex justify-content-md-center">
+      <label for="name" class="form-label col-md-2 label-bg-style">名前</label>
+      <div class="col-md-4">
         <%= form.text_field :name, placeholder: "名前", class: 'form-control' %>
       </div>
     </div>
-    <div class="row justify-content-md-center">
-      <label for="tag_list" class="col-md-2 label-bg-style">タグ</label>
-      <div class="form-group col-md-4">
+    <div class="d-flex justify-content-md-center">
+      <label for="tag_list" class="form-label col-md-2 label-bg-style">タグ</label>
+      <div class="col-md-4">
         <%= form.text_area :tag_list, id: 'tag_list', class: 'form-control form-control-tag', "data-frame-target": "te" %>
       </div>
     </div>
-    <div class="row justify-content-md-center">
-      <label for="comment" class="col-md-2 label-bg-style">コメント</label>
-      <div class="form-group col-md-4">
+    <div class="d-flex justify-content-md-center">
+      <label for="comment" class="form-label col-md-2 label-bg-style">コメント</label>
+      <div class="col-md-4">
         <%= form.text_area :comment, class: 'form-control' %>
       </div>
     </div>
     <br>
-    <div class="row justify-content-md-center">
-      <div class="form-group col-md-6">
+    <div class="d-flex justify-content-md-center">
+      <div class="col-md-6">
         <%= form.submit '内容を確認', class: 'btn btn-primary' %>
         <%= link_to '戻る', frame_path(@frame), class: 'btn btn-outline-secondary', "data-turbo": true %>
       </div>
@@ -50,7 +50,7 @@
     <% else %>
     <% tags = @frame.tags_preview %>
     <% if tags.size > 0 %>
-    <div class="row justify-content-md-center">
+    <div class="d-flex justify-content-md-center">
       <div class="col-md-6">
         <% tags.each do |tag| %>
         <a class="btn btn-outline-info btn-sm">
@@ -62,31 +62,31 @@
     <br>
     <% end %>
     <%= form.hidden_field :tag_list %>
-    <div class="row justify-content-md-center">
-      <label for="name" class="col-md-2 label-bg-style">名前</label>
-      <div class="form-group col-md-4">
+    <div class="d-flex justify-content-md-center">
+      <label for="name" class="form-label col-md-2 label-bg-style">名前</label>
+      <div class="col-md-4">
         <%= @frame.name %>
         <%= form.hidden_field :name %>
       </div>
     </div>
-    <div class="row justify-content-md-center">
-      <label for="comment" class="col-md-2 label-bg-style">コメント</label>
-      <div class="form-group col-md-4">
+    <div class="d-flex justify-content-md-center">
+      <label for="comment" class="form-label col-md-2 label-bg-style">コメント</label>
+      <div class="col-md-4">
         <%= simple_format(h(@frame.comment)) %>
         <%= form.hidden_field :comment %>
       </div>
     </div>
     <br>
-    <div class="row justify-content-md-center">
-      <div class="form-group col-md-6">
+    <div class="d-flex justify-content-md-center">
+      <div class="col-md-6">
         <%= form.submit '更新', class: 'btn btn-primary' %>
         <%= form.submit '戻る', class: 'btn btn-outline-secondary' %>
       </div>
     </div>
     <% end %>
+    <br>
   </div>
 </div>
 <% end %>
 </div>
 <% end %>
-<br>

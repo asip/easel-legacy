@@ -1,11 +1,12 @@
 <nav class="navbar navbar-expand-sm navbar-light c-bgcolor">
-  <%= link_to 'Easel', root_path, class: 'nav-brand' %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="container-fluid">
+  <%= link_to 'Easel', root_path, class: 'navbar-brand' %>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav me-auto">
       <% if logged_in? %>
         <li class="nav-item">
           <%= link_to 'Upload', new_frame_path, class: 'nav-link', "data-turbo": false %>
@@ -19,11 +20,7 @@
         </li>
       <% end %>
     </ul>
-    <%# <ul class="navbar-nav abs-center-x">
-      <li class="nav-item">
-        %><%#= render 'layouts/tag_search'%><%#
-      </li>
-    </ul> %>
     <%= render 'layouts/tag_search'%>
+  </div>
   </div>
 </nav>
