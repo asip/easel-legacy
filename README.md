@@ -1,7 +1,7 @@
 # Easel - image viewer
 
 Rails6.1 + Sorcery(authentication) + Kamnari(paging) + Refile(upload) + ActsAsTaggableOn(tag) + Vue.js 3 + Hotwire (Turbo + Stimulus2) + 
-Bootstrap4
+Bootstrap5
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
@@ -9,7 +9,7 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version : 2.7.2
-* Rails version : 6.1.0
+* Rails version : 6.1.x
 * System dependencies : yarn & mysql
 * Deployment instructions
   - Run `bundle install --path vendor/bundle` to install the required Rubygems
