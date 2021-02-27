@@ -10,6 +10,7 @@
     "@vue/compiler-sfc": "^3.0.5",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta2",
+    "bootstrap-icons": "^1.4.0",
     "bootstrap4c-tageditor": "^1.0.3",
     "coffeescript": "2.5.1",
     "jquery": "^3.5.1",
