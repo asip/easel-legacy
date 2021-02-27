@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "users" do %>
-<%= form_with model: @user, url: sessions_path, method: :post, local: true, html: { 'data-turbo-frame': "_top" } do |form| %>
+<%= form_with model: @user, url: sessions_path, method: :post, local: true, html: { 'data-turbo-frame': "_top", 'data-turbo': false } do |form| %>
 <br>
 <div class="card">
   <div class="card-header">
@@ -9,8 +9,9 @@
     <br>
     <% @user.errors.full_messages.each do |message| %>
     <div class="d-flex justify-content-sm-center">
-      <div class="alert alert-warning col-sm-6" role="alert">
+      <div class="alert alert-warning col-sm-6 alert-dismissible fade show" role="alert">
         <%= message %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     </div>
     <% end %>
