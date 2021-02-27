@@ -25,20 +25,20 @@
     </div>
     <br>
     <% end %>
-    <div class="d-flex justify-content-sm-center">
-      <label for="name" class="form-label col-sm-2 label-bg-style">名前</label>
+    <div class="row d-flex justify-content-sm-center border border-white">
+      <label for="name" class="col-form-label-sm col-sm-2 label-bg-style ">名前</label>
       <div class="col-sm-4">
         <%= @frame.name %>
       </div>
     </div>
-    <div class="d-flex justify-content-sm-center">
-      <label for="comment" class="form-label col-sm-2 label-bg-style">コメント</label>
+    <div class="row d-flex justify-content-sm-center border border-white" >
+      <label for="comment" class="col-form-label-sm col-sm-2 label-bg-style">コメント</label>
       <div class="col-sm-4">
         <%= simple_format(h(@frame.comment)) %>
       </div>
     </div>
     <br>
-    <div class="d-flex justify-content-sm-center">
+    <div class="row d-flex justify-content-sm-center">
       <div class="form-group col-sm-6">
         <%= link_to '戻る', root_path, class: 'btn btn-primary', "data-turbo-frame": "_top" %>
         <% if logged_in? && @frame.user_id == current_user.id %>
