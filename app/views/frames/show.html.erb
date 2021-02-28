@@ -1,13 +1,14 @@
 
 <%= turbo_frame_tag "users" do %>
 <% end %>
-<%= turbo_frame_tag "frames", "data-controller": "frame" do %>
+<%= turbo_frame_tag "frames" do %>
 <br>
+<div data-controller="frame">
 <div class="card">
   <div class="card-block">
     <br>
     <% if @frame.image.present? %>
-    <div data-turbo="false" class="d-flex justify-content-sm-center">
+    <div class="d-flex justify-content-sm-center">
       <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'mx-auto', "data-frame-target": "lm" %>
     </div>
     <br>
@@ -71,6 +72,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 <% end %>
 <br>
