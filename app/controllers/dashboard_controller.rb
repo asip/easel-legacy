@@ -6,16 +6,20 @@ class DashboardController < ApplicationController
     @frames = Frame.where(nil)
 
     if @word.present?
-      #@frames = @frames.ransack({ name_or_tags_name_cont: @word}).result(distinct: true)
-      @frames = @frames.joins(:tags)
+      #@frames = @frames.ransack({ name_or_tags_name_cont_or_users_name: @word}).result(distinct: true)
+      @frames = @frames.joins(:tags, :user)
                      .merge(ActsAsTaggableOn::Tag.where('tags.name like ?', "%#{@word}%"))
                      .or(Frame.where('frames.name like ?', "%#{@word}%"))
-      ##@frames = Frame.includes(:tags)
+                     .or(User.where(name: @word))
+      ##@frames = Frame.includes(:tags, :user)
       ##              .where(tags: {name: @word})
-      ##              .or(Frame.where('frames.name like ?', "%#{@word}%")).distinct
-      #@frames = Frame.includes(:tags).references(:tags)
+      ##              .or(Frame.where('frames.name like ?', "%#{@word}%"))
+      ##              .or(User.where(name: @word))
+      ##              .distinct
+      #@frames = Frame.includes(:tags, :user).references(:tags, :user)
       #            .where('tags.name like ?', "%#{@word}%")
       #            .or(Frame.where('frames.name like ?', "%#{@word}%"))
+      #            .or(User.where(name: @word))
       
     end
 
