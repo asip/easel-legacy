@@ -2,23 +2,32 @@ import { Controller } from "stimulus"
 
 export default class FrameController extends Controller {
   static targets = ['lm', 'te']
-  static lm_elm;
+  //static lm_elms = {};
+  lm_trigger = null;
 
   connect() {
-    var lm_trigger = null;
+    //this.lm_trigger = null;
     try{
-      lm_trigger = this.lmTarget;
+      this.lm_trigger = this.lmTarget;
     } catch(e) {}
     var te_trigger = null;
     try{
       te_trigger = this.teTarget;
     } catch(e) {}
 
-    if(lm_trigger){
+    if(this.lm_trigger){
       var options = { showCloseButton: true };
-      if(!FrameController.lm_elm){
-        FrameController.lm_elm = new Luminous(lm_trigger, options);
-      }
+      
+      //if(FrameController.lm_elms[this.lm_trigger]){
+      //  FrameController.lm_elms[this.lm_trigger].destroy();
+      //  delete FrameController.lm_elms[this.lm_trigger];
+      //  //console.log("111");
+      //}
+      //if(!FrameController.lm_elms[this.lm_trigger]){
+        //FrameController.lm_elms[this.lm_trigger] = 
+        new Luminous(this.lm_trigger, options);
+        //console.log("222");
+      //}
     }
 
     if(te_trigger){
@@ -31,6 +40,10 @@ export default class FrameController extends Controller {
   }
 
   disconnect(){
-    FrameController.lm_elm.destroy();
+    //if(FrameController.lm_elms[this.lm_trigger]){
+    //  FrameController.lm_elms[this.lm_trigger].destroy();
+    //  delete FrameController.lm_elms[this.lm_trigger];
+    //  //console.log(333);
+    //}
   }
 }
