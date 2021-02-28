@@ -1,8 +1,9 @@
 import { Controller } from "stimulus"
 
-export default class extends Controller {
+export default class FrameController extends Controller {
   static targets = ['lm', 'te']
-  
+  static lm_elm;
+
   connect() {
     var lm_trigger = null;
     try{
@@ -14,7 +15,10 @@ export default class extends Controller {
     } catch(e) {}
 
     if(lm_trigger){
-      new Luminous(lm_trigger);
+      var options = { showCloseButton: true };
+      if(!FrameController.lm_elm){
+        FrameController.lm_elm = new Luminous(lm_trigger, options);
+      }
     }
 
     if(te_trigger){
@@ -24,5 +28,9 @@ export default class extends Controller {
         delimiter: ', '
       });
     }
+  }
+
+  disconnect(){
+    FrameController.lm_elm.destroy();
   }
 }
