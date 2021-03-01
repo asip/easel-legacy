@@ -25,7 +25,8 @@ class FramesController < ApplicationController
   def update
     @frame.user_id = current_user.id
 
-    if @frame.update(frame_params)
+    @frame.attributes = frame_params
+    if @frame.save
       redirect_to @frame
     else
       render :edit
@@ -54,6 +55,7 @@ class FramesController < ApplicationController
   def back_to_form
     if params[:commit] == '戻る'
       @frame.confirming = ''
+      @frame.attributes = frame_params
       if action_name == 'create'
         render :new
       elsif action_name == 'update'
