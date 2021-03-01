@@ -16,6 +16,4 @@
 //= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
 //= require luminous-lightbox/dist/Luminous.min
-//= require @accursoft/jquery-caret/jquery.caret
-//= require jquery-tageditor/jquery.tag-editor.min
 //= require_tree .

@@ -31,7 +31,8 @@
     <div class="row d-flex justify-content-sm-center border border-white">
       <label for="tag_list" class="col-form-label-sm col-sm-2 label-bg-style">タグ</label>
       <div class="col-sm-4">
-        <%= form.text_area :tag_list, id: 'tag_list', class: 'form-control form-control-tag', "data-frame-target": "te" %>
+      <input type="text" name="tag_editor" id="tag_editor" value="" data-frame-target="te" class="form-control" >
+        <%= form.hidden_field :tag_list, id: 'tag_list', "data-frame-target": "tl", value: @frame.tag_list.join(",") %>
       </div>
     </div>
     <div class="row d-flex justify-content-sm-center border border-white">
@@ -62,7 +63,7 @@
     </div>
     <br>
     <% end %>
-    <%= form.hidden_field :tag_list %>
+    <%= form.hidden_field :tag_list, value: @frame.tag_list.join(",") %>
     <div class="row d-flex justify-content-sm-center border border-white">
       <label for="name" class="col-form-label-sm col-sm-2 label-bg-style">名前</label>
       <div class="col-sm-4">
