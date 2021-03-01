@@ -16,7 +16,7 @@
     <br>
     <% if @frame.image.present? %>
     <div class="d-flex justify-content-sm-center">
-      <%= attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto') %>
+      <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'mx-auto', "data-frame-target": "lm" %>
     </div>
     <%= form.hidden_field :image, value: form.object.image_data.to_json %>
     <br>

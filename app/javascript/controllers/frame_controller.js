@@ -6,6 +6,7 @@ export default class FrameController extends Controller {
   //static lm_elms = {};
   lm_trigger = null;
   tl_trigger = null;
+  preview;
   editor;
 
   connect() {
@@ -23,18 +24,8 @@ export default class FrameController extends Controller {
     } catch(e) {}
 
     if(this.lm_trigger){
-      var options = { showCloseButton: true };
-      
-      //if(FrameController.lm_elms[this.lm_trigger]){
-      //  FrameController.lm_elms[this.lm_trigger].destroy();
-      //  delete FrameController.lm_elms[this.lm_trigger];
-      //  //console.log("111");
-      //}
-      //if(!FrameController.lm_elms[this.lm_trigger]){
-        //FrameController.lm_elms[this.lm_trigger] = 
-        new Luminous(this.lm_trigger, options);
-        //console.log("222");
-      //}
+      const options = { showCloseButton: true };
+      this.preview = new Luminous(this.lm_trigger, options);
     }
 
     if(te_trigger){
@@ -66,16 +57,16 @@ export default class FrameController extends Controller {
   }
 
   disconnect(){
-    //if(FrameController.lm_elms[this.lm_trigger]){
-    //  FrameController.lm_elms[this.lm_trigger].destroy();
-    //  delete FrameController.lm_elms[this.lm_trigger];
-    //  //console.log(333);
-    //}
+    if(this.preview){
+      this.preview.destroy();
+      const preview_classes = this.element.getElementsByClassName('lum-lightbox');
+      Array.from(preview_classes).forEach(e => e.remove());
+    }
 
     if(this.editor){
       this.editor.removeAllTags()
-      const classes = this.element.getElementsByClassName('tagify');
-      Array.from(classes).forEach(e => e.remove());
+      const editor_classes = this.element.getElementsByClassName('tagify');
+      Array.from(editor_classes).forEach(e => e.remove());
     }
   }
 }
