@@ -12,7 +12,6 @@
 //
 //= require @rails/ujs
 //= require @hotwired/turbo/dist/turbo.es2017-umd
-//= require jquery/dist/jquery
 //= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
 //= require luminous-lightbox/dist/Luminous.min
