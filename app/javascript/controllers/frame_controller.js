@@ -6,7 +6,7 @@ export default class FrameController extends Controller {
   //static lm_elms = {};
   lm_trigger = null;
   tl_trigger = null;
-  preview;
+  image;
   editor;
 
   connect() {
@@ -25,7 +25,7 @@ export default class FrameController extends Controller {
 
     if(this.lm_trigger){
       const options = { showCloseButton: true };
-      this.preview = new Luminous(this.lm_trigger, options);
+      this.image = new Luminous(this.lm_trigger, options);
     }
 
     if(te_trigger){
@@ -57,10 +57,10 @@ export default class FrameController extends Controller {
   }
 
   disconnect(){
-    if(this.preview){
-      this.preview.destroy();
-      const preview_elements = this.element.getElementsByClassName('lum-lightbox');
-      Array.from(preview_elements).forEach(e => e.remove());
+    if(this.image){
+      this.image.destroy();
+      const image_elements = this.element.getElementsByClassName('lum-lightbox');
+      Array.from(image_elements).forEach(e => e.remove());
     }
 
     if(this.editor){
