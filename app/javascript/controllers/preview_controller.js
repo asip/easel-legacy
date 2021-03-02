@@ -8,13 +8,13 @@ export default class extends Controller {
     try{
       elm_upload = this.uploadTarget;
     } catch(e) {}
-    var pre_content = null;
+    var content = null;
     try{
-      pre_content = this.contentTarget;
+      content = this.contentTarget;
     } catch(e) {}
-    var pre_image = null;
+    var preview = null;
     try{
-      pre_image = this.imageTarget;
+      preview = this.imageTarget;
     } catch(e) {}
 
     if (elm_upload) {
@@ -33,15 +33,15 @@ export default class extends Controller {
           reader.onload = function () {
             // 読み込んだファイルの内容を取得して変数imageに代入します
             var image = this.result;
-            //console.log(pre_image.style.display);
-            pre_image.src = image;
+            //console.log(content.style.display);
+            preview.src = image;
             // プレビュー画像がなければ表示します
-            if (pre_content.style.display == 'none') {
-              pre_content.style.display = 'block';
+            if (content.style.display == 'none') {
+              content.style.display = 'block';
             }
           }
         } else {
-          pre_content.style.display = 'none';
+          content.style.display = 'none';
         }
       });
     }
