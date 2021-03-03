@@ -10,21 +10,30 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <% unless logged_in? %>
     <ul class="navbar-nav me-auto">
-      <% if logged_in? %>
-        <li class="nav-item">
-          <%= link_to 'Upload', new_frame_path, class: 'nav-link', "data-turbo": false %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Login', login_path, class: 'nav-link' %>
-        </li>
-      <% end %>
+      <li class="nav-item">
+        <%= link_to 'Login', login_path, class: 'nav-link' %>
+      </li>
     </ul>
-    <%= render 'layouts/tag_search'%>
-  </div>
+    <% else %>
+    <ul class="navbar-nav justify-sm-center me-auto">
+      <li class="nav-item dropdown small">
+        <a class="nav-link dropdown-toggle btn btn-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= current_user.name %>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
+          <li><%= link_to 'Upload', new_frame_path, class: 'dropdown-item', "data-turbo": false %></li>
+          <li><%= link_to 'Logout', logout_path, method: :delete, class: 'dropdown-item' %></li>
+          <%# <li><a class="dropdown-item" href="#">Something else here</a></li> %>
+        </ul>
+      </li>
+    </ul>
+    <% end %>
+    <ul class="navbar-nav justify-sm-center">
+      <li class="nav-item">
+        <%= render 'layouts/tag_search'%>
+      </li>
+    </ul>
   </div>
 </nav>
