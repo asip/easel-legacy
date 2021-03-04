@@ -79,44 +79,48 @@
 <div data-turbo="false">
 <div id="commentComponent" data-frame-id="<%= @frame.id %>" data-token="<%= logged_in? ? current_user.token : '' %>" data-login="<%= logged_in? ? true : false %>">
   <div v-show="logged_in" class="card">
-    <div class="card-block">
+    <div class="card-header">
       <div class="d-flex justify-content-sm-center">
-        <div class="clearfix col-10">
+        <div class="clearfix">
           <div class="float-left">
             コメント入力
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-sm-center">
+    </div>
+    <div class="card-block">
+      <br>
+      <div class="d-flex justify-content-center">
         <div class="form-group col-10">
-          <textarea v-model="comment.body" class="col-12"></textarea>     
+          <textarea v-model="comment.body" class="form-control col-12"></textarea>     
         </div>
       </div>
-      <div class="d-flex justify-content-sm-center">
+      <div class="d-flex justify-content-center">
         <div class="col-10">
           <div v-for="message in error_messages">
             <p style="color: red;">{{message}}</p>
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-sm-center">
-        <div class="form-group  col-10">
-          <button class="col-12" v-on:click="setComment">登録</button>        
+      <div class="d-flex justify-content-center">
+        <div class="form-group col-10">
+          <button class="btn btn-light col-12 form-control" v-on:click="setComment">登録</button>        
         </div>
       </div>
+      <br>
     </div>
   </div>
   <br>
   <div v-for="comment in comments">
     <div class="card">
       <div class="card-block">
-        <div class="d-flex ">
+        <div class="row d-flex">
           <div class="col-12 clearfix">
-            <div class="float-left"> 
+            <div class="btn-sm float-start"> 
               &nbsp;{{comment.attributes.user_name}}
             </div>
-            <div class="float-right" v-show="logged_in && comment.attributes.user_id == current_user.id">
-              <button class="btn btn-link" v-on:click="deleteComment(comment)">削除</button>&nbsp;
+            <div class="float-end" v-show="logged_in && comment.attributes.user_id == current_user.id">
+              <button class="btn btn-link btn-sm" v-on:click="deleteComment(comment)">削除</button>&nbsp;
             </div>
           </div>
         </div>
@@ -134,6 +138,7 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
+  <br>
 </div>
 </div>
