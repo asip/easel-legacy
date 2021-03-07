@@ -1,0 +1,38 @@
+<%= turbo_frame_tag "users" do %>
+<br>
+<div class="card">
+  <div class="card-header">
+    プロフィール
+  </div>
+  <div class="card-block">
+    <br>
+    <br>
+    <div class="row d-flex justify-content-sm-center">
+      <label for="name" class="form-label col-md-2 label-bg-style">ユーザー名</label>
+      <div class="form-group col-sm-4">
+        <%= @user.name %>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-sm-center">
+      <label for="email" class="form-label col-md-2 label-bg-style">Eメール</label>
+      <div class="form-group col-sm-4">
+        <%= @user.email %>
+      </div>
+    </div>
+    <!-- <div class="row d-flex justify-content-sm-center">
+      <label for="passowrd" class="form-label col-md-2 label-bg-style">パスワード</label>
+      <div class="form-group col-sm-4">
+        <%= @user.password %>
+      </div>
+    </div> -->
+    <br>
+    <div class="row d-flex justify-content-sm-center">
+      <div class="form-group col-sm-6">
+        <%= link_to '戻る', root_path,class: 'btn btn-outline-secondary', 'data-turbo': false %>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+<br>
+<% end %>

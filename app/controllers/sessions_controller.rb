@@ -28,6 +28,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+  end
+
   def destroy
     logout
     redirect_to root_path

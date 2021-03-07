@@ -23,6 +23,7 @@
           <%= current_user.name %>
         </a>
         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
+          <li><%= link_to 'profile', profile_path, class: 'dropdown-item' %></li>
           <li><%= link_to 'Upload', new_frame_path, class: 'dropdown-item', "data-turbo": false %></li>
           <li><%= link_to 'Logout', logout_path, method: :delete, class: 'dropdown-item' %></li>
           <%# <li><a class="dropdown-item" href="#">Something else here</a></li> %>
