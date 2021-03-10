@@ -1,144 +1,143 @@
 
-<%= turbo_frame_tag "users" do %>
-<% end %>
+<%= turbo_frame_tag "users" do %><% end %>
 <%= turbo_frame_tag "frames" do %>
-<br>
-<div data-controller="frame">
-<div class="card">
-  <div class="card-block">
-    <br>
-    <% if @frame.image.present? %>
-    <div class="d-flex justify-content-sm-center">
-      <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'mx-auto', "data-frame-target": "lm" %>
-    </div>
-    <br>
-    <% end %>
-    <% tags = @frame.tags %>
-    <% if tags.size > 0 %>
-    <div class="d-flex justify-content-sm-center">
-      <div class="col-sm-6" style="display: block;">
-        <% tags.each do |tag| %>
-        <a class="btn btn-outline-info btn-sm">
-          <%= tag.name %>
-        </a>
+  <br>
+  <div data-controller="frame">
+    <div class="card">
+      <div class="card-block">
+        <br>
+        <% if @frame.image.present? %>
+        <div class="d-flex justify-content-sm-center">
+          <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'mx-auto', "data-frame-target": "lm" %>
+        </div>
+        <br>
         <% end %>
-      </div>
-    </div>
-    <br>
-    <% end %>
-    <div class="row d-flex justify-content-sm-center border border-white">
-      <label for="name" class="col-form-label-sm col-sm-2 label-bg-style ">名前</label>
-      <div class="col-sm-4">
-        <%= @frame.name %>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-sm-center border border-white" >
-      <label for="comment" class="col-form-label-sm col-sm-2 label-bg-style">コメント</label>
-      <div class="col-sm-4">
-        <%= simple_format(h(@frame.comment)) %>
-      </div>
-    </div>
-    <br>
-    <div class="row d-flex justify-content-sm-center">
-      <div class="form-group col-sm-6">
-        <%= link_to '戻る', root_path, class: 'btn btn-primary', "data-turbo-frame": "_top" %>
-        <% if logged_in? && @frame.user_id == current_user.id %>
-          <%= link_to '変更', edit_frame_path(@frame), class: 'btn btn-primary', "data-turbo": true %>
-          <%# Button trigger modal %>
-          <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete_modal">
-            削除
-          </button>
+        <% tags = @frame.tags %>
+        <% if tags.size > 0 %>
+        <div class="d-flex justify-content-sm-center">
+          <div class="col-sm-6" style="display: block;">
+            <% tags.each do |tag| %>
+            <a class="btn btn-outline-info btn-sm">
+              <%= tag.name %>
+            </a>
+            <% end %>
+          </div>
+        </div>
+        <br>
         <% end %>
+        <div class="row d-flex justify-content-sm-center border border-white">
+          <label for="name" class="col-form-label-sm col-sm-2 label-bg-style ">名前</label>
+          <div class="col-sm-4">
+            <%= @frame.name %>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-sm-center border border-white" >
+          <label for="comment" class="col-form-label-sm col-sm-2 label-bg-style">コメント</label>
+          <div class="col-sm-4">
+            <%= simple_format(h(@frame.comment)) %>
+          </div>
+        </div>
+        <br>
+        <div class="row d-flex justify-content-sm-center">
+          <div class="form-group col-sm-6">
+            <%= link_to '戻る', root_path, class: 'btn btn-primary', "data-turbo-frame": "_top" %>
+            <% if logged_in? && @frame.user_id == current_user.id %>
+            <%= link_to '変更', edit_frame_path(@frame), class: 'btn btn-primary', "data-turbo": true %>
+              <%# Button trigger modal %>
+              <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete_modal">
+                削除
+              </button>
+            <% end %>
+          </div>
+        </div>
+        <br>
       </div>
     </div>
-    <br>
-  </div>
-</div>
-<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <% if false %><h5 class="modal-title" id="exampleModalLabel">イメージの削除</h5><% end %>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        削除してもよろしいですか？
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">閉じる</button>
-        <%= link_to '削除', frame_path(@frame), method: :delete, class: 'btn btn-outline-danger' %>
+    <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <% if false %><h5 class="modal-title" id="exampleModalLabel">イメージの削除</h5><% end %>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            削除してもよろしいですか？
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">閉じる</button>
+            <%= link_to '削除', frame_path(@frame), method: :delete, class: 'btn btn-outline-danger' %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 <% end %>
 <br>
 <div data-turbo="false">
-<div id="commentComponent" data-frame-id="<%= @frame.id %>" data-token="<%= logged_in? ? current_user.token : '' %>" data-login="<%= logged_in? ? true : false %>">
-  <div v-show="logged_in" class="card">
-    <div class="card-header">
-      <div class="d-flex justify-content-sm-center">
-        <div class="clearfix">
-          <div class="float-left">
-            コメント入力
+  <div id="commentComponent" data-frame-id="<%= @frame.id %>" data-token="<%= logged_in? ? current_user.token : '' %>" data-login="<%= logged_in? ? true : false %>">
+    <div v-show="logged_in" class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-sm-center">
+          <div class="clearfix">
+            <div class="float-left">
+              コメント入力
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="card-block">
-      <br>
-      <div class="d-flex justify-content-center">
-        <div class="form-group col-10">
-          <textarea v-model="comment.body" class="form-control col-12"></textarea>     
-        </div>
-      </div>
-      <div class="d-flex justify-content-center">
-        <div class="col-10">
-          <div v-for="message in error_messages">
-            <p style="color: red;">{{message}}</p>
-          </div>
-        </div>
-      </div>
-      <div class="d-flex justify-content-center">
-        <div class="form-group col-10">
-          <button class="btn btn-light col-12 form-control" v-on:click="setComment">登録</button>        
-        </div>
-      </div>
-      <br>
-    </div>
-  </div>
-  <br>
-  <div v-for="comment in comments">
-    <div class="card">
       <div class="card-block">
-        <div class="row d-flex">
-          <div class="col-12 clearfix">
-            <div class="btn-sm float-start"> 
-              &nbsp;{{comment.attributes.user_name}}
-            </div>
-            <div class="float-end" v-show="logged_in && comment.attributes.user_id == current_user.id">
-              <button class="btn btn-link btn-sm" v-on:click="deleteComment(comment)">削除</button>&nbsp;
+        <br>
+        <div class="d-flex justify-content-center">
+          <div class="form-group col-10">
+            <textarea v-model="comment.body" class="form-control col-12"></textarea>     
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="col-10">
+            <div v-for="message in error_messages">
+              <p style="color: red;">{{message}}</p>
             </div>
           </div>
         </div>
+        <div class="d-flex justify-content-center">
+          <div class="form-group col-10">
+            <button class="btn btn-light col-12 form-control" v-on:click="setComment">登録</button>        
+          </div>
+        </div>
+        <br>
       </div>
-      <div class="card-footer">
-        <div class="d-flex">
-          <div class="col-12">
-            <div class="float-start">
-              {{getSanitizedCommentBody(comment)}}
+    </div>
+    <br>
+    <div v-for="comment in comments">
+      <div class="card">
+        <div class="card-block">
+          <div class="row d-flex">
+            <div class="col-12 clearfix">
+              <div class="btn-sm float-start"> 
+                &nbsp;{{comment.attributes.user_name}}
+              </div>
+              <div class="float-end" v-show="logged_in && comment.attributes.user_id == current_user.id">
+                <button class="btn btn-link btn-sm" v-on:click="deleteComment(comment)">削除</button>&nbsp;
+              </div>
             </div>
-            <div class="float-end small">
-              {{comment.attributes.updated_at}}
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex">
+            <div class="col-12">
+              <div class="float-start">
+                {{getSanitizedCommentBody(comment)}}
+              </div>
+              <div class="float-end small">
+                {{comment.attributes.updated_at}}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <br>
   </div>
-  <br>
-</div>
 </div>
