@@ -20,7 +20,7 @@ class DashboardController < ApplicationController
       #            .where('tags.name like ?', "%#{@word}%")
       #            .or(Frame.where('frames.name like ?', "%#{@word}%"))
       #            .or(User.where(name: @word))
-      
+
     end
 
     @frames = @frames.page(params[:page])

@@ -1,13 +1,13 @@
 class Api::V1::CommentsController < ApiController
   skip_before_action :authenticate, only: [:index]
-  
+
   def index
     comments = Comment.where(frame_id: params[:frame_id])
-    
+
     #options = {}
     #options[:include] = [:user]
 
-    render json: CommentSerializer.new(comments).serializable_hash  
+    render json: CommentSerializer.new(comments).serializable_hash
   end
 
   def create
