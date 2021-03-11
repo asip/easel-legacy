@@ -44,7 +44,7 @@
             <% if logged_in? && @frame.user_id == current_user.id %>
             <%= link_to '変更', edit_frame_path(@frame), class: 'btn btn-primary', "data-turbo": true %>
               <%# Button trigger modal %>
-              <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete_modal">
+              <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">
                 削除
               </button>
             <% end %>
@@ -58,15 +58,13 @@
         <div class="modal-content">
           <div class="modal-header">
             <% if false %><h5 class="modal-title" id="exampleModalLabel">イメージの削除</h5><% end %>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             削除してもよろしいですか？
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">閉じる</button>
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
             <%= link_to '削除', frame_path(@frame), method: :delete, class: 'btn btn-outline-danger' %>
           </div>
         </div>
