@@ -1,4 +1,5 @@
 import { Controller } from "stimulus"
+import { Luminous } from 'luminous-lightbox'
 import Tagify from '@yaireo/tagify'
 
 export default class FrameController extends Controller {

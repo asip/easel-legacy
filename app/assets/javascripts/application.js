@@ -10,9 +10,5 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require @rails/ujs
-//= require @hotwired/turbo/dist/turbo.es2017-umd
 //= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
-//= require luminous-lightbox/dist/Luminous.min
-//= require_tree .
