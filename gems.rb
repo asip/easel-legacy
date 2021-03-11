@@ -18,6 +18,9 @@ gem 'jbuilder', '~> 2.7'
 # Hotwire
 gem 'hotwire-rails'
 
+# view component
+gem "view_component", require: "view_component/engine"
+
 # Refile  don't support Ruby3.0.0 yet
 gem 'refile', github: 'refile/refile' , require: 'refile/rails'
 gem "refile-mini_magick"
@@ -69,6 +72,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'annotate'
+  gem 'rspec-rails'
 end
 
 group :test do
