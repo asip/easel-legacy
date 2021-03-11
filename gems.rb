@@ -15,11 +15,8 @@ gem 'webpacker', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 
-# Turbo
-gem 'turbo-rails'
-
-# Stimulus
-gem 'stimulus-rails'
+# Hotwire
+gem 'hotwire-rails'
 
 # Refile  don't support Ruby3.0.0 yet
 gem 'refile', github: 'refile/refile' , require: 'refile/rails'
