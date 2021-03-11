@@ -6,6 +6,6 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
-import "./rails_ujs.js"
-import "./turbo.js"
+import "./libraries/rails_ujs.js"
+import "./libraries/turbo.js"
 import "../controllers/index.js"

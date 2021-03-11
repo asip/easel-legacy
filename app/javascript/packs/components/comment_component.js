@@ -2,7 +2,7 @@ import {createApp, ref} from 'vue'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
-import * as constants from '../constants.js.erb'
+import * as constants from '../../constants.js.erb'
 
 //console.log(constants.api_origin);
 
