@@ -24,17 +24,7 @@
             <%= form.attachment_field :image, class: 'form-control-file', "data-preview-target": "upload" %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
           </div>
         </div>
-        <% if @frame.image.present? %>
-        <div data-preview-target="content" class="d-flex justify-content-sm-center" style="display: block;">
-          <%= attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto', style: 'max-width: 300px; max-height: 300px; display: block;', "data-preview-target": "image " ) %>
-          <br>
-        </div>
-        <% else %>
-        <div data-preview-target="content" class="d-flex justify-content-sm-center" style="display: none;">
-          <img data-preview-target="image" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
-          <br>
-        </div>
-        <% end %>
+        <%= render PreviewComponent::Component.new(model: @frame) %>
         <div class="row d-flex justify-content-sm-center border border-white">
           <label for="name" class="col-form-label-sm col-sm-2 label-bg-style">名前</label>
           <div class="form-group col-sm-4">
