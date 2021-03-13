@@ -58,14 +58,17 @@ export default class FrameController extends Controller {
   disconnect(){
     if(this.image){
       this.image.destroy();
-      const image_elements = this.element.getElementsByClassName('lum-lightbox');
-      Array.from(image_elements).forEach(e => e.remove());
+      this.removeElementsByClassName('lum-lightbox')
     }
 
     if(this.tag_editor){
       this.tag_editor.removeAllTags()
-      const tag_editor_elements = this.element.getElementsByClassName('tagify');
-      Array.from(tag_editor_elements).forEach(e => e.remove());
+      this.removeElementsByClassName('tagify')
     }
+  }
+
+  removeElementsByClassName(className){
+    const elements = this.element.getElementsByClassName(className);
+    Array.from(elements).forEach(e => e.remove());
   }
 }
