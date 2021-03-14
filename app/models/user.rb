@@ -29,10 +29,11 @@ class User < ApplicationRecord
 
   validates_acceptance_of :confirming
 
+  VALID_NAME_REGEX = /\A\z|\A[a-zA-Z0-9]{3,40}\z/
   VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   with_options on: [:create, :update] do |save|
-    save.validates :name, presence: true, uniqueness: true
+    save.validates :name, presence: true, uniqueness: true, length: { in: 3..40 }, format: { with: VALID_NAME_REGEX }
 
     save.validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
