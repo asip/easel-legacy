@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       end
       resources :comments, only: [:destroy]
       
-      get '/account' =>  'account#show' 
+      get '/account' =>  'account#show'
     end
   end
 
