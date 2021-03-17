@@ -4,8 +4,8 @@ class Api::V1::CommentsController < ApiController
   def index
     comments = Comment.where(frame_id: params[:frame_id])
 
-    #options = {}
-    #options[:include] = [:user]
+    # options = {}
+    # options[:include] = [:user]
 
     render json: CommentSerializer.new(comments).serializable_hash
   end
@@ -17,7 +17,7 @@ class Api::V1::CommentsController < ApiController
       comment.save
     end
 
-    #logger.debug CommentSerializer.new(comment).serialized_json
+    # logger.debug CommentSerializer.new(comment).serialized_json
 
     render json: CommentSerializer.new(comment).serializable_hash
   end

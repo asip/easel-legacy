@@ -17,18 +17,18 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    if action_name == 'new'
+    if action_name == "new"
       @user = User.new
-    elsif action_name == 'create'
+    elsif action_name == "create"
       @user = User.new(user_params)
     end
   end
 
   def back_to_form
-    if params[:commit] == '戻る'
-      @user.confirming = ''
+    if params[:commit] == "戻る"
+      @user.confirming = ""
       render :new
-      #return
+      # return
     end
   end
 

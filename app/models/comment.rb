@@ -14,6 +14,5 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :frame
 
-  validates :body, presence: true, length: { maximum: 255 }
-
+  validates :body, presence: true, length: {maximum: 255}
 end

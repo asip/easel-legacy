@@ -16,14 +16,14 @@ class CommentSerializer
   set_id :id
   attributes :user_id, :frame_id, :body
   belongs_to :user, record_type: :user
-  #belongs_to :frame, record_type: :frame
+  # belongs_to :frame, record_type: :frame
 
   attribute :user_name do |object|
     object.user.name
   end
 
   attribute :updated_at do |object|
-    object.updated_at.strftime('%Y/%m/%d %H:%M:%S')
+    object.updated_at.strftime("%Y/%m/%d %H:%M:%S")
   end
 
   attribute :error_messages do |object|

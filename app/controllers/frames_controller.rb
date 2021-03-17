@@ -8,17 +8,17 @@ class FramesController < ApplicationController
     @frames = Frame.where(nil)
 
     if @word.present?
-      #@frames = @frames.ransack({ name_or_tags_name_cont_or_users_name: @word}).result(distinct: true)
+      # @frames = @frames.ransack({ name_or_tags_name_cont_or_users_name: @word}).result(distinct: true)
       @frames = @frames.joins(:tags, :user)
-                     .merge(ActsAsTaggableOn::Tag.where('tags.name like ?', "%#{@word}%"))
-                     .or(Frame.where('frames.name like ?', "%#{@word}%"))
-                     .or(User.where(name: @word))
-      ##@frames = Frame.includes(:tags, :user)
+        .merge(ActsAsTaggableOn::Tag.where("tags.name like ?", "%#{@word}%"))
+        .or(Frame.where("frames.name like ?", "%#{@word}%"))
+        .or(User.where(name: @word))
+      # #@frames = Frame.includes(:tags, :user)
       ##              .where(tags: {name: @word})
       ##              .or(Frame.where('frames.name like ?', "%#{@word}%"))
       ##              .or(User.where(name: @word))
       ##              .distinct
-      #@frames = Frame.includes(:tags, :user).references(:tags, :user)
+      # @frames = Frame.includes(:tags, :user).references(:tags, :user)
       #            .where('tags.name like ?', "%#{@word}%")
       #            .or(Frame.where('frames.name like ?', "%#{@word}%"))
       #            .or(User.where(name: @word))
@@ -60,7 +60,7 @@ class FramesController < ApplicationController
 
   def destroy
     @frame.destroy
-    redirect_to controller: 'dashboard', action: :show
+    redirect_to controller: "dashboard", action: :show
   end
 
   private
@@ -70,24 +70,24 @@ class FramesController < ApplicationController
   end
 
   def set_frame
-    if action_name == 'show'
-      @frame = Frame.find(params[:id])
-    elsif action_name == 'new'
-      @frame = Frame.new
-    elsif action_name == 'create'
-      @frame = Frame.new(frame_params)
+    @frame = if action_name == "show"
+      Frame.find(params[:id])
+    elsif action_name == "new"
+      Frame.new
+    elsif action_name == "create"
+      Frame.new(frame_params)
     else
-      @frame = Frame.find_by!(id: params[:id], user_id: current_user.id)
+      Frame.find_by!(id: params[:id], user_id: current_user.id)
     end
   end
 
   def back_to_form
-    if params[:commit] == '戻る'
-      @frame.confirming = ''
+    if params[:commit] == "戻る"
+      @frame.confirming = ""
       @frame.attributes = frame_params
-      if action_name == 'create'
+      if action_name == "create"
         render :new
-      elsif action_name == 'update'
+      elsif action_name == "update"
         render :edit
       end
     end

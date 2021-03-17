@@ -1,5 +1,4 @@
 Rambulance.setup do |config|
-
   # List of pairs of exception/corresponding http status. In Rails, the default
   # mappings are below:
   #
@@ -44,5 +43,4 @@ Rambulance.setup do |config|
   # 'errors'. For example, if this value is set to "error_pages", Rambulance
   # uses e.g. 'app/views/error_pages/not_found.html.erb'.
   config.view_path = "errors"
-
 end

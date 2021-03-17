@@ -15,5 +15,5 @@ class FrameSerializer
   include FastJsonapi::ObjectSerializer
   attributes :user_id, :name, :comment
   has_many :comments
-  belongs_to :user, record_type: :user 
+  belongs_to :user, record_type: :user
 end
