@@ -1,6 +1,6 @@
 class FramesController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
-  before_action :query_params, only: [:index]
+  before_action :set_query, only: [:index]
   before_action :set_frame, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :back_to_form, only: [:create, :update]
 
@@ -25,7 +25,7 @@ class FramesController < ApplicationController
 
     end
 
-    @frames = @frames.page(params[:page])
+    @frames = @frames.page(@page)
   end
 
   def show
@@ -65,8 +65,10 @@ class FramesController < ApplicationController
 
   private
 
-  def query_params
-    @word = params[:q]
+  def set_query
+    query_params = params_query
+    @word = query_params[:q]
+    @page = query_params[:page]
   end
 
   def set_frame
@@ -91,6 +93,13 @@ class FramesController < ApplicationController
         render :edit
       end
     end
+  end
+
+  def params_query
+    params.permit(
+      :q,
+      :page
+    )
   end
 
   def frame_params
