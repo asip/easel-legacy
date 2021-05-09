@@ -9,7 +9,7 @@
     "@vue/compiler-sfc": "^3.0.11",
     "@yaireo/tagify": "^4.1.1",
     "axios": "^0.21.1",
-    "bootstrap": "^5.0.0-beta3",
+    "bootstrap": "^5.0.0",
     "bootstrap-icons": "^1.4.1",
     "luminous-lightbox": "^2.3.3",
     "popper.js": "^1.16.1",
