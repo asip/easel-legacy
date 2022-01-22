@@ -16,7 +16,8 @@ gem "webpacker", "~> 5"
 gem "jbuilder", "~> 2.7"
 
 # Hotwire
-gem "hotwire-rails"
+gem "turbo-rails"
+gem "stimulus-rails"
 
 # view component
 gem "view_component", require: "view_component/engine"
