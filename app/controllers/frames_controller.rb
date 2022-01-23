@@ -36,11 +36,13 @@ class FramesController < ApplicationController
 
   def create
     @frame.user_id = current_user.id
-    @frame.image_derivatives!
 
-    if @frame.save
+    if @frame.valid?
+      @frame.image_derivatives! if @frame.image.present?
+      @frame.save
       render :show
     else
+      @frame.image_derivatives! if @frame.image.present?
       render :new
     end
   end
@@ -52,10 +54,12 @@ class FramesController < ApplicationController
     @frame.user_id = current_user.id
 
     @frame.attributes = frame_params
-    @frame.image_derivatives!
-    if @frame.save
+    if @frame.valid?
+      @frame.image_derivatives! if @frame.image.present?
+      @frame.save
       redirect_to @frame
     else
+      @frame.image_derivatives! if @frame.image.present?
       render :edit
     end
   end
@@ -89,7 +93,7 @@ class FramesController < ApplicationController
     if params[:commit] == "戻る"
       @frame.confirming = ""
       @frame.attributes = frame_params
-      @frame.image_derivatives!
+      @frame.image_derivatives! if @frame.image.present?
       if action_name == "create"
         render :new
       elsif action_name == "update"

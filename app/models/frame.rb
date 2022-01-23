@@ -24,6 +24,7 @@ class Frame < ApplicationRecord
   validates_acceptance_of :confirming
 
   validates :name, length: {in: 1..20}
+  validates :image, presence: true
   validate :check_tag
 
   after_validation :check_confirming

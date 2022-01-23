@@ -22,13 +22,13 @@
           <% end %>
           <%= form.hidden_field :image, value: form.object.cached_image_data %>
           <% unless @frame.confirming == 'true' %>
-          <div class="row d-flex justify-content-sm-center border border-white">
+          <!-- <div class="row d-flex justify-content-sm-center border border-white">
             <label for="image" class="col-form-label-sm col-sm-2 label-bg-style">ファイル</label>
             <div class="form-group col-sm-4">
-              <%= form.file_field :image, multiple: false, class: 'form-control-file', "data-preview-target": "upload" %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
+              <%= form.file_field :image, multiple: false, accept: 'image/jpg,image/jpeg,image/png', class: 'form-control-file', "data-preview-target": "upload" %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
             </div>
-          </div>
-          <%= render PreviewComponent::Component.new(model: @frame) %>
+          </div> -->
+          <%#= render PreviewComponent::Component.new(model: @frame) %>
           <div class="row d-flex justify-content-sm-center border border-white">
             <label for="name" class="col-form-label-sm col-sm-2 label-bg-style">名前</label>
             <div class="col-sm-4">
