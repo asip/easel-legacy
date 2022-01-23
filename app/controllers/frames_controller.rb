@@ -36,13 +36,10 @@ class FramesController < ApplicationController
 
   def create
     @frame.user_id = current_user.id
-
-    if @frame.valid?
-      @frame.image_derivatives! if @frame.image.present?
-      @frame.save
+    @frame.image_derivatives! if @frame.image.present?
+    if @frame.save
       render :show
     else
-      @frame.image_derivatives! if @frame.image.present?
       render :new
     end
   end
@@ -54,19 +51,17 @@ class FramesController < ApplicationController
     @frame.user_id = current_user.id
 
     @frame.attributes = frame_params
-    if @frame.valid?
-      @frame.image_derivatives! if @frame.image.present?
-      @frame.save
+    @frame.image_derivatives! if @frame.image.present?
+    if @frame.save
       redirect_to @frame
     else
-      @frame.image_derivatives! if @frame.image.present?
       render :edit
     end
   end
 
   def destroy
     @frame.destroy
-    redirect_to controller: "dashboard", action: :show
+    redirect_to controller: "dashboard", action: :show, status: :see_other
   end
 
   private
