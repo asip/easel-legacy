@@ -3,12 +3,12 @@
 # Table name: frames
 #
 #  id         :bigint           not null, primary key
-#  user_id    :integer
-#  name       :string(255)      not null
 #  comment    :text(65535)
-#  image_id   :string(255)      not null
+#  image_data :text(65535)
+#  name       :string(255)      not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
 #
 
 class Frame < ApplicationRecord
