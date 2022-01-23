@@ -22,9 +22,9 @@ gem "stimulus-rails"
 # view component
 gem "view_component", require: "view_component/engine"
 
-# Refile  don't support Ruby3.0.0 yet
-gem "refile", github: "refile/refile", require: "refile/rails"
-gem "refile-mini_magick"
+# Shrine
+gem "shrine", "~> 3.0"
+gem "image_processing", "~> 1.8"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

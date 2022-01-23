@@ -8,7 +8,7 @@
         <br>
         <% if @frame.image.present? %>
         <div class="d-flex justify-content-sm-center">
-          <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'mx-auto', "data-frame-target": "lm" %>
+          <%= link_to image_tag(@frame.image_url(:three), class: 'mx-auto'), @frame.image_url, class: 'mx-auto', "data-frame-target": "lm" %>
         </div>
         <br>
         <% end %>

@@ -13,7 +13,7 @@
 
 class Frame < ApplicationRecord
   # has_one_attached :image
-  attachment :image, type: :image
+  include ImageUploader::Attachment(:image)
   acts_as_taggable_on :tags
 
   has_many :comments
@@ -24,7 +24,6 @@ class Frame < ApplicationRecord
   validates_acceptance_of :confirming
 
   validates :name, length: {in: 1..20}
-  validates :image, presence: true
   validate :check_tag
 
   after_validation :check_confirming

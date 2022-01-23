@@ -36,6 +36,7 @@ class FramesController < ApplicationController
 
   def create
     @frame.user_id = current_user.id
+    @frame.image_derivatives!
 
     if @frame.save
       render :show
@@ -51,6 +52,7 @@ class FramesController < ApplicationController
     @frame.user_id = current_user.id
 
     @frame.attributes = frame_params
+    @frame.image_derivatives!
     if @frame.save
       redirect_to @frame
     else
@@ -87,6 +89,7 @@ class FramesController < ApplicationController
     if params[:commit] == "戻る"
       @frame.confirming = ""
       @frame.attributes = frame_params
+      @frame.image_derivatives!
       if action_name == "create"
         render :new
       elsif action_name == "update"

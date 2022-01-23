@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_105238) do
+ActiveRecord::Schema.define(version: 2022_01_23_000137) do
 
   create_table "authentications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -33,10 +33,9 @@ ActiveRecord::Schema.define(version: 2020_12_29_105238) do
     t.integer "user_id"
     t.string "name", null: false
     t.text "comment"
-    t.string "image_id", null: false
+    t.text "image_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["image_id"], name: "index_frames_on_image_id", unique: true
   end
 
   create_table "taggings", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

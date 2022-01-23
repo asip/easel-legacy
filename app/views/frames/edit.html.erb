@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "frames" do %>
   <br>
-  <div data-controller="frame">
+  <div data-controller="frame preview">
     <%= form_with model: @frame, local: true do |form| %>
       <div class="card">
         <div class="card-block">
@@ -16,12 +16,19 @@
           <br>
           <% if @frame.image.present? %>
           <div class="d-flex justify-content-sm-center">
-            <%= link_to attachment_image_tag(@frame, :image, :fit, 300, 300, class: 'mx-auto'), attachment_url(@frame, :image, format: 'jpg'), class: 'mx-auto', "data-frame-target": "lm" %>
+            <%= link_to image_tag(@frame.image_url(:three), class: 'mx-auto'), @frame.image_url, class: 'mx-auto', "data-frame-target": "lm" %>
           </div>
-          <%= form.hidden_field :image, value: form.object.image_data.to_json %>
           <br>
           <% end %>
+          <%= form.hidden_field :image, value: form.object.cached_image_data %>
           <% unless @frame.confirming == 'true' %>
+          <div class="row d-flex justify-content-sm-center border border-white">
+            <label for="image" class="col-form-label-sm col-sm-2 label-bg-style">ファイル</label>
+            <div class="form-group col-sm-4">
+              <%= form.file_field :image, multiple: false, class: 'form-control-file', "data-preview-target": "upload" %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
+            </div>
+          </div>
+          <%= render PreviewComponent::Component.new(model: @frame) %>
           <div class="row d-flex justify-content-sm-center border border-white">
             <label for="name" class="col-form-label-sm col-sm-2 label-bg-style">名前</label>
             <div class="col-sm-4">

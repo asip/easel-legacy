@@ -5,13 +5,13 @@
     <div class="card col-sm-3 kadomaru">
       <br>
       <% if frame.image.present? %>
-      <%= link_to attachment_image_tag(frame, :image, :fit, 200, 200, class: 'card-img-top'), frame_path(frame), class: 'mx-auto', "data-turbo-frame": "_top", "data-turbo": false %>
+      <%= link_to image_tag(frame.image_url(:two), class: 'card-img-top'), frame_path(frame), class: 'mx-auto', "data-turbo-frame": "_top", "data-turbo": false %>
       <br>
       <% end %>
       <div class="card-block">
         <div class="d-flex justify-content-sm-center">
           <div class="mx-auto">
-            <%= frame.name %>
+            <%= link_to frame.name, frame_path(frame) , class: 'mx-auto', "data-turbo-frame": "_top", "data-turbo": false %>
           </div>
         </div>
         <br>

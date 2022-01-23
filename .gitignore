@@ -33,6 +33,7 @@ config/environments/*.local.yml
 /public/assets
 /public/packs
 /public/packs-test
+/public/uploads
 /node_modules
 yarn-debug.log*
 .yarn-integrity
