@@ -16,7 +16,6 @@
     "esbuild-loader": "^2.18.0",
     "luminous-lightbox": "^2.4.0",
     "postcss-cssnext": "^3.1.1",
-    "rails-erb-loader": "^5.5.2",
     "sanitize-html": "^2.6.1",
     "stimulus": "^3.0.1",
     "vue": "^3.2.29",

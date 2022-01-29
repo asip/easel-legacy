@@ -2,7 +2,6 @@ import {createApp, ref} from 'vue'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
-import * as constants from '../constants.js.erb'
 
 //console.log(constants.api_origin);
 
@@ -12,6 +11,10 @@ Axios.defaults.headers.common = {
 };
 
 const root = document.querySelector('#commentComponent');
+
+const constants = {
+  api_origin: root.getAttribute('data-api-origin')
+}
 
 var initCommentComponent = () => {
   if (root) {
