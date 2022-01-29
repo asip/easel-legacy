@@ -45,8 +45,8 @@ gem "sorcery"
 gem "config"
 
 # paging
-gem "kaminari", "~> 1.2.1"
-gem "bootstrap4-kaminari-views"
+gem "kaminari", "~> 1.2.2"
+gem "bootstrap5-kaminari-views"
 
 # tags
 # gem 'acts-as-taggable-on', '~> 6.5.0'
