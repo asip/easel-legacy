@@ -29,9 +29,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
+        test: /\.js$/,
+        loader: 'esbuild-loader'
       },
       {
         test: /\.erb$/,
