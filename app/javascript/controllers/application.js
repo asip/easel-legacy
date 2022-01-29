@@ -7,7 +7,7 @@ application.debug = false
 window.Stimulus   = application
 
 import { definitionsFromContext } from "stimulus/webpack-helpers"
-const context = require.context("controllers", true, /_controller\.js$/)
+const context = require.context(".", true, /_controller\.js$/)
 application.load(definitionsFromContext(context))
 
 export { application }

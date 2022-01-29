@@ -10,8 +10,8 @@ gem "mysql2", "~> 0.5.3"
 gem "puma", "~> 5.5.1"
 # Use SCSS for stylesheets
 gem "sassc-rails", "~> 2.1.2"
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker", "~> 5"
+
+gem "jsbundling-rails"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.7"
 

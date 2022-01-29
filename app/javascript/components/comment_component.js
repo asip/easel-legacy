@@ -2,7 +2,7 @@ import {createApp, ref} from 'vue'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
-import * as constants from '../../constants.js.erb'
+import * as constants from '../constants.js.erb'
 
 //console.log(constants.api_origin);
 
@@ -130,8 +130,9 @@ var initCommentComponent = () => {
     comment_vm.use(TurbolinksAdapter);
 
     comment_vm.mount('#commentComponent');
+
+    //console.log(comment_vm);
   }
-  //console.log(comment_vm.$data);
 };
 
 document.addEventListener('turbo:load', initCommentComponent());

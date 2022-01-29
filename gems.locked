@@ -169,6 +169,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsbundling-rails (1.0.0)
+      railties (>= 6.0.0)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
     jwt (2.3.0)
@@ -227,8 +229,6 @@ GEM
     rack (2.2.3)
     rack-mini-profiler (2.3.3)
       rack (>= 1.2.0)
-    rack-proxy (0.7.2)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.1.3.2)
@@ -319,7 +319,6 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
-    semantic_range (3.0.0)
     shrine (3.4.0)
       content_disposition (~> 1.0)
       down (~> 5.1)
@@ -360,11 +359,6 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0)
-    webpacker (5.4.3)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -386,6 +380,7 @@ DEPENDENCIES
   config
   image_processing (~> 1.8)
   jbuilder (~> 2.7)
+  jsbundling-rails
   jsonapi-serializer
   kaminari (~> 1.2.1)
   listen (~> 3.3)
@@ -408,7 +403,6 @@ DEPENDENCIES
   view_component
   web-console (>= 4.1.0)
   webdrivers
-  webpacker (~> 5)
 
 BUNDLED WITH
    2.2.11

@@ -8,4 +8,5 @@
 // layout file, like app/views/layouts/application.html.erb
 import "./libraries/rails_ujs.js"
 import "./libraries/turbo.js"
-import "../controllers/index.js"
+import "./controllers/index.js"
+import "./libraries/bootstrap.js"
