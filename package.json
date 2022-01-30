@@ -17,6 +17,7 @@
     "luminous-lightbox": "^2.4.0",
     "postcss-cssnext": "^3.1.1",
     "sanitize-html": "^2.6.1",
+    "sass": "^1.49.0",
     "stimulus": "^3.0.1",
     "vue": "^3.2.29",
     "vue-loader": "^16.8.3",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "webpack --config ./config/webpack/webpack.config.js"
+    "build": "webpack --config ./config/webpack/webpack.config.js",
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   }
 }

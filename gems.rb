@@ -8,10 +8,10 @@ gem "rails", "~> 6.1.3.1"
 gem "mysql2", "~> 0.5.3"
 # Use Puma as the app server
 gem "puma", "~> 5.5.1"
-# Use SCSS for stylesheets
-gem "sassc-rails", "~> 2.1.2"
 
 gem "jsbundling-rails"
+gem "cssbundling-rails"
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.7"
 
