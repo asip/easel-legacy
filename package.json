@@ -15,7 +15,6 @@
     "esbuild": "^0.14.14",
     "esbuild-loader": "^2.18.0",
     "luminous-lightbox": "^2.4.0",
-    "postcss-cssnext": "^3.1.1",
     "sanitize-html": "^2.6.1",
     "sass": "^1.49.0",
     "stimulus": "^3.0.1",
