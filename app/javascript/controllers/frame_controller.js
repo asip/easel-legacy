@@ -9,10 +9,6 @@ export default class FrameController extends Controller {
   tag_editor;
 
   connect() {
-    var lm_trigger = null;
-    try{
-      lm_trigger = this.lmTarget;
-    } catch(e) {}
     var te_trigger = null;
     try{
       te_trigger = this.teTarget;
@@ -21,11 +17,10 @@ export default class FrameController extends Controller {
     try{
       this.tag_list = this.tlTarget;
     } catch(e) {}
-
-    if(lm_trigger){
-      const options = { showCloseButton: true };
-      this.image = new Luminous(lm_trigger, options);
-    }
+    var lm_trigger = null;
+    try{
+      lm_trigger = this.lmTarget;
+    } catch(e) {}
 
     if(te_trigger){
       this.tag_editor = new Tagify(te_trigger, {
@@ -47,6 +42,11 @@ export default class FrameController extends Controller {
       if (tags.length > 0) {
         this.tag_editor.addTags(tags.split(","));
       }
+    }
+
+    if(lm_trigger){
+      const options = { showCloseButton: true };
+      this.image = new Luminous(lm_trigger, options);
     }
   }
 
