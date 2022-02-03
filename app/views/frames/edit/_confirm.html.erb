@@ -1,16 +1,4 @@
-          <% tags = frame.tags_preview %>
-          <% if tags.size > 0 %>
-          <div class="d-flex justify-content-sm-center">
-            <div class="col-sm-6">
-              <% tags.each do |tag| %>
-              <a class="btn btn-outline-info btn-sm">
-                <%= tag %>
-              </a>
-              <% end %>
-            </div>
-          </div>
-          <br>
-          <% end %>
+          <%= render(partial: 'frames/confirm/tags', locals: {frame: frame}) %>
           <%= form.hidden_field :tag_list, value: frame.tag_list.join(",") %>
           <div class="row d-flex justify-content-sm-center border border-white">
             <label for="name" class="col-form-label-sm col-sm-2 label-bg-style">名前</label>

@@ -7,12 +7,7 @@
           <br>
           <%= render(partial: 'frames/error_messages', locals: {model: @frame}) %>
           <br>
-          <% if @frame.image.present? %>
-          <div class="d-flex justify-content-sm-center">
-            <%= link_to image_tag(@frame.image_url(:three), class: 'mx-auto'), @frame.image_url, class: 'mx-auto', "data-frame-target": "lm" %>
-          </div>
-          <br>
-          <% end %>
+          <%= render(partial: 'frames/confirm/image', locals: {frame: @frame}) %>
           <%= form.hidden_field :image, value: form.object.cached_image_data %>
           <% unless @frame.confirming == 'true' %>
           <%= render(partial: 'frames/edit/input', locals: {form: form, frame: @frame}) %>

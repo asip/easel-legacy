@@ -1,0 +1,13 @@
+          <% tags = frame.tags_preview %>
+          <% if tags.size > 0 %>
+          <div class="d-flex justify-content-sm-center">
+            <div class="col-sm-6">
+              <% tags.each do |tag| %>
+              <a class="btn btn-outline-info btn-sm">
+                <%= tag %>
+              </a>
+              <% end %>
+            </div>
+          </div>
+          <br>
+          <% end %>

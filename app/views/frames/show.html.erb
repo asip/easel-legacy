@@ -6,25 +6,8 @@
     <div class="card">
       <div class="card-block">
         <br>
-        <% if @frame.image.present? %>
-        <div class="d-flex justify-content-sm-center">
-          <%= link_to image_tag(@frame.image_url(:three), class: 'mx-auto'), @frame.image_url, class: 'mx-auto', "data-frame-target": "lm" %>
-        </div>
-        <br>
-        <% end %>
-        <% tags = @frame.tags %>
-        <% if tags.size > 0 %>
-        <div class="d-flex justify-content-sm-center">
-          <div class="col-sm-6" style="display: block;">
-            <% tags.each do |tag| %>
-            <%= link_to root_path(q: tag.name), class:"btn btn-outline-info btn-sm", "data-turbo": false do %>
-              <%= tag.name %>
-            <% end %>
-            <% end %>
-          </div>
-        </div>
-        <br>
-        <% end %>
+        <%= render(partial: 'frames/confirm/image', locals: {frame: @frame}) %>
+        <%= render(partial: 'frames/confirm/tags', locals: {frame: @frame}) %>
         <div class="row d-flex justify-content-sm-center border border-white">
           <label for="name" class="col-form-label-sm col-sm-2 label-bg-style ">名前</label>
           <div class="col-sm-4">
