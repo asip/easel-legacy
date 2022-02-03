@@ -5,14 +5,7 @@
       <div class="card">
         <div class="card-block">
           <br>
-          <% @frame.errors.full_messages.each do |message| %>
-          <div class="d-flex justify-content-sm-center">
-            <div class="alert alert-warning col-sm-6 alert-dismissible fade show" role="alert">
-              <%= message %>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          </div>
-          <% end %>
+          <%= render(partial: 'frames/error_messages', locals: {model: @frame}) %>
           <br>
           <% if @frame.image.present? %>
           <div class="d-flex justify-content-sm-center">
@@ -22,76 +15,9 @@
           <% end %>
           <%= form.hidden_field :image, value: form.object.cached_image_data %>
           <% unless @frame.confirming == 'true' %>
-          <!-- <div class="row d-flex justify-content-sm-center border border-white">
-            <label for="image" class="col-form-label-sm col-sm-2 label-bg-style">ファイル</label>
-            <div class="form-group col-sm-4">
-              <%= form.file_field :image, multiple: false, accept: 'image/jpg,image/jpeg,image/png', class: 'form-control-file', "data-preview-target": "upload" %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
-            </div>
-          </div> -->
-          <%#= render PreviewComponent::Component.new(model: @frame) %>
-          <div class="row d-flex justify-content-sm-center border border-white">
-            <label for="name" class="col-form-label-sm col-sm-2 label-bg-style">名前</label>
-            <div class="col-sm-4">
-              <%= form.text_field :name, placeholder: "名前", class: 'form-control' %>
-            </div>
-          </div>
-          <div class="row d-flex justify-content-sm-center border border-white">
-            <label for="tag_list" class="col-form-label-sm col-sm-2 label-bg-style">タグ</label>
-            <div class="col-sm-4">
-            <input type="text" name="tag_editor" id="tag_editor" value="" data-frame-target="te" class="form-control" >
-              <%= form.hidden_field :tag_list, id: 'tag_list', "data-frame-target": "tl", value: @frame.tag_list.join(",") %>
-            </div>
-          </div>
-          <div class="row d-flex justify-content-sm-center border border-white">
-            <label for="comment" class="col-form-label-sm col-sm-2 label-bg-style">コメント</label>
-            <div class="col-sm-4">
-              <%= form.text_area :comment, class: 'form-control' %>
-            </div>
-          </div>
-          <br>
-          <div class="d-flex justify-content-sm-center">
-            <div class="col-sm-6">
-              <%= form.submit '内容を確認', class: 'btn btn-primary' %>
-              <%= link_to '戻る', frame_path(@frame), class: 'btn btn-outline-secondary', "data-turbo": false %>
-            </div>
-          </div>
-          <%= form.hidden_field :confirming %>
+          <%= render(partial: 'frames/edit/input', locals: {form: form, frame: @frame}) %>
           <% else %>
-          <% tags = @frame.tags_preview %>
-          <% if tags.size > 0 %>
-          <div class="d-flex justify-content-sm-center">
-            <div class="col-sm-6">
-              <% tags.each do |tag| %>
-              <a class="btn btn-outline-info btn-sm">
-                <%= tag %>
-              </a>
-              <% end %>
-            </div>
-          </div>
-          <br>
-          <% end %>
-          <%= form.hidden_field :tag_list, value: @frame.tag_list.join(",") %>
-          <div class="row d-flex justify-content-sm-center border border-white">
-            <label for="name" class="col-form-label-sm col-sm-2 label-bg-style">名前</label>
-            <div class="col-sm-4">
-              <%= @frame.name %>
-              <%= form.hidden_field :name %>
-            </div>
-          </div>
-          <div class="row d-flex justify-content-sm-center border border-white">
-            <label for="comment" class="col-form-label-sm col-sm-2 label-bg-style">コメント</label>
-            <div class="col-md-4">
-              <%= simple_format(h(@frame.comment)) %>
-              <%= form.hidden_field :comment %>
-            </div>
-          </div>
-          <br>
-          <div class="d-flex justify-content-sm-center">
-            <div class="col-sm-6">
-              <%= form.submit '更新', class: 'btn btn-primary' %>
-              <%= form.submit '戻る', class: 'btn btn-outline-secondary' %>
-            </div>
-          </div>
+          <%= render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) %>
           <% end %>
           <br>
         </div>
