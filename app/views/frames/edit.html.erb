@@ -9,7 +9,7 @@
           <br>
           <%= form.hidden_field :image, value: form.object.cached_image_data %>
           <% unless @frame.confirming == 'true' %>
-          <%= render(partial: 'frames/confirm/image', locals: {frame: @frame, original: false}) %>
+          <%= render(partial: 'frames/confirm/image', locals: {frame: @frame, original: true}) %>
           <%= render(partial: 'frames/edit/input', locals: {form: form, frame: @frame}) %>
           <% else %>
           <%= render(partial: 'frames/confirm/image', locals: {frame: @frame, original: true}) %>
