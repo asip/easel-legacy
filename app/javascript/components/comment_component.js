@@ -10,7 +10,7 @@ Axios.defaults.headers.common = {
   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 };
 
-const root = document.querySelector('#commentComponent');
+const root = document.querySelector('#comment_component');
 
 const constants = {
   api_origin: root.getAttribute('data-api-origin')
@@ -130,7 +130,7 @@ var initCommentComponent = () => {
 
     comment_vm.use(TurbolinksAdapter);
 
-    comment_vm.mount('#commentComponent');
+    comment_vm.mount('#comment_component');
 
     //console.log(comment_vm);
   }
