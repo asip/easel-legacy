@@ -22,7 +22,6 @@ var initCommentComponent = () => {
       data: function () {
         return {
           comment: {
-            user_id: '',
             frame_id: '',
             body: '',
           },
@@ -52,7 +51,6 @@ var initCommentComponent = () => {
                 this.account = response.data.data;
                 //console.log(this.account);
                 this.current_user.id = this.account.attributes.id;
-                this.comment.user_id = this.current_user.id
               }
             });
         },
