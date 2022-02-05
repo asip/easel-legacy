@@ -14,6 +14,7 @@
           <% else %>
           <%= render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) %>
           <% end %>
+          <%= query_params_hidden_field_tags %>
           <br>
         </div>
       </div>

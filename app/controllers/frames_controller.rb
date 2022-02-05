@@ -1,6 +1,6 @@
 class FramesController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
-  before_action :set_query, only: [:index]
+  before_action :set_query, only: [:index, :show, :new, :edit]
   before_action :set_frame, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :back_to_form, only: [:create, :update]
 
@@ -42,7 +42,7 @@ class FramesController < ApplicationController
     @frame.attributes = frame_params
     @frame.image_derivatives! if @frame.image.present?
     if @frame.save
-      redirect_to @frame
+      redirect_to frame_path(@frame, query_params), status: :see_other
     else
       render :edit
     end
@@ -50,7 +50,7 @@ class FramesController < ApplicationController
 
   def destroy
     @frame.destroy
-    redirect_to controller: "dashboard", action: :show, status: :see_other
+    redirect_to controller: "dashboard", action: :show, status: :see_other, params: query_params
   end
 
   private
@@ -92,6 +92,7 @@ class FramesController < ApplicationController
       :page
     )
   end
+  helper_method :query_params
 
   def frame_params
     params.require(:frame).permit(

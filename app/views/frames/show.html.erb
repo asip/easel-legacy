@@ -23,9 +23,9 @@
         <br>
         <div class="row d-flex justify-content-sm-center">
           <div class="form-group col-sm-6">
-            <%= link_to '戻る', root_path, class: 'btn btn-primary', "data-turbo-frame": "_top" %>
+            <%= link_to '戻る', root_path(query_params), class: 'btn btn-primary', "data-turbo-frame": "_top" %>
             <% if logged_in? && @frame.user_id == current_user.id %>
-            <%= link_to '変更', edit_frame_path(@frame), class: 'btn btn-primary', "data-turbo": true %>
+            <%= link_to '変更', edit_frame_path(@frame, query_params), class: 'btn btn-primary', "data-turbo": true %>
               <%# Button trigger modal %>
               <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">
                 削除
@@ -48,7 +48,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
-            <%= link_to '削除', frame_path(@frame), method: :delete, class: 'btn btn-outline-danger' %>
+            <%= link_to '削除', frame_path(@frame, query_params), method: :delete, class: 'btn btn-outline-danger' %>
           </div>
         </div>
       </div>
