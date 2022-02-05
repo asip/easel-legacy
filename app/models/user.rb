@@ -56,6 +56,10 @@ class User < ApplicationRecord
 
   after_validation :check_confirming
 
+  def reset_token
+    update!(token: nil)
+  end
+
   private
 
   def check_confirming

@@ -34,6 +34,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    current_user.reset_token
     logout
     redirect_to root_path
   end
