@@ -50,7 +50,7 @@ class FramesController < ApplicationController
 
   def destroy
     @frame.destroy
-    redirect_to controller: "dashboard", action: :show, status: :see_other, params: query_params
+    redirect_to root_path(query_params), status: :see_other
   end
 
   private
