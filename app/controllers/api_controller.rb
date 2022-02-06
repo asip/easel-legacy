@@ -18,10 +18,8 @@ class ApiController < ActionController::API
   protected
 
   def authenticate
-    authenticate_or_request_with_http_token do |token, options|
-      login_from_jwt
-      current_user.present?
-    end
+    login_from_jwt
+    current_user.present?
   end
 
   def logged_in?
