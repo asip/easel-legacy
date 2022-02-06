@@ -4,11 +4,4 @@ class DashboardController < ApplicationController
   def show
     redirect_to frames_path(query_params)
   end
-
-  def query_params
-    params.permit(
-      :q,
-      :page
-    )
-  end
 end

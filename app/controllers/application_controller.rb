@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
 
   before_action :require_login
 
+  def query_params
+    params.permit(
+      :q,
+      :page
+    )
+  end
+  helper_method :query_params
+
   protected
 
   def not_authenticated
