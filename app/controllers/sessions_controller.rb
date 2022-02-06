@@ -6,20 +6,20 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user_params = params_user
-    @user = login(user_params[:email], user_params[:password])
+    params_user = user_params
+    @user = login(params_user[:email], params_user[:password])
     if @user
-      @user.regenerate_token
+      @user.regenerate_token if @user.token.blank?
       redirect_to root_path
     else
-      @user = User.find_by(email: user_params[:email])
+      @user = User.find_by(email: params_user[:email])
       if @user
-        @user.password = user_params[:password]
+        @user.password = params_user[:password]
         if @user.valid?(:login)
           @user.errors.add(:password, "が間違っています")
         end
       else
-        @user = User.new(user_params)
+        @user = User.new(params_user)
         if @user.valid?(:login)
           @user.errors.add(:email, "が間違っています")
         end
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def params_user
+  def user_params
     params.require(:user).permit(:email, :password)
   end
 end
