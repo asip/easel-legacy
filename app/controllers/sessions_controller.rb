@@ -7,9 +7,10 @@ class SessionsController < ApplicationController
 
   def create
     params_user = user_params
-    @user = login(params_user[:email], params_user[:password])
+    token = login_and_issue_token(params_user[:email], params_user[:password])
+    @user = current_user
     if @user
-      @user.regenerate_token if @user.token.blank?
+      @user.assign_token(token) if current_user.token.blank?
       redirect_to root_path
     else
       @user = User.find_by(email: params_user[:email])

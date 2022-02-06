@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:external, :session_timeout, :brute_force_protection, :activity_logging]
+Rails.application.config.sorcery.submodules = [:external, :session_timeout, :brute_force_protection, :activity_logging, :jwt]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -442,6 +442,11 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `:uid`
     #
     # user.provider_uid_attribute_name =
+
+    # ...
+    user.jwt_secret = Rails.application.secrets.secret_key_base
+    user.jwt_algorithm = "HS256" # HS256 is used by default.
+    user.session_expiry = 60 * 60 * 24 * 7 * 2 # 2 weeks is used by default.
   end
 
   # This line must come after the 'user config' block.

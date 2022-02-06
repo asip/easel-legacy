@@ -40,6 +40,7 @@ gem "rambulance"
 
 # authentication
 gem "sorcery"
+gem "sorcery-jwt"
 
 # settings
 gem "config"

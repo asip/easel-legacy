@@ -29,8 +29,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
-  has_secure_token
-
   has_many :frames
   has_many :comments
 
@@ -55,6 +53,10 @@ class User < ApplicationRecord
   end
 
   after_validation :check_confirming
+
+  def assign_token(token)
+    update!(token: token)
+  end
 
   def reset_token
     update!(token: nil)

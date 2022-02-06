@@ -19,16 +19,12 @@ class ApiController < ActionController::API
 
   def authenticate
     authenticate_or_request_with_http_token do |token, options|
-      @auth_user = User.find_by(token: token) if token.present?
-      @auth_user.present?
+      login_from_jwt
+      current_user.present?
     end
   end
 
   def logged_in?
-    @auth_user.present?
-  end
-
-  def current_user
-    @auth_user
+    current_user.present?
   end
 end
