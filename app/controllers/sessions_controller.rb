@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     token = login_and_issue_token(params_user[:email], params_user[:password])
     @user = current_user
     if @user
-      @user.assign_token(token) if current_user.token.blank?
+      @user.assign_token(token) if @user.token.blank? || @user.token_expire?
       redirect_to root_path
     else
       @user = User.find_by(email: params_user[:email])

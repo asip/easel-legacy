@@ -54,6 +54,12 @@ class User < ApplicationRecord
 
   after_validation :check_confirming
 
+  def token_expire?
+    decode_token = User.decode_token(self.token)
+    # Rails.logger.debug(decode_token[0]['exp'])
+    decode_token[0]['exp'] < Time.zone.now.to_i
+  end
+
   def assign_token(token)
     update!(token: token)
   end
