@@ -19,6 +19,7 @@ class ApiController < ActionController::API
 
   def authenticate
     login_from_jwt
+    @current_user = nil unless current_user.token == token
     current_user.present?
   end
 
