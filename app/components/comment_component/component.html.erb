@@ -51,7 +51,7 @@
           <div class="d-flex">
             <div class="col-12">
               <div class="float-start">
-                {{getSanitizedCommentBody(comment)}}
+                <span v-html="getSanitizedCommentBody(comment)"></span>
               </div>
               <div class="float-end small">
                 {{comment.attributes.updated_at}}
