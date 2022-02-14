@@ -1,4 +1,4 @@
-import {createApp, ref} from 'vue'
+import {createApp, ref, reactive, onMounted} from 'vue'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
@@ -19,23 +19,143 @@ const constants = {
 var initCommentComponent = () => {
   if (root) {
     const comment_vm = createApp({
-      data: function () {
+      setup(){
+        let account = null;
+        let logged_in = ref(false);
+        const current_user = reactive({
+          id: '',
+          token: ''
+        })
+        const comment = reactive({
+          frame_id: '',
+          body: '',
+        });
+        let comments = reactive([]);
+        let error_messages = reactive([]);
+
+        const getSanitizedCommentBody = (row) => {
+          return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
+        };
+        const getAccount = () => {
+          Axios.get(`${constants.api_origin}/api/v1/account`,
+            {
+              headers: {
+                Authorization: `Bearer ${current_user.token}`
+              }
+            })
+            .then(response => {
+              if (response.data) {
+                account = response.data.data;
+                //console.log(this.account);
+                current_user.id = account.attributes.id;
+              }
+            });
+        };
+        const getComments = () => {
+          Axios.get(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`)
+            .then(response => {
+              if (response.data) {
+                comments = reactive(response.data.data);
+                console.log(comments);
+              }
+            });
+        };
+        const postComment =  () => {
+          Axios.post(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`,
+            {
+              comment: comment
+            }, {
+            headers: {
+              Authorization: `Bearer ${current_user.token}`
+            }
+          })
+            .then(response => {
+              if (response.data.data.attributes.error_messages && response.data.data.attributes.error_messages.length > 0) {
+                error_messages = response.data.data.attributes.error_messages;
+              } else {
+                comment.body = '';
+                error_messages.splice(0, this.error_messages.length);
+                getComments();
+              }
+            })
+            .catch(error => {
+              error_messages = ['ログインしてください。'];
+            });
+        };
+        const setComment = () => {
+          if (comment.body != '') {
+            //console.log(this.comment.userId);
+            //console.log(this.comment.frameId);
+            //console.log(this.comment.body);
+            postComment();
+          } else {
+            error_messages = ['コメントを入力してください。'];
+          }
+        };
+        const deleteComment = (comment) => {
+          Axios.delete(`${constants.api_origin}/api/v1/comments/${comment.id}`, {
+            headers: {
+              Authorization: `Bearer ${current_user.token}`
+            }
+          })
+            .then(response => {
+              getComments();
+            })
+            .catch(error => {
+              error_messages = ['ログインしてください。'];
+            });
+        };
+
+        onMounted(() => {
+          current_user.token = root.dataset.token;
+          if (root.dataset.login == 'true') {
+            logged_in = true;
+          } else {
+            logged_in = false;
+          }
+          console.log(current_user.token);
+          console.log(logged_in.value);
+          if (current_user.token != null && current_user.token != '') {
+            getAccount();
+          }
+          comment.frame_id = root.getAttribute('data-frame-id');
+          console.log(comment.frame_id);
+          getComments();
+          //this.$forceUpdate();
+        });
+
         return {
-          comment: {
-            frame_id: '',
-            body: '',
-          },
-          error_messages: [],
-          comments: [],
-          account: null,
-          current_user: {
-            id: '',
-            token: ''
-          },
-          logged_in: null
+          account,
+          logged_in,
+          current_user,
+          comment,
+          comments,
+          error_messages,
+          getSanitizedCommentBody,
+          getAccount,
+          getComments,
+          postComment,
+          setComment,
+          deleteComment
         }
-      },
-      methods: {
+      }
+      //data: function () {
+      //  return {
+      //    comment: {
+      //      frame_id: '',
+      //      body: '',
+      //    },
+      //    error_messages: [],
+      //    comments: [],
+      //    account: null,
+      //    current_user: {
+      //      id: '',
+      //      token: ''
+      //    },
+      //    logged_in: null
+      //  }
+      //},
+      /* methods: {
         getSanitizedCommentBody: function (row) {
           return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
         },
@@ -108,8 +228,8 @@ var initCommentComponent = () => {
               this.error_messages = ['ログインしてください。'];
             });
         }
-      },
-      mounted: function () {
+      }, */
+      /* mounted: function () {
         this.current_user.token = root.dataset.token;
         if (root.dataset.login == 'true') {
           this.logged_in = true;
@@ -125,7 +245,7 @@ var initCommentComponent = () => {
         //console.log(this.comment.frame_id);
         this.getComments();
         //this.$forceUpdate();
-      }
+      } */
     });
 
     comment_vm.use(TurbolinksAdapter);
