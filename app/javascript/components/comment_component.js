@@ -21,7 +21,7 @@ var initCommentComponent = () => {
     const comment_vm = createApp({
       setup(){
         let account = null;
-        let logged_in = ref(false);
+        const logged_in = ref(false);
         const current_user = reactive({
           id: '',
           token: ''
@@ -30,8 +30,8 @@ var initCommentComponent = () => {
           frame_id: '',
           body: '',
         });
-        let comments = reactive([]);
-        let error_messages = reactive([]);
+        const comments = reactive([]);
+        const error_messages = reactive([]);
 
         const getSanitizedCommentBody = (row) => {
           return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
@@ -55,15 +55,23 @@ var initCommentComponent = () => {
           Axios.get(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`)
             .then(response => {
               if (response.data) {
-                comments = reactive(response.data.data);
-                console.log(comments);
+                console.log(response.data.data);
+                for(var comment of response.data.data){
+                  console.log(comment);
+                  comments.push(comment);
+                }
+
+                //console.log(comments);
               }
             });
         };
         const postComment =  () => {
           Axios.post(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`,
             {
-              comment: comment
+              comment: {
+                frame_id: comment.frame_id,
+                body: comment.body
+              }
             }, {
             headers: {
               Authorization: `Bearer ${current_user.token}`
@@ -71,15 +79,20 @@ var initCommentComponent = () => {
           })
             .then(response => {
               if (response.data.data.attributes.error_messages && response.data.data.attributes.error_messages.length > 0) {
-                error_messages = response.data.data.attributes.error_messages;
+                error_messages.splice(0, error_messages.length);
+                for(var error_message of response.data.data.attributes.error_messages){
+                  error_messages.push(error_message)
+                }
               } else {
                 comment.body = '';
-                error_messages.splice(0, this.error_messages.length);
+                error_messages.splice(0, error_messages.length);
+                comments.splice(0, comments.length);
                 getComments();
               }
             })
             .catch(error => {
-              error_messages = ['ログインしてください。'];
+              error_messages.splice(0, error_messages.length);
+              error_messages.push('ログインしてください。');
             });
         };
         const setComment = () => {
@@ -89,7 +102,8 @@ var initCommentComponent = () => {
             //console.log(this.comment.body);
             postComment();
           } else {
-            error_messages = ['コメントを入力してください。'];
+            error_messages.splice(0, error_messages.length);
+            error_messages.push('コメントを入力してください。');
           }
         };
         const deleteComment = (comment) => {
@@ -99,19 +113,21 @@ var initCommentComponent = () => {
             }
           })
             .then(response => {
+              comments.splice(0, comments.length);
               getComments();
             })
             .catch(error => {
-              error_messages = ['ログインしてください。'];
+              error_messages.splice(0, error_messages.length);
+              error_messages.push('ログインしてください。');
             });
         };
 
         onMounted(() => {
           current_user.token = root.dataset.token;
           if (root.dataset.login == 'true') {
-            logged_in = true;
+            logged_in.value = true;
           } else {
-            logged_in = false;
+            logged_in.value = false;
           }
           console.log(current_user.token);
           console.log(logged_in.value);
