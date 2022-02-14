@@ -155,22 +155,22 @@ var initCommentComponent = () => {
           deleteComment
         }
       }
-      //data: function () {
-      //  return {
-      //    comment: {
-      //      frame_id: '',
-      //      body: '',
-      //    },
-      //    error_messages: [],
-      //    comments: [],
-      //    account: null,
-      //    current_user: {
-      //      id: '',
-      //      token: ''
-      //    },
-      //    logged_in: null
-      //  }
-      //},
+      /* data: function () {
+        return {
+          comment: {
+            frame_id: '',
+            body: '',
+          },
+          error_messages: [],
+          comments: [],
+          account: null,
+          current_user: {
+            id: '',
+            token: ''
+          },
+          logged_in: null
+        }
+      }, */
       /* methods: {
         getSanitizedCommentBody: function (row) {
           return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
