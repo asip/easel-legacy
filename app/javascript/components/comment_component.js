@@ -55,9 +55,9 @@ var initCommentComponent = () => {
           Axios.get(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`)
             .then(response => {
               if (response.data) {
-                console.log(response.data.data);
+                //console.log(response.data.data);
                 for(var comment of response.data.data){
-                  console.log(comment);
+                  //console.log(comment);
                   comments.push(comment);
                 }
 
@@ -129,13 +129,13 @@ var initCommentComponent = () => {
           } else {
             logged_in.value = false;
           }
-          console.log(current_user.token);
-          console.log(logged_in.value);
+          //console.log(current_user.token);
+          //console.log(logged_in.value);
           if (current_user.token != null && current_user.token != '') {
             getAccount();
           }
           comment.frame_id = root.getAttribute('data-frame-id');
-          console.log(comment.frame_id);
+          //console.log(comment.frame_id);
           getComments();
           //this.$forceUpdate();
         });
