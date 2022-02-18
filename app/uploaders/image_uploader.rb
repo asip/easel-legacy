@@ -9,8 +9,8 @@ class ImageUploader < Shrine
   end
 
   Attacher.validate do
-    validate_max_size 5 * 1024 * 1024, message: 'は 5MB を超えるとアップロードできません。'
+    validate_max_size 5 * 1024 * 1024, message: "は 5MB を超えるとアップロードできません。"
     # validate_min_size 1, message: 'ファイルを選択してください。'
-    validate_mime_type %w[image/jpg image/jpeg image/png], message: 'は JPEG/PNG のみアップロードできます。'
+    validate_mime_type %w[image/jpg image/jpeg image/png], message: "は JPEG/PNG のみアップロードできます。"
   end
 end

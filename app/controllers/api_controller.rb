@@ -12,7 +12,7 @@ class ApiController < ActionController::API
   def render_error(exception)
     status_code = ActionDispatch::ExceptionWrapper.new(Rails.env, exception).status_code
     render json: {message: exception.message, status: status_code},
-           status: status_code
+      status: status_code
   end
 
   protected
@@ -27,7 +27,5 @@ class ApiController < ActionController::API
     current_user && current_user.present?
   end
 
-  def current_user
-    @current_user
-  end
+  attr_reader :current_user
 end
