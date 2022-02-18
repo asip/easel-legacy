@@ -63,18 +63,18 @@ class FramesController < ApplicationController
 
   def set_frame
     @frame = if action_name == "show"
-      Frame.find(params[:id])
+      Frame.find(permitted_params[:id])
     elsif action_name == "new"
       Frame.new
     elsif action_name == "create"
       Frame.new(frame_params)
     else
-      Frame.find_by!(id: params[:id], user_id: current_user.id)
+      Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
     end
   end
 
   def back_to_form
-    if params[:commit] == "戻る"
+    if permitted_params[:commit] == "戻る"
       @frame.confirming = ""
       @frame.attributes = frame_params
       @frame.image_derivatives! if @frame.image.present?
@@ -86,13 +86,22 @@ class FramesController < ApplicationController
     end
   end
 
-  def frame_params
-    params.require(:frame).permit(
-      :name,
-      :tag_list,
-      :comment,
-      :image,
-      :confirming
+  def permitted_params
+    params.permit(
+      :id,
+      :commit,
+      :tag_editor,
+      frame: [
+        :name,
+        :tag_list,
+        :comment,
+        :image,
+        :confirming
+      ]
     )
+  end
+
+  def frame_params
+    permitted_params[:frame]
   end
 end

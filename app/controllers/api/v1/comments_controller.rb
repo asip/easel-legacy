@@ -24,7 +24,7 @@ class Api::V1::CommentsController < ApiController
   end
 
   def destroy
-    comment = Comment.find_by(id: params[:id])
+    comment = Comment.find_by(id: id_params[:id])
     if comment && logged_in? && current_user.id == comment.user_id
       comment.destroy
     end
@@ -32,6 +32,10 @@ class Api::V1::CommentsController < ApiController
   end
 
   private
+
+  def id_params
+    params.permit(:id)
+  end
 
   def comment_params
     params.require(:comment).permit(:body, :frame_id)
