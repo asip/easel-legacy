@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
 
   def query_params
     params.permit(
-      :id,
       :q,
       :page
     )
