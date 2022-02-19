@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
       :page,
       :commit,
       :tag_editor,
+      :_method,
+      :authenticity_token,
       frame: [
         :name,
         :tag_list,

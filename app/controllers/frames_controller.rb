@@ -93,6 +93,8 @@ class FramesController < ApplicationController
       :page,
       :commit,
       :tag_editor,
+      :_method,
+      :authenticity_token,
       frame: [
         :name,
         :tag_list,
