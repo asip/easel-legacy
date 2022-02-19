@@ -89,6 +89,8 @@ class FramesController < ApplicationController
   def permitted_params
     params.permit(
       :id,
+      :q,
+      :page,
       :commit,
       :tag_editor,
       frame: [

@@ -4,10 +4,25 @@ class ApplicationController < ActionController::Base
   before_action :require_login
   before_action :token_confirmation
 
+  def query_list
+    [:page, :q]
+  end
+  helper_method :query_list
+
   def query_params
     params.permit(
+      :id,
       :q,
-      :page
+      :page,
+      :commit,
+      :tag_editor,
+      frame: [
+        :name,
+        :tag_list,
+        :comment,
+        :image,
+        :confirming
+      ]
     )
   end
   helper_method :query_params
