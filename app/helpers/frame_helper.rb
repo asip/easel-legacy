@@ -1,7 +1,6 @@
 module FrameHelper
   def query_params_hidden_field_tags
-    params_query = query_params.to_h
-    params_query = params_query.filter{ |key, value| query_list.include?(key) }
+    params_query = query_params.to_h.filter { |key, value| query_list.include?(key) }
     tags = params_query.map do |key, value|
       hidden_field_tag(key, value) if value.present?
     end
