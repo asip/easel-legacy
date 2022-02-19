@@ -111,11 +111,13 @@ var initCommentComponent = () => {
           })
             .then(response => {
               comments.splice(0, comments.length);
-              getComments();
+              getComments(comment.attributes.frame_id);
+            })
             .catch(error => {
               error_messages.splice(0, error_messages.length);
               error_messages.push('ログインしてください。');
             });
+        };
 
         onMounted(async () => {
           current_user.token = root.dataset.token;
