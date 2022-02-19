@@ -36,71 +36,68 @@ var initCommentComponent = () => {
         const getSanitizedCommentBody = (row) => {
           return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
         };
-        const getAccount = () => {
-          Axios.get(`${constants.api_origin}/api/v1/account`,
+        const getAccount = async () => {
+          const response = await Axios.get(`${constants.api_origin}/api/v1/account`,
             {
               headers: {
                 Authorization: `Bearer ${current_user.token}`
               }
             })
-            .then(response => {
-              if (response.data) {
-                account = response.data.data;
-                //console.log(this.account);
-                current_user.id = account.attributes.id;
-              }
-            });
+          if (response.data) {
+            account = response.data.data;
+            //console.log(this.account);
+            current_user.id = account.attributes.id;
+          }
         };
-        const getComments = () => {
-          Axios.get(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`)
-            .then(response => {
-              if (response.data) {
-                //console.log(response.data.data);
-                for(var comment of response.data.data){
-                  //console.log(comment);
-                  comments.push(comment);
-                }
-
-                //console.log(comments);
-              }
-            });
-        };
-        const postComment =  () => {
-          Axios.post(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`,
-            {
-              comment: {
-                frame_id: comment.frame_id,
-                body: comment.body
-              }
-            }, {
-            headers: {
-              Authorization: `Bearer ${current_user.token}`
+        const getComments = async (frame_id) => {
+          //console.log(frame_id);
+          const res = await Axios.get(`${constants.api_origin}/api/v1/frames/${frame_id}/comments`);
+          if (res.data) {
+            //console.log(res.data.data);
+            comments.splice(0, comments.length);
+            for(var comment of res.data.data){
+              //console.log(comment);
+              comments.push(comment);
             }
-          })
-            .then(response => {
-              if (response.data.data.attributes.error_messages && response.data.data.attributes.error_messages.length > 0) {
-                error_messages.splice(0, error_messages.length);
-                for(var error_message of response.data.data.attributes.error_messages){
-                  error_messages.push(error_message)
+            //console.log(comments);
+          }
+        };
+        const postComment = async () => {
+          try{
+            const response = await Axios.post(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`,
+              {
+                comment: {
+                  frame_id: comment.frame_id,
+                  body: comment.body
                 }
-              } else {
-                comment.body = '';
-                error_messages.splice(0, error_messages.length);
-                comments.splice(0, comments.length);
-                getComments();
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${current_user.token}`
+                }
               }
-            })
-            .catch(error => {
+            )
+            if (response.data.data.attributes.error_messages && response.data.data.attributes.error_messages.length > 0) {
+              error_messages.splice(0, error_messages.length);
+              for(var error_message of response.data.data.attributes.error_messages){
+                error_messages.push(error_message)
+              }
+            } else {
+              comment.body = '';
+              error_messages.splice(0, error_messages.length);
+              await getComments(comment.frame_id);
+            }
+          } catch(error) {
               error_messages.splice(0, error_messages.length);
               error_messages.push('ログインしてください。');
-            });
+          }
         };
-        const setComment = () => {
+        const setComment = async () => {
           if (comment.body != '') {
             //console.log(comment.userId);
             //console.log(comment.frameId);
             //console.log(comment.body);
-            postComment();
+            await postComment();
           } else {
             error_messages.splice(0, error_messages.length);
             error_messages.push('コメントを入力してください。');
@@ -115,14 +112,12 @@ var initCommentComponent = () => {
             .then(response => {
               comments.splice(0, comments.length);
               getComments();
-            })
             .catch(error => {
               error_messages.splice(0, error_messages.length);
               error_messages.push('ログインしてください。');
             });
-        };
 
-        onMounted(() => {
+        onMounted(async () => {
           current_user.token = root.dataset.token;
           if (root.dataset.login == 'true') {
             logged_in.value = true;
@@ -132,11 +127,11 @@ var initCommentComponent = () => {
           //console.log(current_user.token);
           //console.log(logged_in.value);
           if (current_user.token != null && current_user.token != '') {
-            getAccount();
+            await getAccount();
           }
           comment.frame_id = root.getAttribute('data-frame-id');
           //console.log(comment.frame_id);
-          getComments();
+          await getComments(comment.frame_id);
           //this.$forceUpdate();
         });
 
