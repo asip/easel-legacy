@@ -1,1 +1,1 @@
-import "./components/comment_component.js"
+import "./components/comment_component/component.js"
