@@ -12,12 +12,12 @@ Axios.defaults.headers.common = {
 
 const root = document.querySelector('#comment_component');
 
-const constants = {
-  api_origin: root.getAttribute('data-api-origin')
-}
+if (root) {
+  const constants = {
+    api_origin: root.getAttribute('data-api-origin')
+  }
 
-var initCommentComponent = () => {
-  if (root) {
+  var initCommentComponent = () => {
     const comment_vm = createApp({
       setup(){
         let account = null;
@@ -158,7 +158,7 @@ var initCommentComponent = () => {
     comment_vm.mount('#comment_component');
 
     //console.log(comment_vm);
-  }
-};
+  };
 
-document.addEventListener('turbo:load', initCommentComponent());
+  document.addEventListener('turbo:load', initCommentComponent());
+}
