@@ -37,14 +37,14 @@ var initCommentComponent = () => {
           return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
         };
         const getAccount = async () => {
-          const response = await Axios.get(`${constants.api_origin}/api/v1/account`,
+          const res = await Axios.get(`${constants.api_origin}/api/v1/account`,
             {
               headers: {
                 Authorization: `Bearer ${current_user.token}`
               }
             })
-          if (response.data) {
-            account = response.data.data;
+          if (res.data) {
+            account = res.data.data;
             //console.log(this.account);
             current_user.id = account.attributes.id;
           }
@@ -64,7 +64,7 @@ var initCommentComponent = () => {
         };
         const postComment = async () => {
           try{
-            const response = await Axios.post(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`,
+            const res = await Axios.post(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`,
               {
                 comment: {
                   frame_id: comment.frame_id,
@@ -77,9 +77,9 @@ var initCommentComponent = () => {
                 }
               }
             )
-            if (response.data.data.attributes.error_messages && response.data.data.attributes.error_messages.length > 0) {
+            if (res.data.data.attributes.error_messages && res.data.data.attributes.error_messages.length > 0) {
               error_messages.splice(0, error_messages.length);
-              for(var error_message of response.data.data.attributes.error_messages){
+              for(var error_message of res.data.data.attributes.error_messages){
                 error_messages.push(error_message)
               }
             } else {
@@ -103,20 +103,19 @@ var initCommentComponent = () => {
             error_messages.push('コメントを入力してください。');
           }
         };
-        const deleteComment = (comment) => {
-          Axios.delete(`${constants.api_origin}/api/v1/comments/${comment.id}`, {
-            headers: {
-              Authorization: `Bearer ${current_user.token}`
-            }
-          })
-            .then(response => {
-              comments.splice(0, comments.length);
-              getComments(comment.attributes.frame_id);
-            })
-            .catch(error => {
-              error_messages.splice(0, error_messages.length);
-              error_messages.push('ログインしてください。');
+        const deleteComment = async (comment) => {
+          try {
+            const res = await Axios.delete(`${constants.api_origin}/api/v1/comments/${comment.id}`, {
+              headers: {
+                Authorization: `Bearer ${current_user.token}`
+              }
             });
+            comments.splice(0, comments.length);
+            getComments(comment.attributes.frame_id);
+          } catch(error) {
+            error_messages.splice(0, error_messages.length);
+            error_messages.push('ログインしてください。');
+          }
         };
 
         onMounted(async () => {
