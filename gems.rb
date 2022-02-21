@@ -1,23 +1,37 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-# gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.1.3.1"
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "~> 7.0.0"
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem "sprockets-rails"
+
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5.3"
-# Use Puma as the app server
+# Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.5.1"
+
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "turbo-rails"
+
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
+
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem "jbuilder"
+
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+# gem "image_processing", "~> 1.2"
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Reduces boot times through caching; required in config/boot.rb
+gem "bootsnap", require: false
 
 gem "jsbundling-rails"
 gem "cssbundling-rails"
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "~> 2.7"
-
-# Hotwire
-gem "turbo-rails"
-gem "stimulus-rails"
 
 # view component
 gem "view_component"
@@ -26,14 +40,8 @@ gem "view_component"
 gem "shrine", "~> 3.0"
 gem "image_processing", "~> 1.8"
 
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
-
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.4.4", require: false
-
 # i18n
-gem "rails-i18n", "~> 6.0.0"
+gem "rails-i18n", "~> 7.0.0"
 
 # error page handling
 gem "rambulance"
@@ -64,31 +72,29 @@ gem "jsonapi-serializer"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
   # Ruby style guide, linter, and formatter
   gem "standard"
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem "web-console", ">= 4.1.0"
-  # Display performance information such as SQL time and flame graphs for each request in your browser.
-  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem "rack-mini-profiler", "~> 2.0"
-  gem "listen", "~> 3.3"
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring"
+  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem "web-console"
+
+  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  # gem "rack-mini-profiler"
+
+  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+  # gem "spring"
+
   gem "annotate"
   gem "rspec-rails"
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem "capybara", ">= 3.26"
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
   gem "selenium-webdriver"
-  # Easy installation and use of web drivers to run system tests with browsers
   gem "webdrivers"
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
