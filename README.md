@@ -1,6 +1,6 @@
 # Easel - image viewer
 
-Rails6.1 + Sorcery(authentication) + Kamnari(paging) + Shrine(upload) + ActsAsTaggableOn(tag) +
+Rails7.0 + Sorcery(authentication) + Kamnari(paging) + Shrine(upload) + ActsAsTaggableOn(tag) +
 Vue.js 3 + Hotwire (Turbo + Stimulus2) + Bootstrap5
 
 This README would normally document whatever steps are necessary to get the
