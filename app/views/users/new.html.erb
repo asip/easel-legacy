@@ -7,14 +7,7 @@
       </div>
       <div class="card-block">
         <br>
-        <% @user.errors.full_messages.each do |message| %>
-        <div class="d-flex justify-content-md-center">
-          <div class="alert alert-warning col-sm-6  alert-dismissible fade show" role="alert">
-            <%= message %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        </div>
-        <% end %>
+        <%= render(partial: 'users/error_messages', locals: {model: @user}) %>
         <br>
         <% unless @user.confirming == 'true' %>
         <div class="row d-flex justify-content-sm-center border border-white">
