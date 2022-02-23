@@ -1,7 +1,7 @@
 // Entry point for your Sass build
 @import "./application.bootstrap.scss";
-@import "luminous-lightbox/dist/luminous-basic.css";
-@import "@yaireo/tagify/dist/tagify.css";
+@import "luminous-lightbox/dist/luminous-basic";
+@import "@yaireo/tagify/dist/tagify";
 body {
   background-color: aliceblue;
 }
