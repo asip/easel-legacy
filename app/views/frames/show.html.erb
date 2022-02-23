@@ -6,8 +6,8 @@
     <div class="card">
       <div class="card-block">
         <br>
-        <%= render(partial: 'frames/confirm/image', locals: {frame: @frame, original: true}) %>
-        <%= render(partial: 'frames/confirm/tags', locals: {frame: @frame}) %>
+        <%= render(partial: 'frames/preview/image', locals: {frame: @frame, original: true}) %>
+        <%= render(partial: 'frames/preview/tags', locals: {frame: @frame}) %>
         <div class="row d-flex justify-content-sm-center border border-white">
           <label for="name" class="col-form-label-sm col-sm-2 label-bg-style ">名前</label>
           <div class="col-sm-4">
