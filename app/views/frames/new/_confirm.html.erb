@@ -1,24 +1,28 @@
-        <%= render(partial: 'frames/preview/image', locals: {frame: frame, original: true}) %>
-        <%= render(partial: 'frames/preview/tags', locals: {frame: frame}) %>
-        <%= form.hidden_field :tag_list, value: frame.tag_list.join(",") %>
-        <div class="row d-flex justify-content-sm-center border border-white">
-          <label for="name" class="col-form-label-sm col-sm-2 label-bg-style">名前</label>
-          <div class="form-group col-sm-4">
-            <%= frame.name %>
-            <%= form.hidden_field :name %>
+        <div class="card-block">
+          <%= render(partial: 'frames/preview/image', locals: {frame: frame, original: true}) %>
+          <%= render(partial: 'frames/preview/tags', locals: {frame: frame}) %>
+          <%= form.hidden_field :tag_list, value: frame.tag_list.join(",") %>
+          <div class="row d-flex justify-content-sm-center">
+            <label for="name" class="col-form-label-sm col-sm-2">名前：</label>
+            <div class="form-group col-sm-4">
+              <%= frame.name %>
+              <%= form.hidden_field :name %>
+            </div>
           </div>
-        </div>
-        <div class="row d-flex justify-content-sm-center border border-white">
-          <label for="comment" class="col-form-label-sm col-sm-2 label-bg-style">コメント</label>
-          <div class="form-group col-sm-4">
-            <%= simple_format(h(frame.comment)) %>
-            <%= form.hidden_field :comment %>
+          <div class="row d-flex justify-content-sm-center">
+            <label for="comment" class="col-form-label-sm col-sm-2">コメント：</label>
+            <div class="form-group col-sm-4">
+              <%= simple_format(h(frame.comment)) %>
+              <%= form.hidden_field :comment %>
+            </div>
           </div>
+          <br>
         </div>
-        <br>
-        <div class="d-flex justify-content-sm-center">
-          <div class="form-group col-sm-6">
-            <%= form.submit '登録', class: 'btn btn-primary' %>
-            <%= form.submit '戻る', class: 'btn btn-outline-secondary' %>
+        <div class="card-footer">
+          <div class="d-flex justify-content-sm-center">
+            <div class="form-group col-sm-6">
+              <%= form.submit '登録', class: 'btn btn-primary' %>
+              <%= form.submit '戻る', class: 'btn btn-outline-secondary' %>
+            </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+        <div class="card-block">
           <!-- <div class="row d-flex justify-content-sm-center border border-white">
             <label for="image" class="col-form-label-sm col-sm-2 label-bg-style">ファイル</label>
             <div class="form-group col-sm-4">
@@ -5,30 +6,33 @@
             </div>
           </div> -->
           <%#= render PreviewComponent::Component.new(model: frame) %>
-          <div class="row d-flex justify-content-sm-center border border-white">
-            <label for="name" class="col-form-label-sm col-sm-2 label-bg-style">名前</label>
+          <div class="row d-flex justify-content-sm-center">
+            <label for="name" class="col-form-label-sm col-sm-2">名前：</label>
             <div class="col-sm-4">
               <%= form.text_field :name, placeholder: "名前", class: 'form-control' %>
             </div>
           </div>
-          <div class="row d-flex justify-content-sm-center border border-white">
-            <label for="tag_list" class="col-form-label-sm col-sm-2 label-bg-style">タグ</label>
+          <div class="row d-flex justify-content-sm-center">
+            <label for="tag_list" class="col-form-label-sm col-sm-2">タグ：</label>
             <div class="col-sm-4">
             <input type="text" name="tag_editor" id="tag_editor" value="" data-frame-target="te" class="form-control" >
               <%= form.hidden_field :tag_list, id: 'tag_list', "data-frame-target": "tl", value: frame.tag_list.join(",") %>
             </div>
           </div>
-          <div class="row d-flex justify-content-sm-center border border-white">
-            <label for="comment" class="col-form-label-sm col-sm-2 label-bg-style">コメント</label>
+          <div class="row d-flex justify-content-sm-center">
+            <label for="comment" class="col-form-label-sm col-sm-2">コメント：</label>
             <div class="col-sm-4">
               <%= form.text_area :comment, class: 'form-control' %>
             </div>
           </div>
           <br>
+        </div>
+        <div class="card-footer">
           <div class="d-flex justify-content-sm-center">
             <div class="col-sm-6">
               <%= form.submit '内容を確認', class: 'btn btn-primary' %>
               <%= link_to '戻る', frame_path(frame, query_params), class: 'btn btn-outline-secondary', "data-turbo": false %>
             </div>
           </div>
-          <%= form.hidden_field :confirming %>
+        </div>
+        <%= form.hidden_field :confirming %>

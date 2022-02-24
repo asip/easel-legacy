@@ -7,9 +7,10 @@
           アップロード
         </div>
         <div class="card-block">
-        <br>
-        <%= render(partial: 'frames/error_messages', locals: {model: @frame}) %>
-        <br>
+          <br>
+          <%= render(partial: 'frames/error_messages', locals: {model: @frame}) %>
+          <br>
+        </div>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
         <% unless @frame.confirming == 'true' %>
         <%= render(partial: 'frames/new/input', locals: {form: form, frame: @frame}) %>
@@ -17,8 +18,8 @@
         <%= render(partial: 'frames/new/confirm', locals: {form: form, frame: @frame}) %>
         <% end %>
         <%= query_params_hidden_field_tags %>
-        <br>
       </div>
+      <br>
     <% end %>
   </div>
 <% end %>
