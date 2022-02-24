@@ -1,6 +1,6 @@
         <div class="card-block">
-          <div class="row d-flex justify-content-sm-center border border-white">
-            <label for="image" class="col-form-label-sm col-sm-2 label-bg-style">ファイル</label>
+          <div class="row d-flex justify-content-sm-center">
+            <label for="image" class="col-form-label-sm col-sm-2">ファイル：</label>
             <div class="form-group col-sm-4">
               <%= form.file_field :image, accept: 'image/jpg,image/jpeg,image/png', multiple: false, class: 'form-control-file', "data-preview-target": "upload" %><%#= form.file_field :image, multiple: false, class: 'form-control-file' %>
             </div>
