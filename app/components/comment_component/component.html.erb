@@ -41,6 +41,9 @@
               <div class="btn-sm float-start">
                 &nbsp;{{comment.attributes.user_name}}
               </div>
+              <div class="btn-sm float-start small">
+                {{comment.attributes.updated_at}}
+              </div>
               <div class="float-end" v-show="logged_in && comment.attributes.user_id == current_user.id">
                 <button class="btn btn-link btn-sm" v-on:click="deleteComment(comment)">削除</button>&nbsp;
               </div>
@@ -52,9 +55,6 @@
             <div class="col-12">
               <div class="float-start">
                 <span v-html="getSanitizedCommentBody(comment)"></span>
-              </div>
-              <div class="float-end small">
-                {{comment.attributes.updated_at}}
               </div>
             </div>
           </div>
