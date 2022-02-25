@@ -7,7 +7,7 @@
           <br>
           <%= render(partial: 'frames/error_messages', locals: {model: @frame}) %>
           <br>
-        </div>  
+        </div>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
         <%= render(partial: 'frames/preview/image', locals: {frame: @frame, original: true}) %>
         <% unless @frame.confirming == 'true' %>
