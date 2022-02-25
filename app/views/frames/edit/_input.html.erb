@@ -15,7 +15,7 @@
           <div class="row d-flex justify-content-sm-center">
             <label for="tag_list" class="col-form-label-sm col-sm-2">タグ：</label>
             <div class="col-sm-4">
-            <input type="text" name="tag_editor" id="tag_editor" value="" data-frame-target="te" class="form-control" >
+              <input type="text" name="tag_editor" id="tag_editor" value="" data-frame-target="te" class="form-control" >
               <%= form.hidden_field :tag_list, id: 'tag_list', "data-frame-target": "tl", value: frame.tag_list.join(",") %>
             </div>
           </div>
