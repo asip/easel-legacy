@@ -12,6 +12,7 @@
         <%= render(partial: 'frames/preview/image', locals: {frame: @frame, original: true}) %>
         <% unless @frame.confirming == 'true' %>
         <%= render(partial: 'frames/edit/input', locals: {form: form, frame: @frame}) %>
+        <%= form.hidden_field :confirming %>
         <% else %>
         <%= render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) %>
         <% end %>
