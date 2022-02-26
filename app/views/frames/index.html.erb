@@ -1,10 +1,11 @@
 <%= turbo_frame_tag 'users frames' do %>
   <br>
+  <%= render partial: "frames/load_prev", locals: {page_scope: @frames, word: @word} %>
   <div data-controller="frame">
   <turbo-frame id="list" class="row">
     <%= render partial: "frames/list", locals: {frames: @frames} %>
   </turbo-frame>
   </div>
+  <%= render partial: "frames/load_next", locals: {page_scope: @frames, word: @word} %>
   <br>
-  <%= render partial: "frames/load_more", locals: {page_scope: @frames, word: @word} %>
 <% end %>

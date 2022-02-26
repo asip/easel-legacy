@@ -1,6 +1,0 @@
-<%= turbo_stream.append "list" do %>
-  <%= render "frames/list", frames: @frames %>
-<% end %>
-<%= turbo_stream.replace "load-more" do %>
-  <%= render "frames/load_more", page_scope: @frames, word: @word %>
-<% end %>

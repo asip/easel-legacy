@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :users, except: [:index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :frames do
-    get :more, on: :collection
+    get :next, on: :collection
+    get :prev, on: :collection
   end
 
   get "/signup" => "users#new", :as => "signup"
