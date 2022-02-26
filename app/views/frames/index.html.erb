@@ -1,28 +1,10 @@
 <%= turbo_frame_tag 'users frames' do %>
   <br>
-  <div class="row" data-controller="frame">
-    <% @frames.each do |frame| %>
-    <div class="card col-sm-3 kadomaru">
-      <br>
-      <% if frame.image.present? %>
-      <%= link_to image_tag(frame.image_url(:two), class: 'card-img-top'), frame.image_url, class: 'mx-auto', "data-frame-target": "lmg" %>
-      <br>
-      <% end %>
-      <div class="card-block">
-        <div class="d-flex justify-content-sm-center">
-          <div class="mx-auto">
-            <%= link_to frame.name, frame_path(frame, params: query_params) , class: 'mx-auto', "data-turbo-frame": "_top", "data-turbo": false %>
-          </div>
-        </div>
-        <br>
-      </div>
-    </div>
-    <% end %>
+  <div data-controller="frame">
+  <turbo-frame id="list" class="row">
+    <%= render partial: "frames/list", locals: {frames: @frames} %>
+  </turbo-frame>
   </div>
   <br>
-  <div class="d-flex col-sm-12 justify-content-sm-center">
-    <div class="mx-auto">
-      <%= paginate @frames, params: { q: @word },theme: 'bootstrap-5' %>
-    </div>
-  </div>
+  <%= render partial: "frames/load_more", locals: {page_scope: @frames, word: @word} %>
 <% end %>

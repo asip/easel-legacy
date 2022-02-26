@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get "/frames/" => "frames#index", :as => :frames
   resources :users, except: [:index]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :frames
+  resources :frames do
+    get :more, on: :collection
+  end
 
   get "/signup" => "users#new", :as => "signup"
   get "/login" => "sessions#new", :as => "login"

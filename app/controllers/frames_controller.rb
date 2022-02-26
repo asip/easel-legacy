@@ -1,6 +1,6 @@
 class FramesController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show]
-  before_action :set_query, only: [:index, :show, :new, :edit]
+  skip_before_action :require_login, only: [:index, :more, :show]
+  before_action :set_query, only: [:index, :more, :show, :new, :edit]
   before_action :set_frame, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :back_to_form, only: [:create, :update]
 
@@ -15,6 +15,11 @@ class FramesController < ApplicationController
     end
 
     @frames = @frames.page(@page)
+  end
+
+  def more
+    index
+    render layout: false, content_type: 'text/vnd.turbo-stream.html'
   end
 
   def show
