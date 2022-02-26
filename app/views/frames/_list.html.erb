@@ -2,7 +2,7 @@
     <div class="card col-sm-3 kadomaru">
       <br>
       <% if frame.image.present? %>
-      <%= link_to image_tag(frame.image_url(:two), class: 'card-img-top'), frame.image_url, class: 'mx-auto', "data-frame-target": "lmg" %>
+      <%= link_to image_tag(frame.image_url(:two), class: 'card-img-top'), frame_path(frame, params: query_params) , class: 'mx-auto', "data-turbo-frame": "_top", "data-turbo": false %>
       <br>
       <% end %>
       <div class="card-block">
