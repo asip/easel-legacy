@@ -1,9 +1,9 @@
 import { Controller } from "stimulus"
-import { Luminous, LuminousGallery } from 'luminous-lightbox'
+import { Luminous } from 'luminous-lightbox'
 import Tagify from '@yaireo/tagify'
 
 export default class FrameController extends Controller {
-  static targets = ['lm', 'lmg', 'te', 'tl'];
+  static targets = ['lm', 'te', 'tl'];
   image;
   tag_list;
   tag_editor;
@@ -20,10 +20,6 @@ export default class FrameController extends Controller {
     var lm_trigger = null;
     try{
       lm_trigger = this.lmTarget;
-    } catch(e) {}
-    var lmg_triggers = null;
-    try{
-      lmg_triggers = this.lmgTargets;
     } catch(e) {}
 
     if(te_trigger){
@@ -51,12 +47,6 @@ export default class FrameController extends Controller {
     if(lm_trigger){
       const options = { showCloseButton: true };
       this.image = new Luminous(lm_trigger, options);
-    }
-    if(lmg_triggers){
-      if(lmg_triggers.length > 0){
-        const options = { showCloseButton: true };
-        this.image = new LuminousGallery(lmg_triggers);
-      }
     }
   }
 
