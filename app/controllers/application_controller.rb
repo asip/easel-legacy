@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :query_list
 
-  def query_params
+  def permitted_params
     params.permit(
       :id,
       :q,
@@ -26,6 +26,12 @@ class ApplicationController < ActionController::Base
         :confirming
       ]
     )
+  end
+
+  def query_params
+    permitted_params.to_h.filter { |key, value| 
+      query_list.include?(key.to_sym)
+    }
   end
   helper_method :query_params
 
