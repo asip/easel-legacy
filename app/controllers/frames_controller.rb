@@ -66,9 +66,8 @@ class FramesController < ApplicationController
   private
 
   def set_query
-    params_query = query_params
-    @word = params_query[:q]
-    @page = params_query[:page]
+    @word = permitted_params[:q]
+    @page = permitted_params[:page]
   end
 
   def set_frame
