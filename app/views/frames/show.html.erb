@@ -5,7 +5,15 @@
   <div data-controller="frame">
     <div class="card">
       <div class="card-block">
-        <br>
+        <div class="row d-flex">
+        <div class="col-12 clearfix">
+          <div class="float-end">
+            <%= l @frame.created_at %>&nbsp;
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-block">
         <%= render(partial: 'frames/preview/image', locals: {frame: @frame, original: true}) %>
         <%= render(partial: 'frames/preview/tags', locals: {frame: @frame}) %>
       </div>
