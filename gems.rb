@@ -72,7 +72,7 @@ gem "jsonapi-serializer"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
   # Ruby style guide, linter, and formatter
   gem "standard"
 end
@@ -97,4 +97,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-

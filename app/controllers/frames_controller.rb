@@ -19,12 +19,12 @@ class FramesController < ApplicationController
 
   def prev
     index
-    render layout: false, content_type: 'text/vnd.turbo-stream.html'
+    render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
   def next
     index
-    render layout: false, content_type: 'text/vnd.turbo-stream.html'
+    render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
   def show
