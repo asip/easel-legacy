@@ -58,8 +58,8 @@ gem "kaminari", "~> 1.2.2"
 gem "bootstrap5-kaminari-views"
 
 # tags
-# gem 'acts-as-taggable-on', '~> 6.5.0'
-gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
+# gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
+gem 'acts-as-taggable-on', '~> 9.0.1'
 
 # search
 # gem 'ransack'
