@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def query_params
-    permitted_params.to_h.filter { |key, value| 
+    permitted_params.to_h.filter { |key, value|
       query_list.include?(key.to_sym)
     }
   end
