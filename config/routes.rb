@@ -17,15 +17,17 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      # get '/frames/:frame_id/comments' => 'comments#index'
-      # post '/frames/:frame_id/comments' => 'comments#create'
-      # delete '/comments/:id' => 'comments#destroy'
-      resources :frames, only: [] do
-        resources :comments, only: [:index, :create]
-      end
-      resources :comments, only: [:destroy]
+      namespace :backend do
+        # get '/frames/:frame_id/comments' => 'comments#index'
+        # post '/frames/:frame_id/comments' => 'comments#create'
+        # delete '/comments/:id' => 'comments#destroy'
+        resources :frames, only: [] do
+          resources :comments, only: [:index, :create]
+        end
+        resources :comments, only: [:destroy]
 
-      get "/account" => "account#show"
+        get "/account" => "account#show"
+      end
     end
   end
 end
