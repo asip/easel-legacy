@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "users" do %>
-  <%= form_with model: @user, url: sessions_path, method: :post, local: true, html: { 'data-turbo-frame': "_top", 'data-turbo': false } do |form| %>
+  <%= form_with model: @user, url: backend_sessions_path, method: :post, local: true, html: { 'data-turbo-frame': "_top", 'data-turbo': false } do |form| %>
     <br>
     <div class="card">
       <div class="card-header">
@@ -7,7 +7,7 @@
       </div>
       <div class="card-block">
         <br>
-        <%= render(partial: 'sessions/error_messages', locals: {model: @user}) %>
+        <%= render(partial: 'backend/sessions/error_messages', locals: {model: @user}) %>
         <br>
         <div class="row d-flex justify-content-sm-center border border-white">
           <label for="email" class="col-form-label-sm col-sm-2 label-bg-style">Eメール</label>

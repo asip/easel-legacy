@@ -4,30 +4,30 @@ Rails.application.routes.draw do
 
   get "/frames/" => "frames#index", :as => :frames
   resources :users, except: [:index]
-  resources :sessions, only: [:new, :create, :destroy]
   resources :frames do
     get :next, on: :collection
     get :prev, on: :collection
   end
 
   get "/signup" => "users#new", :as => "signup"
-  get "/login" => "sessions#new", :as => "login"
-  get "/profile" => "sessions#show", :as => "profile"
-  delete "/logout" => "sessions#destroy", :as => "logout"
+  namespace :backend do
+    resources :sessions, only: [:new, :create, :destroy]
+    get "/login" => "sessions#new", :as => "login"
+    get "/profile" => "sessions#show", :as => "profile"
+    delete "/logout" => "sessions#destroy", :as => "logout"
+  end
 
   namespace :api do
     namespace :v1 do
-      namespace :backend do
-        # get '/frames/:frame_id/comments' => 'comments#index'
-        # post '/frames/:frame_id/comments' => 'comments#create'
-        # delete '/comments/:id' => 'comments#destroy'
-        resources :frames, only: [] do
-          resources :comments, only: [:index, :create]
-        end
-        resources :comments, only: [:destroy]
-
-        get "/account" => "account#show"
+      # get '/frames/:frame_id/comments' => 'comments#index'
+      # post '/frames/:frame_id/comments' => 'comments#create'
+      # delete '/comments/:id' => 'comments#destroy'
+      resources :frames, only: [] do
+        resources :comments, only: [:index, :create]
       end
+      resources :comments, only: [:destroy]
+
+      get "/account" => "account#show"
     end
   end
 end
