@@ -10,12 +10,10 @@ Rails.application.routes.draw do
   end
 
   get "/signup" => "users#new", :as => "signup"
-  namespace :backend do
-    resources :sessions, only: [:new, :create, :destroy]
-    get "/login" => "sessions#new", :as => "login"
-    get "/profile" => "sessions#show", :as => "profile"
-    delete "/logout" => "sessions#destroy", :as => "logout"
-  end
+  resources :sessions, only: [:new, :create, :destroy]
+  get "/login" => "sessions#new", :as => "login"
+  get "/profile" => "sessions#show", :as => "profile"
+  delete "/logout" => "sessions#destroy", :as => "logout"
 
   namespace :api do
     namespace :v1 do
