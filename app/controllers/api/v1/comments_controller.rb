@@ -1,4 +1,4 @@
-class Api::V1::CommentsController < ApiController
+class Api::V1::CommentsController < Backend::ApiController
   skip_before_action :authenticate, only: [:index]
 
   def index
