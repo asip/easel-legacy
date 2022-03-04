@@ -18,13 +18,11 @@ class FramesController < ApplicationController
   end
 
   def prev
-    index
-    render layout: false, content_type: "text/vnd.turbo-stream.html"
+    more
   end
 
   def next
-    index
-    render layout: false, content_type: "text/vnd.turbo-stream.html"
+    more
   end
 
   def show
@@ -64,6 +62,11 @@ class FramesController < ApplicationController
   end
 
   private
+
+  def more
+    index
+    render layout: false, content_type: "text/vnd.turbo-stream.html"
+  end
 
   def set_query
     @word = permitted_params[:q]
