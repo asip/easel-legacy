@@ -37,7 +37,7 @@ class FramesController < ApplicationController
     if @frame.save
       render :show
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -50,9 +50,9 @@ class FramesController < ApplicationController
     @frame.attributes = frame_params
     @frame.image_derivatives! if @frame.image.present?
     if @frame.save
-      redirect_to frame_path(@frame, query_params), status: :see_other
+      redirect_to frame_path(@frame, query_params)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
