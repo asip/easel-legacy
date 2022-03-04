@@ -9,25 +9,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :query_list
 
-  def permitted_params
-    params.permit(
-      :id,
-      :q,
-      :page,
-      :commit,
-      :tag_editor,
-      :_method,
-      :authenticity_token,
-      frame: [
-        :name,
-        :tag_list,
-        :comment,
-        :image,
-        :confirming
-      ]
-    )
-  end
-
   def query_params
     permitted_params.to_h.filter { |key, value|
       query_list.include?(key.to_sym)
