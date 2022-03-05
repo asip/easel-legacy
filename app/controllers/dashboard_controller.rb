@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+  include FrameSearch::Query
+
   skip_before_action :require_login
 
   def show
