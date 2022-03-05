@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       # get '/frames/:frame_id/comments' => 'comments#index'
       # post '/frames/:frame_id/comments' => 'comments#create'
       # delete '/comments/:id' => 'comments#destroy'
-      resources :frames, only: [] do
+      resources :frames, only: [:index] do
         resources :comments, only: [:index, :create]
       end
       resources :comments, only: [:destroy]

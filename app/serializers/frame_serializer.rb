@@ -16,4 +16,8 @@ class FrameSerializer
   attributes :user_id, :name, :comment
   has_many :comments
   belongs_to :user, record_type: :user
+
+  attribute :tag_list do |object|
+    object.tags_preview.join(",")
+  end
 end

@@ -59,7 +59,7 @@ class User < ApplicationRecord
     # Rails.logger.debug(decode_token[0]['exp'])
     # decode_token[0]['exp'] < Time.zone.now.to_i
     false
-  rescue => e
+  rescue # => e
     true
   end
 
