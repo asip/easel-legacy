@@ -3,7 +3,7 @@ class Api::V1::FramesController < ApiController
   before_action :set_query, only: [:index]
 
   def index
-    frames = Frame.where(nil)
+    frames = Frame.where(nil).eager_load(:comments)
 
     if @word.present?
       frames = frames.joins(:tags, :user)
@@ -13,10 +13,14 @@ class Api::V1::FramesController < ApiController
     end
 
     frames = frames.page(@page)
-    render json: FrameSerializer.new(frames).serializable_hash
+    render json: FrameSerializer.new(frames, index_options).serializable_hash
   end
 
   private
+
+  def index_options
+    { include: [:comments] }
+  end
 
   def set_query
     @word = permitted_params[:q]

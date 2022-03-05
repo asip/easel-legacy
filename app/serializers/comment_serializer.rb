@@ -15,8 +15,6 @@ class CommentSerializer
   set_type :comment
   set_id :id
   attributes :user_id, :frame_id, :body
-  belongs_to :user, record_type: :user
-  # belongs_to :frame, record_type: :frame
 
   attribute :user_name do |object|
     object.user.name
