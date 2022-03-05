@@ -26,7 +26,7 @@
 #  index_users_on_unlock_token                         (unlock_token)
 #
 class UserSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :user
   set_id :id
   attributes :id, :email, :name
