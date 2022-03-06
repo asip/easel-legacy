@@ -7,14 +7,7 @@ class FramesController < ApplicationController
   before_action :back_to_form, only: [:create, :update]
 
   def index
-    @frames = Frame.where(nil)
-
-    if @word.present?
-      @frames = @frames.joins(:tags, :user)
-        .merge(ActsAsTaggableOn::Tag.where("tags.name like ?", "%#{@word}%"))
-        .or(Frame.where("frames.name like ?", "%#{@word}%"))
-        .or(User.where(name: @word))
-    end
+    @frames = Frame.search_by(word: @word)
 
     @frames = @frames.page(@page)
   end

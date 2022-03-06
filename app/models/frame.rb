@@ -29,6 +29,19 @@ class Frame < ApplicationRecord
 
   after_validation :check_confirming
 
+  scope :search_by, ->(word:) do
+    scope = current_scope || relation
+
+    if word.present?
+      scope = scope.joins(:tags, :user)
+        .merge(ActsAsTaggableOn::Tag.where("tags.name like ?", "%#{word}%"))
+        .or(Frame.where("frames.name like ?", "%#{word}%"))
+        .or(User.where(name: word))
+    end
+
+    scope
+  end
+
   def tags_preview
     tag_list.to_s.split(/\s*,\s*/)
   end
