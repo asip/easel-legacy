@@ -19,7 +19,7 @@ class Api::V1::FramesController < ApiController
   private
 
   def index_options
-    { include: [:comments] }
+    {include: [:comments]}
   end
 
   def set_query
