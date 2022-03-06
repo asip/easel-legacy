@@ -1,4 +1,4 @@
-module FrameSearch
+module Search
   module Query
     extend ActiveSupport::Concern
 

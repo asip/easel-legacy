@@ -1,5 +1,5 @@
 class FramesController < ApplicationController
-  include FrameSearch::Query
+  include Search::Query
 
   skip_before_action :require_login, only: [:index, :next, :prev, :show]
   before_action :set_query, only: [:index, :next, :prev, :show, :new, :edit]
