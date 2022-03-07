@@ -7,8 +7,11 @@
       <div class="card-block">
         <div class="row d-flex">
           <div class="col-12 clearfix">
+            <div class="float-start">
+              &nbsp;<%= link_to root_path(query_params), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
+            </div>
             <div class="float-end">
-              <%= l @frame.created_at %>&nbsp;
+              <%= l @frame.updated_at %>&nbsp;
             </div>
           </div>
         </div>
@@ -31,20 +34,20 @@
           </div>
         </div>
       </div>
+      <% if logged_in? && @frame.user_id == current_user.id %>
       <div class="card-footer">
         <div class="row d-flex justify-content-sm-center">
           <div class="form-group col-sm-6">
-            <%= link_to '戻る', root_path(query_params), class: 'btn btn-primary', "data-turbo-frame": "_top" %>
-            <% if logged_in? && @frame.user_id == current_user.id %>
             <%= link_to '変更', edit_frame_path(@frame, query_params), class: 'btn btn-primary', "data-turbo": true %>
-              <%# Button trigger modal %>
-              <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">
-                削除
-              </button>
-            <% end %>
+            <%# Button trigger modal %>
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">
+              削除
+            </button>
+            <%= link_to '戻る', root_path(query_params), class: 'btn btn-outline-primary', "data-turbo-frame": "_top" %>
           </div>
         </div>
       </div>
+      <% end %>
     </div>
     <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">

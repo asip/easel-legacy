@@ -4,6 +4,15 @@
     <%= form_with model: @frame, local: true do |form| %>
       <div class="card">
         <div class="card-block">
+        <div class="row d-flex">
+          <div class="col-12 clearfix">
+            <div class="float-start">
+              &nbsp;<%= link_to frame_path(@frame), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="card-block">
           <br>
           <%= render(partial: 'frames/error_messages', locals: {model: @frame}) %>
           <br>
