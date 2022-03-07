@@ -1,5 +1,6 @@
 class FramesController < ApplicationController
   include Search::Query
+  include More
 
   skip_before_action :require_login, only: [:index, :next, :prev, :show]
   before_action :set_query, only: [:index, :next, :prev, :show, :new, :edit]
@@ -10,14 +11,6 @@ class FramesController < ApplicationController
     @frames = Frame.search_by(word: @word)
 
     @frames = @frames.page(@page)
-  end
-
-  def prev
-    more
-  end
-
-  def next
-    more
   end
 
   def show
@@ -57,11 +50,6 @@ class FramesController < ApplicationController
   end
 
   private
-
-  def more
-    index
-    render layout: false, content_type: "text/vnd.turbo-stream.html"
-  end
 
   def set_query
     @word = permitted_params[:q]
