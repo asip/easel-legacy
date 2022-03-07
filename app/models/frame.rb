@@ -12,8 +12,10 @@
 #
 
 class Frame < ApplicationRecord
+  include Screen::Confirmable
   # has_one_attached :image
   include ImageUploader::Attachment(:image)
+
   acts_as_taggable_on :tags
 
   has_many :comments
@@ -21,13 +23,9 @@ class Frame < ApplicationRecord
 
   paginates_per 8
 
-  validates_acceptance_of :confirming
-
   validates :name, length: {in: 1..20}
   validates :image, presence: true
   validate :check_tag
-
-  after_validation :check_confirming
 
   scope :search_by, ->(word:) do
     scope = current_scope || relation
@@ -47,11 +45,6 @@ class Frame < ApplicationRecord
   end
 
   private
-
-  def check_confirming
-    errors.delete(:confirming)
-    self.confirming = errors.empty? ? "true" : ""
-  end
 
   def check_tag
     if tags_preview.size > 5
