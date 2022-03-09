@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  include Search::Query
+
   skip_before_action :require_login, except: [:destroy]
 
   def new
@@ -44,5 +46,9 @@ class SessionsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def query_params
+    {}
   end
 end
