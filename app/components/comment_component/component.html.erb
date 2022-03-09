@@ -37,11 +37,14 @@
       <div class="card">
         <div class="card-block">
           <div class="row d-flex">
-            <div class="col-12 clearfix">
-              <div class="btn-sm float-start">
+            <div class="col-12" style="line-height: 35px;">
+              <div class="float-start align-middle" style="padding-left:5px;">
+                <img :src="comment.attributes.user_image_url" class="rounded" width="20" height="20">
+              </div>
+              <div class="float-start small align-middle">
                 &nbsp;{{comment.attributes.user_name}}
               </div>
-              <div class="btn-sm float-start small">
+              <div class="float-start small align-middle" style="padding-left:5px;">
                 {{comment.attributes.updated_at}}
               </div>
               <div class="float-end" v-show="logged_in && comment.attributes.user_id == current_user.id">
@@ -52,11 +55,8 @@
         </div>
         <div class="card-footer">
           <div class="d-flex">
-            <div class="col-12">
+            <div class="col-12 align-middle">
               <div class="float-start">
-              <img :src="comment.attributes.user_image_url" class="rounded" width="50" height="50">
-              </div>
-              <div class="float-start" style="padding-left:5px;">
                 <span v-html="getSanitizedCommentBody(comment)"></span>
               </div>
             </div>
