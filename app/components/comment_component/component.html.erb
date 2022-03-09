@@ -54,6 +54,9 @@
           <div class="d-flex">
             <div class="col-12">
               <div class="float-start">
+              <img :src="comment.attributes.user_image_url" class="rounded" width="50" height="50">
+              </div>
+              <div class="float-start" style="padding-left:5px;">
                 <span v-html="getSanitizedCommentBody(comment)"></span>
               </div>
             </div>

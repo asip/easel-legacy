@@ -52,6 +52,10 @@ class User < ApplicationRecord
     login.validates :password, presence: true
   end
 
+  def image_url
+    "/no-profile-image.png"
+  end
+
   def token_expire?
     User.decode_token(token)
     # Rails.logger.debug(decode_token[0]['exp'])

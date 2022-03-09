@@ -20,6 +20,10 @@ class CommentSerializer
     object.user.name
   end
 
+  attribute :user_image_url do |object|
+    object.user.image_url
+  end
+
   attribute :updated_at do |object|
     object.updated_at.strftime("%Y/%m/%d %H:%M:%S")
   end
