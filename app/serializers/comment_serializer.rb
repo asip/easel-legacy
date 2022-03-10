@@ -21,7 +21,7 @@ class CommentSerializer
   end
 
   attribute :user_image_url do |object|
-    object.user.image_url_for_display(:thumbnail)
+    object.user.image_url_for_display(:one)
   end
 
   attribute :updated_at do |object|
