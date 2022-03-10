@@ -4,7 +4,8 @@ class User::ImageUploader < Shrine
 
     {
       thumbnail: magick.resize_to_limit!(20, 20)
-      one: magick.resize_to_limit!(100, 100)
+      one: magick.resize_to_limit!(100, 100),
+      three: magick.resize_to_limit!(300, 300)
     }
   end
 
