@@ -1,10 +1,10 @@
 <% if @model.image.present? %>
-<div data-preview-target="content" class="d-flex justify-content-sm-center" style="display: block;">
+<div data-preview-target="content" class="d-flex justify-content-sm-center" style="display: block;padding-bottom:5px;">
   <%= image_tag(@model.image_url(:three), class: 'mx-auto', style: 'max-width: 300px; max-height: 300px; display: block;', "data-preview-target": "image " ) %>
   <br>
 </div>
 <% else %>
-<div data-preview-target="content" class="d-flex justify-content-sm-center" style="display: none;">
+<div data-preview-target="content" class="d-flex justify-content-sm-center" style="display: none;padding-bottom:5px;">
   <img data-preview-target="image" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
   <br>
 </div>
