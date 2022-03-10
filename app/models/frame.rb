@@ -14,7 +14,7 @@
 class Frame < ApplicationRecord
   include Screen::Confirmable
   # has_one_attached :image
-  include ImageUploader::Attachment(:image)
+  include Frame::ImageUploader::Attachment(:image)
 
   acts_as_taggable_on :tags
 
