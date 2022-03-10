@@ -1,4 +1,4 @@
-class ImageUploader < Shrine
+class Frame::ImageUploader < Shrine
   Attacher.derivatives do |original|
     magick = ImageProcessing::MiniMagick.source(original)
 
