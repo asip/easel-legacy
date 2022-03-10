@@ -3,8 +3,11 @@
   <div class="card">
     <div class="card-header">
       <div class="float-start">
-      <%= link_to root_path(query_params), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
-      プロフィール
+        <%= link_to root_path(query_params), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
+        プロフィール
+      </div>
+      <div class="float-end">
+        <%= link_to edit_profile_path do %><i class="bi bi-arrow-right-circle"></i><% end %>
       </div>
     </div>
     <div class="card-block">

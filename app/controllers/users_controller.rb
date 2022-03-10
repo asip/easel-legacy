@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
   skip_before_action :require_login
-  before_action :set_user, only: [:new, :create]
-  before_action :back_to_form, only: [:create]
+  before_action :set_user, only: [:new, :create, :edit, :update]
+  before_action :back_to_form, only: [:create, :update]
 
   def new
+  end
+
+  def edit
   end
 
   def create
@@ -15,13 +18,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user.attributes = user_params
+    @user.image_derivatives! if @user.image.present?
+    if @user.save
+      redirect_to profile_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_user
-    if action_name == "new"
-      @user = User.new
+    @user = if action_name == "new"
+      User.new
     elsif action_name == "create"
-      @user = User.new(user_params)
+      User.new(user_params)
+    else
+      current_user
     end
   end
 
@@ -30,8 +45,11 @@ class UsersController < ApplicationController
       @user.confirming = ""
       @user.attributes = user_params
       @user.image_derivatives! if @user.image.present?
-      render :new
-      # return
+      if action_name == "create"
+        render :new
+      elsif action_name == "update"
+        render :edit
+      end
     end
   end
 

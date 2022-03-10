@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get "/login" => "sessions#new", :as => "login"
   get "/profile" => "sessions#show", :as => "profile"
+  get "/profile/edit" => "users#edit", :as => "edit_profile"
+  patch "/profile" => "users#update", :as => "update_profile"
   delete "/logout" => "sessions#destroy", :as => "logout"
 
   namespace :api do

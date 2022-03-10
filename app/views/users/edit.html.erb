@@ -1,11 +1,11 @@
 <%= turbo_frame_tag 'users' do %>
-  <%= form_with model: @user, local: true do |form| %>
+  <%= form_with model: @user, url: update_profile_path, local: true do |form| %>
     <br>
     <div class="card" data-controller="preview">
       <div class="card-header">
         <div class="float-start">
-          <%= link_to login_path, "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
-          ユーザー登録
+          <%= link_to profile_path, "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
+          プロフィール編集
         </div>
       </div>
       <div class="card-block">
@@ -13,10 +13,10 @@
         <br>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
         <% unless @user.confirming == 'true' %>
-        <%= render(partial: 'users/new/input', locals: {form: form, user: @user}) %>
+        <%= render(partial: 'users/edit/input', locals: {form: form, user: @user}) %>
         <%= form.hidden_field :confirming %>
         <% else %>
-        <%= render(partial: 'users/new/confirm', locals: {form: form, user: @user}) %>
+        <%= render(partial: 'users/edit/confirm', locals: {form: form, user: @user}) %>
         <% end %>
         <br>
       </div>
