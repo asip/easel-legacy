@@ -1,20 +1,20 @@
         <%= render(partial: 'users/preview/image', locals: {user: user, original: true}) %>
         <div class="row d-flex justify-content-sm-center">
-          <label for="name" class="form-label col-md-2 label-bg-style">ユーザー名</label>
+          <label for="name" class="form-label col-md-2 label-bg-style">ユーザー名：</label>
           <div class="form-group col-sm-4">
             <%= user.name %>
             <%= form.hidden_field :name %>
           </div>
         </div>
         <div class="row d-flex justify-content-sm-center">
-          <label for="email" class="form-label col-md-2 label-bg-style">Eメール</label>
+          <label for="email" class="form-label col-md-2 label-bg-style">Eメール：</label>
           <div class="form-group col-sm-4">
             <%= user.email %>
             <%= form.hidden_field :email %>
           </div>
         </div>
         <div class="row d-flex justify-content-sm-center">
-          <label for="passowrd" class="form-label col-md-2 label-bg-style">パスワード</label>
+          <label for="passowrd" class="form-label col-md-2 label-bg-style">パスワード：</label>
           <div class="form-group col-sm-4">
             <%= user.password %>
             <%= form.hidden_field :password %>
