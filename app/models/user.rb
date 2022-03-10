@@ -54,8 +54,12 @@ class User < ApplicationRecord
     login.validates :password, presence: true
   end
 
-  def image_url
-    "/no-profile-image.png"
+  def image_url(key)
+    if image.blank?
+      "/no-profile-image.png"
+    else
+      super(key)
+    end
   end
 
   def token_expire?

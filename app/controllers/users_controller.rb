@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user.image_derivatives! if @user.image.present?
     if @user.save
       redirect_to login_path
     else
@@ -27,6 +28,8 @@ class UsersController < ApplicationController
   def back_to_form
     if params[:commit] == "戻る"
       @user.confirming = ""
+      @user.attributes = user_params
+      @user.image_derivatives! if @user.image.present?
       render :new
       # return
     end
@@ -38,6 +41,7 @@ class UsersController < ApplicationController
       :email,
       :password,
       :password_confirmation,
+      :image,
       :confirming
     )
   end
