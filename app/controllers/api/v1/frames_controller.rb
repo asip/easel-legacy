@@ -30,6 +30,7 @@ class Api::V1::FramesController < ApiController
         :tag_list,
         :comment,
         :image,
+        :shooted_at,
         :confirming
       ]
     )

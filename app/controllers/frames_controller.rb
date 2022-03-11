@@ -95,6 +95,7 @@ class FramesController < ApplicationController
         :tag_list,
         :comment,
         :image,
+        :shooted_at,
         :confirming
       ]
     )

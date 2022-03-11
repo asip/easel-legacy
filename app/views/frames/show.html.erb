@@ -27,6 +27,12 @@
             <%= @frame.name %>
           </div>
         </div>
+        <div class="row d-flex justify-content-sm-center">
+          <label for="name" class="col-form-label-sm col-sm-2">撮影日時：</label>
+          <div class="col-sm-4">
+            <%= @frame.shooted_at.present? ? l(@frame.shooted_at) : '' %>
+          </div>
+        </div>
         <div class="row d-flex justify-content-sm-center" >
           <label for="comment" class="col-form-label-sm col-sm-2 ">コメント：</label>
           <div class="col-sm-4">
