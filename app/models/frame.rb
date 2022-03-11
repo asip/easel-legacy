@@ -16,6 +16,7 @@ class Frame < ApplicationRecord
   include Screen::Confirmable
   # has_one_attached :image
   include Frame::ImageUploader::Attachment(:image)
+  include DateAndTime::Util
 
   acts_as_taggable_on :tags
 
@@ -32,10 +33,15 @@ class Frame < ApplicationRecord
     scope = current_scope || relation
 
     if word.present?
-      scope = scope.joins(:tags, :user)
-        .merge(ActsAsTaggableOn::Tag.where("tags.name like ?", "%#{word}%"))
-        .or(Frame.where("frames.name like ?", "%#{word}%"))
-        .or(User.where(name: word))
+      scope = if date_valid?(word)
+        scope.where("cast(shooted_at as date)=?", Time.zone.parse(word).to_date)
+          .or(Frame.where("cast(updated_at as date)=?", Time.zone.parse(word).to_date))
+      else
+        scope.joins(:tags, :user)
+          .merge(ActsAsTaggableOn::Tag.where("tags.name like ?", "%#{word}%"))
+          .or(Frame.where("frames.name like ?", "%#{word}%"))
+          .or(User.where(name: word))
+      end
     end
 
     scope

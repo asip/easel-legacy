@@ -26,6 +26,7 @@ module Easel
     config.action_view.form_with_generates_remote_forms = false
 
     # timezone
+    config.active_record.default_timezone = :local
     config.time_zone = "Tokyo"
   end
 end
