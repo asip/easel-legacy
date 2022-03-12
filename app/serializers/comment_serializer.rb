@@ -25,7 +25,7 @@ class CommentSerializer
   end
 
   attribute :updated_at do |object|
-    object.updated_at.strftime("%Y/%m/%d %H:%M:%S")
+    I18n.l(object.updated_at)
   end
 
   attribute :error_messages do |object|
