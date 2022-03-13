@@ -60,7 +60,7 @@ class FramesController < ApplicationController
 
   def set_day
     @day = if @word.blank? || !FramesController.date_valid?(@word)
-      Time.zone.now.strftime("%Y/%m/%d")
+      "" # Time.zone.now.strftime("%Y/%m/%d")
     else
       @word
     end
