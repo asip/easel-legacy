@@ -26,4 +26,10 @@ export default class CalendarController extends Controller {
       });
     }
   }
+
+  disconnect(){
+    if(this.calendar){
+      this.calendar.destroy();
+    }
+  }
 }
