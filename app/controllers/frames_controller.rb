@@ -1,9 +1,11 @@
 class FramesController < ApplicationController
   include Search::Query
   include More
+  include DateAndTime::Util
 
   skip_before_action :require_login, only: [:index, :next, :prev, :show]
   before_action :set_query, only: [:index, :next, :prev, :show, :new, :edit]
+  before_action :set_day, only: [:index]
   before_action :set_frame, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :back_to_form, only: [:create, :update]
 
@@ -54,6 +56,14 @@ class FramesController < ApplicationController
   def set_query
     @word = permitted_params[:q]
     @page = permitted_params[:page]
+  end
+
+  def set_day
+    @day = if @word.blank? || !FramesController.date_valid?(@word)
+      Time.zone.now.strftime("%Y/%m/%d")
+    else
+      @word
+    end
   end
 
   def set_frame

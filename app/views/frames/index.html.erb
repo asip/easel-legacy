@@ -1,17 +1,5 @@
 <div class="row">
-  <!-- <div class="flex-shrink-0 col-sm-3">
-    <br>
-    <div class="card">
-      <div class="card-block">
-        <br>
-        <div class="d-flex justify-content-sm-center" data-controller="calendar">
-          <div data-target="cal" data-date="2022/03/13"></div>
-        </div>
-        <br>
-      </div>
-    </div>
-  </div> -->
-  <div class="col-sm-12">
+  <div class="col-sm-8">
   <%= turbo_frame_tag 'users frames' do %>
     <br>
     <%= render partial: "frames/load_prev", locals: {page_scope: @frames, word: @word} %>
@@ -21,5 +9,17 @@
     <%= render partial: "frames/load_next", locals: {page_scope: @frames, word: @word} %>
     <br>
   <% end %>
+  </div>
+  <div class="flex-shrink-0 col-sm-4">
+    <br>
+    <div class="card">
+      <div class="card-block">
+        <br>
+        <div class="d-flex justify-content-sm-center" data-controller="calendar">
+          <div data-calendar-target="cal" data-date="<%= @day %>" data-origin="<%= Settings.origin %>"></div>
+        </div>
+        <br>
+      </div>
+    </div>
   </div>
 </div>

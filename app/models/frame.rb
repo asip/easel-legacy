@@ -23,7 +23,7 @@ class Frame < ApplicationRecord
   has_many :comments
   belongs_to :user
 
-  paginates_per 8
+  paginates_per 6
 
   validates :name, length: {in: 1..20}
   validates :image, presence: true
