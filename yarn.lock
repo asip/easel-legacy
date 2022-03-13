@@ -1469,6 +1469,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+vanillajs-datepicker@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/vanillajs-datepicker/-/vanillajs-datepicker-1.2.0.tgz#05fb002edbdfebb68cbb2326555b182d023e0f04"
+  integrity sha512-bfGdPYMf/lPwx0bJaXKKeyr3J7TnSBzB8xRWxMq6rtLxyAyyAjdCQ1h0WRGpRmE0qXIKdDy3yzRMDLHEGOub3A==
+
 vue-loader@^17.0.0:
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-17.0.0.tgz#2eaa80aab125b19f00faa794b5bd867b17f85acb"

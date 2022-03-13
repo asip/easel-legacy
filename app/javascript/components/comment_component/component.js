@@ -1,4 +1,4 @@
-import {createApp, ref, reactive, onMounted} from 'vue'
+import {createApp, ref, reactive, onMounted} from 'vue/dist/vue.esm-bundler.js'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
