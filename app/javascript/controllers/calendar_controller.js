@@ -13,7 +13,8 @@ export default class CalendarController extends Controller {
 
     if (cal_trigger){
       this.calendar = new Datepicker(cal_trigger, {
-        buttonClass: 'btn'
+        buttonClass: 'btn',
+        format: 'yyyy/mm/dd'
       });
     }
   }
