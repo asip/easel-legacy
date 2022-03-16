@@ -1,5 +1,5 @@
     <% frames.each do |frame| %>
-    <div class="card col-sm-4 kadomaru" data-controller="frame">
+    <div class="card col-sm-3 kadomaru" data-controller="frame">
       <br>
       <% if frame.image.present? %>
       <%= link_to image_tag(frame.image_url(:two), class: 'card-img-top'), frame.image_url, class: 'mx-auto', "data-frame-target": "lm" %>
