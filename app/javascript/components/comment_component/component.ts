@@ -1,3 +1,4 @@
+import { AxiosStatic } from './../../../../public/assets/axios/index.d-e707af35955917c95eb0f5ac92aa1f0a29289c75';
 import {createApp, ref, reactive, onMounted} from 'vue/dist/vue.esm-bundler.js'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'
@@ -10,14 +11,14 @@ Axios.defaults.headers.common = {
   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 };
 
-const root = document.querySelector('#comment_component');
+const root: HTMLElement = document.querySelector('#comment_component');
 
 if (root) {
-  const constants = {
+  const constants: { api_origin: string } = {
     api_origin: root.getAttribute('data-api-origin')
   }
 
-  var initCommentComponent = () => {
+  var initCommentComponent = (): void => {
     const comment_vm = createApp({
       setup(){
         let account = null;
@@ -160,5 +161,7 @@ if (root) {
     //console.log(comment_vm);
   };
 
-  document.addEventListener('turbo:load', initCommentComponent());
+  document.addEventListener('turbo:load', () => {
+    initCommentComponent()
+  });
 }
