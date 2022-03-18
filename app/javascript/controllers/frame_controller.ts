@@ -4,20 +4,23 @@ import Tagify from '@yaireo/tagify'
 
 export default class FrameController extends Controller {
   static targets = ['lm', 'te', 'tl'];
-  image;
-  tag_list;
-  tag_editor;
+  teTarget!: HTMLElement
+  tlTarget!: HTMLInputElement
+  lmTarget!: HTMLElement
+
+  image: Luminous;
+  tag_list: HTMLInputElement;
+  tag_editor: Tagify;
 
   connect() {
-    var te_trigger = null;
+    var te_trigger: HTMLElement = null;
     try{
       te_trigger = this.teTarget;
     } catch(e) {}
-    //this.tag_list = null;
     try{
       this.tag_list = this.tlTarget;
     } catch(e) {}
-    var lm_trigger = null;
+    var lm_trigger: HTMLElement = null;
     try{
       lm_trigger = this.lmTarget;
     } catch(e) {}
@@ -37,7 +40,7 @@ export default class FrameController extends Controller {
       this.tag_editor.on('add', e => this.saveTagList(e.detail.tagify));
       this.tag_editor.on('remove', e => this.saveTagList(e.detail.tagify));
 
-      const tags = this.tag_list.value;
+      const tags: string = this.tag_list.value;
       this.tag_editor.removeAllTags();
       if (tags.length > 0) {
         this.tag_editor.addTags(tags.split(","));
@@ -50,7 +53,7 @@ export default class FrameController extends Controller {
     }
   }
 
-  saveTagList(tagify) {
+  saveTagList(tagify: Tagify) {
     this.tag_list.value = this.tag_editor.value.map(v => v.value).join(",");
     //console.log(this.tlTarget.value);
   }
@@ -68,7 +71,7 @@ export default class FrameController extends Controller {
   }
 
   removeElementsByClassName(className){
-    const elements = this.element.getElementsByClassName(className);
+    const elements: HTMLCollectionOf<Element> = this.element.getElementsByClassName(className);
     Array.from(elements).forEach(e => e.remove());
   }
 }

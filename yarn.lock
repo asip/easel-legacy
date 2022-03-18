@@ -86,6 +86,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.10.tgz#616f16e9d3a2a3d618136b1be244315d95bd7cab"
   integrity sha512-S/3xB4KzyFxYGCppyDt68yzBU9ysL88lSdIah4D6cptdcltc4NCPCAMc0+PCpg/lLIyC7IPvj2Z52OJWeIUkog==
 
+"@types/vanillajs-datepicker@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/vanillajs-datepicker/-/vanillajs-datepicker-1.2.0.tgz#24aaa9a4c7db0ba0ae6fb4fd47bef882221732cb"
+  integrity sha512-ETodCIiHhzLagQXC3X/SCjNRuNhgZlAqyZ4voeX8iko2xHAVldCHDOjhHmM9+FWNe1F+FPU6+ejQ2P00hT8gmA==
+
 "@vue/compiler-core@3.2.31":
   version "3.2.31"
   resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.2.31.tgz#d38f06c2cf845742403b523ab4596a3fda152e89"

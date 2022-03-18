@@ -3,10 +3,11 @@ import { Datepicker } from 'vanillajs-datepicker';
 
 export default class CalendarController extends Controller {
   static targets = ['cal'];
-  calendar;
+  calTarget: HTMLElement;
+  calendar: Datepicker;
 
   connect() {
-    var cal_trigger = null;
+    var cal_trigger: HTMLElement = null;
     try{
       cal_trigger = this.calTarget;
     } catch(e) {}
@@ -19,7 +20,7 @@ export default class CalendarController extends Controller {
         buttonClass: 'btn',
         format: 'yyyy/mm/dd'
       });
-      cal_trigger.addEventListener('changeDate', function (e) {
+      cal_trigger.addEventListener('changeDate', function (e: CustomEvent) {
         //console.log(e);
         //console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
         window.location.href=`${origin}/frames?q=${e.detail.datepicker.getDate("yyyy/mm/dd")}`
