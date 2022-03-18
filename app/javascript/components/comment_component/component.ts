@@ -17,27 +17,37 @@ if (root) {
     api_origin: root.getAttribute('data-api-origin')
   }
 
+  interface User {
+    id: string,
+    token: string
+  }
+
+  interface Comment {
+    frame_id: string,
+    body: string
+  }
+
   var initCommentComponent = (): void => {
     const comment_vm: any = createApp({
       setup(){
         let account: any = null;
-        const logged_in: any = ref(false);
-        const current_user: any = reactive({
+        const logged_in: any = ref<boolean>(false);
+        const current_user: any = reactive<User>({
           id: '',
           token: ''
         })
-        const comment:any = reactive({
+        const comment: any = reactive<Comment>({
           frame_id: '',
           body: '',
         });
-        const comments:any = reactive([]);
-        const error_messages:any = reactive([]);
+        const comments: any = reactive<any[]>([]);
+        const error_messages: any = reactive<string[]>([]);
 
         const getSanitizedCommentBody = (row: any): string => {
           return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
         };
         const getAccount = async () => {
-          const res = await Axios.get(`${constants.api_origin}/account`,
+          const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/account`,
             {
               headers: {
                 Authorization: `Bearer ${current_user.token}`
