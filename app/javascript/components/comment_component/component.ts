@@ -31,7 +31,7 @@ if (root) {
     const comment_vm: Application = createApp({
       setup(){
         let account: any = null;
-        const logged_in: any = ref<boolean>(false);
+        const logged_in: any = ref<Boolean>(false);
         const current_user: any = reactive<User>({
           id: '',
           token: ''
