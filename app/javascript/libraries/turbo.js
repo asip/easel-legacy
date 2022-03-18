@@ -1,3 +1,3 @@
-import { Turbo } from "@hotwired/turbo-rails"
+import * as Turbo from "@hotwired/turbo";
 
-window.Turbo = Turbo;
+Turbo.start();
