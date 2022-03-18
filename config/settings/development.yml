@@ -1,2 +1,3 @@
 api:
-  origin: 'http://localhost:3000'
+  origin: 'http://localhost:3000/api/v1'
+origin: 'http://localhost:3000'

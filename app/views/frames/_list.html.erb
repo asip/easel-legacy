@@ -1,0 +1,17 @@
+    <% frames.each do |frame| %>
+    <div class="card col-sm-3 kadomaru" data-controller="frame">
+      <br>
+      <% if frame.image.present? %>
+      <%= link_to image_tag(frame.image_url(:two), class: 'card-img-top'), frame.image_url, class: 'mx-auto', "data-frame-target": "lm" %>
+      <br>
+      <% end %>
+      <div class="card-block">
+        <div class="d-flex justify-content-sm-center">
+          <div class="mx-auto">
+            <%= link_to frame.name, frame_path(frame, params: query_params) , class: 'mx-auto', "data-turbo-frame": "_top", "data-turbo": false %>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+    <% end %>

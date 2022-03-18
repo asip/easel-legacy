@@ -1,4 +1,4 @@
-import {createApp, ref, reactive, onMounted} from 'vue'
+import {createApp, ref, reactive, onMounted} from 'vue/dist/vue.esm-bundler.js'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
@@ -37,7 +37,7 @@ if (root) {
           return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
         };
         const getAccount = async () => {
-          const res = await Axios.get(`${constants.api_origin}/api/v1/account`,
+          const res = await Axios.get(`${constants.api_origin}/account`,
             {
               headers: {
                 Authorization: `Bearer ${current_user.token}`
@@ -51,7 +51,7 @@ if (root) {
         };
         const getComments = async (frame_id) => {
           //console.log(frame_id);
-          const res = await Axios.get(`${constants.api_origin}/api/v1/frames/${frame_id}/comments`);
+          const res = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`);
           if (res.data) {
             //console.log(res.data.data);
             comments.splice(0, comments.length);
@@ -64,7 +64,7 @@ if (root) {
         };
         const postComment = async () => {
           try{
-            const res = await Axios.post(`${constants.api_origin}/api/v1/frames/${comment.frame_id}/comments`,
+            const res = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
               {
                 comment: {
                   frame_id: comment.frame_id,
@@ -105,7 +105,7 @@ if (root) {
         };
         const deleteComment = async (comment) => {
           try {
-            const res = await Axios.delete(`${constants.api_origin}/api/v1/comments/${comment.id}`, {
+            const res = await Axios.delete(`${constants.api_origin}/comments/${comment.id}`, {
               headers: {
                 Authorization: `Bearer ${current_user.token}`
               }

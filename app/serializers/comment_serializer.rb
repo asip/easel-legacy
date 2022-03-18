@@ -11,19 +11,21 @@
 #
 
 class CommentSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :comment
   set_id :id
   attributes :user_id, :frame_id, :body
-  belongs_to :user, record_type: :user
-  # belongs_to :frame, record_type: :frame
 
   attribute :user_name do |object|
     object.user.name
   end
 
+  attribute :user_image_url do |object|
+    object.user.image_url_for_view(:one)
+  end
+
   attribute :updated_at do |object|
-    object.updated_at.strftime("%Y/%m/%d %H:%M:%S")
+    I18n.l(object.updated_at)
   end
 
   attribute :error_messages do |object|

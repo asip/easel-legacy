@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[6.1].define(version: 2022_01_23_000137) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_03_11_041600) do
   create_table "authentications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "provider", null: false
     t.string "uid", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
   end
 
@@ -25,8 +24,8 @@ ActiveRecord::Schema[6.1].define(version: 2022_01_23_000137) do
     t.integer "user_id", null: false
     t.integer "frame_id", null: false
     t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "frames", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -34,8 +33,9 @@ ActiveRecord::Schema[6.1].define(version: 2022_01_23_000137) do
     t.string "name", null: false
     t.text "comment"
     t.text "image_data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "shooted_at"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "taggings", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -45,7 +45,7 @@ ActiveRecord::Schema[6.1].define(version: 2022_01_23_000137) do
     t.string "tagger_type"
     t.integer "tagger_id"
     t.string "context", limit: 128
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["context"], name: "index_taggings_on_context"
     t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
@@ -69,14 +69,15 @@ ActiveRecord::Schema[6.1].define(version: 2022_01_23_000137) do
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "image_data"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "failed_logins_count", default: 0
-    t.datetime "lock_expires_at"
+    t.datetime "lock_expires_at", precision: nil
     t.string "unlock_token"
-    t.datetime "last_login_at"
-    t.datetime "last_logout_at"
-    t.datetime "last_activity_at"
+    t.datetime "last_login_at", precision: nil
+    t.datetime "last_logout_at", precision: nil
+    t.datetime "last_activity_at", precision: nil
     t.string "last_login_from_ip_address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"

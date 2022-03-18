@@ -4,12 +4,17 @@ Rails.application.routes.draw do
 
   get "/frames/" => "frames#index", :as => :frames
   resources :users, except: [:index]
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :frames
+  resources :frames do
+    get :next, on: :collection
+    get :prev, on: :collection
+  end
 
   get "/signup" => "users#new", :as => "signup"
+  resources :sessions, only: [:new, :create, :destroy]
   get "/login" => "sessions#new", :as => "login"
   get "/profile" => "sessions#show", :as => "profile"
+  get "/profile/edit" => "users#edit", :as => "edit_profile"
+  patch "/profile" => "users#update", :as => "update_profile"
   delete "/logout" => "sessions#destroy", :as => "logout"
 
   namespace :api do
@@ -17,7 +22,7 @@ Rails.application.routes.draw do
       # get '/frames/:frame_id/comments' => 'comments#index'
       # post '/frames/:frame_id/comments' => 'comments#create'
       # delete '/comments/:id' => 'comments#destroy'
-      resources :frames, only: [] do
+      resources :frames, only: [:index] do
         resources :comments, only: [:index, :create]
       end
       resources :comments, only: [:destroy]

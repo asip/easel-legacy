@@ -6,6 +6,7 @@
 #  crypted_password           :string(255)
 #  email                      :string(255)      not null
 #  failed_logins_count        :integer          default(0)
+#  image_data                 :text(65535)
 #  last_activity_at           :datetime
 #  last_login_at              :datetime
 #  last_login_from_ip_address :string(255)
@@ -27,12 +28,13 @@
 #
 
 class User < ApplicationRecord
+  include Screen::Confirmable
+  include User::ImageUploader::Attachment(:image)
+
   authenticates_with_sorcery!
 
   has_many :frames
   has_many :comments
-
-  validates_acceptance_of :confirming
 
   VALID_NAME_REGEX = /\A\z|\A[a-zA-Z0-9]{3,40}\z/
   VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -52,14 +54,20 @@ class User < ApplicationRecord
     login.validates :password, presence: true
   end
 
-  after_validation :check_confirming
+  def image_url_for_view(key)
+    if image.blank?
+      "/no-profile-image.png"
+    else
+      image_url(key)
+    end
+  end
 
   def token_expire?
     User.decode_token(token)
     # Rails.logger.debug(decode_token[0]['exp'])
     # decode_token[0]['exp'] < Time.zone.now.to_i
     false
-  rescue => e
+  rescue # => e
     true
   end
 
@@ -69,12 +77,5 @@ class User < ApplicationRecord
 
   def reset_token
     update!(token: nil)
-  end
-
-  private
-
-  def check_confirming
-    errors.delete(:confirming)
-    self.confirming = errors.empty? ? "true" : ""
   end
 end

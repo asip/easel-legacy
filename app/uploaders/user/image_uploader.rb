@@ -1,9 +1,10 @@
-class ImageUploader < Shrine
+class User::ImageUploader < Shrine
   Attacher.derivatives do |original|
     magick = ImageProcessing::MiniMagick.source(original)
 
     {
-      two: magick.resize_to_limit!(200, 200),
+      thumbnail: magick.resize_to_limit!(50, 50),
+      one: magick.resize_to_limit!(100, 100),
       three: magick.resize_to_limit!(300, 300)
     }
   end

@@ -1,0 +1,6 @@
+<%= turbo_stream.prepend "list" do %>
+  <%= render "frames/list", frames: @frames %>
+<% end %>
+<%= turbo_stream.replace "load-prev" do %>
+  <%= render "frames/load_prev", page_scope: @frames, word: @word %>
+<% end %>

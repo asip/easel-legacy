@@ -58,8 +58,8 @@ gem "kaminari", "~> 1.2.2"
 gem "bootstrap5-kaminari-views"
 
 # tags
-# gem 'acts-as-taggable-on', '~> 6.5.0'
-gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
+# gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
+gem "acts-as-taggable-on", "~> 9.0.1"
 
 # search
 # gem 'ransack'
@@ -72,7 +72,7 @@ gem "jsonapi-serializer"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
   # Ruby style guide, linter, and formatter
   gem "standard"
 end
@@ -84,9 +84,6 @@ group :development do
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-
   gem "annotate"
   gem "rspec-rails"
 end
@@ -97,4 +94,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-

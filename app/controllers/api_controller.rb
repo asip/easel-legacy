@@ -1,5 +1,4 @@
 class ApiController < ActionController::API
-
   # protect_from_forgery with: :null_session
 
   rescue_from StandardError,
@@ -23,7 +22,7 @@ class ApiController < ActionController::API
   end
 
   def logged_in?
-    current_user && current_user.present?
+    current_user.present?
   end
 
   attr_reader :current_user

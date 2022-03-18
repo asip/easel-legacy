@@ -1,6 +1,6 @@
 import { Controller } from "stimulus"
 
-export default class extends Controller {
+export default class PreviewController extends Controller {
   static targets = ['upload', 'content', 'image']
 
   connect() {

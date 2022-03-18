@@ -1,18 +1,16 @@
 class FramesController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show]
-  before_action :set_query, only: [:index, :show, :new, :edit]
+  include Search::Query
+  include More
+  include DateAndTime::Util
+
+  skip_before_action :require_login, only: [:index, :next, :prev, :show]
+  before_action :set_query, only: [:index, :next, :prev, :show, :new, :edit]
+  before_action :set_day, only: [:index]
   before_action :set_frame, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :back_to_form, only: [:create, :update]
 
   def index
-    @frames = Frame.where(nil)
-
-    if @word.present?
-      @frames = @frames.joins(:tags, :user)
-        .merge(ActsAsTaggableOn::Tag.where("tags.name like ?", "%#{@word}%"))
-        .or(Frame.where("frames.name like ?", "%#{@word}%"))
-        .or(User.where(name: @word))
-    end
+    @frames = Frame.search_by(word: @word)
 
     @frames = @frames.page(@page)
   end
@@ -29,7 +27,7 @@ class FramesController < ApplicationController
     if @frame.save
       render :show
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -42,9 +40,9 @@ class FramesController < ApplicationController
     @frame.attributes = frame_params
     @frame.image_derivatives! if @frame.image.present?
     if @frame.save
-      redirect_to frame_path(@frame, query_params), status: :see_other
+      redirect_to frame_path(@frame, query_params)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -56,9 +54,16 @@ class FramesController < ApplicationController
   private
 
   def set_query
-    params_query = query_params
-    @word = params_query[:q]
-    @page = params_query[:page]
+    @word = permitted_params[:q]
+    @page = permitted_params[:page]
+  end
+
+  def set_day
+    @day = if @word.blank? || !FramesController.date_valid?(@word)
+      "" # Time.zone.now.strftime("%Y/%m/%d")
+    else
+      @word
+    end
   end
 
   def set_frame
@@ -100,6 +105,7 @@ class FramesController < ApplicationController
         :tag_list,
         :comment,
         :image,
+        :shooted_at,
         :confirming
       ]
     )

@@ -6,6 +6,7 @@
 #  crypted_password           :string(255)
 #  email                      :string(255)      not null
 #  failed_logins_count        :integer          default(0)
+#  image_data                 :text(65535)
 #  last_activity_at           :datetime
 #  last_login_at              :datetime
 #  last_login_from_ip_address :string(255)
@@ -26,7 +27,7 @@
 #  index_users_on_unlock_token                         (unlock_token)
 #
 class UserSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   set_type :user
   set_id :id
   attributes :id, :email, :name
