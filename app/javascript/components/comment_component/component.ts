@@ -1,4 +1,4 @@
-import {createApp, ref, reactive, onMounted} from 'vue/dist/vue.esm-bundler.js'
+import {createApp, ref, reactive, onMounted, App as Application} from 'vue/dist/vue.esm-bundler.js'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios, { AxiosResponse } from 'axios'
 import sanitizeHtml from 'sanitize-html'
@@ -28,7 +28,7 @@ if (root) {
   }
 
   var initCommentComponent = (): void => {
-    const comment_vm: any = createApp({
+    const comment_vm: Application = createApp({
       setup(){
         let account: any = null;
         const logged_in: any = ref<boolean>(false);
