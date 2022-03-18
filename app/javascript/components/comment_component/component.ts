@@ -1,6 +1,6 @@
 import {createApp, ref, reactive, onMounted} from 'vue/dist/vue.esm-bundler.js'
 import TurbolinksAdapter from 'vue-turbolinks';
-import Axios from 'axios'
+import Axios, { AxiosResponse } from 'axios'
 import sanitizeHtml from 'sanitize-html'
 
 //console.log(constants.api_origin);
@@ -18,22 +18,22 @@ if (root) {
   }
 
   var initCommentComponent = (): void => {
-    const comment_vm = createApp({
+    const comment_vm: any = createApp({
       setup(){
-        let account = null;
-        const logged_in = ref(false);
-        const current_user = reactive({
+        let account: any = null;
+        const logged_in: any = ref(false);
+        const current_user: any = reactive({
           id: '',
           token: ''
         })
-        const comment = reactive({
+        const comment:any = reactive({
           frame_id: '',
           body: '',
         });
-        const comments = reactive([]);
-        const error_messages = reactive([]);
+        const comments:any = reactive([]);
+        const error_messages:any = reactive([]);
 
-        const getSanitizedCommentBody = (row) => {
+        const getSanitizedCommentBody = (row: any): string => {
           return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
         };
         const getAccount = async () => {
@@ -49,9 +49,9 @@ if (root) {
             current_user.id = account.attributes.id;
           }
         };
-        const getComments = async (frame_id) => {
+        const getComments = async (frame_id: any) => {
           //console.log(frame_id);
-          const res = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`);
+          const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`);
           if (res.data) {
             //console.log(res.data.data);
             comments.splice(0, comments.length);
@@ -64,7 +64,7 @@ if (root) {
         };
         const postComment = async () => {
           try{
-            const res = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
+            const res: AxiosResponse<any, any> = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
               {
                 comment: {
                   frame_id: comment.frame_id,
@@ -103,9 +103,9 @@ if (root) {
             error_messages.push('コメントを入力してください。');
           }
         };
-        const deleteComment = async (comment) => {
+        const deleteComment = async (comment: any) => {
           try {
-            const res = await Axios.delete(`${constants.api_origin}/comments/${comment.id}`, {
+            const res: AxiosResponse<any, any> = await Axios.delete(`${constants.api_origin}/comments/${comment.id}`, {
               headers: {
                 Authorization: `Bearer ${current_user.token}`
               }
