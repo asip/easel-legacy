@@ -1,4 +1,3 @@
-import { AxiosStatic } from './../../../../public/assets/axios/index.d-e707af35955917c95eb0f5ac92aa1f0a29289c75';
 import {createApp, ref, reactive, onMounted} from 'vue/dist/vue.esm-bundler.js'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'

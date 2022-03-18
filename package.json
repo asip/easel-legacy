@@ -7,6 +7,7 @@
     "@hotwired/turbo-rails": "^7.1.1",
     "@popperjs/core": "^2.11.4",
     "@rails/ujs": "^7.0.2-2",
+    "@types/sanitize-html": "^2.6.2",
     "@types/vanillajs-datepicker": "^1.2.0",
     "@vue/compiler-sfc": "^3.2.31",
     "@yaireo/tagify": "^4.9.8",
