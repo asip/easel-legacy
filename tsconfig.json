@@ -1,6 +1,13 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "strictFunctionTypes": false
-  }
+    "strictFunctionTypes": false,
+    "outDir": "./app/assets/builds"
+  },
+  "include": [
+    "./app/javascript/**/*.ts"
+  ],
+  "exclude": [
+    "./node_modules"
+  ]
 }
