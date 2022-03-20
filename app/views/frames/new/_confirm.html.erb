@@ -1,5 +1,5 @@
         <div class="card-block">
-          <%= render(partial: 'frames/preview/image', locals: {frame: frame, original: true}) %>
+          <%= render(partial: 'frames/preview/image', locals: {frame: frame, original: true, spotlight: false}) %>
           <%= render(partial: 'frames/preview/tags', locals: {frame: frame}) %>
           <%= form.hidden_field :tag_list, value: frame.tag_list.join(",") %>
           <div class="row d-flex justify-content-sm-center">

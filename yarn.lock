@@ -1464,6 +1464,11 @@ split@0.3:
   dependencies:
     through "2"
 
+spotlight.js@^0.7.8:
+  version "0.7.8"
+  resolved "https://registry.yarnpkg.com/spotlight.js/-/spotlight.js-0.7.8.tgz#0620371701508222d736e0658e8db3fbe9ddc53b"
+  integrity sha512-zq822gqhjaMHt31oZi4do211NwqBcxZ4u7Xtb+OEsbLrz37dcELhBCoQXFu/0sTiomqD6tm5g6tmqvE7S6h4ng==
+
 stimulus@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/stimulus/-/stimulus-3.0.1.tgz#370e3054eb3b8068904af1888949821255d375d3"

@@ -18,7 +18,7 @@
           <br>
         </div>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
-        <%= render(partial: 'frames/preview/image', locals: {frame: @frame, original: true}) %>
+        <%= render(partial: 'frames/preview/image', locals: {frame: @frame, original: true, spotlight: false}) %>
         <% unless @frame.confirming == 'true' %>
         <%= render(partial: 'frames/edit/input', locals: {form: form, frame: @frame}) %>
         <%= form.hidden_field :confirming %>
