@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  comment    :text(65535)
-#  image_data :text(65535)
+#  file_data  :text(65535)
 #  name       :string(255)      not null
 #  shooted_at :datetime
 #  created_at :datetime         not null

@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  comment    :text(65535)
-#  image_data :text(65535)
+#  file_data  :text(65535)
 #  name       :string(255)      not null
 #  shooted_at :datetime
 #  created_at :datetime         not null
@@ -14,8 +14,8 @@
 
 class Frame < ApplicationRecord
   include Screen::Confirmable
-  # has_one_attached :image
-  include Frame::ImageUploader::Attachment(:image)
+  # has_one_attached :file
+  include Frame::ImageUploader::Attachment(:file)
   include DateAndTime::Util
 
   acts_as_taggable_on :tags
@@ -26,7 +26,7 @@ class Frame < ApplicationRecord
   paginates_per 8
 
   validates :name, length: {in: 1..20}
-  validates :image, presence: true
+  validates :file, presence: true
   validate :check_tag
 
   scope :search_by, ->(word:) do

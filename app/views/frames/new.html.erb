@@ -14,7 +14,7 @@
           <%= render(partial: 'frames/error_messages', locals: {model: @frame}) %>
           <br>
         </div>
-        <%= form.hidden_field :image, value: form.object.cached_image_data %>
+        <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <% unless @frame.confirming == 'true' %>
         <%= render(partial: 'frames/new/input', locals: {form: form, frame: @frame}) %>
         <%= form.hidden_field :confirming %>
