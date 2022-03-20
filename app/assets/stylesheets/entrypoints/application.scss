@@ -1,4 +1,6 @@
 // Entry point for your Sass build
 @import "../sources/bootstrap.scss";
 @import "../sources/external.scss";
-@import "../sources/custom.scss";
+@import "../sources/style/luminous.scss";
+@import "../sources/style/form.scss";
+@import "../sources/style/custom.scss";
