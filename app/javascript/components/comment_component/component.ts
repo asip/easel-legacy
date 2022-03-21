@@ -1,35 +1,35 @@
-import {createApp, ref, reactive, onMounted, App as Application} from 'vue/dist/vue.esm-bundler.js'
+import { createApp, ref, reactive, onMounted, App as Application } from 'vue/dist/vue.esm-bundler.js'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios, { AxiosResponse } from 'axios'
 import sanitizeHtml from 'sanitize-html'
 
 //console.log(constants.api_origin);
+interface User {
+  id: string,
+  token: string
+}
 
-Axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-};
+interface Comment {
+  frame_id: string,
+  body: string
+}
 
-const root: HTMLElement = document.querySelector('#comment_component');
+var initCommentComponent = (): void => {
 
-if (root) {
-  const constants: { api_origin: string } = {
-    api_origin: root.getAttribute('data-api-origin')
-  }
+  const root: HTMLElement = document.querySelector('#comment_component');
 
-  interface User {
-    id: string,
-    token: string
-  }
+  if (root != null) {
+    Axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    };
 
-  interface Comment {
-    frame_id: string,
-    body: string
-  }
+    const constants: { api_origin: string } = {
+      api_origin: root.getAttribute('data-api-origin')
+    }
 
-  var initCommentComponent = (): void => {
     const comment_vm: Application = createApp({
-      setup(){
+      setup() {
         let account: any = null;
         const logged_in: any = ref<Boolean>(false);
         const current_user: any = reactive<User>({
@@ -65,7 +65,7 @@ if (root) {
           if (res.data) {
             //console.log(res.data.data);
             comments.splice(0, comments.length);
-            for(var comment of res.data.data){
+            for (var comment of res.data.data) {
               //console.log(comment);
               comments.push(comment);
             }
@@ -73,7 +73,7 @@ if (root) {
           }
         };
         const postComment = async () => {
-          try{
+          try {
             const res: AxiosResponse<any, any> = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
               {
                 comment: {
@@ -89,7 +89,7 @@ if (root) {
             )
             if (res.data.data.attributes.error_messages && res.data.data.attributes.error_messages.length > 0) {
               error_messages.splice(0, error_messages.length);
-              for(var error_message of res.data.data.attributes.error_messages){
+              for (var error_message of res.data.data.attributes.error_messages) {
                 error_messages.push(error_message)
               }
             } else {
@@ -97,9 +97,9 @@ if (root) {
               error_messages.splice(0, error_messages.length);
               await getComments(comment.frame_id);
             }
-          } catch(error) {
-              error_messages.splice(0, error_messages.length);
-              error_messages.push('ログインしてください。');
+          } catch (error) {
+            error_messages.splice(0, error_messages.length);
+            error_messages.push('ログインしてください。');
           }
         };
         const setComment = async () => {
@@ -122,7 +122,7 @@ if (root) {
             });
             comments.splice(0, comments.length);
             getComments(comment.attributes.frame_id);
-          } catch(error) {
+          } catch (error) {
             error_messages.splice(0, error_messages.length);
             error_messages.push('ログインしてください。');
           }
@@ -168,9 +168,9 @@ if (root) {
     comment_vm.mount('#comment_component');
 
     //console.log(comment_vm);
-  };
+  }
+};
 
-  document.addEventListener('turbo:load', () => {
-    initCommentComponent()
-  });
-}
+document.addEventListener('turbo:load', () => {
+  initCommentComponent()
+});
