@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_11_041600) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_20_060329) do
   create_table "authentications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "provider", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_11_041600) do
     t.integer "user_id"
     t.string "name", null: false
     t.text "comment"
-    t.text "image_data"
+    t.text "file_data"
     t.datetime "shooted_at"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false

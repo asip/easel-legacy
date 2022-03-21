@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="card-block">
-        <%= render(partial: 'frames/preview/image', locals: {frame: @frame, original: true}) %>
+        <%= render(partial: 'frames/preview/image', locals: {frame: @frame, original: true, spotlight: true}) %>
         <%= render(partial: 'frames/preview/tags', locals: {frame: @frame}) %>
       </div>
       <div class="card-block">
@@ -72,7 +72,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
-            <%= link_to '削除', frame_path(@frame, query_params), method: :delete, class: 'btn btn-outline-danger' %>
+            <%= link_to '削除', frame_path(@frame, query_params), data: { turbo_method: :delete, turbo_frame: '_top' }, class: 'btn btn-outline-danger' %>
           </div>
         </div>
       </div>

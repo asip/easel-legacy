@@ -23,7 +23,7 @@ class FramesController < ApplicationController
 
   def create
     @frame.user_id = current_user.id
-    @frame.image_derivatives! if @frame.image.present?
+    @frame.file_derivatives! if @frame.file.present?
     if @frame.save
       render :show
     else
@@ -38,7 +38,7 @@ class FramesController < ApplicationController
     @frame.user_id = current_user.id
 
     @frame.attributes = frame_params
-    @frame.image_derivatives! if @frame.image.present?
+    @frame.file_derivatives! if @frame.file.present?
     if @frame.save
       redirect_to frame_path(@frame, query_params)
     else
@@ -82,7 +82,7 @@ class FramesController < ApplicationController
     if permitted_params[:commit] == "戻る"
       @frame.confirming = ""
       @frame.attributes = frame_params
-      @frame.image_derivatives! if @frame.image.present?
+      @frame.file_derivatives! if @frame.file.present?
       if action_name == "create"
         render :new
       elsif action_name == "update"
@@ -104,7 +104,7 @@ class FramesController < ApplicationController
         :name,
         :tag_list,
         :comment,
-        :image,
+        :file,
         :shooted_at,
         :confirming
       ]
