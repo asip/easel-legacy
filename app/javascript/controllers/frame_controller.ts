@@ -13,14 +13,14 @@ export default class FrameController extends Controller {
   tag_editor: Tagify;
 
   connect() {
-    var te_trigger: HTMLElement = null;
+    let te_trigger: HTMLElement = null;
     try{
       te_trigger = this.teTarget;
     } catch(e) {}
     try{
       this.tag_list = this.tlTarget;
     } catch(e) {}
-    var lm_trigger: HTMLElement = null;
+    let lm_trigger: HTMLElement = null;
     try{
       lm_trigger = this.lmTarget;
     } catch(e) {}

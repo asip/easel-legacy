@@ -14,7 +14,7 @@ interface Comment {
   body: string
 }
 
-var initCommentComponent = (): void => {
+let initCommentComponent = (): void => {
 
   const root: HTMLElement = document.querySelector('#comment_component');
 
@@ -65,7 +65,7 @@ var initCommentComponent = (): void => {
           if (res.data) {
             //console.log(res.data.data);
             comments.splice(0, comments.length);
-            for (var comment of res.data.data) {
+            for (let comment of res.data.data) {
               //console.log(comment);
               comments.push(comment);
             }
@@ -89,7 +89,7 @@ var initCommentComponent = (): void => {
             )
             if (res.data.data.attributes.error_messages && res.data.data.attributes.error_messages.length > 0) {
               error_messages.splice(0, error_messages.length);
-              for (var error_message of res.data.data.attributes.error_messages) {
+              for (let error_message of res.data.data.attributes.error_messages) {
                 error_messages.push(error_message)
               }
             } else {
@@ -121,7 +121,7 @@ var initCommentComponent = (): void => {
               }
             });
             comments.splice(0, comments.length);
-            getComments(comment.attributes.frame_id);
+            await getComments(comment.attributes.frame_id);
           } catch (error) {
             error_messages.splice(0, error_messages.length);
             error_messages.push('ログインしてください。');
@@ -130,11 +130,7 @@ var initCommentComponent = (): void => {
 
         onMounted(async () => {
           current_user.token = root.dataset.token;
-          if (root.dataset.login == 'true') {
-            logged_in.value = true;
-          } else {
-            logged_in.value = false;
-          }
+          logged_in.value = root.dataset.login == 'true';
           //console.log(current_user.token);
           //console.log(logged_in.value);
           if (current_user.token != null && current_user.token != '') {
