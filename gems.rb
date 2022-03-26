@@ -1,22 +1,24 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.0"
+gem 'rails', '~> 7.0.0'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem 'sprockets-rails'
 
 # Use mysql as the database for Active Record
-gem "mysql2", "~> 0.5.3"
+gem 'mysql2', '~> 0.5.3'
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.6.2"
+gem 'puma', '~> 5.6.2'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem 'turbo-rails'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+gem 'stimulus-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -25,72 +27,72 @@ gem "stimulus-rails"
 # gem "image_processing", "~> 1.2"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+gem 'bootsnap', require: false
 
-gem "jsbundling-rails"
-gem "cssbundling-rails"
+gem 'cssbundling-rails'
+gem 'jsbundling-rails'
 
 # view component
-gem "view_component"
+gem 'view_component'
 
 # Shrine
-gem "shrine", "~> 3.0"
-gem "image_processing", "~> 1.8"
+gem 'image_processing', '~> 1.8'
+gem 'shrine', '~> 3.0'
 
 # i18n
-gem "rails-i18n", "~> 7.0.0"
+gem 'rails-i18n', '~> 7.0.0'
 
 # error page handling
-gem "rambulance"
+gem 'rambulance'
 
 # authentication
-gem "sorcery"
-gem "sorcery-jwt"
+gem 'sorcery'
+gem 'sorcery-jwt'
 
 # settings
-gem "config"
+gem 'config'
 
 # paging
-gem "kaminari", "~> 1.2.2"
-gem "bootstrap5-kaminari-views"
+gem 'bootstrap5-kaminari-views'
+gem 'kaminari', '~> 1.2.2'
 
 # tags
 # gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
-gem "acts-as-taggable-on", "~> 9.0.1"
+gem 'acts-as-taggable-on', '~> 9.0.1'
 
 # search
 # gem 'ransack'
 
 # json
-gem "jsonapi-serializer"
+gem 'jsonapi-serializer'
 
 # soft delete
 # gem 'discard', '~> 1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
   # Ruby style guide, linter, and formatter
-  gem "standard"
+  gem 'rubocop-rails', require: false
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
+  gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
-  gem "annotate"
-  gem "rspec-rails"
+  gem 'annotate'
+  gem 'rspec-rails'
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end

@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
+# Search Module
 module Search
+  # Query module
   module Query
     extend ActiveSupport::Concern
 
@@ -8,13 +12,13 @@ module Search
     end
 
     def query_list
-      [:page, :q]
+      %i[page q]
     end
 
     def query_params
-      permitted_params.to_h.filter { |key, value|
+      permitted_params.to_h.filter do |key, _value|
         query_list.include?(key.to_sym)
-      }
+      end
     end
   end
 end

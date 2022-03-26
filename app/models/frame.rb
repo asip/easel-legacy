@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: frames
@@ -12,10 +14,11 @@
 #  user_id    :integer
 #
 
+# Frame
 class Frame < ApplicationRecord
   include Screen::Confirmable
   # has_one_attached :file
-  include Frame::ImageUploader::Attachment(:file)
+  include Contents::Uploader::Attachment(:file)
   include DateAndTime::Util
 
   acts_as_taggable_on :tags
@@ -25,27 +28,27 @@ class Frame < ApplicationRecord
 
   paginates_per 8
 
-  validates :name, length: {in: 1..20}
+  validates :name, length: { in: 1..20 }
   validates :file, presence: true
   validate :check_tag
 
-  scope :search_by, ->(word:) do
+  scope :search_by, lambda { |word:|
     scope = current_scope || relation
 
     if word.present?
       scope = if date_valid?(word)
-        scope.where("cast(shooted_at as date)=?", Time.zone.parse(word).to_date)
-          .or(Frame.where("cast(updated_at as date)=?", Time.zone.parse(word).to_date))
-      else
-        scope.joins(:tags, :user)
-          .merge(ActsAsTaggableOn::Tag.where("tags.name like ?", "%#{word}%"))
-          .or(Frame.where("frames.name like ?", "%#{word}%"))
-          .or(User.where(name: word))
-      end
+                scope.where('cast(shooted_at as date)=?', Time.zone.parse(word).to_date)
+                     .or(Frame.where('cast(updated_at as date)=?', Time.zone.parse(word).to_date))
+              else
+                scope.joins(:tags, :user)
+                     .merge(ActsAsTaggableOn::Tag.where('tags.name like ?', "%#{word}%"))
+                     .or(Frame.where('frames.name like ?', "%#{word}%"))
+                     .or(User.where(name: word))
+              end
     end
 
     scope
-  end
+  }
 
   def tags_preview
     tag_list.to_s.split(/\s*,\s*/)
@@ -54,13 +57,11 @@ class Frame < ApplicationRecord
   private
 
   def check_tag
-    if tags_preview.size > 5
-      errors[:tag_list] << "は５つまでしかセットできません"
-    end
+    errors[:tag_list] << 'は５つまでしかセットできません' if tags_preview.size > 5
     tags_preview.each do |tag|
       # puts tag.to_s
       if tag.to_s.size > 10
-        errors[:tag_list] << "は10文字以内で入力してください"
+        errors[:tag_list] << 'は10文字以内で入力してください'
         break
       end
     end

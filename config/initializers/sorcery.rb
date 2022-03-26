@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 # The first thing you need to configure is which modules you need in your app.
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:external, :session_timeout, :brute_force_protection, :activity_logging, :jwt]
+Rails.application.config.sorcery.submodules = %i[external session_timeout brute_force_protection activity_logging
+                                                 jwt]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -63,7 +66,8 @@ Rails.application.config.sorcery.configure do |config|
   # config.register_last_activity_time =
 
   # -- external --
-  # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack] .
+  # What providers are supported by this app,
+  # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack] .
   # Default: `[]`
   #
   # config.external_providers =
@@ -445,11 +449,11 @@ Rails.application.config.sorcery.configure do |config|
 
     # ...
     user.jwt_secret = Rails.application.secrets.secret_key_base
-    user.jwt_algorithm = "HS256" # HS256 is used by default.
+    user.jwt_algorithm = 'HS256' # HS256 is used by default.
     user.session_expiry = 60 * 60 * 2 # 2 weeks is used by default.
   end
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
-  config.user_class = "User"
+  config.user_class = 'User'
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: frames
@@ -12,6 +14,7 @@
 #  user_id    :integer
 #
 
+# Frame Serializer
 class FrameSerializer
   include JSONAPI::Serializer
   attributes :user_id, :name, :comment
@@ -19,6 +22,6 @@ class FrameSerializer
   has_many :comments, serializer: CommentSerializer
 
   attribute :tag_list do |object|
-    object.tags_preview.join(",")
+    object.tags_preview.join(',')
   end
 end

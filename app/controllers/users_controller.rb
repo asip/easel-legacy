@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
+# Users Controller
 class UsersController < ApplicationController
   skip_before_action :require_login
-  before_action :set_user, only: [:new, :create, :edit, :update]
-  before_action :back_to_form, only: [:create, :update]
+  before_action :set_user, only: %i[new create edit update]
+  before_action :back_to_form, only: %i[create update]
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @user.image_derivatives! if @user.image.present?
@@ -31,25 +32,27 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = if action_name == "new"
-      User.new
-    elsif action_name == "create"
-      User.new(user_params)
-    else
-      current_user
-    end
+    @user = case action_name
+            when 'new'
+              User.new
+            when 'create'
+              User.new(user_params)
+            else
+              current_user
+            end
   end
 
   def back_to_form
-    if params[:commit] == "戻る"
-      @user.confirming = ""
-      @user.attributes = user_params
-      @user.image_derivatives! if @user.image.present?
-      if action_name == "create"
-        render :new
-      elsif action_name == "update"
-        render :edit
-      end
+    return unless params[:commit] == '戻る'
+
+    @user.confirming = ''
+    @user.attributes = user_params
+    @user.image_derivatives! if @user.image.present?
+    case action_name
+    when 'create'
+      render :new
+    when 'update'
+      render :edit
     end
   end
 

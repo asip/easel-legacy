@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# add image_data to frames
 class AddImageDataToFrames < ActiveRecord::Migration[6.1]
   def up
     add_column :frames, :image_data, :text, after: :comment

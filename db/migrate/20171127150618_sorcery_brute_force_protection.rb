@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# sorcery brute force protection
 class SorceryBruteForceProtection < ActiveRecord::Migration[5.1]
   def change
     add_column :users, :failed_logins_count, :integer, default: 0

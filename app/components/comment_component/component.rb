@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
-class CommentComponent::Component < ViewComponent::Base
-  def initialize(frame:, token:, login:)
-    @frame = frame
-    @token = token
-    @login = login
+# Comment Component
+module CommentComponent
+  # Component
+  class Component < ViewComponent::Base
+    def initialize(frame:, token:, login:)
+      super
+      @frame = frame
+      @token = token
+      @login = login
+    end
   end
 end

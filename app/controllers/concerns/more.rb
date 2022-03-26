@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# More Module
 module More
   extend ActiveSupport::Concern
 
@@ -13,6 +16,6 @@ module More
 
   def more
     index
-    render layout: false, content_type: "text/vnd.turbo-stream.html"
+    render layout: false, content_type: 'text/vnd.turbo-stream.html'
   end
 end

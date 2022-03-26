@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# create frames
 class CreateFrames < ActiveRecord::Migration[5.1]
   def change
     create_table :frames do |t|
