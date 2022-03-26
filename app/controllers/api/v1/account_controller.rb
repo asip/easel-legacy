@@ -1,5 +1,14 @@
-class Api::V1::AccountController < ApiController
-  def show
-    render json: UserSerializer.new(current_user).serializable_hash
+# frozen_string_literal: true
+
+# Api
+module Api
+  # v1
+  module V1
+    # Account Controller
+    class AccountController < ApiController
+      def show
+        render json: UserSerializer.new(current_user).serializable_hash
+      end
+    end
   end
 end

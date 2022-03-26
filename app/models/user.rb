@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -27,24 +29,25 @@
 #  index_users_on_unlock_token                         (unlock_token)
 #
 
+# User
 class User < ApplicationRecord
   include Screen::Confirmable
-  include User::ImageUploader::Attachment(:image)
+  include Profile::ImageUploader::Attachment(:image)
 
   authenticates_with_sorcery!
 
   has_many :frames
   has_many :comments
 
-  VALID_NAME_REGEX = /\A\z|\A[a-zA-Z0-9]{3,40}\z/
-  VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_NAME_REGEX = /\A\z|\A[a-zA-Z\d]{3,40}\z/.freeze
+  VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
 
-  with_options on: [:create, :update] do |save|
-    save.validates :name, presence: true, uniqueness: true, length: {in: 3..40}, format: {with: VALID_NAME_REGEX}
+  with_options on: %i[create update] do |save|
+    save.validates :name, presence: true, uniqueness: true, length: { in: 3..40 }, format: { with: VALID_NAME_REGEX }
 
-    save.validates :email, presence: true, uniqueness: true, format: {with: VALID_EMAIL_REGEX}
+    save.validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
-    save.validates :password, length: {minimum: 3}, if: -> { new_record? || changes[:crypted_password] }
+    save.validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
     save.validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
     save.validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   end
@@ -56,7 +59,7 @@ class User < ApplicationRecord
 
   def image_url_for_view(key)
     if image.blank?
-      "/no-profile-image.png"
+      '/no-profile-image.png'
     else
       image_url(key)
     end
@@ -67,7 +70,7 @@ class User < ApplicationRecord
     # Rails.logger.debug(decode_token[0]['exp'])
     # decode_token[0]['exp'] < Time.zone.now.to_i
     false
-  rescue # => e
+  rescue StandardError # => e
     true
   end
 

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Application Controller
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -12,9 +15,10 @@ class ApplicationController < ActionController::Base
 
   def token_confirmation
     return if current_user.blank?
-    if current_user&.token_expire?
-      current_user.reset_token
-      logout
-    end
+
+    return unless current_user&.token_expire?
+
+    current_user.reset_token
+    logout
   end
 end

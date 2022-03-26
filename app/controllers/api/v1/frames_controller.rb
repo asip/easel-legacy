@@ -1,38 +1,49 @@
-class Api::V1::FramesController < ApiController
-  skip_before_action :authenticate, only: [:index]
-  before_action :set_query, only: [:index]
+# frozen_string_literal: true
 
-  def index
-    frames = Frame.eager_load(:comments).search_by(word: @word)
-    frames = frames.page(@page)
+# api
+module Api
+  # v1
+  module V1
+    # Frames Controller
+    class FramesController < ApiController
+      skip_before_action :authenticate, only: [:index]
+      before_action :set_query, only: [:index]
 
-    render json: FrameSerializer.new(frames, index_options).serializable_hash
-  end
+      def index
+        frames = Frame.eager_load(:comments).search_by(word: @word)
+        frames = frames.page(@page)
 
-  private
+        render json: FrameSerializer.new(frames, index_options).serializable_hash
+      end
 
-  def index_options
-    {include: [:comments]}
-  end
+      private
 
-  def set_query
-    @word = permitted_params[:q]
-    @page = permitted_params[:page]
-  end
+      def index_options
+        { include: [:comments] }
+      end
 
-  def permitted_params
-    params.permit(
-      :id,
-      :q,
-      :page,
-      frame: [
-        :name,
-        :tag_list,
-        :comment,
-        :file,
-        :shooted_at,
-        :confirming
-      ]
-    )
+      def set_query
+        @word = permitted_params[:q]
+        @page = permitted_params[:page]
+      end
+
+      # rubocop:disable Metrics/MethodLength
+      def permitted_params
+        params.permit(
+          :id,
+          :q,
+          :page,
+          frame: %i[
+            name
+            tag_list
+            comment
+            file
+            shooted_at
+            confirming
+          ]
+        )
+      end
+      # rubocop:enable Metrics/MethodLength
+    end
   end
 end

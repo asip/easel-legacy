@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
+# Frames Controller
 class FramesController < ApplicationController
   include Search::Query
   include More
   include DateAndTime::Util
 
-  skip_before_action :require_login, only: [:index, :next, :prev, :show]
-  before_action :set_query, only: [:index, :next, :prev, :show, :new, :edit]
+  skip_before_action :require_login, only: %i[index next prev show]
+  before_action :set_query, only: %i[index next prev show new edit]
   before_action :set_day, only: [:index]
-  before_action :set_frame, only: [:show, :new, :create, :edit, :update, :destroy]
-  before_action :back_to_form, only: [:create, :update]
+  before_action :set_frame, only: %i[show new create edit update destroy]
+  before_action :back_to_form, only: %i[create update]
 
   def index
     @frames = Frame.search_by(word: @word)
@@ -15,11 +18,9 @@ class FramesController < ApplicationController
     @frames = @frames.page(@page)
   end
 
-  def show
-  end
+  def show; end
 
-  def new
-  end
+  def new; end
 
   def create
     @frame.user_id = current_user.id
@@ -31,8 +32,7 @@ class FramesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @frame.user_id = current_user.id
@@ -60,37 +60,40 @@ class FramesController < ApplicationController
 
   def set_day
     @day = if @word.blank? || !FramesController.date_valid?(@word)
-      "" # Time.zone.now.strftime("%Y/%m/%d")
-    else
-      @word
-    end
+             '' # Time.zone.now.strftime("%Y/%m/%d")
+           else
+             @word
+           end
   end
 
   def set_frame
-    @frame = if action_name == "show"
-      Frame.find(permitted_params[:id])
-    elsif action_name == "new"
-      Frame.new
-    elsif action_name == "create"
-      Frame.new(frame_params)
-    else
-      Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
-    end
+    @frame = case action_name
+             when 'show'
+               Frame.find(permitted_params[:id])
+             when 'new'
+               Frame.new
+             when 'create'
+               Frame.new(frame_params)
+             else
+               Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
+             end
   end
 
   def back_to_form
-    if permitted_params[:commit] == "戻る"
-      @frame.confirming = ""
-      @frame.attributes = frame_params
-      @frame.file_derivatives! if @frame.file.present?
-      if action_name == "create"
-        render :new
-      elsif action_name == "update"
-        render :edit
-      end
+    return unless permitted_params[:commit] == '戻る'
+
+    @frame.confirming = ''
+    @frame.attributes = frame_params
+    @frame.file_derivatives! if @frame.file.present?
+    case action_name
+    when 'create'
+      render :new
+    when 'update'
+      render :edit
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
   def permitted_params
     params.permit(
       :id,
@@ -100,16 +103,17 @@ class FramesController < ApplicationController
       :tag_editor,
       :_method,
       :authenticity_token,
-      frame: [
-        :name,
-        :tag_list,
-        :comment,
-        :file,
-        :shooted_at,
-        :confirming
+      frame: %i[
+        name
+        tag_list
+        comment
+        file
+        shooted_at
+        confirming
       ]
     )
   end
+  # rubocop:enable Metrics/MethodLength
 
   def frame_params
     permitted_params[:frame]

@@ -1,16 +1,19 @@
+# frozen_string_literal: true
+
+# Api Controller
 class ApiController < ActionController::API
   # protect_from_forgery with: :null_session
 
   rescue_from StandardError,
-    with: lambda { |e| render_error(e) }
+              with: ->(e) { render_error(e) }
 
   # skip_before_action :require_login
   before_action :authenticate
 
   def render_error(exception)
     status_code = ActionDispatch::ExceptionWrapper.new(Rails.env, exception).status_code
-    render json: {message: exception.message, status: status_code},
-      status: status_code
+    render json: { message: exception.message, status: status_code },
+           status: status_code
   end
 
   protected

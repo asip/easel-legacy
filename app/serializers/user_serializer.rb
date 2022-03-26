@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -26,6 +28,8 @@
 #  index_users_on_token                                (token) UNIQUE
 #  index_users_on_unlock_token                         (unlock_token)
 #
+
+# User Serializer
 class UserSerializer
   include JSONAPI::Serializer
   set_type :user

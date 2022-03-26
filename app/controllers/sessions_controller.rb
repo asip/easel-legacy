@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Sessions Controller
 class SessionsController < ApplicationController
   include Search::Query
 
@@ -15,19 +18,7 @@ class SessionsController < ApplicationController
       @user.assign_token(token) if @user.token.blank? || @user.token_expire?
       redirect_to root_path
     else
-      @user = User.find_by(email: params_user[:email])
-      if @user
-        @user.password = params_user[:password]
-        if @user.valid?(:login)
-          @user.errors.add(:password, "が間違っています")
-        end
-      else
-        @user = User.new(params_user)
-        if @user.valid?(:login)
-          @user.errors.add(:email, "が間違っています")
-        end
-      end
-
+      validate_login(params_user)
       render :new
     end
   end
@@ -46,6 +37,17 @@ class SessionsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def validate_login(params_user)
+    @user = User.find_by(email: params_user[:email])
+    if @user
+      @user.password = params_user[:password]
+      @user.errors.add(:password, 'が間違っています') if @user.valid?(:login)
+    else
+      @user = User.new(params_user)
+      @user.errors.add(:email, 'が間違っています') if @user.valid?(:login)
+    end
   end
 
   def query_params

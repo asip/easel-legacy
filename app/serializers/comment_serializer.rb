@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -10,6 +12,7 @@
 #  updated_at :datetime         not null
 #
 
+# Comment Serializer
 class CommentSerializer
   include JSONAPI::Serializer
   set_type :comment
