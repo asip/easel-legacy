@@ -7,7 +7,11 @@
       <%= render partial: "frames/more/list", locals: {frames: @frames} %>
     </turbo-frame>
     <%= render partial: "frames/more/load_next", locals: {page_scope: @frames, word: @word} %>
-    <br>
   <% end %>
+  <% if false %><div class="d-flex col-sm-12 justify-content-sm-center">
+    <div class="mx-auto kadomaru" style="padding-top: 20px;">
+      <%= paginate @frames, params: { q: @word },theme: 'bootstrap-5' %>
+    </div>
+  </div><% end %>
   </div>
 </div>
