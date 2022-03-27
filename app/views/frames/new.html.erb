@@ -10,9 +10,7 @@
           </div>
         </div>
         <div class="card-block">
-          <br>
           <%= render(partial: 'frames/error_messages', locals: {model: @frame}) %>
-          <br>
         </div>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <% unless @frame.confirming == 'true' %>
