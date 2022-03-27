@@ -115,11 +115,13 @@ let initCommentComponent = (): void => {
         };
         const deleteComment = async (comment: any) => {
           try {
-            const res: AxiosResponse<any, any> = await Axios.delete(`${constants.api_origin}/comments/${comment.id}`, {
-              headers: {
-                Authorization: `Bearer ${current_user.token}`
-              }
-            });
+            const res: AxiosResponse<any, any> = await Axios.delete(
+                `${constants.api_origin}/comments/${comment.id}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${current_user.token}`
+                  }
+                });
             comments.splice(0, comments.length);
             await getComments(comment.attributes.frame_id);
           } catch (error) {
