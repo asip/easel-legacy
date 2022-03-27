@@ -1,4 +1,6 @@
-        <% model.errors.full_messages.each do |message| %>
+        <% if model.errors.blank?  %><br><% end %>
+        <% model.errors.full_messages.each_with_index do |message, idx| %>
+        <% if idx == 0 %><br><% end  %>
         <div class="d-flex justify-content-sm-center">
           <div class="alert alert-warning col-sm-6 alert-dismissible fade show" role="alert">
             <%= message %>
