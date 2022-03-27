@@ -1,4 +1,4 @@
-<% if user.image.present? %>
+        <% if user.image.present? %>
         <% if original %>
         <div class="d-flex justify-content-sm-center">
           <%= link_to image_tag(user.image_url(:three), class: 'mx-auto'), user.image_url, class: 'mx-auto', "data-frame-target": "lm" %>
