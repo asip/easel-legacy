@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="card-block">
-        <%= render(partial: 'users/error_messages', locals: {model: @user}) %>
+        <%= render(partial: 'layouts/error_messages', locals: {model: @user}) %>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
         <% unless @user.confirming == 'true' %>
         <%= render(partial: 'users/new/input', locals: {form: form, user: @user}) %>

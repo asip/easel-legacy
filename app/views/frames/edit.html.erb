@@ -13,7 +13,7 @@
         </div>
       </div>
         <div class="card-block">
-          <%= render(partial: 'frames/error_messages', locals: {model: @frame}) %>
+          <%= render(partial: 'layouts/error_messages', locals: {model: @frame}) %>
         </div>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <%= render(partial: 'frames/preview/image', locals: {frame: @frame, original: true, spotlight: false}) %>
