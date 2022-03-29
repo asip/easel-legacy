@@ -11,7 +11,7 @@ export default class PreviewController extends Controller {
     try{
       elm_upload = this.uploadTarget;
     } catch(e) {}
-    var content: HTMLElement = null;
+    let content: HTMLElement = null;
     try{
       content = this.contentTarget;
     } catch(e) {}
