@@ -7,7 +7,6 @@ class ApiController < ActionController::API
   rescue_from StandardError,
               with: ->(e) { render_error(e) }
 
-  # skip_before_action :require_login
   before_action :authenticate
 
   def render_error(exception)
