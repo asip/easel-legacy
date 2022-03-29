@@ -8,7 +8,7 @@ export default class CalendarController extends Controller {
   calendar: Datepicker;
 
   connect() {
-    var cal_trigger: HTMLElement = null;
+    let cal_trigger: HTMLElement = null;
     try{
       cal_trigger = this.calTarget;
     } catch(e) {}
