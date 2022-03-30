@@ -11,8 +11,10 @@ application.debug = false
 import CalendarController from "./calendar_controller";
 import FrameController from "./frame_controller";
 import PreviewController from "./preview_controller";
+import ToastController from "./toast_controller";
 application.register("calendar", CalendarController);
 application.register("frame", FrameController);
 application.register("preview", PreviewController);
+application.register("toast", ToastController);
 
 export { application }
