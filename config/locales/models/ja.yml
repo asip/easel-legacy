@@ -13,7 +13,7 @@ ja:
         id: 'ID'
         name: '名前'
         comment: 'コメント'
-        image: 'ファイル'
+        file: 'ファイル'
         tag_list: 'タグ'
       comment:
         id: 'ID'
