@@ -173,7 +173,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    loofah (2.16.0)
+    loofah (2.17.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -188,7 +188,7 @@ GEM
     msgpack (1.5.1)
     multi_json (1.15.0)
     multi_xml (0.6.0)
-    mysql2 (0.5.3)
+    mysql2 (0.5.4)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -204,12 +204,12 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.4)
+    nokogiri (1.13.5)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.13.4-arm64-darwin)
+    nokogiri (1.13.5-arm64-darwin)
       racc (~> 1.4)
-    oauth (0.5.8)
+    oauth (0.5.10)
     oauth2 (1.4.9)
       faraday (>= 0.17.3, < 3.0)
       jwt (>= 1.0, < 3.0)
