@@ -10,7 +10,7 @@ application.debug = false
 //application.load(definitionsFromContext(context))
 import CalendarController from "./calendar_controller";
 import FrameController from "./frame_controller";
-import PreviewController from "./preview_controller";
+import PreviewController from "./image/preview_controller";
 import ToastController from "./toast_controller";
 application.register("calendar", CalendarController);
 application.register("frame", FrameController);
