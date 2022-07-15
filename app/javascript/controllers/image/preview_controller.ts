@@ -6,19 +6,23 @@ export default class PreviewController extends Controller {
   contentTarget!: HTMLElement
   imageTarget!: HTMLImageElement
 
+  hasUploadTarget!: boolean
+  hasContentTarget!: boolean
+  hasImageTarget!: boolean
+
   connect() {
     let elm_upload: HTMLInputElement = null;
-    try{
+    if(this.hasUploadTarget){
       elm_upload = this.uploadTarget;
-    } catch(e) {}
+    }
     let content: HTMLElement = null;
-    try{
+    if(this.hasContentTarget) {
       content = this.contentTarget;
-    } catch(e) {}
+    }
     let preview: HTMLImageElement = null;
-    try{
+    if(this.hasImageTarget) {
       preview = this.imageTarget;
-    } catch(e) {}
+    }
 
     if (elm_upload) {
       elm_upload.addEventListener('change', function () {

@@ -12,18 +12,22 @@ export default class FrameController extends Controller {
   tag_list: HTMLInputElement;
   tag_editor: Tagify;
 
+  hasTeTarget!: boolean;
+  hasTlTarget!: boolean;
+  hasLmTarget!: boolean;
+
   connect() {
     let te_trigger: HTMLElement = null;
-    try{
+    if(this.hasTeTarget){
       te_trigger = this.teTarget;
-    } catch(e) {}
-    try{
+    }
+    if(this.hasTlTarget){
       this.tag_list = this.tlTarget;
-    } catch(e) {}
+    }
     let lm_trigger: HTMLElement = null;
-    try{
+    if(this.hasLmTarget){
       lm_trigger = this.lmTarget;
-    } catch(e) {}
+    }
 
     if(te_trigger){
       this.tag_editor = new Tagify(te_trigger, {
