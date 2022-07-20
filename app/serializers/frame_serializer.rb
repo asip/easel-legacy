@@ -24,4 +24,8 @@ class FrameSerializer
   attribute :tag_list do |object|
     object.tags_preview.join(',')
   end
+
+  attribute :file_two_url do |object|
+    object.file_url(:two)
+  end
 end
