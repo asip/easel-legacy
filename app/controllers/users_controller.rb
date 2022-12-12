@@ -2,9 +2,13 @@
 
 # Users Controller
 class UsersController < ApplicationController
+  include Search::Query
+
   skip_before_action :require_login
-  before_action :set_user, only: %i[new create edit update]
+  before_action :set_user, only: %i[show new create edit update]
   before_action :back_to_form, only: %i[create update]
+
+  def show; end
 
   def new; end
 
@@ -33,6 +37,8 @@ class UsersController < ApplicationController
 
   def set_user
     @user = case action_name
+            when 'show'
+              User.find_by!(id: params[:id])
             when 'new'
               User.new
             when 'create'
@@ -65,5 +71,9 @@ class UsersController < ApplicationController
       :image,
       :confirming
     )
+  end
+
+  def query_params
+    {}
   end
 end

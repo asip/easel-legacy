@@ -13,7 +13,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 # rubocop: disable Metrics/BlockLength
-ActiveRecord::Schema[7.0].define(version: 20_220_320_060_329) do
+ActiveRecord::Schema[7.0].define(version: 20_221_208_093_133) do
   create_table 'authentications', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
     t.integer 'user_id', null: false
     t.string 'provider', null: false
@@ -29,6 +29,13 @@ ActiveRecord::Schema[7.0].define(version: 20_220_320_060_329) do
     t.text 'body'
     t.datetime 'created_at', precision: nil, null: false
     t.datetime 'updated_at', precision: nil, null: false
+  end
+
+  create_table 'follow_relationships', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
+    t.integer 'follower_id'
+    t.integer 'followee_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
   create_table 'frames', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
@@ -63,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 20_220_320_060_329) do
   end
 
   create_table 'tags', id: :integer, charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
-    t.string 'name', collation: 'utf8_bin'
+    t.string 'name', collation: 'utf8mb3_bin'
     t.integer 'taggings_count', default: 0
     t.index ['name'], name: 'index_tags_on_name', unique: true
   end

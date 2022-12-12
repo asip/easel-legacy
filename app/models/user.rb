@@ -39,6 +39,14 @@ class User < ApplicationRecord
   has_many :frames
   has_many :comments
 
+  # フォローをした、されたの関係
+  has_many :follower_relationships, class_name: 'FollowRelationship', foreign_key: 'follower_id', dependent: :destroy
+  has_many :followee_relationships, class_name: 'FollowRelationship', foreign_key: 'followee_id', dependent: :destroy
+
+  # 一覧画面で使う
+  has_many :followees, through: :follower_relationships, source: :followee
+  has_many :followers, through: :followee_relationships, source: :follower
+
   VALID_NAME_REGEX = /\A\z|\A[a-zA-Z\d]{3,40}\z/.freeze
   VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
 
@@ -80,5 +88,20 @@ class User < ApplicationRecord
 
   def reset_token
     update!(token: nil)
+  end
+
+  # フォローしたときの処理
+  def follow(user_id)
+    follower_relationships.create(followee_id: user_id)
+  end
+
+  # フォローを外すときの処理
+  def unfollow(user_id)
+    follower_relationships.find_by(followee_id: user_id).destroy
+  end
+
+  # フォローしているか判定
+  def following?(user)
+    followees.include?(user)
   end
 end

@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
+# rubocop: disable Metrics/BlockLength
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'dashboard#show'
 
   get '/frames/' => 'frames#index', :as => :frames
-  resources :users, except: [:index]
+  resources :users, except: [:index] do
+    resource :follow_relationships, only: %i[create destroy]
+    get 'followees' => 'follow_relationships#followees', as: 'followees'
+    get 'followers' => 'follow_relationships#followers', as: 'followers'
+  end
   resources :frames do
     get :next, on: :collection
     get :prev, on: :collection
@@ -33,3 +38,4 @@ Rails.application.routes.draw do
     end
   end
 end
+# rubocop: enable Metrics/BlockLength
