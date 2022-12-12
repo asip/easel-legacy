@@ -39,6 +39,17 @@
             <%= simple_format(h(@frame.comment)) %>
           </div>
         </div>
+        <div class="row d-flex" >
+          <div class="col-12 clearfix">
+            <!-- <div class="float-start">
+            </div> -->
+            <div class="float-end">
+              <%= link_to user_path(@frame.user), "data-turbo-frame": "_top", class: "text-decoration-none" do %>
+                <%= @frame.user.name %>&nbsp;
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
       <% if logged_in? && @frame.user_id == current_user.id %>
       <div class="card-footer">
@@ -56,7 +67,7 @@
       <% else %>
       <div class="card-block">
         <div class="row d-flex justify-content-sm-center">
-         <br>
+          <br>
         </div>
       <% end %>
     </div>
