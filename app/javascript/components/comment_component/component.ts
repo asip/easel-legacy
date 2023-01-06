@@ -2,6 +2,7 @@ import { createApp, ref, reactive, onMounted, App as Application } from 'vue/dis
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios, { AxiosResponse } from 'axios'
 import sanitizeHtml from 'sanitize-html'
+import Cookies from 'js-cookie';
 
 //console.log(constants.api_origin);
 interface User {
@@ -131,7 +132,7 @@ let initCommentComponent = (): void => {
         };
 
         onMounted(async () => {
-          current_user.token = root.dataset.token;
+          current_user.token = Cookies.get('access_token');
           logged_in.value = root.dataset.login == 'true';
           //console.log(current_user.token);
           //console.log(logged_in.value);

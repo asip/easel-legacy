@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
     @user = current_user
     if @user
       @user.assign_token(token) if @user.token.blank? || @user.token_expire?
+      cookies.permanent[:access_token] = token
       redirect_to root_path
     else
       validate_login(params_user)
@@ -29,6 +30,7 @@ class SessionsController < ApplicationController
 
   def destroy
     current_user.reset_token
+    cookies.delete(:access_token)
     logout
     redirect_to root_path, status: :see_other
   end
