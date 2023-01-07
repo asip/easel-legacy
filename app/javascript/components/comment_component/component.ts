@@ -3,21 +3,11 @@ import TurbolinksAdapter from 'vue-turbolinks';
 import Axios, { AxiosResponse } from 'axios'
 import sanitizeHtml from 'sanitize-html'
 import Cookies from 'js-cookie';
-
-//console.log(constants.api_origin);
-interface User {
-  id: string,
-  token: string
-}
-
-interface Comment {
-  frame_id: string,
-  body: string
-}
+import { root, constants } from '../../composables/constants';
+import { useAccount } from '../../composables/use_account';
+import { useComment } from '../../composables/use_comment';
 
 let initCommentComponent = (): void => {
-
-  const root: HTMLElement = document.querySelector('#comment_component');
 
   if (root) {
     Axios.defaults.headers.common = {
@@ -25,110 +15,14 @@ let initCommentComponent = (): void => {
       'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
 
-    const constants: { api_origin: string } = {
-      api_origin: root.getAttribute('data-api-origin')
-    }
-
     const comment_vm: Application = createApp({
       setup() {
-        let account: any = null;
-        const logged_in: any = ref<Boolean>(false);
-        const current_user: any = reactive<User>({
-          id: '',
-          token: ''
-        })
-        const comment: any = reactive<Comment>({
-          frame_id: '',
-          body: '',
-        });
-        const comments: any = reactive<any[]>([]);
-        const error_messages: any = reactive<string[]>([]);
+        const { account, logged_in, current_user, getAccount } = useAccount();
+
+        const { comment, comments, error_messages ,getComments, postComment, setComment, deleteComment} = useComment(current_user);
 
         const getSanitizedCommentBody = (row: any): string => {
           return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
-        };
-        const getAccount = async () => {
-          const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/account`,
-            {
-              headers: {
-                Authorization: `Bearer ${current_user.token}`
-              }
-            })
-          if (res.data) {
-            account = res.data.data;
-            //console.log(this.account);
-            current_user.id = account.attributes.id;
-          }
-        };
-        const getComments = async (frame_id: any) => {
-          //console.log(frame_id);
-          const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`);
-          if (res.data) {
-            //console.log(res.data.data);
-            comments.splice(0, comments.length);
-            for (let comment of res.data.data) {
-              //console.log(comment);
-              comments.push(comment);
-            }
-            //console.log(comments);
-          }
-        };
-        const postComment = async () => {
-          try {
-            const res: AxiosResponse<any, any> = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
-              {
-                comment: {
-                  frame_id: comment.frame_id,
-                  body: comment.body
-                }
-              },
-              {
-                headers: {
-                  Authorization: `Bearer ${current_user.token}`
-                }
-              }
-            )
-            if (res.data.data.attributes.error_messages && res.data.data.attributes.error_messages.length > 0) {
-              error_messages.splice(0, error_messages.length);
-              for (let error_message of res.data.data.attributes.error_messages) {
-                error_messages.push(error_message)
-              }
-            } else {
-              comment.body = '';
-              error_messages.splice(0, error_messages.length);
-              await getComments(comment.frame_id);
-            }
-          } catch (error) {
-            error_messages.splice(0, error_messages.length);
-            error_messages.push('ログインしてください。');
-          }
-        };
-        const setComment = async () => {
-          if (comment.body != '') {
-            //console.log(comment.userId);
-            //console.log(comment.frameId);
-            //console.log(comment.body);
-            await postComment();
-          } else {
-            error_messages.splice(0, error_messages.length);
-            error_messages.push('コメントを入力してください。');
-          }
-        };
-        const deleteComment = async (comment: any) => {
-          try {
-            const res: AxiosResponse<any, any> = await Axios.delete(
-                `${constants.api_origin}/comments/${comment.id}`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${current_user.token}`
-                  }
-                });
-            comments.splice(0, comments.length);
-            await getComments(comment.attributes.frame_id);
-          } catch (error) {
-            error_messages.splice(0, error_messages.length);
-            error_messages.push('ログインしてください。');
-          }
         };
 
         onMounted(async () => {
