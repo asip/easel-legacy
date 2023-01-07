@@ -27,13 +27,13 @@ let initCommentComponent = (): void => {
 
         onMounted(async () => {
           current_user.token = Cookies.get('access_token');
-          logged_in.value = root.dataset.login == 'true';
+          logged_in.value = current_user.token != null;
           //console.log(current_user.token);
           //console.log(logged_in.value);
           if (current_user.token != null && current_user.token != '') {
             await getAccount();
           }
-          comment.frame_id = root.getAttribute('data-frame-id');
+          comment.frame_id = constants.frame_id;
           //console.log(comment.frame_id);
           await getComments(comment.frame_id);
           //this.$forceUpdate();
