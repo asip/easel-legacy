@@ -1,6 +1,6 @@
 import Axios, { AxiosResponse } from 'axios'
 import { ref, reactive} from 'vue/dist/vue.esm-bundler.js'
-import { constants } from './constants';
+import { useViewData } from './use_view_data';
 import { User } from './use_account'
 
 interface Comment {
@@ -15,6 +15,8 @@ export function useComment(current_user: User) {
   });
   const comments: any = reactive<any[]>([]);
   const error_messages: any = reactive<string[]>([]);
+
+  const { constants } = useViewData();
 
   const getComments = async (frame_id: any) => {
     //console.log(frame_id);

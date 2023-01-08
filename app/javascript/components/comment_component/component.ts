@@ -1,13 +1,16 @@
+import { constants } from 'fs';
 import { createApp, ref, reactive, onMounted, App as Application } from 'vue/dist/vue.esm-bundler.js'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios, { AxiosResponse } from 'axios'
 import sanitizeHtml from 'sanitize-html'
 import Cookies from 'js-cookie';
-import { root, constants } from '../../composables/constants';
+import { useViewData } from '../../composables/use_view_data';
 import { useAccount } from '../../composables/use_account';
 import { useComment } from '../../composables/use_comment';
 
 let initCommentComponent = (): void => {
+
+  const { root, constants } = useViewData();
 
   if (root) {
     Axios.defaults.headers.common = {

@@ -1,6 +1,7 @@
+import { constants } from 'fs';
 import Axios, { AxiosResponse } from 'axios'
 import { ref, reactive} from 'vue/dist/vue.esm-bundler.js'
-import { constants } from './constants';
+import { useViewData } from './use_view_data';
 
 export interface User {
   id: string,
@@ -15,6 +16,8 @@ export function useAccount() {
     token: ''
   })
 
+  const { constants } = useViewData();
+
   const getAccount = async () => {
     const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/account`,
       {
@@ -25,7 +28,9 @@ export function useAccount() {
     if (res.data) {
       account = res.data.data;
       //console.log(this.account);
-      current_user.id = account.attributes.id;
+      if(account){
+        current_user.id = account.attributes.id;
+      }
     }
   };
 
