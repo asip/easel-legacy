@@ -3,10 +3,10 @@ import { createApp, ref, reactive, onMounted, App as Application } from 'vue/dis
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios, { AxiosResponse } from 'axios'
 import sanitizeHtml from 'sanitize-html'
-import Cookies from 'js-cookie';
 import { useViewData } from '../../composables/use_view_data';
 import { useAccount } from '../../composables/use_account';
 import { useComment } from '../../composables/use_comment';
+import { useCookie } from '../../composables/use_cookie';
 
 let initCommentComponent = (): void => {
 
@@ -17,6 +17,8 @@ let initCommentComponent = (): void => {
       'X-Requested-With': 'XMLHttpRequest',
       'X-CSRF-TOKEN': constants.csrf_token
     };
+
+    const { access_token } = useCookie();
 
     const comment_vm: Application = createApp({
       setup() {
@@ -29,7 +31,7 @@ let initCommentComponent = (): void => {
         };
 
         onMounted(async () => {
-          current_user.token = Cookies.get('access_token');
+          current_user.token = access_token;
           logged_in.value = current_user.token != null;
           //console.log(current_user.token);
           //console.log(logged_in.value);
