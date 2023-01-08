@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
     return unless current_user&.token_expire?
 
     current_user.reset_token
+    cookies.delete(:access_token)
     logout
   end
 end
