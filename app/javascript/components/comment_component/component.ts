@@ -47,9 +47,6 @@ let initCommentComponent = (): void => {
           comments,
           error_messages,
           getSanitizedCommentBody,
-          getAccount,
-          getComments,
-          postComment,
           setComment,
           deleteComment
         }
