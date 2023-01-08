@@ -1,4 +1,3 @@
-import { constants } from 'fs';
 import { createApp, ref, reactive, onMounted, App as Application } from 'vue/dist/vue.esm-bundler.js'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios, { AxiosResponse } from 'axios'
