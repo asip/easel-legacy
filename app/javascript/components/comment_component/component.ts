@@ -6,7 +6,7 @@ import sanitizeHtml from 'sanitize-html'
 import { useViewData } from '../../composables/use_view_data';
 import { useAccount } from '../../composables/use_account';
 import { useComment } from '../../composables/use_comment';
-import { useCookie } from '../../composables/use_cookie';
+import { useCookieData } from '../../composables/use_cookie_data';
 
 let initCommentComponent = (): void => {
 
@@ -18,7 +18,7 @@ let initCommentComponent = (): void => {
       'X-CSRF-TOKEN': constants.csrf_token
     };
 
-    const { access_token } = useCookie();
+    const { access_token } = useCookieData();
 
     const comment_vm: Application = createApp({
       setup() {
