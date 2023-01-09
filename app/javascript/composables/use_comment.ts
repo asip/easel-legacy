@@ -47,9 +47,11 @@ export function useComment(current_user: User) {
           }
         }
       )
-      if (res.data.data.attributes.error_messages && res.data.data.attributes.error_messages.length > 0) {
+
+      const error_message_list = res.data.data.attributes.error_messages
+      if ( error_message_list && error_message_list.length > 0) {
         error_messages.splice(0, error_messages.length);
-        for (let error_message of res.data.data.attributes.error_messages) {
+        for (let error_message of error_message_list) {
           error_messages.push(error_message)
         }
       } else {
