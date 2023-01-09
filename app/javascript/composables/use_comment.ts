@@ -91,6 +91,6 @@ export function useComment(current_user: User) {
   };
 
   return {
-    comment, comments, error_messages ,getComments, postComment, setComment, deleteComment
+    comment, comments, error_messages ,getComments, setComment, deleteComment
   }
 }

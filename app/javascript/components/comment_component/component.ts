@@ -23,7 +23,7 @@ let initCommentComponent = (): void => {
       setup() {
         const { account, logged_in, current_user, getAccount } = useAccount();
 
-        const { comment, comments, error_messages ,getComments, postComment, setComment, deleteComment} = useComment(current_user);
+        const { comment, comments, error_messages ,getComments, setComment, deleteComment} = useComment(current_user);
 
         const getSanitizedCommentBody = (row: any): string => {
           return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
