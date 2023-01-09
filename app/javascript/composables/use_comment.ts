@@ -22,9 +22,10 @@ export function useComment(current_user: User) {
     //console.log(frame_id);
     const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`);
     if (res.data) {
-      //console.log(res.data.data);
+      const comment_list = res.data.data;
+      //console.log(comment_list);
       comments.splice(0, comments.length);
-      for (let comment of res.data.data) {
+      for (let comment of comment_list) {
         //console.log(comment);
         comments.push(comment);
       }
