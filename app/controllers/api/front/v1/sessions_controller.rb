@@ -35,8 +35,9 @@ module Api
         def destroy
           current_user.reset_token if current_user
           cookies.delete(:access_token)
-          user = User.find_by(id: current_user.id)
+          user_id = current_user.id
           logout
+          user = User.find_by(id: user_id)
           render json: AccountSerializer.new(user).serializable_hash
         end
 
