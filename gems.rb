@@ -69,6 +69,9 @@ gem 'acts-as-taggable-on', '~> 9.0.1'
 # json
 gem 'jsonapi-serializer'
 
+# cors
+gem 'rack-cors'
+
 # soft delete
 # gem 'discard', '~> 1.2'
 

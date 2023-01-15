@@ -36,6 +36,13 @@ Rails.application.routes.draw do
 
       get '/account' => 'account#show'
     end
+    namespace :front do
+      namespace :v1 do
+        resource :sessions, only: %i[show create] do
+          delete '/logout' => '/api/front/v1/sessions#destroy'
+        end
+      end
+    end
   end
 end
 # rubocop: enable Metrics/BlockLength
