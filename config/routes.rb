@@ -41,6 +41,7 @@ Rails.application.routes.draw do
         resource :sessions, only: %i[show create] do
           delete '/logout' => '/api/front/v1/sessions#destroy'
         end
+        resource :users, only: %i[create]
       end
     end
   end
