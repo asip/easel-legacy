@@ -42,6 +42,7 @@ Rails.application.routes.draw do
           delete '/logout' => '/api/front/v1/sessions#destroy'
         end
         resource :users, only: %i[create]
+        resources :frames, only: %i[index]
       end
     end
   end
