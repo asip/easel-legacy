@@ -28,4 +28,8 @@ class FrameSerializer
   attribute :file_two_url do |object|
     object.file_url(:two)
   end
+
+  attribute :file_three_url do |object|
+    object.file_url(:three)
+  end
 end
