@@ -8,14 +8,17 @@ module Api
     module V1
       # Frames Controller
       class FramesController < Api::Front::V1::ApiController
+        include Pagination
+
         skip_before_action :authenticate, only: [:index]
         before_action :set_query, only: [:index]
 
         def index
           frames = Frame.eager_load(:comments).search_by(word: @word)
           frames = frames.page(@page)
+          pagination = resources_with_pagination(frames)
 
-          render json: FrameSerializer.new(frames, index_options).serializable_hash
+          render json: FrameSerializer.new(frames, index_options).serializable_hash.merge(pagination)
         end
 
         private
