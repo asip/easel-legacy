@@ -50,6 +50,10 @@ class Frame < ApplicationRecord
     scope
   }
 
+  def user_name
+    self.user.name
+  end
+
   def tags_preview
     tag_list.to_s.split(/\s*,\s*/)
   end
