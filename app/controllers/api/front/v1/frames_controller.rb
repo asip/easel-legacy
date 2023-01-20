@@ -21,6 +21,12 @@ module Api
           render json: FrameSerializer.new(frames, index_options).serializable_hash.merge(pagination)
         end
 
+        def show
+          frame = Frame.eager_load(:comments).find_by(id: params[:id])
+
+          render json: FrameSerializer.new(frame, index_options).serializable_hash
+        end
+
         private
 
         def index_options
