@@ -38,10 +38,11 @@ Rails.application.routes.draw do
     end
     namespace :front do
       namespace :v1 do
-        resource :sessions, only: %i[show create] do
+        resource :sessions, only: %i[create] do
           delete '/logout' => '/api/front/v1/sessions#destroy'
         end
         resource :users, only: %i[create]
+        get '/profile' => '/api/front/v1/sessions#show'
         resources :frames, only: %i[index show create update destroy]
       end
     end
