@@ -35,4 +35,16 @@ class UserSerializer
   set_type :user
   set_id :id
   attributes :id, :email, :name
+
+  attribute :image_thumb_url do |object|
+    object.image_url_for_view(:thumbnail)
+  end
+
+  attribute :image_one_url do |object|
+    object.image_url_for_view(:one)
+  end
+
+  attribute :image_three_url do |object|
+    object.image_url_for_view(:three)
+  end
 end
