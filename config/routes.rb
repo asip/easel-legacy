@@ -43,7 +43,11 @@ Rails.application.routes.draw do
         end
         resource :users, only: %i[create]
         get '/profile' => '/api/front/v1/sessions#show'
-        resources :frames, only: %i[index show create update destroy]
+        put '/profile' => '/api/front/v1/users#update'
+        resources :frames, only: %i[index show create update destroy] do
+          resources :comments, only: %i[index create]
+        end
+        resources :comments, only: [:destroy]
       end
     end
   end

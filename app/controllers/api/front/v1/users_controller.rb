@@ -20,6 +20,16 @@ module Api
           end
         end
 
+        def update
+          @user.attributes = user_params
+          @user.image_derivatives! if @user.image.present?
+          if @user.save
+            render json: UserSerializer.new(@user).serializable_hash
+          else
+            render json: { errors: @user.errors.messages }.to_json
+          end
+        end
+
         private
 
         def set_user
