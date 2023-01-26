@@ -42,6 +42,7 @@ Rails.application.routes.draw do
           delete '/logout' => '/api/front/v1/sessions#destroy'
         end
         resource :users, only: %i[create]
+        get '/users/:id' => '/api/front/v1/users#show'
         get '/profile' => '/api/front/v1/sessions#show'
         put '/profile' => '/api/front/v1/users#update'
         resources :frames, only: %i[index show create update destroy] do

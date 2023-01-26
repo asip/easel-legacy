@@ -8,8 +8,12 @@ module Api
     module V1
       # Users Controller
       class UsersController < Api::Front::V1::ApiController
-        skip_before_action :authenticate, only: [:create]
+        skip_before_action :authenticate, only: [:create, :show]
         before_action :set_user, only: %i[show create edit update]
+
+        def show
+          render json: UserSerializer.new(@user).serializable_hash
+        end
 
         def create
           @user.image_derivatives! if @user.image.present?
