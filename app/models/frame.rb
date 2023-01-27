@@ -37,8 +37,8 @@ class Frame < ApplicationRecord
 
     if word.present?
       scope = if date_valid?(word)
-                scope.where('cast(shooted_at as date)=?', Time.zone.parse(word).to_date)
-                     .or(Frame.where('cast(updated_at as date)=?', Time.zone.parse(word).to_date))
+                scope.where('cast(frames.shooted_at as date)=?', Time.zone.parse(word).to_date)
+                     .or(Frame.where('cast(frames.updated_at as date)=?', Time.zone.parse(word).to_date))
               else
                 scope.joins(:tags, :user)
                      .merge(ActsAsTaggableOn::Tag.where('tags.name like ?', "%#{word}%"))
