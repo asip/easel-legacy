@@ -26,3 +26,7 @@ Things you may want to cover:
   - Hit [localhost:3000](http://localhost:3000/) and you should be ready to go!
 
 * ...
+
+## License
+
+The MIT License (MIT). Please see [License File](https://github.com/asip/easel/blob/main/LICENSE-MIT.txt) for more information.
