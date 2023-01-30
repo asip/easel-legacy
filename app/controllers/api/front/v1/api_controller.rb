@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
+# Api
 module Api
+  # Front
   module Front
+    # V1
     module V1
+      # Api Controller
       class ApiController < ActionController::Base
-
         protect_from_forgery with: :exception
 
         rescue_from StandardError,
-              with: ->(e) { render_error(e) }
+                    with: ->(e) { render_error(e) }
 
         before_action :authenticate
         skip_before_action :verify_authenticity_token
@@ -16,7 +19,7 @@ module Api
         def render_error(exception)
           status_code = ActionDispatch::ExceptionWrapper.new(Rails.env, exception).status_code
           render json: { message: exception.message, status: status_code },
-            status: status_code
+                 status: status_code
         end
 
         protected

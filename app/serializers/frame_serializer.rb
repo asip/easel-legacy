@@ -40,13 +40,9 @@ class FrameSerializer
     object.tags_preview.join(',')
   end
 
-  attribute :tags do |object|
-    object.tags_preview
-  end
+  attribute :tags, &:tags_preview
 
-  attribute :file_url do |object|
-    object.file_url
-  end
+  attribute :file_url, &:file_url
 
   attribute :file_two_url do |object|
     object.file_url(:two)

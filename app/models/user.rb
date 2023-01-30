@@ -47,8 +47,8 @@ class User < ApplicationRecord
   has_many :followees, through: :follower_relationships, source: :followee
   has_many :followers, through: :followee_relationships, source: :follower
 
-  VALID_NAME_REGEX = /\A\z|\A[a-zA-Z\d]{3,40}\z/.freeze
-  VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
+  VALID_NAME_REGEX = /\A\z|\A[a-zA-Z\d]{3,40}\z/
+  VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   with_options on: %i[create update] do |save|
     save.validates :name, presence: true, uniqueness: true, length: { in: 3..40 }, format: { with: VALID_NAME_REGEX }
@@ -82,8 +82,8 @@ class User < ApplicationRecord
     true
   end
 
-  def assign_token(token)
-    update!(token: token)
+  def assign_token(token_)
+    update!(token: token_)
   end
 
   def reset_token

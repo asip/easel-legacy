@@ -8,13 +8,12 @@ module Api
     module V1
       # Frames Controller
       class FollowRelationshipsController < Api::Front::V1::ApiController
-
         before_action :authenticate
 
         def following
           user = User.find(params[:user_id])
-          _following = @current_user.following?(user)
-          render json: { following: _following }
+          following_ = @current_user.following?(user)
+          render json: { following: following_ }
         end
 
         def create

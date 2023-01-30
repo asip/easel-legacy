@@ -33,7 +33,7 @@ module Api
         end
 
         def destroy
-          current_user.reset_token if current_user
+          current_user&.reset_token
           cookies.delete(:access_token)
           user_id = current_user.id
           logout
@@ -49,14 +49,14 @@ module Api
 
         def validate_login(params_user)
           @user = User.find_by(email: params_user[:email])
-          if @user
-            message = 'パスワードが間違っています'
-          else
-            message = 'メールアドレスが間違っています'
-          end
+          message_ = if @user
+                       'パスワードが間違っています'
+                     else
+                       'メールアドレスが間違っています'
+                     end
 
           render json: {
-            message: message
+            message: message_
           }
         end
       end

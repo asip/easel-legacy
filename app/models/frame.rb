@@ -51,7 +51,7 @@ class Frame < ApplicationRecord
   }
 
   def user_name
-    self.user.name
+    user.name
   end
 
   def tags_preview

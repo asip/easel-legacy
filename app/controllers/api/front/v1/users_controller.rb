@@ -8,7 +8,7 @@ module Api
     module V1
       # Users Controller
       class UsersController < Api::Front::V1::ApiController
-        skip_before_action :authenticate, only: [:create, :show]
+        skip_before_action :authenticate, only: %i[create show]
         before_action :set_user, only: %i[show create edit update]
 
         def show
@@ -38,15 +38,15 @@ module Api
 
         def set_user
           @user = case action_name
-            when 'show'
-              User.find_by!(id: params[:id])
-            when 'new'
-              User.new
-            when 'create'
-              User.new(user_params)
-            else
-              current_user
-            end
+                  when 'show'
+                    User.find_by!(id: params[:id])
+                  when 'new'
+                    User.new
+                  when 'create'
+                    User.new(user_params)
+                  else
+                    current_user
+                  end
         end
 
         def user_params

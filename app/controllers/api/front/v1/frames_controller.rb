@@ -38,11 +38,10 @@ module Api
           end
         end
 
+        # rubocop:disable Metrics/AbcSize
         def update
           @frame.user_id = current_user.id
-          puts 'test'
           @frame.attributes = frame_params
-          puts 'test2'
           @frame.file_derivatives! if @frame.file.present?
           if @frame.save
             render json: FrameSerializer.new(@frame, index_options).serializable_hash
@@ -50,6 +49,7 @@ module Api
             render json: { errors: @frame.errors.messages }.to_json
           end
         end
+        # rubocop:enable Metrics/AbcSize
 
         def destroy
           @frame.destroy

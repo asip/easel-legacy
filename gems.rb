@@ -76,8 +76,8 @@ gem 'rack-cors'
 # gem 'discard', '~> 1.2'
 
 # management console
-gem 'sassc-rails'
 gem 'rails_admin', '~> 3.0'
+gem 'sassc-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -103,4 +103,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-gem "sassc-rails"

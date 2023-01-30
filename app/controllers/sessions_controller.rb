@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     @user = User.new
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create
     params_user = user_params
     token = login_and_issue_token(params_user[:email], params_user[:password])
@@ -23,6 +24,7 @@ class SessionsController < ApplicationController
       render :new
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def show
     @user = current_user

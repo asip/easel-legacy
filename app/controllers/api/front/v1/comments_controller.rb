@@ -4,7 +4,7 @@
 module Api
   # Front
   module Front
-  # v1
+    # v1
     module V1
       # Comments Controller
       class CommentsController < Api::Front::V1::ApiController
