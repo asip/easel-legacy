@@ -38,7 +38,7 @@ module Api
         #    domain: 'localhost:3030', # 親ドメイン
         #    value: form_authenticity_token
         #  }
-        #end
+        # end
       end
     end
   end
