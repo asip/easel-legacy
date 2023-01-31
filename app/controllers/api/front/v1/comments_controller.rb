@@ -7,7 +7,7 @@ module Api
     # v1
     module V1
       # Comments Controller
-      class CommentsController < Api::Front::V1::ApiController
+      class CommentsController < ApiController
         skip_before_action :authenticate, only: [:index]
 
         def index
@@ -39,7 +39,7 @@ module Api
 
         def comment_params
           params.require(:comment).permit(:body, :frame_id)
-        end
+          end
       end
     end
   end

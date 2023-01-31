@@ -5,7 +5,7 @@ module Api
   # v1
   module V1
     # Comments Controller
-    class CommentsController < ApiController
+    class CommentsController < Api::V1::ApiController
       skip_before_action :authenticate, only: [:index]
 
       def index

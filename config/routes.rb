@@ -26,33 +26,30 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy', :as => 'logout'
 
   namespace :api do
-    namespace :v1 do
-      # get '/frames/:frame_id/comments' => 'comments#index'
-      # post '/frames/:frame_id/comments' => 'comments#create'
-      # delete '/comments/:id' => 'comments#destroy'
-      resources :frames, only: [:index] do
-        resources :comments, only: %i[index create]
-      end
-      resources :comments, only: [:destroy]
-
-      get '/account' => 'account#show'
-    end
     namespace :front do
       namespace :v1 do
-        resource :sessions, only: %i[create] do
-          delete '/logout' => '/api/front/v1/sessions#destroy'
-        end
-        resources :users, only: %i[show create] do
-          resource :follow_relationships, only: %i[create destroy]
-        end
-        get '/profile' => '/api/front/v1/sessions#show'
-        put '/profile' => '/api/front/v1/users#update'
-        get '/profile/following/:user_id' => '/api/front/v1/follow_relationships#following'
-        resources :frames, only: %i[index show create update destroy] do
+        resources :frames, only: [:index] do
           resources :comments, only: %i[index create]
         end
         resources :comments, only: [:destroy]
+
+        get '/account' => '/api/front/v1/account#show'
       end
+    end
+    namespace :v1 do
+      resource :sessions, only: %i[create] do
+        delete '/logout' => '/api/v1/sessions#destroy'
+      end
+      resources :users, only: %i[show create] do
+        resource :follow_relationships, only: %i[create destroy]
+      end
+      get '/profile' => '/api/v1/sessions#show'
+      put '/profile' => '/api/v1/users#update'
+      get '/profile/following/:user_id' => '/api/v1/follow_relationships#following'
+      resources :frames, only: %i[index show create update destroy] do
+        resources :comments, only: %i[index create]
+      end
+      resources :comments, only: [:destroy]
     end
   end
 end
