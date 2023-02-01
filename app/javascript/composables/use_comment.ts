@@ -1,5 +1,5 @@
 import Axios, { AxiosResponse } from 'axios'
-import { ref, reactive} from 'vue/dist/vue.esm-bundler.js'
+import { reactive } from 'vue/dist/vue.esm-bundler.js'
 import { useViewData } from './use_view_data';
 import { User } from './use_account'
 
