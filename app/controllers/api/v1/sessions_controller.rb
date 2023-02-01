@@ -6,10 +6,14 @@ module Api
   module V1
     # Sessions Controller
     class SessionsController < Api::V1::ApiController
-      skip_before_action :authenticate, only: [:create]
-      # skip_before_action :require_login, except: [:destroy]
+      skip_before_action :authenticate, only: %i[create]
+      # before_action :set_csrf_token, only: [:show]
 
-      def show
+      # def show
+      #   render json: {}, status: :ok
+      # end
+
+      def profile
         @user = current_user
 
         render json: AccountSerializer.new(@user).serializable_hash

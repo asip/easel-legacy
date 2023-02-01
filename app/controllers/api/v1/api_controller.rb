@@ -35,10 +35,7 @@ module Api
       attr_reader :current_user
 
       # def set_csrf_token
-      #  cookies['CSRF-TOKEN'] = {
-      #    domain: 'localhost:3030', # 親ドメイン
-      #    value: form_authenticity_token
-      #  }
+      #   response.set_header('X-CSRF-Token', form_authenticity_token)
       # end
     end
   end

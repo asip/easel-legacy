@@ -43,7 +43,7 @@ Rails.application.routes.draw do
       resources :users, only: %i[show create] do
         resource :follow_relationships, only: %i[create destroy]
       end
-      get '/profile' => '/api/v1/sessions#show'
+      get '/profile' => '/api/v1/sessions#profile'
       put '/profile' => '/api/v1/users#update'
       get '/profile/following/:user_id' => '/api/v1/follow_relationships#following'
       resources :frames, only: %i[index show create update destroy] do
