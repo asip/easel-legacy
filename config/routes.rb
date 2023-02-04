@@ -23,7 +23,13 @@ Rails.application.routes.draw do
   get '/profile' => 'sessions#show', :as => 'profile'
   get '/profile/edit' => 'users#edit', :as => 'edit_profile'
   patch '/profile' => 'users#update', :as => 'update_profile'
-  delete '/logout' => 'sessions#destroy', :as => 'logout'
+  delete '/account/logout' => 'sessions#destroy', :as => 'account_logout'
+
+  namespace :manager do
+    resources :sessions, only: %i[new create destroy]
+    get 'login' => 'sessions#new', :as => 'login'
+  end
+  delete '/logout' => 'manager/sessions#destroy', as: 'logout'
 
   namespace :api do
     namespace :front do

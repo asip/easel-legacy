@@ -27,10 +27,11 @@ RailsAdmin.config do |config|
   # config.show_gravatar = true
 
   config.authenticate_with do
-    authenticate_or_request_with_http_basic('Site Message') do |username, password|
-      username == 'admin' && password == 'admin'
-    end
+    require_login
   end
+
+  config.current_user_method(&:current_user)
+  config.parent_controller = 'Manager::ApplicationController'
 
   config.actions do
     dashboard                     # mandatory
