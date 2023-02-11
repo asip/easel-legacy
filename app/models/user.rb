@@ -50,7 +50,7 @@ class User < ApplicationRecord
   has_many :followees, through: :follower_relationships, source: :followee
   has_many :followers, through: :followee_relationships, source: :follower
 
-  VALID_NAME_REGEX = /\A\z|\A[a-zA-Z\d]{3,40}\z/
+  VALID_NAME_REGEX = /\A\z|\A[a-zA-Z\d\s]{3,40}\z/
   VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   with_options on: :with_validation do |save|
@@ -106,5 +106,9 @@ class User < ApplicationRecord
   # フォローしているか判定
   def following?(user)
     followees.include?(user)
+  end
+  
+  def social_login?
+    authentications.present?
   end
 end

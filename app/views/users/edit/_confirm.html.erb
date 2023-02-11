@@ -13,14 +13,16 @@
             <%= form.hidden_field :email %>
           </div>
         </div>
-        <div class="row d-flex justify-content-sm-center">
-          <label for="passowrd" class="form-label col-md-2 label-bg-style">パスワード：</label>
-          <div class="form-group col-sm-4">
-            <%= user.password %>
-            <%= form.hidden_field :password %>
+        <% unless user.social_login? %>
+          <div class="row d-flex justify-content-sm-center">
+            <label for="password" class="form-label col-md-2 label-bg-style">パスワード：</label>
+            <div class="form-group col-sm-4">
+              <%= user.password %>
+              <%= form.hidden_field :password %>
+            </div>
           </div>
-        </div>
-        <%= form.hidden_field :password_confirmation %>
+          <%= form.hidden_field :password_confirmation %>
+        <% end %>
         <br>
         <div class="row d-flex justify-content-sm-center">
           <div class="form-group col-sm-6">
