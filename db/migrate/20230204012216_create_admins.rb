@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
+# CreateAdmins
 class CreateAdmins < ActiveRecord::Migration[7.0]
+  # rubocop:disable Metrics/MethodLength
   def change
     create_table :admins do |t|
       t.string :email, null: false
@@ -21,4 +25,5 @@ class CreateAdmins < ActiveRecord::Migration[7.0]
     add_index :admins, :unlock_token
     add_index :admins, %i[last_logout_at last_activity_at]
   end
+  # rubocop:enable Metrics/MethodLength
 end

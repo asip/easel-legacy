@@ -30,7 +30,6 @@ class Admin < ApplicationRecord
   VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   with_options on: %i[create update] do |save|
-
     save.validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
     save.validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }

@@ -13,7 +13,7 @@ module Manager
     private
 
     def not_authenticated
-      redirect_to main_app.manager_login_path #main_appのプレフィックスをつける
+      redirect_to main_app.manager_login_path # main_appのプレフィックスをつける
     end
 
     def user_class

@@ -4,14 +4,12 @@
 module Manager
   # Admin Controller
   class SessionsController < Manager::ApplicationController
-
     skip_before_action :require_login, except: [:destroy]
 
     def new
       @user = Admin.new
     end
 
-    # rubocop:disable Metrics/MethodLength
     def create
       params_user = user_params
       @user = login(params_user[:email], params_user[:password])
@@ -22,8 +20,6 @@ module Manager
         render :new
       end
     end
-
-    # rubocop:enable Metrics/MethodLength
 
     def show
       @user = current_user
