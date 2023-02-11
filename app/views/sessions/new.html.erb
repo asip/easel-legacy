@@ -1,6 +1,14 @@
 <%= turbo_frame_tag "users" do %>
+  <br>
+  <div class="card">
+    <div class="card-header">
+      <div class="float-start">
+        <%= link_to root_path(query_params), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
+        <%= link_to 'Login with Google', auth_at_provider_path(provider: :google), "data-turbo-frame": "_top" %>
+      </div>
+    </div>
+  </div>
   <%= form_with model: @user, url: sessions_path, method: :post, local: true, html: { 'data-turbo-frame': "_top", 'data-turbo': false } do |form| %>
-    <br>
     <div class="card">
       <div class="card-header">
         <div class="float-start">

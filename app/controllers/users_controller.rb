@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def create
     @user.image_derivatives! if @user.image.present?
-    if @user.save
+    if @user.save(context: :with_validation)
       redirect_to login_path
     else
       render :new, status: :unprocessable_entity
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def update
     @user.attributes = user_params
     @user.image_derivatives! if @user.image.present?
-    if @user.save
+    if @user.save(context: :with_validation)
       redirect_to profile_path
     else
       render :edit, status: :unprocessable_entity

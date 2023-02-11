@@ -36,6 +36,9 @@ class User < ApplicationRecord
 
   authenticates_with_sorcery!
 
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
+
   has_many :frames
   has_many :comments
 
@@ -50,7 +53,7 @@ class User < ApplicationRecord
   VALID_NAME_REGEX = /\A\z|\A[a-zA-Z\d]{3,40}\z/
   VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  with_options on: %i[create update] do |save|
+  with_options on: :with_validation do |save|
     save.validates :name, presence: true, uniqueness: true, length: { in: 3..40 }, format: { with: VALID_NAME_REGEX }
 
     save.validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }

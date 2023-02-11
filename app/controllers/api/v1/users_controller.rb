@@ -15,7 +15,7 @@ module Api
 
       def create
         @user.image_derivatives! if @user.image.present?
-        if @user.save
+        if @user.save(context: :with_validation)
           render json: UserSerializer.new(@user).serializable_hash
         else
           render json: { errors: @user.errors.messages }.to_json
@@ -25,7 +25,7 @@ module Api
       def update
         @user.attributes = user_params
         @user.image_derivatives! if @user.image.present?
-        if @user.save
+        if @user.save(context: :with_validation)
           render json: UserSerializer.new(@user).serializable_hash
         else
           render json: { errors: @user.errors.messages }.to_json
