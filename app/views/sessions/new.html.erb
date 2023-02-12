@@ -1,12 +1,20 @@
 <%= turbo_frame_tag "users" do %>
   <br>
-  <div class="card">
-    <div class="card-header">
-      <div class="float-start">
-        <%= link_to root_path(query_params), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
-        <%= link_to 'Login with Google', auth_at_provider_path(provider: :google), "data-turbo-frame": "_top" %>
-      </div>
-    </div>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <div id='g_id_onload'
+       data-client_id='<%= Rails.application.credentials.dig(:google, :client_id) %>'
+       data-login_uri='<%= Settings.sorcery.google_callback_url %>'
+       data-prompt_parent_id='g_id_onload'
+       data-authenticity_token='<%= form_authenticity_token %>'
+       data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin"
+       data-type="standard"
+       data-size="large"
+       data-theme="outline"
+       data-text="sign_in_with"
+       data-shape="rectangular"
+       data-logo_alignment="left">
   </div>
   <%= form_with model: @user, url: sessions_path, method: :post, local: true, html: { 'data-turbo-frame': "_top", 'data-turbo': false } do |form| %>
     <div class="card">

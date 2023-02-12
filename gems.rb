@@ -52,6 +52,8 @@ gem 'rambulance'
 gem 'sorcery'
 gem 'sorcery-jwt'
 
+gem 'googleauth'
+
 # settings
 gem 'config'
 

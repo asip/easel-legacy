@@ -107,7 +107,7 @@ class User < ApplicationRecord
   def following?(user)
     followees.include?(user)
   end
-  
+
   def social_login?
     authentications.present?
   end
