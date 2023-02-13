@@ -23,7 +23,7 @@ module Sorcery
         @user_hash = {}
         @user_hash[:user_info] =
           Google::Auth::IDTokens.verify_oidc(auth_params[:credential],
-                                             aud: Rails.application.credentials.dig(:google, :client_id))
+                                             aud: Rails.application.config.sorcery.google.key)
         @user_hash[:uid] = @user_hash[:user_info]['sub']
       else
         # delegate to the provider for the access token and the user hash.
