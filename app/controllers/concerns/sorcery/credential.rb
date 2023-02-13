@@ -26,6 +26,9 @@ module Sorcery
                                              aud: Rails.application.credentials.dig(:google, :client_id))
         @user_hash[:uid] = @user_hash[:user_info]['sub']
       else
+        # delegate to the provider for the access token and the user hash.
+        # cache them in instance variables.
+
         # sends request to oauth agent to get the token
         @access_token ||= @provider.process_callback(params, session)
         # uses the token to send another request to the oauth agent requesting user info
