@@ -19,7 +19,7 @@ module Sorcery
         @user_hash = nil
       end
 
-      if provider_name == 'google' && auth_params[:credential].present?
+      if provider_name == 'google' && params[:credential].present?
         @user_hash = {}
         @user_hash[:user_info] =
           Google::Auth::IDTokens.verify_oidc(auth_params[:credential],
