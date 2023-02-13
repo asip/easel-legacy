@@ -22,7 +22,7 @@ module Sorcery
       if provider_name == 'google' && params[:credential].present?
         @user_hash = {}
         @user_hash[:user_info] =
-          Google::Auth::IDTokens.verify_oidc(auth_params[:credential],
+          Google::Auth::IDTokens.verify_oidc(params[:credential],
                                              aud: Rails.application.config.sorcery.google.key)
         @user_hash[:uid] = @user_hash[:user_info]['sub']
       else
