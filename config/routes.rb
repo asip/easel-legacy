@@ -46,6 +46,9 @@ Rails.application.routes.draw do
       end
     end
     namespace :v1 do
+      namespace :oauth do
+        resource :sessions, only: [:create]
+      end
       resource :sessions, only: %i[create] do
         delete '/logout' => '/api/v1/sessions#destroy'
       end
