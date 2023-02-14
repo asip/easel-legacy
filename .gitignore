@@ -15,11 +15,10 @@
 
 /node_modules
 /yarn-error.log
+yarn-debug.log*
+.yarn-integrity
 
 .byebug_history
-/public/packs
-/public/packs-test
-/node_modules
 
 /vendor
 /test
@@ -30,27 +29,19 @@ easel.iml
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
 /public/assets
 /public/packs
 /public/packs-test
 /public/uploads
-/node_modules
-yarn-debug.log*
-.yarn-integrity
 
 .DS_Store
-
-/public/packs
-/public/packs-test
-/node_modules
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity
 
 /config/master.key
 config/credentials.yml.enc
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
 .vscode/settings.json
 .envrc
