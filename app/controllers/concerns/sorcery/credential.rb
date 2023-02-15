@@ -12,6 +12,9 @@ module Sorcery
 
     # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     def sorcery_fetch_user_hash(provider_name)
+      # the application should never ask for user hashes from two different providers
+      # on the same request.  But if they do, we should be ready: on the second request,
+      # clear out the instance variables if the provider is different
       provider = sorcery_get_provider provider_name
       if @provider.nil? || @provider != provider
         @provider = provider
