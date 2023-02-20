@@ -73,7 +73,7 @@
       <% end %>
     </div>
     <% if logged_in? && @frame.user_id == current_user.id %>
-      <%= render(partial: 'frames/show/modal', locals: {frame: @frame}) %>
+      <%= render(partial: 'frames/show/delete_modal', locals: { frame: @frame}) %>
     <% end %>
   </div>
 <% end %>
