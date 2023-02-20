@@ -71,23 +71,7 @@
         </div>
       <% end %>
     </div>
-    <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <% if false %><h5 class="modal-title" id="exampleModalLabel">イメージの削除</h5><% end %>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            削除してもよろしいですか？
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
-            <%= link_to '削除', frame_path(@frame, query_params), data: { turbo_method: :delete, turbo_frame: '_top' }, class: 'btn btn-outline-danger' %>
-          </div>
-        </div>
-      </div>
-    </div>
+      <%= render(partial: 'frames/show/modal', locals: {frame: @frame}) %>
   </div>
 <% end %>
 <br>
