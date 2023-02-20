@@ -9,8 +9,8 @@
         削除してもよろしいですか？
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
         <%= link_to '削除', frame_path(frame, query_params), data: { turbo_method: :delete, turbo_frame: '_top' }, class: 'btn btn-outline-danger' %>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
       </div>
     </div>
   </div>
