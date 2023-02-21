@@ -61,11 +61,10 @@ class Frame < ApplicationRecord
   private
 
   def check_tag
-    errors[:tag_list] << 'は５つまでしかセットできません' if tags_preview.size > 5
+    errors.add(:tag_list, I18n.t('validations.message.frame.tags.array_length')) if tags_preview.size > 5
     tags_preview.each do |tag|
-      # puts tag.to_s
       if tag.to_s.size > 10
-        errors[:tag_list] << 'は10文字以内で入力してください'
+        errors.add(:tag_list, I18n.t('validations.message.frame.tags.length'))
         break
       end
     end

@@ -17,9 +17,10 @@ module Profile
       end
 
       Attacher.validate do
-        validate_max_size 5 * 1024 * 1024, message: 'は 5MB を超えるとアップロードできません。'
-        # validate_min_size 1, message: 'ファイルを選択してください。'
-        validate_mime_type %w[image/jpg image/jpeg image/png], message: 'は JPEG/PNG のみアップロードできます。'
+        validate_max_size 5 * 1024 * 1024, message: I18n.t('validations.message.user.image.max_size')
+        # validate_min_size 1, message: I18n.t('validations.message.user.image.required')
+        validate_mime_type %w[image/jpg image/jpeg image/png],
+                           message: I18n.t('validations.message.user.image.mime_type')
       end
     end
   end

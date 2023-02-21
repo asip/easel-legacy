@@ -1,0 +1,16 @@
+ja:
+  validations:
+    message:
+      user:
+        image:
+          max_size: 'は 5MB までです'
+          mime_type: 'は JPEG/PNG のみアップロードできます'
+          required: 'を選択してください'
+      frame:
+        file:
+          max_size: 'は 5MB までです'
+          mime_type: 'は JPEG/PNG のみアップロードできます'
+          required: 'を選択してください'
+        tags:
+          array_length: 'は５つまでです'
+          length: 'は10文字以内で入力してください'

@@ -6,15 +6,17 @@ ja:
     attributes:
       user:
         name: 'ユーザー名'
+        image: 'アイコン'
         email: 'Eメール'
         password: 'パスワード'
         password_confirmation: 'パスワード(確認)'
       frame:
         id: 'ID'
         name: '名前'
-        comment: 'コメント'
         file: 'ファイル'
         tag_list: 'タグ'
+        shooted_at: '撮影日時'
+        comment: 'コメント'
       comment:
         id: 'ID'
         body: 'コメント'
