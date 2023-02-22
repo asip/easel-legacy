@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# Search Module
+# Sorcery Module
 module Sorcery
-  # Query module
+  # Credential module
   module Credential
     extend ActiveSupport::Concern
 

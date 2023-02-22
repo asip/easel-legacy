@@ -6,11 +6,14 @@ module Api
   module V1
     # Api Controller
     class ApiController < ActionController::Base
+      include Locale::AutoDetect
+
       protect_from_forgery with: :exception
 
       rescue_from StandardError,
                   with: ->(e) { render_error(e) }
 
+      before_action :switch_locale
       before_action :authenticate
       skip_before_action :verify_authenticity_token
 
