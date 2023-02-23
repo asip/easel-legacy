@@ -25,8 +25,9 @@ module Api
       def update
         @user.attributes = user_params
         @user.image_derivatives! if @user.image.present?
+        puts 'testtest'
         if @user.save(context: :with_validation)
-          render json: UserSerializer.new(@user).serializable_hash
+          render json: AccountSerializer.new(@user).serializable_hash
         else
           render json: { errors: @user.errors.messages }.to_json
         end

@@ -18,6 +18,7 @@ module Locale
       # puts request.env['HTTP_ACCEPT_LANGUAGE']
       locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
       locale = locale.present? ? locale : ''
+      # puts locale
       I18n.config.available_locales.include?(locale.to_sym) ? locale : 'en'
     end
   end

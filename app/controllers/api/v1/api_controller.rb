@@ -35,8 +35,6 @@ module Api
         current_user.present?
       end
 
-      attr_reader :current_user
-
       # def set_csrf_token
       #   response.set_header('X-CSRF-Token', form_authenticity_token)
       # end
