@@ -7,20 +7,20 @@
           </div>
           <%= render PreviewComponent::Component.new(model: frame) %>
           <div class="row d-flex justify-content-sm-center">
-            <label for="name" class="col-form-label-sm col-sm-2">名前：</label>
+            <label for="name" class="col-form-label col-sm-3">名前：</label>
             <div class="form-group col-sm-4">
               <%= form.text_field :name, placeholder: "名前", class: 'form-control' %>
             </div>
           </div>
           <div class="row d-flex justify-content-sm-center">
-            <label for="tag_list" class="col-form-label-sm col-sm-2">タグ：</label>
+            <label for="tag_list" class="col-form-label col-sm-3">タグ：</label>
             <div class="form-group col-sm-4">
               <input type="text" name="tag_editor" id="tag_editor" value="" data-frame-target="te" class="form-control" >
               <%= form.hidden_field :tag_list, id: 'tag_list', "data-frame-target": "tl", value: frame.tag_list.join(",") %>
             </div>
           </div>
           <div class="row d-flex justify-content-sm-center">
-            <label for="comment" class="col-form-label-sm col-sm-2">撮影日時：</label>
+            <label for="comment" class="col-form-label col-sm-3">撮影日時：</label>
             <div class="form-group col-sm-4">
               <%= form.datetime_local_field :shooted_at, class: 'form-control' %>
             </div>
