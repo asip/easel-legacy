@@ -4,14 +4,24 @@ import { useViewData } from './use_view_data';
 import { User } from './use_account'
 
 interface Comment {
+  id: number | null
   frame_id: string,
   body: string
+  user_id: number | null,
+  user_name: string
+  user_image_url: string
+  updated_at: string | null
 }
 
 export function useComment(current_user: User) {
   const comment: any = reactive<Comment>({
+    id: null,
     frame_id: '',
     body: '',
+    user_id: null,
+    user_name: '',
+    user_image_url: '',
+    updated_at: null
   });
   const comments: any = reactive<any[]>([]);
   const error_messages: any = reactive<string[]>([]);
@@ -23,15 +33,28 @@ export function useComment(current_user: User) {
     const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`);
     if (res.data) {
       const comment_list = res.data.data;
-      //console.log(comment_list);
+      console.log(comment_list);
       comments.splice(0, comments.length);
       for (let comment of comment_list) {
-        //console.log(comment);
-        comments.push(comment);
+        console.log(comment);
+        comments.push(createCommentFromJson(comment));
       }
       //console.log(comments);
     }
   };
+
+  const createCommentFromJson = (row_data: any): Comment => {
+    return {
+      id: row_data.id,
+      frame_id: row_data.attributes.frame_id,
+      body: row_data.attributes.body,
+      user_id: row_data.attributes.user_id,
+      user_name: row_data.attributes.user_name,
+      user_image_url: row_data.attributes.user_image_url,
+      updated_at: row_data.attributes.updated_at
+    }
+  }
+
   const postComment = async () => {
     try {
       const res: AxiosResponse<any, any> = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
@@ -85,7 +108,7 @@ export function useComment(current_user: User) {
             }
           });
       comments.splice(0, comments.length);
-      await getComments(comment.attributes.frame_id);
+      await getComments(comment.frame_id);
     } catch (error) {
       error_messages.splice(0, error_messages.length);
       error_messages.push('ログインしてください。');

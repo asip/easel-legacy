@@ -26,7 +26,7 @@ let initCommentComponent = (): void => {
         const { comment, comments, error_messages ,getComments, setComment, deleteComment} = useComment(current_user);
 
         const getSanitizedCommentBody = (row: any): string => {
-          return sanitizeHtml(row.attributes.body).replace(/\n/g, '<br>');
+          return sanitizeHtml(row.body).replace(/\n/g, '<br>');
         };
 
         onMounted(async () => {
