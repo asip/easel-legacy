@@ -1,5 +1,6 @@
 <%= turbo_frame_tag "users" do %>
   <br>
+  <% if Rails.application.credentials.dig(:google, :client_id).present?  %>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <div id='g_id_onload'
        data-client_id='<%= Rails.application.credentials.dig(:google, :client_id) %>'
@@ -16,6 +17,7 @@
        data-shape="rectangular"
        data-logo_alignment="left">
   </div>
+  <% end %>
   <%= form_with model: @user, url: sessions_path, method: :post, local: true, html: { 'data-turbo-frame': "_top", 'data-turbo': false } do |form| %>
     <div class="card">
       <div class="card-header">
