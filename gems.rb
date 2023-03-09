@@ -94,6 +94,7 @@ group :development do
   # gem "rack-mini-profiler"
 
   gem 'annotate'
+  gem 'rails-erd'
 end
 
 group :test do
