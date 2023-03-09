@@ -1,6 +1,6 @@
         <div class="card-block">
           <div class="row d-flex justify-content-sm-center">
-            <label for="file" class="col-form-label-sm col-sm-2">ファイル：</label>
+            <label for="file" class="col-form-label-sm col-sm-3">ファイル：</label>
             <div class="form-group col-sm-4">
               <%= form.file_field :file, accept: 'image/jpg,image/jpeg,image/png', multiple: false, class: 'form-control-file', "data-preview-target": "upload" %><%#= form.file_field :file, multiple: false, class: 'form-control-file' %>
             </div>
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="row d-flex justify-content-sm-center">
-            <label for="comment" class="col-form-label-sm col-sm-2">コメント：</label>
+            <label for="comment" class="col-form-label-sm col-sm-3">コメント：</label>
             <div class="form-group col-sm-4">
               <%= form.text_area :comment, class: 'form-control' %>
             </div>
