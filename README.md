@@ -7,8 +7,11 @@
 
 This is backend of Easel.
 
-Rails7.0 + Sorcery(authentication) + Kamnari(paging) + Shrine(upload) + ActsAsTaggableOn(tag) +
-Vue.js 3 + Hotwire (Turbo + Stimulus3) + Bootstrap5
+Rails7.0 + Sorcery(authentication) + Kamnari(paging) +  
+Shrine(upload) + ActsAsTaggableOn(tag) + Vue.js 3 +  
+Hotwire (Turbo + Stimulus3) +Bootstrap5 +  
+Web API (for easel-front) +  
+RailsAdmin (management console)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
