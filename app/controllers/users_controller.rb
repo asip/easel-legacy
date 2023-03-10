@@ -3,6 +3,7 @@
 # Users Controller
 class UsersController < ApplicationController
   include Search::Query
+  include Ref::User
 
   skip_before_action :require_login
   before_action :set_user, only: %i[show new create edit update]
@@ -75,5 +76,9 @@ class UsersController < ApplicationController
 
   def query_params
     {}
+  end
+
+  def ref_params
+    { ref: params[:ref], ref_id: params[:ref_id] }
   end
 end

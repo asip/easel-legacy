@@ -44,7 +44,7 @@
             <!-- <div class="float-start">
             </div> -->
             <div class="float-end">
-              <%= link_to user_path(@frame.user), "data-turbo-frame": "_top", class: "text-decoration-none" do %>
+              <%= link_to user_path(@frame.user, { ref: 'frame_detail', ref_id: @frame.id }), "data-turbo-frame": "_top", class: "text-decoration-none" do %>
                 <%= @frame.user.name %>&nbsp;
               <% end %>
             </div>
