@@ -20,7 +20,7 @@ Things you may want to cover:
 
 * Ruby version : 3.2.1
 * Rails version : 7.0.4
-* System dependencies : yarn & mysql
+* System dependencies : yarn (v1.22.19) & mysql
 * Deployment instructions
   - Run `bundle install --path vendor/bundle` to install the required Rubygems
   - Run `yarn install` to install the required NPM packages
