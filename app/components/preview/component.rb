@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Preview Component
-module PreviewComponent
+module Preview
   # Component
   class Component < ViewComponent::Base
     def initialize(model:)

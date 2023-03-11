@@ -78,4 +78,4 @@
   </div>
 <% end %>
 <br>
-<%= render CommentComponent::Component.new(frame: @frame, token: (logged_in? ? current_user.token : ''), login: (logged_in? ? true : false)) %>
+<%= render Comments::Component.new(frame: @frame, token: (logged_in? ? current_user.token : ''), login: (logged_in? ? true : false)) %>

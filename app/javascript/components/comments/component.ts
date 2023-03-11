@@ -59,7 +59,7 @@ let initCommentComponent = (): void => {
 
     comment_vm.use(TurbolinksAdapter);
 
-    comment_vm.mount('#comment_component');
+    comment_vm.mount('#comments_component');
 
     //console.log(comment_vm);
   }
