@@ -7,6 +7,8 @@ module Screen
     extend ActiveSupport::Concern
 
     included do
+      attr_accessor :confirming
+
       validates_acceptance_of :confirming
 
       after_validation :check_confirming
