@@ -4,7 +4,7 @@
     <%= @form.file_field :image, accept: 'image/jpg,image/jpeg,image/png', multiple: false, class: 'form-control-file', "data-preview-target": "upload" %><%#= @form.file_field :image, multiple: false, class: 'form-control-file' %>
   </div>
 </div>
-<%= render ImagePreview::Component.new(model: @user) %>
+<%= render Image::Preview::Component.new(model: @user) %>
 <% if @user.social_login? %>
   <div class="row d-flex justify-content-sm-center">
     <label for="name" class="form-label col-sm-3 label-bg-style">ユーザー名：</label>
