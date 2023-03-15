@@ -1,6 +1,6 @@
 # Easel - image viewer
 
-![Typing SVG](https://github.com/asip/easel-back/blob/main/public/palette.svg)
+![alt text](https://github.com/asip/easel-back/blob/main/public/palette.svg)
 
 This is backend of Easel.
 
