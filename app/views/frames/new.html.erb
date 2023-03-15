@@ -11,15 +11,15 @@
         </div>
         <br>
         <div class="card-block">
-          <%= render(partial: 'layouts/error_messages', locals: {model: @frame}) %>
+          <%= render ErrorMessages::Component.new(model: @frame) %>
         </div>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
-        <% unless @frame.confirming == 'true' %>
-        <%= render(partial: 'frames/new/input', locals: {form: form, frame: @frame}) %>
-        <%= form.hidden_field :confirming %>
-        <% else %>
-        <%= render(partial: 'frames/new/confirm', locals: {form: form, frame: @frame}) %>
-        <% end %>
+        <% if @frame.confirming == 'true' %>
+        <%= render Frames::New::Confirm::Component.new(form: form, frame: @frame, tag_paths: tag_paths(@frame))  %>
+        <%  else  %>
+        <%= render Frames::New::Input::Component.new(form: form, frame: @frame ,back_to_path: root_path(query_params)) %>
+        <%=  form.hidden_field :confirming  %>
+        <%  end %>
         <%= query_params_hidden_field_tags %>
       </div>
       <br>

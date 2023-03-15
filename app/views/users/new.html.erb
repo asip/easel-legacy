@@ -10,14 +10,14 @@
       </div>
       <div class="card-block">
         <br>
-        <%= render(partial: 'layouts/error_messages', locals: {model: @user}) %>
+        <%= render ErrorMessages::Component.new(model: @user) %>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
-        <% unless @user.confirming == 'true' %>
-        <%= render(partial: 'users/new/input', locals: {form: form, user: @user}) %>
-        <%= form.hidden_field :confirming %>
+        <% if @user.confirming == 'true' %>
+        <%= render Users::New::Confirm::Component.new(form: form, user: @user)  %>
         <% else %>
-        <%= render(partial: 'users/new/confirm', locals: {form: form, user: @user}) %>
-        <% end %>
+        <%= render Users::New::Input::Component.new(form: form, user: @user, back_to_path: login_path) %>
+        <%= form.hidden_field :confirming  %>
+        <%  end %>
         <br>
       </div>
     </div>

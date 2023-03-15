@@ -12,7 +12,7 @@
     </div>
     <div class="card-block">
       <br>
-      <%= render(partial: 'sessions/preview/image', locals: {user: @user, original: false}) %>
+      <%= render Sessions::Preview::Image::Component.new(user: @user, original: false) %>
       <div class="row d-flex justify-content-sm-center">
         <label for="name" class="form-label col-sm-3 label-bg-style">ユーザー名</label>
         <div class="form-group col-sm-4">
@@ -26,7 +26,7 @@
         </div>
       </div>
       <!-- <div class="row d-flex justify-content-sm-center">
-        <label for="passowrd" class="form-label col-sm-3 label-bg-style">パスワード</label>
+        <label for="password" class="form-label col-sm-3 label-bg-style">パスワード</label>
         <div class="form-group col-sm-4">
           <div class="form-control-plaintext"><%= @user.password %></div>
         </div>

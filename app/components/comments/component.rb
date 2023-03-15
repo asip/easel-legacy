@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Comments Component
+# Comments
 module Comments
   # Component
   class Component < ViewComponent::Base

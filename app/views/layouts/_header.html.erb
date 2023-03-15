@@ -9,30 +9,30 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <% unless logged_in? %>
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <%= link_to 'Login', login_path, class: 'nav-link' %>
-          </li>
-        </ul>
-      <% else %>
-        <ul class="navbar-nav justify-ccontent-sm-center me-auto">
-          <li class="nav-item dropdown small">
-            <a class="nav-link dropdown-toggle btn btn-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= current_user.name %>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
-              <li><%= link_to 'profile', profile_path, class: 'dropdown-item' %></li>
-              <li><%= link_to 'Upload', new_frame_path(query_params), class: 'dropdown-item', "data-turbo": false %></li>
-              <li><%= link_to 'Logout', account_logout_path, data: { turbo_method: :delete, turbo_frame: '_top' }, class: 'dropdown-item' %></li>
-              <%# <li><a class="dropdown-item" href="#">Something else here</a></li> %>
-            </ul>
-          </li>
-        </ul>
+      <% if logged_in? %>
+      <ul class="navbar-nav justify-ccontent-sm-center me-auto">
+        <li class="nav-item dropdown small">
+          <a class="nav-link dropdown-toggle btn btn-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= current_user.name %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
+            <li><%= link_to 'profile', profile_path, class: 'dropdown-item'  %></li>
+            <li><%= link_to 'Upload', new_frame_path(query_params), class: 'dropdown-item', "data-turbo": false %></li>
+            <li><%= link_to 'Logout', account_logout_path, data: { turbo_method: :delete, turbo_frame: '_top' }, class: 'dropdown-item'  %></li>
+            <%# <li><a class="dropdown-item" href="#">Something else here</a></li> %>
+          </ul>
+        </li>
+      </ul>
+      <%  else  %>
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= link_to 'Login', login_path, class: 'nav-link'  %>
+        </li>
+      </ul>
       <% end %>
       <ul class="navbar-nav justify-ccontent-sm-center">
         <li class="nav-item">
-          <%= render 'layouts/tag_search'%>
+          <%= render TagSearch::Component.new(word: @word, path: frames_path) %>
         </li>
       </ul>
     </div>

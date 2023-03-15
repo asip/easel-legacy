@@ -9,7 +9,7 @@
     </div>
     <div class="card-block">
       <br>
-      <%= render(partial: 'sessions/preview/image', locals: {user: @user, original: false}) %>
+      <%= render Sessions::Preview::Image::Component.new(user: @user, original: false) %>
       <div class="row d-flex justify-content-sm-center">
         <div class="col-sm-6 text-center">
         <% if logged_in? && @user.id != current_user.id %>

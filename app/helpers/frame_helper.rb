@@ -8,4 +8,13 @@ module FrameHelper
     end
     tags.join.html_safe
   end
+
+  def tag_paths(frame)
+    tags = frame.tags_preview
+    tag_map = {}
+    tags.each do |tag|
+      tag_map[tag] = frames_path({q: tag})
+    end
+    tag_map
+  end
 end

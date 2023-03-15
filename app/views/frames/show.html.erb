@@ -17,8 +17,8 @@
         </div>
       </div>
       <div class="card-block">
-        <%= render(partial: 'frames/preview/image', locals: {frame: @frame, original: true, spotlight: true}) %>
-        <%= render(partial: 'frames/preview/tags', locals: {frame: @frame}) %>
+        <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, spotlight: true) %>
+        <%= render Frames::Preview::Tags::Component.new(tag_paths: tag_paths(@frame)) %>
       </div>
       <div class="card-block">
         <div class="row d-flex justify-content-sm-center">
@@ -73,7 +73,7 @@
       <% end %>
     </div>
     <% if logged_in? && @frame.user_id == current_user.id %>
-      <%= render(partial: 'frames/show/delete_modal', locals: { frame: @frame}) %>
+      <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame, query_params)) %>
     <% end %>
   </div>
 <% end %>
