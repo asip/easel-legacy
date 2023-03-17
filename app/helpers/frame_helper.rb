@@ -13,7 +13,7 @@ module FrameHelper
     tags = frame.tags_preview
     tag_map = {}
     tags.each do |tag|
-      tag_map[tag] = frames_path({q: tag})
+      tag_map[tag] = frames_path({ q: tag })
     end
     tag_map
   end

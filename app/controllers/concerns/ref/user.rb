@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Referrer Module
 module Ref
   # User Module
