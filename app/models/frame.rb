@@ -23,7 +23,7 @@ class Frame < ApplicationRecord
 
   acts_as_taggable_on :tags
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to :user
 
   paginates_per 8
@@ -50,9 +50,7 @@ class Frame < ApplicationRecord
     scope
   }
 
-  def user_name
-    user.name
-  end
+  delegate :name, to: :user, prefix: true
 
   def tags_preview
     tag_list.to_s.split(/\s*,\s*/)

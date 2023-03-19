@@ -7,7 +7,7 @@ module Api
     # Users Controller
     class UsersController < Api::V1::ApiController
       skip_before_action :authenticate, only: %i[create show]
-      before_action :set_user, only: %i[show create edit update]
+      before_action :set_user, only: %i[show create update]
 
       def show
         render json: UserSerializer.new(@user).serializable_hash
@@ -25,7 +25,7 @@ module Api
       def update
         @user.attributes = user_params
         @user.image_derivatives! if @user.image.present?
-        puts 'testtest'
+        # puts 'testtest'
         if @user.save(context: :with_validation)
           render json: AccountSerializer.new(@user).serializable_hash
         else

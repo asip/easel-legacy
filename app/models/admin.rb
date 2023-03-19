@@ -37,8 +37,8 @@ class Admin < ApplicationRecord
     save.validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   end
 
-  with_options on: :login do |login|
-    login.validates :email, presence: true
-    login.validates :password, presence: true
+  with_options on: :login do
+    validates :email, presence: true
+    validates :password, presence: true
   end
 end

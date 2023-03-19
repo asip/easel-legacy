@@ -25,6 +25,7 @@
 #
 #  index_users_on_email                                (email) UNIQUE
 #  index_users_on_last_logout_at_and_last_activity_at  (last_logout_at,last_activity_at)
+#  index_users_on_name                                 (name) UNIQUE
 #  index_users_on_token                                (token) UNIQUE
 #  index_users_on_unlock_token                         (unlock_token)
 #
@@ -39,12 +40,14 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
-  has_many :frames
-  has_many :comments
+  has_many :frames, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   # フォローをした、されたの関係
-  has_many :follower_relationships, class_name: 'FollowRelationship', foreign_key: 'follower_id', dependent: :destroy
-  has_many :followee_relationships, class_name: 'FollowRelationship', foreign_key: 'followee_id', dependent: :destroy
+  has_many :follower_relationships, class_name: 'FollowRelationship', foreign_key: 'follower_id',
+                                    inverse_of: :follower, dependent: :destroy
+  has_many :followee_relationships, class_name: 'FollowRelationship', foreign_key: 'followee_id',
+                                    inverse_of: :followee, dependent: :destroy
 
   # 一覧画面で使う
   has_many :followees, through: :follower_relationships, source: :followee
@@ -63,9 +66,9 @@ class User < ApplicationRecord
     save.validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   end
 
-  with_options on: :login do |login|
-    login.validates :email, presence: true
-    login.validates :password, presence: true
+  with_options on: :login do
+    validates :email, presence: true
+    validates :password, presence: true
   end
 
   def image_url_for_view(key)

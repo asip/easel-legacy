@@ -2,6 +2,7 @@
 
 # sorcery brute force protection
 class SorceryBruteForceProtection < ActiveRecord::Migration[5.1]
+  # rubocop:disable Rails/BulkChangeTable
   def change
     add_column :users, :failed_logins_count, :integer, default: 0
     add_column :users, :lock_expires_at, :datetime, default: nil
@@ -9,4 +10,5 @@ class SorceryBruteForceProtection < ActiveRecord::Migration[5.1]
 
     add_index :users, :unlock_token
   end
+  # rubocop:enable Rails/BulkChangeTable
 end

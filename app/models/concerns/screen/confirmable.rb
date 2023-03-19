@@ -9,7 +9,7 @@ module Screen
     included do
       attr_accessor :confirming
 
-      validates_acceptance_of :confirming
+      validates :confirming, acceptance: true
 
       after_validation :check_confirming
     end

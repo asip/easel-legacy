@@ -5,6 +5,7 @@ module Api
   # V1
   module V1
     # Api Controller
+    # rubocop:disable Rails/ApplicationController
     class ApiController < ActionController::Base
       include Locale::AutoDetect
 
@@ -40,4 +41,5 @@ module Api
       # end
     end
   end
+  # rubocop:enable Rails/ApplicationController
 end

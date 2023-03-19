@@ -6,7 +6,9 @@ module FrameHelper
     tags = query_params.map do |key, value|
       hidden_field_tag(key, value) if value.present?
     end
+    # rubocop:disable Rails/OutputSafety
     tags.join.html_safe
+    # rubocop:enable Rails/OutputSafety
   end
 
   def tag_paths(frame)
