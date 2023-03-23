@@ -7,22 +7,14 @@ module Api
     # Api Controller
     # rubocop:disable Rails/ApplicationController
     class ApiController < ActionController::Base
+      include Api::ExceptionHandler
       include Locale::AutoDetect
 
       protect_from_forgery with: :exception
 
-      rescue_from StandardError,
-                  with: ->(e) { render_error(e) }
-
       before_action :switch_locale
       before_action :authenticate
       skip_before_action :verify_authenticity_token
-
-      def render_error(exception)
-        status_code = ActionDispatch::ExceptionWrapper.new(Rails.env, exception).status_code
-        render json: { message: exception.message, status: status_code },
-               status: status_code
-      end
 
       protected
 

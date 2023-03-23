@@ -6,6 +6,7 @@ module Api
   module V1
     # Comments Controller
     class CommentsController < Api::V1::ApiController
+      skip_before_action :switch_locale, only: [:index]
       skip_before_action :authenticate, only: [:index]
 
       def index
