@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
+# api
 module Api
+  # ExceptionHandler
   module ExceptionHandler
     extend ActiveSupport::Concern
 
     included do
-      rescue_from StandardError, with: ->(e) { render_500(e) }
-      rescue_from ActiveRecord::RecordNotFound, with: ->(e) { render_404(e) }
-      rescue_from UnauthorizedError, with: ->(e) { render_401(e) }
+      rescue_from StandardError, with: ->(e) { render500(e) }
+      rescue_from ActiveRecord::RecordNotFound, with: ->(e) { render404(e) }
+      rescue_from UnauthorizedError, with: ->(e) { render401(e) }
     end
 
     class UnauthorizedError < StandardError
@@ -13,25 +17,25 @@ module Api
 
     protected
 
-    def render_400(exception = nil, messages = nil)
+    def render400(exception = nil, messages = nil)
       render_error(400, 'Bad Request', exception&.message, *messages)
     end
 
-    def render_401(exception = nil, messages = nil)
-      render_error(402,'Unauthorized', exception&.message, *messages)
+    def render401(exception = nil, messages = nil)
+      render_error(401, 'Unauthorized', exception&.message, *messages)
     end
 
-    def render_404(exception = nil, messages = nil)
+    def render404(exception = nil, messages = nil)
       render_error(404, 'Not Found', exception&.message, *messages)
     end
 
-    def render_500(exception = nil, messages = nil)
+    def render500(exception = nil, messages = nil)
       render_error(500, 'Internal Server Error', exception&.message, *messages)
     end
 
     def render_error(code, message, *error_messages)
       response = {
-        message: message,
+        message:,
         errors: error_messages.compact
       }
 

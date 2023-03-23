@@ -8,7 +8,7 @@ module Api
     class FramesController < Api::V1::ApiController
       include Pagination
 
-      skip_before_action :authenticate, only: [:index]
+      skip_before_action :authenticate, only: %i[index show]
       before_action :set_query, only: [:index]
       before_action :set_frame, only: %i[show create update destroy]
 
