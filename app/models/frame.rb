@@ -16,7 +16,7 @@
 
 # Frame
 class Frame < ApplicationRecord
-  include Screen::Confirmable
+  include Page::Confirmable
   # has_one_attached :file
   include Contents::Uploader::Attachment(:file)
   include DateAndTime::Util

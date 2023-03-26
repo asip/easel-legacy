@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Screen Module
-module Screen
+# Page Module
+module Page
   # Confirmable Module
   module Confirmable
     extend ActiveSupport::Concern

@@ -32,7 +32,7 @@
 
 # User
 class User < ApplicationRecord
-  include Screen::Confirmable
+  include Page::Confirmable
   include Profile::Image::Uploader::Attachment(:image)
 
   authenticates_with_sorcery!
