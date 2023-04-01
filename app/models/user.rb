@@ -25,24 +25,38 @@
 #
 #  index_users_on_email                                (email) UNIQUE
 #  index_users_on_last_logout_at_and_last_activity_at  (last_logout_at,last_activity_at)
+#  index_users_on_name                                 (name) UNIQUE
 #  index_users_on_token                                (token) UNIQUE
 #  index_users_on_unlock_token                         (unlock_token)
 #
 
 # User
 class User < ApplicationRecord
-  include Screen::Confirmable
+  include Page::Confirmable
   include Profile::Image::Uploader::Attachment(:image)
 
   authenticates_with_sorcery!
 
-  has_many :frames
-  has_many :comments
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
 
-  VALID_NAME_REGEX = /\A\z|\A[a-zA-Z\d]{3,40}\z/.freeze
-  VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
+  has_many :frames, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
-  with_options on: %i[create update] do |save|
+  # フォローをした、されたの関係
+  has_many :follower_relationships, class_name: 'FollowRelationship', foreign_key: 'follower_id',
+                                    inverse_of: :follower, dependent: :destroy
+  has_many :followee_relationships, class_name: 'FollowRelationship', foreign_key: 'followee_id',
+                                    inverse_of: :followee, dependent: :destroy
+
+  # 一覧画面で使う
+  has_many :followees, through: :follower_relationships, source: :followee
+  has_many :followers, through: :followee_relationships, source: :follower
+
+  VALID_NAME_REGEX = /\A\z|\A[a-zA-Z\d\s]{3,40}\z/
+  VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  with_options on: :with_validation do |save|
     save.validates :name, presence: true, uniqueness: true, length: { in: 3..40 }, format: { with: VALID_NAME_REGEX }
 
     save.validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
@@ -52,9 +66,9 @@ class User < ApplicationRecord
     save.validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   end
 
-  with_options on: :login do |login|
-    login.validates :email, presence: true
-    login.validates :password, presence: true
+  with_options on: :login do
+    validates :email, presence: true
+    validates :password, presence: true
   end
 
   def image_url_for_view(key)
@@ -74,11 +88,30 @@ class User < ApplicationRecord
     true
   end
 
-  def assign_token(token)
-    update!(token: token)
+  def assign_token(token_)
+    update!(token: token_)
   end
 
   def reset_token
     update!(token: nil)
+  end
+
+  # フォローしたときの処理
+  def follow(user_id)
+    follower_relationships.create(followee_id: user_id)
+  end
+
+  # フォローを外すときの処理
+  def unfollow(user_id)
+    follower_relationships.find_by(followee_id: user_id).destroy
+  end
+
+  # フォローしているか判定
+  def following?(user)
+    followees.include?(user)
+  end
+
+  def social_login?
+    authentications.present?
   end
 end

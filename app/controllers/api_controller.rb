@@ -2,11 +2,13 @@
 
 # Api Controller
 class ApiController < ActionController::API
+  include Locale::AutoDetect
   # protect_from_forgery with: :null_session
 
   rescue_from StandardError,
               with: ->(e) { render_error(e) }
 
+  before_action :switch_locale
   before_action :authenticate
 
   def render_error(exception)

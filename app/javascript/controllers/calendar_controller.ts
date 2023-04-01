@@ -7,11 +7,13 @@ export default class CalendarController extends Controller {
   calTarget: HTMLElement;
   calendar: Datepicker;
 
+  hasCalTarget!: boolean;
+
   connect() {
     let cal_trigger: HTMLElement = null;
-    try{
+    if(this.hasCalTarget){
       cal_trigger = this.calTarget;
-    } catch(e) {}
+    }
 
     if (cal_trigger){
 

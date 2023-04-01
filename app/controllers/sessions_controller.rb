@@ -10,18 +10,21 @@ class SessionsController < ApplicationController
     @user = User.new
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create
     params_user = user_params
     token = login_and_issue_token(params_user[:email], params_user[:password])
     @user = current_user
     if @user
       @user.assign_token(token) if @user.token.blank? || @user.token_expire?
+      cookies.permanent[:access_token] = token
       redirect_to root_path
     else
       validate_login(params_user)
       render :new
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def show
     @user = current_user
@@ -29,6 +32,7 @@ class SessionsController < ApplicationController
 
   def destroy
     current_user.reset_token
+    cookies.delete(:access_token)
     logout
     redirect_to root_path, status: :see_other
   end

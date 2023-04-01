@@ -1,5 +1,4 @@
-<div class="row">
-  <div class="col-sm-12">
+<div class="row col-sm-12">
   <%= turbo_frame_tag 'users frames' do %>
     <br>
     <%= render partial: "frames/more/load_prev", locals: {page_scope: @frames, word: @word} %>
@@ -13,5 +12,4 @@
       <%= paginate @frames, params: { q: @word },theme: 'bootstrap-5' %>
     </div>
   </div><% end %>
-  </div>
 </div>

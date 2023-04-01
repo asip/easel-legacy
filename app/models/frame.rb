@@ -16,14 +16,14 @@
 
 # Frame
 class Frame < ApplicationRecord
-  include Screen::Confirmable
+  include Page::Confirmable
   # has_one_attached :file
   include Contents::Uploader::Attachment(:file)
   include DateAndTime::Util
 
   acts_as_taggable_on :tags
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to :user
 
   paginates_per 8
@@ -37,8 +37,8 @@ class Frame < ApplicationRecord
 
     if word.present?
       scope = if date_valid?(word)
-                scope.where('cast(shooted_at as date)=?', Time.zone.parse(word).to_date)
-                     .or(Frame.where('cast(updated_at as date)=?', Time.zone.parse(word).to_date))
+                scope.where('cast(frames.shooted_at as date)=?', Time.zone.parse(word).to_date)
+                     .or(Frame.where('cast(frames.updated_at as date)=?', Time.zone.parse(word).to_date))
               else
                 scope.joins(:tags, :user)
                      .merge(ActsAsTaggableOn::Tag.where('tags.name like ?', "%#{word}%"))
@@ -50,6 +50,8 @@ class Frame < ApplicationRecord
     scope
   }
 
+  delegate :name, to: :user, prefix: true
+
   def tags_preview
     tag_list.to_s.split(/\s*,\s*/)
   end
@@ -57,11 +59,10 @@ class Frame < ApplicationRecord
   private
 
   def check_tag
-    errors[:tag_list] << 'は５つまでしかセットできません' if tags_preview.size > 5
+    errors.add(:tag_list, I18n.t('validations.message.frame.tags.array_length')) if tags_preview.size > 5
     tags_preview.each do |tag|
-      # puts tag.to_s
       if tag.to_s.size > 10
-        errors[:tag_list] << 'は10文字以内で入力してください'
+        errors.add(:tag_list, I18n.t('validations.message.frame.tags.length'))
         break
       end
     end

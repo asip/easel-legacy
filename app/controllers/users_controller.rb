@@ -2,9 +2,14 @@
 
 # Users Controller
 class UsersController < ApplicationController
+  include Search::Query
+  include Ref::User
+
   skip_before_action :require_login
-  before_action :set_user, only: %i[new create edit update]
+  before_action :set_user, only: %i[show new create edit update]
   before_action :back_to_form, only: %i[create update]
+
+  def show; end
 
   def new; end
 
@@ -12,7 +17,7 @@ class UsersController < ApplicationController
 
   def create
     @user.image_derivatives! if @user.image.present?
-    if @user.save
+    if @user.save(context: :with_validation)
       redirect_to login_path
     else
       render :new, status: :unprocessable_entity
@@ -22,7 +27,7 @@ class UsersController < ApplicationController
   def update
     @user.attributes = user_params
     @user.image_derivatives! if @user.image.present?
-    if @user.save
+    if @user.save(context: :with_validation)
       redirect_to profile_path
     else
       render :edit, status: :unprocessable_entity
@@ -33,6 +38,8 @@ class UsersController < ApplicationController
 
   def set_user
     @user = case action_name
+            when 'show'
+              User.find_by!(id: params[:id])
             when 'new'
               User.new
             when 'create'
@@ -65,5 +72,13 @@ class UsersController < ApplicationController
       :image,
       :confirming
     )
+  end
+
+  def query_params
+    {}
+  end
+
+  def ref_params
+    { ref: params[:ref], ref_id: params[:ref_id] }
   end
 end

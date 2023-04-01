@@ -71,6 +71,7 @@ Rails.application.config.sorcery.configure do |config|
   # Default: `[]`
   #
   # config.external_providers =
+  config.external_providers = %i[google]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -131,10 +132,10 @@ Rails.application.config.sorcery.configure do |config|
   # config.wechat.secret = ""
   # config.wechat.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=wechat"
   #
-  # config.google.key = ""
-  # config.google.secret = ""
-  # config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
-  # config.google.user_info_mapping = {:email => "email", :username => "name"}
+  config.google.key = Settings.google.client_id
+  config.google.secret = Settings.google.client_secret
+  config.google.callback_url = Settings.sorcery[:google_callback_url]
+  config.google.user_info_mapping = { email: 'email', name: 'name' }
   # config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.
@@ -431,6 +432,7 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `nil`
     #
     # user.authentications_class =
+    user.authentications_class = Authentication
 
     # User's identifier in authentications class.
     # Default: `:user_id`

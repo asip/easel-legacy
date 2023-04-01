@@ -7,7 +7,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails', '~> 7.0.0'
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
-gem 'propshaft', '~> 0.6.4'
+gem 'propshaft', '~> 0.7.0'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5.3'
@@ -52,6 +52,8 @@ gem 'rambulance'
 gem 'sorcery'
 gem 'sorcery-jwt'
 
+gem 'googleauth'
+
 # settings
 gem 'config'
 
@@ -63,19 +65,25 @@ gem 'kaminari', '~> 1.2.2'
 # gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
 gem 'acts-as-taggable-on', '~> 9.0.1'
 
-# search
-# gem 'ransack'
-
 # json
 gem 'jsonapi-serializer'
 
+# cors
+gem 'rack-cors'
+
 # soft delete
 # gem 'discard', '~> 1.2'
+
+# management console
+gem 'rails_admin', '~> 3.0'
+# gem 'sassc-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   # Ruby style guide, linter, and formatter
+  gem 'rspec-rails'
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
 end
 
@@ -87,7 +95,7 @@ group :development do
   # gem "rack-mini-profiler"
 
   gem 'annotate'
-  gem 'rspec-rails'
+  gem 'rails-erd'
 end
 
 group :test do

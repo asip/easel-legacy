@@ -25,6 +25,7 @@
 #
 #  index_users_on_email                                (email) UNIQUE
 #  index_users_on_last_logout_at_and_last_activity_at  (last_logout_at,last_activity_at)
+#  index_users_on_name                                 (name) UNIQUE
 #  index_users_on_token                                (token) UNIQUE
 #  index_users_on_unlock_token                         (unlock_token)
 #
@@ -35,4 +36,16 @@ class UserSerializer
   set_type :user
   set_id :id
   attributes :id, :email, :name
+
+  attribute :image_thumb_url do |object|
+    object.image_url_for_view(:thumbnail)
+  end
+
+  attribute :image_one_url do |object|
+    object.image_url_for_view(:one)
+  end
+
+  attribute :image_three_url do |object|
+    object.image_url_for_view(:three)
+  end
 end

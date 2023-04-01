@@ -1,1 +1,1 @@
-import "./components/comment_component/component"
+import "./components/comments/component"
