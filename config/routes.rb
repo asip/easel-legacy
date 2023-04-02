@@ -2,8 +2,7 @@
 
 # rubocop: disable Metrics/BlockLength
 Rails.application.routes.draw do
-  # todo (RailsAdmin doesn't support esbuild)
-  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'frames#index'

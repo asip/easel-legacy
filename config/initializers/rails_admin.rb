@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# todo (RailsAdmin doesn't support esbuild)
-=begin
 RailsAdmin.config do |config|
   config.asset_source = :webpack
 
@@ -51,4 +49,3 @@ RailsAdmin.config do |config|
     # history_show
   end
 end
-=end
