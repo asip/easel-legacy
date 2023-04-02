@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# todo (RailsAdmin depends on Sprockets)
+# todo (RailsAdmin doesn't support esbuild)
 =begin
 RailsAdmin.config do |config|
-  config.asset_source = :sprockets
+  config.asset_source = :webpack
 
   ### Popular gems integration
 
