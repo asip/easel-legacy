@@ -21,16 +21,19 @@ module Api
       def create
         comment = Comment.new(comment_params)
         comment.user_id = current_user.id
-        comment.save if logged_in? && comment.valid?
+        # comment.save if logged_in? && comment.valid?
 
-        # logger.debug CommentSerializer.new(comment).serialized_json
-
-        render json: CommentSerializer.new(comment).serializable_hash
+        if comment.save
+          # logger.debug CommentSerializer.new(comment).serialized_json
+          render json: CommentSerializer.new(comment).serializable_hash
+        else
+          render json: { errors: commet.errors.messages }.to_json
+        end
       end
 
       def destroy
         comment = Comment.find_by(id: params[:id])
-        comment.destroy if comment && logged_in? && current_user.id == comment.user_id
+        comment.destroy if logged_in? && comment && current_user.id == comment.user_id
         head :no_content
       end
 
