@@ -9,32 +9,32 @@ class OauthsController < ApplicationController
   skip_before_action :require_login # applications_controllerでbefore_action :require_loginを設定している場合
   before_action :verify_g_csrf_token
 
-  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def callback
     provider = auth_params[:provider]
 
-    if (@user = login_from(provider))
-      @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
-      cookies.permanent[:access_token] = @user.token
-      redirect_to root_path
-    else
-      begin
-        @user = create_from(provider)
-        reset_session
-        @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
-        auto_login(@user)
-        cookies.permanent[:access_token] = @user.token
-        redirect_to root_path
-      rescue ActiveRecord::RecordNotUnique
-        redirect_to root_path
-      rescue StandardError
-        redirect_to root_path
-      end
-    end
+    login_from_oauth(provider)
+    cookies.permanent[:access_token] = @user.token
+    redirect_to root_path
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   private
+
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+  def login_from_oauth(provider)
+    if (@user = login_from(provider))
+      @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
+    else
+      @user = create_from(provider)
+      reset_session
+      @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
+      auto_login(@user)
+    end
+  rescue ActiveRecord::RecordNotUnique
+    redirect_to root_path
+  rescue StandardError
+    redirect_to root_path
+  end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   def verify_g_csrf_token
     if cookies['g_csrf_token'].blank? || params[:g_csrf_token].blank? ||
