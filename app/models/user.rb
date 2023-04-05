@@ -25,7 +25,7 @@
 #
 #  index_users_on_email                                (email) UNIQUE
 #  index_users_on_last_logout_at_and_last_activity_at  (last_logout_at,last_activity_at)
-#  index_users_on_name                                 (name) UNIQUE
+#  index_users_on_name_and_email                       (name,email) UNIQUE
 #  index_users_on_token                                (token) UNIQUE
 #  index_users_on_unlock_token                         (unlock_token)
 #
@@ -57,7 +57,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   with_options on: :with_validation do |save|
-    save.validates :name, presence: true, uniqueness: true, length: { in: 3..40 }, format: { with: VALID_NAME_REGEX }
+    save.validates :name, presence: true, length: { in: 3..40 }, format: { with: VALID_NAME_REGEX }
 
     save.validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
