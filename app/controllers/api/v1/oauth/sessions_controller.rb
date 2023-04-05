@@ -11,10 +11,17 @@ module Api
 
         skip_before_action :authenticate
 
-        # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         def create
           provider = auth_params[:provider]
 
+          login_from_oauth(provider)
+          cookies.permanent[:access_token] = @user.token
+          render json: AccountSerializer.new(@user).serializable_hash
+        end
+
+        private
+
+        def login_from_oauth(provider)
           if (@user = login_from(provider))
             @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
           else
@@ -23,12 +30,7 @@ module Api
             @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
             auto_login(@user)
           end
-          cookies.permanent[:access_token] = @user.token
-          render json: AccountSerializer.new(@user).serializable_hash
         end
-        # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
-
-        private
 
         def auth_params
           params.permit(:provider, :credential)
