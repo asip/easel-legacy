@@ -29,7 +29,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.[jt]s$/,
         loader: 'esbuild-loader',
         options: {
           target: 'es2015'  // Syntax to compile to (see options below for possible values)
