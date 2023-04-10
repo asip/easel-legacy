@@ -37,7 +37,8 @@
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
     "build:webpack": "webpack --config ./config/webpack/webpack.config.js",
-    "build:css": "copyfiles -f node_modules/bootstrap-icons/font/fonts/* public/assets/fonts && cp -r node_modules/@fortawesome/fontawesome-free/webfonts ./app/assets/builds && sass ./app/assets/stylesheets/:./app/assets/builds --no-source-map --load-path=node_modules",
+    "build:css": "sass ./app/assets/stylesheets/:./app/assets/builds --no-source-map --load-path=node_modules",
+    "build:font": "copyfiles -f node_modules/bootstrap-icons/font/fonts/* public/assets/fonts && cp -r node_modules/@fortawesome/fontawesome-free/webfonts ./app/assets/builds",
     "watch:ts": "tsc-watch --noClear -p tsconfig.json"
   }
 }
