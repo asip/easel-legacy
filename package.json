@@ -19,7 +19,6 @@
     "esbuild-loader": "^3.0.1",
     "js-cookie": "^3.0.1",
     "luminous-lightbox": "^2.4.0",
-    "prop-types": "^15.8.1",
     "rails_admin": "3.1.2",
     "sanitize-html": "^2.10.0",
     "sass": "^1.60.0",
