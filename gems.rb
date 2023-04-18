@@ -9,7 +9,7 @@ gem 'rails', '~> 7.0.0'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem 'propshaft', '~> 0.7.0'
 
-gem 'dartsass-rails'
+# gem 'dartsass-rails'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5.3'
