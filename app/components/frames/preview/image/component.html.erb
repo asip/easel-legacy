@@ -4,7 +4,7 @@
       <% if @spotlight.present? && @spotlight == true %>
         <%= link_to image_tag(@frame.file_url(:three), class: 'mx-auto'), @frame.file_url, class: 'mx-auto spotlight' %>
       <% else %>
-        <%= link_to image_tag(@frame.file_url(:three), class: 'mx-auto'), @frame.file_url, class: 'mx-auto', "data-frame-target": "lm" %>
+        <%= link_to image_tag(@frame.file_url(:three), class: 'mx-auto'), @frame.file_url, class: 'mx-auto', "data-luminous-target": "lm" %>
       <% end %>
     </div>
   <% else %>

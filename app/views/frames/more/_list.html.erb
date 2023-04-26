@@ -1,7 +1,7 @@
 <% frames.each do |frame| %>
-  <div class="card col-sm-3 kadomaru" data-controller="frame">
+  <div class="card col-sm-3 kadomaru" data-controller="luminous">
     <% if frame.file.present? %>
-      <%= link_to image_tag(frame.file_url(:two), class: 'card-img-top'), frame.file_url, class: 'mx-auto', style: "padding-top: 10px;", "data-frame-target": "lm" %>
+      <%= link_to image_tag(frame.file_url(:two), class: 'card-img-top'), frame.file_url, class: 'mx-auto', style: "padding-top: 10px;", "data-luminous-target": "lm" %>
       <br>
     <% end %>
     <div class="card-block">

@@ -4,7 +4,8 @@ import { Application } from "@hotwired/stimulus"
 //const context = require.context(".", true, /_controller\.js$/)
 //application.load(definitionsFromContext(context))
 import CalendarController from "./calendar_controller";
-import FrameController from "./frame_controller";
+import TagifyController from "./tagify_controller";
+import LuminousController from "./luminous_controller";
 import PreviewController from "./image/preview_controller";
 import ToastController from "./toast_controller";
 
@@ -14,7 +15,8 @@ const application: Application = Application.start()
 application.debug = false
 
 application.register("calendar", CalendarController);
-application.register("frame", FrameController);
+application.register("tagify", TagifyController);
+application.register("luminous", LuminousController);
 application.register("preview", PreviewController);
 application.register("toast", ToastController);
 
