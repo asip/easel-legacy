@@ -1,7 +1,8 @@
-import { Controller } from "stimulus"
+import ApplicationController from "./application_controller"
+// @ts-ignore
 import Tagify from '@yaireo/tagify'
 
-export default class TagifyController extends Controller {
+export default class TagifyController extends ApplicationController {
   static targets = ['te', 'tl'];
   teTarget!: HTMLElement
   tlTarget!: HTMLInputElement
@@ -54,10 +55,5 @@ export default class TagifyController extends Controller {
       this.tag_editor.removeAllTags()
       this.removeElementsByClassName('tagify')
     }
-  }
-
-  removeElementsByClassName(className){
-    const elements: HTMLCollectionOf<Element> = this.element.getElementsByClassName(className);
-    Array.from(elements).forEach(e => e.remove());
   }
 }

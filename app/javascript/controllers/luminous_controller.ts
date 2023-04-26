@@ -1,7 +1,8 @@
-import { Controller } from "stimulus"
+import ApplicationController from "./application_controller"
+// @ts-ignore
 import { Luminous } from 'luminous-lightbox'
 
-export default class LuminousController extends Controller {
+export default class LuminousController extends ApplicationController {
   static targets = ['lm'];
   lmTarget!: HTMLElement
 
@@ -26,10 +27,5 @@ export default class LuminousController extends Controller {
       this.image.destroy();
       this.removeElementsByClassName('lum-lightbox')
     }
-  }
-
-  removeElementsByClassName(className){
-    const elements: HTMLCollectionOf<Element> = this.element.getElementsByClassName(className);
-    Array.from(elements).forEach(e => e.remove());
   }
 }

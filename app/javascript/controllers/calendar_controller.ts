@@ -1,8 +1,9 @@
-import { Controller } from "stimulus"
+import ApplicationController from "./application_controller"
+// @ts-ignore
 import { Datepicker } from "vanillajs-datepicker";
 import ja from "../locales/date-picker/ja"
 
-export default class CalendarController extends Controller {
+export default class CalendarController extends ApplicationController {
   static targets = ['cal'];
   calTarget: HTMLElement;
   calendar: Datepicker;

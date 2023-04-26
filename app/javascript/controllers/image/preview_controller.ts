@@ -1,6 +1,6 @@
-import { Controller } from "stimulus"
+import ApplicationController from "../application_controller"
 
-export default class PreviewController extends Controller {
+export default class PreviewController extends ApplicationController {
   static targets = ['upload', 'content', 'image']
   uploadTarget!: HTMLInputElement
   contentTarget!: HTMLElement
