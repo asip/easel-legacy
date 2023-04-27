@@ -7,7 +7,7 @@ class FramesController < ApplicationController
   include DateAndTime::Util
 
   skip_before_action :require_login, only: %i[index show]
-  before_action :set_query, only: %i[index show new edit]
+  before_action :set_query, only: %i[index prev next show new edit]
   before_action :set_day, only: [:index]
   before_action :set_frame, only: %i[show new create edit update destroy]
   before_action :back_to_form, only: %i[create update]
