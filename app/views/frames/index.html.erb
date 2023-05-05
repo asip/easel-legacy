@@ -1,5 +1,6 @@
 <div class="row col-sm-12">
-  <%= turbo_frame_tag 'users frames' do %>
+  <%= turbo_frame_tag "users" do %><% end %>
+  <%= turbo_frame_tag 'frames' do %>
     <br>
     <%= render partial: "frames/more/load_prev", locals: {page_scope: @frames, word: @word} %>
     <turbo-frame id="list" class="row">

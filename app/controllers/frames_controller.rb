@@ -28,7 +28,7 @@ class FramesController < ApplicationController
     @frame.user_id = current_user.id
     @frame.file_derivatives! if @frame.file.present?
     if @frame.save
-      render :show
+      redirect_to root_path(query_params)
     else
       render :new, status: :unprocessable_entity
     end
