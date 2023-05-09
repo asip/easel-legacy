@@ -17,10 +17,10 @@ let initCommentComponent = (): void => {
       'X-CSRF-TOKEN': constants.csrf_token
     };
 
-    const { access_token } = useCookieData();
-
     const comment_vm: Application = createApp({
       setup() {
+        const { access_token } = useCookieData();
+        
         const { account, logged_in, current_user, getAccount } = useAccount();
 
         const { comment, comments, error_messages ,getComments, setComment, deleteComment} = useComment(current_user);
@@ -31,6 +31,7 @@ let initCommentComponent = (): void => {
 
         onMounted(async () => {
           current_user.token = access_token;
+          //console.log(access_token)
           logged_in.value = current_user.token != null;
           //console.log(current_user.token);
           //console.log(logged_in.value);
