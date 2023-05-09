@@ -28,6 +28,11 @@ class UsersController < ApplicationController
     @user.attributes = user_params
     @user.image_derivatives! if @user.image.present?
     if @user.save(context: :with_validation)
+      # puts @user.saved_change_to_email?
+      if @user.saved_change_to_email?
+        @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
+        cookies.permanent[:access_token] = token
+      end
       redirect_to profile_path
     else
       render :edit, status: :unprocessable_entity
