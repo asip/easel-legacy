@@ -16,6 +16,7 @@
 
 # Frame
 class Frame < ApplicationRecord
+  include Json::Util
   include Page::Confirmable
   # has_one_attached :file
   include Contents::Uploader::Attachment(:file)
