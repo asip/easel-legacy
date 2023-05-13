@@ -7,7 +7,7 @@ module Api
     # v1
     module V1
       # Frames Controller
-      class FramesController < ApiController
+      class FramesController < Api::Front::V1::ApiController
         skip_before_action :authenticate, only: [:index]
         before_action :set_query, only: [:index]
 
