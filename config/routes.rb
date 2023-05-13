@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :front do
       namespace :v1 do
-        resources :frames, only: [:index] do
+        resources :frames, only: [] do
           resources :comments, only: %i[index create]
         end
         resources :comments, only: [:destroy]
