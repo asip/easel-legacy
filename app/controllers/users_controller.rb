@@ -29,10 +29,7 @@ class UsersController < ApplicationController
     @user.image_derivatives! if @user.image.present?
     if @user.save(context: :with_validation)
       # puts @user.saved_change_to_email?
-      if @user.saved_change_to_email?
-        @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
-        cookies.permanent[:access_token] = @user.token
-      end
+      update_token
       redirect_to profile_path
     else
       render :edit, status: :unprocessable_entity
@@ -40,6 +37,13 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def update_token
+    return unless @user.saved_change_to_email?
+
+    @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
+    cookies.permanent[:access_token] = @user.token
+  end
 
   def set_user
     @user = case action_name
