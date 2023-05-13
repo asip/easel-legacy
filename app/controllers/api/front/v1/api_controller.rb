@@ -6,19 +6,12 @@ module Api
       # Api Controller
       class ApiController < ActionController::API
         include Locale::AutoDetect
-        # protect_from_forgery with: :null_session
+        include Api::ExceptionHandler
 
-        rescue_from StandardError,
-                    with: ->(e) { render_error(e) }
+        # protect_from_forgery with: :null_session
 
         before_action :switch_locale
         before_action :authenticate
-
-        def render_error(exception)
-          status_code = ActionDispatch::ExceptionWrapper.new(Rails.env, exception).status_code
-          render json: { message: exception.message, status: status_code },
-                 status: status_code
-        end
 
         protected
 
