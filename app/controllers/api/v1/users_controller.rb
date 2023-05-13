@@ -18,11 +18,6 @@ module Api
       def create
         @user.image_derivatives! if @user.image.present?
         if @user.save(context: :with_validation)
-          # puts @user.saved_change_to_email?
-          if @user.saved_change_to_email?
-            @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
-            cookies.permanent[:access_token] = @user.token
-          end
           render json: UserSerializer.new(@user).serializable_hash
         else
           render json: { errors: @user.errors.messages }.to_json
@@ -34,6 +29,8 @@ module Api
         @user.image_derivatives! if @user.image.present?
         # puts 'testtest'
         if @user.save(context: :with_validation)
+          # puts @user.saved_change_to_email?
+          update_token
           render json: AccountSerializer.new(@user).serializable_hash
         else
           render json: { errors: @user.errors.messages }.to_json
@@ -41,6 +38,13 @@ module Api
       end
 
       private
+
+      def update_token
+        return unless @user.saved_change_to_email?
+
+        @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
+        cookies.permanent[:access_token] = @user.token
+      end
 
       def set_user
         @user = case action_name
