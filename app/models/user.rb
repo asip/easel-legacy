@@ -32,7 +32,6 @@
 
 # User
 class User < ApplicationRecord
-  include Json::Util
   include Page::Confirmable
   include Profile::Image::Uploader::Attachment(:image)
 
