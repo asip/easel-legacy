@@ -59,7 +59,8 @@ class SessionsController < ApplicationController
 
   def validate_email(params_user)
     @user = User.new(params_user)
-    @user.errors.add(:email, t('action.login.invalid')) if !@user.valid?(:login) && @user.email.present?
+    @user.valid?(:login)
+    @user.errors.add(:email, t('action.login.invalid')) if @user.email.present?
   end
 
   def query_params
