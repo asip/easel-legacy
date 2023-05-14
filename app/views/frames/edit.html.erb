@@ -13,7 +13,7 @@
           </div>
           <br>
           <div class="card-block">
-            <%= render ErrorMessages::Component.new(model: @frame) %>
+            <%= render Toast::Component.new(model: @frame) %>
           </div>
           <%= form.hidden_field :file, value: form.object.cached_file_data %>
           <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, spotlight: false) %>
