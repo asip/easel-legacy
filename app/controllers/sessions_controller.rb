@@ -46,12 +46,22 @@ class SessionsController < ApplicationController
   def validate_login(params_user)
     @user = User.find_by(email: params_user[:email])
     if @user
-      @user.password = params_user[:password]
-      @user.errors.add(:password, 'が間違っています') unless @user.valid?(:login)
+      validate_password(params_user)
     else
-      @user = User.new(params_user)
-      @user.errors.add(:email, 'が間違っています') unless @user.valid?(:login)
+      validate_email(params_user)
     end
+  end
+
+  def validate_password(params_user)
+    @user.password = params_user[:password]
+    return unless !@user.valid?(:login) && params_user[:password].present?
+
+    @user.errors.add(:password, t('action.login.invalid'))
+  end
+
+  def validate_email(params_user)
+    @user = User.new(params_user)
+    @user.errors.add(:email, t('action.login.invalid')) if !@user.valid?(:login) && @user.email.present?
   end
 
   def query_params
