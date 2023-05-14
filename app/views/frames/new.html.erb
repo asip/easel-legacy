@@ -11,7 +11,7 @@
         </div>
         <br>
         <div class="card-block">
-          <%= render Toast::Component.new(model: @frame) %>
+          <%= render Toast::Component.new(messages: @frame.errors.full_messages) %>
         </div>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <% if @frame.confirming == 'true' %>

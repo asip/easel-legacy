@@ -10,7 +10,7 @@
       </div>
       <div class="card-block">
         <br>
-        <%= render Toast::Component.new(model: @user) %>
+        <%= render Toast::Component.new(messages: @user.errors.full_messages) %>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
         <% if @user.confirming == 'true' %>
         <%= render Users::Edit::Confirm::Component.new(form: form, user: @user)  %>
