@@ -84,11 +84,11 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   # Ruby style guide, linter, and formatter
   gem 'rspec-rails'
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
 end
 
 group :development do
+  gem 'bullet'
+
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
 
@@ -97,6 +97,9 @@ group :development do
 
   gem 'annotate'
   gem 'rails-erd'
+
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :test do
