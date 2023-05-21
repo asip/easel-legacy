@@ -1,5 +1,5 @@
 import ApplicationController from "./application_controller"
-// @ts-ignore
+
 import Tagify from '@yaireo/tagify'
 
 export default class TagifyController extends ApplicationController {
@@ -34,8 +34,8 @@ export default class TagifyController extends ApplicationController {
         }
       });
 
-      this.tag_editor.on('add', e => this.saveTagList(e.detail.tagify));
-      this.tag_editor.on('remove', e => this.saveTagList(e.detail.tagify));
+      this.tag_editor.on('add', () => this.saveTagList());
+      this.tag_editor.on('remove', () => this.saveTagList());
 
       const tags: string = this.tag_list.value;
       this.tag_editor.removeAllTags();
@@ -45,8 +45,8 @@ export default class TagifyController extends ApplicationController {
     }
   }
 
-  saveTagList(tagify: Tagify) {
-    this.tag_list.value = this.tag_editor.value.map(v => v.value).join(",");
+  saveTagList() {
+    this.tag_list.value = this.tag_editor.value.map((v: { value: string; }) => v.value).join(",");
     //console.log(this.tlTarget.value);
   }
 

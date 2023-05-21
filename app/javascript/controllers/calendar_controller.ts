@@ -1,5 +1,4 @@
 import ApplicationController from "./application_controller"
-// @ts-ignore
 import { Datepicker } from "vanillajs-datepicker";
 import ja from "../locales/date-picker/ja"
 
@@ -18,7 +17,7 @@ export default class CalendarController extends ApplicationController {
 
     if (cal_trigger){
 
-      origin = cal_trigger.getAttribute("data-origin");
+      const origin = cal_trigger.getAttribute("data-origin");
 
       Object.assign(Datepicker.locales, ja);
 

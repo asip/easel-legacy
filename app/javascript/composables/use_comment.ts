@@ -14,7 +14,7 @@ interface Comment {
 }
 
 export function useComment(current_user: User) {
-  const comment: any = reactive<Comment>({
+  const comment: reactive<Comment> = reactive<Comment>({
     id: null,
     frame_id: '',
     body: '',
@@ -23,19 +23,23 @@ export function useComment(current_user: User) {
     user_image_url: '',
     updated_at: null
   });
-  const comments: any = reactive<any[]>([]);
-  const error_messages: any = reactive<string[]>([]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const comments: reactive<any[]> = reactive<any[]>([]);
+  const error_messages: reactive<string[]> = reactive<string[]>([]);
 
   const { constants } = useViewData();
 
-  const getComments = async (frame_id: any) => {
-    //console.log(frame_id);
+  const getComments = async (frame_id: number) => {
+    //console.log(frame_id)
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`);
     if (res.data) {
       const comment_list = res.data.data;
       //console.log(comment_list);
       comments.splice(0, comments.length);
-      for (let comment of comment_list) {
+      for (const comment of comment_list) {
         //console.log(comment);
         comments.push(createCommentFromJson(comment));
       }
@@ -43,6 +47,7 @@ export function useComment(current_user: User) {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const createCommentFromJson = (row_data: any): Comment => {
     return {
       id: row_data.id,
@@ -57,6 +62,7 @@ export function useComment(current_user: User) {
 
   const postComment = async () => {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const res: AxiosResponse<any, any> = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
         {
           comment: {
@@ -74,7 +80,7 @@ export function useComment(current_user: User) {
       const error_message_list = res.data.data.attributes.error_messages
       if ( error_message_list && error_message_list.length > 0) {
         error_messages.splice(0, error_messages.length);
-        for (let error_message of error_message_list) {
+        for (const error_message of error_message_list) {
           error_messages.push(error_message)
         }
       } else {
@@ -98,9 +104,11 @@ export function useComment(current_user: User) {
       error_messages.push('コメントを入力してください。');
     }
   };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const deleteComment = async (comment: any) => {
     try {
-      const res: AxiosResponse<any, any> = await Axios.delete(
+      await Axios.delete(
           `${constants.api_origin}/comments/${comment.id}`,
           {
             headers: {

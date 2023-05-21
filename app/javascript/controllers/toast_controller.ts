@@ -4,7 +4,7 @@ import Toastify from 'toastify-js'
 export default class ToastController extends ApplicationController {
   static values = { messages: String };
 
-  messagesValue: String
+  messagesValue: string
 
   connect() {
     const messages = JSON.parse(this.messagesValue.valueOf())["messages"].reverse()

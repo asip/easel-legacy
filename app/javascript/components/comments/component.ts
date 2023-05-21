@@ -1,4 +1,4 @@
-import { createApp, ref, reactive, onMounted, App as Application } from 'vue/dist/vue.esm-bundler.js'
+import { createApp, onMounted, App as Application } from 'vue/dist/vue.esm-bundler.js'
 import TurbolinksAdapter from 'vue-turbolinks';
 import Axios from 'axios'
 import sanitizeHtml from 'sanitize-html'
@@ -7,7 +7,7 @@ import { useCookieData } from '../../composables/use_cookie_data';
 import { useAccount } from '../../composables/use_account';
 import { useComment } from '../../composables/use_comment';
 
-let initCommentComponent = (): void => {
+const initCommentComponent = (): void => {
 
   const { root, constants } = useViewData();
 
@@ -20,11 +20,12 @@ let initCommentComponent = (): void => {
     const comment_vm: Application = createApp({
       setup() {
         const { access_token } = useCookieData();
-        
+
         const { account, logged_in, current_user, getAccount } = useAccount();
 
         const { comment, comments, error_messages ,getComments, setComment, deleteComment} = useComment(current_user);
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const getSanitizedCommentBody = (row: any): string => {
           return sanitizeHtml(row.body).replace(/\n/g, '<br>');
         };

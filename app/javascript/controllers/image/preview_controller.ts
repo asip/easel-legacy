@@ -33,13 +33,13 @@ export default class PreviewController extends ApplicationController {
           // .file_filedからデータを取得して変数file.dataに代入します
           file.data = this.files[0];
           // FileReaderオブジェクトを作成します
-          let reader = new FileReader();
+          const reader = new FileReader();
           // DataURIScheme文字列を取得します
           reader.readAsDataURL(file.data);
           // 読み込みが完了したら処理が実行されます
           reader.onload = function () {
             // 読み込んだファイルの内容を取得して変数imageに代入します
-            let image: string | ArrayBuffer = this.result;
+            const image: string | ArrayBuffer = this.result;
             //console.log(content.style.display);
             preview.src = image as string;
             // プレビュー画像がなければ表示します

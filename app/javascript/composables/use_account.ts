@@ -1,4 +1,3 @@
-import { constants } from 'fs';
 import Axios, { AxiosResponse } from 'axios'
 import { ref, reactive} from 'vue/dist/vue.esm-bundler.js'
 import { useViewData } from './use_view_data';
@@ -9,9 +8,10 @@ export interface User {
 }
 
 export function useAccount() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let account: any = null;
-  const logged_in: any = ref<Boolean>(false);
-  const current_user: any = reactive<User>({
+  const logged_in: ref<boolean> = ref<boolean>(false);
+  const current_user: reactive<User> = reactive<User>({
     id: '',
     token: ''
   })
@@ -19,6 +19,7 @@ export function useAccount() {
   const { constants } = useViewData();
 
   const getAccount = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/account`,
       {
         headers: {

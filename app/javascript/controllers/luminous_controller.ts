@@ -1,5 +1,4 @@
 import ApplicationController from "./application_controller"
-// @ts-ignore
 import { Luminous } from 'luminous-lightbox'
 
 export default class LuminousController extends ApplicationController {
