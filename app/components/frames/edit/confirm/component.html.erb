@@ -1,6 +1,6 @@
 <div class="card-block">
   <%= render Frames::Preview::Tags::Component.new(tag_paths: @tag_paths) %>
-  <%= @form.hidden_field :tag_list, value: @frame.tag_list.join(",") %>
+  <%= @form.hidden_field :tag_list, value: @frame.tag_list.join(',') %>
   <div class="row d-flex justify-content-sm-center">
     <label for="name" class="col-form-label col-sm-3">名前：</label>
     <div class="col-sm-4">

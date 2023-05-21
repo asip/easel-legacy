@@ -100,6 +100,8 @@ group :development do
 
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
+  # Shopify/erb-lint
+  gem 'erb_lint', require: false
 end
 
 group :test do

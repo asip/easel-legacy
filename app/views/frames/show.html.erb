@@ -1,6 +1,6 @@
 
-<%= turbo_frame_tag "users" do %><% end %>
-<%= turbo_frame_tag "frames" do %>
+<%= turbo_frame_tag 'users' do %><% end %>
+<%= turbo_frame_tag 'frames' do %>
   <br>
   <div data-controller="luminous">
     <div class="card">
@@ -8,7 +8,7 @@
         <div class="row d-flex">
           <div class="col-12 clearfix">
             <div class="float-start">
-              &nbsp;<%= link_to root_path(query_params), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
+              &nbsp;<%= link_to root_path(query_params), "data-turbo-frame": '_top' do %><i class="bi bi-arrow-left-circle"></i><% end %>
             </div>
             <div class="float-end">
               <%= l @frame.updated_at %>&nbsp;
@@ -39,12 +39,13 @@
             <div class="form-control-plaintext"><%= simple_format(h(@frame.comment)) %></div>
           </div>
         </div>
-        <div class="row d-flex" >
+        <div class="row d-flex">
           <div class="col-12 clearfix">
             <!-- <div class="float-start">
             </div> -->
             <div class="float-end">
-              <%= link_to user_path(@frame.user, { ref: 'frame_detail', ref_id: @frame.id }), "data-turbo-frame": "_top", class: "text-decoration-none" do %>
+              <%= link_to user_path(@frame.user, { ref: 'frame_detail', ref_id: @frame.id }),
+                          "data-turbo-frame": '_top', class: 'text-decoration-none' do %>
                 <%= @frame.user.name %>&nbsp;
               <% end %>
             </div>
@@ -60,7 +61,7 @@
             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">
               削除
             </button>
-            <%= link_to '戻る', root_path(query_params), class: 'btn btn-outline-primary', "data-turbo-frame": "_top" %>
+            <%= link_to '戻る', root_path(query_params), class: 'btn btn-outline-primary', "data-turbo-frame": '_top' %>
           </div>
         </div>
       </div>
@@ -78,4 +79,5 @@
   </div>
 <% end %>
 <br>
-<%= render Comments::Component.new(frame: @frame, token: (logged_in? ? current_user.token : ''), login: (logged_in? ? true : false)) %>
+<%= render Comments::Component.new(frame: @frame, token: (logged_in? ? current_user.token : ''),
+                                   login: (logged_in? ? true : false)) %>

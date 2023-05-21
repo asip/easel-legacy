@@ -1,7 +1,10 @@
 <div class="row d-flex justify-content-sm-center">
   <label for="image" class="col-form-label col-sm-3 label-bg-style">アイコン：</label>
   <div class="form-group col-sm-4">
-    <%= @form.file_field :image, accept: 'image/jpg,image/jpeg,image/png', multiple: false, class: 'form-control-file', "data-preview-target": "upload" %><%#= @form.file_field :image, multiple: false, class: 'form-control-file' %>
+    <%= @form.file_field :image, accept: 'image/jpg,image/jpeg,image/png',
+                                 multiple: false,
+                                 class: 'form-control-file',
+                                 "data-preview-target": 'upload' %><%#= @form.file_field :image, multiple: false, class: 'form-control-file' %>
   </div>
 </div>
 <%= render Image::Preview::Component.new(model: @user) %>
@@ -9,18 +12,18 @@
   <div class="row d-flex justify-content-sm-center">
     <label for="name" class="form-label col-sm-3 label-bg-style">ユーザー名：</label>
     <div class="form-group col-sm-4">
-      <div class="form-control-plaintext"><%=  @user.name  %></div>
-      <%= @form.hidden_field :name  %>
+      <div class="form-control-plaintext"><%= @user.name %></div>
+      <%= @form.hidden_field :name %>
     </div>
   </div>
   <div class="row d-flex justify-content-sm-center">
     <label for="email" class="form-label col-sm-3 label-bg-style">Eメール：</label>
     <div class="form-group col-sm-4">
       <div class="form-control-plaintext"><%= @user.email %></div>
-      <%= @form.hidden_field :email  %>
+      <%= @form.hidden_field :email %>
     </div>
   </div>
-<%  else  %>
+<% else %>
   <div class="row d-flex justify-content-sm-center border border-white">
     <label for="name" class="col-form-label col-sm-3 label-bg-style">ユーザー名：</label>
     <div class="form-group col-sm-4">
@@ -45,7 +48,7 @@
       <%= @form.password_field :password_confirmation, placeholder: 'パスワード(確認)', class: 'form-control' %>
     </div>
   </div>
-<%  end %>
+<% end %>
 <br>
 <div class="d-flex justify-content-sm-center">
   <div class="form-group col-sm-6">

@@ -4,7 +4,7 @@
     <div class="card" data-controller="preview">
       <div class="card-header">
         <div class="float-start">
-          <%= link_to profile_path, "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
+          <%= link_to profile_path, "data-turbo-frame": '_top' do %><i class="bi bi-arrow-left-circle"></i><% end %>
           プロフィール編集
         </div>
       </div>
@@ -13,11 +13,11 @@
         <%= render Toast::Component.new(messages: @user.errors.full_messages) %>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
         <% if @user.confirming == 'true' %>
-        <%= render Users::Edit::Confirm::Component.new(form: form, user: @user)  %>
+        <%= render Users::Edit::Confirm::Component.new(form:, user: @user) %>
         <% else %>
-        <%= render Users::Edit::Input::Component.new(form: form, user: @user, back_to_path: profile_path) %>
-        <%= form.hidden_field :confirming  %>
-        <%  end %>
+        <%= render Users::Edit::Input::Component.new(form:, user: @user, back_to_path: profile_path) %>
+        <%= form.hidden_field :confirming %>
+        <% end %>
         <br>
       </div>
     </div>

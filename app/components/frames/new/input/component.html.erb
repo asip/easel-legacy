@@ -2,21 +2,22 @@
   <div class="row d-flex justify-content-sm-center">
     <label for="file" class="col-form-label-sm col-sm-3">ファイル：</label>
     <div class="form-group col-sm-4">
-      <%= @form.file_field :file, accept: 'image/jpg,image/jpeg,image/png', multiple: false, class: 'form-control-file', "data-preview-target": "upload" %><%#= @form.file_field :file, multiple: false, class: 'form-control-file' %>
+      <%= @form.file_field :file, accept: 'image/jpg,image/jpeg,image/png', multiple: false,
+                                  class: 'form-control-file', "data-preview-target": 'upload' %><%#= @form.file_field :file, multiple: false, class: 'form-control-file' %>
     </div>
   </div>
   <%= render Image::Preview::Component.new(model: @frame) %>
   <div class="row d-flex justify-content-sm-center">
     <label for="name" class="col-form-label col-sm-3">名前：</label>
     <div class="form-group col-sm-4">
-      <%= @form.text_field :name, placeholder: "名前", class: 'form-control' %>
+      <%= @form.text_field :name, placeholder: '名前', class: 'form-control' %>
     </div>
   </div>
   <div class="row d-flex justify-content-sm-center">
     <label for="tag_list" class="col-form-label col-sm-3">タグ：</label>
     <div class="form-group col-sm-4">
-      <input type="text" name="tag_editor" id="tag_editor" value="" data-tagify-target="te" class="form-control" >
-      <%= @form.hidden_field :tag_list, id: 'tag_list', "data-tagify-target": "tl", value: @frame.tag_list.join(",") %>
+      <input type="text" name="tag_editor" id="tag_editor" value="" data-tagify-target="te" class="form-control" autocomplete="off">
+      <%= @form.hidden_field :tag_list, id: 'tag_list', "data-tagify-target": 'tl', value: @frame.tag_list.join(',') %>
     </div>
   </div>
   <div class="row d-flex justify-content-sm-center">
