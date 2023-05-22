@@ -36,7 +36,8 @@
     "webpack-cli": "^5.1.1"
   },
   "scripts": {
-    "build": "node ./config/esbuild/esbuild.config.js",
+    "build": "node ./config/esbuild/esbuild.build.js",
+    "rebuild": "node ./config/esbuild/esbuild.rebuild.js",
     "build:webpack": "webpack --config ./config/webpack/webpack.config.js",
     "build:css": "sass ./app/assets/stylesheets/:./app/assets/builds --no-source-map --load-path=node_modules",
     "build:font": "copyfiles -f node_modules/bootstrap-icons/font/fonts/* public/assets/fonts && cp -r node_modules/@fortawesome/fontawesome-free/webfonts ./app/assets/builds",
