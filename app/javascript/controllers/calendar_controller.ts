@@ -4,13 +4,13 @@ import ja from '../locales/date-picker/ja'
 
 export default class CalendarController extends ApplicationController {
   static targets = ['cal']
-  calTarget: HTMLElement
-  calendar: Datepicker
+  //calTarget: HTMLElement
+  calendar!: Datepicker
 
-  hasCalTarget!: boolean
+  //hasCalTarget!: boolean
 
   connect() {
-    let cal_trigger: HTMLElement = null
+    let cal_trigger: HTMLElement | null = null
     if(this.hasCalTarget){
       cal_trigger = this.calTarget
     }

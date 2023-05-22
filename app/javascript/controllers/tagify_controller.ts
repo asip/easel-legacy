@@ -4,17 +4,17 @@ import Tagify from '@yaireo/tagify'
 
 export default class TagifyController extends ApplicationController {
   static targets = ['te', 'tl']
-  teTarget!: HTMLElement
-  tlTarget!: HTMLInputElement
+  //teTarget!: HTMLElement
+  //tlTarget!: HTMLInputElement
 
-  tag_list: HTMLInputElement
+  tag_list!: HTMLInputElement
   tag_editor: Tagify
 
-  hasTeTarget!: boolean
-  hasTlTarget!: boolean
+  //hasTeTarget!: boolean
+  //hasTlTarget!: boolean
 
   connect() {
-    let te_trigger: HTMLElement = null
+    let te_trigger: HTMLElement | null = null
     if(this.hasTeTarget){
       te_trigger = this.teTarget
     }
@@ -46,7 +46,7 @@ export default class TagifyController extends ApplicationController {
   }
 
   saveTagList() {
-    this.tag_list.value = this.tag_editor.value.map((v: { value: string; }) => v.value).join(',')
+    this.tag_list.value = this.tag_editor.value.map(v => v.value).join(',')
     //console.log(this.tlTarget.value);
   }
 
