@@ -4,7 +4,6 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:vue/vue3-recommended",
     "prettier"
   ],
   "parserOptions": {
@@ -36,6 +35,27 @@
       "rules": {
         "@typescript-eslint/no-explicit-any": 1,
         "@typescript-eslint/no-non-null-assertion": 1
+      }
+    },
+    {
+      "files": ["**/*.vue"],
+      "env": {
+        "vue/setup-compiler-macros": true
+      },
+      "extends": [
+        "plugin:vue/vue3-recommended",
+        "@vue/typescript"
+      ],
+      "parser":  "vue-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+      },
+      "plugins": ["vue"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": 1,
+        "@typescript-eslint/no-non-null-assertion": 1,
+        "vue/no-v-html": 0,
+        "vue/max-attributes-per-line": 0
       }
     }
   ],
