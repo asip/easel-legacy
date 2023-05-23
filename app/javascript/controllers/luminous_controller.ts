@@ -3,11 +3,12 @@ import { Luminous } from 'luminous-lightbox'
 
 export default class LuminousController extends ApplicationController {
   static targets = ['lm']
-  //lmTarget!: HTMLElement
+
+  declare readonly lmTarget: HTMLElement
 
   image: Luminous
 
-  //hasLmTarget!: boolean
+  declare readonly hasLmTarget: boolean
 
   connect() {
     let lm_trigger: HTMLElement | null = null

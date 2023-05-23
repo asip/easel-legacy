@@ -2,13 +2,14 @@ import ApplicationController from '../application_controller'
 
 export default class PreviewController extends ApplicationController {
   static targets = ['upload', 'content', 'image']
-  //uploadTarget!: HTMLInputElement
-  //contentTarget!: HTMLElement
-  //imageTarget!: HTMLImageElement
 
-  //hasUploadTarget!: boolean
-  //hasContentTarget!: boolean
-  //hasImageTarget!: boolean
+  declare readonly uploadTarget: HTMLInputElement
+  declare readonly contentTarget: HTMLElement
+  declare readonly imageTarget: HTMLImageElement
+
+  declare readonly hasUploadTarget: boolean
+  declare readonly hasContentTarget: boolean
+  declare readonly hasImageTarget: boolean
 
   connect() {
     let elm_upload: HTMLInputElement | null = null
