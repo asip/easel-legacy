@@ -6,7 +6,7 @@
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo": "^7.3.0",
     "@hotwired/turbo-rails": "^7.3.0",
-    "@popperjs/core": "^2.11.7",
+    "@popperjs/core": "^2.11.8",
     "@types/sanitize-html": "^2.9.0",
     "@types/vanillajs-datepicker": "^1.2.2",
     "@vue/compiler-sfc": "^3.3.4",
@@ -32,7 +32,7 @@
     "vue": "^3.3.4",
     "vue-loader": "^17.1.1",
     "vue-turbolinks": "^2.2.2",
-    "webpack": "^5.83.1",
+    "webpack": "^5.84.1",
     "webpack-cli": "^5.1.1"
   },
   "scripts": {
@@ -48,12 +48,12 @@
   "devDependencies": {
     "@markuplint/vue-parser": "^3.7.0",
     "@markuplint/vue-spec": "^3.8.0",
-    "@typescript-eslint/eslint-plugin": "^5.59.6",
-    "@typescript-eslint/parser": "^5.59.6",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
     "@vue/eslint-config-typescript": "^11.0.3",
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-vue": "^9.13.0",
+    "eslint-plugin-vue": "^9.14.1",
     "markuplint": "^3.10.0",
     "prettier": "^2.8.8"
   }
