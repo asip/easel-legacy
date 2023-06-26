@@ -2,7 +2,7 @@
 <%= turbo_frame_tag 'users' do %><% end %>
 <%= turbo_frame_tag 'frames' do %>
   <br>
-  <div data-controller="luminous">
+  <div data-controller="luminous pswipe">
     <div class="card">
       <div class="card-block">
         <div class="row d-flex">
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="card-block">
-        <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, spotlight: true) %>
+        <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: true) %>
         <%= render Frames::Preview::Tags::Component.new(tag_paths: tag_paths(@frame)) %>
       </div>
       <div class="card-block">

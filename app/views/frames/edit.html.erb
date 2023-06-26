@@ -16,7 +16,7 @@
             <%= render Toast::Component.new(messages: @frame.errors.full_messages) %>
           </div>
           <%= form.hidden_field :file, value: form.object.cached_file_data %>
-          <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, spotlight: false) %>
+          <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: false) %>
           <% if @frame.confirming == 'true' %>
           <%= render Frames::Edit::Confirm::Component.new(form:, frame: @frame, tag_paths: tag_paths(@frame)) %>
           <% else %>

@@ -1,5 +1,5 @@
 <div class="card-block">
-  <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, spotlight: false) %>
+  <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: false) %>
   <%= render Frames::Preview::Tags::Component.new(tag_paths: @tag_paths) %>
   <%= @form.hidden_field :tag_list, value: @frame.tag_list.join(',') %>
   <div class="row d-flex justify-content-sm-center">

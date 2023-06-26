@@ -8,11 +8,11 @@ module Frames
     module Image
       # Component
       class Component < ViewComponent::Base
-        def initialize(frame:, original:, spotlight:)
+        def initialize(frame:, original:, photoswipe:)
           super
           @frame = frame
           @original = original
-          @spotlight = spotlight
+          @photoswipe = photoswipe
         end
       end
     end
