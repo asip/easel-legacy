@@ -18,19 +18,13 @@ export default class PhotoSwipeController extends ApplicationController {
     }
 
     if(ps_trigger){
-      const gallery = ps_trigger.querySelectorAll('a')
-      gallery.forEach((el: any) => {
-        this.loadImage(el.href).then((img: any) => {
-          el.setAttribute('data-pswp-width', img.naturalWidth)
-          el.setAttribute('data-pswp-height', img.naturalHeight)
-          el.firstElementChild.removeAttribute('style')
-        })
-      })
+      this.assignSize(ps_trigger)
 
       this.lightbox = new PhotoSwipeLightbox({
         gallery: '#image',
         children: 'a',
         initialZoomLevel: 'fit',
+        //@ts-ignore
         pswpModule: () => import('photoswipe')
       })
       this.lightbox.init()
@@ -42,6 +36,16 @@ export default class PhotoSwipeController extends ApplicationController {
       this.lightbox.destroy()
       this.removeElementsByClassName('pswp')
     }
+  }
+
+  assignSize(trigger: any){
+    const gallery = trigger.querySelectorAll('a')
+    gallery.forEach(async (el: any) => {
+      const img: any = await this.loadImage(el.href)
+      el.setAttribute('data-pswp-width', img.naturalWidth)
+      el.setAttribute('data-pswp-height', img.naturalHeight)
+      el.firstElementChild.removeAttribute('style')
+    })
   }
 
   loadImage(src: any) {
