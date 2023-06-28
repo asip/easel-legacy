@@ -1,7 +1,8 @@
 import ApplicationController from './application_controller'
 //@ts-ignore
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
-
+// @ts-ignore
+import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 export default class PhotoSwipeController extends ApplicationController {
   static targets = ['ps']
 
@@ -27,6 +28,7 @@ export default class PhotoSwipeController extends ApplicationController {
         //@ts-ignore
         pswpModule: () => import('photoswipe')
       })
+      const fullscreenPlugin = new PhotoSwipeFullscreen(this.lightbox) // eslint-disable-line @typescript-eslint/no-unused-vars
       this.lightbox.init()
     }
   }

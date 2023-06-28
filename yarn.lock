@@ -3322,6 +3322,10 @@ pause-stream@0.0.11:
   dependencies:
     through "~2.3"
 
+"photoswipe-fullscreen@git+https://github.com/arnowelzel/photoswipe-fullscreen":
+  version "1.0.5"
+  resolved "git+https://github.com/arnowelzel/photoswipe-fullscreen#eb8bdfad985c7236152d5af448a42ba0a9b9446f"
+
 photoswipe@5.3.7:
   version "5.3.7"
   resolved "https://registry.npmjs.org/photoswipe/-/photoswipe-5.3.7.tgz"
