@@ -4278,9 +4278,9 @@ vue-eslint-parser@^9.1.1, vue-eslint-parser@^9.3.0, vue-eslint-parser@^9.3.1:
     lodash "^4.17.21"
     semver "^7.3.6"
 
-vue-loader@^17.1.1:
+vue-loader@^17.2.2:
   version "17.2.2"
-  resolved "https://registry.npmjs.org/vue-loader/-/vue-loader-17.2.2.tgz"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-17.2.2.tgz#96148eb70c1365cc8c5bab4274923596811c79df"
   integrity sha512-aqNvKJvnz2A/6VWeJZodAo8XLoAlVwBv+2Z6dama+LHsAF+P/xijQ+OfWrxIs0wcGSJduvdzvTuATzXbNKkpiw==
   dependencies:
     chalk "^4.1.0"
