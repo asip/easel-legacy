@@ -13,7 +13,7 @@
     "@vue/compiler-sfc": "^3.3.4",
     "@yaireo/tagify": "^4.17.8",
     "axios": "^1.4.0",
-    "bootstrap": "^5.2.3",
+    "bootstrap": "^5.3.0",
     "bootstrap-icons": "^1.10.5",
     "copyfiles": "^2.4.1",
     "esbuild": "^0.17.19",
