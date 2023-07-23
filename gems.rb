@@ -12,7 +12,10 @@ gem 'propshaft', '~> 0.7.0'
 # gem 'dartsass-rails'
 
 # Use mysql as the database for Active Record
-gem 'mysql2', '~> 0.5.3'
+# gem 'mysql2', '~> 0.5.3'
+# Use postgresql as the database for Active Record
+gem 'pg', '~> 1.5.3'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.6.2'
 
@@ -87,8 +90,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bullet'
   gem 'brakeman'
+  gem 'bullet'
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
