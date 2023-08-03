@@ -1,5 +1,5 @@
 import ApplicationController from './application_controller'
-//@ts-ignore
+// eslint-disable-nextline
 import { Luminous } from 'luminous-lightbox'
 
 export default class LuminousController extends ApplicationController {

@@ -1,7 +1,7 @@
 import ApplicationController from './application_controller'
-//@ts-ignore
+// eslint-disable-nextline
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
-// @ts-ignore
+// eslint-disable-nextline
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 export default class PhotoSwipeController extends ApplicationController {
   static targets = ['ps']
@@ -25,7 +25,7 @@ export default class PhotoSwipeController extends ApplicationController {
         gallery: '#image',
         children: 'a',
         initialZoomLevel: 'fit',
-        //@ts-ignore
+        // eslint-disable-nextline
         pswpModule: () => import('photoswipe')
       })
       const fullscreenPlugin = new PhotoSwipeFullscreen(this.lightbox) // eslint-disable-line @typescript-eslint/no-unused-vars
