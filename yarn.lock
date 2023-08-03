@@ -786,10 +786,10 @@
   resolved "https://registry.npmjs.org/@types/semver/-/semver-7.5.0.tgz"
   integrity sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==
 
-"@types/toastify-js@^1.11.1":
-  version "1.11.1"
-  resolved "https://registry.npmjs.org/@types/toastify-js/-/toastify-js-1.11.1.tgz"
-  integrity sha512-Ef03kGFWseAQYIQwN83WbhRxD+DOd+X6p22j9olA/TnvE0crDMc3fyoctKSpXgEDVWq5l3p98otIdpNX1pOYMA==
+"@types/toastify-js@^1.12.0":
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/@types/toastify-js/-/toastify-js-1.12.0.tgz#e3278196e040d6da82d84babee31af8e97abba56"
+  integrity sha512-fqpDHaKhFukN9KRm24bbH0wozvHmSwjvkaLjBUrWcSfSS4zysIwTYqNLG3XbSNhRlsTNRNLGS23tp/VhPwsfHQ==
 
 "@types/uuid@^9.0.2":
   version "9.0.2"
