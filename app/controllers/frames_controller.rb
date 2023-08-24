@@ -15,7 +15,7 @@ class FramesController < ApplicationController
   before_action :back_to_form, only: %i[create update]
 
   def index
-    @frames = Frame.search_by(word: @word)
+    @frames = Frame.search_by(word: @word).order(created_at: 'desc')
 
     @frames = @frames.page(@page)
   end
