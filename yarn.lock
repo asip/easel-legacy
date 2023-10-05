@@ -3606,10 +3606,10 @@ pause-stream@0.0.11:
   version "1.0.5"
   resolved "git+https://github.com/arnowelzel/photoswipe-fullscreen#eb8bdfad985c7236152d5af448a42ba0a9b9446f"
 
-photoswipe@5.3.8:
-  version "5.3.8"
-  resolved "https://registry.yarnpkg.com/photoswipe/-/photoswipe-5.3.8.tgz#bea7db18e79383833f85c005b833da2029f0daee"
-  integrity sha512-4vTzOQt8GP4Chsm0s+8j2xDtVHAEN252PxrU12A1zXauNn0zD5HRHgjALKO2GKTyBnTnOrJUOxbV8LTrFIMrYw==
+photoswipe@5.4.2:
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/photoswipe/-/photoswipe-5.4.2.tgz#bed976c27f876bd9c86085a022701a8cea484f7e"
+  integrity sha512-z5hr36nAIPOZbHJPbCJ/mQ3+ZlizttF9za5gKXKH/us1k4KNHaRbC63K1Px5sVVKUtGb/2+ixHpKqtwl0WAwvA==
 
 picocolors@^1.0.0:
   version "1.0.0"

@@ -21,7 +21,7 @@
     "esbuild-plugin-vue3": "^0.3.2",
     "js-cookie": "^3.0.5",
     "luminous-lightbox": "^2.4.0",
-    "photoswipe": "5.3.8",
+    "photoswipe": "5.4.2",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
     "rails_admin": "3.1.2",
     "sanitize-html": "^2.11.0",
