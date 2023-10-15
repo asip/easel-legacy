@@ -2,6 +2,7 @@
 
 # Frames Controller
 class FramesController < ApplicationController
+  include Pagy::Backend
   include Search::Query
   include More
   include DateAndTime::Util
@@ -15,9 +16,10 @@ class FramesController < ApplicationController
   before_action :back_to_form, only: %i[create update]
 
   def index
-    @frames = Frame.search_by(word: @word).order(created_at: 'desc')
-
-    @frames = @frames.page(@page)
+    frames = Frame.search_by(word: @word).order(created_at: 'desc')
+    @pagy, frames = pagy(frames, { page: @page })
+    frame_ids = frames.pluck(:id)
+    @frames = Frame.where(id: frame_ids).order(created_at: 'desc')
   end
 
   def show; end

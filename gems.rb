@@ -64,8 +64,9 @@ gem 'googleauth'
 gem 'config'
 
 # paging
-gem 'bootstrap5-kaminari-views'
-gem 'kaminari', '~> 1.2.2'
+gem 'pagy', '~> 6.1.0'
+# gem 'bootstrap5-kaminari-views'
+# gem 'kaminari', '~> 1.2.2'
 
 # tags
 # gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"

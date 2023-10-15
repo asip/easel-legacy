@@ -2,15 +2,15 @@
   <%= turbo_frame_tag 'users' do %><% end %>
   <%= turbo_frame_tag 'frames' do %>
     <br>
-    <%= render partial: 'frames/more/load_prev', locals: { page_scope: @frames, word: @word } %>
+    <%= render partial: 'frames/more/load_prev', locals: { pagy: @pagy, word: @word } %>
     <turbo-frame id="list" class="row">
       <%= render partial: 'frames/more/list', locals: { frames: @frames } %>
     </turbo-frame>
-    <%= render partial: 'frames/more/load_next', locals: { page_scope: @frames, word: @word } %>
+    <%= render partial: 'frames/more/load_next', locals: { pagy: @pagy, word: @word } %>
   <% end %>
   <% if false %><div class="d-flex col-sm-12 justify-content-sm-center">
     <div class="mx-auto kadomaru" style="padding-top: 20px;">
-      <%= paginate @frames, params: { q: @word }, theme: 'bootstrap-5' %>
+      <%== pagy_bootstrap_nav(@pagy) %>
     </div>
   </div><% end %>
 </div>
