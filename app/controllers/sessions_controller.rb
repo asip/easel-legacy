@@ -54,7 +54,8 @@ class SessionsController < ApplicationController
 
   def validate_password(params_user)
     @user.password = params_user[:password]
-    @user.errors.add(:password, t('action.login.invalid')) if !@user.valid?(:login) && params_user[:password].present?
+    @user.valid?(:login)
+    @user.errors.add(:password, t('action.login.invalid')) if params_user[:password].present?
   end
 
   def validate_email(params_user)
