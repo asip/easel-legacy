@@ -1,57 +1,57 @@
-{
-  "env": {
-    "es2022": true
+module.exports = {
+  env: {
+    es2022: true
   },
-  "extends": [
+  extends: [
     "eslint:recommended",
     "prettier"
   ],
-  "parserOptions": {
-    "ecmaVersion": 2022,
-    "sourceType": "module"
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: "module"
   },
-  "rules": {
+  rules: {
     // 共通のルールを設定
-    "semi": ["error", "never"],
-    "quotes": ["error", "single"],
-    "indent": ["error", 2]
+    semi: ["error", "never"],
+    quotes: ["error", "single"],
+    indent: ["error", 2]
   },
-  "overrides": [
+  overrides: [
     {
-      "files": ["**/*.ts"],
-      "extends": [
+      files: ["**/*.ts"],
+      extends: [
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended"
       ],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "ecmaVersion": 2022,
-        "sourceType": "module",
-        "project": "./tsconfig.json"
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        ecmaVersion: 2022,
+        sourceType: "module",
+        project: "./tsconfig.json"
       },
-      "plugins": [
+      plugins: [
         "@typescript-eslint"
       ],
-      "rules": {
+      rules: {
         "@typescript-eslint/no-explicit-any": 1,
         "@typescript-eslint/no-non-null-assertion": 1
       }
     },
     {
-      "files": ["**/*.vue"],
-      "env": {
+      files: ["**/*.vue"],
+      env: {
         "vue/setup-compiler-macros": true
       },
-      "extends": [
+      extends: [
         "plugin:vue/vue3-recommended",
         "@vue/typescript"
       ],
-      "parser":  "vue-eslint-parser",
-      "parserOptions": {
-        "parser": "@typescript-eslint/parser"
+      parser:  "vue-eslint-parser",
+      parserOptions: {
+        parser: "@typescript-eslint/parser"
       },
-      "plugins": ["vue"],
-      "rules": {
+      plugins: ["vue"],
+      rules: {
         "@typescript-eslint/no-explicit-any": 1,
         "@typescript-eslint/no-non-null-assertion": 1,
         "vue/no-v-html": 0,
@@ -59,8 +59,8 @@
       }
     }
   ],
-  "ignorePatterns": [
+  ignorePatterns: [
     "./app/assets/builds/**/*" // Ignore built files.
   ],
-  "root": true
+  root: true
 }
