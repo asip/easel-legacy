@@ -2,25 +2,25 @@
 
 # Follow Relationships Controller
 class FollowRelationshipsController < ApplicationController
-  # フォローするとき
+  # follow (フォローするとき)
   def create
     current_user.follow(params[:user_id])
     redirect_to request.referer, status: :see_other
   end
 
-  # フォロー外すとき
+  # unfollow (フォロー外すとき)
   def destroy
     current_user.unfollow(params[:user_id])
     redirect_to request.referer, status: :see_other
   end
 
-  # フォロイー一覧
+  # followees list (フォロイー一覧)
   def followees
     user = User.find(params[:user_id])
     @users = user.followees
   end
 
-  # フォロワー一覧
+  # followers list (フォロワー一覧)
   def followers
     user = User.find(params[:user_id])
     @users = user.followers
