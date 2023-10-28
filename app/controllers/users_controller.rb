@@ -11,6 +11,16 @@ class UsersController < ApplicationController
 
   def show; end
 
+  # followees list (フォロイー一覧)
+  def followees
+    @users = User.find(params[:user_id]).followees
+  end
+
+  # followers list (フォロワー一覧)
+  def followers
+    @users = User.find(params[:user_id]).followers
+  end
+
   def new; end
 
   def edit; end

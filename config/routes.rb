@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get '/frames/' => 'frames#index', :as => :frames
   resources :users, except: [:index] do
     resource :follow_relationships, only: %i[create destroy]
-    get 'followees' => 'follow_relationships#followees', as: 'followees'
-    get 'followers' => 'follow_relationships#followers', as: 'followers'
+    get 'followees' => 'users#followees', as: 'followees'
+    get 'followers' => 'users#followers', as: 'followers'
   end
   resources :frames do
     get :next, on: :collection
