@@ -102,17 +102,17 @@ class User < ApplicationRecord
     update!(token: nil)
   end
 
-  # フォローしたときの処理
+  # (フォローしたときの処理)
   def follow(user_id)
     follower_relationships.create(followee_id: user_id)
   end
 
-  # フォローを外すときの処理
+  # (フォローを外すときの処理)
   def unfollow(user_id)
     follower_relationships.find_by(followee_id: user_id).destroy
   end
 
-  # フォローしているか判定
+  # (フォローしているか判定)
   def following?(user)
     followees.include?(user)
   end
