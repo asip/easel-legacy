@@ -18,6 +18,8 @@ module Api
         def authenticate
           login_from_jwt
           @current_user = nil unless @current_user && @current_user.token == token
+
+          raise(Api::ExceptionHandler::UnauthorizedError) if @current_user.nil?
         end
 
         attr_reader :current_user
