@@ -20,10 +20,6 @@ module Api
           @current_user = nil unless @current_user && @current_user.token == token
         end
 
-        def logged_in?
-          current_user.present?
-        end
-
         attr_reader :current_user
       end
     end
