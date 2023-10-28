@@ -48,13 +48,13 @@ class User < ApplicationRecord
   has_many :frames, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  # フォローをした、されたの関係
+  # (フォローをした、されたの関係)
   has_many :follower_relationships, class_name: 'FollowRelationship', foreign_key: 'follower_id',
                                     inverse_of: :follower, dependent: :destroy
   has_many :followee_relationships, class_name: 'FollowRelationship', foreign_key: 'followee_id',
                                     inverse_of: :followee, dependent: :destroy
 
-  # 一覧画面で使う
+  # (一覧画面で使う)
   has_many :followees, through: :follower_relationships, source: :followee
   has_many :followers, through: :followee_relationships, source: :follower
 
