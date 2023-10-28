@@ -1,17 +1,17 @@
 import Axios, { AxiosResponse } from 'axios'
-import { ref, reactive} from 'vue/dist/vue.esm-bundler.js'
+import { Ref, ref, reactive} from 'vue'
 import { useViewData } from './use_view_data'
 
 export interface User {
   id: string,
-  token: string
+  token: string | undefined | null
 }
 
 export function useAccount() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let account: any = null
-  const logged_in: ref<boolean> = ref<boolean>(false)
-  const current_user: reactive<User> = reactive<User>({
+  const logged_in: Ref<boolean> = ref<boolean>(false)
+  const current_user = reactive<User>({
     id: '',
     token: ''
   })

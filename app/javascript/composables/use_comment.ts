@@ -1,11 +1,11 @@
 import Axios, { AxiosResponse } from 'axios'
-import { reactive } from 'vue/dist/vue.esm-bundler.js'
+import { reactive } from 'vue'
 import { useViewData } from './use_view_data'
 import { User } from './use_account'
 
 interface Comment {
   id: number | null
-  frame_id: string,
+  frame_id: number | null,
   body: string
   user_id: number | null,
   user_name: string
@@ -14,9 +14,9 @@ interface Comment {
 }
 
 export function useComment(current_user: User) {
-  const comment: reactive<Comment> = reactive<Comment>({
+  const comment = reactive<Comment>({
     id: null,
-    frame_id: '',
+    frame_id: null,
     body: '',
     user_id: null,
     user_name: '',
@@ -25,12 +25,12 @@ export function useComment(current_user: User) {
   })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const comments: reactive<any[]> = reactive<any[]>([])
-  const error_messages: reactive<string[]> = reactive<string[]>([])
+  const comments = reactive<any[]>([])
+  const error_messages = reactive<string[]>([])
 
   const { constants } = useViewData()
 
-  const getComments = async (frame_id: number) => {
+  const getComments = async (frame_id: number | null) => {
     //console.log(frame_id)
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
