@@ -22,7 +22,7 @@ module Api
         def create
           comment = Comment.new(comment_params)
           comment.user_id = current_user.id
-          if logged_in? && comment.valid?
+          if comment.valid?
             comment.save
             # logger.debug CommentSerializer.new(comment).serialized_json
             render json: CommentSerializer.new(comment).serializable_hash
@@ -32,8 +32,8 @@ module Api
         end
 
         def destroy
-          comment = Comment.find_by(id: params[:id])
-          comment.destroy if comment && logged_in? && current_user.id == comment.user_id
+          comment = Comment.find_by(id: params[:id], user_id: current_user.id)
+          comment.destroy if comment
           head :no_content
         end
 
