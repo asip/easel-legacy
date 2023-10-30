@@ -102,6 +102,13 @@ class User < ApplicationRecord
     update!(token: nil)
   end
 
+  def assign_derivatives
+    return if image.blank?
+
+    image_derivatives!
+    save!(validate: false)
+  end
+
   # (フォローしたときの処理)
   def follow(user_id)
     follower_relationships.create(followee_id: user_id)

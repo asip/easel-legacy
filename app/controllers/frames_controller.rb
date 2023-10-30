@@ -28,8 +28,8 @@ class FramesController < ApplicationController
 
   def create
     @frame.user_id = current_user.id
-    @frame.file_derivatives! if @frame.file.present?
     if @frame.save
+      @frame.assign_derivatives
       redirect_to root_path(query_params)
     else
       render :new, status: :unprocessable_entity
@@ -40,10 +40,9 @@ class FramesController < ApplicationController
 
   def update
     @frame.user_id = current_user.id
-
     @frame.attributes = frame_params
-    @frame.file_derivatives! if @frame.file.present?
     if @frame.save
+      @frame.assign_derivatives
       redirect_to frame_path(@frame, query_params)
     else
       render :edit, status: :unprocessable_entity
