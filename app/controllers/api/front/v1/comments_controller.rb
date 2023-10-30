@@ -32,7 +32,7 @@ module Api
 
         def destroy
           comment = Comment.find_by(id: params[:id], user_id: current_user.id)
-          comment.destroy if comment
+          comment&.destroy
           head :no_content
         end
 
