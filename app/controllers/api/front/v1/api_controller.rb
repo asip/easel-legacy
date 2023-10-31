@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+# api
 module Api
+  # front
   module Front
+    # v1
     module V1
       # Api Controller
       class ApiController < ActionController::API
