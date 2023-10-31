@@ -13,12 +13,12 @@ class UsersController < ApplicationController
 
   # followees list (フォロイー一覧)
   def followees
-    @users = User.find(params[:user_id]).followees
+    @users = User.find(path_params[:user_id]).followees
   end
 
   # followers list (フォロワー一覧)
   def followers
-    @users = User.find(params[:user_id]).followers
+    @users = User.find(path_params[:user_id]).followers
   end
 
   def new; end
@@ -91,6 +91,10 @@ class UsersController < ApplicationController
       :image,
       :confirming
     )
+  end
+
+  def path_params
+    params.permit(:user_id)
   end
 
   def query_params
