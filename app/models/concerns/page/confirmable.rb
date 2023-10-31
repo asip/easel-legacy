@@ -19,13 +19,14 @@ module Page
     def check_confirming
       errors.delete(:confirming)
       self.confirming = errors.empty? ? 'true' : ''
-      return unless errors[:file].empty? || errors[:image].empty?
 
       # Rails.logger.debug self.class
       attach_derivatives
     end
 
     def attach_derivatives
+      return unless errors[:file].empty? || errors[:image].empty?
+
       case self.class.to_s
       when 'Frame'
         file_derivatives! if file.present?
