@@ -29,7 +29,6 @@ class FramesController < ApplicationController
   def create
     @frame.user_id = current_user.id
     if @frame.save
-      @frame.assign_derivatives
       redirect_to root_path(query_params)
     else
       render :new, status: :unprocessable_entity
@@ -42,7 +41,6 @@ class FramesController < ApplicationController
     @frame.user_id = current_user.id
     @frame.attributes = frame_params
     if @frame.save
-      @frame.assign_derivatives
       redirect_to frame_path(@frame, query_params)
     else
       render :edit, status: :unprocessable_entity

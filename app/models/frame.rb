@@ -58,9 +58,9 @@ class Frame < ApplicationRecord
 
   def assign_derivatives
     return if file.blank?
+    return unless errors[:file].empty?
 
     file_derivatives!
-    save!(validate: false)
   end
 
   private

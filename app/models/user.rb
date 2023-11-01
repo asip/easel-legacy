@@ -104,9 +104,9 @@ class User < ApplicationRecord
 
   def assign_derivatives
     return if image.blank?
+    return unless errors[:image].empty?
 
     image_derivatives!
-    save!(validate: false)
   end
 
   # (フォローしたときの処理)

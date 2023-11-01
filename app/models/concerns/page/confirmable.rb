@@ -21,18 +21,9 @@ module Page
       self.confirming = errors.empty? ? 'true' : ''
 
       # Rails.logger.debug self.class
-      attach_derivatives
-    end
+      return unless %w[Frame User].include?(self.class.to_s)
 
-    def attach_derivatives
-      return unless errors[:file].empty? || errors[:image].empty?
-
-      case self.class.to_s
-      when 'Frame'
-        file_derivatives! if file.present?
-      when 'User'
-        image_derivatives! if image.present?
-      end
+      assign_derivatives
     end
   end
 end
