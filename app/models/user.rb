@@ -34,6 +34,7 @@
 
 # User
 class User < ApplicationRecord
+  include Errors::Sortable
   include Page::Confirmable
   include Discard::Model
   include Profile::Image::Uploader::Attachment(:image)
@@ -62,12 +63,12 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   with_options on: :with_validation do |save|
-    save.validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
+    save.validates :password, length: { in: 3.. }, if: -> { new_record? || changes[:crypted_password] }
     save.validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
-    save.validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
+    save.validates :password_confirmation, if: -> { new_record? || changes[:crypted_password] }
 
-    save.validates :name, presence: true, length: { in: 3..40 } # , format: { with: VALID_NAME_REGEX }
-    save.validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+    save.validates :name, length: { in: 3..40 } # , format: { with: VALID_NAME_REGEX }
+    save.validates :email, length: { in: 3.. }, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   end
 
   with_options on: :login do
@@ -90,6 +91,10 @@ class User < ApplicationRecord
     false
   rescue StandardError # => e
     true
+  end
+
+  def full_error_messages
+    full_error_messages_for(%i[image name email password password_confirmation])
   end
 
   # rubocop:disable Rails/SkipsModelValidations

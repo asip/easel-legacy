@@ -16,6 +16,7 @@
 
 # Frame
 class Frame < ApplicationRecord
+  include Errors::Sortable
   include Page::Confirmable
   # has_one_attached :file
   include Contents::Uploader::Attachment(:file)
@@ -25,6 +26,8 @@ class Frame < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   belongs_to :user
+
+  delegate :name, to: :user, prefix: true
 
   validates :name, length: { in: 1..20 }
   validates :file, presence: true
@@ -50,10 +53,12 @@ class Frame < ApplicationRecord
     scope
   }
 
-  delegate :name, to: :user, prefix: true
-
   def tags_preview
     tag_list.to_s.split(/\s*,\s*/)
+  end
+
+  def full_error_messages
+    full_error_messages_for(%i[file name tag_list])
   end
 
   def assign_derivatives
