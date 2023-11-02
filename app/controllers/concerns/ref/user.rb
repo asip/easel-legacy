@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# Referrer Module
+# referrer
 module Ref
-  # User Module
+  # User module
   module User
     extend ActiveSupport::Concern
 

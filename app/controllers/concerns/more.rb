@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# More Module
+# More module
 module More
   extend ActiveSupport::Concern
 

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# Errors Module
+# errors
 module Errors
-  # Sortable Module
+  # Sortable module
   module Sortable
     extend ActiveSupport::Concern
 
