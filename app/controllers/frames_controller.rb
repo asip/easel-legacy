@@ -3,7 +3,7 @@
 # Frames Controller
 class FramesController < ApplicationController
   include Pagy::Backend
-  include Search::Query
+  include Query::Search
   include More
   include DateAndTime::Util
 

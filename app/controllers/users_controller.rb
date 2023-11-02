@@ -2,7 +2,7 @@
 
 # Users Controller
 class UsersController < ApplicationController
-  include Search::Query
+  include Query::Search
   include Ref::User
 
   skip_before_action :require_login

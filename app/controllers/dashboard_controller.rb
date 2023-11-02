@@ -2,7 +2,7 @@
 
 # Dashboard Controller
 class DashboardController < ApplicationController
-  include Search::Query
+  include Query::Search
 
   skip_before_action :require_login
 

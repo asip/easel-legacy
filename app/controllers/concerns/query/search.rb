@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# Search Module
-module Search
+# Query module
+module Query
   # Query module
-  module Query
+  module Search
     extend ActiveSupport::Concern
 
     included do

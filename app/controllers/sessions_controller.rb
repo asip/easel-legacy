@@ -2,7 +2,7 @@
 
 # Sessions Controller
 class SessionsController < ApplicationController
-  include Search::Query
+  include Query::Search
 
   skip_before_action :require_login, except: [:destroy]
 
