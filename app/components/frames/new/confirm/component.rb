@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# Frames
+# frames
 module Frames
-  # New
+  # new
   module New
-    # Confirm
+    # confirm
     module Confirm
       # Component
       class Component < ViewComponent::Base

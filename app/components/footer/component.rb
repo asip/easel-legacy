@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Footer
+# footer
 module Footer
   # Component
   class Component < ViewComponent::Base

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Tag Search
+# tag search
 module TagSearch
   # Component
   class Component < ViewComponent::Base

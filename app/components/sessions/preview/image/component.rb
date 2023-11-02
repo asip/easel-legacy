@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# Sessions
+# sessions
 module Sessions
-  # Preview
+  # preview
   module Preview
-    # Image
+    # image
     module Image
       # Component
       class Component < ViewComponent::Base

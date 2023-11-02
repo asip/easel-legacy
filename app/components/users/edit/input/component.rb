@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# Users
+# users
 module Users
-  # Edit
+  # edit
   module Edit
-    # Input
+    # input
     module Input
       # Component
       class Component < ViewComponent::Base

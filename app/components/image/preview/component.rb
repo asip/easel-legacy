@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# Image
+# image
 module Image
-  # Preview
+  # preview
   module Preview
     # Component
     class Component < ViewComponent::Base

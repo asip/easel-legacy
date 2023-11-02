@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
+# frames
 module Frames
-  # Preview
+  # preview
   module Preview
-    # Tags
+    # tags
     module Tags
       # Component
       class Component < ViewComponent::Base

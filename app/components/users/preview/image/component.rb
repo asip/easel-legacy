@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# Users
+# users
 module Users
-  # Preview
+  # preview
   module Preview
-    # Image
+    # image
     module Image
       # Component
       class Component < ViewComponent::Base

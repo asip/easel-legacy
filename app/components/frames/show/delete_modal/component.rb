@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# Frames
+# frames
 module Frames
-  # Preview
+  # show
   module Show
-    # DeleteModal
+    # delete modal
     module DeleteModal
       # Component
       class Component < ViewComponent::Base
