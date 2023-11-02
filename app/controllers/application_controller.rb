@@ -3,6 +3,7 @@
 # Application Controller
 class ApplicationController < ActionController::Base
   include Locale::AutoDetect
+  include Query::NPlusOne::Detection unless Rails.env.production? || Rails.env.test?
 
   protect_from_forgery with: :exception
 

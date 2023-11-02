@@ -93,6 +93,8 @@ end
 group :development do
   gem 'brakeman'
   gem 'bullet'
+  gem 'pg_query'
+  gem 'prosopite'
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
