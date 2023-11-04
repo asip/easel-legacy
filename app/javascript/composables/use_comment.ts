@@ -62,13 +62,12 @@ export function useComment(current_user: User) {
 
   const postComment = async () => {
     try {
+      const params = new URLSearchParams()
+      params.append('comment[body]', comment.body)
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const res: AxiosResponse<any, any> = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
-        {
-          comment: {
-            body: comment.body
-          }
-        },
+        params,
         {
           headers: {
             Authorization: `Bearer ${current_user.token}`
