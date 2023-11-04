@@ -97,11 +97,9 @@ class User < ApplicationRecord
     full_error_messages_for(%i[image name email password password_confirmation])
   end
 
-  # rubocop:disable Rails/SkipsModelValidations
   def assign_token(token_)
-    update_attribute(:token, token_)
+    update_attribute!(:token, token_)
   end
-  # rubocop:enable Rails/SkipsModelValidations
 
   def update_token
     return unless saved_change_to_email?
