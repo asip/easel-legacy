@@ -66,7 +66,6 @@ export function useComment(current_user: User) {
       const res: AxiosResponse<any, any> = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
         {
           comment: {
-            frame_id: comment.frame_id,
             body: comment.body
           }
         },

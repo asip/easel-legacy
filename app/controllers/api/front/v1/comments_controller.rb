@@ -11,6 +11,7 @@ module Api
         def create
           comment = Comment.new(comment_params)
           comment.user_id = current_user.id
+          comment.frame_id = params[:frame_id]
           if comment.save
             # logger.debug CommentSerializer.new(comment).serialized_json
             render json: CommentSerializer.new(comment).serializable_hash
