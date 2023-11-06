@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
   def update
     @user.attributes = user_params
     if @user.save(context: :with_validation)
@@ -46,6 +47,7 @@ class UsersController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
