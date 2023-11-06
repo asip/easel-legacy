@@ -1,4 +1,5 @@
 <%= turbo_frame_tag 'frames' do %>
+  <%= render Toast::Component.new(flashes: @flashes) %>
   <br>
   <div data-controller="luminous tagify preview">
     <%= form_with model: @frame, local: true do |form| %>
@@ -12,9 +13,6 @@
             </div>
           </div>
           <br>
-          <div class="card-block">
-            <%= render Toast::Component.new(messages: @frame.full_error_messages) %>
-          </div>
           <%= form.hidden_field :file, value: form.object.cached_file_data %>
           <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: false) %>
           <% if @frame.confirming == 'true' %>

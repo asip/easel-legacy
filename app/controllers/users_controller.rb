@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     if @user.save(context: :with_validation)
       redirect_to login_path
     else
+      flashes[:alert] = @user.errors.full_messages unless @user.errors.empty?
       render :new, status: :unprocessable_entity
     end
   end
@@ -41,6 +42,7 @@ class UsersController < ApplicationController
       cookies.permanent[:access_token] = @user.token if @user.saved_change_to_email?
       redirect_to profile_path
     else
+      flashes[:alert] = @user.errors.full_messages unless @user.errors.empty?
       render :edit, status: :unprocessable_entity
     end
   end

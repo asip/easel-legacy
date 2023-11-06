@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   include Locale::AutoDetect
   include Query::NPlusOne::Detection unless Rails.env.production? || Rails.env.test?
+  include Flashes
 
   protect_from_forgery with: :exception
 

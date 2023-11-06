@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       validate_login(params_user)
+      flashes[:alert] = @user.errors.full_messages
       render :new
     end
   end
