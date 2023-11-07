@@ -10,22 +10,15 @@ class SessionsController < ApplicationController
     @user = User.new
   end
 
-  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def create
     params_user = user_params
-    token = login_and_issue_token(params_user[:email], params_user[:password])
-    @user = current_user
+    @user = login(params_user[:email], params_user[:password])
     if @user
-      @user.assign_token(token) if @user.token.blank? || @user.token_expire?
-      cookies.permanent[:access_token] = token
-      redirect_to root_path
+      create_successful
     else
-      validate_login(params_user)
-      flashes[:alert] = @user.full_error_messages_on_login
-      render :new
+      create_failed(user_params: params_user)
     end
   end
-  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   def show
     @user = current_user
@@ -40,29 +33,40 @@ class SessionsController < ApplicationController
 
   private
 
+  def login(email, password)
+    token = login_and_issue_token(email, password)
+    user = current_user
+    user.assign_token(token) if user && (user.token.blank? || user.token_expire?)
+    user
+  end
+
+  def create_successful
+    cookies.permanent[:access_token] = token
+    redirect_to root_path
+  end
+
+  def create_failed(user_params:)
+    success, @user = validate_login(user_params:)
+    return if success
+
+    flashes[:alert] = @user.full_error_messages_on_login
+    render :new
+  end
+
+  def validate_login(user_params:)
+    user = User.find_by(email: user_params[:email])
+    if user
+      user.validate_password_on_login(user_params)
+    else
+      user = User.new(user_params)
+      user.validate_email_on_login(user_params)
+    end
+    success = user.errors.empty?
+    [success, user]
+  end
+
   def user_params
     params.require(:user).permit(:email, :password)
-  end
-
-  def validate_login(params_user)
-    @user = User.find_by(email: params_user[:email])
-    if @user
-      validate_password(params_user)
-    else
-      validate_email(params_user)
-    end
-  end
-
-  def validate_password(params_user)
-    @user.password = params_user[:password]
-    @user.valid?(:login)
-    @user.errors.add(:password, t('action.login.invalid')) if params_user[:password].present?
-  end
-
-  def validate_email(params_user)
-    @user = User.new(params_user)
-    @user.valid?(:login)
-    @user.errors.add(:email, t('action.login.invalid')) if params_user[:email].present?
   end
 
   def query_params
