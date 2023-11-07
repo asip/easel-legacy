@@ -15,11 +15,14 @@ class OauthsController < ApplicationController
     login_from_oauth(provider)
     cookies.permanent[:access_token] = @user.token
     redirect_to root_path
+  rescue ActiveRecord::RecordNotUnique
+    redirect_to root_path
+  rescue StandardError
+    redirect_to root_path
   end
 
   private
 
-  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def login_from_oauth(provider)
     if (@user = login_from(provider))
       @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
@@ -29,12 +32,7 @@ class OauthsController < ApplicationController
       reset_session
       auto_login(@user)
     end
-  rescue ActiveRecord::RecordNotUnique
-    redirect_to root_path
-  rescue StandardError
-    redirect_to root_path
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   def verify_g_csrf_token
     if cookies['g_csrf_token'].blank? || params[:g_csrf_token].blank? ||
