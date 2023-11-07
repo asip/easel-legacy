@@ -31,7 +31,7 @@ class FramesController < ApplicationController
     if @frame.save
       redirect_to root_path(query_params)
     else
-      flashes[:alert] = @frame.errors.full_messages unless @frame.errors.empty?
+      flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
       render :new, status: :unprocessable_entity
     end
   end
@@ -44,7 +44,7 @@ class FramesController < ApplicationController
     if @frame.save
       redirect_to frame_path(@frame, query_params)
     else
-      flashes[:alert] = @frame.errors.full_messages unless @frame.errors.empty?
+      flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
       render :edit, status: :unprocessable_entity
     end
   end
