@@ -97,6 +97,10 @@ class User < ApplicationRecord
     full_error_messages_for(%i[image name email password password_confirmation])
   end
 
+  def full_error_messages_on_login
+    full_error_messages_for(%i[email password])
+  end
+
   def assign_token(token_)
     update_attribute!(:token, token_)
   end

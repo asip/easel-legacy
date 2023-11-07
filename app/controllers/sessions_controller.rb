@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       validate_login(params_user)
-      flashes[:alert] = @user.errors.full_messages
+      flashes[:alert] = @user.full_error_messages_on_login
       render :new
     end
   end
@@ -62,7 +62,7 @@ class SessionsController < ApplicationController
   def validate_email(params_user)
     @user = User.new(params_user)
     @user.valid?(:login)
-    @user.errors.add(:email, t('action.login.invalid')) if @user.email.present?
+    @user.errors.add(:email, t('action.login.invalid')) if params_user[:email].present?
   end
 
   def query_params
