@@ -27,6 +27,8 @@
 
 # Admin
 class Admin < ApplicationRecord
+  include Errors::Sortable
+
   authenticates_with_sorcery!
 
   VALID_EMAIL_REGEX = /\A\z|\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -40,4 +42,8 @@ class Admin < ApplicationRecord
 
   validates :email, presence: true, on: :login
   validates :password, presence: true, on: :login
+
+  def full_error_messages_on_login
+    full_error_messages_for(%i[email password])
+  end
 end

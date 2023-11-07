@@ -17,7 +17,7 @@ module Manager
         redirect_to rails_admin_path
       else
         validate_login(params_user)
-        flashes[:alert] = @user.errors.full_messages
+        flashes[:alert] = @user.full_error_messages_on_login
         render :new
       end
     end
@@ -48,13 +48,14 @@ module Manager
 
     def validate_password(params_user)
       @user.password = params_user[:password]
-      @user.errors.add(:password, t('action.login.invalid')) if !@user.valid?(:login) && params_user[:password].present?
+      @user.valid?(:login)
+      @user.errors.add(:password, t('action.login.invalid')) if params_user[:password].present?
     end
 
     def validate_email(params_user)
       @user = Admin.new(params_user)
       @user.valid?(:login)
-      @user.errors.add(:email, t('action.login.invalid')) if @user.email.present?
+      @user.errors.add(:email, t('action.login.invalid')) if params_user[:email].present?
     end
   end
 end
