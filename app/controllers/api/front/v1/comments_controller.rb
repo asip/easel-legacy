@@ -8,11 +8,12 @@ module Api
     module V1
       # Comments Controller
       class CommentsController < Api::Front::V1::ApiController
+        before_action :set_case
+
         def create
-          comment = Comment.new(comment_params)
-          comment.user_id = current_user.id
-          comment.frame_id = params[:frame_id]
-          if comment.save
+          success, comment = @case.create_comment(user: current_user, frame_id: params[:frame_id],
+                                                  comment_params:)
+          if success
             # logger.debug CommentSerializer.new(comment).serialized_json
             render json: CommentSerializer.new(comment).serializable_hash
           else
@@ -21,12 +22,15 @@ module Api
         end
 
         def destroy
-          comment = Comment.find_by(id: params[:id], user_id: current_user.id)
-          comment&.destroy
+          @case.delete_comment(user: current_user, comment_id: params[:id])
           head :no_content
         end
 
         private
+
+        def set_case
+          @case = CommentsCase.new
+        end
 
         def comment_params
           params.require(:comment).permit(:body)
