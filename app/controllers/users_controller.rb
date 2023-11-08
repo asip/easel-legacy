@@ -6,27 +6,36 @@ class UsersController < ApplicationController
   include Ref::User
 
   skip_before_action :require_login
-  before_action :set_user, only: %i[show new create edit update]
+
+  before_action :set_case
+  before_action :set_user, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
-  def show; end
+  def show
+    @user = @case.detail_query(user_id: params[:id])
+  end
 
   # followees list (フォロイー一覧)
   def followees
-    @users = User.find(path_params[:user_id]).followees
+    @users = @case.followees_query(user_id: path_params[:user_id])
   end
 
   # followers list (フォロワー一覧)
   def followers
-    @users = User.find(path_params[:user_id]).followers
+    @users = @case.followers_query(user_id: path_params[:user_id])
   end
 
-  def new; end
+  def new
+    @user = User.new
+  end
 
-  def edit; end
+  def edit
+    @user = current_user
+  end
 
   def create
-    if @user.save(context: :with_validation)
+    success, @user = @case.save_user(user: @user)
+    if success
       redirect_to login_path
     else
       flashes[:alert] = @user.full_error_messages unless @user.errors.empty?
@@ -34,12 +43,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # rubocop:disable Metrics/AbcSize
   def update
-    @user.attributes = user_params
-    if @user.save(context: :with_validation)
-      # puts @user.saved_change_to_email?
-      @user.update_token
+    success, @user = @case.save_user_with_token(user: @user)
+    if success
       cookies.permanent[:access_token] = @user.token if @user.saved_change_to_email?
       redirect_to profile_path
     else
@@ -47,21 +53,21 @@ class UsersController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
   private
 
+  def set_case
+    @case = UsersCase.new
+  end
+
   def set_user
-    @user = case action_name
-            when 'show'
-              User.find_by!(id: params[:id])
-            when 'new'
-              User.new
-            when 'create'
-              User.new(user_params)
-            else
-              current_user
-            end
+    case action_name
+    when 'create'
+      @user = User.new(user_params)
+    when 'update'
+      @user = current_user
+      @user.attributes = user_params
+    end
   end
 
   def back_to_form
@@ -80,12 +86,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :name,
-      :email,
-      :password,
-      :password_confirmation,
-      :image,
-      :confirming
+      :name, :email, :password, :password_confirmation, :image, :confirming
     )
   end
 
