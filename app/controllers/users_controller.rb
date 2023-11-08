@@ -74,7 +74,6 @@ class UsersController < ApplicationController
     return unless params[:commit] == '戻る'
 
     @user.confirming = ''
-    @user.attributes = user_params
     @user.image_derivatives! if @user.image.present?
     case action_name
     when 'create'
