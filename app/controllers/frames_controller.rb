@@ -2,33 +2,36 @@
 
 # Frames Controller
 class FramesController < ApplicationController
-  include Pagy::Backend
+  include Frames::Query::PaginationQuery
   include Query::Search
   include More
   include DateAndTime::Util
 
   skip_before_action :require_login, only: %i[index show]
+
+  before_action :set_case
   # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :set_query, only: %i[index prev next show new edit]
   # rubocop:enable Rails/LexicallyScopedActionFilter
   before_action :set_day, only: [:index]
-  before_action :set_frame, only: %i[show new create edit update destroy]
+  before_action :set_frame, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
   def index
-    frames = Frame.search_by(word: @word).order(created_at: 'desc')
-    @pagy, frames = pagy(frames, { page: @page })
-    frame_ids = frames.pluck(:id)
-    @frames = Frame.where(id: frame_ids).order(created_at: 'desc')
+    @pagy, @frames = list_query(word: @word, page: @page)
   end
 
-  def show; end
+  def show
+    @frame = @case.detail_query(frame_id: permitted_params[:id])
+  end
 
-  def new; end
+  def new
+    @frame = Frame.new
+  end
 
   def create
-    @frame.user_id = current_user.id
-    if @frame.save
+    success, @frame = @case.save_frame(user: current_user, frame: @frame)
+    if success
       redirect_to root_path(query_params)
     else
       flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
@@ -36,12 +39,13 @@ class FramesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @frame = @case.detail_query_with_user(user: current_user, frame_id: permitted_params[:id])
+  end
 
   def update
-    @frame.user_id = current_user.id
-    @frame.attributes = frame_params
-    if @frame.save
+    success, @frame = @case.save_frame(user: current_user, frame: @frame)
+    if success
       redirect_to frame_path(@frame, query_params)
     else
       flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
@@ -50,7 +54,7 @@ class FramesController < ApplicationController
   end
 
   def destroy
-    @frame.destroy
+    @case.delete_frame(user: current_user, frame_id: permitted_params[:id])
     redirect_to root_path(query_params), status: :see_other
   end
 
@@ -69,17 +73,18 @@ class FramesController < ApplicationController
            end
   end
 
+  def set_case
+    @case = FramesCase.new
+  end
+
   def set_frame
-    @frame = case action_name
-             when 'show'
-               Frame.find(permitted_params[:id])
-             when 'new'
-               Frame.new
-             when 'create'
-               Frame.new(frame_params)
-             else
-               Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
-             end
+    case action_name
+    when 'create'
+      @frame = Frame.new(frame_params)
+    when 'update'
+      @frame = Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
+      @frame.attributes = frame_params
+    end
   end
 
   def back_to_form
@@ -96,27 +101,12 @@ class FramesController < ApplicationController
     end
   end
 
-  # rubocop:disable Metrics/MethodLength
   def permitted_params
     params.permit(
-      :id,
-      :q,
-      :page,
-      :commit,
-      :tag_editor,
-      :_method,
-      :authenticity_token,
-      frame: %i[
-        name
-        tag_list
-        comment
-        file
-        shooted_at
-        confirming
-      ]
+      :id, :q, :page, :commit, :tag_editor, :_method, :authenticity_token,
+      frame: %i[name tag_list comment file shooted_at confirming]
     )
   end
-  # rubocop:enable Metrics/MethodLength
 
   def frame_params
     permitted_params[:frame]
