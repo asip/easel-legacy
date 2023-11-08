@@ -10,10 +10,10 @@ module Api
       class FramesController < Api::Front::V1::ApiController
         skip_before_action :authenticate, only: [:comments]
 
+        before_action :set_case
+
         def comments
-          frame = Frame.find_by!(id: path_params[:frame_id])
-          comments = Comment.eager_load(:user).where(frame_id: frame.id)
-                            .order(created_at: 'asc')
+          comments = @case.comments_query(frame_id: path_params[:frame_id])
 
           # options = {}
           # options[:include] = [:user]
@@ -22,6 +22,10 @@ module Api
         end
 
         private
+
+        def set_case
+          @case = FramesCase.new
+        end
 
         def path_params
           params.permit(:frame_id)
