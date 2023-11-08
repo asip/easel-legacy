@@ -91,7 +91,6 @@ class FramesController < ApplicationController
     return unless permitted_params[:commit] == '戻る'
 
     @frame.confirming = ''
-    @frame.attributes = frame_params
     @frame.file_derivatives! if @frame.file.present?
     case action_name
     when 'create'
