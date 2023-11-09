@@ -63,10 +63,10 @@ class UsersController < ApplicationController
   def set_user
     case action_name
     when 'create'
-      @user = User.new(user_params)
+      @user = User.new(form_params)
     when 'update'
       @user = current_user
-      @user.attributes = user_params
+      @user.attributes = form_params
     end
   end
 
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def user_params
+  def form_params
     params.require(:user).permit(
       :name, :email, :password, :password_confirmation, :image, :confirming
     )

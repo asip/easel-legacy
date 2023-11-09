@@ -80,10 +80,10 @@ class FramesController < ApplicationController
   def set_frame
     case action_name
     when 'create'
-      @frame = Frame.new(frame_params)
+      @frame = Frame.new(form_params)
     when 'update'
       @frame = Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
-      @frame.attributes = frame_params
+      @frame.attributes = form_params
     end
   end
 
@@ -107,7 +107,7 @@ class FramesController < ApplicationController
     )
   end
 
-  def frame_params
+  def form_params
     permitted_params[:frame]
   end
 end

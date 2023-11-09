@@ -2,14 +2,14 @@
 
 # Frames Case
 class FramesCase
-  def create_frame(user:, frame_params:)
-    frame = Frame.new(frame_params)
+  def create_frame(user:, form_params:)
+    frame = Frame.new(form_params)
     save_frame(user:, frame:)
   end
 
-  def update_frame(user:, frame_id:, frame_params:)
+  def update_frame(user:, frame_id:, form_params:)
     frame = Frame.find_by!(id: frame_id, user_id: user.id)
-    frame.attributes = frame_params
+    frame.attributes = form_params
     save_frame(user:, frame:)
   end
 
