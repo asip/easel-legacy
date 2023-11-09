@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   before_action :back_to_form, only: %i[create update]
 
   def show
-    @user = @case.detail_query(user_id: params[:id])
+    @user = @case.find_query(user_id: params[:id])
   end
 
   # followees list (フォロイー一覧)

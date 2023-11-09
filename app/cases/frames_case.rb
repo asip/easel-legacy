@@ -28,11 +28,11 @@ class FramesCase
     Frame.search_by(word:).order(created_at: 'desc')
   end
 
-  def detail_query(frame_id:)
+  def find_query(frame_id:)
     Frame.find(frame_id)
   end
 
-  def detail_query_with_user(user:, frame_id:)
+  def find_query_with_user(user:, frame_id:)
     Frame.find_by!(id: frame_id, user_id: user.id)
   end
 
