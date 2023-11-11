@@ -75,6 +75,8 @@ class User < ApplicationRecord
   validates :email, presence: true, on: :login
   validates :password, presence: true, on: :login
 
+  after_validation :assign_derivatives
+
   default_scope -> { kept }
 
   def image_url_for_view(key)

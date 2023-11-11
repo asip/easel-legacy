@@ -33,6 +33,8 @@ class Frame < ApplicationRecord
   validates :file, presence: true
   validate :check_tag
 
+  after_validation :assign_derivatives
+
   scope :search_by, lambda { |word:|
     scope = current_scope || relation
 

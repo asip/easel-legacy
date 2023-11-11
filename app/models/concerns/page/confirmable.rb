@@ -19,11 +19,6 @@ module Page
     def check_confirming
       errors.delete(:confirming)
       self.confirming = errors.empty? ? 'true' : ''
-
-      # Rails.logger.debug self.class
-      return unless %w[Frame User].include?(self.class.to_s)
-
-      assign_derivatives
     end
   end
 end
