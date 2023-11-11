@@ -75,6 +75,8 @@ class User < ApplicationRecord
   validates :email, presence: true, on: :login
   validates :password, presence: true, on: :login
 
+  default_scope -> { kept }
+
   def image_url_for_view(key)
     if image.blank?
       "#{Settings.origin}/no-profile-image.png"
