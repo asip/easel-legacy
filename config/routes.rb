@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   patch '/profile' => 'users#update', :as => 'update_profile'
   delete '/account/logout' => 'sessions#destroy', :as => 'account_logout'
 
-  post 'oauth/callback', to: 'oauths#callback'
-  get 'oauth/callback', to: 'oauths#callback'
+  post 'oauth/callback', to: 'oauth/sessions#callback'
+  get 'oauth/callback', to: 'oauth/sessions#callback'
 
   namespace :manager do
     resources :sessions, only: %i[new create destroy]
