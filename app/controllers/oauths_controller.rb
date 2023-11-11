@@ -12,8 +12,8 @@ class OauthsController < ApplicationController
   def callback
     provider = auth_params[:provider]
 
-    login_from_oauth(provider)
-    cookies.permanent[:access_token] = @user.token
+    user = login_from_oauth(provider)
+    cookies.permanent[:access_token] = user.token
     redirect_to root_path
   rescue ActiveRecord::RecordNotUnique
     redirect_to root_path
@@ -24,14 +24,15 @@ class OauthsController < ApplicationController
   private
 
   def login_from_oauth(provider)
-    if (@user = login_from(provider))
-      @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
+    if (user = login_from(provider))
+      user.assign_token(user_class.issue_token(id: user.id, email: user.email))
     else
-      @user = create_from(provider)
-      @user.assign_token(user_class.issue_token(id: @user.id, email: @user.email))
+      user = create_from(provider)
+      user.assign_token(user_class.issue_token(id: user.id, email: user.email))
       reset_session
-      auto_login(@user)
+      auto_login(user)
     end
+    user
   end
 
   def verify_g_csrf_token
