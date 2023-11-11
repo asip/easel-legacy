@@ -73,8 +73,9 @@ RailsAdmin.config do |config|
   end
 
   # config.model 'User' do
-  #   list do
-  #     scopes [:unscoped]
-  #   end
+  #  scope { User.unscoped }
+  #  #list do
+  #  #  scopes [:unscoped]
+  #  # end
   # end
 end
