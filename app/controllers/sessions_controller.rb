@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     params_form = form_params
     @user = login(params_form[:email], params_form[:password])
     if @user
-      create_successful
+      create_successful(user: @user)
     else
       create_failed(form_params: params_form)
     end
@@ -40,8 +40,8 @@ class SessionsController < ApplicationController
     user
   end
 
-  def create_successful
-    cookies.permanent[:access_token] = token
+  def create_successful(user:)
+    cookies.permanent[:access_token] = user.token
     redirect_to root_path
   end
 
