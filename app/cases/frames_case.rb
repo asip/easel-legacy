@@ -32,11 +32,11 @@ class FramesCase
     Frame.find(frame_id)
   end
 
-  def find_query_with_user(user:, frame_id:)
+  def find_query_by_user(user:, frame_id:)
     Frame.find_by!(id: frame_id, user_id: user.id)
   end
 
-  def comments_query(frame_id:)
+  def comments_query_with_user(frame_id:)
     frame = Frame.find_by!(id: frame_id)
     User.unscoped do
       Comment.eager_load(:user).where(frame_id: frame.id)

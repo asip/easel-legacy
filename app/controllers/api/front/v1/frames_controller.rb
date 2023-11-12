@@ -13,7 +13,7 @@ module Api
         before_action :set_case
 
         def comments
-          comments = @case.comments_query(frame_id: path_params[:frame_id])
+          comments = @case.comments_query_with_user(frame_id: path_params[:frame_id])
 
           # options = {}
           # options[:include] = [:user]

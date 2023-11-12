@@ -40,7 +40,7 @@ class FramesController < ApplicationController
   end
 
   def edit
-    @frame = @case.find_query_with_user(user: current_user, frame_id: permitted_params[:id])
+    @frame = @case.find_query_by_user(user: current_user, frame_id: permitted_params[:id])
   end
 
   def update
