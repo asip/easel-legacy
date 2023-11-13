@@ -9,6 +9,8 @@ module Api
     included do
       rescue_from StandardError, with: ->(e) { render500(e) }
       rescue_from ActiveRecord::RecordNotFound, with: ->(e) { render404(e) }
+      rescue_from ActiveRecord::RecordNotUnique, with: ->(e) { render409(e) }
+      rescue_from ActiveRecord::RecordInvalid, with: ->(e) { render422(e) }
       rescue_from UnauthorizedError, with: ->(e) { render401(e) }
     end
 
@@ -27,6 +29,14 @@ module Api
 
     def render404(exception = nil, messages = nil)
       render_error(404, 'Not Found', exception&.message, *messages)
+    end
+
+    def render409(exception = nil, messages = nil)
+      render_error(409, 'Conflict', exception&.message, *messages)
+    end
+
+    def render422(exception = nil, messages = nil)
+      render_error(422, 'Unprocessable Entity', exception&.message, *messages)
     end
 
     def render500(exception = nil, messages = nil)
