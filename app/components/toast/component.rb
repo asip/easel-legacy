@@ -16,7 +16,7 @@ module Toast
 
     def flash_to_json
       flash_ = {}
-      @flash.each  do |key, value|
+      @flash.each do |key, value|
         flash_[key] = [value]
       end
       flash_.to_json
