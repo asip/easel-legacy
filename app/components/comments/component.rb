@@ -4,11 +4,9 @@
 module Comments
   # Component
   class Component < ViewComponent::Base
-    def initialize(frame:, token:, login:)
+    def initialize(frame:)
       super
       @frame = frame
-      @token = token
-      @login = login
     end
   end
 end
