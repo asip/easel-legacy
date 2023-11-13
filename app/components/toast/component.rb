@@ -4,12 +4,12 @@
 module Toast
   # Component
   class Component < ViewComponent::Base
-    def initialize(flashes: {}, flash: {})
+    def initialize(flash: {}, flashes: {})
       super
-      @flashes = flashes
       @flash = flash
-      @flashes_json = flashes.to_json
+      @flashes = flashes
       @flash_json = flash_to_json
+      @flashes_json = flashes.to_json
     end
 
     private

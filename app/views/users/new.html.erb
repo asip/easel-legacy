@@ -1,5 +1,5 @@
 <%= turbo_frame_tag 'users' do %>
-  <%= render Toast::Component.new(flashes: @flashes) %>
+  <%= render Toast::Component.new(flash: flash, flashes: @flashes) %>
   <%= form_with model: @user, local: true do |form| %>
     <br>
     <div class="card" data-controller="preview">
