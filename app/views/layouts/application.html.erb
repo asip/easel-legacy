@@ -12,7 +12,7 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <%= render Toast::Component.new(flashes: @flashes) %>
+    <%= render Toast::Component.new(flash: flash, flashes: @flashes) %>
     <div class="container">
       <%= yield %>
     </div>
