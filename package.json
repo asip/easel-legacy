@@ -54,7 +54,7 @@
     "@vue/eslint-config-typescript": "^12.0.0",
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-vue": "^9.18.0",
+    "eslint-plugin-vue": "^9.18.1",
     "markuplint": "^3.14.0",
     "prettier": "^3.0.3",
     "tsc-watch": "^6.0.4",
