@@ -46,7 +46,7 @@
     "@markuplint/vue-parser": "^3.11.0",
     "@markuplint/vue-spec": "^3.12.0",
     "@types/js-cookie": "^3.0.6",
-    "@types/sanitize-html": "^2.9.3",
+    "@types/sanitize-html": "^2.9.4",
     "@types/toastify-js": "^1.12.2",
     "@types/vanillajs-datepicker": "^1.3.3",
     "@typescript-eslint/eslint-plugin": "^6.9.0",

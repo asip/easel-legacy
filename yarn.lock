@@ -785,10 +785,10 @@
   resolved "https://registry.npmjs.org/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz"
   integrity sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==
 
-"@types/sanitize-html@^2.9.3":
-  version "2.9.3"
-  resolved "https://registry.npmjs.org/@types/sanitize-html/-/sanitize-html-2.9.3.tgz"
-  integrity sha512-1rsSdEJLV7utAG+Fms2uP+nSmmYmOhUUSSZvUz4wF2wlA0M5/A/gVgnpWZ7EKaPWsrrxWiSuNJqSBW8dh2isBA==
+"@types/sanitize-html@^2.9.4":
+  version "2.9.4"
+  resolved "https://registry.yarnpkg.com/@types/sanitize-html/-/sanitize-html-2.9.4.tgz#bfc2df463ec35904fecc57b29ba080e53732a140"
+  integrity sha512-Ym4hjmAFxF/eux7nW2yDPAj2o9RYh0vP/9V5ECoHtgJ/O9nPGslUd20CMn6WatRMlFVfjMTg3lMcWq8YyO6QnA==
   dependencies:
     htmlparser2 "^8.0.0"
 
