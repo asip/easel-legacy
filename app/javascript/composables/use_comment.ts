@@ -1,13 +1,20 @@
 import Axios, { AxiosResponse } from 'axios'
-import { reactive } from 'vue'
-import { useViewData } from './use_view_data'
+
+import { ref, reactive } from 'vue'
+
 import { User } from './use_account'
+import { useViewData } from './use_view_data'
+
+export interface Flash{
+  info?: string
+  alert?: string
+}
 
 interface Comment {
   id: number | null
-  frame_id: number | null,
+  frame_id: number | null
   body: string
-  user_id: number | null,
+  user_id: number | null
   user_name: string
   user_image_url: string
   updated_at: string | null
@@ -27,10 +34,12 @@ export function useComment(current_user: User) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const comments = reactive<any[]>([])
   const error_messages = reactive<string[]>([])
+  const flash = ref<Flash> ({})
 
   const { constants } = useViewData()
 
   const getComments = async (frame_id: number | null) => {
+    flash.value = {}
     //console.log(frame_id)
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -84,23 +93,14 @@ export function useComment(current_user: User) {
       } else {
         comment.body = ''
         error_messages.splice(0, error_messages.length)
-        await getComments(comment.frame_id)
       }
     } catch (error) {
       error_messages.splice(0, error_messages.length)
-      if(Axios.isAxiosError(error)){
-        const status = error.response?.status
-        switch(status){
-        case 401:
-          error_messages.push('ページを再読み込みし、ログインしてください。')
-          break
-        default:
-          error_messages.push('不具合が発生しました。')
-        }
-      }
+      setErrorMessage(error)
     }
   }
   const setComment = async () => {
+    flash.value = {}
     if (comment.body != '') {
       //console.log(comment.userId);
       //console.log(comment.frameId);
@@ -114,6 +114,7 @@ export function useComment(current_user: User) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const deleteComment = async (comment: any) => {
+    flash.value = {}
     try {
       await Axios.delete(
         `${constants.api_origin}/comments/${comment.id}`,
@@ -123,23 +124,27 @@ export function useComment(current_user: User) {
           }
         })
       comments.splice(0, comments.length)
-      await getComments(comment.frame_id)
     } catch (error) {
       error_messages.splice(0, error_messages.length)
-      if(Axios.isAxiosError(error)){
-        const status = error.response?.status
-        switch(status){
-        case 401:
-          error_messages.push('ページを再読み込みし、ログインしてください。')
-          break
-        default:
-          error_messages.push('不具合が発生しました。')
-        }
+      setErrorMessage(error)
+    }
+  }
+
+  const setErrorMessage = (error: any) => {
+    if(Axios.isAxiosError(error)){
+      const status = error.response?.status
+      switch(status){
+      case 401:
+        flash.value.alert = 'ページを再読み込みし、ログインしてください。'
+        break
+      default:
+        flash.value.alert = '不具合が発生しました。'
       }
     }
   }
 
   return {
-    comment, comments, error_messages ,getComments, setComment, deleteComment
+    comment, comments, flash, error_messages,
+    getComments, setComment, deleteComment
   }
 }

@@ -28,7 +28,7 @@
         </div>
         <div class="d-flex justify-content-center">
           <div class="form-group col-10">
-            <button class="btn btn-light col-12 form-control" @click="setComment">
+            <button class="btn btn-light col-12 form-control" @click="onPostClick">
               投稿
             </button>
           </div>
@@ -57,7 +57,7 @@
                 </div>
               </div>
               <div v-show="logged_in && comment.user_id === current_user.id" class="float-end">
-                <button class="btn btn-link btn-sm" @click="deleteComment(comment)">
+                <button class="btn btn-link btn-sm" @click="onDeleteClick(comment)">
                   削除
                 </button>&nbsp;
               </div>
@@ -79,18 +79,21 @@
 </template>
 
 <script lang="ts" setup>
+import Toastify from 'toastify-js'
+
 import { onMounted } from 'vue'
 import sanitizeHtml from 'sanitize-html'
 
 import { useViewData } from '../composables/use_view_data'
 import { useCookieData } from '../composables/use_cookie_data'
 import { useAccount } from '../composables/use_account'
+import type Flash from '../composables/use_comment'
 import { useComment } from '../composables/use_comment'
 
 const { constants } = useViewData()
 const { access_token } = useCookieData()
 const { logged_in, current_user, getAccount } = useAccount()
-const { comment, comments, error_messages, getComments, setComment, deleteComment } = useComment(current_user)
+const { comment, comments, flash, error_messages, getComments, setComment, deleteComment } = useComment(current_user)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getSanitizedCommentBody = (row: any): string => {
@@ -111,6 +114,29 @@ onMounted(async () => {
   await getComments(comment.frame_id)
   //this.$forceUpdate();
 })
+
+const onPostClick = async () => {
+  await setComment()
+  setToast(flash.value)
+  await getComments(comment.frame_id)
+}
+
+const onDeleteClick = async (comment: any) => {
+  await deleteComment(comment)
+  setToast(flash.value)
+  await getComments(comment.frame_id)
+}
+
+const setToast = (flash: Flash) => {
+  for(const message of Object.values(flash)){
+    if(message != ''){
+      Toastify({
+        text: message,
+        duration: 2000
+      }).showToast()
+    }
+  }
+}
 
 </script>
 
