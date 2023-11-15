@@ -87,7 +87,7 @@ import sanitizeHtml from 'sanitize-html'
 import { useViewData } from '../composables/use_view_data'
 import { useCookieData } from '../composables/use_cookie_data'
 import { useAccount } from '../composables/use_account'
-import type Flash from '../composables/use_comment'
+import type { Flash } from '../composables/use_comment'
 import { useComment } from '../composables/use_comment'
 
 const { constants } = useViewData()
