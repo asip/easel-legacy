@@ -1,11 +1,9 @@
 import Axios, { AxiosResponse } from 'axios'
 import { Ref, ref, reactive} from 'vue'
-import { useViewData } from './use_view_data'
 
-export interface User {
-  id: string,
-  token: string | undefined | null
-}
+import type { User } from '../interfaces/user'
+
+import { useViewData } from './use_view_data'
 
 export function useAccount() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

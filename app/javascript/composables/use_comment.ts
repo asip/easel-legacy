@@ -2,23 +2,11 @@ import Axios, { AxiosResponse } from 'axios'
 
 import { ref, reactive } from 'vue'
 
-import { User } from './use_account'
+import type { User } from '../interfaces/user'
+import type { Comment } from '../interfaces/comment'
+import type { Flash } from '../interfaces/flash'
+
 import { useViewData } from './use_view_data'
-
-export interface Flash{
-  info?: string
-  alert?: string
-}
-
-interface Comment {
-  id: number | null
-  frame_id: number | null
-  body: string
-  user_id: number | null
-  user_name: string
-  user_image_url: string
-  updated_at: string | null
-}
 
 export function useComment(current_user: User) {
   const comment = reactive<Comment>({

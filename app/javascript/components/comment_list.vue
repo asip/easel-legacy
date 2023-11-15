@@ -84,10 +84,11 @@ import Toastify from 'toastify-js'
 import { onMounted } from 'vue'
 import sanitizeHtml from 'sanitize-html'
 
+import type { Flash } from '../interfaces/flash'
+
 import { useViewData } from '../composables/use_view_data'
 import { useCookieData } from '../composables/use_cookie_data'
 import { useAccount } from '../composables/use_account'
-import type { Flash } from '../composables/use_comment'
 import { useComment } from '../composables/use_comment'
 
 const { constants } = useViewData()
