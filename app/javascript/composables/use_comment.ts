@@ -49,15 +49,10 @@ export function useComment(current_user: User) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const createCommentFromJson = (row_data: any): Comment => {
-    return {
-      id: row_data.id,
-      frame_id: row_data.attributes.frame_id,
-      body: row_data.attributes.body,
-      user_id: row_data.attributes.user_id,
-      user_name: row_data.attributes.user_name,
-      user_image_url: row_data.attributes.user_image_url,
-      updated_at: row_data.attributes.updated_at
-    }
+    const comment: any = {}
+    comment.id = row_data.id
+    Object.assign(comment, row_data.attributes)
+    return comment
   }
 
   const postComment = async () => {
@@ -93,7 +88,16 @@ export function useComment(current_user: User) {
       }
     } catch (error) {
       error_messages.splice(0, error_messages.length)
-      error_messages.push('ログインしてください。')
+      if(Axios.isAxiosError(error)){
+        const status = error.response?.status
+        switch(status){
+        case 401:
+          error_messages.push('ページを再読み込みし、ログインしてください。')
+          break
+        default:
+          error_messages.push('不具合が発生しました。')
+        }
+      }
     }
   }
   const setComment = async () => {
@@ -122,7 +126,16 @@ export function useComment(current_user: User) {
       await getComments(comment.frame_id)
     } catch (error) {
       error_messages.splice(0, error_messages.length)
-      error_messages.push('ログインしてください。')
+      if(Axios.isAxiosError(error)){
+        const status = error.response?.status
+        switch(status){
+        case 401:
+          error_messages.push('ページを再読み込みし、ログインしてください。')
+          break
+        default:
+          error_messages.push('不具合が発生しました。')
+        }
+      }
     }
   }
 
