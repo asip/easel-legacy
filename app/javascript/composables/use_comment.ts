@@ -1,12 +1,12 @@
 import Axios, { AxiosResponse } from 'axios'
 
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 
 import type { User } from '../interfaces/user'
 import type { Comment } from '../interfaces/comment'
-import type { Flash } from '../interfaces/flash'
 
 import { useViewData } from './use_view_data'
+import { useFlash } from './use_flash'
 
 export function useComment(current_user: User) {
   const comment = reactive<Comment>({
@@ -22,12 +22,12 @@ export function useComment(current_user: User) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const comments = reactive<any[]>([])
   const error_messages = reactive<string[]>([])
-  const flash = ref<Flash> ({})
 
   const { constants } = useViewData()
+  const { flash, clearFlash } = useFlash()
 
   const getComments = async (frame_id: number | null) => {
-    flash.value = {}
+    clearFlash()
     //console.log(frame_id)
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
