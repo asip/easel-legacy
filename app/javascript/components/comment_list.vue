@@ -79,8 +79,6 @@
 </template>
 
 <script lang="ts" setup>
-import Toastify from 'toastify-js'
-
 import { onMounted } from 'vue'
 import sanitizeHtml from 'sanitize-html'
 
@@ -88,11 +86,14 @@ import type { Flash } from '../interfaces/flash'
 
 import { useViewData } from '../composables/use_view_data'
 import { useCookieData } from '../composables/use_cookie_data'
+import { useToast } from '../composables/use_toast'
 import { useAccount } from '../composables/use_account'
 import { useComment } from '../composables/use_comment'
 
 const { constants } = useViewData()
 const { access_token } = useCookieData()
+
+const { setFlash } = useToast()
 const { logged_in, current_user, getAccount } = useAccount()
 const { comment, comments, flash, error_messages, getComments, setComment, deleteComment } = useComment(current_user)
 
@@ -118,26 +119,17 @@ onMounted(async () => {
 
 const onPostClick = async () => {
   await setComment()
-  setToast(flash.value)
+  setFlash(flash.value)
   await getComments(comment.frame_id)
 }
 
 const onDeleteClick = async (comment: any) => {
   await deleteComment(comment)
-  setToast(flash.value)
+  setFlash(flash.value)
   await getComments(comment.frame_id)
 }
 
-const setToast = (flash: Flash) => {
-  for(const message of Object.values(flash)){
-    if(message != ''){
-      Toastify({
-        text: message,
-        duration: 2000
-      }).showToast()
-    }
-  }
-}
+
 
 </script>
 
