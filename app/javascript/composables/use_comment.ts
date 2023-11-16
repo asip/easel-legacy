@@ -90,8 +90,8 @@ export function useComment(current_user: User) {
   const setComment = async () => {
     flash.value = {}
     if (comment.body != '') {
-      //console.log(comment.userId);
-      //console.log(comment.frameId);
+      //console.log(comment.user_id);
+      //console.log(comment.frame_Id);
       //console.log(comment.body);
       await postComment()
     } else {
