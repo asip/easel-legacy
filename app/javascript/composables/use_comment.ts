@@ -123,10 +123,10 @@ export function useComment(current_user: User) {
       const status = error.response?.status
       switch(status){
       case 401:
-        flash.value.alert = 'ページを再読み込みし、ログインしてください。'
+        flash.value.alert = 'ページを再読み込みし、ログインしてください'
         break
       default:
-        flash.value.alert = '不具合が発生しました。'
+        flash.value.alert = '不具合が発生しました'
       }
     }
   }
