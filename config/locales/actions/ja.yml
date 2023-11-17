@@ -5,3 +5,7 @@ ja:
       login: 'ログイン'
     login:
       invalid: 'が間違っています'
+    error:
+      login: 'ログインしてください'
+      email:
+        duplicated: 'そのメールアドレスは既に登録されています'

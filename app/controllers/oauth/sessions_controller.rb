@@ -18,6 +18,7 @@ module Oauth
       cookies.permanent[:access_token] = user.token
       redirect_to root_path
     rescue ActiveRecord::RecordNotUnique
+      flash.alert = I18n.t('action.error.email.duplicated')
       redirect_to root_path
     rescue StandardError
       redirect_to root_path

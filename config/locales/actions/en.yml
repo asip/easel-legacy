@@ -5,3 +5,7 @@ en:
       login: 'Log in'
     login:
       invalid: 'is wrong'
+    error:
+      login: 'Please login'
+      email:
+        duplicated: 'Your e-mail address is aleady registered'
