@@ -18,6 +18,9 @@
          data-logo_alignment="left">
     </div>
   <% end %>
+  <br>
+  <%= link_to 'ユーザー登録', signup_path, class: 'btn btn-light btn-outline-secondary' %><br>
+  <br>
   <%= form_with model: @user, url: sessions_path, method: :post, local: true,
                 html: { 'data-turbo-frame': '_top', 'data-turbo': false } do |form| %>
     <div class="card">
@@ -45,7 +48,6 @@
         <div class="row d-flex justify-content-sm-center">
           <div class="form-group col-sm-6">
             <%= form.submit 'ログイン', class: 'btn btn-primary' %>
-            <%= link_to 'ユーザー登録', signup_path, class: 'btn btn-primary' %>
             <%= link_to '戻る', root_path, class: 'btn btn-outline-secondary', "data-turbo": false %>
           </div>
         </div>
