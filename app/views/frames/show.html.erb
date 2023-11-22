@@ -77,6 +77,6 @@
       <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame, query_params)) %>
     <% end %>
   </div>
+  <br>
+  <%= render Comments::Component.new(frame: @frame) %>
 <% end %>
-<br>
-<%= render Comments::Component.new(frame: @frame) %>
