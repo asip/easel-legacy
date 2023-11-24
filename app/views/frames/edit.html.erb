@@ -1,5 +1,5 @@
 <%= turbo_frame_tag 'frames' do %>
-  <%= render Toast::Component.new(flash: flash, flashes: @flashes) %>
+  <%= render Toast::Component.new(flash:, flashes: @flashes) %>
   <br>
   <div data-controller="luminous tagify preview">
     <%= form_with model: @frame, local: true do |form| %>
