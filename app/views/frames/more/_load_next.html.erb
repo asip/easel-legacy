@@ -1,6 +1,8 @@
 <turbo-frame id="load-next" class="d-flex col-sm-12 justify-content-sm-center">
   <div class="mx-auto">
-    <%= link_to('もっとみる', { controller: 'frames', action: 'next', params: { q: word, page: pagy.next } },
-                                               class: 'btn btn-light btn-outline-primary rounded-pill') if pagy.next.present? %>
+    <%= if pagy.next.present?
+          link_to('もっとみる', { controller: 'frames', action: 'next', params: { q: word, page: pagy.next } },
+                  class: 'btn btn-light btn-outline-primary rounded-pill')
+        end %>
   </div>
 </turbo-frame>
