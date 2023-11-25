@@ -1,7 +1,7 @@
 import ApplicationController from './application_controller'
-// @ts-ignore
+// @ts-expect-error : @types doesn't exist
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
-// @ts-ignore
+// @ts-expect-error : @types doesn't exist
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 export default class PhotoSwipeController extends ApplicationController {
   static targets = ['ps']

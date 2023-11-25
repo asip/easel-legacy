@@ -1,5 +1,5 @@
 import ApplicationController from './application_controller'
-// eslint-disable-nextline
+// @ts-expect-error : @types doesn't exist
 import { Luminous } from 'luminous-lightbox'
 
 export default class LuminousController extends ApplicationController {

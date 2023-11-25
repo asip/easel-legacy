@@ -5,17 +5,17 @@ import Tagify from '@yaireo/tagify'
 export default class TagifyController extends ApplicationController {
   static targets = ['te', 'tl']
 
-  declare readonly teTarget: HTMLElement
+  declare readonly teTarget: HTMLInputElement
   declare readonly tlTarget: HTMLInputElement
 
   tag_list!: HTMLInputElement
-  tag_editor: Tagify
+  tag_editor!: Tagify
 
   declare readonly hasTeTarget: boolean
   declare readonly hasTlTarget: boolean
 
   connect() {
-    let te_trigger: HTMLElement | null = null
+    let te_trigger: HTMLInputElement | null = null
     if(this.hasTeTarget){
       te_trigger = this.teTarget
     }
