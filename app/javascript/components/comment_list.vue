@@ -82,7 +82,7 @@
 import { onMounted } from 'vue'
 import sanitizeHtml from 'sanitize-html'
 
-import type { Flash } from '../interfaces/flash'
+import type { Comment } from '../interfaces/comment'
 
 import { useViewData } from '../composables/use_view_data'
 import { useCookieData } from '../composables/use_cookie_data'
