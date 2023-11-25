@@ -43,14 +43,14 @@ export default class PhotoSwipeController extends ApplicationController {
   assignSize(trigger: HTMLElement){
     const gallery = trigger.querySelectorAll('a')
     gallery.forEach(async (el: HTMLAnchorElement) => {
-      const img: any = await this.loadImage(el.href)
-      el.setAttribute('data-pswp-width', img.naturalWidth)
-      el.setAttribute('data-pswp-height', img.naturalHeight)
+      const img: HTMLImageElement = await this.loadImage(el.href)
+      el.setAttribute('data-pswp-width', img.naturalWidth.toString())
+      el.setAttribute('data-pswp-height', img.naturalHeight.toString())
       el.firstElementChild?.removeAttribute('style')
     })
   }
 
-  loadImage(src: string) {
+  loadImage(src: string): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
       const img = new Image()
       img.onload = () => resolve(img)
