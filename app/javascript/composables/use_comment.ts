@@ -46,10 +46,10 @@ export function useComment(current_user: User) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const createCommentFromJson = (row_data: any): Comment => {
-    const comment: any = {}
+    const comment: Partial<Comment> = {}
     comment.id = row_data.id
     Object.assign(comment, row_data.attributes)
-    return comment
+    return comment as Comment
   }
 
   const postComment = async () => {
@@ -101,7 +101,7 @@ export function useComment(current_user: User) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const deleteComment = async (comment: any) => {
+  const deleteComment = async (comment: Comment) => {
     flash.value = {}
     try {
       await Axios.delete(

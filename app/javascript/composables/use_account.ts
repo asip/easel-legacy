@@ -6,8 +6,6 @@ import type { User } from '../interfaces/user'
 import { useViewData } from './use_view_data'
 
 export function useAccount() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let account: any = null
   const logged_in: Ref<boolean> = ref<boolean>(false)
   const current_user = reactive<User>({
     id: '',
@@ -25,7 +23,7 @@ export function useAccount() {
         }
       })
     if (res.data) {
-      account = res.data.data
+      let account: any = res.data.data
       //console.log(this.account);
       if(account){
         current_user.id = account.attributes.id
@@ -34,7 +32,6 @@ export function useAccount() {
   }
 
   return {
-    account,
     logged_in,
     current_user,
     getAccount
