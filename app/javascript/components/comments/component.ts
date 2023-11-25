@@ -1,5 +1,5 @@
 import { createApp, App as Application } from 'vue'
-// @ts-ignore
+// @ts-expect-error : @types doesn't exist
 import TurbolinksAdapter from 'vue-turbolinks'
 import Axios from 'axios'
 
