@@ -28,7 +28,7 @@ export default class PhotoSwipeController extends ApplicationController {
         // eslint-disable-nextline
         pswpModule: () => import('photoswipe')
       })
-      const fullscreenPlugin = new PhotoSwipeFullscreen(this.lightbox) // eslint-disable-line @typescript-eslint/no-unused-vars
+      new PhotoSwipeFullscreen(this.lightbox) // eslint-disable-line @typescript-eslint/no-unused-vars
       this.lightbox.init()
     }
   }
@@ -40,9 +40,9 @@ export default class PhotoSwipeController extends ApplicationController {
     }
   }
 
-  assignSize(trigger: any){
+  assignSize(trigger: HTMLElement){
     const gallery = trigger.querySelectorAll('a')
-    gallery.forEach(async (el: any) => {
+    gallery.forEach(async (el: HTMLElement) => {
       const img: any = await this.loadImage(el.href)
       el.setAttribute('data-pswp-width', img.naturalWidth)
       el.setAttribute('data-pswp-height', img.naturalHeight)
@@ -50,7 +50,7 @@ export default class PhotoSwipeController extends ApplicationController {
     })
   }
 
-  loadImage(src: any) {
+  loadImage(src: string) {
     return new Promise((resolve, reject) => {
       const img = new Image()
       img.onload = () => resolve(img)
