@@ -1,7 +1,7 @@
 import ApplicationController from './application_controller'
-// eslint-disable-nextline
+// @ts-ignore
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
-// eslint-disable-nextline
+// @ts-ignore
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 export default class PhotoSwipeController extends ApplicationController {
   static targets = ['ps']
