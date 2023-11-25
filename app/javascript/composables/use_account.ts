@@ -23,7 +23,7 @@ export function useAccount() {
         }
       })
     if (res.data) {
-      let account: any = res.data.data
+      const account: any = res.data.data
       //console.log(this.account);
       if(account){
         current_user.id = account.attributes.id
