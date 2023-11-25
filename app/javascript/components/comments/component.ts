@@ -1,4 +1,5 @@
 import { createApp, App as Application } from 'vue'
+// @ts-ignore
 import TurbolinksAdapter from 'vue-turbolinks'
 import Axios from 'axios'
 
