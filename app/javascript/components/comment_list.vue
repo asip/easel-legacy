@@ -20,7 +20,7 @@
         <div class="d-flex justify-content-center">
           <div class="col-10">
             <div v-for="(message, idx) in error_messages" :key="idx">
-              <p style="color: red;">
+              <p class="text-danger">
                 {{ message }}
               </p>
             </div>
