@@ -74,16 +74,16 @@ export function useComment(current_user: User) {
 
       const error_message_list = res.data.data.attributes.error_messages
       if ( error_message_list && error_message_list.length > 0) {
-        error_messages.splice(0, error_messages.length)
+        error_messages.splice(0)
         for (const error_message of error_message_list) {
           error_messages.push(error_message)
         }
       } else {
         comment.body = ''
-        error_messages.splice(0, error_messages.length)
+        error_messages.splice(0)
       }
     } catch (error) {
-      error_messages.splice(0, error_messages.length)
+      error_messages.splice(0)
       setErrorMessage(error)
     }
   }
@@ -95,7 +95,7 @@ export function useComment(current_user: User) {
       //console.log(comment.body);
       await postComment()
     } else {
-      error_messages.splice(0, error_messages.length)
+      error_messages.splice(0)
       error_messages.push('コメントを入力してください。')
     }
   }
@@ -111,9 +111,9 @@ export function useComment(current_user: User) {
             Authorization: `Bearer ${current_user.token}`
           }
         })
-      comments.splice(0, comments.length)
+      comments.splice(0)
     } catch (error) {
-      error_messages.splice(0, error_messages.length)
+      error_messages.splice(0)
       setErrorMessage(error)
     }
   }
