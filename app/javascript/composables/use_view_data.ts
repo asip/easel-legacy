@@ -6,7 +6,8 @@ export function useViewData(){
     csrf_token:  document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'),
     get frame_id() {
       const frame_id_str = root?.getAttribute('data-frame-id')
-      return frame_id_str ? parseInt(frame_id_str, 10) : null }
+      return frame_id_str ? parseInt(frame_id_str, 10) : null
+    }
   }
   //console.log(constants.api_origin);
 
