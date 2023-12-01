@@ -88,7 +88,7 @@ export function useComment(current_user: User) {
     }
   }
   const setComment = async () => {
-    flash.value = {}
+    clearFlash()
     if (comment.body != '') {
       //console.log(comment.user_id);
       //console.log(comment.frame_Id);
@@ -102,7 +102,7 @@ export function useComment(current_user: User) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const deleteComment = async (comment: Comment) => {
-    flash.value = {}
+    clearFlash()
     try {
       await Axios.delete(
         `${constants.api_origin}/comments/${comment.id}`,
