@@ -15,7 +15,7 @@ module Oauth
       provider = auth_params[:provider]
 
       user = login_from_oauth(provider)
-      cookies.permanent[:access_token] = user.token
+      cookies.permanent[:access_token] = { value: user.token }
       redirect_to root_path
     rescue ActiveRecord::RecordNotUnique
       flash.alert = I18n.t('action.error.email.duplicated')

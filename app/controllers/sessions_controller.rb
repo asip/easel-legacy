@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
   end
 
   def create_successful(user:)
-    cookies.permanent[:access_token] = user.token
+    cookies.permanent[:access_token] = { value: user.token }
     redirect_to root_path
   end
 
