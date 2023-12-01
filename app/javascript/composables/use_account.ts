@@ -27,7 +27,7 @@ export function useAccount() {
             Authorization: `Bearer ${current_user.token}`
           }
         })
-      if (res.data) {
+      if (res?.data) {
         const account: any = res.data.data
 
         current_user.id = account.attributes.id
