@@ -9,7 +9,7 @@ module Api
       # Account Controller
       class AccountController < Api::Front::V1::ApiController
         def show
-          render json: UserSerializer.new(current_user).serializable_hash
+          render json: AccountSerializer.new(current_user).serializable_hash
         end
       end
     end

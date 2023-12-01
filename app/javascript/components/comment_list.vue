@@ -105,12 +105,11 @@ const getSanitizedCommentBody = (row: Comment): string => {
 onMounted(async () => {
   current_user.token = access_token
   //console.log(access_token)
+  await getAccount()
+  setFlash(flash.value)
   logged_in.value = current_user.token != null
   //console.log(current_user.token);
   //console.log(logged_in.value);
-  if (current_user.token != null && current_user.token != '') {
-    await getAccount()
-  }
   comment.frame_id = constants.frame_id
   //console.log(comment.frame_id);
   await getComments(comment.frame_id)
