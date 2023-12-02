@@ -123,8 +123,6 @@ const onDeleteClick = async (comment: Comment) => {
   await getComments(comment.frame_id)
 }
 
-
-
 </script>
 
 
