@@ -85,7 +85,6 @@ import sanitizeHtml from 'sanitize-html'
 import type { Comment } from '../interfaces/comment'
 
 import { useViewData } from '../composables/use_view_data'
-import { useCookieData } from '../composables/use_cookie_data'
 import { useToast } from '../composables/use_toast'
 import { useAccount } from '../composables/use_account'
 import { useComment } from '../composables/use_comment'
