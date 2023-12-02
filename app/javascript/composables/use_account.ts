@@ -11,7 +11,7 @@ export function useAccount() {
   const logged_in: Ref<boolean> = ref<boolean>(false)
   const current_user = reactive<User>({
     id: '',
-    token: ''
+    token: null
   })
 
   const { constants } = useViewData()
