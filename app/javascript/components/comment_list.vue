@@ -103,17 +103,15 @@ const getSanitizedCommentBody = (row: Comment): string => {
 }
 
 onMounted(async () => {
-  current_user.token = access_token
-  //console.log(access_token)
-  await getAccount()
+  await getAccount(access_token)
   setFlash(flash.value)
   logged_in.value = current_user.token != null
-  //console.log(current_user.token);
-  //console.log(logged_in.value);
+  // console.log(current_user.token);
+  // console.log(logged_in.value);
   comment.frame_id = constants.frame_id
-  //console.log(comment.frame_id);
+  // console.log(comment.frame_id);
   await getComments(comment.frame_id)
-  //this.$forceUpdate();
+  // this.$forceUpdate();
 })
 
 const onPostClick = async () => {

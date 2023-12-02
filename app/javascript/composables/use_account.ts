@@ -16,7 +16,7 @@ export function useAccount() {
   const { constants } = useViewData()
   const { flash, clearFlash } = useFlash()
 
-  const getAccount = async () => {
+  const getAccount = async (access_token: any) => {
     clearFlash()
 
     try {
@@ -24,7 +24,7 @@ export function useAccount() {
       const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/account`,
         {
           headers: {
-            Authorization: `Bearer ${current_user.token}`
+            Authorization: `Bearer ${access_token}`
           }
         })
       if (res?.data) {
