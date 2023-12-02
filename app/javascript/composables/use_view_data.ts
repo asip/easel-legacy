@@ -3,11 +3,8 @@ export function useViewData(){
 
   const constants: { api_origin: string | null | undefined, csrf_token: string | null | undefined, frame_id: number | null } = {
     api_origin: root?.getAttribute('data-api-origin'),
-    csrf_token:  document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'),
-    get frame_id() {
-      const frame_id_str = root?.getAttribute('data-frame-id')
-      return frame_id_str ? parseInt(frame_id_str, 10) : null
-    }
+    csrf_token: document.querySelector('meta[name="csrf-token"]')?.getAttribute('content'),
+    frame_id: root?.getAttribute('data-frame-id') ? parseInt(root?.getAttribute('data-frame-id'), 10) : null
   }
   //console.log(constants.api_origin);
 
