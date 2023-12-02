@@ -1,7 +1,8 @@
-import Cookies from 'js-cookie'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
 export function useCookieData(){
-  const access_token: string | undefined = Cookies.get('access_token')
+  const cookies = useCookies(['access_token'])
+  const access_token = cookies.get('access_token')
 
   return { access_token }
 }
