@@ -1,5 +1,6 @@
 import Axios, { AxiosResponse } from 'axios'
 import { Ref, ref, reactive} from 'vue'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
 import type { User } from '../interfaces/user'
 
@@ -14,9 +15,10 @@ export function useAccount() {
   })
 
   const { constants } = useViewData()
+  const cookies = useCookies(['access_token'])
   const { flash, clearFlash } = useFlash()
 
-  const getAccount = async (access_token: any) => {
+  const getAccount = async () => {
     clearFlash()
 
     try {
@@ -24,7 +26,7 @@ export function useAccount() {
       const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/account`,
         {
           headers: {
-            Authorization: `Bearer ${access_token}`
+            Authorization: `Bearer ${cookies.get('access_token')}`
           }
         })
       if (res?.data) {

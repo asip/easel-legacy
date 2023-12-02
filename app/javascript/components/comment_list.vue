@@ -91,8 +91,6 @@ import { useAccount } from '../composables/use_account'
 import { useComment } from '../composables/use_comment'
 
 const { constants } = useViewData()
-const { access_token } = useCookieData()
-
 const { setFlash } = useToast()
 const { logged_in, current_user, getAccount } = useAccount()
 const { comment, comments, flash, error_messages, getComments, setComment, deleteComment } = useComment(current_user)
@@ -103,7 +101,7 @@ const getSanitizedCommentBody = (row: Comment): string => {
 }
 
 onMounted(async () => {
-  await getAccount(access_token)
+  await getAccount()
   setFlash(flash.value)
   logged_in.value = current_user.token != null
   // console.log(current_user.token);
