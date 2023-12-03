@@ -44,6 +44,8 @@ export function useAccount() {
     if(Axios.isAxiosError(error)){
       const status = error.response?.status
       switch(status){
+      case 401:
+        break
       case 500:
         flash.value.alert = '不具合が発生しました'
         break
