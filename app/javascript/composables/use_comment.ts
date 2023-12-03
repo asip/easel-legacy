@@ -130,6 +130,9 @@ export function useComment(current_user: User) {
       case 401:
         flash.value.alert = 'ページを再読み込みし、ログインしてください'
         break
+      case 500:
+        flash.value.alert = '不具合が発生しました'
+        break
       default:
         flash.value.alert = '不具合が発生しました'
       }
