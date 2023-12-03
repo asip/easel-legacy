@@ -30,17 +30,22 @@ export function useComment(current_user: User) {
     clearFlash()
     //console.log(frame_id)
 
+    try{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`)
-    if (res?.data) {
-      const comment_list = res.data.data
-      //console.log(comment_list);
-      comments.splice(0, comments.length)
-      for (const comment of comment_list) {
+      const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`)
+      if (res?.data) {
+        const comment_list = res.data.data
+        //console.log(comment_list);
+        comments.splice(0, comments.length)
+        for (const comment of comment_list) {
         //console.log(comment);
-        comments.push(createCommentFromJson(comment))
-      }
+          comments.push(createCommentFromJson(comment))
+        }
       //console.log(comments);
+      }
+    } catch (error) {
+      error_messages.splice(0)
+      setErrorMessage(error)
     }
   }
 
