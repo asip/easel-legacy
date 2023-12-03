@@ -46,9 +46,7 @@ class UsersController < ApplicationController
   def update
     success, @user = @case.save_user_with_token(user: @user)
     if success
-      if @user.saved_change_to_email?
-        cookies.permanent[:access_token] = { value: @user.token }
-      end
+      cookies.permanent[:access_token] = { value: @user.token } if @user.saved_change_to_email?
       redirect_to profile_path
     else
       flashes[:alert] = @user.full_error_messages unless @user.errors.empty?
