@@ -3,26 +3,24 @@
 # Users Case
 class UsersCase
   def save_user(user:)
-    success = user.save(context: :with_validation)
-    [success, user]
+    mutation = Mutations::Users::SaveUser.run(user:)
+    [mutation.success?, mutation.user]
   end
 
   def save_user_with_token(user:)
-    success = user.save(context: :with_validation)
-    # puts user.saved_change_to_email?
-    user.update_token if success
-    [success, user]
+    mutation = Mutations::Users::SaveUserWithToken.run(user:)
+    [mutation.success?, mutation.user]
   end
 
   def find_query(user_id:)
-    User.find_by!(id: user_id)
+    Queries::Users::FindUser.run(user_id:)
   end
 
   def followees_query(user_id:)
-    User.find(user_id).followees
+    Queries::Users::ListFollowees.run(user_id:)
   end
 
   def followers_query(user_id:)
-    User.find(user_id).followers
+    Queries::Users::ListFollowers.run(user_id:)
   end
 end
