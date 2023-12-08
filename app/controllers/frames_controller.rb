@@ -2,7 +2,7 @@
 
 # Frames Controller
 class FramesController < ApplicationController
-  include Frames::Query::PaginationQuery
+  include Frames::Query::Pagination
   include Query::Search
   include More
   include DateAndTime::Util
