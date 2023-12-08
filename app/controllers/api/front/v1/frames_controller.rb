@@ -10,10 +10,8 @@ module Api
       class FramesController < Api::Front::V1::ApiController
         skip_before_action :authenticate, only: [:comments]
 
-        before_action :set_case
-
         def comments
-          comments = @case.comments_query_with_user(frame_id: path_params[:frame_id])
+          comments = Queries::Frames::ListCommentsWithUser.run(frame_id: path_params[:frame_id])
 
           # options = {}
           # options[:include] = [:user]
@@ -22,10 +20,6 @@ module Api
         end
 
         private
-
-        def set_case
-          @case = FramesCase.new
-        end
 
         def path_params
           params.permit(:frame_id)

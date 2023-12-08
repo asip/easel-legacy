@@ -7,22 +7,21 @@ class UsersController < ApplicationController
 
   skip_before_action :require_login
 
-  before_action :set_case
   before_action :set_user, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
   def show
-    @user = @case.find_query(user_id: params[:id])
+    @user = Queries::Users::FindUser.run(user_id: params[:id])
   end
 
   # followees list (フォロイー一覧)
   def followees
-    @users = @case.followees_query(user_id: path_params[:user_id])
+    @users = Queries::Users::ListFollowees.run(user_id: path_params[:user_id])
   end
 
   # followers list (フォロワー一覧)
   def followers
-    @users = @case.followers_query(user_id: path_params[:user_id])
+    @users = Queries::Users::ListFollowers.run(user_id: path_params[:user_id])
   end
 
   def new
@@ -34,8 +33,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    success, @user = @case.save_user(user: @user)
-    if success
+    mutation = Mutations::Users::SaveUser.run(user: @user)
+    @user = mutation.user
+    if mutation.success?
       redirect_to login_path
     else
       flashes[:alert] = @user.full_error_messages unless @user.errors.empty?
@@ -44,8 +44,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    success, @user = @case.save_user_with_token(user: @user)
-    if success
+    mutation = Mutations::Users::SaveUserWithToken.run(user: @user)
+    @user = mutation.user
+    if mutation.success?
       cookies.permanent[:access_token] = { value: @user.token } if @user.saved_change_to_email?
       redirect_to profile_path
     else
@@ -55,10 +56,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def set_case
-    @case = UsersCase.new
-  end
 
   def set_user
     case action_name

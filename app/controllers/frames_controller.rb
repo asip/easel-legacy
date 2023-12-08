@@ -9,7 +9,6 @@ class FramesController < ApplicationController
 
   skip_before_action :require_login, only: %i[index show]
 
-  before_action :set_case
   # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :set_query, only: %i[index prev next show new edit]
   # rubocop:enable Rails/LexicallyScopedActionFilter
@@ -22,7 +21,7 @@ class FramesController < ApplicationController
   end
 
   def show
-    @frame = @case.find_query(frame_id: permitted_params[:id])
+    @frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id])
   end
 
   def new
@@ -30,8 +29,9 @@ class FramesController < ApplicationController
   end
 
   def create
-    success, @frame = @case.save_frame(user: current_user, frame: @frame)
-    if success
+    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame)
+    @frame = mutation.frame
+    if mutation.success?
       redirect_to root_path(query_params)
     else
       flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
@@ -40,12 +40,13 @@ class FramesController < ApplicationController
   end
 
   def edit
-    @frame = @case.find_query_by_user(user: current_user, frame_id: permitted_params[:id])
+    @frame = Queries::Frames::FindFrameByUser.run(user: current_user, frame_id: permitted_params[:id])
   end
 
   def update
-    success, @frame = @case.save_frame(user: current_user, frame: @frame)
-    if success
+    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame)
+    @frame = mutation.frame
+    if mutation.success?
       redirect_to frame_path(@frame, query_params)
     else
       flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
@@ -54,7 +55,7 @@ class FramesController < ApplicationController
   end
 
   def destroy
-    @case.delete_frame(user: current_user, frame_id: permitted_params[:id])
+    Mutations::Frames::DeleteFrame.run(user: current_user, frame_id: permitted_params[:id])
     redirect_to root_path(query_params), status: :see_other
   end
 
@@ -71,10 +72,6 @@ class FramesController < ApplicationController
            else
              @word
            end
-  end
-
-  def set_case
-    @case = FramesCase.new
   end
 
   def set_frame
