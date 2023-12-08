@@ -6,14 +6,14 @@ module Api
   module Pagination
     extend ActiveSupport::Concern
 
-    def resources_with_pagination(resources)
+    def resources_with_pagination(pagy)
       {
         meta: {
           pagination: {
-            count: resources.total_count,
-            pages: resources.total_pages,
-            page: resources.current_page,
-            per: resources.limit_value
+            count: pagy.total_count,
+            pages: pagy.total_pages,
+            page: pagy.current_page,
+            per: pagy.limit_value
           }
         }
       }
