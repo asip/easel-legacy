@@ -32,8 +32,8 @@ export function useComment(current_user: User) {
 
     try{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`)
-      if (res?.data) {
+      const res: AxiosResponse = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`)
+      if (res.data) {
         const comment_list = res.data.data
         //console.log(comment_list);
         comments.splice(0, comments.length)
@@ -68,7 +68,7 @@ export function useComment(current_user: User) {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const res: AxiosResponse<any, any> = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
+      const res: AxiosResponse = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
         params,
         {
           headers: {

@@ -23,13 +23,13 @@ export function useAccount() {
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const res: AxiosResponse<any, any> = await Axios.get(`${constants.api_origin}/account`,
+      const res: AxiosResponse = await Axios.get(`${constants.api_origin}/account`,
         {
           headers: {
             Authorization: `Bearer ${cookies.get('access_token')}`
           }
         })
-      if (res?.data) {
+      if (res.data) {
         const account: any = res.data.data
 
         current_user.id = account.attributes.id
