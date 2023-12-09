@@ -35,8 +35,8 @@ export default class TagifyController extends ApplicationController {
         }
       })
 
-      this.tag_editor.on('add', () => this.saveTagList())
-      this.tag_editor.on('remove', () => this.saveTagList())
+      this.tag_editor.on('add', () => { this.saveTagList() })
+      this.tag_editor.on('remove', () => { this.saveTagList() })
 
       const tags: string = this.tag_list.value
       this.tag_editor.removeAllTags()

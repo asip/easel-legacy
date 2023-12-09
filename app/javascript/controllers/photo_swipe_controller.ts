@@ -53,8 +53,8 @@ export default class PhotoSwipeController extends ApplicationController {
   loadImage(src: string): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
       const img = new Image()
-      img.onload = () => resolve(img)
-      img.onerror = e => reject(e)
+      img.onload = () => { resolve(img) }
+      img.onerror = e => { reject(e) }
       img.src = src
     })
   }
