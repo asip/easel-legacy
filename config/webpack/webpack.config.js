@@ -1,8 +1,13 @@
-const path    = require("path")
-const webpack = require("webpack")
+import { fileURLToPath } from "node:url";
+import path from "node:path"
+import webpack from "webpack"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 const mode = process.env.NODE_ENV === 'development' ? 'development' : 'production';
 
-module.exports = {
+export default {
   mode,
   resolve: {
     alias: {
