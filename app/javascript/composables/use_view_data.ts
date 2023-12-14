@@ -1,3 +1,5 @@
+declare var document: Document
+
 export function useViewData(){
   interface Constants {
     api_origin: string | null | undefined
