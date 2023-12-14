@@ -7,6 +7,8 @@ import { useViewData } from '../../composables/use_view_data'
 
 import CommentList from '../comment_list.vue'
 
+declare var document: Document
+
 const initCommentComponent = (): void => {
 
   const { root, constants } = useViewData()
