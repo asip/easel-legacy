@@ -1,5 +1,5 @@
 export interface Comment {
-  id: string | null
+  id: number | null
   frame_id: number | null
   body: string
   user_id: number | null

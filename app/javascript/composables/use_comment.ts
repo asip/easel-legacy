@@ -13,8 +13,8 @@ interface GetCommentsApiResponse {
 }
 
 interface CommentJson {
-  id: string | null,
   attributes: {
+    id: number | null
     frame_id: number
     body: string | null
     user_id: number
@@ -74,7 +74,6 @@ export function useComment(current_user: User) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const createCommentFromJson = (row_data: CommentJson): Comment => {
     const comment: Partial<Comment> = {}
-    comment.id = row_data.id
     Object.assign(comment, row_data.attributes)
     return comment as Comment
   }
