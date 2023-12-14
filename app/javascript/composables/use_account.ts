@@ -1,4 +1,4 @@
-import Axios, { AxiosResponse } from 'axios'
+import Axios, { AxiosError } from 'axios'
 import { Ref, ref, reactive} from 'vue'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
@@ -7,10 +7,21 @@ import type { User } from '../interfaces/user'
 import { useViewData } from './use_view_data'
 import { useFlash } from './use_flash'
 
+interface GetAccountApiResponse {
+  data: AccountJson
+}
+
+interface AccountJson {
+  attributes: {
+    id: number
+    token: string
+  }
+}
+
 export function useAccount() {
   const logged_in: Ref<boolean> = ref<boolean>(false)
   const current_user = reactive<User>({
-    id: '',
+    id: null,
     token: null
   })
 
@@ -23,35 +34,36 @@ export function useAccount() {
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const res: AxiosResponse = await Axios.get(`${constants.api_origin}/account`,
+      const res = await Axios.get<GetAccountApiResponse>(`${constants.api_origin}/account`,
         {
           headers: {
             Authorization: `Bearer ${cookies.get('access_token')}`
           }
         })
-      if (res.data) {
-        const account: any = res.data.data
 
-        current_user.id = account.attributes.id
-        current_user.token = account.attributes.token
-      }
+      //if (json) {
+      const {data: accountJson } = res.data
+
+      current_user.id = accountJson.attributes.id
+      current_user.token = accountJson.attributes.token
+      //}
     } catch (error) {
-      setErrorMessage(error)
+      if(Axios.isAxiosError(error)){
+        setErrorMessage(error as AxiosError)
+      }
     }
   }
 
-  const setErrorMessage = (error: any) => {
-    if(Axios.isAxiosError(error)){
-      const status = error.response?.status
-      switch(status){
-      case 401:
-        break
-      case 500:
-        flash.value.alert = '不具合が発生しました'
-        break
-      default:
-        flash.value.alert = '不具合が発生しました'
-      }
+  const setErrorMessage = (error: AxiosError) => {
+    const status = error.response?.status
+    switch(status){
+    case 401:
+      break
+    case 500:
+      flash.value.alert = '不具合が発生しました'
+      break
+    default:
+      flash.value.alert = '不具合が発生しました'
     }
   }
 

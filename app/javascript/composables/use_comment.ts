@@ -1,4 +1,4 @@
-import Axios, { AxiosResponse } from 'axios'
+import Axios, { AxiosError } from 'axios'
 
 import { reactive } from 'vue'
 
@@ -7,6 +7,27 @@ import type { Comment } from '../interfaces/comment'
 
 import { useViewData } from './use_view_data'
 import { useFlash } from './use_flash'
+
+interface GetCommentsApiResponse {
+  data: [CommentJson]
+}
+
+interface CommentJson {
+  id: string | null,
+  attributes: {
+    frame_id: number
+    body: string | null
+    user_id: number
+    user_name: string
+    user_image_url: string
+    updated_at: string | null
+    error_messages: string
+  }
+}
+
+interface PostCommentApiResponse {
+  data: CommentJson
+}
 
 export function useComment(current_user: User) {
   const comment = reactive<Comment>({
@@ -31,26 +52,27 @@ export function useComment(current_user: User) {
     //console.log(frame_id)
 
     try{
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const res: AxiosResponse = await Axios.get(`${constants.api_origin}/frames/${frame_id}/comments`)
-      if (res.data) {
-        const comment_list = res.data.data
-        //console.log(comment_list);
-        comments.splice(0, comments.length)
-        for (const comment of comment_list) {
-        //console.log(comment);
-          comments.push(createCommentFromJson(comment))
-        }
-      //console.log(comments);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const response = await Axios.get<GetCommentsApiResponse>(`${constants.api_origin}/frames/${frame_id}/comments`)
+
+      const comment_list: [CommentJson] = response.data.data
+      //console.log(comment_list);
+      comments.splice(0, comments.length)
+      for (const comment of comment_list) {
+      //console.log(comment);
+        comments.push(createCommentFromJson(comment))
       }
+      //console.log(comments);
     } catch (error) {
       error_messages.splice(0)
-      setErrorMessage(error)
+      if(Axios.isAxiosError(error)){
+        setErrorMessage(error as AxiosError)
+      }
     }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const createCommentFromJson = (row_data: any): Comment => {
+  const createCommentFromJson = (row_data: CommentJson): Comment => {
     const comment: Partial<Comment> = {}
     comment.id = row_data.id
     Object.assign(comment, row_data.attributes)
@@ -68,7 +90,7 @@ export function useComment(current_user: User) {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const res: AxiosResponse = await Axios.post(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
+      const response = await Axios.post<PostCommentApiResponse>(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
         params,
         {
           headers: {
@@ -77,7 +99,7 @@ export function useComment(current_user: User) {
         }
       )
 
-      const error_message_list = res.data.data.attributes.error_messages
+      const error_message_list = response.data.data.attributes.error_messages
       if ( error_message_list && error_message_list.length > 0) {
         error_messages.splice(0)
         for (const error_message of error_message_list) {
@@ -89,7 +111,9 @@ export function useComment(current_user: User) {
       }
     } catch (error) {
       error_messages.splice(0)
-      setErrorMessage(error)
+      if(Axios.isAxiosError(error)){
+        setErrorMessage(error as AxiosError)
+      }
     }
   }
   const setComment = async () => {
@@ -119,23 +143,23 @@ export function useComment(current_user: User) {
       comments.splice(0)
     } catch (error) {
       error_messages.splice(0)
-      setErrorMessage(error)
+      if(Axios.isAxiosError(error)){
+        setErrorMessage(error as AxiosError)
+      }
     }
   }
 
-  const setErrorMessage = (error: any) => {
-    if(Axios.isAxiosError(error)){
-      const status = error.response?.status
-      switch(status){
-      case 401:
-        flash.value.alert = 'ページを再読み込みし、ログインしてください'
-        break
-      case 500:
-        flash.value.alert = '不具合が発生しました'
-        break
-      default:
-        flash.value.alert = '不具合が発生しました'
-      }
+  const setErrorMessage = (error: AxiosError) => {
+    const status = error.response?.status
+    switch(status){
+    case 401:
+      flash.value.alert = 'ページを再読み込みし、ログインしてください'
+      break
+    case 500:
+      flash.value.alert = '不具合が発生しました'
+      break
+    default:
+      flash.value.alert = '不具合が発生しました'
     }
   }
 
