@@ -2,13 +2,15 @@ import ApplicationController from './application_controller'
 import { Datepicker } from 'vanillajs-datepicker'
 import ja from '../locales/date-picker/ja'
 
+declare var window: Window
+
 export default class CalendarController extends ApplicationController {
   static targets = ['cal']
+
   declare readonly calTarget: HTMLElement
+  declare readonly hasCalTarget: boolean
 
   calendar!: Datepicker
-
-  declare readonly hasCalTarget: boolean
 
   connect() {
     let cal_trigger: HTMLElement | null = null
