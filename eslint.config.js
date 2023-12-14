@@ -79,7 +79,7 @@ export default [
       '@typescript-eslint': typescriptESLint
     },
     rules: {
-      //...typescriptESLint.configs.recommended.rules,
+      ...typescriptESLint.configs.recommended.rules,
       ...typescriptESLint.configs['eslint-recommended'].rules,
       //...typescriptESLint.configs['recommended-type-checked'].rules,
       //...typescriptESLint.configs.strict.rules,
