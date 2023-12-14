@@ -1,4 +1,1 @@
-export interface Flash{
-  info?: string
-  alert?: string
-}
+export type Flash = Record<string, string>
