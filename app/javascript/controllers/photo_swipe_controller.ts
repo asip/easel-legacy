@@ -1,14 +1,23 @@
 import ApplicationController from './application_controller'
-// @ts-expect-error : @types doesn't exist
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
 // @ts-expect-error : @types doesn't exist
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
+
+interface Window {
+  Image: {
+    prototype: HTMLImageElement
+    new (): HTMLImageElement
+  }
+}
+declare var window: Window
+
+
 export default class PhotoSwipeController extends ApplicationController {
   static targets = ['ps']
 
   declare readonly psTarget: HTMLElement
 
-  lightbox: PhotoSwipeLightbox
+  lightbox!: PhotoSwipeLightbox
 
   declare readonly hasPsTarget: boolean
 
@@ -52,7 +61,7 @@ export default class PhotoSwipeController extends ApplicationController {
 
   loadImage(src: string): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
-      const img = new Image()
+      const img: HTMLImageElement = new window.Image()
       img.onload = () => { resolve(img) }
       img.onerror = e => { reject(e) }
       img.src = src
