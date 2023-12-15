@@ -8,14 +8,16 @@ import { useViewData } from './use_view_data'
 import { useFlash } from './use_flash'
 
 interface GetAccountApiResponse {
-  data: AccountJson
+  data: AccountAttributes
+}
+
+interface AccountAttributes {
+  attributes: AccountJson
 }
 
 interface AccountJson {
-  attributes: {
-    id: number
-    token: string
-  }
+  id: number
+  token: string
 }
 
 export function useAccount() {

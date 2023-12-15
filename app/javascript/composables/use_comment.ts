@@ -9,24 +9,26 @@ import { useViewData } from './use_view_data'
 import { useFlash } from './use_flash'
 
 interface GetCommentsApiResponse {
-  data: [CommentJson]
+  data: [CommentAttributes]
+}
+
+interface CommentAttributes {
+  attributes: CommentJson
 }
 
 interface CommentJson {
-  attributes: {
-    id: number | null
-    frame_id: number
-    body: string | null
-    user_id: number
-    user_name: string
-    user_image_url: string
-    updated_at: string | null
-    error_messages: string
-  }
+  id: number | null
+  frame_id: number
+  body: string | null
+  user_id: number
+  user_name: string
+  user_image_url: string
+  updated_at: string | null
+  error_messages: string
 }
 
 interface PostCommentApiResponse {
-  data: CommentJson
+  data: CommentAttributes
 }
 
 export function useComment(current_user: User) {
@@ -55,7 +57,7 @@ export function useComment(current_user: User) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const response = await Axios.get<GetCommentsApiResponse>(`${constants.api_origin}/frames/${frame_id}/comments`)
 
-      const comment_list: [CommentJson] = response.data.data
+      const comment_list: [CommentAttributes] = response.data.data
       //console.log(comment_list);
       comments.splice(0, comments.length)
       for (const comment of comment_list) {
@@ -72,7 +74,7 @@ export function useComment(current_user: User) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const createCommentFromJson = (row_data: CommentJson): Comment => {
+  const createCommentFromJson = (row_data: CommentAttributes): Comment => {
     const comment: Partial<Comment> = {}
     Object.assign(comment, row_data.attributes)
     return comment as Comment
