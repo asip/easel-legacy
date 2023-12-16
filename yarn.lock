@@ -797,6 +797,11 @@
   resolved "https://registry.npmjs.org/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz"
   integrity sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==
 
+"@types/photoswipe@4.1.6":
+  version "4.1.6"
+  resolved "https://registry.yarnpkg.com/@types/photoswipe/-/photoswipe-4.1.6.tgz#41d1e0a54c1b27628688e8abf9b95baab472a247"
+  integrity sha512-6kN4KYjNF4sg79fSwZ46s4Pron4+YJxoW0DQOcHveUZc/3cWd8Q4B9OLlDmEYw9iI6fODU8kyyq8ZBy+8F/+zQ==
+
 "@types/prop-types@*":
   version "15.7.11"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.11.tgz#2596fb352ee96a1379c657734d4b913a613ad563"

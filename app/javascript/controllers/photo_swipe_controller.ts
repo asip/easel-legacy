@@ -17,27 +17,27 @@ export default class PhotoSwipeController extends ApplicationController {
 
   declare readonly psTarget: HTMLElement
 
-  lightbox!: PhotoSwipeLightbox
+  lightbox: PhotoSwipeLightbox | null = null
 
   declare readonly hasPsTarget: boolean
 
-  connect() {
+  async connect() {
     let ps_trigger: HTMLElement | null = null
     if(this.hasPsTarget){
       ps_trigger = this.psTarget
     }
 
     if(ps_trigger){
-      this.assignSize(ps_trigger)
+      await this.assignSize(ps_trigger)
 
       this.lightbox = new PhotoSwipeLightbox({
         gallery: '#image',
         children: 'a',
         initialZoomLevel: 'fit',
-        // eslint-disable-nextline
+        // eslint-disable-next-line
         pswpModule: () => import('photoswipe')
       })
-      new PhotoSwipeFullscreen(this.lightbox) // eslint-disable-line @typescript-eslint/no-unused-vars
+      new PhotoSwipeFullscreen(this.lightbox) // eslint-disable-line
       this.lightbox.init()
     }
   }
@@ -49,14 +49,14 @@ export default class PhotoSwipeController extends ApplicationController {
     }
   }
 
-  assignSize(trigger: HTMLElement){
+  async assignSize(trigger: HTMLElement){
     const gallery = trigger.querySelectorAll('a')
-    gallery.forEach(async (el: HTMLAnchorElement) => {
+    for await (const el of gallery){
       const img: HTMLImageElement = await this.loadImage(el.href)
       el.setAttribute('data-pswp-width', img.naturalWidth.toString())
       el.setAttribute('data-pswp-height', img.naturalHeight.toString())
       el.firstElementChild?.removeAttribute('style')
-    })
+    }
   }
 
   loadImage(src: string): Promise<HTMLImageElement> {
