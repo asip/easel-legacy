@@ -10,7 +10,7 @@ export default class CalendarController extends ApplicationController {
   declare readonly calTarget: HTMLElement
   declare readonly hasCalTarget: boolean
 
-  calendar!: Datepicker
+  calendar: Datepicker | null = null
 
   connect() {
     let cal_trigger: HTMLElement | null = null
@@ -32,6 +32,8 @@ export default class CalendarController extends ApplicationController {
       cal_trigger.addEventListener('changeDate', function (e: CustomEvent) {
         //console.log(e);
         //console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
+
+        // eslint-disable-next-line
         window.location.href=`${origin}/frames?q=${e.detail.datepicker.getDate('yyyy/mm/dd')}`
       })
     }
