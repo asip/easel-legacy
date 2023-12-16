@@ -19,13 +19,13 @@ export default class LuminousController extends ApplicationController {
 
     if(lm_trigger){
       const options = { showCloseButton: true }
-      this.image = new Luminous(lm_trigger, options)
+      this.image = new Luminous(lm_trigger, options) // eslint-disable-line
     }
   }
 
   disconnect(){
     if(this.image){
-      this.image.destroy()
+      this.image.destroy() // eslint-disable-line
       this.removeElementsByClassName('lum-lightbox')
     }
   }
