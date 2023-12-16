@@ -8,8 +8,8 @@ export default class TagifyController extends ApplicationController {
   declare readonly teTarget: HTMLInputElement
   declare readonly tlTarget: HTMLInputElement
 
-  tag_list!: HTMLInputElement
-  tag_editor!: Tagify
+  tag_list: HTMLInputElement | null = null
+  tag_editor: Tagify | null = null
 
   declare readonly hasTeTarget: boolean
   declare readonly hasTlTarget: boolean
@@ -38,17 +38,18 @@ export default class TagifyController extends ApplicationController {
       this.tag_editor.on('add', () => { this.saveTagList() })
       this.tag_editor.on('remove', () => { this.saveTagList() })
 
-      const tags: string = this.tag_list.value
+      const tags: string | null = this.tag_list?.value ?? null
       this.tag_editor.removeAllTags()
-      if (tags.length > 0) {
+      if (tags && tags.length > 0) {
         this.tag_editor.addTags(tags.split(','))
       }
     }
   }
 
   saveTagList() {
-    this.tag_list.value = this.tag_editor.value.map(v => v.value).join(',')
-    //console.log(this.tlTarget.value);
+    if(this.tag_list){
+      this.tag_list.value = this.tag_editor?.value.map(v => v.value).join(',') ?? ''
+    }
   }
 
   disconnect(){
