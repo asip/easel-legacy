@@ -16,7 +16,7 @@
     "copyfiles": "^2.4.1",
     "esbuild": "^0.19.10",
     "esbuild-loader": "^4.0.2",
-    "esbuild-plugin-vue3": "^0.3.2",
+    "esbuild-plugin-vue3": "^0.4.0",
     "luminous-lightbox": "^2.4.0",
     "photoswipe": "5.4.3",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
