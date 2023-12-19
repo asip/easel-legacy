@@ -19,8 +19,10 @@ const initCommentComponent = (): void => {
       'X-CSRF-TOKEN': constants.csrf_token
     }
 
-    const comment_vm: Application = createApp(CommentList)
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const comment_vm: Application<Element> = createApp(CommentList)
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     comment_vm.use(TurbolinksAdapter)
 
     comment_vm.mount('#comments_component')
