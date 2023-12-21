@@ -12,10 +12,10 @@ interface GetAccountApiResponse {
 }
 
 interface AccountAttributes {
-  attributes: AccountJson
+  attributes: AccountResource
 }
 
-interface AccountJson {
+interface AccountResource {
   id: number
   token: string
 }
@@ -44,10 +44,10 @@ export function useAccount() {
         })
 
       //if (json) {
-      const {data: accountJson } = res.data
-
-      current_user.id = accountJson.attributes.id
-      current_user.token = accountJson.attributes.token
+      const {data: accountAttrs } = res.data
+      const accountJson = accountAttrs.attributes
+      current_user.id = accountJson.id
+      current_user.token = accountJson.token
       //}
     } catch (error) {
       if(Axios.isAxiosError(error)){

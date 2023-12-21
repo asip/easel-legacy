@@ -13,10 +13,10 @@ interface GetCommentsApiResponse {
 }
 
 interface CommentAttributes {
-  attributes: CommentJson
+  attributes: CommentResource
 }
 
-interface CommentJson {
+interface CommentResource {
   id: number | null
   frame_id: number
   body: string | null
@@ -62,7 +62,7 @@ export function useComment(current_user: User) {
       comments.splice(0, comments.length)
       for (const comment of comment_list) {
       //console.log(comment);
-        comments.push(createCommentFromJson(comment))
+        comments.push(createCommentFromJson(comment.attributes))
       }
       //console.log(comments);
     } catch (error) {
@@ -74,9 +74,9 @@ export function useComment(current_user: User) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const createCommentFromJson = (row_data: CommentAttributes): Comment => {
+  const createCommentFromJson = (resource: CommentResource): Comment => {
     const comment: Partial<Comment> = {}
-    Object.assign(comment, row_data.attributes)
+    Object.assign(comment, resource)
     return comment as Comment
   }
 
