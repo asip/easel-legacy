@@ -30,8 +30,9 @@ Rails.application.routes.draw do
   get 'oauth/callback', to: 'oauth/sessions#callback'
 
   namespace :manager do
+    get '/' => 'sessions#new', as: 'login'
     resources :sessions, only: %i[new create destroy]
-    get 'login' => 'sessions#new', :as => 'login'
+    get '/sessions' => 'sessions#new'
   end
   delete '/logout' => 'manager/sessions#destroy', as: 'logout'
 
