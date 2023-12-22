@@ -308,6 +308,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (3.0.8)
+    rack-contrib (2.4.0)
+      rack (< 4)
     rack-cors (2.0.1)
       rack (>= 2.0.0)
     rack-session (2.0.0)
@@ -503,6 +505,7 @@ DEPENDENCIES
   propshaft (~> 0.8.0)
   prosopite
   puma (~> 6.4.0)
+  rack-contrib (= 2.4.0)
   rack-cors
   rails (~> 7.1.2)
   rails-erd
