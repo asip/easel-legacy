@@ -14,7 +14,6 @@ module Api
 
         # protect_from_forgery with: :null_session
 
-        before_action :switch_locale
         before_action :authenticate
 
         protected
