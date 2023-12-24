@@ -15,8 +15,6 @@ module Easel
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
-    config.middleware.use Rack::Locale
-
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
@@ -45,5 +43,7 @@ module Easel
     config.action_controller.wrap_parameters_by_default = false
 
     # config.action_controller.forgery_protection_origin_check = false
+
+    config.middleware.use Rack::Locale
   end
 end
