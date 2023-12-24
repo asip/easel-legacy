@@ -4,7 +4,6 @@
 module Oauth
   # Sessions Controller
   class SessionsController < ApplicationController
-    include Sorcery::Credential
 
     protect_from_forgery except: :callback
 
