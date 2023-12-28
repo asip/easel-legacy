@@ -18,7 +18,7 @@
 require 'view_component/test_helpers'
 
 RSpec.configure do |config|
-  config.include ViewComponent::TestHelpers, type: :componen
+  config.include ViewComponent::TestHelpers, type: :component
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
