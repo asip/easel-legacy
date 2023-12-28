@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
     current_user.reset_token
     cookies.delete(:access_token)
     logout
-    redirect_to root_path, status: :see_other
+    redirect_to login_path, status: :see_other
   end
 
   private

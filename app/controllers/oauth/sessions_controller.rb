@@ -17,9 +17,9 @@ module Oauth
       redirect_to root_path
     rescue ActiveRecord::RecordNotUnique
       flash.alert = I18n.t('action.error.email.duplicated')
-      redirect_to root_path
+      redirect_to login_path
     rescue StandardError
-      redirect_to root_path
+      redirect_to login_path
     end
 
     private
@@ -48,7 +48,7 @@ module Oauth
     def verify_g_csrf_token
       if cookies['g_csrf_token'].blank? || params[:g_csrf_token].blank? ||
          cookies['g_csrf_token'] != params[:g_csrf_token]
-        redirect_to root_path, notice: '不正なアクセスです'
+        redirect_to login_path, notice: '不正なアクセスです'
       end
     end
 

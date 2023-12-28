@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def not_authenticated
-    redirect_to root_path
+    redirect_to login_path
   end
 
   def handle_unverified_request
