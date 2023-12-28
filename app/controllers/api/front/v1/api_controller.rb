@@ -9,7 +9,7 @@ module Api
       # Api Controller
       class ApiController < ActionController::API
         include Locale::AutoDetect
-        include Query::NPlusOne::Detection unless Rails.env.production? || Rails.env.test?
+        include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
         include Api::ExceptionHandler
 
         # protect_from_forgery with: :null_session
