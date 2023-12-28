@@ -17,6 +17,12 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  def handle_unverified_request
+    return reset_session if current_user.blank?
+
+    raise ActionController::InvalidAuthenticityToken, warning_message
+  end
+
   def token_confirmation
     return if current_user.blank?
 
