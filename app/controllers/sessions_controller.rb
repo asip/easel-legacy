@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
   private
 
   def authenticated
-    redirect_to root_path if current_user.present?
+    redirect_to root_path if logged_in?
   end
 
   def login(email, password)
