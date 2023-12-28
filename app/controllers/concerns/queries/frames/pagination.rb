@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-# frames
-module Frames
-  # query
-  module Query
+# queries
+module Queries
+  # frames
+  module Frames
     # Pagination module
     module Pagination
       extend ActiveSupport::Concern
 
       include Pagy::Backend
 
-      def list_query(word:, page:)
+      def list_frames_query(word:, page:)
         frames = Queries::Frames::ListFrames.run(word:)
         pagy, frames = pagy(frames, { page: })
         frame_ids = frames.pluck(:id)

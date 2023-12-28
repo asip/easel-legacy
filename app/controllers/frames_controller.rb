@@ -2,7 +2,7 @@
 
 # Frames Controller
 class FramesController < ApplicationController
-  include Frames::Query::Pagination
+  include Queries::Frames::Pagination
   include Query::Search
   include More
   include DateAndTime::Util
@@ -17,7 +17,7 @@ class FramesController < ApplicationController
   before_action :back_to_form, only: %i[create update]
 
   def index
-    @pagy, @frames = list_query(word: @word, page: @page)
+    @pagy, @frames = list_frames_query(word: @word, page: @page)
   end
 
   def show
