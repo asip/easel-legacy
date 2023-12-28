@@ -14,10 +14,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def not_authenticated
-    redirect_to login_path
+    redirect_to root_path
   end
 
   def handle_unverified_request
+    cookies[:remember_me_token] = nil
+    @current_user = nil
     return reset_session if current_user.blank?
 
     raise ActionController::InvalidAuthenticityToken, warning_message
