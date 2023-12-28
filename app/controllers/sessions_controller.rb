@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   include Query::Search
 
   skip_before_action :require_login, except: [:destroy]
+  before_action :authenticated, only: [:new]
 
   def new
     @user = User.new
@@ -32,6 +33,10 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def authenticated
+    redirect_to root_path if current_user.present?
+  end
 
   def login(email, password)
     token = login_and_issue_token(email, password)
