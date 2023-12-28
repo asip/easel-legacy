@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  # Overwrite Sorcery's handle unverified request
   def handle_unverified_request
     cookies[:remember_me_token] = nil
     @current_user = nil
