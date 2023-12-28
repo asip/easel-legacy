@@ -7,5 +7,3 @@ ja:
       invalid: 'が間違っています'
     error:
       login: 'ページを再読み込みし、ログインしてください'
-      email:
-        duplicated: 'そのメールアドレスは既に登録されています'

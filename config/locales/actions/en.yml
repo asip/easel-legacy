@@ -7,5 +7,3 @@ en:
       invalid: 'is wrong'
     error:
       login: 'Please reload the page and login'
-      email:
-        duplicated: 'Your e-mail address is aleady registered'
