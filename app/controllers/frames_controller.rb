@@ -12,7 +12,7 @@ class FramesController < ApplicationController
   # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :set_query, only: %i[index prev next show new edit]
   # rubocop:enable Rails/LexicallyScopedActionFilter
-  before_action :set_day, only: [:index]
+  before_action :set_day, only: [ :index ]
   before_action :set_frame, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
@@ -68,31 +68,31 @@ class FramesController < ApplicationController
 
   def set_day
     @day = if @word.blank? || !FramesController.date_valid?(@word)
-             '' # Time.zone.now.strftime("%Y/%m/%d")
-           else
+             "" # Time.zone.now.strftime("%Y/%m/%d")
+    else
              @word
-           end
+    end
   end
 
   def set_frame
     case action_name
-    when 'create'
+    when "create"
       @frame = Frame.new(form_params)
-    when 'update'
+    when "update"
       @frame = Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
       @frame.attributes = form_params
     end
   end
 
   def back_to_form
-    return unless permitted_params[:commit] == '戻る'
+    return unless permitted_params[:commit] == "戻る"
 
-    @frame.confirming = ''
+    @frame.confirming = ""
     @frame.file_derivatives! if @frame.file.present?
     case action_name
-    when 'create'
+    when "create"
       render :new
-    when 'update'
+    when "update"
       render :edit
     end
   end

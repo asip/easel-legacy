@@ -34,7 +34,7 @@ module Oauth
     end
 
     def create_or_find_from(provider)
-      if (user = user_class.find_by(email: @user_hash[:user_info]['email']))
+      if (user = user_class.find_by(email: @user_hash[:user_info]["email"]))
         user.add_provider_to_user(provider, @user_hash[:uid].to_s)
       else
         user = create_from(provider)
@@ -43,9 +43,9 @@ module Oauth
     end
 
     def verify_g_csrf_token
-      if cookies['g_csrf_token'].blank? || params[:g_csrf_token].blank? ||
-         cookies['g_csrf_token'] != params[:g_csrf_token]
-        redirect_to login_path, notice: '不正なアクセスです'
+      if cookies["g_csrf_token"].blank? || params[:g_csrf_token].blank? ||
+         cookies["g_csrf_token"] != params[:g_csrf_token]
+        redirect_to login_path, notice: "不正なアクセスです"
       end
     end
 

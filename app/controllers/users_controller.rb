@@ -59,23 +59,23 @@ class UsersController < ApplicationController
 
   def set_user
     case action_name
-    when 'create'
+    when "create"
       @user = User.new(form_params)
-    when 'update'
+    when "update"
       @user = current_user
       @user.attributes = form_params
     end
   end
 
   def back_to_form
-    return unless params[:commit] == '戻る'
+    return unless params[:commit] == "戻る"
 
-    @user.confirming = ''
+    @user.confirming = ""
     @user.image_derivatives! if @user.image.present?
     case action_name
-    when 'create'
+    when "create"
       render :new
-    when 'update'
+    when "update"
       render :edit
     end
   end

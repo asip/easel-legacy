@@ -4,8 +4,8 @@
 class SessionsController < ApplicationController
   include Query::Search
 
-  skip_before_action :require_login, except: [:destroy]
-  before_action :authenticated, only: [:new]
+  skip_before_action :require_login, except: [ :destroy ]
+  before_action :authenticated, only: [ :new ]
 
   def new
     @user = User.new
@@ -67,7 +67,7 @@ class SessionsController < ApplicationController
       user.validate_email_on_login(form_params)
     end
     success = user.errors.empty?
-    [success, user]
+    [ success, user ]
   end
 
   def form_params

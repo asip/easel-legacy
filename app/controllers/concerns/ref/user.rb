@@ -24,10 +24,10 @@ module Ref
 
     def back_to_path
       case ref_params[:ref]
-      when 'frame_detail'
+      when "frame_detail"
         frame_path(Frame.find(ref_params[:ref_id]))
       else
-        ''
+        ""
       end
     end
   end

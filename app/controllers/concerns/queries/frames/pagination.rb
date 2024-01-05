@@ -14,8 +14,8 @@ module Queries
         frames = Queries::Frames::ListFrames.run(word:)
         pagy, frames = pagy(frames, { page: })
         frame_ids = frames.pluck(:id)
-        frames = Frame.where(id: frame_ids).order(created_at: 'desc')
-        [pagy, frames]
+        frames = Frame.where(id: frame_ids).order(created_at: "desc")
+        [ pagy, frames ]
       end
     end
   end
