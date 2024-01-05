@@ -94,7 +94,6 @@ const { setFlash } = useToast()
 const { logged_in, current_user, getAccount } = useAccount()
 const { comment, comments, flash, error_messages, getComments, setComment, deleteComment } = useComment(current_user)
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getSanitizedCommentBody = (row: Comment): string => {
   return sanitizeHtml(row.body).replace(/\n/g, '<br>')
 }

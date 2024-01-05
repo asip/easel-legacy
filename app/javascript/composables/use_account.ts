@@ -35,7 +35,6 @@ export function useAccount() {
     clearFlash()
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const res = await Axios.get<GetAccountApiResponse>(`${constants.api_origin}/account`,
         {
           headers: {

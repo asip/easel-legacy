@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default {
   ja: {
     days: ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜'],

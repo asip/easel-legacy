@@ -42,8 +42,7 @@ export function useComment(current_user: User) {
     updated_at: null
   })
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const comments = reactive<any[]>([])
+  const comments = reactive<Comment[]>([])
   const error_messages = reactive<string[]>([])
 
   const { constants } = useViewData()
@@ -54,7 +53,6 @@ export function useComment(current_user: User) {
     //console.log(frame_id)
 
     try{
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const response = await Axios.get<GetCommentsApiResponse>(`${constants.api_origin}/frames/${frame_id}/comments`)
 
       const comment_list: [CommentAttributes] = response.data.data
@@ -73,7 +71,6 @@ export function useComment(current_user: User) {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const createCommentFromJson = (resource: CommentResource): Comment => {
     const comment: Partial<Comment> = {}
     Object.assign(comment, resource)
@@ -90,7 +87,6 @@ export function useComment(current_user: User) {
         }
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const response = await Axios.post<PostCommentApiResponse>(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
         params,
         {
@@ -130,7 +126,6 @@ export function useComment(current_user: User) {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const deleteComment = async (comment: Comment) => {
     clearFlash()
     try {
