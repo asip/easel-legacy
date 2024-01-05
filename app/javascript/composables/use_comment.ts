@@ -33,7 +33,7 @@ interface PostCommentApiResponse {
 
 export function useComment(current_user: User) {
   const comment = reactive<Comment>({
-    id: null,
+    id: undefined,
     frame_id: null,
     body: '',
     user_id: null,
