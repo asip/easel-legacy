@@ -1369,10 +1369,10 @@
   resolved "https://registry.npmjs.org/@xtuc/long/-/long-4.2.2.tgz"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"@yaireo/tagify@^4.17.9":
-  version "4.17.9"
-  resolved "https://registry.npmjs.org/@yaireo/tagify/-/tagify-4.17.9.tgz"
-  integrity sha512-x9aZy22hzte7BNmMrFcYNrZH71ombgH5PnzcOVXqPevRV/m/ItSnWIvY5fOHYzpC9Uxy0+h/1P5v62fIvwq2MA==
+"@yaireo/tagify@^4.18.1":
+  version "4.18.1"
+  resolved "https://registry.yarnpkg.com/@yaireo/tagify/-/tagify-4.18.1.tgz#f91131715c459c46f114cecac14c4aada89ed04c"
+  integrity sha512-2cM7hExMGP/u0RF5walJXvHiRuBMXsHSzFJNuGFtyQNsWSjVKh1vGiwEgivkk38025BmpDPkf267aDgd7NWc4g==
 
 acorn-import-assertions@^1.9.0:
   version "1.9.0"
