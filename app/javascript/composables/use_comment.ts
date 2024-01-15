@@ -45,7 +45,7 @@ export function useComment(current_user: User) {
   const comments = reactive<Comment[]>([])
   const error_messages = reactive<string[]>([])
 
-  const { constants } = useViewData()
+  const viewData = useViewData()
   const { flash, clearFlash } = useFlash()
 
   const getComments = async (frame_id: number | null) => {
@@ -53,7 +53,7 @@ export function useComment(current_user: User) {
     //console.log(frame_id)
 
     try{
-      const response = await Axios.get<GetCommentsApiResponse>(`${constants.api_origin}/frames/${frame_id}/comments`)
+      const response = await Axios.get<GetCommentsApiResponse>(`${viewData.api_origin}/frames/${frame_id}/comments`)
 
       const comment_list: [CommentAttributes] = response.data.data
       //console.log(comment_list);
@@ -87,7 +87,7 @@ export function useComment(current_user: User) {
         }
       }
 
-      const response = await Axios.post<PostCommentApiResponse>(`${constants.api_origin}/frames/${comment.frame_id}/comments`,
+      const response = await Axios.post<PostCommentApiResponse>(`${viewData.api_origin}/frames/${comment.frame_id}/comments`,
         params,
         {
           headers: {
@@ -130,7 +130,7 @@ export function useComment(current_user: User) {
     clearFlash()
     try {
       await Axios.delete(
-        `${constants.api_origin}/comments/${comment.id}`,
+        `${viewData.api_origin}/comments/${comment.id}`,
         {
           headers: {
             Authorization: `Bearer ${current_user.token}`

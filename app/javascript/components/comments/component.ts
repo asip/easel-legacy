@@ -11,12 +11,12 @@ declare var document: Document
 
 const initCommentComponent = (): void => {
 
-  const { root, constants } = useViewData()
+  const viewData = useViewData()
 
-  if (root) {
+  if (viewData.root) {
     Axios.defaults.headers.common = {
       'X-Requested-With': 'XMLHttpRequest',
-      'X-CSRF-TOKEN': constants.csrf_token
+      'X-CSRF-TOKEN': viewData.csrf_token
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument

@@ -27,7 +27,7 @@ export function useAccount() {
     token: null
   })
 
-  const { constants } = useViewData()
+  const viewData = useViewData()
   const cookies = useCookies(['access_token'])
   const { flash, clearFlash } = useFlash()
 
@@ -35,7 +35,7 @@ export function useAccount() {
     clearFlash()
 
     try {
-      const res = await Axios.get<GetAccountApiResponse>(`${constants.api_origin}/account`,
+      const res = await Axios.get<GetAccountApiResponse>(`${viewData.api_origin}/account`,
         {
           headers: {
             Authorization: `Bearer ${cookies.get('access_token')}`
