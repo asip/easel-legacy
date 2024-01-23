@@ -858,10 +858,10 @@
   resolved "https://registry.yarnpkg.com/@types/whatwg-mimetype/-/whatwg-mimetype-3.0.2.tgz#e5e06dcd3e92d4e622ef0129637707d66c28d6a4"
   integrity sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==
 
-"@types/yaireo__tagify@^4.17.5":
-  version "4.17.5"
-  resolved "https://registry.yarnpkg.com/@types/yaireo__tagify/-/yaireo__tagify-4.17.5.tgz#26448d4d542ba21cbe54ddc4a955c05033264324"
-  integrity sha512-nYk4xqky1ZnbgTlP7dO24GA/Kz4Q7mvNGNOsRPygnaVV8kBXIhROFVLG141Y0EF+TZKbmIMUolaJ+Z69Pr9FwQ==
+"@types/yaireo__tagify@^4.18.0":
+  version "4.18.0"
+  resolved "https://registry.yarnpkg.com/@types/yaireo__tagify/-/yaireo__tagify-4.18.0.tgz#51646ab02e79e4f57b563be6f264d2af7f2add59"
+  integrity sha512-iT1it1OyTiuZl7G9Gh2mTBGQ2dssiWChJpmD41/+zLux1x1r2tSroIZ+mXFvdsoqG1yprjd2x+taV+0u9QF9zA==
   dependencies:
     "@types/react" "*"
 
