@@ -10,7 +10,7 @@
     "@popperjs/core": "^2.11.8",
     "@vueuse/integrations": "^10.7.2",
     "@yaireo/tagify": "^4.19.0",
-    "axios": "^1.6.5",
+    "axios": "^1.6.7",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
     "copyfiles": "^2.4.1",
