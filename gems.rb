@@ -19,10 +19,10 @@ gem "pg", "~> 1.5.3"
 gem "puma", "~> 6.4.0"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem "turbo-rails", "~> 1.5.0"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+gem "stimulus-rails", "~> 1.3.0"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -34,13 +34,13 @@ gem "stimulus-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+gem "bootsnap", "~> 1.16.0", require: false
 
-gem "cssbundling-rails"
-gem "jsbundling-rails"
+gem "cssbundling-rails", "~> 1.3.3"
+gem "jsbundling-rails", "~> 1.2.1"
 
 # view component
-gem "view_component"
+gem "view_component", "~> 3.6.0"
 
 # Shrine
 gem "aws-sdk-s3", "~> 1.14"
@@ -51,16 +51,16 @@ gem "shrine", "~> 3.0"
 gem "rails-i18n", "~> 7.0.0"
 
 # error page handling
-gem "rambulance"
+gem "rambulance", "~> 3.0.0"
 
 # authentication
-gem "sorcery"
-gem "sorcery-jwt"
+gem "sorcery", "~> 0.16.5"
+gem "sorcery-jwt", "~> 0.1.13"
 
-gem "googleauth"
+gem "googleauth", "~> 1.8.1"
 
 # settings
-gem "config"
+gem "config", "~> 4.2.1"
 
 # paging
 gem "pagy", "~> 6.1.0"
@@ -72,13 +72,13 @@ gem "pagy", "~> 6.1.0"
 gem "acts-as-taggable-on", "~> 10.0.0"
 
 # json
-gem "jsonapi-serializer"
+gem "jsonapi-serializer", "~> 2.2.0"
 
 # Rack::Locale
 gem "rack-contrib", "2.4.0"
 
 # cors
-gem "rack-cors"
+gem "rack-cors", "~> 2.0.1"
 
 # soft delete
 gem "discard", "~> 1.2"
@@ -88,33 +88,33 @@ gem "rails_admin", "~> 3.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "debug", platforms: %i[mri windows]
+  gem "debug", "~> 1.8.0", platforms: %i[mri windows]
   # Ruby style guide, linter, and formatter
   gem "rspec-rails", "~> 6.1"
 end
 
 group :development do
-  gem "brakeman"
-  gem "bullet"
-  gem "pg_query"
-  gem "prosopite"
+  gem "brakeman", "~> 6.0.1"
+  gem "bullet", "~> 7.1.2"
+  gem "pg_query", "~> 4.2.3"
+  gem "prosopite", "~> 1.4.1"
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
+  gem "web-console", "~> 4.2.1"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
-  gem "annotate"
-  gem "rails-erd"
+  gem "annotate", "~> 3.2.0"
+  gem "rails-erd", "~> 1.7.2"
 
-  gem "rubocop-rails-omakase", require: false
+  gem "rubocop-rails-omakase", "~> 1.0.0", require: false
   # Shopify/erb-lint
-  gem "erb_lint", require: false
+  gem "erb_lint", "~> 0.5.0", require: false
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
+  gem "capybara", "~> 3.39.2"
+  gem "selenium-webdriver", "~> 4.10.0"
 end
