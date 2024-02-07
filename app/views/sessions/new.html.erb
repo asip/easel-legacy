@@ -1,4 +1,4 @@
-<%= turbo_frame_tag 'users' do %>
+<%= turbo_frame_tag "users" do %>
   <br>
   <% if Settings.google.client_id.present? %>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -19,40 +19,40 @@
     </div>
   <% end %>
   <br>
-  <%= link_to 'ユーザー登録', signup_path, class: 'btn btn-light btn-outline-secondary' %><br>
+  <%= link_to "ユーザー登録", signup_path, class: "btn btn-light btn-outline-secondary" %><br>
   <br>
-  <%= form_with model: @user, url: sessions_path, method: :post, local: true,
-                html: { 'data-turbo-frame': '_top', 'data-turbo': false } do |form| %>
-    <div class="card">
-      <div class="card-header">
-        <div class="float-start">
-          <%= link_to root_path(query_params), "data-turbo-frame": '_top' do %><i class="bi bi-arrow-left-circle"></i><% end %>
-          &nbsp;ログイン
-        </div>
-      </div>
-      <div class="card-block">
-        <br>
-        <div class="row d-flex justify-content-sm-center border border-white">
-          <label for="email" class="col-form-label-sm col-sm-2 label-bg-style">Eメール</label>
-          <div class="form-group col-sm-4">
-            <%= form.text_field :email, placeholder: 'Eメール', class: 'form-control' %>
-          </div>
-        </div>
-        <div class="row d-flex justify-content-sm-center border border-white">
-          <label for="password" class="col-form-label-sm col-sm-2 label-bg-style">パスワード</label>
-          <div class="form-group col-sm-4">
-            <%= form.password_field :password, placeholder: 'パスワード', class: 'form-control' %>
-          </div>
-        </div>
-        <br>
-        <div class="row d-flex justify-content-sm-center">
-          <div class="form-group col-sm-6">
-            <%= form.submit 'ログイン', class: 'btn btn-primary' %>
-            <%= link_to '戻る', root_path, class: 'btn btn-outline-secondary', "data-turbo": false %>
-          </div>
-        </div>
-        <br>
+  <div class="card">
+    <div class="card-header">
+      <div class="float-start">
+        <%= link_to root_path(query_params), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
+        &nbsp;ログイン
       </div>
     </div>
-  <% end %>
+    <div class="card-block">
+      <br>
+      <%= form_with model: @user, url: sessions_path, method: :post, local: true,
+                    html: { 'data-turbo-frame': "_top", 'data-turbo': false } do |form| %>
+      <div class="row d-flex justify-content-sm-center border border-white">
+        <label for="email" class="col-form-label-sm col-sm-2 label-bg-style">Eメール</label>
+        <div class="form-group col-sm-4">
+          <%= form.text_field :email, placeholder: "Eメール", class: "form-control" %>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-sm-center border border-white">
+        <label for="password" class="col-form-label-sm col-sm-2 label-bg-style">パスワード</label>
+        <div class="form-group col-sm-4">
+          <%= form.password_field :password, placeholder: "パスワード", class: "form-control" %>
+        </div>
+      </div>
+      <br>
+      <div class="row d-flex justify-content-sm-center">
+        <div class="form-group col-sm-6">
+          <%= form.submit "ログイン", class: "btn btn-primary" %>
+          <%= link_to "戻る", root_path, class: "btn btn-outline-secondary", "data-turbo": false %>
+        </div>
+      </div>
+      <% end %>
+      <br>
+    </div>
+  </div>
 <% end %>

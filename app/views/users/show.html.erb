@@ -1,9 +1,9 @@
-<%= turbo_frame_tag 'users' do %>
+<%= turbo_frame_tag "users" do %>
   <br>
   <div class="card">
     <div class="card-header">
       <div class="float-start">
-        <%= link_to back_to_path, "data-turbo-frame": '_top' do %><i class="bi bi-arrow-left-circle"></i><% end %>
+        <%= link_to back_to_path, "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
         <%= @user.name %>
       </div>
     </div>

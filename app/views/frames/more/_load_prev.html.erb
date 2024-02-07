@@ -1,8 +1,8 @@
 <div id="load-prev" class="d-flex col-sm-12 justify-content-sm-center">
   <div class="mx-auto">
     <%= if pagy.prev.present?
-          link_to('もっとみる', { controller: 'frames', action: 'prev', params: { q: word, page: pagy.prev } },
-                  class: 'btn btn-light btn-outline-primary rounded-pill')
+          link_to("もっとみる", { controller: "frames", action: "prev", params: { q: word, page: pagy.prev } },
+                  class: "btn btn-light btn-outline-primary rounded-pill")
         end %>
   </div>
 </div>
