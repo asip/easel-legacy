@@ -3,16 +3,16 @@
     <div class="d-flex justify-content-sm-center">
       <% if @photoswipe.present? && @photoswipe == true %>
         <div data-pswipe-target="ps" id="image">
-          <%= link_to image_tag(@frame.file_url(:three), class: 'mx-auto'), @frame.file_url, class: 'mx-auto' %>
+          <%= link_to image_tag(@frame.file_url(:three), class: "mx-auto"), @frame.file_url, class: "mx-auto" %>
         </div>
       <% else %>
-        <%= link_to image_tag(@frame.file_url(:three), class: 'mx-auto'), @frame.file_url, class: 'mx-auto',
-                                                                                           "data-luminous-target": 'lm' %>
+        <%= link_to image_tag(@frame.file_url(:three), class: "mx-auto"), @frame.file_url, class: "mx-auto",
+                                                                                           "data-luminous-target": "lm" %>
       <% end %>
     </div>
   <% else %>
     <div class="d-flex justify-content-sm-center">
-      <%= image_tag(@frame.file_url(:three), class: 'mx-auto') %>
+      <%= image_tag(@frame.file_url(:three), class: "mx-auto") %>
     </div>
   <% end %>
   <br>

@@ -1,7 +1,7 @@
 <div class="card-block">
   <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: false) %>
   <%= render Frames::Preview::Tags::Component.new(tag_paths: @tag_paths) %>
-  <%= @form.hidden_field :tag_list, value: @frame.tag_list.join(',') %>
+  <%= @form.hidden_field :tag_list, value: @frame.tag_list.join(",") %>
   <div class="row d-flex justify-content-sm-center">
     <label for="name" class="col-form-label col-sm-3">名前：</label>
     <div class="form-group col-sm-4">
@@ -12,7 +12,7 @@
   <div class="row d-flex justify-content-sm-center">
     <label for="name" class="col-form-label col-sm-3">撮影日時：</label>
     <div class="form-group col-sm-4">
-      <div class="form-control-plaintext"><%= @frame.shooted_at.present? ? l(@frame.shooted_at) : '' %></div>
+      <div class="form-control-plaintext"><%= @frame.shooted_at.present? ? l(@frame.shooted_at) : "" %></div>
       <%= @form.hidden_field :shooted_at %>
     </div>
   </div>
@@ -32,7 +32,7 @@
         <span class="show-when-enabled">登録</span>
         <span class="show-when-disabled">送信中...</span>
       </button>
-      <%= @form.submit '戻る', class: 'btn btn-outline-secondary' %>
+      <%= @form.submit "戻る", class: "btn btn-outline-secondary" %>
     </div>
   </div>
 </div>
