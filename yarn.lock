@@ -602,10 +602,10 @@
     type-fest "^4.10.2"
     whatwg-mimetype "^4.0.0"
 
-"@markuplint/vue-parser@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@markuplint/vue-parser/-/vue-parser-4.0.0.tgz#31d1109ee1914a79b5ee7961ec382439b2151f38"
-  integrity sha512-7PbGVkNuzIc0+GQTGgiEQmbLYuDhwoVVouWULg/34KvOKSrIcDNDD3HD547ypT7/W8rzC6r6ku8UZn0J93AvOg==
+"@markuplint/vue-parser@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@markuplint/vue-parser/-/vue-parser-4.0.1.tgz#17653a8ac992669a522c06eaedcf5db34debc2a4"
+  integrity sha512-7P3kwJZbrsjqVVs/hLcHGvAJtsIgIsRGgcfEHrvHpwbRcagsJADww2X5i4t3NeKflSy3nCWqmU0SBKNH8B7Vsg==
   dependencies:
     "@markuplint/html-parser" "4.0.0"
     "@markuplint/ml-ast" "4.0.0"
