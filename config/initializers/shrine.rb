@@ -4,12 +4,12 @@ require "shrine"
 require "shrine/storage/s3"
 
 s3_options = {
-  access_key_id: ENV.fetch("MINIO_ACCESS_KEY", "minioadmin"), # "AccessKey" value
-  secret_access_key: ENV.fetch("MINIO_SECRET_KEY", "minioadmin"), # "SecretKey" value
-  endpoint: ENV.fetch("MINIO_ENDPOINT", ""), # "Endpoint"  value
-  bucket: ENV.fetch("MINIO_BUCKET", ""), # name of the bucket you created
+  access_key_id: ENV.fetch("S3_ACCESS_KEY", "minioadmin"), # "AccessKey" value
+  secret_access_key: ENV.fetch("S3_SECRET_KEY", "minioadmin"), # "SecretKey" value
+  endpoint: ENV.fetch("S3_ENDPOINT", ""), # "Endpoint"  value
+  bucket: ENV.fetch("S3_BUCKET", ""), # name of the bucket you created
   region: ENV.fetch("AWS_REGION", ""),
-  force_path_style: ENV.fetch("MINIO_FORCE_PATH_STYLE", true)
+  force_path_style: ENV.fetch("S3_FORCE_PATH_STYLE", true)
 }
 
 Shrine.storages = {
