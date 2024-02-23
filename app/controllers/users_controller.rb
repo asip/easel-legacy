@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
   def create
