@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "users" do %>
+<div id="users">
   <br>
   <% if Settings.google.client_id.present? %>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -55,4 +55,4 @@
       <br>
     </div>
   </div>
-<% end %>
+</div>

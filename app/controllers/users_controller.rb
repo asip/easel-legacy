@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       redirect_to login_path
     else
       flashes[:alert] = @user.full_error_messages unless @user.errors.empty?
-      render :new, status: :unprocessable_entity
+      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
     end
   end
 
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
       redirect_to profile_path
     else
       flashes[:alert] = @user.full_error_messages unless @user.errors.empty?
-      render :edit, status: :unprocessable_entity
+      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
     end
   end
 
@@ -74,9 +74,9 @@ class UsersController < ApplicationController
     @user.image_derivatives! if @user.image.present?
     case action_name
     when "create"
-      render :new
+      render :create, layout: false, content_type: "text/vnd.turbo-stream.html"
     when "update"
-      render :edit
+      render :update, layout: false, content_type: "text/vnd.turbo-stream.html"
     end
   end
 
