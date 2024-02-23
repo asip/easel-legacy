@@ -1,6 +1,6 @@
 
 <%= turbo_frame_tag "users" do %><% end %>
-<%= turbo_frame_tag "frames" do %>
+<div id="frames">
   <br>
   <div data-controller="luminous pswipe">
     <div class="card">
@@ -79,4 +79,4 @@
   </div>
   <br>
   <%= render Comments::Component.new(frame: @frame) %>
-<% end %>
+</div>

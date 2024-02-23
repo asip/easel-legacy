@@ -35,7 +35,7 @@ class FramesController < ApplicationController
       redirect_to root_path(query_params)
     else
       flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
-      render :new, status: :unprocessable_entity
+      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
     end
   end
 
@@ -50,7 +50,7 @@ class FramesController < ApplicationController
       redirect_to frame_path(@frame, query_params)
     else
       flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
-      render :edit, status: :unprocessable_entity
+      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
     end
   end
 
@@ -91,9 +91,9 @@ class FramesController < ApplicationController
     @frame.file_derivatives! if @frame.file.present?
     case action_name
     when "create"
-      render :new
+      render :create, layout: false, content_type: "text/vnd.turbo-stream.html"
     when "update"
-      render :edit
+      render :update, layout: false, content_type: "text/vnd.turbo-stream.html"
     end
   end
 
