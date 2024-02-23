@@ -41,6 +41,7 @@ class FramesController < ApplicationController
 
   def edit
     @frame = Queries::Frames::FindFrameByUser.run(user: current_user, frame_id: permitted_params[:id])
+    render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
   def update
