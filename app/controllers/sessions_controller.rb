@@ -55,7 +55,7 @@ class SessionsController < ApplicationController
     return if success
 
     flashes[:alert] = @user.full_error_messages_on_login
-    render :new
+    render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
   def validate_login(form_params:)
