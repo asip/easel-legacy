@@ -11,4 +11,3 @@ export function useViewData(){
 
   return { root, api_origin, csrf_token, frame_id }
 }
-
