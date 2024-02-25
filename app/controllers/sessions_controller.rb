@@ -51,23 +51,11 @@ class SessionsController < ApplicationController
   end
 
   def create_failed(form_params:)
-    success, @user = validate_login(form_params:)
+    success, @user = User.validate_login(form_params:)
     return if success
 
     flashes[:alert] = @user.full_error_messages_on_login
     render layout: false, content_type: "text/vnd.turbo-stream.html"
-  end
-
-  def validate_login(form_params:)
-    user = User.find_by(email: form_params[:email])
-    if user
-      user.validate_password_on_login(form_params)
-    else
-      user = User.new(form_params)
-      user.validate_email_on_login(form_params)
-    end
-    success = user.errors.empty?
-    [ success, user ]
   end
 
   def form_params

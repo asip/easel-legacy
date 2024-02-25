@@ -150,6 +150,18 @@ class User < ApplicationRecord
     authentications.present?
   end
 
+  def self.validate_login(form_params:)
+    user = User.find_by(email: form_params[:email])
+    if user
+      user.validate_password_on_login(form_params)
+    else
+      user = User.new(form_params)
+      user.validate_email_on_login(form_params)
+    end
+    success = user.errors.empty?
+    [ success, user ]
+  end
+
   def validate_password_on_login(form_params)
     self.password = form_params[:password]
     valid?(:login)
