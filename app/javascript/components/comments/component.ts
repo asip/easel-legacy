@@ -20,7 +20,7 @@ const initCommentComponent = (): void => {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const comment_vm: Application<Element> = createApp(CommentList)
+    const comment_vm: Application = createApp(CommentList)
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     comment_vm.use(TurbolinksAdapter)
