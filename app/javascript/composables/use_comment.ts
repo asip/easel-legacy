@@ -1,6 +1,6 @@
 import Axios, { AxiosError } from 'axios'
 
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
 import type { User } from '../interfaces/user'
 import type { Comment } from '../interfaces/comment'
@@ -32,7 +32,7 @@ interface PostCommentApiResponse {
 }
 
 export function useComment(current_user: User) {
-  const comment = reactive<Comment>({
+  const comment = ref<Comment>({
     id: undefined,
     frame_id: null,
     body: '',
@@ -42,8 +42,8 @@ export function useComment(current_user: User) {
     updated_at: null
   })
 
-  const comments = reactive<Comment[]>([])
-  const error_messages = reactive<string[]>([])
+  const comments = ref<Comment[]>([])
+  const error_messages = ref<string[]>([])
 
   const viewData = useViewData()
   const { flash, clearFlash } = useFlash()
@@ -57,14 +57,14 @@ export function useComment(current_user: User) {
 
       const comment_list: [CommentAttributes] = response.data.data
       //console.log(comment_list);
-      comments.splice(0, comments.length)
+      comments.value.splice(0, comments.value.length)
       for (const comment of comment_list) {
       //console.log(comment);
-        comments.push(createCommentFromJson(comment.attributes))
+        comments.value.push(createCommentFromJson(comment.attributes))
       }
       //console.log(comments);
     } catch (error) {
-      error_messages.splice(0)
+      error_messages.value.splice(0)
       if(Axios.isAxiosError(error)){
         setErrorMessage(error as AxiosError)
       }
@@ -83,11 +83,11 @@ export function useComment(current_user: User) {
       // params.append('comment[body]', comment.body)
       const params = {
         comment: {
-          body: comment.body
+          body: comment.value.body
         }
       }
 
-      const response = await Axios.post<PostCommentApiResponse>(`${viewData.api_origin}/frames/${comment.frame_id}/comments`,
+      const response = await Axios.post<PostCommentApiResponse>(`${viewData.api_origin}/frames/${comment.value.frame_id}/comments`,
         params,
         {
           headers: {
@@ -98,16 +98,16 @@ export function useComment(current_user: User) {
 
       const error_message_list = response.data.data.attributes.error_messages
       if ( error_message_list && error_message_list.length > 0) {
-        error_messages.splice(0)
+        error_messages.value.splice(0)
         for (const error_message of error_message_list) {
-          error_messages.push(error_message)
+          error_messages.value.push(error_message)
         }
       } else {
-        comment.body = ''
-        error_messages.splice(0)
+        comment.value.body = ''
+        error_messages.value.splice(0)
       }
     } catch (error) {
-      error_messages.splice(0)
+      error_messages.value.splice(0)
       if(Axios.isAxiosError(error)){
         setErrorMessage(error as AxiosError)
       }
@@ -115,14 +115,14 @@ export function useComment(current_user: User) {
   }
   const setComment = async () => {
     clearFlash()
-    if (comment.body != '') {
+    if (comment.value.body != '') {
       //console.log(comment.user_id);
       //console.log(comment.frame_Id);
       //console.log(comment.body);
       await postComment()
     } else {
-      error_messages.splice(0)
-      error_messages.push('コメントを入力してください。')
+      error_messages.value.splice(0)
+      error_messages.value.push('コメントを入力してください。')
     }
   }
 
@@ -136,9 +136,9 @@ export function useComment(current_user: User) {
             Authorization: `Bearer ${current_user.token}`
           }
         })
-      comments.splice(0)
+      comments.value.splice(0)
     } catch (error) {
-      error_messages.splice(0)
+      error_messages.value.splice(0)
       if(Axios.isAxiosError(error)){
         setErrorMessage(error as AxiosError)
       }

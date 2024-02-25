@@ -1,5 +1,5 @@
 import Axios, { AxiosError } from 'axios'
-import { Ref, ref, reactive} from 'vue'
+import { Ref, ref} from 'vue'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
 import type { User } from '../interfaces/user'
@@ -22,7 +22,7 @@ interface AccountResource {
 
 export function useAccount() {
   const logged_in: Ref<boolean> = ref<boolean>(false)
-  const current_user = reactive<User>({
+  const current_user = ref<User>({
     id: null,
     token: null
   })
@@ -45,8 +45,8 @@ export function useAccount() {
       //if (json) {
       const {data: accountAttrs } = res.data
       const accountJson = accountAttrs.attributes
-      current_user.id = accountJson.id
-      current_user.token = accountJson.token
+      current_user.value.id = accountJson.id
+      current_user.value.token = accountJson.token
       //}
     } catch (error) {
       if(Axios.isAxiosError(error)){

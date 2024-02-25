@@ -92,7 +92,7 @@ import { useComment } from '../composables/use_comment'
 const view_data = useViewData()
 const { setFlash } = useToast()
 const { logged_in, current_user, getAccount } = useAccount()
-const { comment, comments, flash, error_messages, getComments, setComment, deleteComment } = useComment(current_user)
+const { comment, comments, flash, error_messages, getComments, setComment, deleteComment } = useComment(current_user.value)
 
 const getSanitizedCommentBody = (row: Comment): string => {
   return sanitizeHtml(row.body).replace(/\n/g, '<br>')
@@ -101,19 +101,19 @@ const getSanitizedCommentBody = (row: Comment): string => {
 onMounted(async () => {
   await getAccount()
   setFlash(flash.value)
-  logged_in.value = current_user.token != null
+  logged_in.value = current_user.value.token != null
   // console.log(current_user.token);
   // console.log(logged_in.value);
-  comment.frame_id = view_data.frame_id
+  comment.value.frame_id = view_data.frame_id
   // console.log(comment.frame_id);
-  await getComments(comment.frame_id)
+  await getComments(comment.value.frame_id)
   // this.$forceUpdate();
 })
 
 const onPostClick = async () => {
   await setComment()
   setFlash(flash.value)
-  await getComments(comment.frame_id)
+  await getComments(comment.value.frame_id)
 }
 
 const onDeleteClick = async (comment: Comment) => {
