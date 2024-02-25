@@ -71,6 +71,9 @@ export function useAccount() {
   return {
     logged_in,
     current_user,
+    flash,
     getAccount
   }
 }
+
+export type UseAccountType = ReturnType<typeof useAccount>

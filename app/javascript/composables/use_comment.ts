@@ -164,3 +164,5 @@ export function useComment(current_user: User) {
     getComments, setComment, deleteComment
   }
 }
+
+export type UseCommentType = ReturnType<typeof useComment>

@@ -5,7 +5,7 @@ import Axios from 'axios'
 
 import { useViewData } from '../../composables/use_view_data'
 
-import CommentList from '../comment_list.vue'
+import Comments from '../comments.vue'
 
 declare var document: Document
 
@@ -20,7 +20,7 @@ const initCommentComponent = (): void => {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const comment_vm: Application = createApp(CommentList)
+    const comment_vm: Application = createApp(Comments)
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     comment_vm.use(TurbolinksAdapter)
