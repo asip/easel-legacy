@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import CommentForm from './comment_form.vue'
 import CommentList from './comment_list.vue'
-import { onMounted, provide } from 'vue'
+import { provide } from 'vue'
 
 import { useViewData } from '../composables/use_view_data'
 import { useToast } from '../composables/use_toast'
