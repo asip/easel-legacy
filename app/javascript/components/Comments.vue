@@ -5,5 +5,5 @@
 </template>
 
 <script lang="ts" setup>
-import AsyncComments from './async_comments.vue'
+import AsyncComments from './AsyncComments.vue'
 </script>

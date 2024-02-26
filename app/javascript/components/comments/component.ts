@@ -5,7 +5,7 @@ import Axios from 'axios'
 
 import { useViewData } from '../../composables/use_view_data'
 
-import Comments from '../comments.vue'
+import Comments from '../Comments.vue'
 
 declare var document: Document
 
