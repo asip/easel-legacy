@@ -8,7 +8,9 @@
 </template>
 
 <script lang="ts" setup>
+// @ts-ignore
 import CommentForm from './comment_form.vue'
+// @ts-ignore
 import CommentList from './comment_list.vue'
 import { provide } from 'vue'
 
