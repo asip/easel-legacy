@@ -9,5 +9,8 @@ import CommentItem from './comment_item.vue'
 import { inject } from 'vue'
 import type { UseCommentType } from '../composables/use_comment'
 
-const { comments } = inject('commenter') as UseCommentType
+const { comment, comments, getComments } = inject('commenter') as UseCommentType
+
+// @ts-ignore
+await getComments(comment.value?.frame_id)
 </script>
