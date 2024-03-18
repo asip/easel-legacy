@@ -94,7 +94,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "brakeman", "~> 6.0.1"
+  gem "brakeman", "~> 6.1.2"
   gem "bullet", "~> 7.1.2"
   gem "pg_query", "~> 4.2.3"
   gem "prosopite", "~> 1.4.1"
