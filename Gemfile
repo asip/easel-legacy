@@ -97,7 +97,7 @@ group :development do
   gem "brakeman", "~> 6.1.2"
   gem "bullet", "~> 7.1.6"
   gem "pg_query", "~> 5.1.0"
-  gem "prosopite", "~> 1.4.1"
+  gem "prosopite", "~> 1.4.2"
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console", "~> 4.2.1"
