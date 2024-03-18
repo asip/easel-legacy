@@ -88,7 +88,7 @@ gem "rails_admin", github: "railsadminteam/rails_admin"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "debug", "~> 1.8.0", platforms: %i[mri windows]
+  gem "debug", "~> 1.9.1", platforms: %i[mri windows]
   # Ruby style guide, linter, and formatter
   gem "rspec-rails", "~> 6.1"
 end
