@@ -302,7 +302,7 @@ GEM
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
-    pg (1.5.4)
+    pg (1.5.6)
     pg_query (4.2.3)
       google-protobuf (>= 3.22.3)
     propshaft (0.8.0)
@@ -507,7 +507,7 @@ DEPENDENCIES
   jsbundling-rails (~> 1.3.0)
   jsonapi-serializer (~> 2.2.0)
   pagy (~> 6.1.0)
-  pg (~> 1.5.3)
+  pg (~> 1.5.6)
   pg_query (~> 4.2.3)
   propshaft (~> 0.8.0)
   prosopite (~> 1.4.1)
