@@ -48,7 +48,7 @@ gem "image_processing", "~> 1.12.2"
 gem "shrine", "~> 3.5.0"
 
 # i18n
-gem "rails-i18n", "~> 7.0.0"
+gem "rails-i18n", "~> 7.0.9"
 
 # error page handling
 gem "rambulance", "~> 3.0.0"
