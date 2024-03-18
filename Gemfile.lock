@@ -503,7 +503,7 @@ DEPENDENCIES
   discard (~> 1.2)
   erb_lint (~> 0.5.0)
   googleauth (~> 1.8.1)
-  image_processing (~> 1.8)
+  image_processing (~> 1.12.2)
   jsbundling-rails (~> 1.3.0)
   jsonapi-serializer (~> 2.2.0)
   pagy (~> 6.1.0)
