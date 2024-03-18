@@ -57,7 +57,7 @@ gem "rambulance", "~> 3.1.0"
 gem "sorcery", "~> 0.16.5"
 gem "sorcery-jwt", "~> 0.1.13"
 
-gem "googleauth", "~> 1.8.1"
+gem "googleauth", "~> 1.11.0"
 
 # settings
 gem "config", "~> 4.2.1"
