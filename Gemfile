@@ -60,7 +60,7 @@ gem "sorcery-jwt", "~> 0.1.13"
 gem "googleauth", "~> 1.11.0"
 
 # settings
-gem "config", "~> 4.2.1"
+gem "config", "~> 5.4.0"
 
 # paging
 gem "pagy", "~> 6.1.0"
