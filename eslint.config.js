@@ -53,8 +53,8 @@ export default [
       ...typescriptESLint.configs.strict.rules,
       ...typescriptESLint.configs['strict-type-checked'].rules,
       ...typescriptESLint.configs.stylistic.rules,
-      '@typescript-eslint/no-explicit-any': 1,
-      '@typescript-eslint/no-non-null-assertion': 1
+      '@typescript-eslint/no-explicit-any': 0,
+      '@typescript-eslint/no-non-null-assertion': 0
     }
   },
   {
@@ -88,8 +88,9 @@ export default [
       //...vueESLint.configs['vue3-essential'].rules,
       ...vueESLint.configs['vue3-recommended'].rules,
       //...vueESLint.configs['vue3-strongly-recommended'].rules,
-      '@typescript-eslint/no-explicit-any': 1,
-      '@typescript-eslint/no-non-null-assertion': 1,
+      '@typescript-eslint/no-explicit-any': 0,
+      '@typescript-eslint/no-non-null-assertion': 0,
+      '@typescript-eslint/ban-ts-comment': 0,
       'vue/no-v-html': 0,
       'vue/max-attributes-per-line': 0
     }
