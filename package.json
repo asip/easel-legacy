@@ -21,7 +21,7 @@
     "photoswipe": "5.4.3",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
     "rails_admin": "3.1.2",
-    "sanitize-html": "^2.12.1",
+    "sanitize-html": "^2.13.0",
     "sass": "^1.72.0",
     "stimulus": "^3.2.2",
     "toastify-js": "^1.12.0",
