@@ -30,7 +30,7 @@ setFlash(flash.value)
 logged_in.value = current_user.value.token != null
 // console.log(current_user.token);
 // console.log(logged_in.value);
-comment.value.frame_id = view_data.frame_id
+comment.value.frame_id = parseInt(view_data.frame_id, 10) || null
 
 provide('accounter', accounter)
 provide('commenter', commenter)

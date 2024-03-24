@@ -50,6 +50,6 @@ const { comment, flash, error_messages, getComments, setComment } = inject('comm
 const onPostClick = async () => {
   await setComment()
   setFlash(flash.value)
-  await getComments(comment.value.frame_id)
+  await getComments(comment.value.frame_id?.toString(10) ?? '')
 }
 </script>
