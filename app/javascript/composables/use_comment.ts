@@ -33,7 +33,7 @@ interface PostCommentApiResponse {
 
 export function useComment(current_user: User) {
   const comment = ref<Comment>({
-    id: undefined,
+    id: null,
     frame_id: null,
     body: '',
     user_id: null,
@@ -48,7 +48,7 @@ export function useComment(current_user: User) {
   const viewData = useViewData()
   const { flash, clearFlash } = useFlash()
 
-  const getComments = async (frame_id: number | null) => {
+  const getComments = async (frame_id: string) => {
     clearFlash()
     //console.log(frame_id)
 
@@ -87,11 +87,11 @@ export function useComment(current_user: User) {
         }
       }
 
-      const response = await Axios.post<PostCommentApiResponse>(`${viewData.api_origin}/frames/${comment.value.frame_id}/comments`,
+      const response = await Axios.post<PostCommentApiResponse>(`${viewData.api_origin}/frames/${comment.value.frame_id?.toString(10) ?? ''}/comments`,
         params,
         {
           headers: {
-            Authorization: `Bearer ${current_user.token}`
+            Authorization: `Bearer ${current_user.token ?? ''}`
           }
         }
       )
@@ -130,10 +130,10 @@ export function useComment(current_user: User) {
     clearFlash()
     try {
       await Axios.delete(
-        `${viewData.api_origin}/comments/${comment.id}`,
+        `${viewData.api_origin}/comments/${comment.id?.toString(10) ?? ''}`,
         {
           headers: {
-            Authorization: `Bearer ${current_user.token}`
+            Authorization: `Bearer ${current_user.token ?? ''}`
           }
         })
       comments.value.splice(0)

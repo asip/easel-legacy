@@ -1,4 +1,4 @@
 export interface User {
-  id: number | null,
+  id: number | undefined | null,
   token: string | undefined | null
 }

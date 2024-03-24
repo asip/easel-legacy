@@ -34,11 +34,13 @@ export function useAccount() {
   const getAccount = async () => {
     clearFlash()
 
+    const token: string = cookies.get('access_token')
+
     try {
       const res = await Axios.get<GetAccountApiResponse>(`${viewData.api_origin}/account`,
         {
           headers: {
-            Authorization: `Bearer ${cookies.get('access_token')}`
+            Authorization: `Bearer ${token}`
           }
         })
 
