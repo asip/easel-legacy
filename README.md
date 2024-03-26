@@ -17,7 +17,7 @@ Things you may want to cover:
 
 * Ruby version : 3.3.0
 * Rails version : 7.1.3
-* System dependencies : yarn (v1.22.19) & postgresql & minio & libvips & direnv
+* System dependencies : yarn (v1.22.22) & postgresql & minio & libvips & direnv
 * Deployment instructions
   * Run `bundle install --path vendor/bundle` to install the required Rubygems
   * Run `yarn install` to install the required NPM packages
@@ -29,7 +29,7 @@ Things you may want to cover:
   * Run `bundle exec rails db:seed` to sample records
   * Run `bin/rails assets:precompile` to bundle the included javascript modules
   * Run `bin/dev` to spin up the Rails dev server
-  * Hit [localhost:3000](http://localhost:3000/) and you should be ready to go!
+  * Hit [localhost](http://localhost/) and you should be ready to go!
 
 * ...
 
