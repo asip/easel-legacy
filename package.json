@@ -61,6 +61,6 @@
     "markuplint": "^4.5.0",
     "prettier": "^3.2.5",
     "tsc-watch": "^6.0.4",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.4"
   }
 }
