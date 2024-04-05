@@ -60,7 +60,7 @@
     "eslint-plugin-vue": "^9.24.0",
     "markuplint": "^4.5.0",
     "prettier": "^3.2.5",
-    "tsc-watch": "^6.0.4",
+    "tsc-watch": "^6.2.0",
     "typescript": "^5.4.4"
   }
 }
