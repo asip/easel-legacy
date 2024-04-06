@@ -31,7 +31,6 @@ export default class PreviewController extends ApplicationController {
         file.name = this.value
         file.ext = file.name.replace(/^.*\./, '').toLowerCase()
         // .file_fieldからデータを取得して変数file.dataに代入します
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         file.data = this.files![0]
 
         if (file.ext.match(/^(jpeg|jpg|png|gif)$/)) {

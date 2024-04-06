@@ -34,7 +34,6 @@ export default class PhotoSwipeController extends ApplicationController {
         gallery: '#image',
         children: 'a',
         initialZoomLevel: 'fit',
-        // eslint-disable-next-line
         pswpModule: () => import('photoswipe')
       })
       new PhotoSwipeFullscreen(this.lightbox) // eslint-disable-line
