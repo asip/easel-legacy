@@ -66,7 +66,7 @@ gem "googleauth", "~> 1.11.0"
 gem "config", "~> 5.4.0"
 
 # paging
-gem "pagy", "~> 7.0.11"
+gem "pagy", "~> 8.2.1"
 # gem 'bootstrap5-kaminari-views'
 # gem 'kaminari', '~> 1.2.2'
 
