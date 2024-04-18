@@ -93,7 +93,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "debug", "~> 1.9.2", platforms: %i[mri windows]
   # Ruby style guide, linter, and formatter
-  gem "rspec-rails", "~> 6.1.1"
+  gem "rspec-rails", "~> 6.1.2"
 end
 
 group :development do
