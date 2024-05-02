@@ -44,8 +44,8 @@
     "markuplint": "markuplint './app/javascript/**/*.vue'"
   },
   "devDependencies": {
-    "@markuplint/vue-parser": "^4.5.1",
-    "@markuplint/vue-spec": "^4.4.1",
+    "@markuplint/vue-parser": "^4.6.0",
+    "@markuplint/vue-spec": "^4.5.0",
     "@types/bootstrap": "^5.2.10",
     "@types/photoswipe": "4.1.6",
     "@types/sanitize-html": "^2.11.0",
@@ -58,7 +58,7 @@
     "eslint": "^9.1.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.25.0",
-    "markuplint": "^4.6.1",
+    "markuplint": "^4.7.0",
     "prettier": "^3.2.5",
     "tsc-watch": "^6.2.0",
     "typescript": "^5.4.5"
