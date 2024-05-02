@@ -9,7 +9,7 @@
     "@hotwired/turbo-rails": "^8.0.4",
     "@popperjs/core": "^2.11.8",
     "@vueuse/integrations": "^10.9.0",
-    "@yaireo/tagify": "^4.24.0",
+    "@yaireo/tagify": "^4.26.1",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
