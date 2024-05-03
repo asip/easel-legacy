@@ -19,7 +19,7 @@ gem "pg", "~> 1.5.6"
 gem "puma", "~> 6.4.2"
 
 # HTTP/2 proxy
-gem "thruster", "~> 0.1.3"
+gem "thruster", "~> 0.1.4"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.5"
