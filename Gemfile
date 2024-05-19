@@ -46,7 +46,7 @@ gem "jsbundling-rails", "~> 1.3.0"
 gem "view_component", "~> 3.12.1"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.149.0"
+gem "aws-sdk-s3", "~> 1.149.1"
 gem "image_processing", "~> 1.12.2"
 gem "shrine", "~> 3.6.0"
 
@@ -66,7 +66,7 @@ gem "googleauth", "~> 1.11.0"
 gem "config", "~> 5.4.0"
 
 # paging
-gem "pagy", "~> 8.3.0"
+gem "pagy", "~> 8.4.0"
 # gem 'bootstrap5-kaminari-views'
 # gem 'kaminari', '~> 1.2.2'
 
@@ -119,5 +119,5 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", "~> 3.40.0"
-  gem "selenium-webdriver", "~> 4.20.1"
+  gem "selenium-webdriver", "~> 4.21.1"
 end
