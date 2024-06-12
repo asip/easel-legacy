@@ -46,7 +46,7 @@ gem "jsbundling-rails", "~> 1.3.0"
 gem "view_component", "~> 3.12.1"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.149.1"
+gem "aws-sdk-s3", "~> 1.152.1"
 gem "image_processing", "~> 1.12.2"
 gem "shrine", "~> 3.6.0"
 
@@ -63,7 +63,7 @@ gem "sorcery-jwt", "~> 0.1.13"
 gem "googleauth", "~> 1.11.0"
 
 # settings
-gem "config", "~> 5.4.0"
+gem "config", "~> 5.5.1"
 
 # paging
 gem "pagy", "~> 8.4.0"
@@ -78,7 +78,7 @@ gem "acts-as-taggable-on", "~> 10.0.0"
 gem "jsonapi-serializer", "~> 2.2.0"
 
 # Rack::Locale
-gem "rack-contrib", "2.4.0"
+gem "rack-contrib", "2.5.0"
 
 # cors
 gem "rack-cors", "~> 2.0.2"
