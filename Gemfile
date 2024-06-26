@@ -46,7 +46,7 @@ gem "jsbundling-rails", "~> 1.3.0"
 gem "view_component", "~> 3.12.1"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.152.1"
+gem "aws-sdk-s3", "~> 1.154.0"
 gem "image_processing", "~> 1.12.2"
 gem "shrine", "~> 3.6.0"
 
@@ -66,7 +66,7 @@ gem "googleauth", "~> 1.11.0"
 gem "config", "~> 5.5.1"
 
 # paging
-gem "pagy", "~> 8.4.0"
+gem "pagy", "~> 8.5.0"
 # gem 'bootstrap5-kaminari-views'
 # gem 'kaminari', '~> 1.2.2'
 
@@ -93,7 +93,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "debug", "~> 1.9.2", platforms: %i[mri windows]
   # Ruby style guide, linter, and formatter
-  gem "rspec-rails", "~> 6.1.2"
+  gem "rspec-rails", "~> 6.1.3"
 end
 
 group :development do
@@ -119,5 +119,5 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", "~> 3.40.0"
-  gem "selenium-webdriver", "~> 4.21.1"
+  gem "selenium-webdriver", "~> 4.22.0"
 end
