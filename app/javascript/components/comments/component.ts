@@ -1,9 +1,6 @@
 import { createApp, App as Application } from 'vue'
 // @ts-expect-error : @types doesn't exist
 import TurbolinksAdapter from 'vue-turbolinks'
-import Axios from 'axios'
-
-import { useViewData } from '../../composables/use_view_data'
 
 import Comments from '../Comments.vue'
 
@@ -11,14 +8,9 @@ declare var document: Document
 
 const initCommentComponent = (): void => {
 
-  const viewData = useViewData()
+  const root: HTMLElement | null = document.querySelector('#comments_component')
 
-  if (viewData.root) {
-    Axios.defaults.headers.common = {
-      'X-Requested-With': 'XMLHttpRequest',
-      'X-CSRF-TOKEN': viewData.csrf_token
-    }
-
+  if (root) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const comment_vm: Application = createApp(Comments)
 
