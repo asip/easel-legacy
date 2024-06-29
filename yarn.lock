@@ -3877,11 +3877,6 @@ vue-loader@^17.4.2:
     hash-sum "^2.0.0"
     watchpack "^2.4.0"
 
-vue-turbolinks@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.npmjs.org/vue-turbolinks/-/vue-turbolinks-2.2.2.tgz"
-  integrity sha512-pPO2Fr+1UgdhUK9dc5OhjLSeYi5LZAm/VZBXOVQgLHCO31bRjAof/+W/e/6SHCbnb1xdZb1gW5T9MX0k9ejSAQ==
-
 vue@^3.4.31:
   version "3.4.31"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.4.31.tgz#83a3c4dab8302b0e974b0d4b92a2f6a6378ae797"
