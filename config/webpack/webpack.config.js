@@ -17,8 +17,7 @@ export default {
     extensions: ['.js', '.ts']
   },
   entry: {
-    application: './app/javascript/application.js',
-    web_components: './app/javascript/web_components.js'
+    application: './app/javascript/application.js'
   },
   output: {
     filename: '[name].js',

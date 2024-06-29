@@ -27,6 +27,9 @@ gem "turbo-rails", "~> 2.0.5"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails", "~> 1.3.3"
 
+# Turbo Mount
+gem "turbo-mount", "~> 0.3.2"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 

@@ -10,3 +10,4 @@ import './libraries/turbo'
 import './libraries/bootstrap'
 import './controllers/index'
 
+import './turbo-mount'

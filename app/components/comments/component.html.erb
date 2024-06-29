@@ -1,5 +1,4 @@
 <div data-turbo="false">
-  <div id="comments_component" data-frame-id="<%= @frame.id %>" data-api-origin="<%= Settings.front.api.origin %>">
-  </div>
+  <%= helpers.turbo_mount("Comments", props: {'frame-id' => @frame.id, 'api-origin' => Settings.front.api.origin, 'csrf-token' => helpers.form_authenticity_token}) %>
   <br>
 </div>

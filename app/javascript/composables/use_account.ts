@@ -1,10 +1,10 @@
 import Axios, { AxiosError } from 'axios'
-import { Ref, ref} from 'vue'
+import { inject, Ref, ref} from 'vue'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
 import type { User } from '../interfaces/user'
 
-import { useViewData } from './use_view_data'
+import type { UseViewDataType } from './use_view_data'
 import { useFlash } from './use_flash'
 
 interface GetAccountApiResponse {
@@ -27,7 +27,7 @@ export function useAccount() {
     token: null
   })
 
-  const viewData = useViewData()
+  const viewData = inject('viewData') as UseViewDataType
   const cookies = useCookies(['access_token'])
   const { flash, clearFlash } = useFlash()
 

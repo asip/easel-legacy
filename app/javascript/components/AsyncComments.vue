@@ -10,20 +10,20 @@
 <script lang="ts" setup>
 import CommentForm from './CommentForm.vue'
 import CommentList from './CommentList.vue'
-import { provide } from 'vue'
+import { inject, provide } from 'vue'
 
-import { useViewData } from '../composables/use_view_data'
+import type { UseViewDataType } from '../composables/use_view_data'
 import { useToast } from '../composables/use_toast'
 import { useAccount } from '../composables/use_account'
 import { useComment } from '../composables/use_comment'
 
-const view_data = useViewData()
 const { setFlash } = useToast()
 const accounter = useAccount()
 const { logged_in, current_user, flash, getAccount } = accounter
 const commenter = useComment(current_user.value)
 const { comment } = commenter
 
+const view_data = inject('viewData') as UseViewDataType
 // @ts-ignore
 await getAccount()
 setFlash(flash.value)

@@ -5,8 +5,7 @@ async function watch(){
   let ctx = await esbuild.context({
     entryPoints: [
       'app/javascript/application.js',
-      'app/javascript/rails_admin.js',
-      'app/javascript/web_components.js'
+      'app/javascript/rails_admin.js'
     ],
     bundle: true,
     sourcemap: true,

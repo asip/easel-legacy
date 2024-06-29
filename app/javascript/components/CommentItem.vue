@@ -47,6 +47,7 @@ import type { UseAccountType } from '../composables/use_account'
 const comment = defineModel<Comment>()
 
 const { setFlash } = useToast()
+
 const { logged_in, current_user } = inject('accounter') as UseAccountType
 const { flash, getComments, deleteComment } = inject('commenter') as UseCommentType
 

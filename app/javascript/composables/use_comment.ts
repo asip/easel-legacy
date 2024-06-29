@@ -1,11 +1,11 @@
 import Axios, { AxiosError } from 'axios'
 
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 
 import type { User } from '../interfaces/user'
 import type { Comment } from '../interfaces/comment'
 
-import { useViewData } from './use_view_data'
+import { UseViewDataType } from './use_view_data'
 import { useFlash } from './use_flash'
 
 interface GetCommentsApiResponse {
@@ -45,7 +45,7 @@ export function useComment(current_user: User) {
   const comments = ref<Comment[]>([])
   const error_messages = ref<string[]>([])
 
-  const viewData = useViewData()
+  const viewData = inject('viewData') as UseViewDataType
   const { flash, clearFlash } = useFlash()
 
   const getComments = async (frame_id: string) => {

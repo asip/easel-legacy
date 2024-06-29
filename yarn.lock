@@ -3737,6 +3737,13 @@ tsc-watch@^6.2.0:
     ps-tree "^1.2.0"
     string-argv "^0.3.1"
 
+turbo-mount@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/turbo-mount/-/turbo-mount-0.3.2.tgz#a57e9a9263e35a4de97fd5147eb3b3de3d671636"
+  integrity sha512-45dwhwyVOck1X99TnqypU5sETw27bdBkPTToayunkuoz1vn8RrgwL4A8g6nowNnGSCn3dW4x6Z4zDbr9TzJQhg==
+  dependencies:
+    "@hotwired/stimulus" "^3.2.2"
+
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
   resolved "https://registry.npmjs.org/type-check/-/type-check-0.4.0.tgz"
