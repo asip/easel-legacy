@@ -49,7 +49,7 @@ gem "jsbundling-rails", "~> 1.3.0"
 gem "view_component", "~> 3.12.1"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.155.0"
+gem "aws-sdk-s3", "~> 1.156.0"
 gem "image_processing", "~> 1.12.2"
 gem "shrine", "~> 3.6.0"
 
@@ -69,7 +69,7 @@ gem "googleauth", "~> 1.11.0"
 gem "config", "~> 5.5.1"
 
 # paging
-gem "pagy", "~> 8.6.1"
+gem "pagy", "~> 8.6.2"
 # gem 'bootstrap5-kaminari-views'
 # gem 'kaminari', '~> 1.2.2'
 
