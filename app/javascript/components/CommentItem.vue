@@ -38,7 +38,7 @@
 
 <script lang="ts" setup >
 import sanitizeHtml from 'sanitize-html'
-import { computed, defineModel, inject } from 'vue'
+import { computed, inject } from 'vue'
 import { useToast } from '../composables/use_toast'
 import type { Comment } from '../interfaces/comment'
 import type { UseCommentType } from '../composables/use_comment'
