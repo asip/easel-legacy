@@ -19,7 +19,7 @@ gem "pg", "~> 1.5.6"
 gem "puma", "~> 6.4.2"
 
 # HTTP/2 proxy
-gem "thruster", "~> 0.1.4"
+gem "thruster", "~> 0.1.7"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.5"
@@ -69,7 +69,7 @@ gem "googleauth", "~> 1.11.0"
 gem "config", "~> 5.5.1"
 
 # paging
-gem "pagy", "~> 8.6.2"
+gem "pagy", "~> 8.6.3"
 # gem 'bootstrap5-kaminari-views'
 # gem 'kaminari', '~> 1.2.2'
 
