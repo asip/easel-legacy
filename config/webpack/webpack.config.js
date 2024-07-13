@@ -14,7 +14,7 @@ export default {
     alias: {
       vue$: 'vue/dist/vue.esm-bundler.js',
     },
-    extensions: ['.js', '.ts']
+    extensions: ['.ts', '.js']
   },
   entry: {
     application: './app/javascript/application.js'
@@ -39,6 +39,9 @@ export default {
         loader: 'esbuild-loader',
         options: {
           target: 'es2022'  // Syntax to compile to (see options below for possible values)
+        },
+        resolve: {
+          fullySpecified: false
         }
       },
       {

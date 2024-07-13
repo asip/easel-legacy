@@ -17,10 +17,10 @@ Things you may want to cover:
 
 * Ruby version : 3.3.4
 * Rails version : 7.1.3
-* System dependencies : yarn (v1.22.22) & postgresql & minio & libvips & direnv
+* System dependencies : pnpm & postgresql & minio & libvips & direnv
 * Deployment instructions
   * Run `bundle install --path vendor/bundle` to install the required Rubygems
-  * Run `yarn install` to install the required NPM packages
+  * Run `pnpm install` to install the required NPM packages
   * RUN `cp .env.sample .env` to edit environment variables
   * Run `EDITOR="vi" bin/rails credentials:edit` to create credentials
   * RUN `direnv allow` to set environment variables
