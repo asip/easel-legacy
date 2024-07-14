@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import webpack from 'webpack'
+// import { VueLoaderPlugin } from 'vue-loader'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -25,6 +26,7 @@ export default {
     path: path.resolve(__dirname, '..', '..', 'app/assets/builds'),
   },
   plugins: [
+    // new VueLoaderPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     })
@@ -35,20 +37,23 @@ export default {
   module: {
     rules: [
       {
-        test: /\.[jt]s$/,
-        loader: 'esbuild-loader',
-        options: {
-          target: 'es2022'  // Syntax to compile to (see options below for possible values)
-        },
-        resolve: {
-          fullySpecified: false
-        }
-      },
-      {
         test: /\.vue(\.erb)?$/,
         use: [{
           loader: 'vue-loader'
         }]
+      },
+      {
+        test: /\.[jt]s$/,
+        use: [{
+          loader: 'esbuild-loader',
+          options: {
+            loader: 'js',
+            target: 'es2022'  // Syntax to compile to (see options below for possible values)
+          }
+        }],
+        resolve: {
+          fullySpecified: false
+        }
       }
     ]
   }
