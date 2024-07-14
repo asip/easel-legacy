@@ -1,6 +1,6 @@
 import { TurboMount } from 'turbo-mount'
 import { registerComponent } from 'turbo-mount/vue'
-import Comments from './components/comments.vue'
+import Comments from './components/Comments.vue'
 
 const turboMount = new TurboMount()
 
