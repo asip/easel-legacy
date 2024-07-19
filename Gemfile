@@ -22,7 +22,7 @@ gem "puma", "~> 6.4.2"
 gem "thruster", "~> 0.1.7"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails", "~> 2.0.5"
+gem "turbo-rails", "~> 2.0.6"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails", "~> 1.3.3"
@@ -122,5 +122,5 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", "~> 3.40.0"
-  gem "selenium-webdriver", "~> 4.22.0"
+  gem "selenium-webdriver", "~> 4.23.0"
 end
