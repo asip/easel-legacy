@@ -10,10 +10,10 @@ module Api
       {
         meta: {
           pagination: {
-            count: pagy.total_count,
-            pages: pagy.total_pages,
-            page: pagy.current_page,
-            per: pagy.limit_value
+            count: pagy.count,
+            pages: pagy.pages,
+            page: pagy.page,
+            per: pagy.limit
           }
         }
       }
