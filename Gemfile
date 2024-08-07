@@ -13,13 +13,13 @@ gem "propshaft", "~> 0.9.0"
 # Use mysql as the database for Active Record
 # gem 'mysql2', '~> 0.5.6'
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.5.6"
+gem "pg", "~> 1.5.7"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 6.4.2"
 
 # HTTP/2 proxy
-gem "thruster", "~> 0.1.7"
+gem "thruster", "~> 0.1.8"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.6"
@@ -34,30 +34,30 @@ gem "turbo-mount", "~> 0.3.2"
 # gem "jbuilder"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.12.2"
+# gem "image_processing", "~> 1.13.0"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.18.3", require: false
+gem "bootsnap", "~> 1.18.4", require: false
 
-gem "cssbundling-rails", "~> 1.4.0"
-gem "jsbundling-rails", "~> 1.3.0"
+gem "cssbundling-rails", "~> 1.4.1"
+gem "jsbundling-rails", "~> 1.3.1"
 
 # view component
 gem "view_component", "~> 3.13.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.156.0"
-gem "image_processing", "~> 1.12.2"
+gem "aws-sdk-s3", "~> 1.157.0"
+gem "image_processing", "~> 1.13.0"
 gem "shrine", "~> 3.6.0"
 
 # i18n
 gem "rails-i18n", "~> 7.0.9"
 
 # error page handling
-gem "rambulance", "~> 3.1.0"
+gem "rambulance", "~> 3.2.0"
 
 # authentication
 gem "sorcery", "~> 0.16.5"
@@ -69,7 +69,7 @@ gem "googleauth", "~> 1.11.0"
 gem "config", "~> 5.5.1"
 
 # paging
-gem "pagy", "~> 9.0.2"
+gem "pagy", "~> 9.0.5"
 # gem 'bootstrap5-kaminari-views'
 # gem 'kaminari', '~> 1.2.2'
 
@@ -116,7 +116,7 @@ group :development do
 
   gem "rubocop-rails-omakase", "~> 1.0.0", require: false
   # Shopify/erb-lint
-  gem "erb_lint", "~> 0.5.0", require: false
+  gem "erb_lint", "~> 0.6.0", require: false
 end
 
 group :test do
