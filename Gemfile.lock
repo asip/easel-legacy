@@ -281,7 +281,7 @@ GEM
     pg (1.5.7)
     pg_query (5.1.0)
       google-protobuf (>= 3.22.3)
-    propshaft (0.9.0)
+    propshaft (0.9.1)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
@@ -491,7 +491,7 @@ DEPENDENCIES
   pagy (~> 9.0.5)
   pg (~> 1.5.7)
   pg_query (~> 5.1.0)
-  propshaft (~> 0.9.0)
+  propshaft (~> 0.9.1)
   prosopite (~> 1.4.2)
   puma (~> 6.4.2)
   rack-contrib (= 2.5.0)
