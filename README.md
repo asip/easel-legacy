@@ -5,7 +5,7 @@
 This is backend of Easel.
 This includes legacy frontend implemented by Ruby on Rails.
 
-Rails7.1 + Sorcery(authentication) + Pagy(paging) +  
+Rails7.2 + Sorcery(authentication) + Pagy(paging) +  
 Shrine(upload) + ActsAsTaggableOn(tag) +  
 RailsAdmin (management console) + Discard(soft delete) +  
 Hotwire (Turbo + Stimulus3) + Vue.js 3 + Bootstrap5
@@ -16,7 +16,7 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version : 3.3.4
-* Rails version : 7.1.3
+* Rails version : 7.2.1
 * System dependencies : pnpm & postgresql & minio & libvips & direnv
 * Deployment instructions
   * Run `bundle install --path vendor/bundle` to install the required Rubygems
