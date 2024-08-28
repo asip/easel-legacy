@@ -46,7 +46,7 @@ gem "cssbundling-rails", "~> 1.4.1"
 gem "jsbundling-rails", "~> 1.3.1"
 
 # view component
-gem "view_component", "~> 3.13.0"
+gem "view_component", "~> 3.14.0"
 
 # Shrine
 gem "aws-sdk-s3", "~> 1.159.0"
@@ -69,7 +69,7 @@ gem "googleauth", "~> 1.11.0"
 gem "config", "~> 5.5.1"
 
 # paging
-gem "pagy", "~> 9.0.5"
+gem "pagy", "~> 9.0.6"
 # gem 'bootstrap5-kaminari-views'
 # gem 'kaminari', '~> 1.2.2'
 
