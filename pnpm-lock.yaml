@@ -27,8 +27,8 @@ importers:
         specifier: ^11.0.3
         version: 11.0.3(axios@1.7.5)(universal-cookie@7.2.0)(vue@3.4.38(typescript@5.5.4))
       '@yaireo/tagify':
-        specifier: ^4.31.1
-        version: 4.31.1(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^4.31.3
+        version: 4.31.3(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       axios:
         specifier: ^1.7.5
         version: 1.7.5
@@ -716,8 +716,8 @@ packages:
   '@vueuse/shared@11.0.3':
     resolution: {integrity: sha512-0rY2m6HS5t27n/Vp5cTDsKTlNnimCqsbh/fmT2LgE+aaU42EMfXo8+bNX91W9I7DDmxfuACXMmrd7d79JxkqWA==}
 
-  '@yaireo/tagify@4.31.1':
-    resolution: {integrity: sha512-an/gVSgYVLe+bphXouLt0w+ylrGodcpPWx0UmXd0Z0AcTm76CLVWKH6J4vIi5+KMo6LHvpV/hUZiTJpN4WPhfg==}
+  '@yaireo/tagify@4.31.3':
+    resolution: {integrity: sha512-YpBvYxqkJkOGyHg+0OzTCgt8Zb4vlYq+qE7jgxBLyPrvheSI0SXj3dbc4lVhCQhtbos4Kb2+t7ou8a+LYQk0Og==}
     engines: {node: '>=16.15.0', npm: '>=9.0.0'}
     peerDependencies:
       prop-types: '>15.5.7'
@@ -2748,7 +2748,7 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@yaireo/tagify@4.31.1(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yaireo/tagify@4.31.3(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       prop-types: 15.8.1
       react: 18.3.1

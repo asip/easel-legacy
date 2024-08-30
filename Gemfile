@@ -69,9 +69,7 @@ gem "googleauth", "~> 1.11.0"
 gem "config", "~> 5.5.1"
 
 # paging
-gem "pagy", "~> 9.0.6"
-# gem 'bootstrap5-kaminari-views'
-# gem 'kaminari', '~> 1.2.2'
+gem "pagy", "~> 9.0.7"
 
 # tags
 # gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
@@ -94,13 +92,13 @@ gem "rails_admin", github: "railsadminteam/rails_admin"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "debug", "~> 1.9.2", platforms: %i[mri windows]
+  gem "debug", "~> 1.9.2", platforms: %i[mri windows], require: "debug/prelude"
   # Ruby style guide, linter, and formatter
   gem "rspec-rails", "~> 6.1.4"
 end
 
 group :development do
-  gem "brakeman", "~> 6.2.1"
+  gem "brakeman", "~> 6.2.1", require: false
   gem "bullet", "~> 7.2.0"
   gem "pg_query", "~> 5.1.0"
   gem "prosopite", "~> 1.4.2"
@@ -122,5 +120,5 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", "~> 3.40.0"
-  gem "selenium-webdriver", "~> 4.23.0"
+  gem "selenium-webdriver", "~> 4.24.0"
 end
