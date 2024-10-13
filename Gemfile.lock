@@ -320,7 +320,7 @@ GEM
     rails-i18n (7.0.9)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
-    rails_admin (3.2.0)
+    rails_admin (3.2.1)
       activemodel-serializers-xml (>= 1.0)
       csv
       kaminari (>= 0.14, < 2.0)
@@ -493,7 +493,7 @@ DEPENDENCIES
   rails (~> 7.2.1)
   rails-erd (~> 1.7.2)
   rails-i18n (~> 7.0.9)
-  rails_admin (= 3.2.0)
+  rails_admin (= 3.2.1)
   rambulance (~> 3.3.0)
   rspec-rails (~> 7.0.1)
   rubocop-rails-omakase (~> 1.0.0)
