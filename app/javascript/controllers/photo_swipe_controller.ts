@@ -21,14 +21,16 @@ export default class PhotoSwipeController extends ApplicationController {
 
   declare readonly hasPsTarget: boolean
 
-  async connect() {
+  connect() {
     let ps_trigger: HTMLElement | null = null
     if(this.hasPsTarget){
       ps_trigger = this.psTarget
     }
 
     if(ps_trigger){
-      await this.assignSize(ps_trigger)
+      void (async () => {
+        await this.assignSize(ps_trigger)
+      })()
 
       this.lightbox = new PhotoSwipeLightbox({
         gallery: '#image',
@@ -50,7 +52,7 @@ export default class PhotoSwipeController extends ApplicationController {
 
   async assignSize(trigger: HTMLElement){
     const gallery = trigger.querySelectorAll('a')
-    for await (const el of gallery){
+    for  (const el of gallery){
       const img: HTMLImageElement = await this.loadImage(el.href)
       el.setAttribute('data-pswp-width', img.naturalWidth.toString())
       el.setAttribute('data-pswp-height', img.naturalHeight.toString())

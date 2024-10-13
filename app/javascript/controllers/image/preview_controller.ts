@@ -41,7 +41,7 @@ export default class PreviewController extends ApplicationController {
             // 読み込んだファイルの内容を取得して変数imageに代入します
             const image: string | ArrayBuffer | null = this.result
             //console.log(content.style.display);
-            preview && (preview.src = image as string)
+            if(preview) { preview.src = image as string }
             // プレビュー画像がなければ表示します
             if (content && content.style.display == 'none') {
               content.style.display = 'block'
@@ -50,7 +50,7 @@ export default class PreviewController extends ApplicationController {
           // DataURIScheme文字列を取得します
           reader.readAsDataURL(file.data)
         } else {
-          content && (content.style.display = 'none')
+          if(content) { content.style.display = 'none' }
         }
       })
     }
