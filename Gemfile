@@ -49,7 +49,7 @@ gem "jsbundling-rails", "~> 1.3.1"
 gem "view_component", "~> 3.17.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.168.0"
+gem "aws-sdk-s3", "~> 1.169.0"
 gem "image_processing", "~> 1.13.0"
 gem "shrine", "~> 3.6.0"
 
@@ -98,7 +98,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "brakeman", "~> 6.2.1", require: false
+  gem "brakeman", "~> 6.2.2", require: false
   gem "bullet", "~> 7.2.0"
   gem "pg_query", "~> 5.1.0"
   gem "prosopite", "~> 1.4.2"
