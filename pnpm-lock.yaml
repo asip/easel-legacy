@@ -46,7 +46,7 @@ importers:
         version: 0.24.0
       esbuild-plugin-vue3:
         specifier: ^0.4.2
-        version: 0.4.2(sass@1.80.3)(vue@3.5.12(typescript@5.5.4))
+        version: 0.4.2(sass@1.80.4)(vue@3.5.12(typescript@5.5.4))
       luminous-lightbox:
         specifier: ^2.4.0
         version: 2.4.0
@@ -63,8 +63,8 @@ importers:
         specifier: ^2.13.1
         version: 2.13.1
       sass:
-        specifier: ^1.80.3
-        version: 1.80.3
+        specifier: ^1.80.4
+        version: 1.80.4
       stimulus:
         specifier: ^3.2.2
         version: 3.2.2
@@ -1886,8 +1886,8 @@ packages:
   sanitize-html@2.13.1:
     resolution: {integrity: sha512-ZXtKq89oue4RP7abL9wp/9URJcqQNABB5GGJ2acW1sdO8JTVl92f4ygD7Yc9Ze09VAZhnt2zegeU0tbNsdcLYg==}
 
-  sass@1.80.3:
-    resolution: {integrity: sha512-ptDWyVmDMVielpz/oWy3YP3nfs7LpJTHIJZboMVs8GEC9eUmtZTZhMHlTW98wY4aEorDfjN38+Wr/XjskFWcfA==}
+  sass@1.80.4:
+    resolution: {integrity: sha512-rhMQ2tSF5CsuuspvC94nPM9rToiAFw2h3JTrLlgmNw1MH79v8Cr3DH6KF6o6r+8oofY3iYVPUf66KzC8yuVN1w==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -3209,13 +3209,13 @@ snapshots:
   esbuild-openbsd-64@0.14.54:
     optional: true
 
-  esbuild-plugin-vue3@0.4.2(sass@1.80.3)(vue@3.5.12(typescript@5.5.4)):
+  esbuild-plugin-vue3@0.4.2(sass@1.80.4)(vue@3.5.12(typescript@5.5.4)):
     dependencies:
       esbuild: 0.14.54
       typescript: 4.9.5
       vue: 3.5.12(typescript@5.5.4)
     optionalDependencies:
-      sass: 1.80.3
+      sass: 1.80.4
 
   esbuild-sunos-64@0.14.54:
     optional: true
@@ -3974,7 +3974,7 @@ snapshots:
       parse-srcset: 1.0.2
       postcss: 8.4.41
 
-  sass@1.80.3:
+  sass@1.80.4:
     dependencies:
       '@parcel/watcher': 2.4.1
       chokidar: 4.0.1

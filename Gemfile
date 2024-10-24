@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.1.1"
+gem "rails", "~> 7.2.1.2"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.1.0"
@@ -63,7 +63,7 @@ gem "rambulance", "~> 3.3.0"
 gem "sorcery", "~> 0.16.5"
 gem "sorcery-jwt", "~> 0.1.13"
 
-gem "googleauth", "~> 1.11.1"
+gem "googleauth", "~> 1.11.2"
 
 # settings
 gem "config", "~> 5.5.2"
