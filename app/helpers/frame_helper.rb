@@ -14,7 +14,7 @@ module FrameHelper
   end
 
   def tag_paths(frame)
-    tags = frame.tags_preview
+    tags = frame.tags_display
     tag_map = {}
     tags.each do |tag|
       tag_map[tag] = frames_path({ q: tag })
