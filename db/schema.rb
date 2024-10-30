@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_10_053656) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_30_074653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +64,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_10_053656) do
     t.bigint "user_id"
     t.text "file_data"
     t.datetime "shooted_at"
+    t.boolean "private", default: false
+    t.string "joined_tags"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -114,9 +116,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_10_053656) do
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
-    t.index ["name", "email"], name: "index_users_on_name_and_email"
     t.index ["token"], name: "index_users_on_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token"
   end
-
 end
