@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.1.2"
+gem "rails", "~> 7.2.2"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.1.0"
@@ -13,7 +13,7 @@ gem "propshaft", "~> 1.1.0"
 # Use mysql as the database for Active Record
 # gem 'mysql2', '~> 0.5.6'
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.5.8"
+gem "pg", "~> 1.5.9"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 6.4.3"
@@ -46,7 +46,7 @@ gem "cssbundling-rails", "~> 1.4.1"
 gem "jsbundling-rails", "~> 1.3.1"
 
 # view component
-gem "view_component", "~> 3.19.0"
+gem "view_component", "~> 3.20.0"
 
 # Shrine
 gem "aws-sdk-s3", "~> 1.169.0"
@@ -54,7 +54,7 @@ gem "image_processing", "~> 1.13.0"
 gem "shrine", "~> 3.6.0"
 
 # i18n
-gem "rails-i18n", "~> 7.0.9"
+gem "rails-i18n", "~> 7.0.10"
 
 # error page handling
 gem "rambulance", "~> 3.3.0"
@@ -69,7 +69,7 @@ gem "googleauth", "~> 1.11.2"
 gem "config", "~> 5.5.2"
 
 # paging
-gem "pagy", "~> 9.1.0"
+gem "pagy", "~> 9.1.1"
 
 # tags
 # gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
@@ -120,5 +120,5 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", "~> 3.40.0"
-  gem "selenium-webdriver", "~> 4.25.0"
+  gem "selenium-webdriver", "~> 4.26.0"
 end
