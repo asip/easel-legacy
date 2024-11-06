@@ -28,7 +28,7 @@ gem "turbo-rails", "~> 2.0.11"
 gem "stimulus-rails", "~> 1.3.4"
 
 # Turbo Mount
-gem "turbo-mount", "~> 0.3.3"
+gem "turbo-mount", "~> 0.4.0"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -85,7 +85,7 @@ gem "rack-contrib", "2.5.0"
 gem "rack-cors", "~> 2.0.2"
 
 # soft delete
-gem "discard", "~> 1.3.0"
+gem "discard", "~> 1.4.0"
 
 # management console
 gem "rails_admin", "3.2.1"
