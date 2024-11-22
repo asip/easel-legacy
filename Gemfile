@@ -19,7 +19,7 @@ gem "pg", "~> 1.5.9"
 gem "puma", "~> 6.4.3"
 
 # HTTP/2 proxy
-gem "thruster", "~> 0.1.8"
+gem "thruster", "~> 0.1.9"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.11"
@@ -49,7 +49,7 @@ gem "jsbundling-rails", "~> 1.3.1"
 gem "view_component", "~> 3.20.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.169.0"
+gem "aws-sdk-s3", "~> 1.173.0"
 gem "image_processing", "~> 1.13.0"
 gem "shrine", "~> 3.6.0"
 
@@ -69,11 +69,11 @@ gem "googleauth", "~> 1.11.2"
 gem "config", "~> 5.5.2"
 
 # paging
-gem "pagy", "~> 9.1.1"
+gem "pagy", "~> 9.3.1"
 
 # tags
 # gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
-gem "acts-as-taggable-on", "~> 11.0.0"
+gem "acts-as-taggable-on", "~> 12.0.0"
 
 # json
 gem "jsonapi-serializer", "~> 2.2.0"
@@ -94,12 +94,12 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "debug", "~> 1.9.2", platforms: %i[mri windows], require: "debug/prelude"
   # Ruby style guide, linter, and formatter
-  gem "rspec-rails", "~> 7.0.1"
+  gem "rspec-rails", "~> 7.1.0"
 end
 
 group :development do
   gem "brakeman", "~> 6.2.2", require: false
-  gem "bullet", "~> 7.2.0"
+  gem "bullet", "~> 8.0.0"
   gem "pg_query", "~> 5.1.0"
   gem "prosopite", "~> 1.4.2"
 
