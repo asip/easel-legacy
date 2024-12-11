@@ -16,7 +16,7 @@ gem "propshaft", "~> 1.1.0"
 gem "pg", "~> 1.5.9"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 6.4.3"
+gem "puma", "~> 6.5.0"
 
 # HTTP/2 proxy
 gem "thruster", "~> 0.1.9"
@@ -28,7 +28,7 @@ gem "turbo-rails", "~> 2.0.11"
 gem "stimulus-rails", "~> 1.3.4"
 
 # Turbo Mount
-gem "turbo-mount", "~> 0.4.0"
+gem "turbo-mount", "~> 0.4.1"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -49,7 +49,7 @@ gem "jsbundling-rails", "~> 1.3.1"
 gem "view_component", "~> 3.20.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.173.0"
+gem "aws-sdk-s3", "~> 1.176.0"
 gem "image_processing", "~> 1.13.0"
 gem "shrine", "~> 3.6.0"
 
@@ -63,13 +63,13 @@ gem "rambulance", "~> 3.3.0"
 gem "sorcery", "~> 0.16.5"
 gem "sorcery-jwt", "~> 0.1.13"
 
-gem "googleauth", "~> 1.11.2"
+gem "googleauth", "~> 1.12.0"
 
 # settings
 gem "config", "~> 5.5.2"
 
 # paging
-gem "pagy", "~> 9.3.1"
+gem "pagy", "~> 9.3.3"
 
 # tags
 # gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
@@ -88,7 +88,7 @@ gem "rack-cors", "~> 2.0.2"
 gem "discard", "~> 1.4.0"
 
 # management console
-gem "rails_admin", "3.2.1"
+gem "rails_admin", "3.3.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -100,7 +100,7 @@ end
 group :development do
   gem "brakeman", "~> 6.2.2", require: false
   gem "bullet", "~> 8.0.0"
-  gem "pg_query", "~> 5.1.0"
+  gem "pg_query", "~> 6.0.0"
   gem "prosopite", "~> 1.4.2"
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -120,5 +120,5 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", "~> 3.40.0"
-  gem "selenium-webdriver", "~> 4.26.0"
+  gem "selenium-webdriver", "~> 4.27.0"
 end
