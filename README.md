@@ -15,8 +15,8 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version : 3.3.5
-* Rails version : 7.2.1
+* Ruby version : 3.4.1
+* Rails version : 7.2.2
 * System dependencies : pnpm & postgresql & minio & libvips & direnv
 * Deployment instructions
   * Run `bundle install --path vendor/bundle` to install the required Rubygems
