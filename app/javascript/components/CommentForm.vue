@@ -1,3 +1,21 @@
+<script lang="ts" setup >
+import { inject } from 'vue'
+import { useToast } from '../composables/use_toast'
+import type { UseAccountType } from '../composables/use_account'
+import type { UseCommentType } from '../composables/use_comment'
+
+const { setFlash } = useToast()
+
+const { logged_in } = inject('accounter') as UseAccountType
+const { comment, flash, error_messages, getComments, setComment } = inject('commenter') as UseCommentType
+
+const onPostClick = async () => {
+  await setComment()
+  setFlash(flash.value)
+  await getComments(comment.value.frame_id?.toString(10) ?? '')
+}
+</script>
+
 <template>
   <div v-show="logged_in" class="card">
     <div class="card-header">
@@ -36,21 +54,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup >
-import { inject } from 'vue'
-import { useToast } from '../composables/use_toast'
-import type { UseAccountType } from '../composables/use_account'
-import type { UseCommentType } from '../composables/use_comment'
-
-const { setFlash } = useToast()
-
-const { logged_in } = inject('accounter') as UseAccountType
-const { comment, flash, error_messages, getComments, setComment } = inject('commenter') as UseCommentType
-
-const onPostClick = async () => {
-  await setComment()
-  setFlash(flash.value)
-  await getComments(comment.value.frame_id?.toString(10) ?? '')
-}
-</script>

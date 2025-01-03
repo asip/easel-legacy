@@ -1,12 +1,3 @@
-<template>
-  <div>
-    <CommentForm />
-    <br>
-    <!-- eslint-disable-next-line vue/no-template-shadow -->
-    <CommentList />
-  </div>
-</template>
-
 <script lang="ts" setup>
 import CommentForm from './CommentForm.vue'
 import CommentList from './CommentList.vue'
@@ -37,6 +28,14 @@ provide('commenter', commenter)
 
 </script>
 
+<template>
+  <div>
+    <CommentForm />
+    <br>
+    <!-- eslint-disable-next-line vue/no-template-shadow -->
+    <CommentList />
+  </div>
+</template>
 
 
 

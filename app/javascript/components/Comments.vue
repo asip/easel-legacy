@@ -1,9 +1,3 @@
-<template>
-  <Suspense>
-    <AsyncComments />
-  </Suspense>
-</template>
-
 <script lang="ts" setup>
 import { provide } from 'vue'
 import Axios from 'axios'
@@ -29,3 +23,9 @@ Axios.defaults.headers.common = {
 
 provide('viewData', viewData)
 </script>
+
+<template>
+  <Suspense>
+    <AsyncComments />
+  </Suspense>
+</template>
