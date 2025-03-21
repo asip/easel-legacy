@@ -90,6 +90,8 @@ gem "discard", "~> 1.4.0"
 # management console
 gem "rails_admin", "3.3.0"
 
+gem "mutex_m", "~> 0.3.0"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "debug", "~> 1.10.0", platforms: %i[mri windows], require: "debug/prelude"
