@@ -86,7 +86,7 @@ export default [
       //...typescriptESLint.configs['strict-type-checked'].rules,
       //...typescriptESLint.configs.stylistic.rules,
       //...vueESLint.configs['vue3-essential'].rules,
-      ...vueESLint.configs['vue3-recommended'].rules,
+      ...vueESLint.configs['recommended'].rules,
       //...vueESLint.configs['vue3-strongly-recommended'].rules,
       '@typescript-eslint/no-explicit-any': 0,
       '@typescript-eslint/no-non-null-assertion': 0,
