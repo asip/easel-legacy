@@ -13,8 +13,8 @@ module Api
                                                             form_params:)
           comment = mutation.comment
           if mutation.success?
-            # logger.debug CommentSerializer.new(comment).serialized_json
-            render json: CommentSerializer.new(comment).serializable_hash
+            # logger.debug CommentResource.new(comment).serialize
+            render json: CommentResource.new(comment).serializable_hash
           else
             head :no_content
           end

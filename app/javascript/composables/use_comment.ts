@@ -8,12 +8,8 @@ import type { Comment } from '../interfaces/comment'
 import { UseViewDataType } from './use_view_data'
 import { useFlash } from './use_flash'
 
-interface GetCommentsApiResponse {
-  data: [CommentAttributes]
-}
-
-interface CommentAttributes {
-  attributes: CommentResource
+interface CommentsResource {
+  comments: [CommentResource]
 }
 
 interface CommentResource {
@@ -25,10 +21,6 @@ interface CommentResource {
   user_image_url: string
   updated_at: string | null
   error_messages: string
-}
-
-interface PostCommentApiResponse {
-  data: CommentAttributes
 }
 
 export function useComment(current_user: User) {
@@ -53,14 +45,14 @@ export function useComment(current_user: User) {
     //console.log(frame_id)
 
     try{
-      const response = await Axios.get<GetCommentsApiResponse>(`${viewData.api_origin}/frames/${frame_id}/comments`)
+      const res = await Axios.get<CommentsResource>(`${viewData.api_origin}/frames/${frame_id}/comments`)
 
-      const comment_list: [CommentAttributes] = response.data.data
+      const comment_list: [CommentResource] = res.data.comments
       //console.log(comment_list);
       comments.value.splice(0, comments.value.length)
       for (const comment of comment_list) {
       //console.log(comment);
-        comments.value.push(createCommentFromJson(comment.attributes))
+        comments.value.push(createCommentFromJson(comment))
       }
       //console.log(comments);
     } catch (error) {
@@ -87,7 +79,7 @@ export function useComment(current_user: User) {
         }
       }
 
-      const response = await Axios.post<PostCommentApiResponse>(`${viewData.api_origin}/frames/${comment.value.frame_id?.toString(10) ?? ''}/comments`,
+      const res = await Axios.post<CommentResource>(`${viewData.api_origin}/frames/${comment.value.frame_id?.toString(10) ?? ''}/comments`,
         params,
         {
           headers: {
@@ -96,7 +88,7 @@ export function useComment(current_user: User) {
         }
       )
 
-      const error_message_list = response.data.data.attributes.error_messages
+      const error_message_list = res.data.error_messages
       if ( error_message_list && error_message_list.length > 0) {
         error_messages.value.splice(0)
         for (const error_message of error_message_list) {

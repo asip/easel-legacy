@@ -16,7 +16,7 @@ module Api
           # options = {}
           # options[:include] = [:user]
 
-          render json: CommentSerializer.new(comments).serializable_hash
+          render json: CommentResource.new(comments).serialize
         end
 
         private

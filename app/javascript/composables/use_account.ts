@@ -1,19 +1,11 @@
 import Axios, { AxiosError } from 'axios'
 import { inject, Ref, ref} from 'vue'
-import { useCookies } from '@vueuse/integrations/useCookies'
+import { useCookies } from '@vueuse/integrations/useCookies.mjs'
 
 import type { User } from '../interfaces/user'
 
 import type { UseViewDataType } from './use_view_data'
 import { useFlash } from './use_flash'
-
-interface GetAccountApiResponse {
-  data: AccountAttributes
-}
-
-interface AccountAttributes {
-  attributes: AccountResource
-}
 
 interface AccountResource {
   id: number
@@ -37,7 +29,7 @@ export function useAccount() {
     const token: string = cookies.get('access_token')
 
     try {
-      const res = await Axios.get<GetAccountApiResponse>(`${viewData.api_origin}/account`,
+      const res = await Axios.get<AccountResource>(`${viewData.api_origin}/account`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -45,10 +37,9 @@ export function useAccount() {
         })
 
       //if (json) {
-      const {data: accountAttrs } = res.data
-      const accountJson = accountAttrs.attributes
-      current_user.value.id = accountJson.id
-      current_user.value.token = accountJson.token
+      const accountAttrs = res.data
+      current_user.value.id = accountAttrs.id
+      current_user.value.token = accountAttrs.token
       //}
     } catch (error) {
       if(Axios.isAxiosError(error)){
