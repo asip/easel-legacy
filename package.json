@@ -20,7 +20,7 @@
     "photoswipe": "5.4.4",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
     "rails_admin": "3.3.0",
-    "sanitize-html": "^2.15.0",
+    "sanitize-html": "^2.16.0",
     "sass": "^1.86.3",
     "stimulus": "^3.2.2",
     "toastify-js": "^1.12.0",
