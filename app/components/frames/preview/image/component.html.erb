@@ -2,12 +2,13 @@
   <% if @original %>
     <div class="d-flex justify-content-sm-center">
       <% if @photoswipe.present? && @photoswipe == true %>
-        <div data-pswipe-target="ps" id="image">
+        <div data-controller="pswipe" data-pswipe-target="ps" id="image">
           <%= link_to image_tag(@frame.file_url(:three), class: "mx-auto"), @frame.file_url, class: "mx-auto" %>
         </div>
       <% else %>
-        <%= link_to image_tag(@frame.file_url(:three), class: "mx-auto"), @frame.file_url, class: "mx-auto",
-                                                                                           "data-luminous-target": "lm" %>
+        <div data-controller="lightbox" class="lb">
+          <%= link_to image_tag(@frame.file_url(:three), class: "mx-auto"), @frame.file_url, class: "mx-auto" %>
+        </div>
       <% end %>
     </div>
   <% else %>
