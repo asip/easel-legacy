@@ -19,7 +19,7 @@ gem "pg", "~> 1.5.9"
 gem "puma", "~> 6.6.0"
 
 # HTTP/2 proxy
-gem "thruster", "~> 0.1.12"
+gem "thruster", "~> 0.1.13"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.13"
@@ -101,7 +101,7 @@ end
 
 group :development do
   gem "brakeman", "~> 7.0.2", require: false
-  gem "bullet", "~> 8.0.4"
+  gem "bullet", "~> 8.0.5"
   gem "pg_query", "~> 6.1.0"
   gem "prosopite", "~> 2.1.0"
 
