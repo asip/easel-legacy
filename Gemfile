@@ -28,7 +28,7 @@ gem "turbo-rails", "~> 2.0.13"
 gem "stimulus-rails", "~> 1.3.4"
 
 # Turbo Mount
-gem "turbo-mount", "~> 0.4.1"
+gem "turbo-mount", "~> 0.4.2"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
