@@ -1,3 +1,4 @@
+<div class="row col-sm-12" data-controller="lightbox">
 <% frames.each do |frame| %>
   <div class="card col-sm-2 kadomaru">
     <%= render Frames::Preview::Tags::Component.new(tag_paths: tag_paths(frame), list: true) %>
@@ -19,3 +20,4 @@
     </div>
   </div>
 <% end %>
+</div>
