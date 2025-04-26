@@ -20,6 +20,14 @@ export default class LightboxController extends ApplicationController {
     */
 
     //if(lb_trigger){
+    /*
+    // eslint-disable-next-line no-undef
+    if(document.querySelector('#baguetteBox-overlay')){
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      baguetteBox.destroy()
+    }
+    */
+
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     this.lightbox = baguetteBox.run('.lb')
     //}
