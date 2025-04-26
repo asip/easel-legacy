@@ -25,13 +25,13 @@ importers:
         version: 2.11.8
       '@vueuse/integrations':
         specifier: ^13.1.0
-        version: 13.1.0(axios@1.8.4)(universal-cookie@7.2.2)(vue@3.5.13(typescript@5.8.3))
+        version: 13.1.0(axios@1.9.0)(universal-cookie@7.2.2)(vue@3.5.13(typescript@5.8.3))
       '@yaireo/tagify':
         specifier: ^4.35.0
         version: 4.35.0(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       axios:
-        specifier: ^1.8.4
-        version: 1.8.4
+        specifier: ^1.9.0
+        version: 1.9.0
       baguettebox.js:
         specifier: 1.12.0
         version: 1.12.0
@@ -862,8 +862,8 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  axios@1.8.4:
-    resolution: {integrity: sha512-eBSYY4Y68NNlHbHBMdeDmKNtDgXWhQsJcGqzO3iLUM0GraQFSS9cVgPX5I9b3lbdFKyYoAEGAZF1DwhTaljNAw==}
+  axios@1.9.0:
+    resolution: {integrity: sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==}
 
   baguettebox.js@1.12.0:
     resolution: {integrity: sha512-/pg/9xMpr5aL3MIpXwtoPegr1edO2feHmWwx0h2eVOuqFguOgLQWzlbyqWxzzAOLMKch/df87uO7sXMrQuwUmw==}
@@ -2815,13 +2815,13 @@ snapshots:
       '@vueuse/shared': 13.1.0(vue@3.5.13(typescript@5.8.3))
       vue: 3.5.13(typescript@5.8.3)
 
-  '@vueuse/integrations@13.1.0(axios@1.8.4)(universal-cookie@7.2.2)(vue@3.5.13(typescript@5.8.3))':
+  '@vueuse/integrations@13.1.0(axios@1.9.0)(universal-cookie@7.2.2)(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       '@vueuse/core': 13.1.0(vue@3.5.13(typescript@5.8.3))
       '@vueuse/shared': 13.1.0(vue@3.5.13(typescript@5.8.3))
       vue: 3.5.13(typescript@5.8.3)
     optionalDependencies:
-      axios: 1.8.4
+      axios: 1.9.0
       universal-cookie: 7.2.2
 
   '@vueuse/metadata@13.1.0': {}
@@ -2869,7 +2869,7 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios@1.8.4:
+  axios@1.9.0:
     dependencies:
       follow-redirects: 1.15.6
       form-data: 4.0.0
