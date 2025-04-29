@@ -1,6 +1,5 @@
 import ApplicationController from './application_controller'
-// @ts-expect-error : @types doesn't exist
-import baguetteBox from 'baguettebox.js'
+import GLightbox from 'glightbox'
 
 export default class LightboxController extends ApplicationController {
   // static targets = ['lb']
@@ -20,24 +19,15 @@ export default class LightboxController extends ApplicationController {
     */
 
     //if(lb_trigger){
-    /*
-    // eslint-disable-next-line no-undef
-    if(document.querySelector('#baguetteBox-overlay')){
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      baguetteBox.destroy()
-    }
-    */
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    this.lightbox = baguetteBox.run('.lb')
+    this.lightbox = GLightbox({ selector: '.lb' })
     //}
   }
 
   disconnect(){
-    // eslint-disable-next-line no-undef
-    if(this.lightbox && document.querySelector('#baguetteBox-overlay')){
+    if(this.lightbox){
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      baguetteBox.destroy() 
+      this.lightbox.close() 
     }
   }
 }

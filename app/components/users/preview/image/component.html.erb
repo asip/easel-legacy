@@ -1,10 +1,8 @@
 <% if @user.image.present? %>
   <% if @original %>
     <div class="d-flex justify-content-sm-center">
-      <div class="lb">
-        <%= link_to image_tag(@user.image_url(:three), class: "mx-auto"),
-                    @user.image_url_for_view, class: "mx-auto" %>
-      </div>
+      <%= link_to image_tag(@user.image_url(:three), class: "mx-auto"),
+                  @user.image_url_for_view, class: "mx-auto lb" %>
     </div>
   <% else %>
     <div class="d-flex justify-content-sm-center">

@@ -1,19 +1,17 @@
 <div class="row col-sm-12">
   <div id="frames">
-    <div class="lb">
-      <br>
-      <%= render partial: "frames/more/load_prev", locals: { pagy: @pagy, word: @word } %>
-      <div id="list" class="row">
-        <%= render partial: "frames/more/list", locals: { frames: @frames } %>
-      </div>
-      <%= render partial: "frames/more/load_next", locals: { pagy: @pagy, word: @word } %>
-
-      <% if false %><div class="d-flex col-sm-12 justify-content-sm-center">
-        <div class="mx-auto kadomaru" style="padding-top: 20px;">
-          <%== pagy_bootstrap_nav(@pagy) %>
-        </div>
-      </div><% end %>
+    <br>
+    <%= render partial: "frames/more/load_prev", locals: { pagy: @pagy, word: @word } %>
+    <div id="list" class="row">
+      <%= render partial: "frames/more/list", locals: { frames: @frames } %>
     </div>
+    <%= render partial: "frames/more/load_next", locals: { pagy: @pagy, word: @word } %>
+
+    <% if false %><div class="d-flex col-sm-12 justify-content-sm-center">
+      <div class="mx-auto kadomaru" style="padding-top: 20px;">
+        <%== pagy_bootstrap_nav(@pagy) %>
+      </div>
+    </div><% end %>
   </div>
 </div>
 <br>

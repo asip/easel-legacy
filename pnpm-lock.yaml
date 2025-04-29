@@ -32,9 +32,6 @@ importers:
       axios:
         specifier: ^1.9.0
         version: 1.9.0
-      baguettebox.js:
-        specifier: 1.12.0
-        version: 1.12.0
       bootstrap:
         specifier: ^5.3.5
         version: 5.3.5(@popperjs/core@2.11.8)
@@ -50,6 +47,9 @@ importers:
       esbuild-plugin-vue3:
         specifier: ^0.4.2
         version: 0.4.2(sass@1.87.0)(vue@3.5.13(typescript@5.8.3))
+      glightbox:
+        specifier: 3.3.1
+        version: 3.3.1
       photoswipe:
         specifier: 5.4.4
         version: 5.4.4
@@ -865,9 +865,6 @@ packages:
   axios@1.9.0:
     resolution: {integrity: sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==}
 
-  baguettebox.js@1.12.0:
-    resolution: {integrity: sha512-/pg/9xMpr5aL3MIpXwtoPegr1edO2feHmWwx0h2eVOuqFguOgLQWzlbyqWxzzAOLMKch/df87uO7sXMrQuwUmw==}
-
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
@@ -1372,6 +1369,9 @@ packages:
   get-stdin@9.0.0:
     resolution: {integrity: sha512-dVKBjfWisLAicarI2Sf+JuBE/DghV4UzNAVe9yhEJuzeREd3JhOTE9cUaJTeSa77fsbQUK3pcOpJfM59+VKZaA==}
     engines: {node: '>=12'}
+
+  glightbox@3.3.1:
+    resolution: {integrity: sha512-nXoKfJRnQTDaAFAw5799hjpfAAHx5aLvOLG0SIGudeMCwtHgO3P2/avNYapJ+SL4UEZxO2YNBPtq6pzMhSx42g==}
 
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -2877,8 +2877,6 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  baguettebox.js@1.12.0: {}
-
   balanced-match@1.0.2: {}
 
   bcp-47@2.1.0:
@@ -3366,6 +3364,8 @@ snapshots:
       global-modules: 1.0.0
 
   get-stdin@9.0.0: {}
+
+  glightbox@3.3.1: {}
 
   glob-parent@5.1.2:
     dependencies:

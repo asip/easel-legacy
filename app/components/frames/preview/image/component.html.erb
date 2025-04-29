@@ -6,8 +6,8 @@
           <%= link_to image_tag(@frame.file_url(:three), class: "mx-auto"), @frame.file_url, class: "mx-auto" %>
         </div>
       <% else %>
-        <div data-controller="lightbox" class="lb">
-          <%= link_to image_tag(@frame.file_url(:three), class: "mx-auto"), @frame.file_url, class: "mx-auto" %>
+        <div data-controller="lightbox">
+          <%= link_to image_tag(@frame.file_url(:three), class: "mx-auto"), @frame.file_url, class: "mx-auto lb" %>
         </div>
       <% end %>
     </div>
