@@ -48,7 +48,7 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2(sass@1.87.0)(vue@3.5.13(typescript@5.8.3))
       glightbox:
-        specifier: 3.3.1
+        specifier: ^3.3.1
         version: 3.3.1
       photoswipe:
         specifier: 5.4.4
