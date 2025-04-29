@@ -27,7 +27,7 @@ export default class LightboxController extends ApplicationController {
   disconnect(){
     if(this.lightbox){
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      this.lightbox.close() 
+      this.lightbox.close()
     }
   }
 }
