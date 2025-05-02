@@ -49,7 +49,7 @@ gem "jsbundling-rails", "~> 1.3.1"
 gem "view_component", "~> 3.22.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.184.0"
+gem "aws-sdk-s3", "~> 1.185.0"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
@@ -96,7 +96,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "debug", "~> 1.10.0", platforms: %i[mri windows], require: "debug/prelude"
   # Ruby style guide, linter, and formatter
-  gem "rspec-rails", "~> 7.1.1"
+  gem "rspec-rails", "~> 8.0.0"
 end
 
 group :development do
