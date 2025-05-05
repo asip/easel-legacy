@@ -6,9 +6,16 @@ declare var window: Window
 
 export default class CalendarController extends ApplicationController {
   static targets = ['cal']
+  static values = {
+    date: String,
+    origin: String
+  }
 
   declare readonly calTarget: HTMLElement
   declare readonly hasCalTarget: boolean
+
+  declare readonly dateValue: string
+  declare readonly originValue: string
 
   calendar: Datepicker | null = null
 
@@ -19,8 +26,8 @@ export default class CalendarController extends ApplicationController {
     }
 
     if (cal_trigger){
-
-      const origin = cal_trigger.getAttribute('data-origin')
+      const origin = this.originValue
+      const date = this.dateValue
 
       Object.assign(Datepicker.locales, ja)
 
@@ -29,6 +36,9 @@ export default class CalendarController extends ApplicationController {
         format: 'yyyy/mm/dd',
         language: 'ja'
       })
+
+      if(date) this.calendar.setDate(Datepicker.parseDate(date, 'yyyy/mm/dd'))
+
       cal_trigger.addEventListener('changeDate', function (e: CustomEvent) {
         //console.log(e);
         //console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
