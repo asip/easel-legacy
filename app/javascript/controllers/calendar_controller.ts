@@ -8,7 +8,6 @@ export default class CalendarController extends ApplicationController {
   static targets = ['cal']
   static values = {
     date: String,
-    origin: String
   }
 
   declare readonly calTarget: HTMLElement
@@ -26,7 +25,6 @@ export default class CalendarController extends ApplicationController {
     }
 
     if (cal_trigger){
-      const origin = this.originValue
       const date = this.dateValue
 
       Object.assign(Datepicker.locales, ja)
@@ -44,7 +42,7 @@ export default class CalendarController extends ApplicationController {
         //console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
 
         // eslint-disable-next-line
-        window.location.href=`${origin}/frames?q=${e.detail.datepicker.getDate('yyyy/mm/dd')}`
+        window.location.href=`/frames?q=${e.detail.datepicker.getDate('yyyy/mm/dd')}`
       })
     }
   }
