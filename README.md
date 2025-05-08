@@ -5,9 +5,9 @@
 This is backend of Easel.
 This includes legacy frontend implemented by Ruby on Rails.
 
-Rails7.2 + Sorcery(authentication) + Pagy(paging) +  
-Shrine(upload) + ActsAsTaggableOn(tag) +  
-RailsAdmin (management console) + Discard(soft delete) +  
+Rails8.0 + Sorcery(authentication) + Pagy(paging) +
+Shrine(upload) + ActsAsTaggableOn(tag) +
+RailsAdmin (management console) + Discard(soft delete) +
 Hotwire (Turbo + Stimulus3) + Vue.js 3 + Bootstrap5
 
 This README would normally document whatever steps are necessary to get the
@@ -16,7 +16,7 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version : 3.4
-* Rails version : 7.2.2
+* Rails version : 8.0.2
 * System dependencies : pnpm & postgresql & minio & valkey & libvips & direnv
 * Deployment instructions
   * Run `bundle install --path vendor/bundle` to install the required Rubygems
