@@ -6,8 +6,8 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
-import './libraries/turbo'
-import './libraries/bootstrap'
-import './controllers/index'
+import './libraries/turbo.js'
+import './libraries/bootstrap.js'
+import './controllers/index.js'
 
-import './turbo-mount'
+import './turbo-mount.js'

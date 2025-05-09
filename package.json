@@ -7,6 +7,8 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo": "^8.0.13",
     "@hotwired/turbo-rails": "^8.0.13",
+    "@rspack/core": "1.3.9",
+    "@rspack/cli": "1.3.9",
     "@vueuse/integrations": "^13.1.0",
     "@yaireo/tagify": "^4.35.0",
     "axios": "^1.9.0",
@@ -26,10 +28,12 @@
     "turbo-mount": "^0.4.2",
     "universal-cookie": "^7.2.2",
     "vanillajs-datepicker": "^1.3.4",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-loader": "17.4.2"
   },
   "scripts": {
     "build": "node ./config/esbuild/esbuild.build.js",
+    "build:rspack": "rspack --config ./config/rspack/rspack.config.js",
     "build-watch": "node ./config/esbuild/esbuild.rebuild.js --watch",
     "build:css": "sass ./app/assets/stylesheets/:./app/assets/builds --no-source-map --load-path=node_modules",
     "build:font": "copyfiles -f node_modules/bootstrap-icons/font/fonts/* public/assets/fonts && copyfiles -f node_modules/@fortawesome/fontawesome-free/webfonts/* ./public/assets/webfonts",
