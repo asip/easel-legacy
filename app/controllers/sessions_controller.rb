@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
   def login(email, password)
     token = login_and_issue_token(email, password)
     user = current_user
-    user.assign_token(token) if user && (user.token.blank? || user.token_expire?)
+    user.assign_token(token) if user
     user
   end
 

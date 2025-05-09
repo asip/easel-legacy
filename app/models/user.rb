@@ -42,6 +42,8 @@ class User < ApplicationRecord
 
   self.discard_column = :deleted_at
 
+  attr_accessor :token
+
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
@@ -110,7 +112,7 @@ class User < ApplicationRecord
   end
 
   def assign_token(token_)
-    update_attribute!(:token, token_)
+    @token =token_
   end
 
   def update_token
@@ -120,7 +122,7 @@ class User < ApplicationRecord
   end
 
   def reset_token
-    update!(token: nil)
+    @token = nil
   end
 
   def assign_derivatives

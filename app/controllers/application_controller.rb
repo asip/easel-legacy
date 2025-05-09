@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   def token_confirmation
     return if current_user.blank?
-
+    current_user.assign_token(cookies[:access_token])
     return unless current_user&.token_expire?
 
     current_user.reset_token
