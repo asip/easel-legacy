@@ -16,7 +16,7 @@ export default defineConfig({
     alias: {
       vue$: 'vue/dist/vue.esm-bundler.js',
     },
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js', '.vue']
   },
   entry: {
     application: './app/javascript/application.js',
