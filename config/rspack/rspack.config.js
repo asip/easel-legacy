@@ -19,7 +19,8 @@ export default defineConfig({
     extensions: ['.ts', '.js']
   },
   entry: {
-    application: './app/javascript/application.js'
+    application: './app/javascript/application.js',
+    rails_admin: './app/javascript/rails_admin.js'
   },
   output: {
     filename: '[name].js',
