@@ -18,8 +18,8 @@ gem "pg", "~> 1.5.9"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 6.6.0"
 
-# HTTP/2 proxy
-gem "thruster", "~> 0.1.13"
+# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
+gem "thruster", "~> 0.1.13", require: false
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.13"
