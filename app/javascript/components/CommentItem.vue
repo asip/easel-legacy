@@ -1,16 +1,16 @@
 <script lang="ts" setup >
 import sanitizeHtml from 'sanitize-html'
 import { computed, inject } from 'vue'
-import { useToast } from '../composables/use_toast'
+import { useToast } from '../composables/use-toast'
 import type { Comment } from '../interfaces/comment'
-import type { UseCommentType } from '../composables/use_comment'
-import type { UseAccountType } from '../composables/use_account'
+import type { UseCommentType } from '../composables/use-comment'
+import type { UseAccountType } from '../composables/use-account'
 
 const comment = defineModel<Comment>()
 
 const { setFlash } = useToast()
 
-const { logged_in, current_user } = inject('accounter') as UseAccountType
+const { loggedIn, currentUser } = inject('accounter') as UseAccountType
 const { flash, getComments, deleteComment } = inject('commenter') as UseCommentType
 
 const sanitizedCommentBody = computed(() => {
@@ -42,7 +42,7 @@ const onDeleteClick = async () => {
               {{ comment?.updated_at }}
             </div>
           </div>
-          <div v-show="logged_in && comment?.user_id === current_user.id" class="float-end">
+          <div v-show="loggedIn && comment?.user_id === currentUser.id" class="float-end">
             <button class="btn btn-link btn-sm" @click="onDeleteClick">
               削除
             </button>&nbsp;

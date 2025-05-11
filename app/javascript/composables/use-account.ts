@@ -4,8 +4,8 @@ import { useCookies } from '@vueuse/integrations/useCookies.mjs'
 
 import type { User } from '../interfaces/user'
 
-import type { UseViewDataType } from './use_view_data'
-import { useFlash } from './use_flash'
+import type { UseViewDataType } from './use-view-data'
+import { useFlash } from './use-flash'
 
 interface AccountResource {
   id: number
@@ -13,7 +13,7 @@ interface AccountResource {
 }
 
 export function useAccount() {
-  const logged_in: Ref<boolean> = ref<boolean>(false)
+  const loggedIn: Ref<boolean> = ref<boolean>(false)
   const currentUser = ref<User>({
     id: null,
     token: null
@@ -29,7 +29,7 @@ export function useAccount() {
     const token: string = cookies.get('access_token')
 
     try {
-      const res = await Axios.get<AccountResource>(`${viewData.api_origin}/account`,
+      const res = await Axios.get<AccountResource>(`${viewData.apiOrigin}/account`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -62,8 +62,8 @@ export function useAccount() {
   }
 
   return {
-    logged_in,
-    current_user: currentUser,
+    loggedIn,
+    currentUser,
     flash,
     getAccount
   }

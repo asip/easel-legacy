@@ -1,13 +1,13 @@
 <script lang="ts" setup >
 import { inject } from 'vue'
-import { useToast } from '../composables/use_toast'
-import type { UseAccountType } from '../composables/use_account'
-import type { UseCommentType } from '../composables/use_comment'
+import { useToast } from '../composables/use-toast'
+import type { UseAccountType } from '../composables/use-account'
+import type { UseCommentType } from '../composables/use-comment'
 
 const { setFlash } = useToast()
 
-const { logged_in } = inject('accounter') as UseAccountType
-const { comment, flash, error_messages, getComments, setComment } = inject('commenter') as UseCommentType
+const { loggedIn } = inject('accounter') as UseAccountType
+const { comment, flash, errorMessages, getComments, setComment } = inject('commenter') as UseCommentType
 
 const onPostClick = async () => {
   await setComment()
@@ -17,7 +17,7 @@ const onPostClick = async () => {
 </script>
 
 <template>
-  <div v-show="logged_in" class="card">
+  <div v-show="loggedIn" class="card">
     <div class="card-header">
       <div class="d-flex justify-content-sm-center">
         <div class="clearfix">
@@ -36,7 +36,7 @@ const onPostClick = async () => {
       </div>
       <div class="d-flex justify-content-center">
         <div class="col-10">
-          <div v-for="(message, idx) in error_messages" :key="idx">
+          <div v-for="(message, idx) in errorMessages" :key="idx">
             <p class="text-danger">
               {{ message }}
             </p>

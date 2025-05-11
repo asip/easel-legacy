@@ -1,4 +1,4 @@
-import ApplicationController from '../application_controller'
+import ApplicationController from '../application-controller'
 
 export default class PreviewController extends ApplicationController {
   static targets = ['upload', 'content', 'image']
@@ -12,9 +12,9 @@ export default class PreviewController extends ApplicationController {
   declare readonly hasImageTarget: boolean
 
   connect() {
-    let elm_upload: HTMLInputElement | null = null
+    let elmUpload: HTMLInputElement | null = null
     if(this.hasUploadTarget){
-      elm_upload = this.uploadTarget
+      elmUpload = this.uploadTarget
     }
     let content: HTMLElement| null = null
     if(this.hasContentTarget) {
@@ -25,8 +25,8 @@ export default class PreviewController extends ApplicationController {
       preview = this.imageTarget
     }
 
-    if (elm_upload) {
-      elm_upload.addEventListener('change', function () {
+    if (elmUpload) {
+      elmUpload.addEventListener('change', function () {
         const file: { name?: string, ext?: string, data?: Blob } = {}
         file.name = this.value
         file.ext = file.name.replace(/^.*\./, '').toLowerCase()

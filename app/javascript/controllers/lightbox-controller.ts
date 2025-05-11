@@ -1,4 +1,4 @@
-import ApplicationController from './application_controller'
+import ApplicationController from './application-controller'
 import GLightbox from 'glightbox'
 
 export default class LightboxController extends ApplicationController {
@@ -12,13 +12,13 @@ export default class LightboxController extends ApplicationController {
 
   connect() {
     /*
-    let lb_trigger: HTMLElement | null = null
+    let lbTrigger: HTMLElement | null = null
     if(this.hasLbTarget){
-      lb_trigger = this.lbTarget
+      lbTrigger = this.lbTarget
     }
     */
 
-    //if(lb_trigger){
+    //if(lbTrigger){
 
     this.lightbox = GLightbox({ selector: '.lb' })
     //}

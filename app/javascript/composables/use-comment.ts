@@ -5,8 +5,8 @@ import { inject, ref } from 'vue'
 import type { User } from '../interfaces/user'
 import type { Comment } from '../interfaces/comment'
 
-import { UseViewDataType } from './use_view_data'
-import { useFlash } from './use_flash'
+import { UseViewDataType } from './use-view-data'
+import { useFlash } from './use-flash'
 
 interface CommentsResource {
   comments: [CommentResource]
@@ -20,10 +20,10 @@ interface CommentResource {
   user_name: string
   user_image_url: string
   updated_at: string | null
-  error_messages: string
+  errorMessages: string
 }
 
-export function useComment(current_user: User) {
+export function useComment(currentUser: User) {
   const comment = ref<Comment>({
     id: undefined,
     frame_id: null,
@@ -35,28 +35,28 @@ export function useComment(current_user: User) {
   })
 
   const comments = ref<Comment[]>([])
-  const error_messages = ref<string[]>([])
+  const errorMessages = ref<string[]>([])
 
   const viewData = inject('viewData') as UseViewDataType
   const { flash, clearFlash } = useFlash()
 
-  const getComments = async (frame_id: string) => {
+  const getComments = async (frameId: string) => {
     clearFlash()
     //console.log(frame_id)
 
     try{
-      const res = await Axios.get<CommentsResource>(`${viewData.api_origin}/frames/${frame_id}/comments`)
+      const res = await Axios.get<CommentsResource>(`${viewData.apiOrigin}/frames/${frameId}/comments`)
 
-      const comment_list: [CommentResource] = res.data.comments
+      const commentList: [CommentResource] = res.data.comments
       //console.log(comment_list);
       comments.value.splice(0, comments.value.length)
-      for (const comment of comment_list) {
+      for (const comment of commentList) {
       //console.log(comment);
         comments.value.push(createCommentFromJson(comment))
       }
       //console.log(comments);
     } catch (error) {
-      error_messages.value.splice(0)
+      errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
         setErrorMessage(error as AxiosError)
       }
@@ -79,27 +79,19 @@ export function useComment(current_user: User) {
         }
       }
 
-      const res = await Axios.post<CommentResource>(`${viewData.api_origin}/frames/${comment.value.frame_id?.toString(10) ?? ''}/comments`,
+      await Axios.post<CommentResource>(`${viewData.apiOrigin}/frames/${comment.value.frame_id?.toString(10) ?? ''}/comments`,
         params,
         {
           headers: {
-            Authorization: `Bearer ${current_user.token ?? ''}`
+            Authorization: `Bearer ${currentUser.token ?? ''}`
           }
         }
       )
 
-      const error_message_list = res.data.error_messages
-      if ( error_message_list && error_message_list.length > 0) {
-        error_messages.value.splice(0)
-        for (const error_message of error_message_list) {
-          error_messages.value.push(error_message)
-        }
-      } else {
-        comment.value.body = ''
-        error_messages.value.splice(0)
-      }
+      comment.value.body = ''
+      errorMessages.value.splice(0)
     } catch (error) {
-      error_messages.value.splice(0)
+      errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
         setErrorMessage(error as AxiosError)
       }
@@ -113,8 +105,8 @@ export function useComment(current_user: User) {
       //console.log(comment.body);
       await postComment()
     } else {
-      error_messages.value.splice(0)
-      error_messages.value.push('コメントを入力してください。')
+      errorMessages.value.splice(0)
+      errorMessages.value.push('コメントを入力してください。')
     }
   }
 
@@ -122,15 +114,15 @@ export function useComment(current_user: User) {
     clearFlash()
     try {
       await Axios.delete(
-        `${viewData.api_origin}/comments/${comment.id?.toString(10) ?? ''}`,
+        `${viewData.apiOrigin}/comments/${comment.id?.toString(10) ?? ''}`,
         {
           headers: {
-            Authorization: `Bearer ${current_user.token ?? ''}`
+            Authorization: `Bearer ${currentUser.token ?? ''}`
           }
         })
       comments.value.splice(0)
     } catch (error) {
-      error_messages.value.splice(0)
+      errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
         setErrorMessage(error as AxiosError)
       }
@@ -152,7 +144,7 @@ export function useComment(current_user: User) {
   }
 
   return {
-    comment, comments, flash, error_messages,
+    comment, comments, flash, errorMessages,
     getComments, setComment, deleteComment
   }
 }

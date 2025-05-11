@@ -3,25 +3,25 @@ import CommentForm from './CommentForm.vue'
 import CommentList from './CommentList.vue'
 import { inject, provide } from 'vue'
 
-import type { UseViewDataType } from '../composables/use_view_data'
-import { useToast } from '../composables/use_toast'
-import { useAccount } from '../composables/use_account'
-import { useComment } from '../composables/use_comment'
+import type { UseViewDataType } from '../composables/use-view-data'
+import { useToast } from '../composables/use-toast'
+import { useAccount } from '../composables/use-account'
+import { useComment } from '../composables/use-comment'
 
 const { setFlash } = useToast()
 const accounter = useAccount()
-const { logged_in, current_user, flash, getAccount } = accounter
-const commenter = useComment(current_user.value)
+const { loggedIn, currentUser, flash, getAccount } = accounter
+const commenter = useComment(currentUser.value)
 const { comment } = commenter
 
-const view_data = inject('viewData') as UseViewDataType
+const viewData = inject('viewData') as UseViewDataType
 // @ts-ignore
 await getAccount()
 setFlash(flash.value)
-logged_in.value = current_user.value.token != null
-// console.log(current_user.token);
-// console.log(logged_in.value);
-comment.value.frame_id = parseInt(view_data.frame_id, 10) || null
+loggedIn.value = currentUser.value.token != null
+// console.log(currentUser.token);
+// console.log(loggedIn.value);
+comment.value.frame_id = parseInt(viewData.frameId, 10) || null
 
 provide('accounter', accounter)
 provide('commenter', commenter)

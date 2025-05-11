@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import CommentItem from './CommentItem.vue'
 import { inject } from 'vue'
-import type { UseCommentType } from '../composables/use_comment'
+import type { UseCommentType } from '../composables/use-comment'
 
 const { comment, comments, getComments } = inject('commenter') as UseCommentType
 

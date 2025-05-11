@@ -1,4 +1,4 @@
-import ApplicationController from './application_controller'
+import ApplicationController from './application-controller'
 import { Datepicker } from 'vanillajs-datepicker'
 import ja from '../locales/date-picker/ja'
 
@@ -19,17 +19,17 @@ export default class CalendarController extends ApplicationController {
   calendar: Datepicker | null = null
 
   connect() {
-    let cal_trigger: HTMLElement | null = null
+    let calTrigger: HTMLElement | null = null
     if(this.hasCalTarget){
-      cal_trigger = this.calTarget
+      calTrigger = this.calTarget
     }
 
-    if (cal_trigger){
+    if (calTrigger){
       const date = this.dateValue
 
       Object.assign(Datepicker.locales, ja)
 
-      this.calendar = new Datepicker(cal_trigger, {
+      this.calendar = new Datepicker(calTrigger, {
         buttonClass: 'btn',
         format: 'yyyy/mm/dd',
         language: 'ja'
@@ -37,7 +37,7 @@ export default class CalendarController extends ApplicationController {
 
       if(date) this.calendar.setDate(Datepicker.parseDate(date, 'yyyy/mm/dd'))
 
-      cal_trigger.addEventListener('changeDate', function (e: CustomEvent) {
+      calTrigger.addEventListener('changeDate', function (e: CustomEvent) {
         //console.log(e);
         //console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
 
