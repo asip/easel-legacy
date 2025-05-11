@@ -14,7 +14,7 @@ interface AccountResource {
 
 export function useAccount() {
   const logged_in: Ref<boolean> = ref<boolean>(false)
-  const current_user = ref<User>({
+  const currentUser = ref<User>({
     id: null,
     token: null
   })
@@ -38,8 +38,8 @@ export function useAccount() {
 
       //if (json) {
       const accountAttrs = res.data
-      current_user.value.id = accountAttrs.id
-      current_user.value.token = accountAttrs.token
+      currentUser.value.id = accountAttrs.id
+      currentUser.value.token = (res.headers['authorization'] as string).split(' ')[1]
       //}
     } catch (error) {
       if(Axios.isAxiosError(error)){
@@ -63,7 +63,7 @@ export function useAccount() {
 
   return {
     logged_in,
-    current_user,
+    current_user: currentUser,
     flash,
     getAccount
   }
