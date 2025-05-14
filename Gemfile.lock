@@ -114,7 +114,7 @@ GEM
       smart_properties
     bigdecimal (3.1.4)
     bindex (0.8.1)
-    bootsnap (1.18.4)
+    bootsnap (1.18.5)
       msgpack (~> 1.2)
     brakeman (7.0.2)
       racc
@@ -236,7 +236,7 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.4)
     minitest (5.20.0)
-    msgpack (1.7.2)
+    msgpack (1.8.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     mutex_m (0.3.0)
@@ -486,7 +486,7 @@ DEPENDENCIES
   alba (= 3.7.0)
   annotaterb (~> 4.14.0)
   aws-sdk-s3 (~> 1.186.0)
-  bootsnap (~> 1.18.4)
+  bootsnap (~> 1.18.5)
   brakeman (~> 7.0.2)
   bullet (~> 8.0.6)
   capybara (~> 3.40.0)
