@@ -40,7 +40,7 @@ gem "turbo-mount", "~> 0.4.2"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.18.5", require: false
+gem "bootsnap", "~> 1.18.6", require: false
 
 gem "cssbundling-rails", "~> 1.4.3"
 gem "jsbundling-rails", "~> 1.3.1"
@@ -101,7 +101,7 @@ end
 
 group :development do
   gem "brakeman", "~> 7.0.2", require: false
-  gem "bullet", "~> 8.0.6"
+  gem "bullet", "~> 8.0.7"
   gem "pg_query", "~> 6.1.0"
   gem "prosopite", "~> 2.1.0"
 
