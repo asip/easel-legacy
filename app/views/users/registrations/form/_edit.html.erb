@@ -1,0 +1,24 @@
+<div id="users">
+  <br>
+  <div class="card" data-controller="preview">
+    <div class="card-header">
+      <div class="float-start">
+        <%= link_to profile_path, "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
+        プロフィール編集
+      </div>
+    </div>
+    <div class="card-block">
+      <br>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
+        <%= form.hidden_field :image, value: form.object.cached_image_data %>
+        <% if resource.confirming == 'true' %>
+          <%= render Users::Edit::Confirm::Component.new(form:, user: resource) %>
+        <% else %>
+          <%= render Users::Edit::Input::Component.new(form:, user: resource, back_to_path: profile_path) %>
+          <%= form.hidden_field :confirming %>
+        <% end %>
+      <% end %>
+      <br>
+    </div>
+  </div>
+</div>

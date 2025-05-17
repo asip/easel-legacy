@@ -5,7 +5,7 @@ module More
   extend ActiveSupport::Concern
 
   included do
-    skip_before_action :require_login, only: %i[next prev]
+    skip_before_action :authenticate_user!, only: %i[next prev]
     before_action :set_query, only: %i[next prev]
   end
 

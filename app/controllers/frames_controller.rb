@@ -7,7 +7,7 @@ class FramesController < ApplicationController
   include More
   include DateAndTime::Util
 
-  skip_before_action :require_login, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   # rubocop:disable Rails/LexicallyScopedActionFilter
   before_action :set_query, only: %i[index prev next show new edit]

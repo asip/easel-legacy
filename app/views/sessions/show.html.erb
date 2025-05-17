@@ -7,7 +7,9 @@
         プロフィール
       </div>
       <div class="float-end">
-        <%= link_to edit_profile_path do %><i class="bi bi-pencil-square"></i>
+        <%= link_to edit_profile_path do %><i class="bi bi-pencil-square"></i><% end %>
+        <% unless @user.social_login? %>
+          <%= link_to account_password_path do %><i class="bi bi-lock"></i><% end %>
         <% end %>
       </div>
     </div>

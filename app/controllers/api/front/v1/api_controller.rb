@@ -19,10 +19,28 @@ module Api
         protected
 
         def authenticate
-          login_from_jwt
-          @current_user.assign_token(token) if @current_user
-          @current_user = nil unless @current_user && !@current_user.token_expire?
+          authorization_header = request.headers["Authorization"]
+          puts authorization_header
+          if !authorization_header
+            render_unauthorized
+          else
+            token = authorization_header.split(" ")[1]
+            secret_key = Rails.application.credentials.secret_key_base
 
+            begin
+              decoded_token = JWT.decode(token, secret_key)
+              puts "user_id:" + decoded_token[0]["user_id"].to_s
+              @current_user = User.find(decoded_token[0]["user_id"])
+              @current_user.assign_token(token)
+            rescue ActiveRecord::RecordNotFound
+              render_unauthorized
+            rescue JWT::DecodeError
+              render_unauthorized
+            end
+          end
+        end
+
+        def render_unauthorized
           raise(Api::ExceptionHandler::UnauthorizedError) if @current_user.nil?
         end
 

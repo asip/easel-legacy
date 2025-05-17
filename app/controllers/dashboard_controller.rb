@@ -4,7 +4,7 @@
 class DashboardController < ApplicationController
   include Query::Search
 
-  skip_before_action :require_login
+  skip_before_action :authenticate_user!
 
   def show
     redirect_to frames_path(query_params)

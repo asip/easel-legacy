@@ -4,31 +4,19 @@
 #
 # Table name: users
 #
-#  id                         :bigint           not null, primary key
-#  crypted_password           :string
-#  deleted_at                 :datetime
-#  email                      :string           not null
-#  failed_logins_count        :integer          default(0)
-#  image_data                 :text
-#  last_activity_at           :datetime
-#  last_login_at              :datetime
-#  last_login_from_ip_address :string
-#  last_logout_at             :datetime
-#  lock_expires_at            :datetime
-#  name                       :string           not null
-#  salt                       :string
-#  token                      :string
-#  unlock_token               :string
-#  created_at                 :datetime         not null
-#  updated_at                 :datetime         not null
+#  id                 :bigint           not null, primary key
+#  deleted_at         :datetime
+#  email              :string           not null
+#  encrypted_password :string           default(""), not null
+#  image_data         :text
+#  name               :string           not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 # Indexes
 #
-#  index_users_on_deleted_at                           (deleted_at)
-#  index_users_on_email                                (email) UNIQUE
-#  index_users_on_last_logout_at_and_last_activity_at  (last_logout_at,last_activity_at)
-#  index_users_on_token                                (token) UNIQUE
-#  index_users_on_unlock_token                         (unlock_token)
+#  index_users_on_deleted_at  (deleted_at)
+#  index_users_on_email       (email) UNIQUE
 #
 
 # User
@@ -38,7 +26,12 @@ class User < ApplicationRecord
   include Discard::Model
   include Profile::Image::Uploader::Attachment(:image)
 
-  authenticates_with_sorcery!
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable, :validatable
+  devise :omniauthable, omniauth_providers: [ :google_oauth2 ]
+
+  # authenticates_with_sorcery!
 
   self.discard_column = :deleted_at
 
@@ -62,19 +55,60 @@ class User < ApplicationRecord
 
   # VALID_NAME_REGEX = /\A\z|\A[a-zA-Z\d\s]{3,40}\z/
 
-  validates :password, length: { minimum: 6, maximum: 128 }, confirmation: true,
-                       if: -> { new_record? || changes[:crypted_password] },
-                       on: :with_validation
-  validates :name, length: { minimum: 3, maximum: 40 }, on: :with_validation # , format: { with: VALID_NAME_REGEX }
-  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP },
-                    uniqueness: true, on: :with_validation
+  # validates :password, length: { minimum: 6, maximum: 128 }, confirmation: true,
+  #                      if: -> { new_record? || changes[:crypted_password] }
+  validates :name, length: { minimum: 3, maximum: 40 } # , format: { with: VALID_NAME_REGEX }
+  # validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP },
+  #                  uniqueness: true
 
-  validates :email, presence: true, on: :login
-  validates :password, presence: true, on: :login
+  # validates :email, presence: true, on: :login
+  # validates :password, presence: true, on: :login
 
   after_validation :assign_derivatives
 
   default_scope -> { kept }
+
+  def self.from_omniauth(auth)
+    authentication = Authentication.find_by(uid: auth[:uid], provider: auth[:provider])
+
+    if authentication
+      user = User.find_by(id: authentication.user_id)
+      if user
+        user.email = auth[:info]["email"]
+        user.save!
+      end
+
+      user
+    else
+      user = User.find_by(email: auth[:info]["email"])
+
+      ActiveRecord::Base.transaction do
+        unless user
+          user = User.new
+          user.name = auth[:info]["name"]
+          user.email = auth[:info]["email"]
+          user.password = Devise.friendly_token[0, 20]
+          # puts user.errors.to_hash(true)
+          user.save!
+        end
+
+        authentication = Authentication.new
+        authentication.user_id = user.id
+        authentication.provider = auth[:provider]
+        authentication.uid = auth[:uid]
+        authentication.save!
+      end
+
+      user
+    end
+  end
+
+  def create_token
+    payload = { user_id: self.id }
+    secret_key = Rails.application.credentials.secret_key_base
+    token = JWT.encode(payload, secret_key)
+    token
+  end
 
   def image_url_for_view(key)
     if image.blank?
@@ -84,21 +118,8 @@ class User < ApplicationRecord
     end
   end
 
-  def token_expire?
-    User.decode_token(token)
-    # Rails.logger.debug(decode_token[0]['exp'])
-    # decode_token[0]['exp'] < Time.zone.now.to_i
-    false
-  rescue StandardError # => e
-    true
-  end
-
   def full_error_messages
-    full_error_messages_for(%i[image name email password password_confirmation])
-  end
-
-  def full_error_messages_on_login
-    full_error_messages_for(%i[email password])
+    full_error_messages_for(%i[image name email current_password password password_confirmation])
   end
 
   def assign_user_info(user_info)
@@ -112,9 +133,7 @@ class User < ApplicationRecord
   end
 
   def update_token
-    return unless saved_change_to_email?
-
-    assign_token(User.issue_token(id:, email:))
+    # return unless saved_change_to_email?
   end
 
   def reset_token
@@ -147,26 +166,30 @@ class User < ApplicationRecord
     authentications.present?
   end
 
-  def self.validate_login(form_params:)
-    user = User.find_by(email: form_params[:email])
-    if user
-      user.validate_password_on_login(form_params)
-    else
-      user = User.new(form_params)
-      user.validate_email_on_login(form_params)
-    end
-    success = user.errors.empty?
-    [ success, user ]
-  end
+  # def full_error_messages_on_login
+  #  full_error_messages_for(%i[email password])
+  # end
 
-  def validate_password_on_login(form_params)
-    self.password = form_params[:password]
-    valid?(:login)
-    errors.add(:password, I18n.t("action.login.invalid")) if form_params[:password].present?
-  end
+  # def self.validate_login(form_params:)
+  #   user = User.find_by(email: form_params[:email])
+  #   if user
+  #     user.validate_password_on_login(form_params)
+  #   else
+  #     user = User.new(form_params)
+  #     user.validate_email_on_login(form_params)
+  #   end
+  #   success = user.errors.empty?
+  #   [ success, user ]
+  # end
 
-  def validate_email_on_login(form_params)
-    valid?(:login)
-    errors.add(:email, I18n.t("action.login.invalid")) if form_params[:email].present?
-  end
+  # def validate_password_on_login(form_params)
+  #   self.password = form_params[:password]
+  #   valid?(:login)
+  #   errors.add(:password, I18n.t("action.login.invalid")) if form_params[:password].present?
+  # end
+
+  # def validate_email_on_login(form_params)
+  #   valid?(:login)
+  #   errors.add(:email, I18n.t("action.login.invalid")) if form_params[:email].present?
+  # end
 end

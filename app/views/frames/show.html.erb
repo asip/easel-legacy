@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-    <% if logged_in? && @frame.user_id == current_user.id %>
+    <% if user_signed_in? && @frame.user_id == current_user.id %>
     <div class="card-footer">
       <div class="row d-flex justify-content-sm-center">
         <div class="form-group col-sm-6">
@@ -70,7 +70,7 @@
     </div>
     <% end %>
   </div>
-  <% if logged_in? && @frame.user_id == current_user.id %>
+  <% if user_signed_in? && @frame.user_id == current_user.id %>
     <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame, query_params)) %>
   <% end %>
   <br>

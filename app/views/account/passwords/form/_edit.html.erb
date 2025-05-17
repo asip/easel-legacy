@@ -1,0 +1,18 @@
+<div id="users">
+  <br>
+  <div class="card" data-controller="preview">
+    <div class="card-header">
+      <div class="float-start">
+        <%= link_to profile_path, "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
+        パスワード更新
+      </div>
+    </div>
+    <div class="card-block">
+      <br>
+      <%= form_with(model: current_user, url: account_password_path, html: { method: :put }) do |form| %>
+        <%= render Passwords::Edit::Input::Component.new(form:, user: current_user, back_to_path: profile_path) %>
+      <% end %>
+      <br>
+    </div>
+  </div>
+</div>

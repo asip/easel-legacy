@@ -2,7 +2,39 @@
 
 # rubocop: disable Metrics/BlockLength
 Rails.application.routes.draw do
+  devise_for :admins, format: :html,
+    controllers: {
+      sessions: "admins/sessions"
+    }
+  devise_scope :admin do
+    get "admins/sign_in" => "admins/sessions#new"
+    post "sessions/admin" => "admins/sessions#create"
+  end
+
   mount RailsAdmin::Engine => "/admin", as: "rails_admin"
+
+  devise_for :users, path: "",
+    controllers: {
+      sessions: "users/sessions",
+      registrations: "users/registrations",
+      omniauth_callbacks: "users/omniauth_callbacks"
+    }
+  # ,
+  # path_names: {
+  #   sign_in: "login",
+  #   sign_out: "logout",
+  #   registration: "signup"
+  # }
+  devise_scope :user do
+    get "/login", to: "users/sessions#new"
+    post "/sessions/user", to: "users/sessions#create"
+    delete "/account/logout", to: "users/sessions#destroy", as: "account_logout"
+    post "oauth/callback", to: "users/omniauth_callbacks#google_oauth2"
+    get "oauth/callback", to: "users/omniauth_callbacks#google_oauth2"
+    get "/signup", to: "users/registrations#new", as: :signup
+    get "/profile/edit" => "users/registrations#edit", as: "edit_profile"
+    # delete "/account", to: "users/registrations#destroy"
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "frames#index"
@@ -18,23 +50,11 @@ Rails.application.routes.draw do
     get :prev, on: :collection
   end
 
-  get "/signup" => "users#new", as: "signup"
-  resources :sessions, only: %i[new create destroy]
-  get "/login" => "sessions#new", as: "login"
-  get "/profile" => "sessions#show", as: "profile"
-  get "/profile/edit" => "users#edit", as: "edit_profile"
-  patch "/profile" => "users#update", as: "update_profile"
-  delete "/account/logout" => "sessions#destroy", as: "account_logout"
-
-  post "oauth/callback", to: "oauth/sessions#callback"
-  get "oauth/callback", to: "oauth/sessions#callback"
-
-  namespace :manager do
-    get "/" => "sessions#new", as: "login"
-    resources :sessions, only: %i[new create destroy]
-    get "/sessions" => "sessions#new"
+  namespace :account do
+    resource :password
   end
-  delete "/logout" => "manager/sessions#destroy", as: "logout"
+
+  get "/profile" => "sessions#show", as: "profile"
 
   namespace :api do
     namespace :front do
