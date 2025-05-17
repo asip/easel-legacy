@@ -19,14 +19,14 @@ default: &default
 
 development:
   <<: *default
-  database: easel_legacy_development
+  database: easel_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: easel_legacy_test
+  database: easel_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: easel_legacy_production
+  database: easel_production
   username: <%= ENV.fetch('DATABASE_USER_NAME') { 'easel' } %>
   password: <%= ENV.fetch('DATABASE_PASSWORD') { '' } %>
