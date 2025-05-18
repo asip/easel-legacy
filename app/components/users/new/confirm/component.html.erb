@@ -13,13 +13,7 @@
     <%= @form.hidden_field :email %>
   </div>
 </div>
-<div class="row d-flex justify-content-sm-center">
-  <label for="password" class="form-label col-sm-3 label-bg-style">パスワード：</label>
-  <div class="form-group col-sm-4">
-    <div class="form-control-plaintext"><%= @user.password %></div>
-    <%= @form.hidden_field :password %>
-  </div>
-</div>
+<%= @form.hidden_field :password %>
 <%= @form.hidden_field :password_confirmation %>
 <br>
 <div class="row d-flex justify-content-sm-center">
