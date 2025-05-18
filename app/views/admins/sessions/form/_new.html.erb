@@ -18,7 +18,7 @@
                     <label for="email" class="col-form-label-sm"><%= t("activerecord.attributes.user.email") %></label>
                   </td>
                   <td>
-                    <%= form.text_field :email, placeholder: t("activerecord.attributes.user.email"),
+                    <%= form.email_field :email, placeholder: t("activerecord.attributes.user.email"),
                                                 autofocus: true, autocomplete: "email",
                                                 class: "form-control" %>
                   </td>

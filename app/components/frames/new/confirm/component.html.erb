@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="row d-flex justify-content-sm-center">
-    <label for="name" class="col-form-label col-sm-3">撮影日時：</label>
+    <label for="shooted_at" class="col-form-label col-sm-3">撮影日時：</label>
     <div class="form-group col-sm-4">
       <div class="form-control-plaintext"><%= @frame.shooted_at.present? ? l(@frame.shooted_at) : "" %></div>
       <%= @form.hidden_field :shooted_at %>
