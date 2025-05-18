@@ -1,20 +1,20 @@
 <div class="row d-flex justify-content-sm-center border border-white">
   <label for="password" class="col-form-label col-sm-3 label-bg-style">現在のパスワード：</label>
   <div class="form-group col-sm-4">
-    <%= @form.password_field :current_password, placeholder: "現在のパスワード", class: "form-control" %>
+    <%= @form.password_field :current_password, autofocus: true, autocomplete: "current-password", placeholder: "現在のパスワード", class: "form-control" %>
   </div>
 </div>
 
 <div class="row d-flex justify-content-sm-center border border-white">
   <label for="password" class="col-form-label col-sm-3 label-bg-style">パスワード：</label>
   <div class="form-group col-sm-4">
-    <%= @form.password_field :password, placeholder: "パスワード", class: "form-control" %>
+    <%= @form.password_field :password, placeholder: "パスワード", autocomplete: "new-password", class: "form-control" %>
   </div>
 </div>
 <div class="row d-flex justify-content-sm-center border border-white">
   <label for="password_confirmation" class="col-form-label col-sm-3 label-bg-style">パスワード(確認)：</label>
   <div class="form-group col-sm-4">
-    <%= @form.password_field :password_confirmation, placeholder: "パスワード(確認)", class: "form-control" %>
+    <%= @form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード(確認)", class: "form-control" %>
   </div>
 </div>
 <br>

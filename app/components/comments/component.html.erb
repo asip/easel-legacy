@@ -1,4 +1,4 @@
 <div data-turbo="false">
-  <%= helpers.turbo_mount("Comments", props: {'frame-id' => @frame.id.to_s, 'api-origin' => Settings.front.api.origin, 'csrf-token' => helpers.form_authenticity_token}) %>
+  <%= helpers.turbo_mount("Comments", props: { "frame-id" => @frame.id.to_s, "api-origin" => Settings.front.api.origin, "csrf-token" => helpers.form_authenticity_token }) %>
   <br>
 </div>
