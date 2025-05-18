@@ -20,7 +20,7 @@ module Api
 
         def authenticate
           authorization_header = request.headers["Authorization"]
-          puts authorization_header
+          # puts authorization_header
           if !authorization_header
             render_unauthorized
           else
@@ -29,10 +29,12 @@ module Api
 
             begin
               decoded_token = JWT.decode(token, secret_key)
-              puts "user_id:" + decoded_token[0]["user_id"].to_s
+              # puts "user_id:" + decoded_token[0]["user_id"].to_s
               @current_user = User.find(decoded_token[0]["user_id"])
               @current_user.assign_token(token)
             rescue ActiveRecord::RecordNotFound
+              render_unauthorized
+            rescue JWT::ExpiredSignature
               render_unauthorized
             rescue JWT::DecodeError
               render_unauthorized

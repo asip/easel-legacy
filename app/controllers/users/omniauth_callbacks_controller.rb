@@ -34,7 +34,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       user.assign_token(user.create_token)
       cookies.permanent[:access_token] = { value: user.token }
-      puts user.token
+      # puts user.token
     else
       session["devise.#{provider}_data"] = request.env["omniauth.auth"].except(:extra)
       redirect_to new_user_registration_url
