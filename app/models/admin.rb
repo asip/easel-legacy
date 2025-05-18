@@ -20,8 +20,8 @@ class Admin < ApplicationRecord
   include Errors::Sortable
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :validatable # , :registerable, :recoverable, :rememberable,
+  # :confirmable, :lockable, :trackable and :omniauthable
+  devise :database_authenticatable, :validatable, :timeoutable # , :registerable, :recoverable, :rememberable,
 
   # validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }, on: %i[create update]
   # validates :password, length: { minimum: 6, maximum: 128 }, confirmation: true,
