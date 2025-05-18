@@ -5,5 +5,5 @@ origin: <%= ENV.fetch('BACKEND_ORIGIN_URL') { 'http://localhost' } %>
 front:
   api:
     origin: <%= "#{ ENV.fetch('BACKEND_ORIGIN_URL') { 'http://localhost' } }/api/front/v1" %>
-sorcery:
+external:
   google_callback_url: <%= "#{ ENV.fetch('BACKEND_ORIGIN_URL') { 'http://localhost' } }/oauth/callback?provider=google" %>
