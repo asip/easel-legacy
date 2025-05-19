@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  include Flashes
   include Query::Search
 
   # before_action :configure_sign_in_params, only: [:create]
@@ -13,15 +14,17 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   # POST /resource/sign_in
   def create
-    self.resource = warden.authenticate!(auth_options)
-    set_flash_message!(:notice, :signed_in)
-    sign_in(resource_name, resource)
-    yield resource if block_given?
+    self.resource = warden.authenticate(auth_options)
+    if resource
+      set_flash_message!(:notice, :signed_in)
+      sign_in(resource_name, resource)
+      # yield resource if block_given?
 
-    resource.assign_token(resource.create_token)
-    cookies.permanent[:access_token] = { value: resource.token }
+      resource.assign_token(resource.create_token)
+      cookies.permanent[:access_token] = { value: resource.token }
+    end
 
-    respond_with resource, location: after_sign_in_path_for(resource)
+    respond_with resource
   end
 
   # DELETE /resource/sign_out
@@ -33,11 +36,40 @@ class Users::SessionsController < Devise::SessionsController
     respond_to_on_destroy
   end
 
+  private
+
   def query_params
     {}
   end
 
-  # protected
+  def respond_with(resource, _opts = {})
+    if resource
+      case action_name
+      when "create"
+        login_success(resource)
+      end
+    else
+      login_failed
+    end
+  end
+
+  def login_success(resource)
+    redirect_to after_sign_out_path_for(resource)
+  end
+
+  def login_failed
+    success, user = User.validate_login(form_params: sign_in_params)
+    return if success
+    self.resource = user
+    flashes[:alert] = self.resource.full_error_messages_on_login#
+    render layout: false, content_type: "text/vnd.turbo-stream.html"
+  end
+
+  protected
+
+  def auth_options
+    { scope: resource_name, recall: "#{controller_path}#login_failed" }
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
