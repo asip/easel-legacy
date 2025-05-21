@@ -61,7 +61,7 @@ class Users::SessionsController < Devise::SessionsController
     success, user = User.validate_login(form_params: sign_in_params)
     return if success
     self.resource = user
-    flashes[:alert] = self.resource.full_error_messages_on_login#
+    flashes[:alert] = self.resource.full_error_messages_on_login
     render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
   end
 
