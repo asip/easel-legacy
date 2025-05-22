@@ -1,9 +1,8 @@
-# Easel - image viewer
+# Easel Legacy - image viewer
 
 ![alt text](https://github.com/asip/easel-back/blob/main/public/palette.svg)
 
-This is backend of Easel.
-This includes legacy frontend implemented by Ruby on Rails.
+This is legacy frontend and backend of Easel.
 
 Rails8.0 + Sorcery(authentication) + Pagy(paging) +
 Shrine(upload) + ActsAsTaggableOn(tag) +
