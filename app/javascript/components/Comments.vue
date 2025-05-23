@@ -12,14 +12,14 @@ const props = defineProps<{
 
 const viewData = useViewData()
 
-viewData.csrfToken = props.csrfToken
-viewData.apiOrigin = props.apiOrigin
-viewData.frameId = props.frameId
+Axios.defaults.baseURL = props.apiOrigin
 
 Axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN': viewData.csrfToken
+  'X-CSRF-TOKEN': props.csrfToken
 }
+
+viewData.frameId = props.frameId
 
 provide('viewData', viewData)
 </script>

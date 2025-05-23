@@ -1,10 +1,8 @@
 import Axios, { AxiosError } from 'axios'
-import { inject, Ref, ref} from 'vue'
+import { Ref, ref} from 'vue'
 import { useCookies } from '@vueuse/integrations/useCookies.mjs'
 
 import type { User } from '../interfaces/user'
-
-import type { UseViewDataType } from './use-view-data'
 import { useFlash } from './use-flash'
 
 interface AccountResource {
@@ -19,7 +17,6 @@ export function useAccount() {
     token: null
   })
 
-  const viewData = inject('viewData') as UseViewDataType
   const cookies = useCookies(['access_token'])
   const { flash, clearFlash } = useFlash()
 
@@ -29,7 +26,7 @@ export function useAccount() {
     const token: string = cookies.get('access_token')
 
     try {
-      const res = await Axios.get<AccountResource>(`${viewData.apiOrigin}/account`,
+      const res = await Axios.get<AccountResource>('/account',
         {
           headers: {
             Authorization: `Bearer ${token}`

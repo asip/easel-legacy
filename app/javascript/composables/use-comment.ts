@@ -1,11 +1,8 @@
 import Axios, { AxiosError } from 'axios'
-
-import { inject, ref } from 'vue'
+import { ref } from 'vue'
 
 import type { User } from '../interfaces/user'
 import type { Comment } from '../interfaces/comment'
-
-import { UseViewDataType } from './use-view-data'
 import { useFlash } from './use-flash'
 
 interface CommentsResource {
@@ -37,7 +34,6 @@ export function useComment(currentUser: User) {
   const comments = ref<Comment[]>([])
   const errorMessages = ref<string[]>([])
 
-  const viewData = inject('viewData') as UseViewDataType
   const { flash, clearFlash } = useFlash()
 
   const getComments = async (frameId: string) => {
@@ -45,7 +41,7 @@ export function useComment(currentUser: User) {
     //console.log(frame_id)
 
     try{
-      const res = await Axios.get<CommentsResource>(`${viewData.apiOrigin}/frames/${frameId}/comments`)
+      const res = await Axios.get<CommentsResource>(`/frames/${frameId}/comments`)
 
       const commentList: [CommentResource] = res.data.comments
       //console.log(comment_list);
@@ -79,7 +75,7 @@ export function useComment(currentUser: User) {
         }
       }
 
-      await Axios.post<CommentResource>(`${viewData.apiOrigin}/frames/${comment.value.frame_id?.toString(10) ?? ''}/comments`,
+      await Axios.post<CommentResource>(`/frames/${comment.value.frame_id?.toString(10) ?? ''}/comments`,
         params,
         {
           headers: {
@@ -114,7 +110,7 @@ export function useComment(currentUser: User) {
     clearFlash()
     try {
       await Axios.delete(
-        `${viewData.apiOrigin}/comments/${comment.id?.toString(10) ?? ''}`,
+        `/comments/${comment.id?.toString(10) ?? ''}`,
         {
           headers: {
             Authorization: `Bearer ${currentUser.token ?? ''}`
