@@ -478,7 +478,7 @@ GEM
     uri (1.0.3)
     useragent (0.16.10)
     version_gem (1.1.8)
-    view_component (3.23.0)
+    view_component (3.23.1)
       activesupport (>= 5.2.0, < 8.1)
       concurrent-ruby (~> 1)
       method_source (~> 1.0)
@@ -547,7 +547,7 @@ DEPENDENCIES
   turbo-mount (~> 0.4.2)
   turbo-rails (~> 2.0.13)
   tzinfo-data
-  view_component (~> 3.23.0)
+  view_component (~> 3.23.1)
   web-console (~> 4.2.1)
 
 BUNDLED WITH
