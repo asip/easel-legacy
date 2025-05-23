@@ -5,14 +5,14 @@ import AsyncComments from './AsyncComments.vue'
 import { useViewData } from '../composables/use-view-data'
 
 const props = defineProps<{
-  apiOrigin: string
+  apiBaseUrl: string
   csrfToken: string
   frameId: string
 }>()
 
 const viewData = useViewData()
 
-Axios.defaults.baseURL = props.apiOrigin
+Axios.defaults.baseURL = props.apiBaseUrl
 
 Axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',

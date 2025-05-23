@@ -3,6 +3,6 @@ google:
   client_secret: <%= ENV.fetch('GOOGLE_CLIENT_SECRET') { '' } %>
 front:
   api:
-    origin: /api/front/v1
+    base_url: /api/front/v1
 external:
   google_callback_url: /oauth/callback?provider=google
