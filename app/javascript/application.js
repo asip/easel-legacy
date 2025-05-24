@@ -8,6 +8,6 @@
 // layout file, like app/views/layouts/application.html.erb
 import './libraries/turbo.js'
 import './libraries/bootstrap.js'
-import './controllers/index.js'
+import './controllers/application.ts'
 
 import './turbo-mount.js'
