@@ -20,7 +20,6 @@ export default defineConfig({
   },
   entry: {
     application: './app/javascript/application.js',
-    bootstrap: './app/javascript/bootstrap.js',
     components: './app/javascript/components.js',
     rails_admin: './app/javascript/rails_admin.js',
     turbo: './app/javascript/turbo.js'

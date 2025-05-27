@@ -7,8 +7,8 @@
     <%= csrf_meta_tags %>
     <%= favicon_link_tag "/palette.png", { type: "image/png" } %>
     <%= favicon_link_tag "/palette.svg", { type: "image/svg+xml" } %>
+    <%= stylesheet_link_tag "application.tailwind", media: "all", 'data-turbo-track': "reload" %>
     <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
-    <%= javascript_include_tag "bootstrap", "data-turbo-track": "reload", type: "module" %>
     <%= javascript_include_tag "turbo", "data-turbo-track": "reload", type: "module" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= javascript_include_tag "components", "data-turbo-track": "reload", type: "module" %>
@@ -18,9 +18,8 @@
     <div id="flash_message">
       <%= render "layouts/flash" %>
     </div>
-    <div class="container">
+    <div class="container mx-auto bg-aliceblue-200 min-h-[100vh]">
       <%= yield %>
     </div>
-    <%= render Footer::Component.new(day: @day) %>
   </body>
 </html>

@@ -25,38 +25,32 @@ const onDeleteClick = async () => {
 </script>
 
 <template>
-  <div class="card">
-    <div class="card-block">
-      <div class="row d-flex">
-        <div class="col-12" style="line-height: 35px;">
-          <div class="float-start align-middle" style="padding-left:5px;">
+  <div class="card bg-base-100 shadow shadow-sm kadomaru-5 ml-2 mr-2 mb-2">
+    <div class="card-body">
+      <div class="d-flex">
+        <div style="line-height: 35px;">
+          <div class="float-start items-center" style="padding-left:5px;">
             <img :src="comment?.user_image_url" alt="" class="rounded" width="20" height="20">
           </div>
-          <div class="float-start small align-middle" style="padding-left:5px;">
-            <div class="badge rounded-pill bg-light text-info">
+          <div class="float-start small items-center" style="padding-left:5px;">
+            <div class="badge rounded-full">
               {{ comment?.user_name }}
             </div>
           </div>
-          <div class="float-start small align-middle" style="padding-left:5px;">
-            <div class="badge rounded-pill bg-light text-info">
+          <div class="float-start small items-center" style="padding-left:5px;">
+            <div class="badge rounded-full">
               {{ comment?.updated_at }}
             </div>
           </div>
           <div v-show="loggedIn && comment?.user_id === currentUser.id" class="float-end">
             <button class="btn btn-link btn-sm" @click="onDeleteClick">
               削除
-            </button>&nbsp;
+            </button>
           </div>
         </div>
       </div>
-    </div>
-    <div class="card-footer" style="background-color: white; border-color: white;">
-      <div class="d-flex">
-        <div class="col-12 align-middle">
-          <div class="float-start">
-            <span v-html="sanitizedCommentBody" />
-          </div>
-        </div>
+      <div class="flex justify-start">
+        <span v-html="sanitizedCommentBody" />
       </div>
     </div>
   </div>

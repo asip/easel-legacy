@@ -1,26 +1,21 @@
-<div class="row d-flex justify-content-sm-center border border-white">
-  <label for="current_password" class="col-form-label col-sm-3 label-bg-style">現在のパスワード：</label>
-  <div class="form-group col-sm-4">
-    <%= @form.password_field :current_password, autofocus: true, autocomplete: "current-password", placeholder: "現在のパスワード", class: "form-control" %>
+<div class="flex justify-center">
+  <div class="grid grid-cols-[80px_1fr] border border-gray-100 rounded bg-base-00 p-3">
+    <div class="col-span-2 w-120"></div>
+    <div class=""><label for="current_password" class="">現在のパスワード：</label></div>
+    <div class="">
+      <%= @form.password_field :current_password, autofocus: true, autocomplete: "current-password", placeholder: "現在のパスワード", class: "input" %>
+    </div>
+    <div class=""><label for="password" class="">パスワード：</label></div>
+    <div class="">
+      <%= @form.password_field :password, placeholder: "パスワード", autocomplete: "new-password", class: "input" %>
+    </div>
+    <div class=""><label for="password_confirmation" class="">パスワード(確認)：</label></div>
+    <div class="">
+      <%= @form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード(確認)", class: "input" %>
+    </div>
   </div>
 </div>
-
-<div class="row d-flex justify-content-sm-center border border-white">
-  <label for="password" class="col-form-label col-sm-3 label-bg-style">パスワード：</label>
-  <div class="form-group col-sm-4">
-    <%= @form.password_field :password, placeholder: "パスワード", autocomplete: "new-password", class: "form-control" %>
-  </div>
-</div>
-<div class="row d-flex justify-content-sm-center border border-white">
-  <label for="password_confirmation" class="col-form-label col-sm-3 label-bg-style">パスワード(確認)：</label>
-  <div class="form-group col-sm-4">
-    <%= @form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード(確認)", class: "form-control" %>
-  </div>
-</div>
-<br>
-<div class="d-flex justify-content-sm-center">
-  <div class="form-group col-sm-6">
-    <%= @form.submit "更新", class: "btn btn-primary" %>
-    <%= link_to "戻る", @back_to_path, class: "btn btn-outline-secondary" %>
-  </div>
+<div class="flex justify-center gap-2 mt-2">
+  <%= @form.submit "更新", class: "btn btn-outline btn-primary" %>
+  <%= link_to "戻る", @back_to_path, class: "btn btn-outline btn-warning" %>
 </div>

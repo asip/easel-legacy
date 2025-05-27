@@ -1,4 +1,22 @@
 body {
   background-color: aliceblue;
-  padding-top: 50px;
+}
+
+.kadomaru-5 {
+  -moz-border-radius: 5px;        /* CSS3草案 */
+  -webkit-border-radius: 5px;    /* Safari,Google Chrome用 */
+  border-radius: 5px;   /* Firefox用 */
+}
+
+
+/* .white-space-pre {
+  white-space: pre;
+ } */
+@media (min-width: 567px) {
+  .abs-center-x {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }

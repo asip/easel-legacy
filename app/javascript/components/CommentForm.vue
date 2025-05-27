@@ -17,25 +17,20 @@ const onPostClick = async () => {
 </script>
 
 <template>
-  <div v-show="loggedIn" class="card">
-    <div class="card-header">
-      <div class="d-flex justify-content-sm-center">
-        <div class="clearfix">
-          <div class="float-left">
-            コメント
-          </div>
+  <div v-show="loggedIn" class="card bg-base-100 shadow shadow-sm kadomaru-5 ml-2 mr-2 mt-2 mb-2">
+    <div class="card-body">
+      <div class="d-flex">
+        <div class="float-left">
+          コメント
         </div>
       </div>
-    </div>
-    <div class="card-block">
-      <br>
-      <div class="d-flex justify-content-center">
-        <div class="form-group col-10">
-          <textarea v-model="comment.body" class="form-control col-12" />
+      <div class="flex justify-center">
+        <div class="">
+          <textarea v-model="comment.body" class="block text-sm border rounded border-gray-300 w-full" />
         </div>
       </div>
-      <div class="d-flex justify-content-center">
-        <div class="col-10">
+      <div class="flex justify-center">
+        <div class="">
           <div v-for="(message, idx) in errorMessages" :key="idx">
             <p class="text-danger">
               {{ message }}
@@ -43,14 +38,13 @@ const onPostClick = async () => {
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-center">
-        <div class="form-group col-10">
-          <button class="btn btn-light col-12 form-control" @click="onPostClick">
+      <div class="flex justify-center">
+        <div class="">
+          <button class="btn btn-outline btn-primary" @click="onPostClick">
             投稿
           </button>
         </div>
       </div>
-      <br>
     </div>
   </div>
 </template>

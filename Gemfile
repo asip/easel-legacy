@@ -46,7 +46,7 @@ gem "cssbundling-rails", "~> 1.4.3"
 gem "jsbundling-rails", "~> 1.3.1"
 
 # view component
-gem "view_component", "~> 3.23.1"
+gem "view_component", "~> 3.23.2"
 
 # Shrine
 gem "aws-sdk-s3", "~> 1.186.1"
@@ -124,5 +124,5 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", "~> 3.40.0"
-  gem "selenium-webdriver", "~> 4.32.0"
+  gem "selenium-webdriver", "~> 4.33.0"
 end

@@ -1,16 +1,13 @@
 <div id="frames">
   <br>
   <div data-controller="tagify preview">
-    <div class="card">
-      <div class="card-block">
-        <div class="row d-flex">
-          <div class="col-12 clearfix">
-            <div class="float-start">
-              &nbsp;<%= link_to frame_path(@frame), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
-            </div>
+    <div class="card bg-base-100 shadow shadow-sm kadomaru-5 ml-2 mr-2">
+      <div class="card-body">
+        <div class="d-flex">
+          <div class="float-start">
+            <%= link_to frame_path(@frame) do %><i class="bi bi-arrow-left-circle"></i><% end %>
           </div>
         </div>
-        <br>
         <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: false) %>
         <%= form_with model: @frame, local: true do |form| %>
           <%= form.hidden_field :file, value: form.object.cached_file_data %>
@@ -26,5 +23,4 @@
       </div>
     </div>
   </div>
-  <br>
 </div>

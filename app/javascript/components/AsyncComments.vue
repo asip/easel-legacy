@@ -31,7 +31,6 @@ provide('commenter', commenter)
 <template>
   <div>
     <CommentForm />
-    <br>
     <!-- eslint-disable-next-line vue/no-template-shadow -->
     <CommentList />
   </div>

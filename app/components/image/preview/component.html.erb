@@ -1,20 +1,17 @@
 <% if @model.class == Frame && @model.file.present? %>
-<div data-preview-target="content" class="d-flex justify-content-sm-center" style="display: block;padding-bottom:5px;">
-  <%= image_tag(@model.file_url(:three), class: "mx-auto",
+<div data-preview-target="content" class="col-span-2" style="display: block;padding-bottom:5px;">
+  <%= image_tag(@model.file_url(:three), class: "mx-auto mb-2",
                                          style: "max-width: 300px; max-height: 300px; display: block;",
                                          "data-preview-target": "image") %>
-  <br>
 </div>
 <% elsif @model.class == User && @model.image.present? %>
-<div data-preview-target="content" class="d-flex justify-content-sm-center" style="display: block;padding-bottom:5px;">
-  <%= image_tag(@model.image_url(:three), class: "mx-auto",
+<div data-preview-target="content" class="col-span-2" style="display: block;padding-bottom:5px;">
+  <%= image_tag(@model.image_url(:three), class: "mx-auto mb-2",
                                           style: "max-width: 300px; max-height: 300px; display: block;",
                                           "data-preview-target": "image") %>
-  <br>
 </div>
 <% else %>
-<div data-preview-target="content" class="d-flex justify-content-sm-center" style="display: none;padding-bottom:5px;">
-  <img data-preview-target="image" alt="" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
-  <br>
+<div data-preview-target="content" class="col-span-2" style="display: none;padding-bottom:5px;">
+  <img data-preview-target="image" alt="" class="mx-auto mb-2" style="max-width: 300px; max-height: 300px; display: block;">
 </div>
 <% end %>

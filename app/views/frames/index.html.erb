@@ -6,10 +6,9 @@
   </div>
   <%= render partial: "frames/more/load_next", locals: { pagy: @pagy, word: @word } %>
 
-  <% if false %><div class="d-flex col-sm-12 justify-content-sm-center">
+  <% if false %><div class="flex justify-center">
     <div class="mx-auto kadomaru-5" style="padding-top: 20px;">
       <%== pagy_bootstrap_nav(@pagy) %>
     </div>
   </div><% end %>
 </div>
-<br>

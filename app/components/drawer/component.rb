@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# footer
-module Footer
+# drawer
+module Drawer
   # Component
   class Component < ViewComponent::Base
     def initialize(day:)

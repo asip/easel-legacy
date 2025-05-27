@@ -1,14 +1,14 @@
 <div id="frames">
   <br>
   <div data-controller="tagify preview">
-    <div class="card">
-      <div class="card-header">
-        <div class="float-start">
-          <%= link_to root_path(query_params), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
-          アップロード
+    <div class="card bg-base-100 shadow shadow-sm kadomaru-5 ml-2 mr-2">
+      <div class="card-body">
+        <div class="d-flex">
+          <div class="float-start mr-2">
+            <%= link_to root_path(query_params) do %><i class="bi bi-arrow-left-circle"></i><% end %>
+            アップロード
+          </div>
         </div>
-      </div>
-      <br>
       <%= form_with model: @frame, local: true, "data-controller": "luminous tagify preview" do |form| %>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <% if @frame.confirming == 'true' %>
@@ -19,7 +19,7 @@
         <% end %>
         <%= query_params_hidden_field_tags %>
       <% end %>
+      </div>
     </div>
   </div>
-  <br>
 </div>

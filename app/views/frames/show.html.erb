@@ -1,78 +1,53 @@
 <div id="frames">
   <br>
-  <div class="card">
-    <div class="card-block">
-      <div class="row d-flex">
-        <div class="col-12 clearfix">
-          <div class="float-start">
-            &nbsp;<%= link_to root_path(query_params), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
-          </div>
-          <div class="float-end">
-            <%= l @frame.updated_at %>&nbsp;
-          </div>
+  <div class="card bg-base-100 shadow shadow-sm kadomaru-5 ml-2 mr-2">
+    <div class="card-body">
+      <div class="d-flex">
+        <div class="float-start">
+          <%= link_to root_path(query_params) do %><i class="bi bi-arrow-left-circle"></i><% end %>
+        </div>
+        <div class="float-end">
+          <%= l @frame.updated_at %>
         </div>
       </div>
-    </div>
-    <div class="card-block">
       <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: true) %>
       <%= render Frames::Preview::Tags::Component.new(tag_paths: tag_paths(@frame)) %>
-    </div>
-    <div class="card-block">
-      <div class="row d-flex justify-content-sm-center">
-        <label for="name" class="col-sm-3 col-form-label">名前：</label>
-        <div class="col-sm-4">
-          <div class="form-control-plaintext"><%= @frame.name %></div>
+      <div class="flex justify-center">
+        <div class="grid grid-cols-[70px_1fr] border border-gray-100 rounded bg-base-00 p-3">
+          <div class="col-span-2 w-120"></div>
+          <div class=""><label for="name" class="">名前：</label></div>
+          <div class="justify-start"><%= @frame.name %></div>
+          <div class=""><label for="shooted_at" class="">撮影日時：</label></div>
+          <div class="justify-start"><%= @frame.shooted_at.present? ? l(@frame.shooted_at) : "" %></div>
+          <div class=""><label for="comment" class="">コメント：</label></div>
+          <div class="justify-start"><%= simple_format(h(@frame.comment)) %></div>
         </div>
       </div>
-      <div class="row d-flex justify-content-sm-center">
-        <label for="name" class="col-sm-3 col-form-label">撮影日時：</label>
-        <div class="col-sm-4">
-          <div class="form-control-plaintext"><%= @frame.shooted_at.present? ? l(@frame.shooted_at) : "" %></div>
+      <div class="d-flex">
+        <!-- <div class="float-start">
+        </div> -->
+        <div class="float-end">
+          <%= link_to user_path(@frame.user, { ref: "frame_detail", ref_id: @frame.id }), class: "" do %>
+            <%= @frame.user.name %>
+          <% end %>
         </div>
       </div>
-      <div class="row d-flex justify-content-sm-center">
-        <label for="comment" class="col-sm-3 col-form-label">コメント：</label>
-        <div class="col-sm-4">
-          <div class="form-control-plaintext"><%= simple_format(h(@frame.comment)) %></div>
-        </div>
-      </div>
-      <div class="row d-flex">
-        <div class="col-12 clearfix">
-          <!-- <div class="float-start">
-          </div> -->
-          <div class="float-end">
-            <%= link_to user_path(@frame.user, { ref: "frame_detail", ref_id: @frame.id }),
-                        "data-turbo-frame": "_top", class: "text-decoration-none" do %>
-              <%= @frame.user.name %>&nbsp;
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% if user_signed_in? && @frame.user_id == current_user.id %>
-    <div class="card-footer">
-      <div class="row d-flex justify-content-sm-center">
-        <div class="form-group col-sm-6">
-          <%= link_to "変更", edit_frame_path(@frame, query_params), class: "btn btn-primary", "data-turbo": true %>
+      <% if user_signed_in? && @frame.user_id == current_user.id %>
+      <div class="flex justify-center">
+        <div>
+          <%= link_to "変更", edit_frame_path(@frame, query_params), class: "btn btn-outline btn-primary", "data-turbo": true %>
           <%# Button trigger modal %>
-          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">
+          <button type="button" class="btn btn-outline btn-secondary" onclick="delete_modal.showModal()">
             削除
           </button>
-          <%= link_to "戻る", root_path(query_params), class: "btn btn-outline-primary", "data-turbo-frame": "_top" %>
+          <%= link_to "戻る", root_path(query_params), class: "btn btn-outline btn-warning" %>
         </div>
       </div>
+      <% end %>
     </div>
-    <% else %>
-    <div class="card-block">
-      <div class="row d-flex justify-content-sm-center">
-        <br>
-      </div>
-    </div>
-    <% end %>
   </div>
   <% if user_signed_in? && @frame.user_id == current_user.id %>
     <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame, query_params)) %>
   <% end %>
-  <br>
 </div>
 <%= render Comments::Component.new(frame: @frame) %>

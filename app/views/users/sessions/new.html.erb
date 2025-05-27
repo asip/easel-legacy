@@ -1,35 +1,33 @@
 <br>
-<% if Settings.google.client_id.present? %>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <div id='g_id_onload'
-       data-client_id='<%= Settings.google.client_id %>'
-       data-login_uri='<%= Settings.external.google_callback_url %>'
-       data-prompt_parent_id='g_id_onload'
-       data-authenticity_token='<%= form_authenticity_token %>'
-       data-auto_prompt="false">
-  </div>
-  <div class="g_id_signin"
-       data-type="standard"
-       data-size="large"
-       data-theme="outline"
-       data-text="sign_in_with"
-       data-shape="rectangular"
-       data-logo_alignment="left">
-  </div>
-<% end %>
-<br>
-<%= link_to "ユーザー登録", signup_path, class: "btn btn-light btn-outline-secondary" %><br>
-<br>
-<div class="card">
-  <div class="card-header">
-    <div class="float-start">
-      <%= link_to root_path(query_params), "data-turbo-frame": "_top" do %><i class="bi bi-arrow-left-circle"></i><% end %>
-      &nbsp;ログイン
+<div class="card bg-base-100 shadow shadow-sm kadomaru-5 ml-2 mr-2">
+  <div class="card-body">
+    <div class="d-flex">
+      <div class="float-start">
+        <%= link_to root_path(query_params) do %><i class="bi bi-arrow-left-circle"></i><% end %>
+        ログイン
+      </div>
     </div>
-  </div>
-  <div class="card-block">
-    <br>
+    <div class="flex justify-center gap-2">
+    <% if Settings.google.client_id.present? %>
+      <script src="https://accounts.google.com/gsi/client" async defer></script>
+      <div id='g_id_onload'
+           data-client_id='<%= Settings.google.client_id %>'
+           data-login_uri='<%= Settings.external.google_callback_url %>'
+           data-prompt_parent_id='g_id_onload'
+           data-authenticity_token='<%= form_authenticity_token %>'
+           data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin"
+           data-type="standard"
+           data-size="large"
+           data-theme="outline"
+           data-text="sign_in_with"
+           data-shape="rectangular"
+           data-logo_alignment="left">
+      </div>
+    <% end %>
+    <%= link_to "ユーザー登録", signup_path, class: "btn btn-outline btn-primary" %>
+    </div>
     <%= render "users/sessions/form/new" %>
-    <br>
   </div>
 </div>

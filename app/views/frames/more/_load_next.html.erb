@@ -1,8 +1,6 @@
-<div id="load-next" class="d-flex col-sm-12 justify-content-sm-center">
-  <div class="mx-auto">
-    <%= if pagy.next.present?
-          link_to("もっとみる", { controller: "frames", action: "next", params: { q: word, page: pagy.next } },
-                  class: "btn btn-light btn-outline-primary rounded-pill")
-        end %>
-  </div>
+<div id="load-next" class="flex justify-center">
+  <%= if pagy.next.present?
+        link_to("もっとみる", { controller: "frames", action: "next", params: { q: word, page: pagy.next } },
+                class: "btn btn-outline btn-primary rounded-full bg-white")
+      end %>
 </div>

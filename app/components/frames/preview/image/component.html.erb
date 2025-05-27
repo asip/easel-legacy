@@ -1,20 +1,19 @@
 <% if @frame.file.present? %>
   <% if @original %>
-    <div class="d-flex justify-content-sm-center">
+    <div class="flex justify-center mb-2">
       <% if @photoswipe.present? && @photoswipe == true %>
         <div data-controller="pswipe" data-pswipe-target="ps" id="image">
-          <%= link_to image_tag(@frame.file_url(:three), class: "mx-auto"), @frame.file_url, class: "mx-auto" %>
+          <%= link_to image_tag(@frame.file_url(:three), class: ""), @frame.file_url, class: "" %>
         </div>
       <% else %>
         <div data-controller="lightbox">
-          <%= link_to image_tag(@frame.file_url(:three), class: "mx-auto"), @frame.file_url, class: "mx-auto lb" %>
+          <%= link_to image_tag(@frame.file_url(:three), class: ""), @frame.file_url, class: "lb" %>
         </div>
       <% end %>
     </div>
   <% else %>
-    <div class="d-flex justify-content-sm-center">
-      <%= image_tag(@frame.file_url(:three), class: "mx-auto") %>
+    <div class="flex justify-center mb-2">
+      <%= image_tag(@frame.file_url(:three), class: "") %>
     </div>
   <% end %>
-  <br>
 <% end %>
