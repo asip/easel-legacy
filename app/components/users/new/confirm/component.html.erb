@@ -1,13 +1,13 @@
 <%= render Users::Preview::Image::Component.new(user: @user, original: false) %>
 <div class="flex justify-center">
-  <div class="grid grid-cols-[50px_1fr] border border-gray-100 rounded bg-base-00 p-3">
+  <div class="grid grid-cols-[60px_1fr] border border-gray-100 rounded bg-base-00 p-3">
     <div class="col-span-2 w-120"></div>
-    <div class=""><label for="name" class="">ユーザー名：</label></div>
+    <label for="name" class="flex items-center">ユーザー名：</label>
     <div class="">
       <div class=""><%= @user.name %></div>
       <%= @form.hidden_field :name %>
     </div>
-    <div class=""><label for="email" class="">Eメール：</label></div>
+    <label for="email" class="flex items-center">Eメール：</label>
     <div class="">
       <div class=""><%= @user.email %></div>
       <%= @form.hidden_field :email %>

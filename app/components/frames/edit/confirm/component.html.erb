@@ -3,17 +3,17 @@
 <div class="flex justify-center">
   <div class="grid grid-cols-[70px_1fr] border border-gray-100 rounded bg-base-00 p-3">
     <div class="col-span-2 w-120"></div>
-    <div class=""><label for="name" class="">名前：</label></div>
+    <label for="name" class="flex items-center">名前：</label>
     <div class="jutify-start">
       <div class=""><%= @frame.name %></div>
       <%= @form.hidden_field :name %>
     </div>
-    <div class=""><label for="shooted_at" class="">撮影日時：</label></div>
+    <label for="shooted_at" class="flex items-center">撮影日時：</label>
     <div class="jutify-start">
       <div class=""><%= @frame.shooted_at.present? ? l(@frame.shooted_at) : "" %></div>
       <%= @form.hidden_field :shooted_at %>
     </div>
-    <div class=""><label for="comment" class="">コメント：</label></div>
+    <label for="comment" class="flex items-center">コメント：</label>
     <div class="jutify-start">
       <div class=""><%= simple_format(h(@frame.comment)) %></div>
       <%= @form.hidden_field :comment %>

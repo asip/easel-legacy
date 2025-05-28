@@ -1,15 +1,15 @@
 <div class="flex justify-center">
-  <div class="grid grid-cols-[80px_1fr] border border-gray-100 rounded bg-base-00 p-3">
+  <div class="grid grid-cols-[90px_1fr] border border-gray-100 rounded bg-base-00 p-3">
     <div class="col-span-2 w-120"></div>
-    <div class=""><label for="current_password" class="">現在のパスワード：</label></div>
+    <label for="current_password" class="flex items-center">現在のパスワード：</label>
     <div class="">
       <%= @form.password_field :current_password, autofocus: true, autocomplete: "current-password", placeholder: "現在のパスワード", class: "input" %>
     </div>
-    <div class=""><label for="password" class="">パスワード：</label></div>
+    <label for="password" class="flex items-center">パスワード：</label>
     <div class="">
       <%= @form.password_field :password, placeholder: "パスワード", autocomplete: "new-password", class: "input" %>
     </div>
-    <div class=""><label for="password_confirmation" class="">パスワード(確認)：</label></div>
+    <label for="password_confirmation" class="flex items-center">パスワード(確認)：</label>
     <div class="">
       <%= @form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード(確認)", class: "input" %>
     </div>

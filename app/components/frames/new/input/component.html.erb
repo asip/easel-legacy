@@ -7,28 +7,26 @@
                                   class: "file-input", "data-preview-target": "upload" %><%#= @form.file_field :file, multiple: false, class: 'file-input' %>
     </div>
     <%= render Image::Preview::Component.new(model: @frame) %>
-    <div class="items-center"><label for="name" class="">名前：</label></div>
+    <label for="name" class="flex items-center">名前：</label>
     <div class="">
       <%= @form.text_field :name, placeholder: "名前", class: "input" %>
     </div>
-    <div class="items-center"><label for="tag_list" class="">タグ：</label></div>
+    <label for="tag_list" class="flex items-center">タグ：</label>
     <div class="">
       <input type="text" name="tag_editor" id="tag_editor" value="" data-tagify-target="te" class="input" autocomplete="off">
       <%= @form.hidden_field :tag_list, id: "tag_list", "data-tagify-target": "tl", value: @frame.tag_list.join(",") %>
     </div>
-    <div class="items-center"><label for="shooted_at" class="">撮影日時：</label></div>
+    <label for="shooted_at" class="flex items-center">撮影日時：</label>
     <div class="">
       <%= @form.datetime_local_field :shooted_at, class: "input" %>
     </div>
-    <div class="items-center"><label for="comment" class="">コメント：</label></div>
+    <label for="comment" class="flex items-center">コメント：</label>
     <div class="">
       <%= @form.text_area :comment, class: "block text-sm border rounded border-gray-300 w-full" %>
     </div>
   </div>
 </div>
-<div class="flex justify-center mt-2">
-  <div class="">
-    <%= @form.submit "内容を確認", class: "btn btn-outline btn-primary" %>
-    <%= link_to "戻る", @back_to_path, class: "btn btn-outline btn-warning" %>
-  </div>
+<div class="flex justify-center gap-2 mt-2">
+  <%= @form.submit "内容を確認", class: "btn btn-outline btn-primary" %>
+  <%= link_to "戻る", @back_to_path, class: "btn btn-outline btn-warning" %>
 </div>
