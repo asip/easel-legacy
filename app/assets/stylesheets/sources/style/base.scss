@@ -8,6 +8,11 @@ body {
   border-radius: 5px;   /* Firefox用 */
 }
 
+.kadomaru-10 {
+  -moz-border-radius: 10px;        /* CSS3草案 */
+  -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */
+  border-radius: 10px;   /* Firefox用 */
+}
 
 /* .white-space-pre {
   white-space: pre;
