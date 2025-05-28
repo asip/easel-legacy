@@ -1,5 +1,5 @@
 <%= form_with url: frames_path, local: true, method: :get, class: "flex items-center gap-2" do |form| %>
-  <%= form.text_field :q, placeholder: "タグ or 名前 or 撮影/更新日", class: "input input-bordered w-40", value: @word %>
+  <%= form.text_field :q, placeholder: "タグ or 名前 or 撮影/更新日", class: "input input-bordered w-50", value: @word %>
   <%= form.submit "検索", class: "btn btn-outline btn-primary", name: nil %>
 
   <label for="date-sidebar" aria-label="open sidebar" class="btn btn-outline btn-primary">
