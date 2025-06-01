@@ -103,7 +103,7 @@ end
 
 group :development do
   gem "brakeman", "~> 7.0.2", require: false
-  gem "bullet", "~> 8.0.7"
+  gem "bullet", "~> 8.0.8"
   gem "pg_query", "~> 6.1.0"
   gem "prosopite", "~> 2.1.0"
 
@@ -113,7 +113,7 @@ group :development do
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
-  gem "annotaterb", "~> 4.14.0"
+  gem "annotaterb", "~> 4.15.0"
   gem "rails-erd", "~> 1.7.2"
 
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
