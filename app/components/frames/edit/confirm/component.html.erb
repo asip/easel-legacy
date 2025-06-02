@@ -8,11 +8,13 @@
       <div class=""><%= @frame.name %></div>
       <%= @form.hidden_field :name %>
     </div>
+    <div class="col-span-2 divider h-0"></div>
     <label for="shooted_at" class="flex items-center">撮影日時：</label>
     <div class="jutify-start">
       <div class=""><%= @frame.shooted_at.present? ? l(@frame.shooted_at) : "" %></div>
       <%= @form.hidden_field :shooted_at %>
     </div>
+    <div class="col-span-2 divider h-0"></div>
     <label for="comment" class="flex items-center">コメント：</label>
     <div class="jutify-start">
       <div class=""><%= simple_format(h(@frame.comment)) %></div>

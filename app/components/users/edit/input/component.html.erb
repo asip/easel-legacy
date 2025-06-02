@@ -9,12 +9,14 @@
                                    "data-preview-target": "upload" %><%#= @form.file_field :image, multiple: false, class: 'file-input' %>
     </div>
     <%= render Image::Preview::Component.new(model: @user) %>
+    <div class="col-span-2 divider h-0"></div>
     <% if @user.social_login? %>
       <label for="name" class="flex items-center">ユーザー名：</label>
       <div class="">
         <div class=""><%= @user.name %></div>
         <%= @form.hidden_field :name %>
       </div>
+      <div class="col-span-2 divider h-0"></div>
       <label for="email" class="flex items-center">Eメール：</label>
       <div class="">
         <div class=""><%= @user.email %></div>
@@ -25,6 +27,7 @@
       <div class="">
         <%= @form.text_field :name, autofocus: true, autocomplete: "username", placeholder: "ユーザー名", class: "input" %>
       </div>
+      <div class="col-span-2 divider h-0"></div>
       <label for="email" class="flex items-center">Eメール：</label>
       <div class="">
         <%= @form.email_field :email, autocomplete: "email", placeholder: "Eメール", class: "input" %>

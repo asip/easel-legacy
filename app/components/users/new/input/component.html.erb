@@ -1,5 +1,5 @@
 <div class="flex justify-center">
-  <div class="grid grid-cols-[90px_1fr] border border-gray-100 rounded bg-base-00 p-3">
+  <div class="grid grid-cols-[120px_1fr] border border-gray-100 rounded bg-base-00 p-3">
     <div class="col-span-2 w-120"></div>
     <label for="image" class="flex items-center">アイコン：</label>
     <div class="">
@@ -9,18 +9,22 @@
                                    "data-preview-target": "upload" %><%#= @form.file_field :image, multiple: false, class: 'file-input' %>
     </div>
     <%= render Image::Preview::Component.new(model: @user) %>
+    <div class="col-span-2 divider h-0"></div>
     <label for="name" class="flex items-center">ユーザー名：</label>
     <div class="">
       <%= @form.text_field :name, autofocus: true, autocomplete: "username", placeholder: "ユーザー名", class: "input" %>
     </div>
+    <div class="col-span-2 divider h-0"></div>
     <label for="email" class="flex items-center">Eメール：</label>
     <div class="">
       <%= @form.email_field :email, placeholder: "Eメール", autocomplete: "email", class: "input" %>
     </div>
+    <div class="col-span-2 divider h-0"></div>
     <label for="password" class="flex items-center">パスワード：</label>
     <div class="">
       <%= @form.password_field :password, placeholder: "パスワード", autocomplete: "new-password", class: "input" %>
     </div>
+    <div class="col-span-2 divider h-0"></div>
     <label for="password_confirmation" class="flex items-center">パスワード(確認)：</label>
     <div class="">
       <%= @form.password_field :password_confirmation, placeholder: "パスワード(確認)", autocomplete: "new-password", class: "input" %>
