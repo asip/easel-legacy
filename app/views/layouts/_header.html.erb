@@ -30,7 +30,19 @@
         </ul>
       </div>
       <div class="navbar-end flex gap-2">
-        <%= render TagSearch::Component.new(word: @word, path: frames_path) %>
+        <div class="hidden sm:flex">
+          <%= render TagSearch::Component.new(word: @word, path: frames_path) %>
+        </div>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost sm:hidden">
+            <i class="bi bi-search"></i>
+          </div>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-100 z-1 mt-3 w-90 p-2 shadow">
+            <li><%= render TagSearch::Component.new(word: @word, path: frames_path) %></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
