@@ -21,29 +21,23 @@ const onPostClick = async () => {
     <div class="card-body">
       <div class="d-flex">
         <div class="float-left">
-          コメント
+          <h2 class="card-title">コメント</h2>
         </div>
       </div>
       <div class="flex justify-center">
-        <div class="">
-          <textarea v-model="comment.body" class="block text-sm border rounded border-gray-300 w-full" />
+        <textarea v-model="comment.body" class="block text-sm border rounded border-gray-300 w-full" />
+      </div>
+      <div class="flex flex-col">
+        <div v-for="(message, idx) in errorMessages" :key="idx">
+          <p class="text-danger">
+            {{ message }}
+          </p>
         </div>
       </div>
       <div class="flex justify-center">
-        <div class="">
-          <div v-for="(message, idx) in errorMessages" :key="idx">
-            <p class="text-danger">
-              {{ message }}
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="flex justify-center">
-        <div class="">
-          <button class="btn btn-outline btn-primary" @click="onPostClick">
-            投稿
-          </button>
-        </div>
+        <button class="btn btn-outline btn-primary w-full" @click="onPostClick">
+          投稿
+        </button>
       </div>
     </div>
   </div>
