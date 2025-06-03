@@ -1,7 +1,6 @@
 // Entry point for your Sass build
-@import "./sources/bootstrap.scss";
-@import "./sources/external.scss";
-@import "./sources/style/toastify.scss";
-@import "./sources/style/base.scss";
-@import "./sources/style/form.scss";
-
+@use "./sources/bootstrap.scss";
+@use "./sources/external.scss";
+@use "./sources/style/toastify.css";
+@use "./sources/style/base.css";
+@use "./sources/style/form.css";
