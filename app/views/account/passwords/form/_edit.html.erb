@@ -2,11 +2,8 @@
   <br>
   <div class="card bg-base-100 shadow shadow-sm kadomaru-10 ml-2 mr-2" data-controller="preview">
     <div class="card-body">
-      <div class="d-flex">
-        <div class="float-start">
-          <%= link_to profile_path do %><i class="bi bi-arrow-left-circle"></i><% end %>
-          パスワード更新
-        </div>
+      <div class="flex justify-start">
+        <%= link_to profile_path, class: "mr-1" do %><i class="bi bi-arrow-left-circle"></i><% end %>パスワード更新
       </div>
       <%= form_with(model: current_user, url: account_password_path, html: { method: :put }) do |form| %>
         <%= render Passwords::Edit::Input::Component.new(form:, user: current_user, back_to_path: profile_path) %>

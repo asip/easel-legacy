@@ -2,10 +2,8 @@
   <br>
   <div class="card bg-base-100 shadow shadow-sm kadomaru-10 ml-2 mr-2">
     <div class="card-body">
-      <div class="d-flex">
-        <div class="float-start">
-          <%= t("action.administration.title") %>
-        </div>
+      <div class="flex justify-start">
+        <%= t("action.administration.title") %>
       </div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
         <div class="flex justify-center">

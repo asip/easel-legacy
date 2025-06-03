@@ -1,6 +1,6 @@
 <% if @list %>
   <% if @tag_paths.size > 0 %>
-    <div>
+    <div class="flex justify-center">
       <% @tag_paths.each do |tag, tag_path| %>
         <%= link_to tag_path, "data-turbo": false do %><div class="badge rounded-full"><%= tag %></div><% end %>
       <% end %>

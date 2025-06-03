@@ -19,10 +19,8 @@ const onPostClick = async () => {
 <template>
   <div v-show="loggedIn" class="card bg-base-100 shadow shadow-sm kadomaru-10 ml-2 mr-2 mt-2 mb-2">
     <div class="card-body">
-      <div class="d-flex">
-        <div class="float-left">
-          <h2 class="card-title">コメント</h2>
-        </div>
+      <div class="flex justify-start">
+        <h2 class="card-title">コメント</h2>
       </div>
       <div class="flex justify-center">
         <textarea v-model="comment.body" class="block text-sm border rounded border-gray-300 w-full" />

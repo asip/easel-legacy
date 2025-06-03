@@ -3,10 +3,8 @@
   <div data-controller="tagify preview">
     <div class="card bg-base-100 shadow shadow-sm kadomaru-10 ml-2 mr-2">
       <div class="card-body">
-        <div class="d-flex">
-          <div class="float-start">
-            <%= link_to frame_path(@frame) do %><i class="bi bi-arrow-left-circle"></i><% end %>
-          </div>
+        <div class="flex justify-start">
+          <%= link_to frame_path(@frame) do %><i class="bi bi-arrow-left-circle"></i><% end %>
         </div>
         <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: false) %>
         <%= form_with model: @frame, local: true do |form| %>

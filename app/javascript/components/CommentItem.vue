@@ -27,22 +27,20 @@ const onDeleteClick = async () => {
 <template>
   <div class="card bg-base-100 shadow shadow-sm kadomaru-10 ml-2 mr-2 mt-2 mb-2">
     <div class="card-body">
-      <div class="d-flex">
-        <div class="leading-[35px]">
-          <div class="float-start flex items-center">
-            <img :src="comment?.user_image_url" alt="" class="rounded" width="20" height="20">
-            <div class="badge rounded-full">
-              {{ comment?.user_name }}
-            </div>
-            <div class="badge rounded-full">
-              {{ comment?.updated_at }}
-            </div>
+      <div class="flex justify-between leading-[35px]">
+        <div class="flex items-center">
+          <img :src="comment?.user_image_url" alt="" class="rounded" width="20" height="20">
+          <div class="badge rounded-full">
+            {{ comment?.user_name }}
           </div>
-          <div v-show="loggedIn && comment?.user_id === currentUser.id" class="float-end">
-            <button class="btn btn-link btn-sm" @click="onDeleteClick">
-              削除
-            </button>
+          <div class="badge rounded-full">
+            {{ comment?.updated_at }}
           </div>
+        </div>
+        <div v-show="loggedIn && comment?.user_id === currentUser.id" class="flex items-center">
+          <button class="btn btn-link btn-sm" @click="onDeleteClick">
+            削除
+          </button>
         </div>
       </div>
       <div class="flex justify-start">

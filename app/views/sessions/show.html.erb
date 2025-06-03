@@ -2,12 +2,11 @@
   <br>
   <div class="card bg-base-100 shadow shadow-sm kadomaru-10 ml-2 mr-2">
     <div class="card-body">
-      <div class="d-flex">
-        <div class="float-start">
-          <%= link_to root_path(query_params) do %><i class="bi bi-arrow-left-circle"></i><% end %>
-          プロフィール
+      <div class="flex justify-between">
+        <div>
+          <%= link_to root_path(query_params), class: "mr-1" do %><i class="bi bi-arrow-left-circle"></i><% end %>プロフィール
         </div>
-        <div class="float-end">
+        <div>
           <%= link_to edit_profile_path do %><i class="bi bi-pencil-square"></i><% end %>
           <% unless @user.social_login? %>
             <%= link_to account_password_path do %><i class="bi bi-lock"></i><% end %>

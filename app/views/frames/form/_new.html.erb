@@ -3,22 +3,19 @@
   <div data-controller="tagify preview">
     <div class="card bg-base-100 shadow shadow-sm kadomaru-10 ml-2 mr-2">
       <div class="card-body">
-        <div class="d-flex">
-          <div class="float-start mr-2">
-            <%= link_to root_path(query_params) do %><i class="bi bi-arrow-left-circle"></i><% end %>
-            アップロード
-          </div>
+        <div class="flex justify-start">
+          <%= link_to root_path(query_params), class: "mr-1" do %><i class="bi bi-arrow-left-circle"></i><% end %>アップロード
         </div>
-      <%= form_with model: @frame, local: true, "data-controller": "luminous tagify preview" do |form| %>
-        <%= form.hidden_field :file, value: form.object.cached_file_data %>
-        <% if @frame.confirming == 'true' %>
-          <%= render Frames::New::Confirm::Component.new(form:, frame: @frame, tag_paths: tag_paths(@frame)) %>
-        <% else %>
-          <%= render Frames::New::Input::Component.new(form:, frame: @frame, back_to_path: root_path(query_params)) %>
-          <%= form.hidden_field :confirming %>
+        <%= form_with model: @frame, local: true, "data-controller": "luminous tagify preview" do |form| %>
+          <%= form.hidden_field :file, value: form.object.cached_file_data %>
+          <% if @frame.confirming == 'true' %>
+            <%= render Frames::New::Confirm::Component.new(form:, frame: @frame, tag_paths: tag_paths(@frame)) %>
+          <% else %>
+            <%= render Frames::New::Input::Component.new(form:, frame: @frame, back_to_path: root_path(query_params)) %>
+            <%= form.hidden_field :confirming %>
+          <% end %>
+          <%= query_params_hidden_field_tags %>
         <% end %>
-        <%= query_params_hidden_field_tags %>
-      <% end %>
       </div>
     </div>
   </div>
