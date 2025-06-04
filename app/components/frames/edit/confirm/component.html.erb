@@ -1,7 +1,7 @@
 <%= render Frames::Preview::Tags::Component.new(tag_paths: @tag_paths) %>
 <%= @form.hidden_field :tag_list, value: @frame.tag_list.join(",") %>
 <div class="flex justify-center">
-  <div class="grid grid-cols-[70px_1fr] border border-gray-100 rounded bg-base-00 p-3">
+  <div class="grid grid-cols-[70px_1fr] border border-gray-100 rounded bg-base-00 p-3 rounded-[10px]">
     <div class="col-span-2 w-120"></div>
     <label for="name" class="flex items-center">名前：</label>
     <div class="jutify-start">

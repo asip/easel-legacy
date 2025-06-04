@@ -13,7 +13,7 @@
       <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: true) %>
       <%= render Frames::Preview::Tags::Component.new(tag_paths: tag_paths(@frame)) %>
       <div class="flex justify-center">
-        <div class="grid grid-cols-[70px_1fr] border border-gray-100 rounded bg-base-00 p-3">
+        <div class="grid grid-cols-[70px_1fr] border border-gray-100 rounded bg-base-00 p-3 rounded-[10px]">
           <div class="col-span-2 w-120"></div>
           <label for="name" class="flex items-center">名前：</label>
           <div class="justify-start"><%= @frame.name %></div>
@@ -31,15 +31,13 @@
         <% end %>
       </div>
       <% if user_signed_in? && @frame.user_id == current_user.id %>
-      <div class="flex justify-center">
-        <div>
-          <%= link_to "変更", edit_frame_path(@frame, query_params), class: "btn btn-outline btn-primary", "data-turbo": true %>
-          <%# Button trigger modal %>
-          <button type="button" class="btn btn-outline btn-secondary" onclick="delete_modal.showModal()">
-            削除
-          </button>
-          <%= link_to "戻る", root_path(query_params), class: "btn btn-outline btn-warning" %>
-        </div>
+      <div class="flex justify-center gap-2">
+        <%= link_to "変更", edit_frame_path(@frame, query_params), class: "btn btn-outline btn-primary", "data-turbo": true %>
+        <%# Button trigger modal %>
+        <button type="button" class="btn btn-outline btn-secondary" onclick="delete_modal.showModal()">
+          削除
+        </button>
+        <%= link_to "戻る", root_path(query_params), class: "btn btn-outline btn-warning" %>
       </div>
       <% end %>
     </div>
