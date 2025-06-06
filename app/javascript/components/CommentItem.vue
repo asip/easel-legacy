@@ -30,10 +30,10 @@ const onDeleteClick = async () => {
       <div class="flex justify-between leading-[35px]">
         <div class="flex items-center">
           <img :src="comment?.user_image_url" alt="" class="rounded" width="20" height="20">
-          <div class="badge rounded-full">
+          <div class="badge badge-outline badge-accent rounded-full">
             {{ comment?.user_name }}
           </div>
-          <div class="badge rounded-full">
+          <div class="badge badge-outline badge-accent rounded-full">
             {{ comment?.updated_at }}
           </div>
         </div>
