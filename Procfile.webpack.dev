@@ -1,3 +1,3 @@
 web: bundle exec thrust bin/rails server -p 3000
-js: pnpm build:webpack --watch
+js: pnpm build-watch:webpack
 css: pnpm build:font && pnpm build-watch:css
