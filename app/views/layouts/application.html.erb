@@ -13,12 +13,12 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= javascript_include_tag "components", "data-turbo-track": "reload", type: "module" %>
   </head>
-  <body>
+  <body class="min-h-[100vh]">
     <%= render "layouts/header" %>
     <div id="flash_message">
       <%= render "layouts/flash" %>
     </div>
-    <div class="container mx-auto bg-aliceblue-200 min-h-[100vh]">
+    <div class="container mx-auto bg-aliceblue-200">
       <%= yield %>
     </div>
   </body>
