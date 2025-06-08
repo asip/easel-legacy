@@ -28,7 +28,7 @@ const onDeleteClick = async () => {
   <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 mt-2">
     <div class="card-body">
       <div class="flex justify-between leading-[35px]">
-        <div class="flex items-center">
+        <div class="flex items-center gap-1">
           <img :src="comment?.user_image_url" alt="" class="rounded" width="20" height="20">
           <div class="badge badge-outline badge-accent rounded-full">
             {{ comment?.user_name }}
