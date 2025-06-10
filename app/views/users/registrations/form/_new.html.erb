@@ -3,7 +3,7 @@
   <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2" data-controller="preview">
     <div class="card-body divide-y divide-gray-200">
       <div class="flex justify-start pb-1">
-        <%= link_to login_path, class: "mr-1" do %><i class="bi bi-arrow-left-circle"></i><% end %>ユーザー登録
+        <%= link_to login_path, class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>ユーザー登録
       </div>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>

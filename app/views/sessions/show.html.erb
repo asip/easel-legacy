@@ -4,12 +4,12 @@
     <div class="card-body divide-y divide-gray-200">
       <div class="flex justify-between pb-1">
         <div>
-          <%= link_to root_path(query_params), class: "mr-1" do %><i class="bi bi-arrow-left-circle"></i><% end %>プロフィール
+          <%= link_to root_path(query_params), class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>プロフィール
         </div>
         <div>
-          <%= link_to edit_profile_path do %><i class="bi bi-pencil-square"></i><% end %>
+          <%= link_to edit_profile_path do %><i class="bi bi-pencil-square text-accent hover:text-primary"></i><% end %>
           <% unless @user.social_login? %>
-            <%= link_to account_password_path do %><i class="bi bi-lock"></i><% end %>
+            <%= link_to account_password_path do %><i class="bi bi-lock text-accent hover:text-primary"></i><% end %>
           <% end %>
         </div>
       </div>

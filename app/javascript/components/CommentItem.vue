@@ -29,16 +29,18 @@ const onDeleteClick = async () => {
     <div class="card-body">
       <div class="flex justify-between leading-[35px]">
         <div class="flex items-center gap-1">
-          <img :src="comment?.user_image_url" alt="" class="rounded" width="20" height="20">
-          <div class="badge badge-outline badge-accent rounded-full">
+          <a :href="`/users/${comment?.user_id}?ref=frame_detail&ref_id=${comment?.frame_id}`" class="">
+            <img :src="comment?.user_image_url" alt="" class="rounded" width="20" height="20">
+          </a>
+          <a :href="`/users/${comment?.user_id}?ref=frame_detail&ref_id=${comment?.frame_id}`" class="badge badge-outline badge-accent hover:badge-primary rounded-full">
             {{ comment?.user_name }}
-          </div>
+          </a>
           <div class="badge badge-outline badge-accent rounded-full">
             {{ comment?.updated_at }}
           </div>
         </div>
         <div v-show="loggedIn && comment?.user_id === currentUser.id" class="flex items-center">
-          <button class="btn btn-link btn-sm" @click="onDeleteClick">
+          <button class="link link-hover" @click="onDeleteClick">
             削除
           </button>
         </div>

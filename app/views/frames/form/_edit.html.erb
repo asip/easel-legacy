@@ -4,7 +4,7 @@
     <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2">
       <div class="card-body">
         <div class="flex justify-start">
-          <%= link_to frame_path(@frame) do %><i class="bi bi-arrow-left-circle"></i><% end %>
+          <%= link_to frame_path(@frame) do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
         </div>
         <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: false) %>
         <%= form_with model: @frame, local: true do |form| %>
