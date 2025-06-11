@@ -19,11 +19,13 @@ const { flash, getComments, deleteComment } = inject('commenter') as UseCommentT
 const querys = ref('')
 
 onMounted(() => {
-  // eslint-disable-next-line no-undef
-  querys.value = new URLSearchParams({
+  const params: Record<string, string> = {
     ref: 'frame_detail',
-    ref_id: comment?.value?.frame_id
-  }).toString()
+    ref_id: comment?.value?.frame_id?.toString() ?? ''
+  }
+
+  // eslint-disable-next-line no-undef
+  querys.value = new URLSearchParams(params).toString()
 })
 
 
