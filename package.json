@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "node ./config/esbuild/esbuild.build.js",
-    "build-watch": "node ./config/esbuild/esbuild.rebuild.js --watch",
+    "build-watch": "node ./config/esbuild/esbuild.watch.js",
     "build:rspack": "rspack --config ./config/rspack/rspack.config.js",
     "build-watch:rspack": "rspack --watch --config ./config/rspack/rspack.config.js",
     "build:webpack": "webpack --config ./config/webpack/webpack.config.js",
