@@ -28,7 +28,7 @@ gem "turbo-rails", "~> 2.0.16"
 gem "stimulus-rails", "~> 1.3.4"
 
 # Turbo Mount
-gem "turbo-mount", "~> 0.4.2"
+gem "turbo-mount", "~> 0.4.3"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -49,7 +49,7 @@ gem "jsbundling-rails", "~> 1.3.1"
 gem "view_component", "~> 3.23.2"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.189.0"
+gem "aws-sdk-s3", "~> 1.189.1"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
