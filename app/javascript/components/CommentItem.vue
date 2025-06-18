@@ -1,5 +1,5 @@
 <script lang="ts" setup >
-import DOMPurify from 'dompurify'
+import sanitizeHtml from 'sanitize-html'
 import { computed, inject, onMounted, ref } from 'vue'
 import { useToast } from '../composables/use-toast'
 import type { Comment } from '../interfaces/comment'
@@ -30,7 +30,7 @@ onMounted(() => {
 
 
 const sanitizedCommentBody = computed(() => {
-  return DOMPurify.sanitize(comment.value?.body ?? '').replace(/\n/g, '<br>')
+  return sanitizeHtml(comment.value?.body ?? '').replace(/\n/g, '<br>')
 })
 
 const onDeleteClick = async () => {
