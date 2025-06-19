@@ -19,7 +19,7 @@ gem "pg", "~> 1.5.9"
 gem "puma", "~> 6.6.0"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", "~> 0.1.13", require: false
+gem "thruster", "~> 0.1.14", require: false
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.16"
@@ -49,7 +49,7 @@ gem "jsbundling-rails", "~> 1.3.1"
 gem "view_component", "~> 3.23.2"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.189.1"
+gem "aws-sdk-s3", "~> 1.190.0"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
