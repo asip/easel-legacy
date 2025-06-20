@@ -96,9 +96,9 @@ gem "mutex_m", "~> 0.3.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "debug", "~> 1.10.0", platforms: %i[mri windows], require: "debug/prelude"
+  gem "debug", "~> 1.11.0", platforms: %i[mri windows], require: "debug/prelude"
   # Ruby style guide, linter, and formatter
-  gem "rspec-rails", "~> 8.0.0"
+  gem "rspec-rails", "~> 8.0.1"
 end
 
 group :development do
