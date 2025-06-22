@@ -9,6 +9,7 @@ esbuild.build({
     'app/javascript/turbo.js'
   ],
   bundle: true,
+  format: 'esm',
   sourcemap: true,
   outdir: 'app/assets/builds',
   plugins: [vuePlugin()]
