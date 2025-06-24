@@ -6,7 +6,7 @@
         <div class="flex justify-start pb-1">
           <%= link_to root_path(query_params), class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>アップロード
         </div>
-        <%= form_with model: @frame, local: true, "data-controller": "luminous tagify preview" do |form| %>
+        <%= form_with model: @frame, local: true, "data-controller": "tagify preview" do |form| %>
           <%= form.hidden_field :file, value: form.object.cached_file_data %>
           <% if @frame.confirming == 'true' %>
             <%= render Frames::New::Confirm::Component.new(form:, frame: @frame, tag_paths: tag_paths(@frame)) %>
