@@ -4,6 +4,7 @@ import vuePlugin from 'esbuild-plugin-vue3'
 async function watch(){
   let ctx = await esbuild.context({
     entryPoints: [
+      'app/javascript/admin.js',
       'app/javascript/application.js',
       'app/javascript/components.js',
       'app/javascript/rails_admin.js',

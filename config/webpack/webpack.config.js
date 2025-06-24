@@ -18,6 +18,7 @@ export default {
     extensions: ['.ts', '.js', '.vue']
   },
   entry: {
+    admin: './app/javascript/admin.js',
     application: './app/javascript/application.js',
     components: './app/javascript/components.js',
     rails_admin: './app/javascript/rails_admin.js',

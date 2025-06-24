@@ -3,6 +3,7 @@ import vuePlugin from 'esbuild-plugin-vue3'
 
 esbuild.build({
   entryPoints: [
+    'app/javascript/admin.js',
     'app/javascript/application.js',
     'app/javascript/components.js',
     'app/javascript/rails_admin.js',
