@@ -10,7 +10,8 @@ esbuild.build({
   ],
   bundle: true,
   format: 'esm',
-  sourcemap: true,
+  minify: true,
+  sourcemap: false,
   outdir: 'app/assets/builds',
   plugins: [vuePlugin()]
 })
