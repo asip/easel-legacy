@@ -11,7 +11,9 @@
     <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
     <%= javascript_include_tag "turbo", "data-turbo-track": "reload", type: "module" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <% if controller_name == 'frames' && action_name == 'show' %>
     <%= javascript_include_tag "components", "data-turbo-track": "reload", type: "module" %>
+    <% end %>
   </head>
   <body class="min-h-[100vh]">
     <%= render "layouts/header" %>
