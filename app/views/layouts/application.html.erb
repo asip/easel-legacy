@@ -5,15 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
+    <%= vite_client_tag %>
     <%= favicon_link_tag "/palette.png", { type: "image/png" } %>
     <%= favicon_link_tag "/palette.svg", { type: "image/svg+xml" } %>
     <%= stylesheet_link_tag "tailwind", media: "all", 'data-turbo-track': "reload" %>
     <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
-    <%= javascript_include_tag "turbo", "data-turbo-track": "reload", type: "module" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= vite_javascript_tag "turbo", "data-turbo-track": "reload", type: "module" %>
+    <%= vite_javascript_tag "application", "data-turbo-track": "reload", type: "module" %>
     <% if controller_name == 'frames' && action_name == 'show' %>
-    <%= javascript_include_tag "components", "data-turbo-track": "reload", type: "module" %>
+    <%= vite_javascript_tag "components", "data-turbo-track": "reload", type: "module" %>
     <% end %>
+    <!--
+      If using a TypeScript entrypoint file:
+        vite_typescript_tag 'application'
+
+      If using a .jsx or .tsx entrypoint, add the extension:
+        vite_javascript_tag 'application.jsx'
+
+      Visit the guide for more information: https://vite-ruby.netlify.app/guide/rails
+    -->
+
   </head>
   <body class="min-h-[100vh]">
     <%= render "layouts/header" %>

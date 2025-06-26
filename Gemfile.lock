@@ -165,6 +165,7 @@ GEM
       addressable (~> 2.8)
     drb (2.1.1)
       ruby2_keywords
+    dry-cli (1.2.0)
     erb_lint (0.9.0)
       activesupport
       better_html (>= 2.0.1)
@@ -321,6 +322,8 @@ GEM
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
       rack (>= 3.0.0, < 4)
+    rack-proxy (0.7.7)
+      rack
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -484,6 +487,15 @@ GEM
       activesupport (>= 5.2.0, < 8.1)
       concurrent-ruby (~> 1)
       method_source (~> 1.0)
+    vite_rails (3.0.19)
+      railties (>= 5.1, < 9)
+      vite_ruby (~> 3.0, >= 3.2.2)
+    vite_ruby (3.9.2)
+      dry-cli (>= 0.7, < 2)
+      logger (~> 1.6)
+      mutex_m
+      rack-proxy (~> 0.6, >= 0.6.1)
+      zeitwerk (~> 2.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -550,6 +562,7 @@ DEPENDENCIES
   turbo-rails (~> 2.0.16)
   tzinfo-data
   view_component (~> 3.23.2)
+  vite_rails (= 3.0.19)
   web-console (~> 4.2.1)
 
 BUNDLED WITH

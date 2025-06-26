@@ -1,4 +1,0 @@
-web: bundle exec thrust bin/rails server -p 3000
-js: pnpm build:rspack --watch
-tailwind: pnpm build:tailwind --watch
-scss: pnpm build:scss --watch
