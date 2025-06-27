@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "build:scss": "sass ./app/assets/stylesheets/:./app/assets/builds --no-source-map --load-path=node_modules",
-    "build:tailwind": "pnpx @tailwindcss/cli -i ./app/assets/stylesheets/tailwind/application.css -o ./app/assets/builds/tailwind.css --minify",
-    "build:css": "pnpm build:tailwind && pnpm build:scss",
+    "build:css": "pnpm build:scss",
     "build:font-bootstrap": "copyfiles -f node_modules/bootstrap-icons/font/fonts/* public/assets/fonts",
     "build:font": "pnpm build:font-bootstrap",
     "watch:ts": "tsc-watch --noClear -p tsconfig.json",
@@ -16,6 +15,7 @@
     "@markuplint/vue-parser": "^4.6.19",
     "@markuplint/vue-spec": "^4.5.19",
     "@tailwindcss/cli": "4.1.11",
+    "@tailwindcss/vite": "4.1.11",
     "@types/bootstrap": "^5.2.10",
     "@types/photoswipe": "4.1.6",
     "@types/sanitize-html": "^2.16.0",

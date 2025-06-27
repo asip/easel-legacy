@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import RubyPlugin from 'vite-plugin-ruby'
 import vue from '@vitejs/plugin-vue'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [
     RubyPlugin(),
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    vue()
-  ],
+    vue(),
+    tailwindcss()
+  ]
 })
