@@ -14,7 +14,6 @@
   "devDependencies": {
     "@markuplint/vue-parser": "^4.6.19",
     "@markuplint/vue-spec": "^4.5.19",
-    "@tailwindcss/cli": "4.1.11",
     "@tailwindcss/vite": "4.1.11",
     "@types/bootstrap": "^5.2.10",
     "@types/photoswipe": "4.1.6",
