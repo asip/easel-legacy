@@ -16,7 +16,8 @@ Axios.defaults.baseURL = props.apiBaseUrl
 
 Axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN': props.csrfToken
+  'X-CSRF-TOKEN': props.csrfToken,
+  'Accept': 'application/json'
 }
 
 viewData.frameId = props.frameId
