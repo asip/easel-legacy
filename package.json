@@ -13,7 +13,6 @@
     "@markuplint/vue-parser": "^4.6.19",
     "@markuplint/vue-spec": "^4.5.19",
     "@tailwindcss/vite": "4.1.11",
-    "@types/bootstrap": "^5.2.10",
     "@types/photoswipe": "4.1.6",
     "@types/sanitize-html": "^2.16.0",
     "@types/toastify-js": "^1.12.4",
