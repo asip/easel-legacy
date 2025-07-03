@@ -66,7 +66,7 @@ class Frame < ApplicationRecord
   end
 
   def file_proxy_url(key)
-    puts key
+    # puts key
     case key.to_s
     when "two"
       url = file.imgproxy_url(width: 200, height: 200, resizing_type: :fit)
@@ -75,7 +75,7 @@ class Frame < ApplicationRecord
     else
       url = nil
     end
-    puts "URL:#{url}"
+    # puts "URL:#{url}"
     url
   end
 
