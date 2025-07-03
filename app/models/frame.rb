@@ -35,7 +35,7 @@ class Frame < ApplicationRecord
   validates :file, presence: true
   validate :check_tag
 
-  after_validation :assign_derivatives
+  # after_validation :assign_derivatives
 
   scope :search_by, lambda { |word:|
     scope = current_scope || relation
@@ -65,16 +65,30 @@ class Frame < ApplicationRecord
     joined_tags&.split(/\s*,\s*/)
   end
 
+  def file_proxy_url(key)
+    puts key
+    case key.to_s
+    when "two"
+      url = file.imgproxy_url(width: 200, height: 200, resizing_type: :fit)
+    when  "three"
+      url = file.imgproxy_url(width: 300, height: 300, resizing_type: :fit)
+    else
+      url = nil
+    end
+    puts "URL:#{url}"
+    url
+  end
+
   def full_error_messages
     full_error_messages_for(%i[file name tag_list])
   end
 
-  def assign_derivatives
-    return if file.blank?
-    return unless errors[:file].empty?
-
-    file_derivatives!
-  end
+  # def assign_derivatives
+  #   return if file.blank?
+  #   return unless errors[:file].empty?
+  #
+  #   file_derivatives!
+  # end
 
   private
 

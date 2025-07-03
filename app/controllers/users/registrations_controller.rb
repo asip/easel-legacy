@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     return unless params[:commit] == "戻る"
 
     resource.confirming = ""
-    resource.image_derivatives! if resource.image.present?
+    # resource.image_derivatives! if resource.image.present?
     case action_name
     when "create"
       render :create, layout: false, content_type: "text/vnd.turbo-stream.html"

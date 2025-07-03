@@ -1,12 +1,12 @@
 <% if @model.class == Frame && @model.file.present? %>
 <div data-preview-target="content" class="col-span-2" style="display: block;">
-  <%= image_tag(@model.file_url(:three), class: "mx-auto",
+  <%= image_tag(@model.file_proxy_url(:three), class: "mx-auto",
                                          style: "max-width: 300px; max-height: 300px; display: block;",
                                          "data-preview-target": "image") %>
 </div>
 <% elsif @model.class == User && @model.image.present? %>
 <div data-preview-target="content" class="col-span-2" style="display: block;">
-  <%= image_tag(@model.image_url(:three), class: "mx-auto",
+  <%= image_tag(@model.image_proxy_url(:three), class: "mx-auto",
                                           style: "max-width: 300px; max-height: 300px; display: block;",
                                           "data-preview-target": "image") %>
 </div>

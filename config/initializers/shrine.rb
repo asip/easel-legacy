@@ -18,7 +18,7 @@ Shrine.storages = {
 }
 
 Shrine.plugin :activerecord # loads Active Record integration
-Shrine.plugin :derivatives
+# Shrine.plugin :derivatives
 Shrine.plugin :determine_mime_type
 Shrine.plugin :validation
 Shrine.plugin :validation_helpers

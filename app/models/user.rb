@@ -61,7 +61,7 @@ class User < ApplicationRecord
   # validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP },
   #                  uniqueness: true
 
-  after_validation :assign_derivatives
+  # after_validation :assign_derivatives
 
   default_scope -> { kept }
 
@@ -107,11 +107,21 @@ class User < ApplicationRecord
     token
   end
 
+  def image_proxy_url(key)
+    if key == :thumb
+      image.imgproxy_url(width: 50, height: 50, resizing_type: :fill)
+    elsif key == :one
+      image.imgproxy_url(width: 100, height: 100, resizing_type: :fill)
+    elsif key == :three
+      image.imgproxy_url(width: 300, height: 300, resizing_type: :fill)
+    end
+  end
+
   def image_url_for_view(key)
     if image.blank?
       "/no-profile-image.png"
     else
-      image_url(key)
+      image_proxy_url(key)
     end
   end
 
@@ -137,12 +147,12 @@ class User < ApplicationRecord
     @token = nil
   end
 
-  def assign_derivatives
-    return if image.blank?
-    return unless errors[:image].empty?
-
-    image_derivatives!
-  end
+  # def assign_derivatives
+  #   return if image.blank?
+  #   return unless errors[:image].empty?
+  #
+  #   image_derivatives!
+  # end
 
   # (フォローしたときの処理)
   def follow(user_id)

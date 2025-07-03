@@ -89,7 +89,7 @@ class FramesController < ApplicationController
     return unless permitted_params[:commit] == "戻る"
 
     @frame.confirming = ""
-    @frame.file_derivatives! if @frame.file.present?
+    # @frame.file_derivatives! if @frame.file.present?
     case action_name
     when "create"
       render :create, layout: false, content_type: "text/vnd.turbo-stream.html"
