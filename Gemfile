@@ -8,8 +8,6 @@ gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.1.0"
 
-# gem 'dartsass-rails'
-
 # Use mysql as the database for Active Record
 # gem 'mysql2', '~> 0.5.6'
 # Use postgresql as the database for Active Record
