@@ -100,8 +100,7 @@ gem "mutex_m", "~> 0.3.0"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "debug", "~> 1.11.0", platforms: %i[mri windows], require: "debug/prelude"
-  # Ruby style guide, linter, and formatter
-  gem "rspec-rails", "~> 8.0.1"
+  # gem "rspec-rails", "~> 8.0.1"
 end
 
 group :development do
@@ -118,7 +117,7 @@ group :development do
 
   gem "annotaterb", "~> 4.16.0"
   gem "rails-erd", "~> 1.7.2"
-
+  # Ruby style guide, linter, and formatter
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
   # Shopify/erb-lint
   gem "erb_lint", "~> 0.9.0", require: false
@@ -126,6 +125,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara", "~> 3.40.0"
-  gem "selenium-webdriver", "~> 4.34.0"
+  # gem "capybara", "~> 3.40.0"
+  # gem "selenium-webdriver", "~> 4.34.0"
 end
