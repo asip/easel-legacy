@@ -69,14 +69,12 @@ class Frame < ApplicationRecord
     # puts key
     case key.to_s
     when "two"
-      url = file.imgproxy_url(width: 200, height: 200, resizing_type: :fit)
+      file.imgproxy_url(width: 200, height: 200, resizing_type: :fit)
     when  "three"
-      url = file.imgproxy_url(width: 300, height: 300, resizing_type: :fit)
+      file.imgproxy_url(width: 300, height: 300, resizing_type: :fit)
     else
-      url = nil
+      nil
     end
-    # puts "URL:#{url}"
-    url
   end
 
   def full_error_messages
