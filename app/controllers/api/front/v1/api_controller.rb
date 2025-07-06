@@ -10,7 +10,7 @@ module Api
       class ApiController < ActionController::API
         include Locale::AutoDetect
         include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
-        include Api::ExceptionHandler
+        include Api::ErrorRenderable
 
         # protect_from_forgery with: :null_session
 
@@ -43,7 +43,7 @@ module Api
         end
 
         def render_unauthorized
-          raise(Api::ExceptionHandler::UnauthorizedError) if @current_user.nil?
+          raise(Api::ErrorRenderable::UnauthorizedError) if @current_user.nil?
         end
 
         attr_reader :current_user
