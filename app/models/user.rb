@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
   self.discard_column = :deleted_at
 
-  attr_accessor :token
+  attr_reader :token
 
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
