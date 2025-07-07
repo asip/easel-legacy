@@ -5,7 +5,6 @@ class FramesController < ApplicationController
   include Queries::Frames::Pagination
   include Query::Search
   include More
-  include DateAndTime::Util
 
   skip_before_action :authenticate_user!, only: %i[index show]
 
@@ -68,7 +67,7 @@ class FramesController < ApplicationController
   end
 
   def set_day
-    @day = if @word.blank? || !FramesController.date_valid?(@word)
+    @day = if @word.blank? || DateAndTime::Util.valid_date?(@word)
              "" # Time.zone.now.strftime("%Y/%m/%d")
     else
              @word
