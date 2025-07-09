@@ -15,7 +15,7 @@ module Admins
 
     protected
 
-    def after_sign_out_path_for(resource_or_scope)
+    def after_sign_out_path_for(_resource_or_scope)
       rails_admin_path
     end
   end
