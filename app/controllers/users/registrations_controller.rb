@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# users / Registrations Controller
 class Users::RegistrationsController < Devise::RegistrationsController
   include Query::Search
 

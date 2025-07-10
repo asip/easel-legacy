@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# admins / Application Controller
 module Admins
   # Application Controller
   class ApplicationController < ActionController::Base

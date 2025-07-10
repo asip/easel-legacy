@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# admins / Sessions Controller
 class Admins::SessionsController < Devise::SessionsController
   include Flashes
 

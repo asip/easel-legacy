@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# users / Sessions Controller
 class Users::SessionsController < Devise::SessionsController
   include Flashes
   include Query::Search
