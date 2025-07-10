@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_user, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
-  @@form_params = [ :name, :email, :password, :password_confirmation, :image, :confirming ]
+  FORM_PARAMS = [ :name, :email, :password, :password_confirmation, :image, :confirming ]
 
   def set_user
     case action_name
@@ -27,10 +27,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.confirming = ""
     # resource.image_derivatives! if resource.image.present?
     case action_name
-    when "create"
-      render :create, layout: false, content_type: "text/vnd.turbo-stream.html"
-    when "update"
-      render :update, layout: false, content_type: "text/vnd.turbo-stream.html"
+    when "create", "update"
+      render layout: false, content_type: "text/vnd.turbo-stream.html"
     end
   end
 
@@ -77,13 +75,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if @resource_updated
         set_flash_message_for_update(resource, prev_unconfirmed_email)
         bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
+        # else
+        #   # clean_up_passwords resource
+        #   # set_minimum_password_length
       end
-      respond_with resource
-    else
-      clean_up_passwords resource
-      set_minimum_password_length
-      respond_with resource
     end
+    respond_with resource
   end
 
   # DELETE /resource
@@ -112,22 +109,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.persisted?
         redirect_to root_path
       else
-        flashes[:alert] = resource.full_error_messages unless resource.errors.empty?
-        # puts resource.errors.to_hash(true)
-        render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
+        render_with_flash(resource)
       end
     when "update"
       if @resource_updated
         redirect_to profile_path
       else
-        flashes[:alert] = resource.full_error_messages unless resource.errors.empty?
-        # puts resource.errors.to_hash(true)
-        render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
+        render_with_flash(resource)
       end
     end
   end
 
   protected
+
+  def render_with_flash(resource)
+    flashes[:alert] = resource.full_error_messages unless resource.errors.empty?
+    # puts resource.errors.to_hash(true)
+    render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
+  end
 
   def update_resource(resource, params)
     resource.update_without_password(params)
@@ -135,12 +134,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: @@form_params)
+    devise_parameter_sanitizer.permit(:sign_up, keys: FORM_PARAMS)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: @@form_params)
+    devise_parameter_sanitizer.permit(:account_update, keys: FORM_PARAMS)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
