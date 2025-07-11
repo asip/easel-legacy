@@ -1,12 +1,10 @@
-# frozen_string_literal: true
+ # frozen_string_literal: true
 
-# api
+ api
 module Api
-  # Pagination module
-  module Pagination
-    extend ActiveSupport::Concern
-
-    def resources_with_pagination(pagy)
+  # Pagination Class
+  class Pagination
+    def self.resources_with_pagination(pagy)
       {
         meta: {
           pagination: {
