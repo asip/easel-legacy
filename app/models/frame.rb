@@ -68,7 +68,7 @@ class Frame < ApplicationRecord
     # puts key
     case key.to_s
     when "original"
-      file.url
+      file.imgproxy_url
     when "two"
       file.imgproxy_url(width: 200, height: 200, resizing_type: :fit)
     when  "three"
