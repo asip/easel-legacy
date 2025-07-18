@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import CommentListAndForm from './CommentListAndForm.vue'
 import { provide } from 'vue'
 import Axios from 'axios'
-import AsyncComments from './AsyncComments.vue'
 import { useViewData } from '../composables/use-view-data'
 
 const props = defineProps<{
@@ -27,6 +27,9 @@ provide('viewData', viewData)
 
 <template>
   <Suspense>
-    <AsyncComments />
+    <CommentListAndForm />
+    <template #fallback>
+      <div>Loading...</div>
+    </template>
   </Suspense>
 </template>
