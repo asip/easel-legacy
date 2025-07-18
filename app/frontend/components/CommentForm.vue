@@ -7,6 +7,7 @@ import type { UseCommentType } from '../composables/use-comment'
 const { setFlash } = useToast()
 
 const { loggedIn } = inject('accounter') as UseAccountType
+
 const { comment, flash, errorMessages, getComments, setComment } = inject('commenter') as UseCommentType
 
 const onPostClick = async () => {
@@ -17,7 +18,7 @@ const onPostClick = async () => {
 </script>
 
 <template>
-  <div v-show="loggedIn" class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 mt-2">
+  <div v-if="loggedIn" class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 mt-2">
     <div class="card-body">
       <div class="flex justify-start">
         <h2 class="card-title">コメント</h2>

@@ -19,7 +19,7 @@ const viewData = inject('viewData') as UseViewDataType
 await getAccount()
 setFlash(flash.value)
 loggedIn.value = currentUser.value.token != null
-// console.log(currentUser.token);
+// console.log(currentUser.value.token)
 // console.log(loggedIn.value);
 comment.value.frame_id = parseInt(viewData.frameId, 10) || null
 
@@ -31,7 +31,6 @@ provide('commenter', commenter)
 <template>
   <div>
     <CommentForm />
-    <!-- eslint-disable-next-line vue/no-template-shadow -->
     <CommentList />
   </div>
 </template>

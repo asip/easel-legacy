@@ -55,7 +55,7 @@ const onDeleteClick = async () => {
             {{ comment?.updated_at }}
           </div>
         </div>
-        <div v-show="loggedIn && comment?.user_id === currentUser.id" class="flex items-center">
+        <div v-if="loggedIn && comment?.user_id === currentUser.id" class="flex items-center">
           <button class="link link-hover" @click="onDeleteClick">
             削除
           </button>
