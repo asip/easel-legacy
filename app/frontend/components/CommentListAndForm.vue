@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import CommentForm from './CommentForm.vue'
 import CommentList from './CommentList.vue'
+
 import { inject, provide } from 'vue'
 
 import type { UseViewDataType } from '../composables/use-view-data'

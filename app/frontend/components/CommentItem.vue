@@ -1,6 +1,7 @@
 <script lang="ts" setup >
 import sanitizeHtml from 'sanitize-html'
 import { computed, inject, onMounted, ref } from 'vue'
+
 import { useToast } from '../composables/use-toast'
 import type { Comment } from '../interfaces/comment'
 import type { UseCommentType } from '../composables/use-comment'
@@ -9,12 +10,12 @@ import type { UseAccountType } from '../composables/use-account'
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'
 
-const comment = defineModel<Comment>()
-
 const { setFlash } = useToast()
 
 const { loggedIn, currentUser } = inject('accounter') as UseAccountType
 const { flash, getComments, deleteComment } = inject('commenter') as UseCommentType
+
+const comment = defineModel<Comment>()
 
 const querys = ref('')
 
