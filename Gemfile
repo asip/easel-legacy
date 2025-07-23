@@ -122,6 +122,7 @@ group :development do
   gem "erb_lint", "~> 0.9.0", require: false
 
   gem "reek", "~> 6.5.0", require: false
+  gem "traceroute", "~> 0.8.1"
 end
 
 group :test do
