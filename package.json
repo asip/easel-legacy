@@ -43,7 +43,7 @@
     "@hotwired/turbo-rails": "^8.0.16",
     "@vueuse/integrations": "^13.5.0",
     "@yaireo/tagify": "^4.35.3",
-    "axios": "^1.10.0",
+    "axios": "^1.11.0",
     "bootstrap-icons": "^1.13.1",
     "glightbox": "^3.3.1",
     "photoswipe": "5.4.4",
