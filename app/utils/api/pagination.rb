@@ -1,6 +1,6 @@
- # frozen_string_literal: true
+# frozen_string_literal: true
 
- api
+# api
 module Api
   # Pagination Class
   class Pagination
