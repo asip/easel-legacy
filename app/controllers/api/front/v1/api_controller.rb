@@ -14,9 +14,11 @@ module Api
 
         before_action :authenticate
 
-        attr_reader :current_user
-
         protected
+
+        def current_user
+          @current_user
+        end
 
         # Authorizationヘッダーに基づいてユーザーを認証します。
         def authenticate

@@ -11,6 +11,8 @@ module Query
       helper_method :query_params
     end
 
+    protected
+
     def query_list
       %i[page q]
     end

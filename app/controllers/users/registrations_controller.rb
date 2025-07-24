@@ -12,25 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   FORM_PARAMS = [ :name, :email, :password, :password_confirmation, :image, :confirming ]
 
-  def set_user
-    case action_name
-    when "create"
-      build_resource(sign_up_params)
-    when "update"
-      self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-    end
-  end
 
-  def back_to_form
-    return unless params[:commit] == "戻る"
-
-    resource.confirming = ""
-    # resource.image_derivatives! if resource.image.present?
-    case action_name
-    when "create", "update"
-      render layout: false, content_type: "text/vnd.turbo-stream.html"
-    end
-  end
 
   # GET /resource/sign_up
   # def new
@@ -97,8 +79,30 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  private
+
   def query_params
     {}
+  end
+
+  def set_user
+    case action_name
+    when "create"
+      build_resource(sign_up_params)
+    when "update"
+      self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    end
+  end
+
+  def back_to_form
+    return unless params[:commit] == "戻る"
+
+    resource.confirming = ""
+    # resource.image_derivatives! if resource.image.present?
+    case action_name
+    when "create", "update"
+      render layout: false, content_type: "text/vnd.turbo-stream.html"
+    end
   end
 
   protected
@@ -119,8 +123,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
   end
-
-  protected
 
   def render_with_flash(resource)
     flashes[:alert] = resource.full_error_messages unless resource.errors.empty?

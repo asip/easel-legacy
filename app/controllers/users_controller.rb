@@ -21,6 +21,8 @@ class UsersController < ApplicationController
     @users = Queries::Users::ListFollowers.run(user_id: path_params[:user_id])
   end
 
+  private
+
   def path_params
     params.permit(:user_id)
   end

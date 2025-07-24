@@ -12,6 +12,8 @@ module Ref
       helper_method :back_to_path
     end
 
+    protected
+
     def ref_list
       %i[ref ref_id]
     end

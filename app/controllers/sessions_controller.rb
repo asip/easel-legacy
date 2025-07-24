@@ -10,6 +10,8 @@ class SessionsController < ApplicationController
     @user = current_user
   end
 
+  private
+
   def query_params
     {}
   end
