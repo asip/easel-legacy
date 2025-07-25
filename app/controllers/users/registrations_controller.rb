@@ -110,14 +110,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def respond_with(resource, _opts = {})
     case action_name
     when "create"
-      if resource.persisted?
-        redirect_to root_path
-      else
-        render_with_flash(resource)
-      end
+      saved = resource.persisted?
+      redirect_path = root_path
+      create_or_update = true
     when "update"
-      if @resource_updated
-        redirect_to profile_path
+      saved = @resource_updated
+      redirect_path = profile_path
+      create_or_update = true
+    else
+      create_or_update = false
+    end
+
+    if create_or_update
+      if saved
+        redirect_to redirect_path
       else
         render_with_flash(resource)
       end
