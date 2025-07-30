@@ -9,7 +9,6 @@ module Frames
       # Component
       class Component < ViewComponent::Base
         def initialize(frame:, original:, photoswipe:)
-          super
           @frame = frame
           @original = original
           @photoswipe = photoswipe

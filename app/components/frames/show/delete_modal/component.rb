@@ -9,7 +9,6 @@ module Frames
       # Component
       class Component < ViewComponent::Base
         def initialize(path:)
-          super
           @path = path
         end
       end

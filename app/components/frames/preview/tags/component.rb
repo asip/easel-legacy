@@ -9,7 +9,6 @@ module Frames
       # Component
       class Component < ViewComponent::Base
         def initialize(tag_paths:, list: false, link: true)
-          super
           @tag_paths = tag_paths
           @list = list
           @link = link

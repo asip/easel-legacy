@@ -9,7 +9,6 @@ module Users
       # Component
       class Component < ViewComponent::Base
         def initialize(user:, form:, back_to_path:)
-          super
           @user = user
           @form = form
           @back_to_path = back_to_path

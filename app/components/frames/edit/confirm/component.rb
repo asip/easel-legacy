@@ -9,7 +9,6 @@ module Frames
       # Component
       class Component < ViewComponent::Base
         def initialize(frame:, form:, tag_paths:)
-          super
           @frame = frame
           @form = form
           @tag_paths = tag_paths

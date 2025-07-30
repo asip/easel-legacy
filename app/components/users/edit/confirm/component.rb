@@ -9,7 +9,6 @@ module Users
       # Component
       class Component < ViewComponent::Base
         def initialize(user:, form:)
-          super
           @user = user
           @form = form
         end

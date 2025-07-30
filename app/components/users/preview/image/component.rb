@@ -9,7 +9,6 @@ module Users
       # Component
       class Component < ViewComponent::Base
         def initialize(user:, original:)
-          super
           @user = user
           @original = original
         end
