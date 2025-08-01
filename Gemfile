@@ -14,7 +14,7 @@ gem "propshaft", "~> 1.2.1"
 gem "pg", "~> 1.6.0"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 6.6.0"
+gem "puma", "~> 6.6.1"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", "~> 0.1.14", require: false
@@ -47,7 +47,7 @@ gem "vite_rails", "3.0.19"
 gem "view_component", "~> 4.0.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.194.0"
+gem "aws-sdk-s3", "~> 1.195.0"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
