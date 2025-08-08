@@ -28,4 +28,4 @@
 // Example: Import a stylesheet in app/frontend/index.css
 // import '~/index.css'
 
-import '../controllers/application.ts'
+import '../controllers/index.ts'
