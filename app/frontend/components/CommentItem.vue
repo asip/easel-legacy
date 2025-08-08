@@ -2,10 +2,9 @@
 import sanitizeHtml from 'sanitize-html'
 import { computed, inject, onMounted, ref } from 'vue'
 
-import { useToast } from '../composables/use-toast'
-import type { Comment } from '../interfaces/comment'
-import type { UseCommentType } from '../composables/use-comment'
-import type { UseAccountType } from '../composables/use-account'
+import { useToast } from '../composables'
+import type { Comment } from '../interfaces'
+import type { UseAccountType, UseCommentType } from '../composables'
 
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'

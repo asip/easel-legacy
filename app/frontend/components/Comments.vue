@@ -4,7 +4,7 @@ import CommentListAndForm from './CommentListAndForm.vue'
 import { provide } from 'vue'
 import Axios from 'axios'
 
-import { useViewData } from '../composables/use-view-data'
+import { useViewData } from '../composables'
 
 const props = defineProps<{
   apiBaseUrl: string

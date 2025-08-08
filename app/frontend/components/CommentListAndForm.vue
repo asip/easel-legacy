@@ -4,10 +4,8 @@ import CommentList from './CommentList.vue'
 
 import { inject, provide } from 'vue'
 
-import type { UseViewDataType } from '../composables/use-view-data'
-import { useToast } from '../composables/use-toast'
-import { useAccount } from '../composables/use-account'
-import { useComment } from '../composables/use-comment'
+import { useAccount, useComment, useToast } from '../composables'
+import type { UseViewDataType } from '../composables'
 
 const { setFlash } = useToast()
 const accounter = useAccount()

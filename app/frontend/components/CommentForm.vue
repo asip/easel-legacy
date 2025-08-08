@@ -1,9 +1,8 @@
 <script lang="ts" setup >
 import { inject } from 'vue'
 
-import { useToast } from '../composables/use-toast'
-import type { UseAccountType } from '../composables/use-account'
-import type { UseCommentType } from '../composables/use-comment'
+import { useToast } from '../composables'
+import type { UseAccountType, UseCommentType } from '../composables'
 
 const { setFlash } = useToast()
 
