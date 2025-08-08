@@ -1,5 +1,6 @@
 import Toastify from 'toastify-js'
-import type { Flash } from '../types/flash'
+
+import type { Flash } from '../types'
 
 export function useToast() {
   const setFlash = (flash: Flash) => {

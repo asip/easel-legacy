@@ -2,8 +2,8 @@ import Axios, { AxiosError } from 'axios'
 import { Ref, ref} from 'vue'
 import { useCookies } from '@vueuse/integrations/useCookies.mjs'
 
-import type { User } from '../interfaces/user'
-import { useFlash } from './use-flash'
+import type { User } from '../interfaces'
+import { useFlash } from './'
 
 interface AccountResource {
   id: number

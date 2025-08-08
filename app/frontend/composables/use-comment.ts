@@ -1,9 +1,8 @@
 import Axios, { AxiosError } from 'axios'
 import { ref } from 'vue'
 
-import type { User } from '../interfaces/user'
-import type { Comment } from '../interfaces/comment'
-import { useFlash } from './use-flash'
+import type { Comment, User } from '../interfaces'
+import { useFlash } from './'
 
 interface CommentsResource {
   comments: [CommentResource]
