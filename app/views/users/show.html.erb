@@ -19,4 +19,14 @@
       </div>
     </div>
   </div>
+
+  <div id="list" class="pt-2">
+    <%= render partial: "frames/more/list", locals: { frames: @frames } %>
+  </div>
+
+  <div class="flex justify-center">
+    <div class="mx-auto rounded-[5px] pt-2">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  </div>
 </div>

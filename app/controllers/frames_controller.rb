@@ -20,7 +20,7 @@ class FramesController < ApplicationController
   end
 
   def show
-    @frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id])
+    @frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id], private: false)
   end
 
   def new
@@ -39,7 +39,7 @@ class FramesController < ApplicationController
   end
 
   def edit
-    @frame = Queries::Frames::FindFrameByUser.run(user: current_user, frame_id: permitted_params[:id])
+    @frame = Queries::Frames::FindFrame.run(user: current_user, frame_id: permitted_params[:id])
     render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 

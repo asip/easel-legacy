@@ -3,17 +3,17 @@
 # queries
 module Queries
   # frames
-  module Frames
+  module Users
     # ListFrames
     class ListFrames
       include Query
 
-      def initialize(word:)
-        @word = word
+      def initialize(user:)
+        @user = user
       end
 
       def execute
-        Frame.where(private: false).search_by(word: @word).order(created_at: "desc")
+        @user.frames.order('frames.created_at': "desc")
       end
     end
   end
