@@ -40,12 +40,12 @@ export function useAccount() {
       //}
     } catch (error) {
       if(Axios.isAxiosError(error)){
-        setErrorMessage(error as AxiosError)
+        setAlert(error as AxiosError)
       }
     }
   }
 
-  const setErrorMessage = (error: AxiosError) => {
+  const setAlert= (error: AxiosError) => {
     const status = error.response?.status
     switch(status){
     case 401:

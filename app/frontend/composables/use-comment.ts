@@ -53,7 +53,7 @@ export function useComment(currentUser: User) {
     } catch (error) {
       errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
-        setErrorMessage(error as AxiosError)
+        setAlert(error as AxiosError)
       }
     }
   }
@@ -88,7 +88,7 @@ export function useComment(currentUser: User) {
     } catch (error) {
       errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
-        setErrorMessage(error as AxiosError)
+        setAlert(error as AxiosError)
       }
     }
   }
@@ -119,12 +119,12 @@ export function useComment(currentUser: User) {
     } catch (error) {
       errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
-        setErrorMessage(error as AxiosError)
+        setAlert(error as AxiosError)
       }
     }
   }
 
-  const setErrorMessage = (error: AxiosError) => {
+  const setAlert = (error: AxiosError) => {
     const status = error.response?.status
     switch(status){
     case 401:
