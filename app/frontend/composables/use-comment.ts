@@ -115,7 +115,7 @@ export function useComment(currentUser: User) {
             Authorization: `Bearer ${currentUser.token ?? ''}`
           }
         })
-      comments.value.splice(0)
+      errorMessages.value.splice(0)
     } catch (error) {
       errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
