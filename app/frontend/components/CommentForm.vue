@@ -2,8 +2,9 @@
 import { inject } from 'vue'
 
 import { useToast } from '../composables'
-import type { UseAccountType, UseCommentType } from '../composables'
+import type { UseAccountType, UseCommentType, UseViewDataType } from '../composables'
 
+const { frameId } = inject('viewData') as UseViewDataType
 const { setFlash } = useToast()
 
 const { loggedIn } = inject('accounter') as UseAccountType
@@ -11,9 +12,9 @@ const { loggedIn } = inject('accounter') as UseAccountType
 const { comment, flash, errorMessages, getComments, setComment } = inject('commenter') as UseCommentType
 
 const onPostClick = async () => {
-  await setComment()
+  await setComment(frameId)
   setFlash(flash.value)
-  await getComments(comment.value.frame_id?.toString(10) ?? '')
+  await getComments(frameId)
 }
 </script>
 

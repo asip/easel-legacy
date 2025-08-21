@@ -20,7 +20,7 @@ export function useAccount() {
   const cookies = useCookies(['access_token'])
   const { flash, clearFlash } = useFlash()
 
-  const getAccount = async () => {
+  const authenticate = async () => {
     clearFlash()
 
     const token: string = cookies.get('access_token')
@@ -33,12 +33,14 @@ export function useAccount() {
           }
         })
 
-      //if (json) {
+      //if (res.data) {
       const accountAttrs = res.data
       currentUser.value.id = accountAttrs.id
       currentUser.value.token = (res.headers['authorization'] as string).split(' ')[1]
+      loggedIn.value = true
       //}
     } catch (error) {
+      loggedIn.value = false
       if(Axios.isAxiosError(error)){
         setAlert(error as AxiosError)
       }
@@ -62,7 +64,7 @@ export function useAccount() {
     loggedIn,
     currentUser,
     flash,
-    getAccount
+    authenticate
   }
 }
 

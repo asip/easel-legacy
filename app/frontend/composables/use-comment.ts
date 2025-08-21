@@ -19,7 +19,7 @@ interface CommentResource {
   errorMessages: string
 }
 
-export function useComment(currentUser: User) {
+export function useComment(user: User) {
   const comment = ref<Comment>({
     id: undefined,
     frame_id: null,
@@ -64,7 +64,7 @@ export function useComment(currentUser: User) {
     return comment as Comment
   }
 
-  const postComment = async () => {
+  const postComment = async (frameId: string) => {
     try {
       // const params = new URLSearchParams()
       // params.append('comment[body]', comment.body)
@@ -74,11 +74,11 @@ export function useComment(currentUser: User) {
         }
       }
 
-      await Axios.post<CommentResource>(`/frames/${comment.value.frame_id?.toString(10) ?? ''}/comments`,
+      await Axios.post<CommentResource>(`/frames/${frameId}/comments`,
         params,
         {
           headers: {
-            Authorization: `Bearer ${currentUser.token ?? ''}`
+            Authorization: `Bearer ${user.token ?? ''}`
           }
         }
       )
@@ -92,13 +92,13 @@ export function useComment(currentUser: User) {
       }
     }
   }
-  const setComment = async () => {
+  const setComment = async (frameId: string) => {
     clearFlash()
     if (comment.value.body != '') {
       //console.log(comment.user_id);
       //console.log(comment.frame_Id);
       //console.log(comment.body);
-      await postComment()
+      await postComment(frameId)
     } else {
       errorMessages.value.splice(0)
       errorMessages.value.push('コメントを入力してください。')
@@ -112,7 +112,7 @@ export function useComment(currentUser: User) {
         `/comments/${comment.id?.toString(10) ?? ''}`,
         {
           headers: {
-            Authorization: `Bearer ${currentUser.token ?? ''}`
+            Authorization: `Bearer ${user.token ?? ''}`
           }
         })
       errorMessages.value.splice(0)
@@ -128,7 +128,7 @@ export function useComment(currentUser: User) {
     const status = error.response?.status
     switch(status){
     case 401:
-      flash.value.alert = 'ページを再読み込みし、ログインしてください'
+      flash.value.alert = 'ページをリロードし、ログインしてください'
       break
     case 500:
       flash.value.alert = '不具合が発生しました'
