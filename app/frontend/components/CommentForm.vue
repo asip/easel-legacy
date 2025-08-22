@@ -7,7 +7,7 @@ import type { UseAccountType, UseCommentType, UseViewDataType } from '../composa
 const { frameId } = inject('viewData') as UseViewDataType
 const { setFlash } = useToast()
 
-const { loggedIn } = inject('accounter') as UseAccountType
+const { loggedIn } = inject('account') as UseAccountType
 
 const { comment, flash, errorMessages, getComments, setComment } = inject('commenter') as UseCommentType
 

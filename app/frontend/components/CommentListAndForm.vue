@@ -7,8 +7,8 @@ import { provide } from 'vue'
 import { useAccount, useComment, useToast } from '../composables'
 
 const { setFlash } = useToast()
-const accounter = useAccount()
-const { currentUser, flash, authenticate } = accounter
+const account = useAccount()
+const { currentUser, flash, authenticate } = account
 const commenter = useComment(currentUser.value)
 
 await authenticate()
@@ -16,7 +16,7 @@ setFlash(flash.value)
 // console.log(currentUser.value.token)
 // console.log(loggedIn.value);
 
-provide('accounter', accounter)
+provide('account', account)
 provide('commenter', commenter)
 </script>
 
