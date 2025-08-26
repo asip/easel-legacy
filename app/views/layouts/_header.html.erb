@@ -14,7 +14,9 @@
         <% if user_signed_in? %>
           <details class="dropdown">
             <summary>
-              <%= current_user.name %>
+              <div class="tooltip tooltip-bottom" data-tip="<%= current_user.name %>">
+                <%= image_tag(current_user.image_url_for_view(:thumb), alt: current_user.name, class: "rounded", style: "width:40px;height:40px;display:inline;") %>
+              </div>
             </summary>
             <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-20 z-[999]">
               <li><%= link_to "profile", profile_path, class: "" %></li>
