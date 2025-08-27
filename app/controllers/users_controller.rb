@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     {}
   end
 
-  def ref_params
+  def ref_map
     { ref: params[:ref], ref_id: params[:ref_id] }
   end
 end
