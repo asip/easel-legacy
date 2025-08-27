@@ -4,7 +4,7 @@
     <div class="card-body">
       <div class="flex justify-between">
         <div>
-          <%= link_to root_path(query_params) do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
+          <%= link_to root_path(query_map) do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
         </div>
         <div>
           <%= l @frame.updated_at %>
@@ -32,18 +32,18 @@
       </div>
       <% if user_signed_in? && @frame.user_id == current_user.id %>
       <div class="flex justify-center gap-2">
-        <%= link_to "変更", edit_frame_path(@frame, query_params), class: "btn btn-outline btn-primary", "data-turbo": true %>
+        <%= link_to "変更", edit_frame_path(@frame, query_map), class: "btn btn-outline btn-primary", "data-turbo": true %>
         <%# Button trigger modal %>
         <button type="button" class="btn btn-outline btn-secondary" onclick="delete_modal.showModal()">
           削除
         </button>
-        <%= link_to "戻る", root_path(query_params), class: "btn btn-outline btn-warning" %>
+        <%= link_to "戻る", root_path(query_map), class: "btn btn-outline btn-warning" %>
       </div>
       <% end %>
     </div>
   </div>
   <% if user_signed_in? && @frame.user_id == current_user.id %>
-    <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame, query_params)) %>
+    <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame, query_map)) %>
   <% end %>
 </div>
 <%= render Comments::Component.new(frame: @frame) %>

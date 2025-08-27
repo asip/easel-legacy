@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def query_params
+  def query_map
     {}
   end
 

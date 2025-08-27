@@ -29,7 +29,7 @@ class Account::PasswordsController < ApplicationController
     params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
-  def query_params
+  def query_map
     {}
   end
 end

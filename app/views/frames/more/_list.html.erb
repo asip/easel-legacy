@@ -9,7 +9,7 @@
       <%= render Frames::Preview::Tags::Component.new(tag_paths: tag_paths(frame), list: true) %>
       <div class="flex justify-center">
         <div class="mx-auto">
-          <%= link_to frame.name, frame_path(frame, params: query_params),
+          <%= link_to frame.name, frame_path(frame, params: query_map),
                       class: "link link-hover",
                       "data-turbo": false %>
         </div>

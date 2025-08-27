@@ -39,7 +39,7 @@ class Users::SessionsController < Devise::SessionsController
 
   private
 
-  def query_params
+  def query_map
     {}
   end
 

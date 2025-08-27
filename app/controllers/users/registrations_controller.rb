@@ -81,7 +81,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def query_params
+  def query_map
     {}
   end
 

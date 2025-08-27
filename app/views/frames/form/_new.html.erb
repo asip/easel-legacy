@@ -3,17 +3,17 @@
   <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2" data-controller="tagify preview">
     <div class="card-body divide-y divide-gray-200">
       <div class="flex justify-start pb-1">
-        <%= link_to root_path(query_params), class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>アップロード
+        <%= link_to root_path(query_map), class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>アップロード
       </div>
       <%= form_with model: @frame, local: true do |form| %>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <% if @frame.confirming == 'true' %>
           <%= render Frames::New::Confirm::Component.new(form:, frame: @frame, tag_paths: tag_paths(@frame)) %>
         <% else %>
-          <%= render Frames::New::Input::Component.new(form:, frame: @frame, back_to_path: root_path(query_params)) %>
+          <%= render Frames::New::Input::Component.new(form:, frame: @frame, back_to_path: root_path(query_map)) %>
           <%= form.hidden_field :confirming %>
         <% end %>
-        <%= query_params_hidden_field_tags %>
+        <%= query_map_hidden_field_tags %>
       <% end %>
     </div>
   </div>

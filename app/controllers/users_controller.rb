@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     params.permit(:id, :page)
   end
 
-  def query_params
+  def query_map
     {}
   end
 

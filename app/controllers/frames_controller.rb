@@ -31,7 +31,7 @@ class FramesController < ApplicationController
     mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame)
     @frame = mutation.frame
     if mutation.success?
-      redirect_to root_path(query_params)
+      redirect_to root_path(query_map)
     else
       flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
       render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
@@ -47,7 +47,7 @@ class FramesController < ApplicationController
     mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame)
     @frame = mutation.frame
     if mutation.success?
-      redirect_to frame_path(@frame, query_params)
+      redirect_to frame_path(@frame, query_map)
     else
       flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
       render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
@@ -56,7 +56,7 @@ class FramesController < ApplicationController
 
   def destroy
     Mutations::Frames::DeleteFrame.run(user: current_user, frame_id: permitted_params[:id])
-    redirect_to root_path(query_params), status: :see_other
+    redirect_to root_path(query_map), status: :see_other
   end
 
   private
