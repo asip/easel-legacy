@@ -43,6 +43,7 @@ class Frame < ApplicationRecord
       scope = if DateAndTime::Util.valid_date?(word)
                 date_word = Time.zone.parse(word)
                 scope.where(shooted_at: date_word.beginning_of_day..date_word.end_of_day)
+                     .or(Frame.where(created_at: date_word.beginning_of_day..date_word.end_of_day))
                      .or(Frame.where(updated_at: date_word.beginning_of_day..date_word.end_of_day))
       else
                 scope.left_joins(:tags, :user)

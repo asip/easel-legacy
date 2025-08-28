@@ -7,7 +7,9 @@
           <%= link_to root_path(query_map) do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
         </div>
         <div>
-          <%= l @frame.updated_at %>
+          <%= link_to user_path(@frame.user, { ref: "frame_detail", ref_id: @frame.id }), class: "link link-hover" do %>
+            <%= @frame.user.name %>
+          <% end %>
         </div>
       </div>
       <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: true) %>
@@ -25,10 +27,9 @@
           <div class="justify-start"><%= simple_format(h(@frame.comment)) %></div>
         </div>
       </div>
-      <div class="flex justify-end">
-        <%= link_to user_path(@frame.user, { ref: "frame_detail", ref_id: @frame.id }), class: "" do %>
-          <%= @frame.user.name %>
-        <% end %>
+      <div class="flex justify-between">
+        <div><%= l @frame.created_at %></div>
+        <div><%= l @frame.updated_at %></div>
       </div>
       <% if user_signed_in? && @frame.user_id == current_user.id %>
       <div class="flex justify-center gap-2">
