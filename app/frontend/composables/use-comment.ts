@@ -1,23 +1,8 @@
 import Axios, { AxiosError } from 'axios'
 import { ref } from 'vue'
 
-import type { Comment, User } from '../interfaces'
+import type { Comment , CommentResource, CommentsResource, User } from '../interfaces'
 import { useFlash } from './'
-
-interface CommentsResource {
-  comments: [CommentResource]
-}
-
-interface CommentResource {
-  id: number | null
-  frame_id: number
-  body: string | null
-  user_id: number
-  user_name: string
-  user_image_url: string
-  updated_at: string | null
-  errorMessages: string
-}
 
 export function useComment(user: User) {
   const comment = ref<Comment>({

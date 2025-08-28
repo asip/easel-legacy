@@ -2,13 +2,8 @@ import Axios, { AxiosError } from 'axios'
 import { Ref, ref} from 'vue'
 import { useCookies } from '@vueuse/integrations/useCookies.mjs'
 
-import type { User } from '../interfaces'
+import type { AccountResource, User } from '../interfaces'
 import { useFlash } from './'
-
-interface AccountResource {
-  id: number
-  token: string
-}
 
 export function useAccount() {
   const loggedIn: Ref<boolean> = ref<boolean>(false)
