@@ -52,7 +52,7 @@ const onDeleteClick = async () => {
             {{ comment?.user_name }}
           </a>
           <div class="badge badge-outline badge-accent rounded-full">
-            {{ comment?.updated_at }}
+            {{ comment?.created_at }}
           </div>
         </div>
         <div v-if="loggedIn && comment?.user_id === currentUser.id" class="flex items-center">
