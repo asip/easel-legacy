@@ -2,15 +2,3 @@ body {
   background-color: aliceblue;
   height: auto;
 }
-
-/* .white-space-pre {
-  white-space: pre;
- } */
-@media (min-width: 567px) {
-  .abs-center-x {
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
