@@ -3,14 +3,6 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox'
 // @ts-expect-error : @types doesn't exist
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 
-interface Window {
-  Image: {
-    prototype: HTMLImageElement
-    new (): HTMLImageElement
-  }
-}
-declare var window: Window
-
 
 export default class PhotoSwipeController extends ApplicationController {
   static targets = ['ps']
@@ -61,7 +53,7 @@ export default class PhotoSwipeController extends ApplicationController {
   }
 
   async loadImage(src: string){
-    const img: HTMLImageElement = new window.Image()
+    const img: HTMLImageElement = new globalThis.Image()
     img.src = src
     await img.decode()
     return img

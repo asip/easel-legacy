@@ -2,8 +2,6 @@ import ApplicationController from './application-controller'
 import { Datepicker } from 'vanillajs-datepicker'
 import ja from '../locales/date-picker/ja'
 
-declare var window: Window
-
 export default class CalendarController extends ApplicationController {
   static targets = ['cal']
   static values = {
@@ -42,7 +40,7 @@ export default class CalendarController extends ApplicationController {
         //console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
 
         // eslint-disable-next-line
-        window.location.href=`/frames?q=${e.detail.datepicker.getDate('yyyy/mm/dd')}`
+        globalThis.location.href=`/frames?q=${e.detail.datepicker.getDate('yyyy/mm/dd')}`
       })
     }
   }
