@@ -1,19 +1,27 @@
 <%= render Users::Preview::Image::Component.new(user: @user, original: false) %>
 <div class="flex justify-center">
-  <div class="grid grid-cols-[80px_1fr] border border-gray-100 bg-base-00 p-3 rounded-[10px]">
-    <div class="col-span-2 w-120"></div>
-    <label for="name" class="flex items-center">ユーザー名：</label>
-    <div class="">
-      <div class=""><%= @user.name %></div>
-      <%= @form.hidden_field :name %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="email" class="flex items-center">Eメール：</label>
-    <div class="">
-      <div class=""><%= @user.email %></div>
-      <%= @form.hidden_field :email %>
-    </div>
-  </diV>
+  <table class="table table-bordered table_rounded">
+    <tbody>
+      <tr>
+        <td style="width: 8em;">
+          <label for="name" class="">ユーザー名</label>
+        </td>
+        <td>
+          <%= @user.name %>
+          <%= @form.hidden_field :name %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="email" class="">Eメール</label>
+        </td>
+        <td>
+          <%= @user.email %>
+          <%= @form.hidden_field :email %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <div class="flex justify-center gap-2 mt-2">
   <button type=submit class="btn btn-outline btn-primary">

@@ -2,18 +2,28 @@
 <div id="users">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
     <div class="flex justify-center">
-      <div class="grid grid-cols-[90px_1fr] border border-gray-100 rounded bg-base-00 p-3 rounded-[10px]">
-        <div class="col-span-2 w-120"></div>
-        <label for="email" class="flex items-center">Eメール：</label>
-        <div class="">
-          <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Eメール", class: "input" %>
-        </div>
-        <div class="col-span-2 divider h-0"></div>
-        <label for="password" class="flex items-center">パスワード：</label>
-        <div class="">
-          <%= form.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "input" %>
-        </div>
-      </div>
+      <table class="table table-bordered table_rounded">
+        <tbody>
+          <tr>
+            <td style="width: 8em;">
+              <label for="email" class=""><%= t("activerecord.attributes.user.email") %></label>
+            </td>
+            <td>
+              <%= form.text_field :email, placeholder: "", autofocus: true, autocomplete: "email",
+                                          class: "input" %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="password" class=""><%= t("activerecord.attributes.user.password") %></label>
+            </td>
+            <td>
+              <%= form.password_field :password, placeholder: "", autocomplete: "current-password",
+                                                 class: "input" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="flex justify-center gap-2 mt-2">
         <%= form.submit "ログイン", class: "btn btn-outline btn-primary" %>

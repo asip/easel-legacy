@@ -1,35 +1,59 @@
 <div class="flex justify-center">
-  <div class="grid grid-cols-[120px_1fr] border border-gray-100 bg-base-00 p-3 rounded-[10px]">
-    <div class="col-span-2 w-120"></div>
-    <label for="image" class="flex items-center">アイコン：</label>
-    <div class="">
-      <%= @form.file_field :image, accept: "image/jpg,image/jpeg,image/png",
-                                   multiple: false,
-                                   class: "file-input",
-                                   "data-preview-target": "upload" %><%#= @form.file_field :image, multiple: false, class: 'file-input' %>
-    </div>
-    <%= render Image::Preview::Component.new(model: @user) %>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="name" class="flex items-center">ユーザー名：</label>
-    <div class="">
-      <%= @form.text_field :name, autofocus: true, autocomplete: "username", placeholder: "ユーザー名", class: "input" %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="email" class="flex items-center">Eメール：</label>
-    <div class="">
-      <%= @form.email_field :email, placeholder: "Eメール", autocomplete: "email", class: "input" %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="password" class="flex items-center">パスワード：</label>
-    <div class="">
-      <%= @form.password_field :password, placeholder: "パスワード", autocomplete: "new-password", class: "input" %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="password_confirmation" class="flex items-center">パスワード(確認)：</label>
-    <div class="">
-      <%= @form.password_field :password_confirmation, placeholder: "パスワード(確認)", autocomplete: "new-password", class: "input" %>
-    </div>
-  </div>
+  <table class="table table-bordered table_rounded">
+    <tbody>
+      <tr>
+        <td style="width: 8em;">
+          <label for="image" class="">アイコン</label>
+        </td>
+        <td>
+          <%= @form.file_field :image, accept: "image/jpg,image/jpeg,image/png",
+                                       multiple: false,
+                                       class: "file-input",
+                                       "data-preview-target": "upload" %><%#= @form.file_field :image, multiple: false, class: 'file-input' %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <%= render Image::Preview::Component.new(model: @user) %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="name" class="">ユーザー名</label>
+        </td>
+        <td>
+          <%= @form.text_field :name, autofocus: true, autocomplete: "username", placeholder: "", class: "input" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="email" class=""><%= t("activerecord.attributes.user.email") %></label>
+        </td>
+        <td>
+          <%= @form.email_field :email, placeholder: "", autofocus: true, autocomplete: "email",
+                                        class: "input" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="password" class=""><%= t("activerecord.attributes.user.password") %></label>
+        </td>
+        <td>
+          <%= @form.password_field :password, placeholder: "", autocomplete: "new-password",
+                                              class: "input" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="password_confirmation" class="">パスワード(確認)</label>
+        </td>
+        <td>
+          <%= @form.password_field :password_confirmation, placeholder: "", autocomplete: "new-password",
+                                                           class: "input" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <div class="flex justify-center gap-2 mt-2">
   <%= @form.submit "内容を確認", class: "btn btn-outline btn-primary" %>

@@ -1,34 +1,55 @@
 <div class="flex justify-center">
-  <div class="grid grid-cols-[70px_1fr] border border-gray-100 bg-base-00 p-3 rounded-[10px]">
-    <div class="col-span-2 w-120"></div>
-    <div class="flex items-center"><label for="file" class="">ファイル：</label></div>
-    <div class="">
-      <%= @form.file_field :file, accept: "image/jpg,image/jpeg,image/png", multiple: false,
-                                  class: "file-input", "data-preview-target": "upload" %><%#= @form.file_field :file, multiple: false, class: 'file-input' %>
-    </div>
-    <%= render Image::Preview::Component.new(model: @frame) %>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="name" class="flex items-center">名前：</label>
-    <div class="">
-      <%= @form.text_field :name, placeholder: "名前", class: "input" %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="tag_list" class="flex items-center">タグ：</label>
-    <div class="">
-      <input type="text" name="tag_editor" id="tag_editor" value="" data-tagify-target="te" class="input" autocomplete="off">
-      <%= @form.hidden_field :tag_list, id: "tag_list", "data-tagify-target": "tl", value: @frame.tag_list.join(",") %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="shooted_at" class="flex items-center">撮影日時：</label>
-    <div class="">
-      <%= @form.datetime_local_field :shooted_at, class: "input" %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="comment" class="flex items-center">コメント：</label>
-    <div class="">
-      <%= @form.text_area :comment, class: "block text-sm border rounded border-gray-300 w-full" %>
-    </div>
-  </div>
+  <table class="table table-bordered table_rounded">
+    <tbody>
+      <tr>
+        <td style="width: 8em;">
+          <label for="file" class="">ファイル</label>
+        </td>
+        <td>
+          <%= @form.file_field :file, accept: "image/jpg,image/jpeg,image/png", multiple: false,
+                                      class: "file-input", "data-preview-target": "upload" %><%#= @form.file_field :file, multiple: false, class: 'file-input' %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <%= render Image::Preview::Component.new(model: @frame) %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="name" class="">名前</label>
+        </td>
+        <td>
+          <%= @form.text_field :name, placeholder: "", class: "input" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="tag_list" class="">タグ</label>
+        </td>
+        <td>
+          <input type="text" name="tag_editor" id="tag_editor" value="" data-tagify-target="te" class="input" autocomplete="off">
+          <%= @form.hidden_field :tag_list, id: "tag_list", "data-tagify-target": "tl", value: @frame.tag_list.join(",") %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="shooted_at" class="">撮影日時</label>
+        </td>
+        <td>
+          <%= @form.datetime_local_field :shooted_at, class: "input" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="comment" class="">コメント</label>
+        </td>
+        <td>
+          <%= @form.text_area :comment, class: "block text-sm border rounded border-gray-300 w-full" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <div class="flex justify-center gap-2 mt-2">
   <%= @form.submit "内容を確認", class: "btn btn-outline btn-primary" %>

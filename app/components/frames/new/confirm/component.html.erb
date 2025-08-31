@@ -2,26 +2,37 @@
 <%= render Frames::Preview::Tags::Component.new(tag_paths: @tag_paths, link: false) %>
 <%= @form.hidden_field :tag_list, value: @frame.tag_list.join(",") %>
 <div class="flex justify-center">
-  <div class="grid grid-cols-[70px_1fr] border border-gray-100 bg-base-00 p-3 rounded-[10px]">
-    <div class="col-span-2 w-120"></div>
-    <label for="name" class="flex items-center">名前：</label>
-    <div class="justify-start">
-      <div class=""><%= @frame.name %></div>
-      <%= @form.hidden_field :name %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="shooted_at" class="flex items-center">撮影日時：</label>
-    <div class="justify-start">
-      <div class=""><%= @frame.shooted_at.present? ? l(@frame.shooted_at) : "" %></div>
-      <%= @form.hidden_field :shooted_at %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="comment" class="flex items-center">コメント：</label>
-    <div class="">
-      <div class=""><%= simple_format(h(@frame.comment)) %></div>
-      <%= @form.hidden_field :comment %>
-    </div>
-  </div>
+  <table class="table table-bordered table_rounded">
+    <tbody>
+      <tr>
+        <td style="width: 8em;">
+          名前
+        </td>
+        <td>
+          <%= @frame.name %>
+          <%= @form.hidden_field :name %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          撮影日時
+        </td>
+        <td>
+          <%= @frame.shooted_at.present? ? l(@frame.shooted_at) : "" %>
+          <%= @form.hidden_field :shooted_at %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          コメント
+        </td>
+        <td>
+          <%= simple_format(h(@frame.comment)) %>
+          <%= @form.hidden_field :comment %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <div class="flex justify-center gap-2 mt-2">
   <button type="submit" class="btn btn-outline btn-primary">

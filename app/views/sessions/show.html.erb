@@ -16,18 +16,26 @@
       <div>
         <%= render Sessions::Preview::Image::Component.new(user: @user, original: false) %>
         <div class="flex justify-center">
-          <div class="grid grid-cols-[80px_1fr] border border-gray-100 bg-base-00 p-3 rounded-[10px]">
-            <div class="col-span-2 w-120"></div>
-            <label for="name" class="flex items-center">ユーザー名：</label>
-            <div class="justify-start">
-              <div class=""><%= @user.name %></div>
-            </div>
-            <div class="col-span-2 divider h-0"></div>
-            <label for="email" class="flex items-center">Eメール：</label>
-            <div class="justify-start">
-              <div class=""><%= @user.email %></div>
-            </div>
-          </div>
+          <table class="table table-bordered table_rounded">
+            <tbody>
+              <tr>
+                <td style="width: 8em;">
+                  <label for="name" class="">ユーザー名</label>
+                </td>
+                <td>
+                  <%= @user.name %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="email" class="">Eメール</label>
+                </td>
+                <td>
+                  <%= @user.email %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <!-- <div class="flex justify-center">

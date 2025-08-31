@@ -1,21 +1,32 @@
 <div class="flex justify-center">
-  <div class="grid grid-cols-[120px_1fr] border border-gray-100 bg-base-00 p-3 rounded-[10px]">
-    <div class="col-span-2 w-120"></div>
-    <label for="current_password" class="flex items-center">現在のパスワード：</label>
-    <div class="">
-      <%= @form.password_field :current_password, autofocus: true, autocomplete: "current-password", placeholder: "現在のパスワード", class: "input" %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="password" class="flex items-center">パスワード：</label>
-    <div class="">
-      <%= @form.password_field :password, placeholder: "パスワード", autocomplete: "new-password", class: "input" %>
-    </div>
-    <div class="col-span-2 divider h-0"></div>
-    <label for="password_confirmation" class="flex items-center">パスワード(確認)：</label>
-    <div class="">
-      <%= @form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード(確認)", class: "input" %>
-    </div>
-  </div>
+  <table class="table table-bordered table_rounded">
+    <tbody>
+      <tr>
+        <td style="width: 8em;">
+          <label for="current_password" class="">現在のパスワード</label>
+        </td>
+        <td>
+          <%= @form.password_field :current_password, autofocus: true, autocomplete: "current-password", placeholder: "", class: "input" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="password" class="">パスワード</label>
+        </td>
+        <td>
+          <%= @form.password_field :password, placeholder: "", autocomplete: "new-password", class: "input" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="password_confirmation" class="">パスワード(確認)</label>
+        </td>
+        <td>
+          <%= @form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "", class: "input" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <div class="flex justify-center gap-2 mt-2">
   <%= @form.submit "更新", class: "btn btn-outline btn-primary" %>
