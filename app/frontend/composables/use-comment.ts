@@ -1,10 +1,10 @@
 import Axios, { AxiosError } from 'axios'
 import { ref } from 'vue'
 
-import type { Comment , CommentResource, CommentsResource, User } from '../interfaces'
-import { useFlash } from './'
+import type { Comment , CommentResource, CommentsResource } from '../interfaces'
+import { useAccount, useFlash } from './'
 
-export function useComment(user: User) {
+export function useComment() {
   const comment = ref<Comment>({
     id: undefined,
     frame_id: null,
@@ -20,6 +20,8 @@ export function useComment(user: User) {
   const errorMessages = ref<string[]>([])
 
   const { flash, clearFlash } = useFlash()
+
+  const { token } = useAccount()
 
   const getComments = async (frameId: string) => {
     clearFlash()
@@ -64,7 +66,7 @@ export function useComment(user: User) {
         params,
         {
           headers: {
-            Authorization: `Bearer ${user.token ?? ''}`
+            Authorization: `Bearer ${token.value}`
           }
         }
       )
@@ -98,7 +100,7 @@ export function useComment(user: User) {
         `/comments/${comment.id?.toString(10) ?? ''}`,
         {
           headers: {
-            Authorization: `Bearer ${user.token ?? ''}`
+            Authorization: `Bearer ${token.value}`
           }
         })
       errorMessages.value.splice(0)

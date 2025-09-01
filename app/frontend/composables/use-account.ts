@@ -1,5 +1,5 @@
 import Axios, { AxiosError } from 'axios'
-import { Ref, ref} from 'vue'
+import { Ref, ref, computed} from 'vue'
 import { useCookies } from '@vueuse/integrations/useCookies.mjs'
 
 import type { AccountResource, User } from '../interfaces'
@@ -15,16 +15,16 @@ export function useAccount() {
   const cookies = useCookies(['access_token'])
   const { flash, clearFlash } = useFlash()
 
+  const token = computed<string>(() => cookies.get('access_token'))
+
   const authenticate = async () => {
     clearFlash()
-
-    const token: string = cookies.get('access_token')
 
     try {
       const res = await Axios.get<AccountResource>('/account',
         {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token.value}`
           }
         })
 
@@ -58,6 +58,7 @@ export function useAccount() {
   return {
     loggedIn,
     currentUser,
+    token,
     flash,
     authenticate
   }

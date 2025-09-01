@@ -8,8 +8,8 @@ import { useAccount, useComment, useToast } from '../composables'
 
 const { setFlash } = useToast()
 const account = useAccount()
-const { currentUser, flash, authenticate } = account
-const commenter = useComment(currentUser.value)
+const { flash, authenticate } = account
+const commenter = useComment()
 
 await authenticate()
 setFlash(flash.value)
