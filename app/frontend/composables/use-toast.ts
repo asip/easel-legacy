@@ -1,6 +1,8 @@
-import Toastify from 'toastify-js'
+// import Toastify from 'toastify-js'
 
 import type { Flash } from '../types'
+
+const Toastify = (await import('toastify-js')).default
 
 export function useToast() {
   const setFlash = (flash: Flash) => {

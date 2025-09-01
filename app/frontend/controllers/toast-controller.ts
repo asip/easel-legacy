@@ -1,5 +1,7 @@
+// import Toastify from 'toastify-js'
 import ApplicationController from './application-controller'
-import Toastify from 'toastify-js'
+
+const Toastify = (await import('toastify-js')).default
 
 export default class ToastController extends ApplicationController {
   static values = {
