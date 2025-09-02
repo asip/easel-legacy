@@ -17,7 +17,6 @@ export function useComment() {
   })
 
   const comments = ref<Comment[]>([])
-  const errorMessages = ref<string[]>([])
 
   const { flash, clearFlash } = useFlash()
 
@@ -39,7 +38,6 @@ export function useComment() {
       }
       //console.log(comments);
     } catch (error) {
-      errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
         setAlert(error as AxiosError)
       }
@@ -53,6 +51,8 @@ export function useComment() {
   }
 
   const postComment = async (frameId: string) => {
+    clearFlash()
+
     try {
       // const params = new URLSearchParams()
       // params.append('comment[body]', comment.body)
@@ -70,26 +70,10 @@ export function useComment() {
           }
         }
       )
-
-      comment.value.body = ''
     } catch (error) {
-      errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
         setAlert(error as AxiosError)
       }
-    }
-  }
-  const setComment = async (frameId: string) => {
-    clearFlash()
-    if (comment.value.body != '') {
-      //console.log(comment.user_id);
-      //console.log(comment.frame_Id);
-      //console.log(comment.body);
-      await postComment(frameId)
-      errorMessages.value.splice(0)
-    } else {
-      errorMessages.value.splice(0)
-      errorMessages.value.push('コメントを入力してください。')
     }
   }
 
@@ -103,9 +87,7 @@ export function useComment() {
             Authorization: `Bearer ${token.value}`
           }
         })
-      errorMessages.value.splice(0)
     } catch (error) {
-      errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
         setAlert(error as AxiosError)
       }
@@ -127,8 +109,8 @@ export function useComment() {
   }
 
   return {
-    comment, comments, flash, errorMessages,
-    getComments, setComment, deleteComment
+    comment, comments, flash,
+    getComments, postComment, deleteComment
   }
 }
 

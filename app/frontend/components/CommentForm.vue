@@ -1,20 +1,38 @@
 <script lang="ts" setup >
-import { inject } from 'vue'
+import { inject, onMounted } from 'vue'
 
 import { useToast } from '../composables'
 import type { UseAccountType, UseCommentType, UseViewDataType } from '../composables'
+import { i18n, useI18nRegle } from '../utils'
+import { useCommentRules } from '../composables'
 
-const { frameId } = inject('viewData') as UseViewDataType
+const { frameId, locale } = inject('viewData') as UseViewDataType
 const { setFlash } = useToast()
 
 const { loggedIn } = inject('account') as UseAccountType
 
-const { comment, flash, errorMessages, getComments, setComment } = inject('commenter') as UseCommentType
+const { comment, flash, getComments, postComment } = inject('commenter') as UseCommentType
+
+const { commentRules } = useCommentRules()
+
+const { r$ } = useI18nRegle(comment, commentRules)
+
+onMounted(async () => {
+  i18n.global.locale.value = locale as ('en' | 'ja')
+})
 
 const onPostClick = async () => {
-  await setComment(frameId)
-  setFlash(flash.value)
-  await getComments(frameId)
+  r$.$touch()
+  r$.$reset()
+  const { valid } =await r$.$validate()
+  if (valid) {
+    await postComment(frameId)
+    setFlash(flash.value)
+    comment.value.body = ''
+    r$.$touch()
+    r$.$reset()
+    await getComments(frameId)
+  }
 }
 </script>
 
@@ -28,10 +46,11 @@ const onPostClick = async () => {
         <textarea v-model="comment.body" class="block text-sm border rounded border-gray-300 w-full" />
       </div>
       <div class="flex flex-col">
-        <div v-for="(message, idx) in errorMessages" :key="idx">
-          <p class="text-danger">
-            {{ message }}
-          </p>
+        <div
+          v-for="error of r$.$errors.body"
+          :key="error"
+        >
+          <div class="text-red-500">{{ error }}</div>
         </div>
       </div>
       <div class="flex justify-center">

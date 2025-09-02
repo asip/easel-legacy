@@ -7,3 +7,5 @@ export { useViewData } from './use-view-data'
 export type { UseAccountType } from './use-account'
 export type { UseCommentType } from './use-comment'
 export type { UseViewDataType } from './use-view-data'
+
+export { useCommentRules } from './use-comment-rules'

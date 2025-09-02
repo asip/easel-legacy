@@ -9,6 +9,7 @@ import { useViewData } from '../composables'
 const props = defineProps<{
   apiBaseUrl: string
   csrfToken: string
+  locale: string
   frameId: string
 }>()
 
@@ -19,9 +20,11 @@ Axios.defaults.baseURL = props.apiBaseUrl
 Axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
   'X-CSRF-TOKEN': props.csrfToken,
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Accept-Language': props.locale
 }
 
+viewData.locale = props.locale
 viewData.frameId = props.frameId
 
 provide('viewData', viewData)
