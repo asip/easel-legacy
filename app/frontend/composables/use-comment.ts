@@ -72,7 +72,6 @@ export function useComment() {
       )
 
       comment.value.body = ''
-      errorMessages.value.splice(0)
     } catch (error) {
       errorMessages.value.splice(0)
       if(Axios.isAxiosError(error)){
@@ -87,6 +86,7 @@ export function useComment() {
       //console.log(comment.frame_Id);
       //console.log(comment.body);
       await postComment(frameId)
+      errorMessages.value.splice(0)
     } else {
       errorMessages.value.splice(0)
       errorMessages.value.push('コメントを入力してください。')
