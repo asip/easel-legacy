@@ -1,12 +1,12 @@
 <script lang="ts" setup >
-import { inject, onMounted } from 'vue'
+import { inject } from 'vue'
 
 import { useToast } from '../composables'
 import type { UseAccountType, UseCommentType, UseViewDataType } from '../composables'
-import { i18n, useI18nRegle } from '../utils'
+import { useI18nRegle } from '../utils'
 import { useCommentRules } from '../composables'
 
-const { frameId, locale } = inject('viewData') as UseViewDataType
+const { frameId } = inject('viewData') as UseViewDataType
 const { setFlash } = useToast()
 
 const { loggedIn } = inject('account') as UseAccountType
@@ -16,10 +16,6 @@ const { comment, flash, getComments, postComment } = inject('commenter') as UseC
 const { commentRules } = useCommentRules()
 
 const { r$ } = useI18nRegle(comment, commentRules)
-
-onMounted(async () => {
-  i18n.global.locale.value = locale as ('en' | 'ja')
-})
 
 const onPostClick = async () => {
   r$.$touch()

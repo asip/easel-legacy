@@ -1,6 +1,7 @@
 export { useAccount} from './use-account'
 export { useComment } from './use-comment'
 export { useFlash } from './use-flash'
+export { useLocale } from './use-locale'
 export { useToast } from './use-toast'
 export { useViewData } from './use-view-data'
 

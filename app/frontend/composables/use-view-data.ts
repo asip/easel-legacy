@@ -1,8 +1,7 @@
 export function useViewData(){
-  const locale = ''
   const frameId = ''
 
-  return { frameId, locale }
+  return { frameId }
 }
 
 export type UseViewDataType = ReturnType<typeof useViewData>
