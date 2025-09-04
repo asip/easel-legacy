@@ -21,11 +21,11 @@ importers:
         specifier: ^8.0.16
         version: 8.0.16
       '@regle/core':
-        specifier: ^1.7.2
-        version: 1.7.2(vue@3.5.21(typescript@5.8.3))
+        specifier: ^1.8.0
+        version: 1.8.0(vue@3.5.21(typescript@5.8.3))
       '@regle/rules':
-        specifier: ^1.7.2
-        version: 1.7.2(vue@3.5.21(typescript@5.8.3))
+        specifier: ^1.8.0
+        version: 1.8.0(vue@3.5.21(typescript@5.8.3))
       '@vueuse/integrations':
         specifier: ^13.9.0
         version: 13.9.0(axios@1.11.0)(universal-cookie@8.0.1)(vue@3.5.21(typescript@5.8.3))
@@ -621,8 +621,8 @@ packages:
   '@rails/ujs@6.1.7':
     resolution: {integrity: sha512-0e7WQ4LE/+LEfW2zfAw9ppsB6A8RmxbdAUPAF++UT80epY+7emuQDkKXmaK0a9lp6An50RvzezI0cIQjp1A58w==}
 
-  '@regle/core@1.7.2':
-    resolution: {integrity: sha512-YAbUi9pv72ZLQsEMe/JxtKVkDuO+kbncdmyoFpk7Q3Csy1zH+GjVv0N4SIa1jMzxwXW/WoeiVJEAg73qikeSNw==}
+  '@regle/core@1.8.0':
+    resolution: {integrity: sha512-2im2Ql7I86ak5zCFlOzZM/Ndxa8NHUorq4cIEdlOThap7FHK685bXcz1G3p6Qo6/4cfND4Yhu4P0ltKppA3w8A==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: '>=3.3.0'
@@ -630,8 +630,8 @@ packages:
       pinia:
         optional: true
 
-  '@regle/rules@1.7.2':
-    resolution: {integrity: sha512-ecGPAc1onKc4g2K3jbKY8KXWIkaTqZ7tsG7n3WemYPmaP5a7Cw23pOlQQGCwKcfDW+J5WScVsqJ1AVQXfG+76g==}
+  '@regle/rules@1.8.0':
+    resolution: {integrity: sha512-eQ/VS3FX90PF9XzIasn7npIZePRIiybrccqgt2VSOk4Ez/y7mXLcnz8+8ZSE3Dnyu3vxJhqSdkNLZbP6cP2iPw==}
 
   '@rolldown/pluginutils@1.0.0-beta.29':
     resolution: {integrity: sha512-NIJgOsMjbxAXvoGq/X0gD7VPMQ8j9g0BiDaNjVNVjvl+iKXxL3Jre0v31RmBYeLEmkbj2s02v8vFTbUXi5XS2Q==}
@@ -3116,13 +3116,13 @@ snapshots:
 
   '@rails/ujs@6.1.7': {}
 
-  '@regle/core@1.7.2(vue@3.5.21(typescript@5.8.3))':
+  '@regle/core@1.8.0(vue@3.5.21(typescript@5.8.3))':
     dependencies:
       vue: 3.5.21(typescript@5.8.3)
 
-  '@regle/rules@1.7.2(vue@3.5.21(typescript@5.8.3))':
+  '@regle/rules@1.8.0(vue@3.5.21(typescript@5.8.3))':
     dependencies:
-      '@regle/core': 1.7.2(vue@3.5.21(typescript@5.8.3))
+      '@regle/core': 1.8.0(vue@3.5.21(typescript@5.8.3))
     transitivePeerDependencies:
       - pinia
       - vue
