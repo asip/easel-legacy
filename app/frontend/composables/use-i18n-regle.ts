@@ -1,4 +1,4 @@
-import { i18n } from './'
+import { i18n } from '../utils'
 
 import { defineRegleConfig } from '@regle/core'
 import { required, withMessage } from '@regle/rules'

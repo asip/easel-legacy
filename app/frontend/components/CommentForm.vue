@@ -3,7 +3,7 @@ import { inject } from 'vue'
 
 import { useToast } from '../composables'
 import type { UseAccountType, UseCommentType, UseViewDataType } from '../composables'
-import { useI18nRegle } from '../utils'
+import { useI18nRegle } from '../composables'
 import { useCommentRules } from '../composables'
 
 const { frameId } = inject('viewData') as UseViewDataType

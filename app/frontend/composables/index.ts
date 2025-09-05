@@ -9,4 +9,6 @@ export type { UseAccountType } from './use-account'
 export type { UseCommentType } from './use-comment'
 export type { UseViewDataType } from './use-view-data'
 
+export { useI18nRegle } from './use-i18n-regle'
+
 export { useCommentRules } from './use-comment-rules'
