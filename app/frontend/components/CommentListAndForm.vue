@@ -2,14 +2,16 @@
 import CommentForm from './CommentForm.vue'
 import CommentList from './CommentList.vue'
 
-import { provide } from 'vue'
+import { provide, inject } from 'vue'
 
+import type { ViewDataType } from '../composables'
 import { useAccount, useComment, useToast } from '../composables'
 
 const { setFlash } = useToast()
-const account = useAccount()
+const viewData = inject('viewData') as ViewDataType
+const account = useAccount(viewData)
 const { flash, authenticate } = account
-const commenter = useComment()
+const commenter = useComment(viewData)
 
 await authenticate()
 setFlash(flash.value)

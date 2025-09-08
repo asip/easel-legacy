@@ -2,11 +2,11 @@
 import { inject } from 'vue'
 
 import { useToast } from '../composables'
-import type { UseAccountType, UseCommentType, UseViewDataType } from '../composables'
+import type { UseAccountType, UseCommentType, ViewDataType } from '../composables'
 import { useI18nRegle } from '../composables'
 import { useCommentRules } from '../composables'
 
-const { frameId } = inject('viewData') as UseViewDataType
+const { frameId } = inject('viewData') as ViewDataType
 const { setFlash } = useToast()
 
 const { loggedIn } = inject('account') as UseAccountType
@@ -22,12 +22,12 @@ const onPostClick = async () => {
   r$.$reset()
   const { valid } =await r$.$validate()
   if (valid) {
-    await postComment(frameId)
+    await postComment(frameId.value)
     setFlash(flash.value)
     comment.value.body = ''
     r$.$touch()
     r$.$reset()
-    await getComments(frameId)
+    await getComments(frameId.value)
   }
 }
 </script>

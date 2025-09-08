@@ -2,7 +2,6 @@
 import CommentListAndForm from './CommentListAndForm.vue'
 
 import { provide } from 'vue'
-import Axios from 'axios'
 
 import { useLocale } from '../composables'
 import { useViewData } from '../composables'
@@ -14,21 +13,14 @@ const props = defineProps<{
   frameId: string
 }>()
 
-const { locale, autoDetect } = useLocale(props.locale)
+const { autoDetect } = useLocale(props.locale)
 const viewData = useViewData()
 
 autoDetect()
 
-Axios.defaults.baseURL = props.apiBaseUrl
-
-Axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN': props.csrfToken,
-  'Accept': 'application/json',
-  'Accept-Language': locale.value
-}
-
-viewData.frameId = props.frameId
+viewData.baseURL.value = props.apiBaseUrl
+viewData.csrfToken.value = props.csrfToken
+viewData.frameId.value = props.frameId
 
 provide('viewData', viewData)
 </script>

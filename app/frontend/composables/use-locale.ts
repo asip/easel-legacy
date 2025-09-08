@@ -1,6 +1,6 @@
 import { i18n } from '../utils'
 
-export const useLocale = (viewLocale: string) => {
+export const useLocale = (viewLocale?: string) => {
   const { locale, availableLocales } = i18n.global
 
   const autoDetect = () => {

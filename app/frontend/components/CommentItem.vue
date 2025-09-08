@@ -4,14 +4,14 @@ import { computed, inject, onMounted, ref } from 'vue'
 
 import { useToast } from '../composables'
 import type { Comment } from '../interfaces'
-import type { UseAccountType, UseCommentType, UseViewDataType } from '../composables'
+import type { UseAccountType, UseCommentType, ViewDataType } from '../composables'
 
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'
 
 const { setFlash } = useToast()
 
-const { frameId } = inject('viewData') as UseViewDataType
+const { frameId } = inject('viewData') as ViewDataType
 const { loggedIn, currentUser } = inject('account') as UseAccountType
 const { flash, getComments, deleteComment } = inject('commenter') as UseCommentType
 
@@ -25,8 +25,7 @@ onMounted(() => {
     ref_id: comment?.value?.frame_id?.toString() ?? ''
   }
 
-  // eslint-disable-next-line no-undef
-  querys.value = new URLSearchParams(params).toString()
+  querys.value = new globalThis.URLSearchParams(params).toString()
 })
 
 const sanitizedCommentBody = computed(() => {
@@ -36,7 +35,7 @@ const sanitizedCommentBody = computed(() => {
 const onDeleteClick = async () => {
   if(comment.value) { await deleteComment(comment.value) }
   setFlash(flash.value)
-  await getComments(frameId)
+  await getComments(frameId.value)
 }
 </script>
 

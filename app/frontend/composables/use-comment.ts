@@ -1,10 +1,10 @@
-import Axios, { AxiosError } from 'axios'
 import { ref } from 'vue'
 
+import type { ViewDataType } from '../composables'
 import type { Comment , CommentResource, CommentsResource } from '../interfaces'
 import { useAccount, useFlash } from './'
 
-export function useComment() {
+export function useComment(viewData: ViewDataType) {
   const comment = ref<Comment>({
     id: undefined,
     frame_id: null,
@@ -20,27 +20,35 @@ export function useComment() {
 
   const { flash, clearFlash } = useFlash()
 
-  const { token } = useAccount()
+  const { baseURL, headers } = viewData
+  const { token } = useAccount(viewData)
 
   const getComments = async (frameId: string) => {
     clearFlash()
     //console.log(frame_id)
 
     try{
-      const res = await Axios.get<CommentsResource>(`/frames/${frameId}/comments`)
+      const response = await globalThis.fetch(`${baseURL.value}/frames/${frameId}/comments`,
+        {
+          method: 'GET',
+          headers: headers.value
+        })
 
-      const commentList: [CommentResource] = res.data.comments
-      //console.log(comment_list);
-      comments.value.splice(0, comments.value.length)
-      for (const comment of commentList) {
-      //console.log(comment);
-        comments.value.push(createCommentFromJson(comment))
+      if (!response.ok) {
+        setAlert(response.status)
+      } else {
+        const commentList: [CommentResource] = (await response.json() as CommentsResource).comments
+        //console.log(comment_list);
+        comments.value.splice(0, comments.value.length)
+        for (const comment of commentList) {
+        //console.log(comment);
+          comments.value.push(createCommentFromJson(comment))
+        }
       }
       //console.log(comments);
     } catch (error) {
-      if(Axios.isAxiosError(error)){
-        setAlert(error as AxiosError)
-      }
+      flash.value.alert = '不具合が発生しました'
+      globalThis.console.log((error as Error).message)
     }
   }
 
@@ -54,48 +62,57 @@ export function useComment() {
     clearFlash()
 
     try {
-      // const params = new URLSearchParams()
-      // params.append('comment[body]', comment.body)
-      const params = {
-        comment: {
-          body: comment.value.body
-        }
-      }
+      const params = new URLSearchParams()
+      params.append('comment[body]', comment.value.body)
+      //const params = {
+      //  comment: {
+      //    body: comment.value.body
+      //  }
+      //}
 
-      await Axios.post<CommentResource>(`/frames/${frameId}/comments`,
-        params,
+      const response = await globalThis.fetch(`${baseURL.value}/frames/${frameId}/comments`,
         {
+          method: 'POST',
+          body: params,
           headers: {
+            ...headers.value,
             Authorization: `Bearer ${token.value}`
           }
         }
       )
-    } catch (error) {
-      if(Axios.isAxiosError(error)){
-        setAlert(error as AxiosError)
+
+      if (!response.ok) {
+        setAlert(response.status)
       }
+    } catch (error) {
+      flash.value.alert = '不具合が発生しました'
+      globalThis.console.log((error as Error).message)
     }
   }
 
   const deleteComment = async (comment: Comment) => {
     clearFlash()
     try {
-      await Axios.delete(
-        `/comments/${comment.id?.toString(10) ?? ''}`,
+      const response = await globalThis.fetch(
+        `${baseURL.value}/comments/${comment.id?.toString(10) ?? ''}`,
         {
+          method: 'DELETE',
           headers: {
+            ...headers.value,
             Authorization: `Bearer ${token.value}`
           }
         })
-    } catch (error) {
-      if(Axios.isAxiosError(error)){
-        setAlert(error as AxiosError)
+
+      if (!response.ok) {
+        setAlert(response.status)
       }
+    } catch (error) {
+      flash.value.alert = '不具合が発生しました'
+      globalThis.console.log((error as Error).message)
     }
   }
 
-  const setAlert = (error: AxiosError) => {
-    const status = error.response?.status
+  const setAlert = (status: number) => {
     switch(status){
     case 401:
       flash.value.alert = 'ページをリロードし、ログインしてください'

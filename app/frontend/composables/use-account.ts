@@ -1,11 +1,11 @@
-import Axios, { AxiosError } from 'axios'
 import { Ref, ref, computed} from 'vue'
 import { useCookies } from '@vueuse/integrations/useCookies.mjs'
 
+import type { ViewDataType } from './'
 import type { AccountResource, User } from '../interfaces'
 import { useFlash } from './'
 
-export function useAccount() {
+export function useAccount(viewData: ViewDataType) {
   const loggedIn: Ref<boolean> = ref<boolean>(false)
   const currentUser = ref<User>({
     id: null,
@@ -14,6 +14,7 @@ export function useAccount() {
 
   const cookies = useCookies(['access_token'])
   const { flash, clearFlash } = useFlash()
+  const { baseURL, headers } = viewData
 
   const token = computed<string>(() => cookies.get('access_token'))
 
@@ -21,29 +22,31 @@ export function useAccount() {
     clearFlash()
 
     try {
-      const res = await Axios.get<AccountResource>('/account',
+      const response = await globalThis.fetch(`${baseURL.value}/account`,
         {
+          method: 'GET',
           headers: {
+            ...headers.value,
             Authorization: `Bearer ${token.value}`
           }
         })
 
-      //if (res.data) {
-      const accountAttrs = res.data
-      currentUser.value.id = accountAttrs.id
-      currentUser.value.token = (res.headers['authorization'] as string).split(' ')[1]
-      loggedIn.value = true
-      //}
-    } catch (error) {
-      loggedIn.value = false
-      if(Axios.isAxiosError(error)){
-        setAlert(error as AxiosError)
+      if (!response.ok) {
+        loggedIn.value = false
+        setAlert(response.status)
+      } else {
+        const accountAttrs = (await response.json()) as AccountResource
+        currentUser.value.id = accountAttrs.id
+        currentUser.value.token = response.headers.get('authorization')?.split(' ')[1]
+        loggedIn.value = true
       }
+    } catch(error) {
+      flash.value.alert = '不具合が発生しました'
+      globalThis.console.log((error as Error).message)
     }
   }
 
-  const setAlert= (error: AxiosError) => {
-    const status = error.response?.status
+  const setAlert= (status: number) => {
     switch(status){
     case 401:
       break

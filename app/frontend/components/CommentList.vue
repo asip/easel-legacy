@@ -3,12 +3,12 @@ import CommentItem from './CommentItem.vue'
 
 import { inject } from 'vue'
 
-import type { UseCommentType, UseViewDataType } from '../composables'
+import type { UseCommentType, ViewDataType } from '../composables'
 
-const { frameId } = inject('viewData') as UseViewDataType
+const { frameId } = inject('viewData') as ViewDataType
 const { comments, getComments } = inject('commenter') as UseCommentType
 
-await getComments(frameId)
+await getComments(frameId.value)
 </script>
 
 <template>
