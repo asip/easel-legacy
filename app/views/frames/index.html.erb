@@ -1,10 +1,10 @@
 <div id="frames">
   <br>
-  <%= render partial: "frames/more/load_prev", locals: { pagy: @pagy, word: @items["word"] } %>
+  <%= render partial: "frames/more/load_prev", locals: { pagy: @pagy, items: @items } %>
   <div id="list">
     <%= render partial: "frames/more/list", locals: { frames: @frames } %>
   </div>
-  <%= render partial: "frames/more/load_next", locals: { pagy: @pagy, word: @items["word"] } %>
+  <%= render partial: "frames/more/load_next", locals: { pagy: @pagy, items: @items } %>
 
   <% if false %><div class="flex justify-center">
     <div class="mx-auto rounded-[5px] pt-2">

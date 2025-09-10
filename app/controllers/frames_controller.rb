@@ -4,6 +4,7 @@
 class FramesController < ApplicationController
   include Queries::Frames::Pagination
   include Query::Search
+  include Ref:: User
   include More
 
   skip_before_action :authenticate_user!, only: %i[index show]
@@ -62,8 +63,8 @@ class FramesController < ApplicationController
   private
 
   def set_query
-    word = permitted_params[:q]
-    @items = word.present? ? { "word" => word } : {}
+    items_ = permitted_params[:q]
+    @items = items_.present? ? JSON.parse(items_) : {}
     @page = permitted_params[:page]
   end
 
@@ -97,6 +98,10 @@ class FramesController < ApplicationController
     when "update"
       render :update, layout: false, content_type: "text/vnd.turbo-stream.html"
     end
+  end
+
+  def ref_map
+    { ref: "frame_detail", ref_id: @frame.id, q: query_map["q"] }
   end
 
   def permitted_params

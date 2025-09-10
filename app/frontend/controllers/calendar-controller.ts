@@ -40,7 +40,7 @@ export default class CalendarController extends ApplicationController {
         //console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
 
         // eslint-disable-next-line
-        globalThis.location.href=`/frames?q=${e.detail.datepicker.getDate('yyyy/mm/dd')}`
+        globalThis.location.href=`/frames?q=${JSON.stringify({ word: e.detail.datepicker.getDate('yyyy/mm/dd') })}`
       })
     }
   }

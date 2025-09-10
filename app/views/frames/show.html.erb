@@ -7,7 +7,7 @@
           <%= link_to root_path(query_map) do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
         </div>
         <div>
-          <%= link_to user_path(@frame.user, { ref: "frame_detail", ref_id: @frame.id }), class: "link link-hover" do %>
+          <%= link_to user_path(@frame.user, ref_map), class: "link link-hover" do %>
             <%= @frame.user.name %>
           <% end %>
         </div>

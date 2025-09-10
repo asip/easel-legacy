@@ -1,6 +1,6 @@
 <div id="load-prev" class="flex justify-center">
   <%= if pagy.prev.present?
-        link_to("もっとみる", { controller: "frames", action: "prev", params: { q: word, page: pagy.prev } },
+        link_to("もっとみる", { controller: "frames", action: "prev", params: { q: items.to_json, page: pagy.prev } },
                 class: "btn btn-outline btn-primary rounded-full  bg-white mb-2")
       end %>
 </div>

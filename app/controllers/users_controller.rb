@@ -8,32 +8,36 @@ class UsersController < ApplicationController
 
   skip_before_action :authenticate_user!
 
+  before_action :set_query, only: %i[show]
+
   def show
-    @user = Queries::Users::FindUser.run(user_id: params[:id])
-    @pagy, @frames = list_frames_query(user_id: path_params[:id], page: path_params[:page])
+    @user = Queries::Users::FindUser.run(user_id: permitted_params[:id])
+    @pagy, @frames = list_frames_query(user_id: permitted_params[:id], page: permitted_params[:page])
   end
 
   # followees list (フォロイー一覧)
   def followees
-    @users = Queries::Users::ListFollowees.run(user_id: path_params[:id])
+    @users = Queries::Users::ListFollowees.run(user_id: permitted_params[:id])
   end
 
   # followers list (フォロワー一覧)
   def followers
-    @users = Queries::Users::ListFollowers.run(user_id: path_params[:id])
+    @users = Queries::Users::ListFollowers.run(user_id: permitted_params[:id])
   end
 
   private
 
-  def path_params
-    params.permit(:id, :page)
+  def permitted_params
+    params.permit(:id, :page, :ref, :ref_id, :q)
+  end
+
+  def set_query
+    items_ = permitted_params[:q]
+    @items = items_.present? ? JSON.parse(items_) : {}
   end
 
   def query_map
-    {}
-  end
-
-  def ref_map
-    { ref: params[:ref], ref_id: params[:ref_id] }
+    items = permitted_params[:q]
+    items.present? ? { q: items } : {}
   end
 end

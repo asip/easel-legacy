@@ -7,7 +7,7 @@ module Query
     extend ActiveSupport::Concern
 
     included do
-      helper_method :query_list
+      # helper_method :query_list
       helper_method :query_map
     end
 
@@ -18,8 +18,8 @@ module Query
     end
 
     def query_map
-      permitted_params.to_h.filter do |key, _value|
-        query_list.include?(key.to_sym)
+      permitted_params.to_h.filter do |key, value|
+        query_list.include?(key.to_sym) if value.present?
       end
     end
   end
