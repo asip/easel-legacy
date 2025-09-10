@@ -16,7 +16,7 @@ class FramesController < ApplicationController
   before_action :back_to_form, only: %i[create update]
 
   def index
-    @pagy, @frames = list_frames_query(word: @word, page: @page)
+    @pagy, @frames = list_frames_query(items: @items, page: @page)
   end
 
   def show
@@ -62,15 +62,17 @@ class FramesController < ApplicationController
   private
 
   def set_query
-    @word = permitted_params[:q]
+    word = permitted_params[:q]
+    @items = word.present? ? { "word" => word } : {}
     @page = permitted_params[:page]
   end
 
   def set_day
-    @day = if @word.blank? || DateAndTime::Util.valid_date?(@word)
-             "" # Time.zone.now.strftime("%Y/%m/%d")
+    word = @items["word"]
+    @day = if word.blank? || !DateAndTime::Util.valid_date?(word)
+             ""
     else
-             @word
+             word
     end
   end
 
