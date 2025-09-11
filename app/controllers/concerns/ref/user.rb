@@ -15,7 +15,7 @@ module Ref
     protected
 
     def ref_list
-      %i[ref ref_id q]
+      %i[ref]
     end
 
     def ref_map
@@ -25,9 +25,10 @@ module Ref
     end
 
     def back_to_path
-      case ref_map["ref"]
+      items = JSON.parse(ref_map["ref"])
+      case items["from"]
       when "frame_detail"
-        frame_path(Frame.find(ref_map["ref_id"]), { q: ref_map["q"] })
+        frame_path(Frame.find(items["id"]), { q: items["q"] })
       else
         ""
       end

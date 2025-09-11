@@ -11,8 +11,9 @@ class UsersController < ApplicationController
   before_action :set_query, only: %i[show]
 
   def show
-    @user = Queries::Users::FindUser.run(user_id: permitted_params[:id])
-    @pagy, @frames = list_frames_query(user_id: permitted_params[:id], page: permitted_params[:page])
+    user_id = permitted_params[:id]
+    @user = Queries::Users::FindUser.run(user_id:)
+    @pagy, @frames = list_frames_query(user_id:, page: permitted_params[:page])
   end
 
   # followees list (フォロイー一覧)
@@ -28,16 +29,16 @@ class UsersController < ApplicationController
   private
 
   def permitted_params
-    params.permit(:id, :page, :ref, :ref_id, :q)
+    params.permit(:id, :page, :ref)
   end
 
   def set_query
-    items_ = permitted_params[:q]
+    items_ = JSON.parse(permitted_params[:ref])["q"]
     @items = items_.present? ? JSON.parse(items_) : {}
   end
 
   def query_map
-    items = permitted_params[:q]
+    items = JSON.parse(permitted_params[:ref])["q"]
     items.present? ? { q: items } : {}
   end
 end
