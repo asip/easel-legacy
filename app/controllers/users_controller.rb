@@ -33,12 +33,14 @@ class UsersController < ApplicationController
   end
 
   def set_query
-    items_ = JSON.parse(permitted_params[:ref])["q"]
+    ref = permitted_params[:ref]
+    items_ = ref.present? ? JSON.parse(ref)["q"] : "{}"
     @items = items_.present? ? JSON.parse(items_) : {}
   end
 
   def query_map
-    items = JSON.parse(permitted_params[:ref])["q"]
+    ref = permitted_params[:ref]
+    items = ref.present? ? JSON.parse(ref)["q"] : nil
     items.present? ? { q: items } : {}
   end
 end
