@@ -27,7 +27,7 @@ module Ref
     def back_to_path
       items = JSON.parse(ref_map["ref"])
       case items["from"]
-      when "frame_detail"
+      when "frame"
         frame_path(Frame.find(items["id"]), { q: items["q"] })
       else
         ""

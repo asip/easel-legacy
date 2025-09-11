@@ -21,8 +21,7 @@ const querys = ref('')
 
 onMounted(() => {
   const params: Record<string, string> = {
-    ref: 'frame_detail',
-    ref_id: comment?.value?.frame_id?.toString() ?? ''
+    ref: JSON.stringify({ from: 'frame', id: comment?.value?.frame_id?.toString() ?? '' })
   }
 
   querys.value = new globalThis.URLSearchParams(params).toString()

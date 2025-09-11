@@ -101,7 +101,7 @@ class FramesController < ApplicationController
   end
 
   def ref_map
-    { ref: { from: "frame_detail", id: @frame.id, q: query_map["q"] }.to_json }
+    { ref: { from: "frame", id: @frame.id, q: query_map["q"] }.to_json }
   end
 
   def permitted_params
