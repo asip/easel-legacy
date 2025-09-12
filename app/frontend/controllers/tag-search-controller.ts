@@ -40,7 +40,11 @@ export default class TagSearchController extends ApplicationController {
     if (this.wordTrigger?.value != null && this.wordTrigger.value.length <= 10) {
       (this.element as HTMLFormElement).requestSubmit()
     } else {
-      if (this.tooltipTrigger) this.tooltipTrigger.dataset['tip'] = '10文字以内で入力してください'
+      if (this.tooltipTrigger) {
+        this.tooltipTrigger.dataset['tip'] = '10文字以内で入力してください'
+        this.tooltipTrigger.classList.add('tooltip-open')
+        this.tooltipTrigger.classList.add('tooltip-error')
+      }
       event.preventDefault()
     }
   }
@@ -48,6 +52,8 @@ export default class TagSearchController extends ApplicationController {
   clearTooltip(){
     if (this.tooltipTrigger && this.tooltipTrigger.dataset['tip'] !=  'タグ or 名前 or 撮影/登録/更新日') {
       this.tooltipTrigger.dataset['tip'] =  'タグ or 名前 or 撮影/登録/更新日'
+      this.tooltipTrigger.classList.remove('tooltip-error')
+      this.tooltipTrigger.classList.remove('tooltip-open')
     }
   }
 }
