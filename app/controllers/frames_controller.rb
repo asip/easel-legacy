@@ -101,7 +101,11 @@ class FramesController < ApplicationController
   end
 
   def ref_map
-    { ref: { from: "frame", id: @frame.id, q: query_map["q"] }.to_json }
+    ref_items = { from: "frame", id: @frame.id }
+    q_items = query_map["q"]
+    ref_items[:q] = q_items if q_items.present?
+    ref_items[:page] = @page if @page.present?
+    { ref: ref_items.to_json }
   end
 
   def permitted_params

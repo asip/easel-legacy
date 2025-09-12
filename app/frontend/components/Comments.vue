@@ -11,6 +11,8 @@ const props = defineProps<{
   csrfToken: string
   locale: string
   frameId: string
+  page: string
+  q: string
 }>()
 
 const { autoDetect } = useLocale(props.locale)
@@ -21,6 +23,9 @@ autoDetect()
 viewData.baseURL.value = props.apiBaseUrl
 viewData.csrfToken.value = props.csrfToken
 viewData.frameId.value = props.frameId
+viewData.q.value = props.q
+viewData.page.value = props.page
+
 
 provide('viewData', viewData)
 </script>

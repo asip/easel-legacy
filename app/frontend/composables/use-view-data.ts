@@ -7,6 +7,8 @@ export function useViewData(){
   const baseURL = ref('')
   const csrfToken = ref('')
   const frameId = ref('')
+  const q = ref<string | undefined>()
+  const page = ref<string | undefined>()
 
   const headers = computed(() => ({
     'X-Requested-With': 'XMLHttpRequest',
@@ -15,7 +17,7 @@ export function useViewData(){
     'Accept-Language': locale.value
   }))
 
-  return { baseURL, csrfToken, headers, frameId }
+  return { baseURL, csrfToken, headers, frameId, q, page }
 }
 
 export type ViewDataType = ReturnType<typeof useViewData>

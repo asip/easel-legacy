@@ -4,8 +4,10 @@
 module Comments
   # Component
   class Component < ViewComponent::Base
-    def initialize(frame:)
+    def initialize(frame:, q:, page:)
       @frame = frame
+      @q = q
+      @page = page
     end
   end
 end

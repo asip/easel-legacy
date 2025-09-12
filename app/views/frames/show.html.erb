@@ -64,4 +64,4 @@
     <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame, query_map)) %>
   <% end %>
 </div>
-<%= render Comments::Component.new(frame: @frame) %>
+<%= render Comments::Component.new(frame: @frame, page: @page, q: (@items.present? ? @items.to_json : nil)) %>

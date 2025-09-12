@@ -29,7 +29,12 @@ module Ref
       items = ref.present? ? JSON.parse(ref) : {}
       case items["from"]
       when "frame"
-        frame_path(Frame.find(items["id"]), { q: items["q"] })
+        query = {}
+        q_items = items["q"]
+        page = items["page"]
+        query[:q] = q_items if q_items.present?
+        query[:page] = page if page.present?
+        frame_path(Frame.find(items["id"]), query)
       else
         ""
       end
