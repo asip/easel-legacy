@@ -20,7 +20,6 @@ const comment = defineModel<Comment>()
 const querys = ref('')
 
 onMounted(() => {
-
   const refItems: RefQuery = { from: 'frame', id: frameId.value }
   if(q.value) refItems.q = q.value
   if(page.value) refItems.page = page.value
@@ -32,9 +31,9 @@ onMounted(() => {
   querys.value = new globalThis.URLSearchParams(params).toString()
 })
 
-const sanitizedCommentBody = computed(() => {
-  return sanitizeHtml(comment.value?.body ?? '').replace(/\n/g, '<br>')
-})
+const sanitizedCommentBody = computed(() =>
+  sanitizeHtml(comment.value?.body ?? '').replace(/\n/g, '<br>')
+)
 
 const onDeleteClick = async () => {
   if(comment.value) { await deleteComment(comment.value) }
