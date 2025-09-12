@@ -24,6 +24,8 @@ export default class TagSearchController extends ApplicationController {
     if (this.hasQTarget) {
       this.qTrigger = this.qTarget
     }
+
+    this.tooltipTrigger?.classList.remove('tooltip-error')
   }
 
   submit(event: Event) {
@@ -37,11 +39,11 @@ export default class TagSearchController extends ApplicationController {
     }
     // globalThis.console.log(this.qTrigger?.value)
 
-    if (this.wordTrigger?.value != null && this.wordTrigger.value.length <= 30) {
+    if (this.wordTrigger?.value != null && this.wordTrigger.value.length <= 40) {
       (this.element as HTMLFormElement).requestSubmit()
     } else {
       if (this.tooltipTrigger) {
-        this.tooltipTrigger.dataset['tip'] = '30文字以内で入力してください'
+        this.tooltipTrigger.dataset['tip'] = '40文字以内で入力してください'
         this.tooltipTrigger.classList.add('tooltip-open')
         this.tooltipTrigger.classList.add('tooltip-error')
       }
