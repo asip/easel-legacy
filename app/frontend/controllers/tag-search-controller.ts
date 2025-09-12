@@ -37,11 +37,11 @@ export default class TagSearchController extends ApplicationController {
     }
     // globalThis.console.log(this.qTrigger?.value)
 
-    if (this.wordTrigger?.value != null && this.wordTrigger.value.length <= 10) {
+    if (this.wordTrigger?.value != null && this.wordTrigger.value.length <= 30) {
       (this.element as HTMLFormElement).requestSubmit()
     } else {
       if (this.tooltipTrigger) {
-        this.tooltipTrigger.dataset['tip'] = '10文字以内で入力してください'
+        this.tooltipTrigger.dataset['tip'] = '30文字以内で入力してください'
         this.tooltipTrigger.classList.add('tooltip-open')
         this.tooltipTrigger.classList.add('tooltip-error')
       }
