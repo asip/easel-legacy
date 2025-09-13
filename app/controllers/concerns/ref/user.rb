@@ -24,20 +24,30 @@ module Ref
       end
     end
 
+    def ref_items
+      ref = permitted_params[:ref]
+      ref.present? ? JSON.parse(ref) : {}
+    end
+
     def back_to_path
-      ref = ref_map["ref"]
-      items = ref.present? ? JSON.parse(ref) : {}
+      items = ref_items
       case items["from"]
       when "frame"
-        query = {}
-        q_items = items["q"]
-        page = items["page"]
-        query[:q] = q_items if q_items.present?
-        query[:page] = page if page.present?
-        frame_path(Frame.find(items["id"]), query)
+        frame_path(Frame.find(items["id"]), Ref::User.query_items_from(ref_items: items))
       else
         ""
       end
+    end
+
+    protected
+
+    def self.query_items_from(ref_items:)
+      q_items = ref_items["q"]
+      page = ref_items["page"]
+      query = {}
+      query[:q] = q_items if q_items.present?
+      query[:page] = page if page.present?
+      query
     end
   end
 end

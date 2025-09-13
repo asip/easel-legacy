@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   skip_before_action :authenticate_user!
 
-  before_action :set_query, only: %i[show]
+  before_action :set_query_items, only: %i[show]
 
   def show
     user_id = permitted_params[:id]
@@ -32,15 +32,17 @@ class UsersController < ApplicationController
     params.permit(:id, :page, :ref)
   end
 
-  def set_query
-    ref = permitted_params[:ref]
-    items_ = ref.present? ? JSON.parse(ref)["q"] : "{}"
-    @items = items_.present? ? JSON.parse(items_) : {}
+  def set_query_items
+    @items = query_items
+  end
+
+  def query_items
+    items = ref_items["q"]
+    items.present? ? JSON.parse(items) : {}
   end
 
   def query_map
-    ref = permitted_params[:ref]
-    items = ref.present? ? JSON.parse(ref)["q"] : nil
+    items = ref_items["q"]
     items.present? ? { q: items } : {}
   end
 end

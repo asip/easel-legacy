@@ -10,7 +10,7 @@ class FramesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   # rubocop:disable Rails/LexicallyScopedActionFilter
-  before_action :set_query, only: %i[index prev next show new edit]
+  before_action :set_query_items, only: %i[index prev next show new edit]
   # rubocop:enable Rails/LexicallyScopedActionFilter
   before_action :set_day, only: [ :index ]
   before_action :set_frame, only: %i[create update]
@@ -62,18 +62,17 @@ class FramesController < ApplicationController
 
   private
 
-  def set_query
-    items_ = permitted_params[:q]
-    @items = items_.present? ? JSON.parse(items_) : {}
+  def set_query_items
+    @items = query_items
     @page = permitted_params[:page]
   end
 
   def set_day
     word = @items["word"]
     @day = if word.blank? || !DateAndTime::Util.valid_date?(word)
-             ""
+      ""
     else
-             word
+      word
     end
   end
 
@@ -101,11 +100,15 @@ class FramesController < ApplicationController
   end
 
   def ref_map
-    ref_items = { from: "frame", id: @frame.id }
-    q_items = query_map["q"]
-    ref_items[:q] = q_items if q_items.present?
-    ref_items[:page] = @page if @page.present?
     { ref: ref_items.to_json }
+  end
+
+  def ref_items
+    q_items = permitted_params[:q]
+    items = { from: "frame", id: @frame.id }
+    items[:q] = q_items if q_items.present?
+    items[:page] = @page if @page.present?
+    items
   end
 
   def permitted_params

@@ -1,9 +1,6 @@
 <div id="load-next" class="flex justify-center">
   <%= if pagy.next.present?
-        query = {}
-        query[:q] = items.to_json if items.present?
-        query[:page] = pagy.next
-        link_to("もっとみる", { controller: "frames", action: "next", params: query },
+        link_to("もっとみる", { controller: "frames", action: "next", params: paging_query_map(page: pagy.next) },
                 class: "btn btn-outline btn-primary rounded-full bg-white")
       end %>
 </div>

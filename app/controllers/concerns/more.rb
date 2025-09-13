@@ -6,7 +6,7 @@ module More
 
   included do
     skip_before_action :authenticate_user!, only: %i[next prev]
-    before_action :set_query, only: %i[next prev]
+    before_action :set_query_items, only: %i[next prev]
   end
 
   def prev

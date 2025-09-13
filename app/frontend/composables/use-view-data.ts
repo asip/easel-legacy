@@ -1,4 +1,6 @@
 import { ref, computed } from 'vue'
+
+import type { RefQuery } from '../interfaces'
 import { useLocale } from './use-locale'
 
 export function useViewData(){
@@ -17,7 +19,13 @@ export function useViewData(){
     'Accept-Language': locale.value
   }))
 
-  return { baseURL, csrfToken, headers, frameId, q, page }
+  const refItems = computed( () => {
+    const items: RefQuery = { from: 'frame', id: frameId.value }
+    if (q.value) items.q = q.value
+    if (page.value) items.page = page.value
+    return items
+  })
+  return { baseURL, csrfToken, headers, frameId, q, page, refItems }
 }
 
 export type ViewDataType = ReturnType<typeof useViewData>

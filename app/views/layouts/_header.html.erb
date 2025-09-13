@@ -33,7 +33,7 @@
       </div>
       <div class="navbar-end flex gap-2">
         <div class="hidden sm:flex">
-          <%= render TagSearch::Component.new(word: (@items.present? ? @items["word"]: ""), path: frames_path) %>
+          <%= render TagSearch::Component.new(word: (@items.present? ? @items["word"]: nil), path: frames_path) %>
         </div>
         <div class="dropdown dropdown-end">
           <div tabindex="0" role="button" class="btn btn-ghost sm:hidden">
@@ -42,7 +42,7 @@
           <ul
             tabindex="0"
             class="menu menu-sm dropdown-content bg-base-100 rounded-[5px] z-1 mt-3 w-90 p-2 shadow">
-            <li><%= render TagSearch::Component.new(word: (@items.present? ? @items["word"]: ""), path: frames_path) %></li>
+            <li><%= render TagSearch::Component.new(word: (@items.present? ? @items["word"]: nil), path: frames_path) %></li>
           </ul>
         </div>
       </div>

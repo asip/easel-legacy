@@ -3,7 +3,7 @@ import sanitizeHtml from 'sanitize-html'
 import { computed, inject, onMounted, ref } from 'vue'
 
 import { useToast } from '../composables'
-import type { Comment, RefQuery } from '../interfaces'
+import type { Comment } from '../interfaces'
 import type { UseAccountType, UseCommentType, ViewDataType } from '../composables'
 
 // If running in Node.js or SSR, uncomment the following line:
@@ -11,7 +11,7 @@ import type { UseAccountType, UseCommentType, ViewDataType } from '../composable
 
 const { setFlash } = useToast()
 
-const { frameId, q, page } = inject('viewData') as ViewDataType
+const { frameId, refItems } = inject('viewData') as ViewDataType
 const { loggedIn, currentUser } = inject('account') as UseAccountType
 const { flash, getComments, deleteComment } = inject('commenter') as UseCommentType
 
@@ -20,12 +20,8 @@ const comment = defineModel<Comment>()
 const querys = ref('')
 
 onMounted(() => {
-  const refItems: RefQuery = { from: 'frame', id: frameId.value }
-  if(q.value) refItems.q = q.value
-  if(page.value) refItems.page = page.value
-
   const params: Record<string, string> = {
-    ref: JSON.stringify(refItems)
+    ref: JSON.stringify(refItems.value)
   }
 
   querys.value = new globalThis.URLSearchParams(params).toString()
