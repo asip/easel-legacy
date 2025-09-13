@@ -2,7 +2,7 @@
   <br>
   <%= render partial: "frames/more/load_prev", locals: { pagy: @pagy } %>
   <div id="list">
-    <%= render partial: "frames/more/list", locals: { frames: @frames } %>
+    <%= render partial: "frames/more/list", locals: { frames: @frames, page: "" } %>
   </div>
   <%= render partial: "frames/more/load_next", locals: { pagy: @pagy } %>
 

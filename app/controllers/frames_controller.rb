@@ -4,7 +4,7 @@
 class FramesController < ApplicationController
   include Queries::Frames::Pagination
   include Query::Search
-  include Ref:: User
+  include Ref::FrameRef
   include More
 
   skip_before_action :authenticate_user!, only: %i[index show]
@@ -105,15 +105,20 @@ class FramesController < ApplicationController
 
   def ref_items
     q_items = permitted_params[:q]
-    items = { from: "frame", id: @frame.id }
-    items[:q] = q_items if q_items.present?
-    items[:page] = @page if @page.present?
-    items
+    ref_items_ = permitted_params[:ref]
+    if ref_items_.present?
+      ref_items_.present? ? JSON.parse(ref_items_) : {}
+    else
+      items = { from: "frame", id: @frame.id }
+      items[:q] = q_items if q_items.present?
+      items[:page] = @page if @page.present?
+      items
+    end
   end
 
   def permitted_params
     params.permit(
-      :id, :q, :page, :commit, :tag_editor, :_method, :authenticity_token,
+      :id, :q, :page, :ref, :commit, :tag_editor, :_method, :authenticity_token,
       frame: %i[name tag_list comment file shooted_at confirming]
     )
   end

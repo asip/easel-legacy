@@ -5,6 +5,8 @@ class SessionsController < ApplicationController
   include Query::Search
   include Queries::Sessions::Pagination
 
+  helper_method :ref_map_for_list
+
   skip_before_action :authenticate_user!
 
   def show
@@ -16,6 +18,14 @@ class SessionsController < ApplicationController
 
   def query_map
     {}
+  end
+
+  def ref_map_for_list
+    { ref: ref_items_for_list.to_json }
+  end
+
+  def ref_items_for_list
+    { from: "profile" }
   end
 
   def path_params

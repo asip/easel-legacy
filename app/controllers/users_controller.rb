@@ -3,8 +3,10 @@
 # Users Controller
 class UsersController < ApplicationController
   include Query::Search
-  include Ref::User
+  include Ref::UserRef
   include Queries::Users::Pagination
+
+  helper_method :ref_map_for_list
 
   skip_before_action :authenticate_user!
 
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
   private
 
   def permitted_params
-    params.permit(:id, :page, :ref)
+    params.permit(:id, :page, :ref, :q)
   end
 
   def set_query_items
@@ -37,12 +39,21 @@ class UsersController < ApplicationController
   end
 
   def query_items
-    items = ref_items["q"]
+    items = ref_items["q"] || permitted_params[:q]
     items.present? ? JSON.parse(items) : {}
   end
 
   def query_map
-    items = ref_items["q"]
+    items = ref_items["q"] || permitted_params[:q]
+
     items.present? ? { q: items } : {}
+  end
+
+  def ref_map_for_list
+    { ref: ref_items_for_list.to_json }
+  end
+
+  def ref_items_for_list
+    { from: "user_profile", id: permitted_params[:id] }
   end
 end

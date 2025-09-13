@@ -4,7 +4,7 @@
     <div class="card-body">
       <div class="flex justify-between">
         <div>
-          <%= link_to root_path(query_map) do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
+          <%= link_to back_to_path do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
         </div>
         <div>
           <%= link_to user_path(@frame.user, ref_map), class: "link link-hover" do %>

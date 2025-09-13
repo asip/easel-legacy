@@ -3,7 +3,7 @@
 # referrer
 module Ref
   # User module
-  module User
+  module UserRef
     extend ActiveSupport::Concern
 
     included do
@@ -33,15 +33,15 @@ module Ref
       items = ref_items
       case items["from"]
       when "frame"
-        frame_path(Frame.find(items["id"]), Ref::User.query_items_from(ref_items: items))
+        frame_path(Frame.find(items["id"]), Ref::UserRef.query_from(ref_items: items))
       else
-        ""
+        root_path(query_map)
       end
     end
 
     protected
 
-    def self.query_items_from(ref_items:)
+    def self.query_from(ref_items:)
       q_items = ref_items["q"]
       page = ref_items["page"]
       query = {}
