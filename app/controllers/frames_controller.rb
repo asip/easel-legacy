@@ -100,17 +100,18 @@ class FramesController < ApplicationController
   end
 
   def ref_map
-    { ref: ref_items.to_json }
+    q_items = permitted_params[:q]
+    items = { ref: ref_items.to_json }
+    items[:q] = q_items if q_items.present?
+    items
   end
 
   def ref_items
-    q_items = permitted_params[:q]
     ref_items_ = permitted_params[:ref]
     if ref_items_.present?
       ref_items_.present? ? JSON.parse(ref_items_) : {}
     else
       items = { from: "frame", id: @frame.id }
-      items[:q] = q_items if q_items.present?
       items[:page] = @page if @page.present?
       items
     end

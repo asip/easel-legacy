@@ -11,7 +11,7 @@ import type { UseAccountType, UseCommentType, ViewDataType } from '../composable
 
 const { setFlash } = useToast()
 
-const { frameId, refItems } = inject('viewData') as ViewDataType
+const { frameId, q, refItems } = inject('viewData') as ViewDataType
 const { loggedIn, currentUser } = inject('account') as UseAccountType
 const { flash, getComments, deleteComment } = inject('commenter') as UseCommentType
 
@@ -23,6 +23,7 @@ onMounted(() => {
   const params: Record<string, string> = {
     ref: JSON.stringify(refItems.value)
   }
+  if (q.value) params.q = q.value
 
   querys.value = new globalThis.URLSearchParams(params).toString()
 })

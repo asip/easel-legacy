@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
   def show
     @user = current_user
-    @pagy, @frames = list_frames_query(user: @user, page: path_params[:page])
+    @pagy, @frames = list_frames_query(user: @user, page: permitted_params[:page])
   end
 
   private
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
     { from: "profile" }
   end
 
-  def path_params
-    params.permit(:page)
+  def permitted_params
+    params.permit(:page, :q)
   end
 end

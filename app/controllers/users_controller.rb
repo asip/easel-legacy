@@ -39,12 +39,12 @@ class UsersController < ApplicationController
   end
 
   def query_items
-    items = ref_items["q"] || permitted_params[:q]
+    items = permitted_params[:q]
     items.present? ? JSON.parse(items) : {}
   end
 
   def query_map
-    items = ref_items["q"] || permitted_params[:q]
+    items = permitted_params[:q]
 
     items.present? ? { q: items } : {}
   end

@@ -21,7 +21,6 @@ export function useViewData(){
 
   const refItems = computed( () => {
     const items: RefQuery = { from: 'frame', id: frameId.value }
-    if (q.value) items.q = q.value
     if (page.value) items.page = page.value
     return items
   })
