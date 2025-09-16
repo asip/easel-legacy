@@ -1,6 +1,5 @@
 google:
   client_id: <%= ENV.fetch('GOOGLE_CLIENT_ID') { '' } %>
-  client_secret: <%= ENV.fetch('GOOGLE_CLIENT_SECRET') { '' } %>
 front:
   api:
     base_url: /api/front/v1
