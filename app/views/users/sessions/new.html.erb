@@ -6,24 +6,7 @@
     </div>
     <div>
       <div class="flex justify-center gap-2 mb-2">
-        <% if Settings.google.client_id.present? %>
-          <script src="https://accounts.google.com/gsi/client" async defer></script>
-          <div id='g_id_onload'
-               data-client_id='<%= Settings.google.client_id %>'
-               data-login_uri='<%= Settings.external.google_callback_url %>'
-               data-prompt_parent_id='g_id_onload'
-               data-authenticity_token='<%= form_authenticity_token %>'
-               data-auto_prompt="false">
-          </div>
-          <div class="g_id_signin"
-               data-type="standard"
-               data-size="large"
-               data-theme="outline"
-               data-text="sign_in_with"
-               data-shape="rectangular"
-               data-logo_alignment="left">
-          </div>
-        <% end %>
+        <%= render GoogleLogin::Component.new %>
         <%= link_to "ユーザー登録", signup_path, class: "btn btn-outline btn-primary" %>
       </div>
       <%= render "users/sessions/form/new" %>
