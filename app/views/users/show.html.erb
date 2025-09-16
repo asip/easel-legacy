@@ -7,7 +7,7 @@
       </div>
       <div>
         <%= render Sessions::Preview::Image::Component.new(user: @user, original: false) %>
-        <div class="flex justify-center">
+        <div class="flex justify-center mt-2">
           <% if user_signed_in? && @user.id != current_user.id %>
             <% if current_user.following?(@user) %>
               <%= link_to user_follow_relationships_path(@user.id, ref_map), data: { turbo_method: :delete } do %><button type="button" class="btn btn-outline btn-primary btn-sm">フォローを外す</button><% end %>
