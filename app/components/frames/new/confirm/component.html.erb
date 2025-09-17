@@ -15,6 +15,15 @@
       </tr>
       <tr>
         <td>
+          <label for="creator_name" class="">撮影者/作者</label>
+        </td>
+        <td>
+          <%= @frame.creator_name %>
+          <%= @form.hidden_field :creator_name %>
+        </td>
+      </tr>
+      <tr>
+        <td>
           撮影日時
         </td>
         <td>
