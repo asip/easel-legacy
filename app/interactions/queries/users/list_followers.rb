@@ -13,7 +13,7 @@ module Queries
       end
 
       def execute
-        User.find(@user_id).followers
+        User.with_discarded.find(@user_id).followers
       end
     end
   end

@@ -34,7 +34,7 @@ module Ref
       puts items
       case items["from"]
       when "user_profile"
-        user_path(User.find(items["id"]), Ref::FrameRef.query_from(q_items: permitted_params[:q]))
+        user_path(User.with_discarded.find(items["id"]), Ref::FrameRef.query_from(q_items: permitted_params[:q]))
       when "profile"
         profile_path
       else
