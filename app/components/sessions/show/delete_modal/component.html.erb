@@ -1,0 +1,12 @@
+<dialog id="delete_modal" class="modal">
+  <div class="modal-box">
+    <% if false %><h3 class="text-lg font-bold">退会</h3><% end %>
+    <p class="py-4">退会してもよろしいですか？</p>
+    <div class="modal-action">
+      <%= link_to "退会", @path, data: { turbo_method: :delete }, class: "btn btn-outline btn-secondary" %>
+      <form method="dialog">
+        <button class="btn btn-outline btn-primary">閉じる</button>
+      </form>
+    </div>
+  </div>
+</dialog>

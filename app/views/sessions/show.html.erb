@@ -11,6 +11,9 @@
           <% unless @user.social_login? %>
             <%= link_to account_password_path do %><i class="bi bi-lock text-accent hover:text-primary"></i><% end %>
           <% end %>
+          <a onclick="delete_modal.showModal()">
+            <i class="bi bi-x-circle text-accent hover:text-primary"></i>
+          </a>
         </div>
       </div>
       <div>
@@ -61,4 +64,6 @@
       <%== pagy_nav(@pagy) %>
     </div>
   </div>
+
+  <%= render Sessions::Show::DeleteModal::Component.new(path: delete_account_path) %>
 </div>

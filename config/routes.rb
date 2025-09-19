@@ -26,14 +26,14 @@ Rails.application.routes.draw do
   #   registration: "signup"
   # }
   devise_scope :user do
-    get "/login", to: "users/sessions#new"
+    get "/login", to: "users/sessions#new", as: "login"
     post "/sessions/user", to: "users/sessions#create"
     delete "/account/logout", to: "users/sessions#destroy", as: "account_logout"
     post "oauth/callback", to: "users/omniauth_callbacks#google_oauth2"
     get "oauth/callback", to: "users/omniauth_callbacks#google_oauth2"
     get "/signup", to: "users/registrations#new", as: :signup
     get "/profile/edit" => "users/registrations#edit", as: "edit_profile"
-    # delete "/account", to: "users/registrations#destroy"
+    delete "/account", to: "users/registrations#destroy", as: "delete_account"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
