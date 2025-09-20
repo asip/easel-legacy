@@ -9,15 +9,7 @@
       <%= render Frames::Preview::Tags::Component.new(tag_paths: tag_paths(frame), list: true) %>
       <div class="flex justify-center">
         <div class="mx-auto">
-          <% case page
-             when "user_profile"
-              params = ref_map_for_list.merge(query_map)
-             when "profile"
-              params = ref_map_for_list.merge(query_map)
-             else
-              params = query_map
-             end %>
-          <%= link_to frame.name, frame_path(frame, params:),
+          <%= link_to frame.name, frame_path(frame, params: query_map_for_list(page:)),
                       class: "link link-hover",
                       "data-turbo": false %>
         </div>

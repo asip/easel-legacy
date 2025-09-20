@@ -4,6 +4,7 @@
 class FramesController < ApplicationController
   include Queries::Frames::Pagination
   include Query::Search
+  include Query::List
   include Ref::FrameRef
   include More
 
@@ -21,6 +22,7 @@ class FramesController < ApplicationController
   end
 
   def show
+    @q_str = q_string
     @frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id], private: false)
   end
 
@@ -63,7 +65,7 @@ class FramesController < ApplicationController
   private
 
   def set_query_items
-    @items = query_items
+    @items = q_items
     @page = permitted_params[:page]
   end
 
@@ -99,7 +101,7 @@ class FramesController < ApplicationController
     end
   end
 
-  def ref_map
+  def query_map_with_ref
     q_items = permitted_params[:q]
     items = { ref: ref_items.to_json }
     items[:q] = q_items if q_items.present?

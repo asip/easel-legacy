@@ -7,7 +7,7 @@
           <%= link_to back_to_path do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
         </div>
         <div>
-          <%= link_to user_path(@frame.user, ref_map), class: "link link-hover" do %>
+          <%= link_to user_path(@frame.user, query_map_with_ref), class: "link link-hover" do %>
             <%= @frame.user.name %>
           <% end %>
         </div>
@@ -69,7 +69,7 @@
     </div>
   </div>
   <% if user_signed_in? && @frame.user_id == current_user.id %>
-    <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame, query_map)) %>
+    <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame)) %>
   <% end %>
 </div>
-<%= render Comments::Component.new(frame: @frame, page: @page, q: (@items.present? ? @items.to_json : nil)) %>
+<%= render Comments::Component.new(frame: @frame, page: @page, q: @q_str) %>

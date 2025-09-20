@@ -28,13 +28,18 @@ module Query
       items = permitted_params[:q]
       query = {}
       query[:q] = items if items.present?
-      query[:page] = page
+      query[:page] = page if page.present? && page != "1"
       query
     end
 
-    def query_items
+    def q_items
       items = permitted_params[:q]
       items.present? ? JSON.parse(items) : {}
+    end
+
+    def q_string
+      items = permitted_params[:q]
+      items.present? ? items : nil
     end
   end
 end
