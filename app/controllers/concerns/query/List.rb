@@ -15,9 +15,7 @@ module Query
     def query_map_for_list(page:)
       query_ref = { ref: ref_items_for_list.to_json }
       case page
-      when "user_profile"
-        query_map.merge(query_ref)
-      when "profile"
+      when "user_profile", "profile"
         query_map.merge(query_ref)
       else
         query_map

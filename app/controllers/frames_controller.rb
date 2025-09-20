@@ -31,7 +31,7 @@ class FramesController < ApplicationController
   end
 
   def create
-    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame)
+    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame, form_params:)
     @frame = mutation.frame
     if mutation.success?
       redirect_to root_path(query_map)
@@ -47,7 +47,7 @@ class FramesController < ApplicationController
   end
 
   def update
-    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame)
+    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame, form_params:)
     @frame = mutation.frame
     if mutation.success?
       redirect_to frame_path(@frame, query_map)
@@ -111,7 +111,7 @@ class FramesController < ApplicationController
   def ref_items
     ref_items_ = permitted_params[:ref]
     if ref_items_.present?
-      ref_items_.present? ? JSON.parse(ref_items_) : {}
+      JSON.parse(ref_items_)
     else
       items = { from: "frame", id: @frame.id }
       items[:page] = @page if @page.present?
