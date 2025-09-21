@@ -18,7 +18,7 @@ class FramesController < ApplicationController
   before_action :back_to_form, only: %i[create update]
 
   def index
-    @pagy, @frames = list_frames_query(items: @items, page: @page)
+    @pagy, @frames = list_frames(items: @items, page: @page)
   end
 
   def show

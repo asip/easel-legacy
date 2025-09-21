@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
   def show
     @user = current_user
-    @pagy, @frames = list_frames_query(user: @user, page: permitted_params[:page])
+    @pagy, @frames = list_frames(user: @user, page: permitted_params[:page])
   end
 
   private

@@ -12,7 +12,7 @@ module Queries
 
       protected
 
-      def list_frames_query(user_id:, page:)
+      def list_frames(user_id:, page:)
         frames = Queries::Users::ListPublicFrames.run(user_id:)
         pagy, frames = pagy(frames, page:)
         [ pagy, frames ]
