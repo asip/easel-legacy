@@ -33,9 +33,9 @@
       </tr>
       <tr>
         <td>
-          コメント
+          <label for="comment" class="">コメント</label>
         </td>
-        <td>
+        <td style="word-break: break-all;">
           <%= simple_format(h(@frame.comment)) %>
           <%= @form.hidden_field :comment %>
         </td>
