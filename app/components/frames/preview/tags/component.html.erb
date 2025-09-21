@@ -2,7 +2,7 @@
   <% if @tag_paths.size > 0 %>
     <div class="flex justify-center flex-wrap gap-1">
       <% @tag_paths.each do |tag, tag_path| %>
-        <%= link_to tag_path, "data-turbo": false do %><div class="badge badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div><% end %>
+        <%= link_to tag_path, "data-turbo": false do %><div class="badge badge-sm badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div><% end %>
       <% end %>
     </div>
   <% end %>
