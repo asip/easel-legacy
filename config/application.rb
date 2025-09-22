@@ -33,7 +33,7 @@ module Easel
 
     # timezone
     config.active_record.default_timezone = :local
-    config.time_zone = "Tokyo"
+    config.time_zone = "Asia/Tokyo"
 
     # disable parameter wrapping for JSON.
     config.action_controller.wrap_parameters_by_default = false

@@ -36,6 +36,15 @@
       </tr>
       <tr>
         <td>
+          <label for="time_zone" class=""><%= t("activerecord.attributes.user.time_zone") %></label>
+        </td>
+        <td>
+          <% @user.time_zone = Time.zone.name %>
+          <%= @form.select :time_zone, helpers.tzinfo_options, {}, class: "input" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <label for="password" class=""><%= t("activerecord.attributes.user.password") %></label>
         </td>
         <td>

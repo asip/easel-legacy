@@ -37,6 +37,14 @@
                   <%= @user.email %>
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <label for="time_zone" class=""><%= t("activerecord.attributes.user.time_zone") %></label>
+                </td>
+                <td>
+                  <%= @user.time_zone %>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

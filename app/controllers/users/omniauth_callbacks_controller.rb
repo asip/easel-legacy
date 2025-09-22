@@ -41,6 +41,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
                                           aud: Settings.google.client_id)
     auth[:uid] = auth[:info]["sub"]
     auth[:provider] = provider
+    auth[:time_zone] = cookies[:time_zone]
 
     # puts auth
 
@@ -51,7 +52,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: provider.to_s.capitalize) if is_navigational_format?
 
       user.assign_token(user.create_token)
-      cookies.permanent[:access_token] = { value: user.token }
+      cookies[:access_token] = { value: user.token }
       # puts user.token
     else
       session["devise.#{provider}_data"] = request.env["omniauth.auth"].except(:extra)

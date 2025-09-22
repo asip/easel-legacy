@@ -54,6 +54,15 @@
         </td>
       </tr>
       <% end %>
+      <tr>
+        <td>
+          <label for="time_zone" class=""><%= t("activerecord.attributes.user.time_zone") %></label>
+        </td>
+        <td>
+          <% @user.time_zone = Time.zone.name if @user.time_zone.blank? %>
+          <%= @form.select :time_zone, helpers.tzinfo_options, {}, class: "input" %>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

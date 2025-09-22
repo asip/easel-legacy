@@ -20,6 +20,15 @@
           <%= @form.hidden_field :email %>
         </td>
       </tr>
+      <tr>
+        <td>
+          <label for="time_zone" class=""><%= t("activerecord.attributes.user.time_zone") %></label>
+        </td>
+        <td>
+          <div class=""><%= @user.time_zone %></div>
+          <%= @form.hidden_field :time_zone %>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
