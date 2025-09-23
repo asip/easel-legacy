@@ -61,7 +61,7 @@ const onDeleteClick = async () => {
         </div>
       </div>
       <div class="flex justify-start">
-        <table class="table table-bordered table_rounded">
+        <table class="table table-bordered table-rounded">
           <tbody>
             <tr>
               <td style="word-break: break-all;">
