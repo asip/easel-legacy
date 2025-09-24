@@ -92,6 +92,7 @@ class FramesController < ApplicationController
     return unless permitted_params[:commit] == "戻る"
 
     @frame.confirming = ""
+    @frame.joined_tags = form_params[:tag_list]
     # @frame.file_derivatives! if @frame.file.present?
     case action_name
     when "create"

@@ -1,6 +1,6 @@
 <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: false) %>
 <%= render Frames::Preview::Tags::Component.new(tag_paths: @tag_paths, link: false) %>
-<%= @form.hidden_field :tag_list, value: @frame.tag_list.join(",") %>
+<%= @form.hidden_field :tag_list, value: @frame.joined_tags %>
 <div class="flex justify-center">
   <table class="table table-bordered table-rounded">
     <tbody>
