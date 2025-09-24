@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gem "rails", "~> 8.0.3"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
-gem "propshaft", "~> 1.2.1"
+gem "propshaft", "~> 1.3.1"
 
 # Use mysql as the database for Active Record
 # gem 'mysql2', '~> 0.5.6'
@@ -14,7 +14,7 @@ gem "propshaft", "~> 1.2.1"
 gem "pg", "~> 1.6.2"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 7.0.3"
+gem "puma", "~> 7.0.4"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", "~> 0.1.15", require: false
