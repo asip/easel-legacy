@@ -5,6 +5,7 @@ import { provide } from 'vue'
 
 import { useLocale } from '../composables'
 import { useViewData } from '../composables'
+import { useRoute } from '../composables'
 
 const props = defineProps<{
   apiBaseUrl: string
@@ -17,17 +18,20 @@ const props = defineProps<{
 
 const { autoDetect } = useLocale(props.locale)
 const viewData = useViewData()
+const route = useRoute()
 
 autoDetect()
 
 viewData.baseURL.value = props.apiBaseUrl
 viewData.csrfToken.value = props.csrfToken
-viewData.frameId.value = props.frameId
-viewData.q.value = props.q
-viewData.page.value = props.page
+
+route.params.id = props.frameId
+route.query.q = props.q
+route.query.page = props.page
 
 
 provide('viewData', viewData)
+provide('route', route)
 </script>
 
 <template>
