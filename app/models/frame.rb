@@ -51,11 +51,13 @@ class Frame < ApplicationRecord
                      .or(Frame.where(updated_at: date_word.beginning_of_day..date_word.end_of_day))
       else
                 scope.left_joins(:tags, :user)
-                     .merge(ActsAsTaggableOn::Tag.where("tags.name like ?",
-                                                        "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
+                     .merge(
+                        ActsAsTaggableOn::Tag.where("tags.name like ?",
+                                                    "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
                      .or(Frame.where("frames.name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
                      .or(Frame.where("frames.creator_name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
-                     .or(User.where(name: word))
+                     .or(User.where(name: word)
+                ).distinct
       end
     end
 
