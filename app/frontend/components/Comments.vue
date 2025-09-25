@@ -13,7 +13,7 @@ const props = defineProps<{
   locale: string
   frameId: string
   page: string
-  q: string
+  q: string | null
 }>()
 
 const { autoDetect } = useLocale(props.locale)
@@ -26,7 +26,7 @@ viewData.baseURL.value = props.apiBaseUrl
 viewData.csrfToken.value = props.csrfToken
 
 route.params.id = props.frameId
-route.query.q = props.q
+route.query.q = props.q ?? ''
 route.query.page = props.page
 
 
