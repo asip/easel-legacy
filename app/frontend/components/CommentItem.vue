@@ -11,7 +11,6 @@ import type { UseAccountType, UseCommentType, UseRouteType } from '../composable
 
 const { setFlash } = useToast()
 
-
 const route = inject('route') as UseRouteType
 const { id } = route.params
 const { q, page } = route.query

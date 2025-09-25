@@ -29,7 +29,6 @@ route.params.id = props.frameId
 route.query.q = props.q ?? ''
 route.query.page = props.page
 
-
 provide('viewData', viewData)
 provide('route', route)
 </script>

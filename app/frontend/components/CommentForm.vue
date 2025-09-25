@@ -13,11 +13,11 @@ const { setFlash } = useToast()
 
 const { loggedIn } = inject('account') as UseAccountType
 
-const { comment, flash, getComments, postComment } = inject('commenter') as UseCommentType
+const { comment, externalErrors, isSuccess, flash, getComments, postComment  } = inject('commenter') as UseCommentType
 
 const { commentRules } = useCommentRules()
 
-const { r$ } = useI18nRegle(comment, commentRules)
+const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 
 const onPostClick = async () => {
   r$.$touch()
@@ -26,10 +26,12 @@ const onPostClick = async () => {
   if (valid) {
     await postComment(id)
     setFlash(flash.value)
-    comment.value.body = ''
-    r$.$touch()
-    r$.$reset()
-    await getComments(id)
+    if (isSuccess()) {
+      comment.value.body = ''
+      r$.$touch()
+      r$.$reset()
+      await getComments(id)
+    }
   }
 }
 </script>

@@ -33,7 +33,7 @@ export function useAccount(viewData: ViewDataType) {
 
       if (!response.ok) {
         loggedIn.value = false
-        setAlert(response.status)
+        setAlert(response)
       } else {
         const accountAttrs = (await response.json()) as AccountResource
         currentUser.value.id = accountAttrs.id
@@ -46,8 +46,8 @@ export function useAccount(viewData: ViewDataType) {
     }
   }
 
-  const setAlert= (status: number) => {
-    switch(status){
+  const setAlert= (response: Response) => {
+    switch(response.status){
     case 401:
       break
     case 500:

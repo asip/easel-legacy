@@ -1,8 +1,12 @@
 import { ref } from 'vue'
 
 import type { ViewDataType } from '../composables'
-import type { Comment , CommentResource, CommentsResource } from '../interfaces'
+import type { Comment , CommentResource, CommentsResource, ErrorsResource } from '../interfaces'
+import type { ErrorMessages } from '../types'
 import { useAccount, useFlash } from './'
+
+type ErrorProperty = 'body' | 'base'
+type ExternalErrorProperty = 'body'
 
 export function useComment(viewData: ViewDataType) {
   const comment = ref<Comment>({
@@ -17,6 +21,11 @@ export function useComment(viewData: ViewDataType) {
   })
 
   const comments = ref<Comment[]>([])
+
+  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
+    body: [],
+    base: []
+  })
 
   const { flash, clearFlash } = useFlash()
 
@@ -35,7 +44,7 @@ export function useComment(viewData: ViewDataType) {
         })
 
       if (!response.ok) {
-        setAlert(response.status)
+        await setAlert(response)
       } else {
         const commentList: [CommentResource] = (await response.json() as CommentsResource).comments
         //console.log(comment_list);
@@ -82,7 +91,7 @@ export function useComment(viewData: ViewDataType) {
       )
 
       if (!response.ok) {
-        setAlert(response.status)
+        await setAlert(response)
       }
     } catch (error) {
       flash.value.alert = '不具合が発生しました'
@@ -104,7 +113,7 @@ export function useComment(viewData: ViewDataType) {
         })
 
       if (!response.ok) {
-        setAlert(response.status)
+        await setAlert(response)
       }
     } catch (error) {
       flash.value.alert = '不具合が発生しました'
@@ -112,10 +121,19 @@ export function useComment(viewData: ViewDataType) {
     }
   }
 
-  const setAlert = (status: number) => {
-    switch(status){
+  const setAlert = async (response: Response) => {
+    switch(response.status){
     case 401:
       flash.value.alert = 'ページをリロードし、ログインしてください'
+      break
+    case 404:
+      break
+    case 422:
+      {
+        const { errors } = (await response.json()) as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
+        // globalThis.console.log(errors)
+        setExternalErrors(errors)
+      }
       break
     case 500:
       flash.value.alert = '不具合が発生しました'
@@ -125,9 +143,35 @@ export function useComment(viewData: ViewDataType) {
     }
   }
 
+  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+    externalErrors.value.body = errors.body ?? []
+  }
+
+  const clearExternalErrors = () => {
+    externalErrors.value.body = []
+    externalErrors.value.base = []
+  }
+
+  const isSuccess = () => {
+    let result = true
+
+    if (externalErrors.value.body && externalErrors.value.body.length > 0 || 
+        externalErrors.value.base && externalErrors.value.base.length > 0) {
+      result = false
+    }
+
+    if (flash.value.alert) {
+      result = false
+    }
+
+    return result
+  }
+
   return {
     comment, comments, flash,
-    getComments, postComment, deleteComment
+    getComments, postComment, deleteComment,
+    clearExternalErrors, isSuccess,
+    externalErrors
   }
 }
 
