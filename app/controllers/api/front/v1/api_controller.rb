@@ -10,22 +10,16 @@ module Api
       class ApiController < ActionController::API
         include ActionController::Cookies
         include Locale::AutoDetect
+        include TimeZone::Detect
         include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
         include Api::ErrorRenderable
 
-        before_action :set_time_zone
         before_action :authenticate
 
         protected
 
         def current_user
           @current_user
-        end
-
-        def set_time_zone
-          # puts cookies.to_h
-          # puts cookies[:time_zone]
-          Time.zone = cookies[:time_zone]
         end
 
         # Authorizationヘッダーに基づいてユーザーを認証します。

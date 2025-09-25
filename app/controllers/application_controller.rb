@@ -3,23 +3,17 @@
 # Application Controller
 class ApplicationController < ActionController::Base
   include Locale::AutoDetect
+  include TimeZone::Detect
   include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
   include Flashes
 
   protect_from_forgery with: :exception
 
-  before_action :set_time_zone
   before_action :authenticate_user!
 
   helper_method :current_user
 
   private
-
-  def set_time_zone
-    # puts cookies.to_h
-    # puts cookies[:time_zone]
-    Time.zone = cookies[:time_zone]
-  end
 
   protected
 
