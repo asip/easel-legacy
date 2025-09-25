@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
+# time_zone
 module TimeZone
+  # Detect module
   module Detect
     extend ActiveSupport::Concern
 
