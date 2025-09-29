@@ -10,7 +10,8 @@ export function useToast() {
       if(message != ''){
         Toastify({
           text: message,
-          duration: 2000
+          duration: 2000,
+          style: { 'border-radius': '5px' }
         }).showToast()
       }
     }
