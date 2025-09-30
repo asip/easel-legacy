@@ -81,7 +81,7 @@ GEM
       zeitwerk (>= 2.4, < 3.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
-    alba (3.9.0)
+    alba (3.9.1)
     annotaterb (4.19.0)
       activerecord (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -476,7 +476,7 @@ GEM
     tsort (0.2.0)
     turbo-mount (0.4.3)
       railties (>= 6.0.0)
-    turbo-rails (2.0.16)
+    turbo-rails (2.0.17)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
     tzinfo (2.0.6)
@@ -520,7 +520,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 12.0.0)
-  alba (= 3.9.0)
+  alba (= 3.9.1)
   annotaterb (~> 4.19.0)
   aws-sdk-s3 (~> 1.199.1)
   bootsnap (~> 1.18.6)
@@ -558,7 +558,7 @@ DEPENDENCIES
   thruster (~> 0.1.15)
   traceroute (~> 0.8.1)
   turbo-mount (~> 0.4.3)
-  turbo-rails (~> 2.0.16)
+  turbo-rails (~> 2.0.17)
   tzinfo-data
   view_component (~> 4.0.2)
   vite_rails (= 3.0.19)
