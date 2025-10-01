@@ -16,7 +16,7 @@ const { id } = route.params
 const { q, page } = route.query
 
 const { loggedIn, currentUser } = inject('account') as UseAccountType
-const { flash, getComments, deleteComment } = inject('commenter') as UseCommentType
+const { flash, getComments, deleteComment, isSuccess, reload401 } = inject('commenter') as UseCommentType
 
 const comment = defineModel<Comment>()
 
@@ -48,7 +48,10 @@ const sanitizedCommentBody = computed(() =>
 const onDeleteClick = async () => {
   if(comment.value) { await deleteComment(comment.value) }
   setFlash(flash.value)
-  await getComments(id)
+  if (isSuccess()) {
+    await getComments(id)
+  }
+  reload401()
 }
 </script>
 

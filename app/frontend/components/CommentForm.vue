@@ -13,7 +13,7 @@ const { setFlash } = useToast()
 
 const { loggedIn } = inject('account') as UseAccountType
 
-const { comment, externalErrors, isSuccess, flash, getComments, postComment  } = inject('commenter') as UseCommentType
+const { comment, externalErrors, isSuccess, flash, getComments, postComment, reload401 } = inject('commenter') as UseCommentType
 
 const { commentRules } = useCommentRules()
 
@@ -32,6 +32,7 @@ const onPostClick = async () => {
       r$.$reset()
       await getComments(id)
     }
+    reload401()
   }
 }
 </script>

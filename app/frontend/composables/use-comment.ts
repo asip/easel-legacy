@@ -27,6 +27,8 @@ export function useComment(viewData: ViewDataType) {
     base: []
   })
 
+  const reloading = ref(false)
+
   const { flash, clearFlash } = useFlash()
 
   const { baseURL, headers } = viewData
@@ -90,6 +92,8 @@ export function useComment(viewData: ViewDataType) {
         }
       )
 
+      clearExternalErrors()
+
       if (!response.ok) {
         await setAlert(response)
       }
@@ -112,6 +116,8 @@ export function useComment(viewData: ViewDataType) {
           }
         })
 
+      clearExternalErrors()
+
       if (!response.ok) {
         await setAlert(response)
       }
@@ -124,7 +130,8 @@ export function useComment(viewData: ViewDataType) {
   const setAlert = async (response: Response) => {
     switch(response.status){
     case 401:
-      flash.value.alert = 'ページをリロードし、ログインしてください'
+      flash.value.alert = 'ログインしなおしてください'
+      reloading.value = true
       break
     case 404:
       break
@@ -167,11 +174,19 @@ export function useComment(viewData: ViewDataType) {
     return result
   }
 
+  const reload401= () => {
+    if(reloading.value) {
+      globalThis.setTimeout(() => {
+        globalThis.location.href = ''
+      }, 1000)
+    }
+  }
+
   return {
     comment, comments, flash,
     getComments, postComment, deleteComment,
     clearExternalErrors, isSuccess,
-    externalErrors
+    externalErrors, reload401
   }
 }
 
