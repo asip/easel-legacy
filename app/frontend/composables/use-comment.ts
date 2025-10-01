@@ -1,9 +1,9 @@
 import { ref } from 'vue'
 
 import type { ViewDataType } from '../composables'
-import type { Comment , CommentResource, CommentsResource, ErrorsResource } from '../interfaces'
+import type { Comment , CommentResource, CommentsResource } from '../interfaces'
 import type { ErrorMessages } from '../types'
-import { useAccount, useFlash } from './'
+import { useAccount, useAlert, useFlash } from './'
 
 type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'
@@ -27,12 +27,21 @@ export function useComment(viewData: ViewDataType) {
     base: []
   })
 
-  const reloading = ref(false)
-
   const { flash, clearFlash } = useFlash()
 
   const { baseURL, headers } = viewData
   const { token } = useAccount(viewData)
+
+  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+    externalErrors.value.body = errors.body ?? []
+  }
+
+  const clearExternalErrors = () => {
+    externalErrors.value.body = []
+    externalErrors.value.base = []
+  }
+
+  const { setAlert, reloading } = useAlert({ flash, setEE: setExternalErrors })
 
   const getComments = async (frameId: string) => {
     clearFlash()
@@ -46,7 +55,7 @@ export function useComment(viewData: ViewDataType) {
         })
 
       if (!response.ok) {
-        await setAlert(response)
+        await setAlert({ response })
       } else {
         const commentList: [CommentResource] = (await response.json() as CommentsResource).comments
         //console.log(comment_list);
@@ -95,7 +104,7 @@ export function useComment(viewData: ViewDataType) {
       clearExternalErrors()
 
       if (!response.ok) {
-        await setAlert(response)
+        await setAlert({ response })
       }
     } catch (error) {
       flash.value.alert = '不具合が発生しました'
@@ -119,44 +128,12 @@ export function useComment(viewData: ViewDataType) {
       clearExternalErrors()
 
       if (!response.ok) {
-        await setAlert(response)
+        await setAlert({ response })
       }
     } catch (error) {
       flash.value.alert = '不具合が発生しました'
       globalThis.console.log((error as Error).message)
     }
-  }
-
-  const setAlert = async (response: Response) => {
-    switch(response.status){
-    case 401:
-      flash.value.alert = 'ログインしなおしてください'
-      reloading.value = true
-      break
-    case 404:
-      break
-    case 422:
-      {
-        const { errors } = (await response.json()) as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-        // globalThis.console.log(errors)
-        setExternalErrors(errors)
-      }
-      break
-    case 500:
-      flash.value.alert = '不具合が発生しました'
-      break
-    default:
-      flash.value.alert = '不具合が発生しました'
-    }
-  }
-
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
-    externalErrors.value.body = errors.body ?? []
-  }
-
-  const clearExternalErrors = () => {
-    externalErrors.value.body = []
-    externalErrors.value.base = []
   }
 
   const isSuccess = () => {

@@ -3,7 +3,7 @@ import { useCookies } from '@vueuse/integrations/useCookies.mjs'
 
 import type { ViewDataType } from './'
 import type { AccountResource, User } from '../interfaces'
-import { useFlash } from './'
+import { useAlert, useFlash } from './'
 
 export function useAccount(viewData: ViewDataType) {
   const loggedIn: Ref<boolean> = ref<boolean>(false)
@@ -17,6 +17,8 @@ export function useAccount(viewData: ViewDataType) {
   const { baseURL, headers } = viewData
 
   const token = computed<string>(() => cookies.get('access_token'))
+
+  const { setAlert } = useAlert({ flash })
 
   const authenticate = async () => {
     clearFlash()
@@ -33,7 +35,7 @@ export function useAccount(viewData: ViewDataType) {
 
       if (!response.ok) {
         loggedIn.value = false
-        setAlert(response)
+        await setAlert({ response, off: true })
       } else {
         const accountAttrs = (await response.json()) as AccountResource
         currentUser.value.id = accountAttrs.id
@@ -43,18 +45,6 @@ export function useAccount(viewData: ViewDataType) {
     } catch(error) {
       flash.value.alert = '不具合が発生しました'
       globalThis.console.log((error as Error).message)
-    }
-  }
-
-  const setAlert= (response: Response) => {
-    switch(response.status){
-    case 401:
-      break
-    case 500:
-      flash.value.alert = '不具合が発生しました'
-      break
-    default:
-      flash.value.alert = '不具合が発生しました'
     }
   }
 
