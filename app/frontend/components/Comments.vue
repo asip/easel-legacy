@@ -10,13 +10,9 @@ import { useRoute } from '../composables'
 const props = defineProps<{
   apiBaseUrl: string
   csrfToken: string
-  locale: string
-  frameId: string
-  page: string
-  q: string | null
 }>()
 
-const { autoDetect } = useLocale(props.locale)
+const { autoDetect } = useLocale()
 const viewData = useViewData()
 const route = useRoute()
 
@@ -25,9 +21,11 @@ autoDetect()
 viewData.baseURL.value = props.apiBaseUrl
 viewData.csrfToken.value = props.csrfToken
 
-route.params.id = props.frameId
-route.query.q = props.q ?? ''
-route.query.page = props.page
+route.params.id = route.path.match(/\/frames\/(?<id>[0-9]*)/)?.groups?.id ?? ''
+
+// globalThis.console.log(route.params.id)
+// globalThis.console.log(route.query.q)
+// globalThis.console.log(route.query.page)
 
 provide('viewData', viewData)
 provide('route', route)

@@ -1,12 +1,12 @@
 import { i18n } from '../utils'
 
-export const useLocale = (viewLocale?: string) => {
+export const useLocale = () => {
   const { locale, availableLocales } = i18n.global
 
   const autoDetect = () => {
-    if(viewLocale) {
-      locale.value = ((availableLocales as string[]).includes(viewLocale) ? viewLocale : 'en') as 'en' | 'ja'
-    }
+    const viewLocale = globalThis.navigator.languages[0]
+
+    locale.value = ((availableLocales as string[]).includes(viewLocale) ? viewLocale : 'en') as 'en' | 'ja'
   }
 
   return { locale, autoDetect }
