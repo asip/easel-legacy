@@ -41,7 +41,7 @@ export function useComment(viewData: ViewDataType) {
     externalErrors.value.base = []
   }
 
-  const { setAlert, reloading } = useAlert({ flash, setEE: setExternalErrors })
+  const { setAlert, reloading401 } = useAlert({ flash, setEE: setExternalErrors })
 
   const getComments = async (frameId: string) => {
     clearFlash()
@@ -152,7 +152,7 @@ export function useComment(viewData: ViewDataType) {
   }
 
   const reload401= () => {
-    if(reloading.value) {
+    if(reloading401) {
       globalThis.setTimeout(() => {
         globalThis.location.href = ''
       }, 1000)

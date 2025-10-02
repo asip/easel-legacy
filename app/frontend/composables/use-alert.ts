@@ -9,7 +9,7 @@ interface UseAlertOptions<T extends string> {
 }
 
 export function useAlert<T extends string>({ flash, setEE } : UseAlertOptions<T>) {
-  const reloading = ref(false)
+  const reloading401 = ref(false)
 
   const setAlert= async ({ response, off = false } : { response: Response, off?: boolean }) => {
     if (off) {
@@ -26,7 +26,7 @@ export function useAlert<T extends string>({ flash, setEE } : UseAlertOptions<T>
       switch(response.status){
       case 401:
         flash.value.alert = 'ログインしなおしてください'
-        reloading.value = true
+        reloading401.value = true
         break
       case 404:
         break
@@ -48,5 +48,5 @@ export function useAlert<T extends string>({ flash, setEE } : UseAlertOptions<T>
     }
   }
 
-  return { setAlert, reloading }
+  return { setAlert, reloading401: reloading401.value }
 }
