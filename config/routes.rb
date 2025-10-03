@@ -61,7 +61,7 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :frames, only: [] do
           get "/comments" => "/api/front/v1/frames#comments"
-          resources :comments, only: %i[create]
+          resources :comments, only: %i[create update]
         end
         resources :comments, only: [ :destroy ]
 
