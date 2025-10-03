@@ -3,9 +3,7 @@ import CommentListAndForm from './CommentListAndForm.vue'
 
 import { provide } from 'vue'
 
-import { useLocale } from '../composables'
-import { useViewData } from '../composables'
-import { useRoute } from '../composables'
+import { useLocale, useViewData, useRoute } from '../composables'
 
 const props = defineProps<{
   apiBaseUrl: string

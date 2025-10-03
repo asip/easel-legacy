@@ -3,12 +3,12 @@ import CommentItem from './CommentItem.vue'
 
 import { inject } from 'vue'
 
-import type { UseCommentType, UseRouteType } from '../composables'
+import type { UseCommentsType, UseRouteType } from '../composables'
 
 const route = inject('route') as UseRouteType
 const { id } = route.params
 
-const { comments, getComments } = inject('commenter') as UseCommentType
+const { comments, getComments } = inject('commentList') as UseCommentsType
 
 await getComments(id)
 </script>

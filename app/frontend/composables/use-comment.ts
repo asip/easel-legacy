@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
-import type { ViewDataType } from '../composables'
-import type { Comment , CommentResource, CommentsResource } from '../interfaces'
+import type { ViewDataType } from './'
+import type { Comment , CommentResource } from '../interfaces'
 import type { ErrorMessages } from '../types'
 import { useAccount, useAlert, useFlash } from './'
 
@@ -19,8 +19,6 @@ export function useComment(viewData: ViewDataType) {
     created_at: '',
     updated_at: null
   })
-
-  const comments = ref<Comment[]>([])
 
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({
     body: [],
@@ -43,42 +41,7 @@ export function useComment(viewData: ViewDataType) {
 
   const { setAlert, reloading401 } = useAlert({ flash, setEE: setExternalErrors })
 
-  const getComments = async (frameId: string) => {
-    clearFlash()
-    //console.log(frame_id)
-
-    try{
-      const response = await globalThis.fetch(`${baseURL.value}/frames/${frameId}/comments`,
-        {
-          method: 'GET',
-          headers: headers.value
-        })
-
-      if (!response.ok) {
-        await setAlert({ response })
-      } else {
-        const commentList: [CommentResource] = (await response.json() as CommentsResource).comments
-        //console.log(comment_list);
-        comments.value.splice(0, comments.value.length)
-        for (const comment of commentList) {
-        //console.log(comment);
-          comments.value.push(createCommentFromJson(comment))
-        }
-      }
-      //console.log(comments);
-    } catch (error) {
-      flash.value.alert = '不具合が発生しました'
-      globalThis.console.log((error as Error).message)
-    }
-  }
-
-  const createCommentFromJson = (resource: CommentResource): Comment => {
-    const comment: Partial<Comment> = {}
-    Object.assign(comment, resource)
-    return comment as Comment
-  }
-
-  const postComment = async (frameId: string) => {
+  const createComment = async (frameId: string) => {
     clearFlash()
 
     try {
@@ -105,6 +68,57 @@ export function useComment(viewData: ViewDataType) {
 
       if (!response.ok) {
         await setAlert({ response })
+      }
+    } catch (error) {
+      flash.value.alert = '不具合が発生しました'
+      globalThis.console.log((error as Error).message)
+    }
+  }
+
+  const setJson2Comment = (resource: CommentResource) => {
+    Object.assign(comment.value, resource)
+  }
+
+  const setComment = ({ from, to } : { from?: Comment | undefined, to?: Comment}) => {
+    if (from) {
+      Object.assign(comment.value, from)
+    } else if (to) {
+      Object.assign(to, comment.value)
+      // globalThis.console.log(comment.value)
+      // globalThis.console.log(to)
+    }
+  }
+
+  const updateComment = async () => {
+    clearFlash()
+
+    try {
+      const params = new URLSearchParams()
+      params.append('comment[body]', comment.value.body)
+      //const params = {
+      //  comment: {
+      //    body: comment.value.body
+      //  }
+      //}
+
+      const response = await globalThis.fetch(`${baseURL.value}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
+        {
+          method: 'PUT',
+          body: params,
+          headers: {
+            ...headers.value,
+            Authorization: `Bearer ${token.value}`
+          }
+        }
+      )
+
+      clearExternalErrors()
+
+      if (!response.ok) {
+        await setAlert({ response })
+      } else {
+        const commentAttrs: CommentResource = (await response.json() as CommentResource)
+        setJson2Comment(commentAttrs)
       }
     } catch (error) {
       flash.value.alert = '不具合が発生しました'
@@ -160,10 +174,9 @@ export function useComment(viewData: ViewDataType) {
   }
 
   return {
-    comment, comments, flash,
-    getComments, postComment, deleteComment,
-    clearExternalErrors, isSuccess,
-    externalErrors, reload401
+    comment, flash,
+    createComment, updateComment, deleteComment, setComment,
+    clearExternalErrors, isSuccess, externalErrors, reload401
   }
 }
 

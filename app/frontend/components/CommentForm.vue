@@ -1,19 +1,19 @@
 <script lang="ts" setup >
 import { inject } from 'vue'
 
-import { useToast } from '../composables'
-import type { UseAccountType, UseCommentType, UseRouteType } from '../composables'
-import { useI18nRegle } from '../composables'
-import { useCommentRules } from '../composables'
+import type { UseAccountType, UseCommentsType, UseRouteType, ViewDataType } from '../composables'
+import { useComment, useCommentRules, useI18nRegle, useToast } from '../composables'
 
 const route = inject('route') as UseRouteType
 const { id } = route.params
 
 const { setFlash } = useToast()
 
+const viewData = inject('viewData') as ViewDataType
 const { loggedIn } = inject('account') as UseAccountType
+const { getComments } = inject('commentList') as UseCommentsType
 
-const { comment, externalErrors, isSuccess, flash, getComments, postComment, reload401 } = inject('commenter') as UseCommentType
+const { comment, externalErrors, isSuccess, flash, createComment, reload401 } = useComment(viewData)
 
 const { commentRules } = useCommentRules()
 
@@ -24,7 +24,7 @@ const onPostClick = async () => {
   r$.$reset()
   const { valid } =await r$.$validate()
   if (valid) {
-    await postComment(id)
+    await createComment(id)
     setFlash(flash.value)
     if (isSuccess()) {
       comment.value.body = ''
@@ -55,7 +55,7 @@ const onPostClick = async () => {
         </div>
       </div>
       <div class="flex justify-center">
-        <button class="btn btn-outline btn-primary w-full" @click="onPostClick">
+        <button type="button" class="btn btn-outline btn-primary w-full" @click="onPostClick">
           投稿
         </button>
       </div>
