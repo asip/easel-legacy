@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-import type { ViewDataType } from './'
+import type { ConstantsType } from './'
 import type { Comment , CommentResource } from '../interfaces'
 import type { ErrorMessages } from '../types'
 import { useAccount, useAlert, useFlash } from './'
@@ -8,7 +8,7 @@ import { useAccount, useAlert, useFlash } from './'
 type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'
 
-export function useComment(viewData: ViewDataType) {
+export function useComment(constants: ConstantsType) {
   const comment = ref<Comment>({
     id: undefined,
     frame_id: null,
@@ -27,8 +27,8 @@ export function useComment(viewData: ViewDataType) {
 
   const { flash, clearFlash } = useFlash()
 
-  const { baseURL, headers } = viewData
-  const { token } = useAccount(viewData)
+  const { baseURL, headers } = constants
+  const { token } = useAccount(constants)
 
   const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
     externalErrors.value.body = errors.body ?? []
@@ -53,7 +53,7 @@ export function useComment(viewData: ViewDataType) {
       //  }
       //}
 
-      const response = await globalThis.fetch(`${baseURL.value}/frames/${frameId}/comments`,
+      const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
         {
           method: 'POST',
           body: params,
@@ -101,7 +101,7 @@ export function useComment(viewData: ViewDataType) {
       //  }
       //}
 
-      const response = await globalThis.fetch(`${baseURL.value}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
+      const response = await globalThis.fetch(`${baseURL}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
         {
           method: 'PUT',
           body: params,
@@ -130,7 +130,7 @@ export function useComment(viewData: ViewDataType) {
     clearFlash()
     try {
       const response = await globalThis.fetch(
-        `${baseURL.value}/comments/${comment.id?.toString(10) ?? ''}`,
+        `${baseURL}/comments/${comment.id?.toString(10) ?? ''}`,
         {
           method: 'DELETE',
           headers: {

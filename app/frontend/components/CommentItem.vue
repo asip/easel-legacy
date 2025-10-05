@@ -3,7 +3,7 @@ import sanitizeHtml from 'sanitize-html'
 import { computed, inject, onMounted, ref } from 'vue'
 
 import type { Comment, RefQuery } from '../interfaces'
-import type { UseAccountType, UseCommentsType, UseRouteType, ViewDataType } from '../composables'
+import type { UseAccountType, UseCommentsType, UseRouteType, ConstantsType } from '../composables'
 import { useComment, useCommentRules, useI18nRegle, useToast } from '../composables'
 
 // If running in Node.js or SSR, uncomment the following line:
@@ -15,11 +15,11 @@ const route = inject('route') as UseRouteType
 const { id } = route.params
 const { q, page } = route.query
 
-const viewData = inject('viewData') as ViewDataType
+const constants = inject('constants') as ConstantsType
 const { loggedIn, currentUser } = inject('account') as UseAccountType
 const { getComments } = inject('commentList') as UseCommentsType
 
-const { flash, comment, externalErrors, updateComment, deleteComment, isSuccess, reload401, setComment } = useComment(viewData)
+const { flash, comment, externalErrors, updateComment, deleteComment, isSuccess, reload401, setComment } = useComment(constants)
 
 const { commentRules } = useCommentRules()
 

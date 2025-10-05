@@ -3,21 +3,15 @@ import CommentListAndForm from './CommentListAndForm.vue'
 
 import { provide } from 'vue'
 
-import { useLocale, useViewData, useRoute } from '../composables'
+import { useLocale, useConstants, useRoute } from '../composables'
 
-const props = defineProps<{
-  apiBaseUrl: string
-  csrfToken: string
-}>()
+// const props = defineProps<{}>()
 
 const { autoDetect } = useLocale()
-const viewData = useViewData()
+const constants = useConstants()
 const route = useRoute()
 
 autoDetect()
-
-viewData.baseURL.value = props.apiBaseUrl
-viewData.csrfToken.value = props.csrfToken
 
 route.params.id = route.path.match(/\/frames\/(?<id>[0-9]*)/)?.groups?.id ?? ''
 
@@ -25,7 +19,7 @@ route.params.id = route.path.match(/\/frames\/(?<id>[0-9]*)/)?.groups?.id ?? ''
 // globalThis.console.log(route.query.q)
 // globalThis.console.log(route.query.page)
 
-provide('viewData', viewData)
+provide('constants', constants)
 provide('route', route)
 </script>
 

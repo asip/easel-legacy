@@ -1,11 +1,11 @@
 import { Ref, ref, computed} from 'vue'
 import { useCookies } from '@vueuse/integrations/useCookies.mjs'
 
-import type { ViewDataType } from './'
+import type { ConstantsType } from './'
 import type { AccountResource, User } from '../interfaces'
 import { useAlert, useFlash } from './'
 
-export function useAccount(viewData: ViewDataType) {
+export function useAccount(constants: ConstantsType) {
   const loggedIn: Ref<boolean> = ref<boolean>(false)
   const currentUser = ref<User>({
     id: null,
@@ -14,7 +14,7 @@ export function useAccount(viewData: ViewDataType) {
 
   const cookies = useCookies(['access_token'])
   const { flash, clearFlash } = useFlash()
-  const { baseURL, headers } = viewData
+  const { baseURL, headers } = constants
 
   const token = computed<string>(() => cookies.get('access_token'))
 
@@ -24,7 +24,7 @@ export function useAccount(viewData: ViewDataType) {
     clearFlash()
 
     try {
-      const response = await globalThis.fetch(`${baseURL.value}/account`,
+      const response = await globalThis.fetch(`${baseURL}/account`,
         {
           method: 'GET',
           headers: {

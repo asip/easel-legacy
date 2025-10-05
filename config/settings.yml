@@ -1,7 +1,4 @@
 google:
   client_id: <%= ENV.fetch('GOOGLE_CLIENT_ID') { '' } %>
-front:
-  api:
-    base_url: /api/front/v1
 external:
   google_callback_url: /oauth/callback?provider=google

@@ -4,17 +4,17 @@ import CommentList from './CommentList.vue'
 
 import { provide, inject } from 'vue'
 
-import type { ViewDataType } from '../composables'
+import type { ConstantsType } from '../composables'
 import { useAccount, useComments, useToast } from '../composables'
 
 const { setFlash } = useToast()
 
-const viewData = inject('viewData') as ViewDataType
+const constants = inject('constants') as ConstantsType
 
-const account = useAccount(viewData)
+const account = useAccount(constants)
 const { flash, authenticate } = account
 
-const commentList = useComments(viewData)
+const commentList = useComments(constants)
 
 await authenticate()
 setFlash(flash.value)
