@@ -4,9 +4,8 @@
 module TagSearch
   # Component
   class Component < ViewComponent::Base
-    def initialize(word:, path:)
+    def initialize(word:)
       @word = word
-      @path = path
     end
   end
 end

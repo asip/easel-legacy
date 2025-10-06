@@ -39,13 +39,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "frames#index"
 
-  get "/frames/" => "frames#index", as: :frames
   resources :users, except: [ :index ] do
     resource :follow_relationships, only: %i[create destroy]
     get "followees" => "users#followees", as: "followees"
     get "followers" => "users#followers", as: "followers"
   end
-  resources :frames do
+  resources :frames, except: [ :index ] do
     get :next, on: :collection
     get :prev, on: :collection
   end

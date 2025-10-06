@@ -17,7 +17,7 @@ module FrameHelper
     tags = frame.plain_tags
     tag_map = {}
     tags.each do |tag|
-      tag_map[tag] = frames_path({ q: { word: tag }.to_json })
+      tag_map[tag] = root_path({ q: { word: tag }.to_json })
     end
     tag_map
   end
