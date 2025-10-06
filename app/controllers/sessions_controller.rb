@@ -6,8 +6,6 @@ class SessionsController < ApplicationController
   include Query::List
   include Queries::Sessions::Pagination
 
-  skip_before_action :authenticate_user!
-
   def show
     @user = current_user
     @pagy, @frames = list_frames(user: @user, page: permitted_params[:page])
