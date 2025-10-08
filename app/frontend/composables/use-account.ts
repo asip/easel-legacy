@@ -1,11 +1,10 @@
 import { Ref, ref, computed} from 'vue'
 import { useCookies } from '@vueuse/integrations/useCookies.mjs'
 
-import type { ConstantsType } from './'
 import type { AccountResource, User } from '../interfaces'
-import { useAlert, useFlash } from './'
+import { useAlert, useConstants, useFlash } from './'
 
-export function useAccount(constants: ConstantsType) {
+export function useAccount() {
   const loggedIn: Ref<boolean> = ref<boolean>(false)
   const currentUser = ref<User>({
     id: null,
@@ -14,7 +13,7 @@ export function useAccount(constants: ConstantsType) {
 
   const cookies = useCookies(['access_token'])
   const { flash, clearFlash } = useFlash()
-  const { baseURL, headers } = constants
+  const { baseURL, headers } = useConstants()
 
   const token = computed<string>(() => cookies.get('access_token'))
 

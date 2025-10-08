@@ -1,7 +1,7 @@
 <script lang="ts" setup >
 import { inject } from 'vue'
 
-import type { UseAccountType, UseCommentsType, UseRouteType, ConstantsType } from '../composables'
+import type { UseAccountType, UseCommentsType, UseRouteType } from '../composables'
 import { useComment, useCommentRules, useI18nRegle, useToast } from '../composables'
 
 const route = inject('route') as UseRouteType
@@ -9,11 +9,10 @@ const { id } = route.params
 
 const { setFlash } = useToast()
 
-const constants = inject('constants') as ConstantsType
 const { loggedIn } = inject('account') as UseAccountType
 const { getComments } = inject('commentList') as UseCommentsType
 
-const { comment, externalErrors, isSuccess, flash, createComment, reload401 } = useComment(constants)
+const { comment, externalErrors, isSuccess, flash, createComment, reload401 } = useComment()
 
 const { commentRules } = useCommentRules()
 

@@ -3,12 +3,11 @@ import CommentListAndForm from './CommentListAndForm.vue'
 
 import { provide } from 'vue'
 
-import { useLocale, useConstants, useRoute } from '../composables'
+import { useLocale, useRoute } from '../composables'
 
 // const props = defineProps<{}>()
 
 const { autoDetect } = useLocale()
-const constants = useConstants()
 const route = useRoute()
 
 autoDetect()
@@ -19,7 +18,6 @@ route.params.id = route.path.match(/\/frames\/(?<id>[0-9]*)/)?.groups?.id ?? ''
 // globalThis.console.log(route.query.q)
 // globalThis.console.log(route.query.page)
 
-provide('constants', constants)
 provide('route', route)
 </script>
 

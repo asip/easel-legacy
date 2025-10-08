@@ -1,15 +1,14 @@
 import { ref } from 'vue'
 
-import type { ConstantsType } from './'
 import type { Comment , CommentResource, CommentsResource } from '../interfaces'
-import { useAlert , useFlash } from './'
+import { useAlert, useConstants, useFlash } from './'
 
-export function useComments(constants: ConstantsType) {
+export function useComments() {
   const comments = ref<Comment[]>([])
 
   const { flash, clearFlash } = useFlash()
 
-  const { baseURL, headers } = constants
+  const { baseURL, headers } = useConstants()
 
   const { setAlert } = useAlert({ flash })
 

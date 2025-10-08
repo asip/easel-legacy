@@ -1,14 +1,13 @@
 import { ref } from 'vue'
 
-import type { ConstantsType } from './'
 import type { Comment , CommentResource } from '../interfaces'
 import type { ErrorMessages } from '../types'
-import { useAccount, useAlert, useFlash } from './'
+import { useAccount, useAlert, useConstants, useFlash } from './'
 
 type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'
 
-export function useComment(constants: ConstantsType) {
+export function useComment() {
   const comment = ref<Comment>({
     id: undefined,
     frame_id: null,
@@ -27,8 +26,8 @@ export function useComment(constants: ConstantsType) {
 
   const { flash, clearFlash } = useFlash()
 
-  const { baseURL, headers } = constants
-  const { token } = useAccount(constants)
+  const { baseURL, headers } = useConstants()
+  const { token } = useAccount()
 
   const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
     externalErrors.value.body = errors.body ?? []
