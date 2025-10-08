@@ -46,6 +46,8 @@
     "@yaireo/tagify": "^4.35.4",
     "bootstrap-icons": "^1.13.1",
     "glightbox": "^3.3.1",
+    "pinia": "3.0.3",
+    "pinia-plugin-persistedstate": "4.5.0",
     "photoswipe": "5.4.4",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
     "rails_admin": "3.3.0",

@@ -1,13 +1,17 @@
 import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 
-import type { Comment , CommentResource } from '../interfaces'
+import type { Comment , CommentResource, CommentsResource } from '../interfaces'
 import type { ErrorMessages } from '../types'
 import { useAccount, useAlert, useConstants, useFlash } from './'
+import { useCommentsStore } from '../stores'
 
 type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'
 
 export function useComment() {
+  const { comments } = storeToRefs(useCommentsStore())
+
   const comment = ref<Comment>({
     id: undefined,
     frame_id: null,
@@ -39,6 +43,41 @@ export function useComment() {
   }
 
   const { setAlert, reloading401 } = useAlert({ flash, setEE: setExternalErrors })
+
+  const getComments = async (frameId: string) => {
+    clearFlash()
+    //console.log(frame_id)
+
+    try{
+      const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
+        {
+          method: 'GET',
+          headers: headers.value
+        })
+
+      if (!response.ok) {
+        await setAlert({ response })
+      } else {
+        const commentList: [CommentResource] = (await response.json() as CommentsResource).comments
+        //console.log(comment_list);
+        comments.value.splice(0, comments.value.length)
+        for (const comment of commentList) {
+        //console.log(comment);
+          comments.value.push(createCommentFromJson(comment))
+        }
+      }
+      //console.log(comments);
+    } catch (error) {
+      flash.value.alert = '不具合が発生しました'
+      globalThis.console.log((error as Error).message)
+    }
+  }
+
+  const createCommentFromJson = (resource: CommentResource): Comment => {
+    const comment: Partial<Comment> = {}
+    Object.assign(comment, resource)
+    return comment as Comment
+  }
 
   const createComment = async (frameId: string) => {
     clearFlash()
@@ -173,7 +212,7 @@ export function useComment() {
   }
 
   return {
-    comment, flash,
+    comment, comments, flash, getComments,
     createComment, updateComment, deleteComment, setComment,
     clearExternalErrors, isSuccess, externalErrors, reload401
   }

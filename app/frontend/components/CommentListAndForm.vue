@@ -2,24 +2,14 @@
 import CommentForm from './CommentForm.vue'
 import CommentList from './CommentList.vue'
 
-import { provide } from 'vue'
-
-import { useAccount, useComments, useToast } from '../composables'
+import { useAccount, useToast } from '../composables'
 
 const { setFlash } = useToast()
 
-const account = useAccount()
-const { flash, authenticate } = account
-
-const commentList = useComments()
+const { flash, authenticate } = useAccount()
 
 await authenticate()
 setFlash(flash.value)
-// console.log(currentUser.value.token)
-// console.log(loggedIn.value);
-
-provide('account', account)
-provide('commentList', commentList)
 </script>
 
 <template>

@@ -1,6 +1,22 @@
-import { TurboMount } from 'turbo-mount'
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import plugin from 'turbo-mount/vue'
 import { registerComponent } from 'turbo-mount/vue'
+import { TurboMount } from 'turbo-mount'
 import Comments from '../components/Comments.vue'
+
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+
+plugin.mountComponent = (mountProps) => {
+  const { el, Component, props } = mountProps
+  const app = createApp(Component, props)
+  app.use(pinia).mount(el)
+  return () => {
+    app.unmount()
+  }
+}
 
 const turboMount = new TurboMount()
 
