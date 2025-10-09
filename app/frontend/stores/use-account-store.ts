@@ -12,6 +12,11 @@ export const useAccountStore = defineStore(
       token: null
     })
 
-    return { loggedIn, currentUser }
+    const clearCurrentUser = () => {
+      currentUser.value.id = null
+      currentUser.value.token = null
+    }
+
+    return { loggedIn, currentUser, clearCurrentUser }
   }
 )

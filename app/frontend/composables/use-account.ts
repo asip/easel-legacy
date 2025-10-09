@@ -8,6 +8,7 @@ import { useAccountStore } from '../stores'
 
 export function useAccount() {
   const { loggedIn, currentUser } = storeToRefs(useAccountStore())
+  const { clearCurrentUser } = useAccountStore()
 
   const cookies = useCookies(['access_token'])
 
@@ -20,6 +21,12 @@ export function useAccount() {
 
   const authenticate = async () => {
     clearFlash()
+
+    if (!token.value) {
+      loggedIn.value = false
+      clearCurrentUser()
+      return
+    }
 
     try {
       const response = await globalThis.fetch(`${baseURL}/account`,
