@@ -65,12 +65,10 @@ class Frame < ApplicationRecord
   }
 
   def tags_preview
-    tag_list.to_s.split(/\s*,\s*/)
-  end
-
-  def plain_tags
     joined_tags&.split(/\s*,\s*/)
   end
+
+  alias_method :plain_tags, :tags_preview
 
   def file_proxy_url(key)
     # puts key
