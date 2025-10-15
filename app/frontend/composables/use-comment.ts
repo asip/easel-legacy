@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 
 import type { Comment , CommentResource, CommentsResource } from '../interfaces'
 import type { ErrorMessages, Flash } from '../types'
-import type { UseAccountType, UseAlertType, ConstantsType } from './'
+import type { UseAlertType } from './'
 import { useAccount, useAlert, useConstants, useFlash } from './'
 import { useCommentsStore } from '../stores'
 
@@ -11,36 +11,24 @@ type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'
 
 export function useComment() {
+  const { baseURL, headers } = useConstants()
+  const { flash, clearFlash } = useFlash()
+  const { token } = useAccount()
+  const { comments } = storeToRefs(useCommentsStore())
 
   const UseComment = class {
     flash: Ref<Flash>
-    #clearFlash: () => void
-
-    #baseURL: ConstantsType['baseURL']
-    #headers: ConstantsType['headers']
-
-    #token: UseAccountType['token']
-
     comments: Ref<Comment[]>
 
     #setAlert: UseAlertType['setAlert']
     reload401: UseAlertType['reload401']
 
     constructor() {
-      const { flash, clearFlash } = useFlash()
-      const { baseURL, headers } = useConstants()
-      const { token } = useAccount()
-
-      const { comments } = storeToRefs(useCommentsStore())
       const { setAlert, reload401 } = useAlert({ flash, caller: this })
 
       this.flash = flash
-      this.#clearFlash = clearFlash
-      this.#baseURL = baseURL
-      this.#headers = headers
-      this.#token = token
-
       this.comments = comments
+
       this.#setAlert = setAlert
       this.reload401 = reload401
     }
@@ -71,14 +59,14 @@ export function useComment() {
     }
 
     getComments = async (frameId: string) => {
-      this.#clearFlash()
+      clearFlash()
       //console.log(frameId)
 
       try{
-        const response = await globalThis.fetch(`${this.#baseURL}/frames/${frameId}/comments`,
+        const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
           {
             method: 'GET',
-            headers: this.#headers.value
+            headers: headers.value
           })
 
         if (!response.ok) {
@@ -106,7 +94,7 @@ export function useComment() {
     }
 
     createComment = async (frameId: string) => {
-      this.#clearFlash()
+      clearFlash()
 
       try {
         const params = new URLSearchParams()
@@ -117,13 +105,13 @@ export function useComment() {
         //  }
         //}
 
-        const response = await globalThis.fetch(`${this.#baseURL}/frames/${frameId}/comments`,
+        const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
           {
             method: 'POST',
             body: params,
             headers: {
-              ...this.#headers.value,
-              Authorization: `Bearer ${this.#token.value}`
+              ...headers.value,
+              Authorization: `Bearer ${token.value}`
             }
           }
         )
@@ -154,7 +142,7 @@ export function useComment() {
     }
 
     updateComment = async () => {
-      this.#clearFlash()
+      clearFlash()
 
       try {
         const params = new URLSearchParams()
@@ -165,13 +153,13 @@ export function useComment() {
         //  }
         //}
 
-        const response = await globalThis.fetch(`${this.#baseURL}/frames/${this.comment.value.frame_id?.toString() ?? ''}/comments/${this.comment.value.id?.toString() ?? ''}`,
+        const response = await globalThis.fetch(`${baseURL}/frames/${this.comment.value.frame_id?.toString() ?? ''}/comments/${this.comment.value.id?.toString() ?? ''}`,
           {
             method: 'PUT',
             body: params,
             headers: {
-              ...this.#headers.value,
-              Authorization: `Bearer ${this.#token.value}`
+              ...headers.value,
+              Authorization: `Bearer ${token.value}`
             }
           }
         )
@@ -191,16 +179,16 @@ export function useComment() {
     }
 
     deleteComment = async (comment: Comment) => {
-      this.#clearFlash()
+      clearFlash()
 
       try {
         const response = await globalThis.fetch(
-          `${this.#baseURL}/comments/${comment.id?.toString(10) ?? ''}`,
+          `${baseURL}/comments/${comment.id?.toString(10) ?? ''}`,
           {
             method: 'DELETE',
             headers: {
-              ...this.#headers.value,
-              Authorization: `Bearer ${this.#token.value}`
+              ...headers.value,
+              Authorization: `Bearer ${token.value}`
             }
           })
 

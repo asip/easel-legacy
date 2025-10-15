@@ -10,6 +10,7 @@ export { useRoute } from './use-route'
 export type { UseAccountType } from './use-account'
 export type { UseCommentType } from './use-comment'
 export type { UseAlertType } from './use-alert'
+export type { UseFlashType } from './use-flash'
 export type { ConstantsType } from './use-constants'
 export type { UseRouteType } from './use-route'
 

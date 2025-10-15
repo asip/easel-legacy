@@ -11,3 +11,5 @@ export function useFlash () {
 
   return { flash, clearFlash }
 }
+
+export type UseFlashType = ReturnType<typeof useFlash>
