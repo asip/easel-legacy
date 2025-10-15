@@ -15,11 +15,11 @@ export default class PhotoSwipeController extends ApplicationController {
 
   connect() {
     let psTrigger: HTMLElement | null = null
-    if(this.hasPsTarget){
+    if (this.hasPsTarget){
       psTrigger = this.psTarget
     }
 
-    if(psTrigger){
+    if (psTrigger){
       void (async () => {
         await this.assignSize(psTrigger)
       })()
@@ -36,7 +36,7 @@ export default class PhotoSwipeController extends ApplicationController {
   }
 
   disconnect(){
-    if(this.lightbox){
+    if (this.lightbox){
       this.lightbox.destroy()
       this.removeElementsByClassName('pswp')
     }

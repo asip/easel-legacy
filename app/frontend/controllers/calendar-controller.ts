@@ -18,7 +18,7 @@ export default class CalendarController extends ApplicationController {
 
   connect() {
     let calTrigger: HTMLElement | null = null
-    if(this.hasCalTarget){
+    if (this.hasCalTarget){
       calTrigger = this.calTarget
     }
 
@@ -33,7 +33,7 @@ export default class CalendarController extends ApplicationController {
         language: 'ja'
       })
 
-      if(date) this.calendar.setDate(Datepicker.parseDate(date, 'yyyy/mm/dd'))
+      if (date) this.calendar.setDate(Datepicker.parseDate(date, 'yyyy/mm/dd'))
 
       calTrigger.addEventListener('changeDate', function (e: CustomEvent) {
         //console.log(e);
@@ -46,7 +46,7 @@ export default class CalendarController extends ApplicationController {
   }
 
   disconnect(){
-    if(this.calendar){
+    if (this.calendar){
       this.calendar.destroy()
     }
   }

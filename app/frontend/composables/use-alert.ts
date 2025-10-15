@@ -39,7 +39,7 @@ export function useAlert<T extends UseAlertCallerType>({ flash, caller } : UseAl
           if (caller && 'setExternalErrors' in caller) {
             const { errors } = (await response.json()) as ErrorsResource<ErrorMessages<string>>
             // globalThis.console.log(errors)
-            if(caller.setExternalErrors) caller.setExternalErrors(errors)
+            if (caller.setExternalErrors) caller.setExternalErrors(errors)
           }
         }
         break
@@ -53,7 +53,7 @@ export function useAlert<T extends UseAlertCallerType>({ flash, caller } : UseAl
   }
 
   const reload401 = () => {
-    if(reloading401.value) {
+    if (reloading401.value) {
       globalThis.setTimeout(() => {
         globalThis.location.href = ''
       }, 1000)
