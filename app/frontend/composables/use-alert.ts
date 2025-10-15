@@ -3,12 +3,16 @@ import { ref, Ref } from 'vue'
 import { ErrorMessages, Flash } from '../types'
 import { ErrorsResource } from '../interfaces'
 
-interface UseAlertOptions<T extends string> {
+interface UseAlertOptions<T extends UseAlertCallerType> {
   flash: Ref<Flash>
-  setEE?: (errors: ErrorMessages<T>) => void
+  caller?: T
 }
 
-export function useAlert<T extends string>({ flash, setEE } : UseAlertOptions<T>) {
+interface UseAlertCallerType {
+  setExternalErrors?: (errors: ErrorMessages<string>) => void
+}
+
+export function useAlert<T extends UseAlertCallerType>({ flash, caller } : UseAlertOptions<T>) {
   const reloading401 = ref(false)
 
   const setAlert= async ({ response, off = false } : { response: Response, off?: boolean }) => {
@@ -32,10 +36,10 @@ export function useAlert<T extends string>({ flash, setEE } : UseAlertOptions<T>
         break
       case 422:
         {
-          if (setEE) {
-            const { errors } = (await response.json()) as ErrorsResource<ErrorMessages<T>>
+          if (caller && 'setExternalErrors' in caller) {
+            const { errors } = (await response.json()) as ErrorsResource<ErrorMessages<string>>
             // globalThis.console.log(errors)
-            setEE(errors)
+            if(caller.setExternalErrors) caller.setExternalErrors(errors)
           }
         }
         break
@@ -48,5 +52,15 @@ export function useAlert<T extends string>({ flash, setEE } : UseAlertOptions<T>
     }
   }
 
-  return { setAlert, reloading401: reloading401.value }
+  const reload401 = () => {
+    if(reloading401.value) {
+      globalThis.setTimeout(() => {
+        globalThis.location.href = ''
+      }, 1000)
+    }
+  }
+
+  return { setAlert, reload401 }
 }
+
+export type UseAlertType = ReturnType<typeof useAlert>

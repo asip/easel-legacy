@@ -1,8 +1,9 @@
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
 import type { Comment , CommentResource, CommentsResource } from '../interfaces'
-import type { ErrorMessages } from '../types'
+import type { ErrorMessages, Flash } from '../types'
+import type { UseAccountType, UseAlertType, ConstantsType } from './'
 import { useAccount, useAlert, useConstants, useFlash } from './'
 import { useCommentsStore } from '../stores'
 
@@ -10,212 +11,230 @@ type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'
 
 export function useComment() {
-  const { comments } = storeToRefs(useCommentsStore())
 
-  const comment = ref<Comment>({
-    id: undefined,
-    frame_id: null,
-    body: '',
-    user_id: null,
-    user_name: '',
-    user_image_url: '',
-    created_at: '',
-    updated_at: null
-  })
+  const UseComment = class {
+    flash: Ref<Flash>
+    #clearFlash: () => void
 
-  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
-    body: [],
-    base: []
-  })
+    #baseURL: ConstantsType['baseURL']
+    #headers: ConstantsType['headers']
 
-  const { flash, clearFlash } = useFlash()
+    #token: UseAccountType['token']
 
-  const { baseURL, headers } = useConstants()
-  const { token } = useAccount()
+    comments: Ref<Comment[]>
 
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
-    externalErrors.value.body = errors.body ?? []
-  }
+    #setAlert: UseAlertType['setAlert']
+    reload401: UseAlertType['reload401']
 
-  const clearExternalErrors = () => {
-    externalErrors.value.body = []
-    externalErrors.value.base = []
-  }
+    constructor() {
+      const { flash, clearFlash } = useFlash()
+      const { baseURL, headers } = useConstants()
+      const { token } = useAccount()
 
-  const { setAlert, reloading401 } = useAlert({ flash, setEE: setExternalErrors })
+      const { comments } = storeToRefs(useCommentsStore())
+      const { setAlert, reload401 } = useAlert({ flash, caller: this })
 
-  const getComments = async (frameId: string) => {
-    clearFlash()
-    //console.log(frame_id)
+      this.flash = flash
+      this.#clearFlash = clearFlash
+      this.#baseURL = baseURL
+      this.#headers = headers
+      this.#token = token
 
-    try{
-      const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
-        {
-          method: 'GET',
-          headers: headers.value
-        })
-
-      if (!response.ok) {
-        await setAlert({ response })
-      } else {
-        const commentList: [CommentResource] = (await response.json() as CommentsResource).comments
-        //console.log(comment_list);
-        comments.value.splice(0, comments.value.length)
-        for (const comment of commentList) {
-        //console.log(comment);
-          comments.value.push(createCommentFromJson(comment))
-        }
-      }
-      //console.log(comments);
-    } catch (error) {
-      flash.value.alert = '不具合が発生しました'
-      globalThis.console.log((error as Error).message)
+      this.comments = comments
+      this.#setAlert = setAlert
+      this.reload401 = reload401
     }
-  }
 
-  const createCommentFromJson = (resource: CommentResource): Comment => {
-    const comment: Partial<Comment> = {}
-    Object.assign(comment, resource)
-    return comment as Comment
-  }
+    comment: Ref<Comment>  = ref({
+      id: undefined,
+      frame_id: null,
+      body: '',
+      user_id: null,
+      user_name: '',
+      user_image_url: '',
+      created_at: '',
+      updated_at: null
+    })
 
-  const createComment = async (frameId: string) => {
-    clearFlash()
+    externalErrors = ref<ErrorMessages<ErrorProperty>>({
+      body: [],
+      base: []
+    })
 
-    try {
-      const params = new URLSearchParams()
-      params.append('comment[body]', comment.value.body)
-      //const params = {
-      //  comment: {
-      //    body: comment.value.body
-      //  }
-      //}
+    setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+      this.externalErrors.value.body = errors.body ?? []
+    }
 
-      const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
-        {
-          method: 'POST',
-          body: params,
-          headers: {
-            ...headers.value,
-            Authorization: `Bearer ${token.value}`
+    clearExternalErrors = () => {
+      this.externalErrors.value.body = []
+      this.externalErrors.value.base = []
+    }
+
+    getComments = async (frameId: string) => {
+      this.#clearFlash()
+      //console.log(frameId)
+
+      try{
+        const response = await globalThis.fetch(`${this.#baseURL}/frames/${frameId}/comments`,
+          {
+            method: 'GET',
+            headers: this.#headers.value
+          })
+
+        if (!response.ok) {
+          await this.#setAlert({ response })
+        } else {
+          const commentList: [CommentResource] = (await response.json() as CommentsResource).comments
+          //console.log(comment_list);
+          this.comments.value.splice(0, this.comments.value.length)
+          for (const comment of commentList) {
+            //console.log(comment);
+            this.comments.value.push(this.#createCommentFromJson(comment))
           }
         }
-      )
-
-      clearExternalErrors()
-
-      if (!response.ok) {
-        await setAlert({ response })
+      //console.log(comments);
+      } catch (error) {
+        this.flash.value.alert = '不具合が発生しました'
+        globalThis.console.log((error as Error).message)
       }
-    } catch (error) {
-      flash.value.alert = '不具合が発生しました'
-      globalThis.console.log((error as Error).message)
     }
-  }
 
-  const setJson2Comment = (resource: CommentResource) => {
-    Object.assign(comment.value, resource)
-  }
+    #createCommentFromJson = (resource: CommentResource): Comment => {
+      const comment: Partial<Comment> = {}
+      Object.assign(comment, resource)
+      return comment as Comment
+    }
 
-  const setComment = ({ from, to } : { from?: Comment | undefined, to?: Comment}) => {
-    if (from) {
-      Object.assign(comment.value, from)
-    } else if (to) {
-      Object.assign(to, comment.value)
+    createComment = async (frameId: string) => {
+      this.#clearFlash()
+
+      try {
+        const params = new URLSearchParams()
+        params.append('comment[body]', this.comment.value.body)
+        //const params = {
+        //  comment: {
+        //    body: comment.value.body
+        //  }
+        //}
+
+        const response = await globalThis.fetch(`${this.#baseURL}/frames/${frameId}/comments`,
+          {
+            method: 'POST',
+            body: params,
+            headers: {
+              ...this.#headers.value,
+              Authorization: `Bearer ${this.#token.value}`
+            }
+          }
+        )
+
+        this.clearExternalErrors()
+
+        if (!response.ok) {
+          await this.#setAlert({ response })
+        }
+      } catch (error) {
+        this.flash.value.alert = '不具合が発生しました'
+        globalThis.console.log((error as Error).message)
+      }
+    }
+
+    #setJson2Comment = (resource: CommentResource) => {
+      Object.assign(this.comment.value, resource)
+    }
+
+    setComment = ({ from, to } : { from?: Comment | undefined, to?: Comment}) => {
+      if (from) {
+        Object.assign(this.comment.value, from)
+      } else if (to) {
+        Object.assign(to, this.comment.value)
       // globalThis.console.log(comment.value)
       // globalThis.console.log(to)
+      }
     }
-  }
 
-  const updateComment = async () => {
-    clearFlash()
+    updateComment = async () => {
+      this.#clearFlash()
 
-    try {
-      const params = new URLSearchParams()
-      params.append('comment[body]', comment.value.body)
-      //const params = {
-      //  comment: {
-      //    body: comment.value.body
-      //  }
-      //}
+      try {
+        const params = new URLSearchParams()
+        params.append('comment[body]', this.comment.value.body)
+        //const params = {
+        //  comment: {
+        //    body: comment.value.body
+        //  }
+        //}
 
-      const response = await globalThis.fetch(`${baseURL}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
-        {
-          method: 'PUT',
-          body: params,
-          headers: {
-            ...headers.value,
-            Authorization: `Bearer ${token.value}`
+        const response = await globalThis.fetch(`${this.#baseURL}/frames/${this.comment.value.frame_id?.toString() ?? ''}/comments/${this.comment.value.id?.toString() ?? ''}`,
+          {
+            method: 'PUT',
+            body: params,
+            headers: {
+              ...this.#headers.value,
+              Authorization: `Bearer ${this.#token.value}`
+            }
           }
+        )
+
+        this.clearExternalErrors()
+
+        if (!response.ok) {
+          await this.#setAlert({ response })
+        } else {
+          const commentAttrs: CommentResource = (await response.json() as CommentResource)
+          this.#setJson2Comment(commentAttrs)
         }
-      )
-
-      clearExternalErrors()
-
-      if (!response.ok) {
-        await setAlert({ response })
-      } else {
-        const commentAttrs: CommentResource = (await response.json() as CommentResource)
-        setJson2Comment(commentAttrs)
+      } catch (error) {
+        this.flash.value.alert = '不具合が発生しました'
+        globalThis.console.log((error as Error).message)
       }
-    } catch (error) {
-      flash.value.alert = '不具合が発生しました'
-      globalThis.console.log((error as Error).message)
     }
-  }
 
-  const deleteComment = async (comment: Comment) => {
-    clearFlash()
-    try {
-      const response = await globalThis.fetch(
-        `${baseURL}/comments/${comment.id?.toString(10) ?? ''}`,
-        {
-          method: 'DELETE',
-          headers: {
-            ...headers.value,
-            Authorization: `Bearer ${token.value}`
-          }
-        })
+    deleteComment = async (comment: Comment) => {
+      this.#clearFlash()
 
-      clearExternalErrors()
+      try {
+        const response = await globalThis.fetch(
+          `${this.#baseURL}/comments/${comment.id?.toString(10) ?? ''}`,
+          {
+            method: 'DELETE',
+            headers: {
+              ...this.#headers.value,
+              Authorization: `Bearer ${this.#token.value}`
+            }
+          })
 
-      if (!response.ok) {
-        await setAlert({ response })
+        this.clearExternalErrors()
+
+        if (!response.ok) {
+          await this.#setAlert({ response })
+        }
+      } catch (error) {
+        this.flash.value.alert = '不具合が発生しました'
+        globalThis.console.log((error as Error).message)
       }
-    } catch (error) {
-      flash.value.alert = '不具合が発生しました'
-      globalThis.console.log((error as Error).message)
+    }
+
+    isSuccess = () => {
+      let result = true
+
+      if (this.externalErrors.value.body && this.externalErrors.value.body.length > 0 || 
+        this.externalErrors.value.base && this.externalErrors.value.base.length > 0) {
+        result = false
+      }
+
+      if (this.flash.value.alert) {
+        result = false
+      }
+
+      return result
     }
   }
 
-  const isSuccess = () => {
-    let result = true
+  const self = new UseComment()
 
-    if (externalErrors.value.body && externalErrors.value.body.length > 0 || 
-        externalErrors.value.base && externalErrors.value.base.length > 0) {
-      result = false
-    }
+  return self
 
-    if (flash.value.alert) {
-      result = false
-    }
-
-    return result
-  }
-
-  const reload401= () => {
-    if(reloading401) {
-      globalThis.setTimeout(() => {
-        globalThis.location.href = ''
-      }, 1000)
-    }
-  }
-
-  return {
-    comment, comments, flash, getComments,
-    createComment, updateComment, deleteComment, setComment,
-    clearExternalErrors, isSuccess, externalErrors, reload401
-  }
 }
 
 export type UseCommentType = ReturnType<typeof useComment>
