@@ -9,7 +9,7 @@ gem "rails", "~> 8.0.3"
 gem "propshaft", "~> 1.3.1"
 
 # Use mysql as the database for Active Record
-# gem 'mysql2', '~> 0.5.6'
+# gem "mysql2", "~> 0.5.6"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.6.2"
 

@@ -8,7 +8,7 @@
       <%= render Frames::Preview::Image::Component.new(frame: @frame, original: true, photoswipe: false) %>
       <%= form_with model: @frame, local: true do |form| %>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
-        <% if @frame.confirming == 'true' %>
+        <% if @frame.confirming == "true" %>
           <%= render Frames::Edit::Confirm::Component.new(form:, frame: @frame, tag_paths: tag_paths(@frame)) %>
         <% else %>
           <%= render Frames::Edit::Input::Component.new(form:, frame: @frame,

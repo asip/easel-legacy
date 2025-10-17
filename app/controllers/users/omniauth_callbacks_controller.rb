@@ -28,7 +28,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   super
   # end
 
-
   private
 
   def auth_params

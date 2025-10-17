@@ -3,7 +3,6 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox'
 // @ts-expect-error : @types doesn't exist
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 
-
 export default class PhotoSwipeController extends ApplicationController {
   static targets = ['ps']
 

@@ -12,8 +12,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   FORM_PARAMS = [ :name, :email, :password, :password_confirmation, :image, :time_zone, :confirming ]
 
-
-
   # GET /resource/sign_up
   # def new
   #   super

@@ -18,6 +18,3 @@ setFlash(flash.value)
     <CommentList />
   </div>
 </template>
-
-
-

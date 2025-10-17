@@ -7,7 +7,7 @@
       </div>
       <%= form_with model: @frame, local: true do |form| %>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
-        <% if @frame.confirming == 'true' %>
+        <% if @frame.confirming == "true" %>
           <%= render Frames::New::Confirm::Component.new(form:, frame: @frame, tag_paths: tag_paths(@frame)) %>
         <% else %>
           <%= render Frames::New::Input::Component.new(form:, frame: @frame, back_to_path: root_path(query_map)) %>

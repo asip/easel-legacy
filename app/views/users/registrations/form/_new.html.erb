@@ -7,7 +7,7 @@
       </div>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
-        <% if resource.confirming == 'true' %>
+        <% if resource.confirming == "true" %>
           <%= render Users::New::Confirm::Component.new(form:, user: resource) %>
         <% else %>
           <%= render Users::New::Input::Component.new(form:, user: resource, back_to_path: login_path) %>

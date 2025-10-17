@@ -13,7 +13,7 @@ module Queries
       end
 
       def execute
-        @user.frames.order('frames.created_at': "desc")
+        @user.frames.order("frames.created_at": "desc")
       end
     end
   end

@@ -45,21 +45,21 @@ module Api
             user_id = decoded_token[0]["user_id"]
 
             @current_user = User.find(user_id)
-            # current_user にトークンを割り当てる
+            # (current_user にトークンを割り当てる)
             @current_user.assign_token(token)
 
           rescue ActiveRecord::RecordNotFound
-            # トークン内のユーザーIDが既存のユーザーに対応しない場合
+            # (トークン内のユーザーIDが既存のユーザーに対応しない場合)
             raise Api::ErrorRenderable::UnauthorizedError.new("提供されたトークンに対応するユーザーが見つかりません。")
           rescue JWT::ExpiredSignature
-            # トークンの 'exp' (有効期限) クレームが期限切れを示している場合
+            # (トークンの 'exp' (有効期限) クレームが期限切れを示している場合)
             raise Api::ErrorRenderable::UnauthorizedError.new("認証トークンの有効期限が切れています。")
           rescue JWT::DecodeError => e
-            # 一般的なJWTデコード失敗 (例: 無効な署名、不正なトークン構造)
+            # (一般的なJWTデコード失敗 (例: 無効な署名、不正なトークン構造))
             Rails.logger.error("JWT Decode Error: #{e.message}")
             raise Api::ErrorRenderable::UnauthorizedError.new("認証トークンが無効です。")
           rescue => e
-            # 認証プロセス中のその他の予期せぬエラーを捕捉
+            # (認証プロセス中のその他の予期せぬエラーを捕捉)
             Rails.logger.error("JWT処理中に予期せぬ認証エラーが発生しました: #{e.message}")
             raise Api::ErrorRenderable::UnauthorizedError.new("認証中に予期せぬエラーが発生しました。")
           end
