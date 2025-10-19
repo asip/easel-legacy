@@ -1,3 +1,4 @@
+export { useEntity } from './use-entity'
 export { useAccount} from './use-account'
 export { useComment } from './use-comment'
 export { useAlert } from './use-alert'

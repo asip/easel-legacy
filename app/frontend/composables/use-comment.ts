@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia'
 import type { Comment , CommentResource, CommentsResource } from '../interfaces'
 import type { ErrorMessages, Flash } from '../types'
 import type { UseAlertType } from './'
-import { useAccount, useAlert, useConstants, useFlash } from './'
+import { useAccount, useEntity, useAlert, useConstants, useFlash } from './'
 import { useCommentsStore } from '../stores'
 
 type ErrorProperty = 'body' | 'base'
@@ -13,11 +13,32 @@ type ExternalErrorProperty = 'body'
 export function useComment() {
   const { baseURL, headers } = useConstants()
   const { flash, clearFlash } = useFlash()
+  const { create, copy } = useEntity<Comment, CommentResource>()
   const { token } = useAccount()
   const { comments } = storeToRefs(useCommentsStore())
 
+  const comment: Ref<Comment>  = ref({
+    id: undefined,
+    frame_id: null,
+    body: '',
+    user_id: null,
+    user_name: '',
+    user_image_url: '',
+    created_at: '',
+    updated_at: null
+  })
+
+  const createComment = ({ from }: { from: CommentResource }): Comment => {
+    return create({ from })
+  }
+
+  const setComment = ({ from }: { from: CommentResource }): void => {
+    copy({ from , to: comment.value })
+  }
+
   const UseComment = class {
     flash: Ref<Flash>
+    comment: Ref<Comment>
     comments: Ref<Comment[]>
 
     #setAlert: UseAlertType['setAlert']
@@ -27,22 +48,12 @@ export function useComment() {
       const { setAlert, reload401 } = useAlert({ flash, caller: this })
 
       this.flash = flash
+      this.comment = comment
       this.comments = comments
 
       this.#setAlert = setAlert
       this.reload401 = reload401
     }
-
-    comment: Ref<Comment>  = ref({
-      id: undefined,
-      frame_id: null,
-      body: '',
-      user_id: null,
-      user_name: '',
-      user_image_url: '',
-      created_at: '',
-      updated_at: null
-    })
 
     externalErrors = ref<ErrorMessages<ErrorProperty>>({
       body: [],
@@ -77,7 +88,7 @@ export function useComment() {
           this.comments.value.splice(0, this.comments.value.length)
           for (const comment of commentList) {
             //console.log(comment);
-            this.comments.value.push(this.#createCommentFromJson(comment))
+            this.comments.value.push(createComment({ from: comment }))
           }
         }
       //console.log(comments);
@@ -85,12 +96,6 @@ export function useComment() {
         this.flash.value.alert = '不具合が発生しました'
         globalThis.console.log((error as Error).message)
       }
-    }
-
-    #createCommentFromJson = (resource: CommentResource): Comment => {
-      const comment: Partial<Comment> = {}
-      Object.assign(comment, resource)
-      return comment as Comment
     }
 
     createComment = async (frameId: string) => {
@@ -127,15 +132,11 @@ export function useComment() {
       }
     }
 
-    #setJson2Comment = (resource: CommentResource) => {
-      Object.assign(this.comment.value, resource)
-    }
-
     setComment = ({ from, to } : { from?: Comment | undefined, to?: Comment}) => {
       if (from) {
-        Object.assign(this.comment.value, from)
+        copy({ from, to: this.comment.value })
       } else if (to) {
-        Object.assign(to, this.comment.value)
+        copy({ from: this.comment.value, to })
       // globalThis.console.log(comment.value)
       // globalThis.console.log(to)
       }
@@ -170,7 +171,7 @@ export function useComment() {
           await this.#setAlert({ response })
         } else {
           const commentAttrs: CommentResource = (await response.json() as CommentResource)
-          this.#setJson2Comment(commentAttrs)
+          setComment({ from: commentAttrs })
         }
       } catch (error) {
         this.flash.value.alert = '不具合が発生しました'
