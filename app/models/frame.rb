@@ -42,22 +42,38 @@ class Frame < ApplicationRecord
     scope = current_scope || relation
 
     word = items["word"]
+    tag_name = items["tag_name"]
 
     if word.present?
       scope = if DateAndTime::Util.valid_date?(word)
                 date_word = Time.zone.parse(word)
-                scope.where(shooted_at: date_word.beginning_of_day..date_word.end_of_day)
-                     .or(Frame.where(created_at: date_word.beginning_of_day..date_word.end_of_day))
-                     .or(Frame.where(updated_at: date_word.beginning_of_day..date_word.end_of_day))
+                scope.merge(
+                  Frame.where(shooted_at: date_word.beginning_of_day..date_word.end_of_day)
+                       .or(Frame.where(created_at: date_word.beginning_of_day..date_word.end_of_day))
+                       .or(Frame.where(updated_at: date_word.beginning_of_day..date_word.end_of_day))
+                )
+
       else
-                scope.left_joins(:tags, :user)
-                     .merge(
-                        ActsAsTaggableOn::Tag.where("tags.name like ?",
-                                                    "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
-                     .or(Frame.where("frames.name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
-                     .or(Frame.where("frames.creator_name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
-                     .or(User.where(name: word)
+                scope.merge(
+                  Frame.left_joins(:tags, :user)
+                       .merge(
+                          ActsAsTaggableOn::Tag.where("tags.name like ?",
+                                                      "#{ActiveRecord::Base.sanitize_sql_like(word)}%")
+                        )
+                       .or(Frame.where("frames.name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
+                       .or(Frame.where("frames.creator_name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
+                       .or(User.where("users.name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
                 ).distinct
+      end
+    else
+      if tag_name.present?
+        scope = scope.merge(
+          Frame.left_joins(:tags)
+               .merge(
+                  ActsAsTaggableOn::Tag.where("tags.name like ?",
+                                              "#{ActiveRecord::Base.sanitize_sql_like(tag_name)}%")
+                )
+        ).distinct
       end
     end
 
