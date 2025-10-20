@@ -1,8 +1,8 @@
 import { Ref, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
-import type { Comment , CommentResource, CommentsResource } from '../interfaces'
-import type { ErrorMessages, Flash } from '../types'
+import type { Comment , CommentResource, CommentsResource, Flash } from '../interfaces'
+import type { ErrorMessages } from '../types'
 import type { UseAlertType } from './'
 import { useAccount, useEntity, useAlert, useConstants, useFlash } from './'
 import { useCommentsStore } from '../stores'
