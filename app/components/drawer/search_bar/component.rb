@@ -2,11 +2,12 @@
 
 # drawer
 module Drawer
-  # calendar
-  module Calendar
+  # search bar
+  module SearchBar
     # Component
     class Component < ViewComponent::Base
-      def initialize(day:)
+      def initialize(word:, day:)
+        @word = word
         @day = day
       end
     end

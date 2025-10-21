@@ -2,7 +2,7 @@ import { Application } from '@hotwired/stimulus'
 
 import ToastController from './toast-controller'
 import CalendarController from './calendar-controller'
-import TagSearchController from './tag-search-controller'
+import FrameSearchController from './frame-search-controller'
 // image preview
 import PreviewController from './image/preview-controller'
 // frame
@@ -17,7 +17,7 @@ application.debug = false
 
 application.register('toast', ToastController)
 application.register('calendar', CalendarController)
-application.register('tagSearch', TagSearchController)
+application.register('frameSearch', FrameSearchController)
 // image preview
 application.register('preview', PreviewController)
 // frame

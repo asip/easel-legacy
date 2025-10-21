@@ -1,6 +1,6 @@
 import ApplicationController from './application-controller'
 
-export default class TagSearchController extends ApplicationController {
+export default class FrameSearchController extends ApplicationController {
   static targets = ['tooltip', 'word', 'q']
 
   declare readonly tooltipTarget: HTMLDivElement

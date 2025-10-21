@@ -1,5 +1,5 @@
 <div class="sticky top-0 drawer drawer-end z-[1000]">
-  <input id="date-sidebar" type="checkbox" class="drawer-toggle">
+  <input id="search-sidebar" type="checkbox" class="drawer-toggle">
   <div class="drawer-content flex flex-col">
     <div class="navbar bg-base-100 shadow">
       <div class="navbar-start">
@@ -32,21 +32,11 @@
         </ul>
       </div>
       <div class="navbar-end flex gap-2">
-        <div class="hidden sm:flex">
-          <%= render TagSearch::Component.new(word: (@items.present? ? @items["word"]: nil)) %>
-        </div>
-        <div class="dropdown dropdown-end">
-          <div tabindex="0" role="button" class="btn btn-ghost sm:hidden">
-            <i class="bi bi-search"></i>
-          </div>
-          <ul
-            tabindex="0"
-            class="menu menu-sm dropdown-content bg-base-100 rounded-[5px] z-1 mt-3 w-90 p-2 shadow">
-            <li><%= render TagSearch::Component.new(word: (@items.present? ? @items["word"]: nil)) %></li>
-          </ul>
-        </div>
+        <label for="search-sidebar" aria-label="open sidebar" class="btn btn-outline btn-primary">
+          <i class="bi bi-search"></i>
+        </label>
       </div>
     </div>
   </div>
-  <%= render Drawer::Calendar::Component.new(day: @day) %>
+  <%= render Drawer::SearchBar::Component.new(day: @day, word: (@items.present? ? @items["word"]: nil)) %>
 </div>

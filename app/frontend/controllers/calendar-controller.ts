@@ -3,13 +3,15 @@ import { Datepicker } from 'vanillajs-datepicker'
 import ja from '../locales/date-picker/ja'
 
 export default class CalendarController extends ApplicationController {
-  static targets = ['cal']
+  static targets = ['cal', 'word']
   static values = {
     date: String,
   }
 
   declare readonly calTarget: HTMLElement
   declare readonly hasCalTarget: boolean
+  declare readonly wordTarget: HTMLInputElement
+  declare readonly hasWordTarget: boolean
 
   declare readonly dateValue: string
   declare readonly originValue: string
@@ -20,6 +22,11 @@ export default class CalendarController extends ApplicationController {
     let calTrigger: HTMLElement | null = null
     if (this.hasCalTarget){
       calTrigger = this.calTarget
+    }
+
+    let wordTrigger: HTMLInputElement | null = null
+    if (this.hasWordTarget){
+      wordTrigger = this.wordTarget
     }
 
     if (calTrigger){
@@ -36,11 +43,12 @@ export default class CalendarController extends ApplicationController {
       if (date) this.calendar.setDate(Datepicker.parseDate(date, 'yyyy/mm/dd'))
 
       calTrigger.addEventListener('changeDate', function (e: CustomEvent) {
-        //console.log(e);
-        //console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
+        // globalThis.console.log(e);
+        // globalThis.console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
+        // globalThis.console.log(wordTrigger)
 
         // eslint-disable-next-line
-        globalThis.location.href=`/?q=${JSON.stringify({ word: e.detail.datepicker.getDate('yyyy/mm/dd') })}`
+        if (wordTrigger) wordTrigger.value = e.detail.datepicker.getDate('yyyy/mm/dd')
       })
     }
   }

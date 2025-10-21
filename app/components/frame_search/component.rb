@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# tag search
-module TagSearch
+# frame search
+module FrameSearch
   # Component
   class Component < ViewComponent::Base
     def initialize(word:)
