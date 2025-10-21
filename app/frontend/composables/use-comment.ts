@@ -1,9 +1,8 @@
 import { Ref, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
-import type { Comment , CommentResource, CommentsResource, Flash } from '../interfaces'
+import type { Comment , CommentResource, CommentsResource } from '../interfaces'
 import type { ErrorMessages } from '../types'
-import type { UseAlertType } from './'
 import { useAccount, useEntity, useAlert, useConstants, useFlash } from './'
 import { useCommentsStore } from '../stores'
 
@@ -28,202 +27,181 @@ export function useComment() {
     updated_at: null
   })
 
-  const createComment = ({ from }: { from: CommentResource }): Comment => {
+  const makeComment = ({ from }: { from: CommentResource }): Comment => {
     return create({ from })
   }
 
-  const setComment = ({ from }: { from: CommentResource }): void => {
-    copy({ from , to: comment.value })
-  }
-
-  const UseComment = class {
-    flash: Ref<Flash>
-    comment: Ref<Comment>
-    comments: Ref<Comment[]>
-
-    #setAlert: UseAlertType['setAlert']
-    reload401: UseAlertType['reload401']
-
-    constructor() {
-      const { setAlert, reload401 } = useAlert({ flash, caller: this })
-
-      this.flash = flash
-      this.comment = comment
-      this.comments = comments
-
-      this.#setAlert = setAlert
-      this.reload401 = reload401
-    }
-
-    externalErrors = ref<ErrorMessages<ErrorProperty>>({
-      body: [],
-      base: []
-    })
-
-    setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
-      this.externalErrors.value.body = errors.body ?? []
-    }
-
-    clearExternalErrors = () => {
-      this.externalErrors.value.body = []
-      this.externalErrors.value.base = []
-    }
-
-    getComments = async (frameId: string) => {
-      clearFlash()
-      //console.log(frameId)
-
-      try{
-        const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
-          {
-            method: 'GET',
-            headers: headers.value
-          })
-
-        if (!response.ok) {
-          await this.#setAlert({ response })
-        } else {
-          const commentList: [CommentResource] = (await response.json() as CommentsResource).comments
-          //console.log(comment_list);
-          this.comments.value.splice(0, this.comments.value.length)
-          for (const comment of commentList) {
-            //console.log(comment);
-            this.comments.value.push(createComment({ from: comment }))
-          }
-        }
-      //console.log(comments);
-      } catch (error) {
-        this.flash.value.alert = '不具合が発生しました'
-        globalThis.console.log((error as Error).message)
-      }
-    }
-
-    createComment = async (frameId: string) => {
-      clearFlash()
-
-      try {
-        const params = new URLSearchParams()
-        params.append('comment[body]', this.comment.value.body)
-        //const params = {
-        //  comment: {
-        //    body: comment.value.body
-        //  }
-        //}
-
-        const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
-          {
-            method: 'POST',
-            body: params,
-            headers: {
-              ...headers.value,
-              Authorization: `Bearer ${token.value}`
-            }
-          }
-        )
-
-        this.clearExternalErrors()
-
-        if (!response.ok) {
-          await this.#setAlert({ response })
-        }
-      } catch (error) {
-        this.flash.value.alert = '不具合が発生しました'
-        globalThis.console.log((error as Error).message)
-      }
-    }
-
-    setComment = ({ from, to } : { from?: Comment | undefined, to?: Comment}) => {
-      if (from) {
-        copy({ from, to: this.comment.value })
-      } else if (to) {
-        copy({ from: this.comment.value, to })
+  const setComment = ({ from, to } : { from?: Comment | CommentResource | undefined, to?: Comment}) => {
+    if (from) {
+      copy({ from, to: comment.value })
+    } else if (to) {
+      copy({ from: comment.value, to })
       // globalThis.console.log(comment.value)
       // globalThis.console.log(to)
-      }
-    }
-
-    updateComment = async () => {
-      clearFlash()
-
-      try {
-        const params = new URLSearchParams()
-        params.append('comment[body]', this.comment.value.body)
-        //const params = {
-        //  comment: {
-        //    body: comment.value.body
-        //  }
-        //}
-
-        const response = await globalThis.fetch(`${baseURL}/frames/${this.comment.value.frame_id?.toString() ?? ''}/comments/${this.comment.value.id?.toString() ?? ''}`,
-          {
-            method: 'PUT',
-            body: params,
-            headers: {
-              ...headers.value,
-              Authorization: `Bearer ${token.value}`
-            }
-          }
-        )
-
-        this.clearExternalErrors()
-
-        if (!response.ok) {
-          await this.#setAlert({ response })
-        } else {
-          const commentAttrs: CommentResource = (await response.json() as CommentResource)
-          setComment({ from: commentAttrs })
-        }
-      } catch (error) {
-        this.flash.value.alert = '不具合が発生しました'
-        globalThis.console.log((error as Error).message)
-      }
-    }
-
-    deleteComment = async (comment: Comment) => {
-      clearFlash()
-
-      try {
-        const response = await globalThis.fetch(
-          `${baseURL}/comments/${comment.id?.toString(10) ?? ''}`,
-          {
-            method: 'DELETE',
-            headers: {
-              ...headers.value,
-              Authorization: `Bearer ${token.value}`
-            }
-          })
-
-        this.clearExternalErrors()
-
-        if (!response.ok) {
-          await this.#setAlert({ response })
-        }
-      } catch (error) {
-        this.flash.value.alert = '不具合が発生しました'
-        globalThis.console.log((error as Error).message)
-      }
-    }
-
-    isSuccess = () => {
-      let result = true
-
-      if (this.externalErrors.value.body && this.externalErrors.value.body.length > 0 || 
-        this.externalErrors.value.base && this.externalErrors.value.base.length > 0) {
-        result = false
-      }
-
-      if (this.flash.value.alert) {
-        result = false
-      }
-
-      return result
     }
   }
 
-  const self = new UseComment()
+  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
+    body: [],
+    base: []
+  })
 
-  return self
+  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+    externalErrors.value.body = errors.body ?? []
+  }
 
+  const clearExternalErrors = () => {
+    externalErrors.value.body = []
+    externalErrors.value.base = []
+  }
+
+  const { setAlert, reload401 } = useAlert({ flash, caller: { setExternalErrors } })
+
+  const getComments = async (frameId: string) => {
+    clearFlash()
+    //console.log(frameId)
+
+    try{
+      const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
+        {
+          method: 'GET',
+          headers: headers.value
+        })
+
+      if (!response.ok) {
+        await setAlert({ response })
+      } else {
+        const commentList: [CommentResource] = (await response.json() as CommentsResource).comments
+        //console.log(comment_list);
+        comments.value.splice(0, comments.value.length)
+        for (const comment of commentList) {
+          //console.log(comment);
+          comments.value.push(makeComment({ from: comment }))
+        }
+      }
+      //console.log(comments);
+    } catch (error) {
+      flash.value.alert = '不具合が発生しました'
+      globalThis.console.log((error as Error).message)
+    }
+  }
+
+  const createComment = async (frameId: string) => {
+    clearFlash()
+
+    try {
+      const params = new URLSearchParams()
+      params.append('comment[body]', comment.value.body)
+      //const params = {
+      //  comment: {
+      //    body: comment.value.body
+      //  }
+      //}
+
+      const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
+        {
+          method: 'POST',
+          body: params,
+          headers: {
+            ...headers.value,
+            Authorization: `Bearer ${token.value}`
+          }
+        }
+      )
+
+      clearExternalErrors()
+
+      if (!response.ok) {
+        await setAlert({ response })
+      }
+    } catch (error) {
+      flash.value.alert = '不具合が発生しました'
+      globalThis.console.log((error as Error).message)
+    }
+  }
+
+  const updateComment = async () => {
+    clearFlash()
+
+    try {
+      const params = new URLSearchParams()
+      params.append('comment[body]', comment.value.body)
+      //const params = {
+      //  comment: {
+      //    body: comment.value.body
+      //  }
+      //}
+
+      const response = await globalThis.fetch(`${baseURL}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
+        {
+          method: 'PUT',
+          body: params,
+          headers: {
+            ...headers.value,
+            Authorization: `Bearer ${token.value}`
+          }
+        }
+      )
+
+      clearExternalErrors()
+
+      if (!response.ok) {
+        await setAlert({ response })
+      } else {
+        const commentAttrs: CommentResource = (await response.json() as CommentResource)
+        setComment({ from: commentAttrs })
+      }
+    } catch (error) {
+      flash.value.alert = '不具合が発生しました'
+      globalThis.console.log((error as Error).message)
+    }
+  }
+
+  const deleteComment = async (comment: Comment) => {
+    clearFlash()
+
+    try {
+      const response = await globalThis.fetch(
+        `${baseURL}/comments/${comment.id?.toString(10) ?? ''}`,
+        {
+          method: 'DELETE',
+          headers: {
+            ...headers.value,
+            Authorization: `Bearer ${token.value}`
+          }
+        })
+
+      clearExternalErrors()
+
+      if (!response.ok) {
+        await setAlert({ response })
+      }
+    } catch (error) {
+      flash.value.alert = '不具合が発生しました'
+      globalThis.console.log((error as Error).message)
+    }
+  }
+
+  const isSuccess = () => {
+    let result = true
+
+    if (externalErrors.value.body && externalErrors.value.body.length > 0 || 
+      externalErrors.value.base && externalErrors.value.base.length > 0) {
+      result = false
+    }
+
+    if (flash.value.alert) {
+      result = false
+    }
+
+    return result
+  }
+
+  return {
+    comment, comments, flash, getComments,
+    createComment, updateComment, deleteComment, setComment,
+    clearExternalErrors, isSuccess, externalErrors, reload401
+  }
 }
 
 export type UseCommentType = ReturnType<typeof useComment>

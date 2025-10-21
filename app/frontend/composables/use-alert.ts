@@ -3,16 +3,16 @@ import { ref, Ref } from 'vue'
 import { ErrorsResource, Flash } from '../interfaces'
 import { ErrorMessages } from '../types'
 
-interface UseAlertOptions<T extends UseAlertCallerType> {
+interface UseAlertOptions {
   flash: Ref<Flash>
-  caller?: T
+  caller?: UseAlertCallerType
 }
 
 interface UseAlertCallerType {
   setExternalErrors?: (errors: ErrorMessages<string>) => void
 }
 
-export function useAlert<T extends UseAlertCallerType>({ flash, caller } : UseAlertOptions<T>) {
+export function useAlert({ flash, caller } : UseAlertOptions) {
   const reloading401 = ref(false)
 
   const setAlert= async ({ response, off = false } : { response: Response, off?: boolean }) => {
