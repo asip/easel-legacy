@@ -26,10 +26,9 @@
               <%# <li><a class="dropdown-item" href="#">Something else here</a></li> %>
             </ul>
           </details>
-          <% else %>
-            <%= link_to "ログイン", login_path, class: "" %>
-          <% end %>
-        </ul>
+        <% else %>
+          <%= link_to "ログイン", login_path, class: "" %>
+        <% end %>
       </div>
       <div class="navbar-end flex gap-2">
         <label for="search-sidebar" aria-label="open sidebar" class="btn btn-outline btn-primary">

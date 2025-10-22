@@ -75,6 +75,9 @@ importers:
         specifier: 11.1.12
         version: 11.1.12(vue@3.5.22(typescript@5.8.3))
     devDependencies:
+      '@markuplint/erb-parser':
+        specifier: 4.6.21
+        version: 4.6.21
       '@markuplint/vue-parser':
         specifier: ^4.6.21
         version: 4.6.21(eslint@9.37.0(jiti@2.6.1))
@@ -478,6 +481,9 @@ packages:
 
   '@markuplint/config-presets@4.5.13':
     resolution: {integrity: sha512-T/CF/OEulFnKC2qr3gFcrvwcMxv6hPArhjQ8i+1HahLkNr4dRedsV27FUwb9/4V79SgXSsprjbQiVHY19ruYZw==}
+
+  '@markuplint/erb-parser@4.6.21':
+    resolution: {integrity: sha512-NfrP6YSrOl2EGmDWbjqBpF/lyHIDfEUpp8mBFKLI0UusPJHHkmseIUBIMinShPWtF36rdxRFwbSHQoUkIN94Xw==}
 
   '@markuplint/file-resolver@4.9.16':
     resolution: {integrity: sha512-Vx+GPHnnEF90uwj3oOr5eCUeThHreG8h2/63RdT98oBmuiWjD80KqWzQtlfVhYec2kCHTKoKRMqm6/aivdbjWQ==}
@@ -2955,6 +2961,12 @@ snapshots:
       strip-ansi: 7.1.0
 
   '@markuplint/config-presets@4.5.13': {}
+
+  '@markuplint/erb-parser@4.6.21':
+    dependencies:
+      '@markuplint/html-parser': 4.6.21
+    transitivePeerDependencies:
+      - supports-color
 
   '@markuplint/file-resolver@4.9.16(typescript@5.8.3)':
     dependencies:

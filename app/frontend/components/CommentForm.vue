@@ -40,7 +40,7 @@ const onPostClick = async () => {
   <div v-if="loggedIn" class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2">
     <div class="card-body">
       <div class="flex justify-start">
-        <h2 class="card-title">コメント</h2>
+        <div class="card-title text-[16px] font-bold">コメント</div>
       </div>
       <div class="flex justify-center">
         <textarea v-model="comment.body" class="block text-sm border border-gray-300 rounded w-full min-h-[50px] field-sizing-content" />

@@ -5,9 +5,10 @@
   "scripts": {
     "watch:ts": "tsc-watch --noClear -p tsconfig.json",
     "lint": "eslint --fix './app/frontend/**/*.{js,ts,vue}'",
-    "markuplint": "markuplint './app/frontend/**/*.vue'"
+    "markuplint": "markuplint './app/**/**/*.{erb,vue}'"
   },
   "devDependencies": {
+    "@markuplint/erb-parser": "4.6.21",
     "@markuplint/vue-parser": "^4.6.21",
     "@markuplint/vue-spec": "^4.5.21",
     "@tailwindcss/vite": "4.1.14",
