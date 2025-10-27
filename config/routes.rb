@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       sessions: "admins/sessions"
     }
   devise_scope :admin do
-    get "admins/sign_in" => "admins/sessions#new"
+    get "admins/sign_in" => "admins/sessions#new", as: "admin_login"
     post "sessions/admin" => "admins/sessions#create"
   end
 

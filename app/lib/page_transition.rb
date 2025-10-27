@@ -2,7 +2,9 @@
 
 class PageTransition
   def self.redirect_url(from:)
-    if from.include?("/login") || from.include?("/frames/new")||
+    if from.nil?
+      to_path = "/admins/sign_in"
+    elsif from.include?("/login") || from.include?("/frames/new")||
        from.include?("/profile") || from.include?("/account/password/edit")
       to_path = "/"
     else
