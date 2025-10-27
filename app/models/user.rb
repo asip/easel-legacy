@@ -182,7 +182,7 @@ class User < ApplicationRecord
   end
 
   def self.validate_login(form_params:)
-    user = User.find_by(email: form_params[:email])
+    user = User.find_for_authentication(email: form_params[:email])
     if user
       user.validate_password_on_login(form_params)
     else
@@ -222,7 +222,7 @@ class User < ApplicationRecord
     email = info["email"]
     name = info["name"]
 
-    user = User.unscoped.find_by(email: email)
+    user = User.unscoped.find_for_authentication(email: email)
 
     unless user
       user = User.new(
