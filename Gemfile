@@ -14,10 +14,10 @@ gem "propshaft", "~> 1.3.1"
 gem "pg", "~> 1.6.2"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 7.0.4"
+gem "puma", "~> 7.1.0"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", "~> 0.1.15", require: false
+gem "thruster", "~> 0.1.16", require: false
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.17"
@@ -44,10 +44,10 @@ gem "bootsnap", "~> 1.18.6", require: false
 gem "vite_rails", "3.0.19"
 
 # view component
-gem "view_component", "~> 4.0.2"
+gem "view_component", "~> 4.1.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.199.1"
+gem "aws-sdk-s3", "~> 1.201.0"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
@@ -67,7 +67,7 @@ gem "devise-i18n", "1.15.0"
 gem "omniauth-google-oauth2", "1.2.1"
 gem "jwt", "3.1.2"
 
-gem "googleauth", "~> 1.15.0"
+gem "googleauth", "~> 1.15.1"
 
 # settings
 gem "config", "~> 5.6.1"
@@ -104,7 +104,7 @@ end
 
 group :development do
   gem "brakeman", "~> 7.1.0", require: false
-  gem "bullet", "~> 8.0.8"
+  gem "bullet", "~> 8.1.0"
   gem "pg_query", "~> 6.1.0"
   gem "prosopite", "~> 2.1.2"
 
@@ -114,7 +114,7 @@ group :development do
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
-  gem "annotaterb", "~> 4.19.0"
+  gem "annotaterb", "~> 4.20.0"
   gem "rails-erd", "~> 1.7.2"
   # Ruby style guide, linter, and formatter
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
