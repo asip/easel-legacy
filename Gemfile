@@ -20,7 +20,7 @@ gem "puma", "~> 7.1.0"
 gem "thruster", "~> 0.1.16", require: false
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails", "~> 2.0.17"
+gem "turbo-rails", "~> 2.0.20"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails", "~> 1.3.4"
@@ -47,7 +47,7 @@ gem "vite_rails", "3.0.19"
 gem "view_component", "~> 4.1.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.201.0"
+gem "aws-sdk-s3", "~> 1.202.0"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 

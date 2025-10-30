@@ -1,4 +1,4 @@
-import { Ref, ref } from 'vue'
+import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
 import type { Comment , CommentResource, CommentsResource } from '../interfaces'
@@ -16,7 +16,7 @@ export function useComment() {
   const { token } = useAccount()
   const { comments } = storeToRefs(useCommentsStore())
 
-  const comment: Ref<Comment>  = ref({
+  const comment = ref<Comment>({
     id: undefined,
     frame_id: null,
     body: '',

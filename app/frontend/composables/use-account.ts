@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useCookies } from '@vueuse/integrations/useCookies.mjs'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
 import type { AccountResource } from '../interfaces'
 import { useAlert, useConstants, useFlash } from './'
