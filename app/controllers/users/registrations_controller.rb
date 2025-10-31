@@ -41,9 +41,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @prev_url = session[:prev_url]
+    super
+  end
 
   # PUT /resource
   def update
@@ -113,7 +114,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     case action_name
     when "create"
       saved = resource.persisted?
-      redirect_path = root_path
+      redirect_path = @prev_url
       create_or_update = true
     when "update"
       saved = @resource_updated

@@ -27,6 +27,8 @@ class FramesController < ApplicationController
   end
 
   def new
+    session[:prev_url] = request.referer || root_path(query_map)
+    @prev_url = session[:prev_url]
     @frame = Frame.new
   end
 
@@ -34,8 +36,9 @@ class FramesController < ApplicationController
     mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame, form_params:)
     @frame = mutation.frame
     if mutation.success?
-      redirect_to root_path(query_map)
+      redirect_to root_path # (query_map)
     else
+      @prev_url = session[:prev_url]
       flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
       render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
     end

@@ -8,9 +8,12 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    from = request.referer
+    session[:prev_url] = from || root_path(query_map) unless from&.include?("/signup")
+    @prev_url = session[:prev_url]
+    super
+  end
 
   # POST /resource/sign_in
   # POST /resource/sign_in
@@ -55,13 +58,13 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def login_success(resource)
-    redirect_to after_sign_out_path_for(resource)
+    redirect_to session.delete(:prev_url) || after_sign_out_path_for(resource)
   end
 
   def login_failed
     success, user = User.validate_login(form_params: sign_in_params)
-    return if success
-    self.resource = user
+    self.resource = user unless success
+    @prev_url = session[:prev_url]
     flashes[:alert] = self.resource.full_error_messages_on_login
     render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
   end

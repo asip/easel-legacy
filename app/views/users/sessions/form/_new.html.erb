@@ -1,6 +1,6 @@
 
 <div id="users">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
+  <%= form_for(resource, as: resource_name, method: :post, url: session_path(resource_name)) do |form| %>
     <div class="flex justify-center">
       <table class="table table-bordered table-rounded">
         <tbody>
@@ -27,7 +27,7 @@
     </div>
     <div class="flex justify-center gap-2 mt-2">
       <%= form.submit "ログイン", class: "btn btn-outline btn-primary" %>
-      <%= link_to "戻る", root_path, class: "btn btn-outline btn-warning", "data-turbo": true %>
+      <%= link_to "戻る", @prev_url, class: "btn btn-outline btn-warning", "data-turbo": true %>
     </div>
   <% end %>
 </div>
