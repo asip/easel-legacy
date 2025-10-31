@@ -7,13 +7,13 @@ export function useConstants(){
 
   const baseURL = '/api/front/v1'
 
-  const headers = computed(() => ({
+  const commonHeaders = computed(() => ({
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
     'Accept-Language': locale.value
   }))
 
-  return { baseURL, headers }
+  return { baseURL, commonHeaders }
 }
 
 export type ConstantsType = ReturnType<typeof useConstants>

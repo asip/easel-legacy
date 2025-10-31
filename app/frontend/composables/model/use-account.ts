@@ -2,9 +2,9 @@ import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
-import type { AccountResource } from '../interfaces'
-import { useAlert, useConstants, useFlash } from './'
-import { useAccountStore } from '../stores'
+import type { AccountResource } from '../../interfaces'
+import { useAlert, useConstants, useFlash, useQueryApi } from '../'
+import { useAccountStore } from '../../stores'
 
 export function useAccount() {
   const { loggedIn, currentUser } = storeToRefs(useAccountStore())
@@ -13,7 +13,7 @@ export function useAccount() {
   const cookies = useCookies(['access_token'])
 
   const { flash, clearFlash } = useFlash()
-  const { baseURL, headers } = useConstants()
+  const { baseURL } = useConstants()
 
   const token = computed<string>(() => cookies.get('access_token'))
 
@@ -29,22 +29,17 @@ export function useAccount() {
     }
 
     try {
-      const response = await globalThis.fetch(`${baseURL}/account`,
-        {
-          method: 'GET',
-          headers: {
-            ...headers.value,
-            Authorization: `Bearer ${token.value}`
-          }
-        })
+      const { ok, data, response } = await useQueryApi<AccountResource>({ url: `${baseURL}/account`, token: token.value })
 
-      if (!response.ok) {
+      if (!ok) {
         loggedIn.value = false
         await setAlert({ response, off: true })
       } else {
-        const accountAttrs = (await response.json()) as AccountResource
-        currentUser.value.id = accountAttrs.id
-        currentUser.value.token = response.headers.get('authorization')?.split(' ')[1]
+        const accountAttrs = data
+        if (accountAttrs) {
+          currentUser.value.id = accountAttrs.id
+        }
+        currentUser.value.token = token.value
         loggedIn.value = true
       }
     } catch(error) {

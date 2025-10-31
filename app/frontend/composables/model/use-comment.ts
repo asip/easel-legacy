@@ -1,16 +1,16 @@
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
-import type { Comment , CommentResource, CommentsResource } from '../interfaces'
-import type { ErrorMessages } from '../types'
-import { useAccount, useEntity, useAlert, useConstants, useFlash } from './'
-import { useCommentsStore } from '../stores'
+import type { Comment , CommentResource, CommentsResource } from '../../interfaces'
+import type { ErrorMessages } from '../../types'
+import { useAccount, useQueryApi, useMutationApi, useEntity, useAlert, useConstants, useFlash } from '../'
+import { useCommentsStore } from '../../stores'
 
 type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'
 
 export function useComment() {
-  const { baseURL, headers } = useConstants()
+  const { baseURL } = useConstants()
   const { flash, clearFlash } = useFlash()
   const { create, copy } = useEntity<Comment, CommentResource>()
   const { token } = useAccount()
@@ -62,21 +62,19 @@ export function useComment() {
     //console.log(frameId)
 
     try{
-      const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
-        {
-          method: 'GET',
-          headers: headers.value
-        })
+      const { ok, data, response } = await useQueryApi<CommentsResource>({url: `${baseURL}/frames/${frameId}/comments` })
 
-      if (!response.ok) {
+      if (!ok) {
         await setAlert({ response })
       } else {
-        const commentList: [CommentResource] = (await response.json() as CommentsResource).comments
+        const commentList: [CommentResource] | undefined = data?.comments
         //console.log(comment_list);
         comments.value.splice(0, comments.value.length)
-        for (const comment of commentList) {
-          //console.log(comment);
-          comments.value.push(makeComment({ from: comment }))
+        if (commentList) {
+          for (const comment of commentList) {
+            //console.log(comment);
+            comments.value.push(makeComment({ from: comment }))
+          }
         }
       }
       //console.log(comments);
@@ -90,7 +88,7 @@ export function useComment() {
     clearFlash()
 
     try {
-      const params = new URLSearchParams()
+      const params = new FormData()
       params.append('comment[body]', comment.value.body)
       //const params = {
       //  comment: {
@@ -98,20 +96,11 @@ export function useComment() {
       //  }
       //}
 
-      const response = await globalThis.fetch(`${baseURL}/frames/${frameId}/comments`,
-        {
-          method: 'POST',
-          body: params,
-          headers: {
-            ...headers.value,
-            Authorization: `Bearer ${token.value}`
-          }
-        }
-      )
+      const { ok, response } = await useMutationApi<CommentResource>({ url: `${baseURL}/frames/${frameId}/comments`, method: 'post', body: params, token: token.value })
 
       clearExternalErrors()
 
-      if (!response.ok) {
+      if (!ok && response) {
         await setAlert({ response })
       }
     } catch (error) {
@@ -124,7 +113,7 @@ export function useComment() {
     clearFlash()
 
     try {
-      const params = new URLSearchParams()
+      const params = new FormData()
       params.append('comment[body]', comment.value.body)
       //const params = {
       //  comment: {
@@ -132,23 +121,19 @@ export function useComment() {
       //  }
       //}
 
-      const response = await globalThis.fetch(`${baseURL}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
-        {
-          method: 'PUT',
-          body: params,
-          headers: {
-            ...headers.value,
-            Authorization: `Bearer ${token.value}`
-          }
-        }
-      )
+      const { ok, data,  response } = await useMutationApi<CommentResource>({
+        url: `${baseURL}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
+        method: 'put',
+        body: params,
+        token: token.value
+      })
 
       clearExternalErrors()
 
-      if (!response.ok) {
+      if (!ok && response) {
         await setAlert({ response })
       } else {
-        const commentAttrs: CommentResource = (await response.json() as CommentResource)
+        const commentAttrs: CommentResource | undefined = data
         setComment({ from: commentAttrs })
       }
     } catch (error) {
@@ -161,19 +146,15 @@ export function useComment() {
     clearFlash()
 
     try {
-      const response = await globalThis.fetch(
-        `${baseURL}/comments/${comment.id?.toString(10) ?? ''}`,
-        {
-          method: 'DELETE',
-          headers: {
-            ...headers.value,
-            Authorization: `Bearer ${token.value}`
-          }
-        })
+      const { ok, response } = await useMutationApi({
+        url: `${baseURL}/comments/${comment.id?.toString(10) ?? ''}`,
+        method: 'delete',
+        token: token.value
+      })
 
       clearExternalErrors()
 
-      if (!response.ok) {
+      if (!ok && response) {
         await setAlert({ response })
       }
     } catch (error) {
