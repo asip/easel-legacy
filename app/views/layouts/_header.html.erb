@@ -15,7 +15,7 @@
           <details class="dropdown">
             <summary>
               <span class="tooltip tooltip-bottom" data-tip="<%= current_user.name %>">
-                <%= image_tag(current_user.image_url_for_view(:thumb), alt: current_user.name, class: "rounded", style: "width:40px;height:40px;display:inline;") %>
+                <%= image_tag(current_user.image_url_for_view(:thumb), alt: current_user.name, class: "rounded w-10 h-10 inline") %>
               </span>
             </summary>
             <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-20 z-999">

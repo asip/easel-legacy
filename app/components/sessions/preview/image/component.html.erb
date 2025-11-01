@@ -1,11 +1,10 @@
 <% if @original %>
   <div class="flex justify-center mb-1">
     <%= link_to image_tag(@user.image_url_for_view(:three), class: "mx-auto"),
-                @user.image_url, class: "mx-auto lb",
-                                 style: "width:100px;height:100px;" %>
+                @user.image_url, class: "mx-auto lb w-[100px] h-[100px]" %>
   </div>
 <% else %>
   <div class="flex justify-center mb-1">
-    <%= image_tag(@user.image_url_for_view(:three), class: "mx-auto", style: "width:100px;height:100px;") %>
+    <%= image_tag(@user.image_url_for_view(:three), class: "mx-auto w-[100px] h-[100px]") %>
   </div>
 <% end %>

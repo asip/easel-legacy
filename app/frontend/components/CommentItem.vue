@@ -96,7 +96,7 @@ const onDeleteClick = async () => {
       <div class="flex justify-between leading-[35px]">
         <div class="flex items-center gap-1">
           <a :href="`/users/${commentModel?.user_id}?${queryString}`" class="avatar">
-            <img :src="commentModel?.user_image_url" alt="" class="rounded" style="width:20px;height:20px;">
+            <img :src="commentModel?.user_image_url" alt="" class="rounded w-5 h-5">
           </a>
           <a :href="`/users/${commentModel?.user_id}?${queryString}`" class="badge badge-outline badge-accent hover:badge-primary rounded-full">
             {{ commentModel?.user_name }}
