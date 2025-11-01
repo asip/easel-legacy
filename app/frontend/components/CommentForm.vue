@@ -42,7 +42,7 @@ const onPostClick = async () => {
       <div class="flex justify-start">
         <div class="card-title text-[16px] font-bold">コメント</div>
       </div>
-      <div class="flex justify-center">
+      <div class="flex justify-center wrap-break-word">
         <textarea v-model="comment.body" class="block text-sm border border-gray-300 rounded w-full min-h-[50px] field-sizing-content" />
       </div>
       <div class="flex flex-col">

@@ -121,7 +121,7 @@ const onDeleteClick = async () => {
         <table v-if="!edit" class="table table-bordered table-rounded">
           <tbody>
             <tr>
-              <td style="word-break: break-all;">
+              <td class="wrap-break-word">
                 <span v-html="sanitizedCommentBody" />
               </td>
             </tr>

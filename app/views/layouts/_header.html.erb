@@ -1,4 +1,4 @@
-<div class="sticky top-0 drawer drawer-end z-[1000]">
+<div class="sticky top-0 drawer drawer-end z-1000">
   <input id="search-sidebar" type="checkbox" class="drawer-toggle">
   <div class="drawer-content flex flex-col">
     <div class="navbar bg-base-100 shadow">
@@ -18,7 +18,7 @@
                 <%= image_tag(current_user.image_url_for_view(:thumb), alt: current_user.name, class: "rounded", style: "width:40px;height:40px;display:inline;") %>
               </span>
             </summary>
-            <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-20 z-[999]">
+            <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-20 z-999">
               <li><%= link_to "profile", profile_path, class: "" %></li>
               <li><%= link_to "Upload", new_frame_path(query_map), class: "", "data-turbo": true %></li>
               <li><%= link_to "Logout", account_logout_path, data: { turbo_method: :delete },
