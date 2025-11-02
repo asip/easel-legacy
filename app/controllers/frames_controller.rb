@@ -99,6 +99,7 @@ class FramesController < ApplicationController
     # @frame.file_derivatives! if @frame.file.present?
     case action_name
     when "create"
+      @prev_url = session[:prev_url]
       render :create, layout: false, content_type: "text/vnd.turbo-stream.html"
     when "update"
       render :update, layout: false, content_type: "text/vnd.turbo-stream.html"
