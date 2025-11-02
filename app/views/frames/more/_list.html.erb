@@ -6,7 +6,12 @@
         <%= link_to image_tag(frame.file_proxy_url(:two), class: ""), frame.file_proxy_url(:original),
                     class: "mx-auto lb" %>
       <% end %>
-      <%= render Frames::Preview::Tags::Component.new(tag_paths: tag_paths(frame), list: true) %>
+      <% @tag_paths = tag_paths(frame) %>
+      <% if @tag_paths.size > 0 %>
+      <div class="flex justify-center flex-wrap gap-1">
+        <%= render Frames::Preview::Tags::Component.new(tag_paths: @tag_paths, list: true) %>
+      </div>
+      <% end %>
       <div class="flex justify-center">
         <div class="mx-auto">
           <%= link_to frame.name, frame_path(frame, params: query_map_for_list(page:)),

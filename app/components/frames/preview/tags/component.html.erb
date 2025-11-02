@@ -1,27 +1,21 @@
 <% if @list %>
   <% if @tag_paths.size > 0 %>
-    <div class="flex justify-center flex-wrap gap-1">
-      <% @tag_paths.each do |tag, tag_path| %>
-        <%= link_to tag_path, "data-turbo": true do %><div class="badge badge-sm badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div><% end %>
-      <% end %>
-    </div>
+    <% @tag_paths.each do |tag, tag_path| %>
+      <%= link_to tag_path, "data-turbo": true do %><div class="badge badge-sm badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div><% end %>
+    <% end %>
   <% end %>
 <% else %>
   <% if @link %>
     <% if @tag_paths.size > 0 %>
-      <div class="flex justify-center flex-wrap gap-1 mb-2">
-        <% @tag_paths.each do |tag, tag_path| %>
-          <%= link_to tag_path, "data-turbo": true do %><div class="badge badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div><% end %>
-        <% end %>
-      </div>
+      <% @tag_paths.each do |tag, tag_path| %>
+        <%= link_to tag_path, "data-turbo": true do %><div class="badge badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div><% end %>
+      <% end %>
     <% end %>
   <% else %>
     <% if @tag_paths.size > 0 %>
-      <div class="flex justify-center flex-wrap gap-1 mb-2">
-        <% @tag_paths.each do |tag, tag_path| %>
-          <div class="badge badge-outline badge-accent rounded-full"><%= tag %></div>
-        <% end %>
-      </div>
+      <% @tag_paths.each do |tag, tag_path| %>
+        <div class="badge badge-outline badge-accent rounded-full"><%= tag %></div>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
