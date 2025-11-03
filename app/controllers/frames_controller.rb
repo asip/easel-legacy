@@ -128,7 +128,7 @@ class FramesController < ApplicationController
     params.permit(
       :id, :q, :page, :ref, :commit, :tag_editor, :_method, :authenticity_token,
       frame: %i[name tag_list comment file creator_name shooted_at confirming]
-    )
+    ).to_h
   end
 
   def form_params

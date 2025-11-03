@@ -25,6 +25,6 @@ class SessionsController < ApplicationController
   end
 
   def permitted_params
-    params.permit(:page, :q)
+    params.permit(:page, :q).to_h
   end
 end

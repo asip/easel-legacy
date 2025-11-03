@@ -22,7 +22,7 @@ module Api
         private
 
         def path_params
-          params.permit(:frame_id)
+          params.permit(:frame_id).to_h
         end
       end
     end

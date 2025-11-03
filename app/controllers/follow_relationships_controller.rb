@@ -17,6 +17,6 @@ class FollowRelationshipsController < ApplicationController
   private
 
   def permitted_params
-    params.permit(:user_id, :q, :ref)
+    params.permit(:user_id, :q, :ref).to_h
   end
 end
