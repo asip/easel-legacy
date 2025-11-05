@@ -2,8 +2,6 @@
 
 # Frame Helper
 module FrameHelper
-  include Pagy::Frontend
-
   def query_map_hidden_field_tags
     tags = query_map.map do |key, value|
       hidden_field_tag(key, value) if value.present?
