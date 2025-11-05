@@ -18,7 +18,8 @@ class FramesController < ApplicationController
   before_action :back_to_form, only: %i[create update]
 
   def index
-    @pagy, @frames = list_frames(items: @items, page: @page)
+    form = FrameSearchForm.new(@items)
+    @pagy, @frames = list_frames(items: form.to_h, page: @page)
   end
 
   def show
