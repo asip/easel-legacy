@@ -116,11 +116,11 @@ class FramesController < ApplicationController
   def ref_items
     ref_items_ = permitted_params[:ref]
     if ref_items_.present?
-      JSON.parse(ref_items_)
+      JSON.parse(ref_items_).with_indifferent_access
     else
       items = { from: "frame", id: @frame.id }
       items[:page] = @page if @page.present?
-      items
+      items.with_indifferent_access
     end
   end
 

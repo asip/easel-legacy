@@ -34,7 +34,7 @@ module Query
 
     def q_items
       items = permitted_params[:q]
-      items.present? ? JSON.parse(items) : {}
+      (items.present? ? JSON.parse(items) : {}).with_indifferent_access
     end
 
     def q_string

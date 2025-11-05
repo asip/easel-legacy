@@ -25,7 +25,7 @@ module Query
 
     def ref_items
       ref = permitted_params[:ref]
-      ref.present? ? JSON.parse(ref) : {}
+      (ref.present? ? JSON.parse(ref) : {}).with_indifferent_access
     end
   end
 end
