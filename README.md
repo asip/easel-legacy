@@ -4,7 +4,7 @@
 
 This is legacy frontend and backend of Easel.
 
-Rails8.0 + Devise(authentication) + Pagy(paging) +
+Rails8.1 + Devise(authentication) + Pagy(paging) +
 Shrine(upload) + ActsAsTaggableOn(tag) +
 RailsAdmin (management console) + Discard(soft delete) +
 Hotwire (Turbo + Stimulus3) + Vue.js 3 + Tailwind CSS v4 + daisyUI v5
