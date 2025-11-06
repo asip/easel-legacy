@@ -33,8 +33,7 @@ module Query
     end
 
     def q_items
-      items = permitted_params[:q]
-      (items.present? ? JSON.parse(items) : {}).with_indifferent_access
+      Json::Util.to_hash(permitted_params[:q])
     end
 
     def q_string

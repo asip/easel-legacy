@@ -115,10 +115,8 @@ class FramesController < ApplicationController
   end
 
   def ref_items
-    ref_items_ = permitted_params[:ref]
-    if ref_items_.present?
-      JSON.parse(ref_items_).with_indifferent_access
-    else
+    items = Json::Util.to_hash(permitted_params[:ref])
+    if items.blank?
       items = { from: "frame", id: @frame.id }
       items[:page] = @page if @page.present?
       items.with_indifferent_access
