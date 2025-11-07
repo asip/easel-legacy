@@ -4,6 +4,8 @@
 module Login
   # Admin module
   module Admin
+    extend ActiveSupport::Concern
+
     def full_error_messages_on_login
       full_error_messages_for(%i[email password])
     end
