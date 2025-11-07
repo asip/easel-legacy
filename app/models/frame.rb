@@ -84,7 +84,7 @@ class Frame < ApplicationRecord
   }
 
   def tag_list
-    self.tags_list
+    self.joined_tags
   end
 
   def tag_list=(tags_list)

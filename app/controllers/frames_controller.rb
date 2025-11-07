@@ -34,7 +34,7 @@ class FramesController < ApplicationController
   end
 
   def create
-    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame, form_params:)
+    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame)
     @frame = mutation.frame
     if mutation.success?
       redirect_to root_path # (query_map)
@@ -51,7 +51,7 @@ class FramesController < ApplicationController
   end
 
   def update
-    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame, form_params:)
+    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame)
     @frame = mutation.frame
     if mutation.success?
       redirect_to frame_path(@frame, query_map)
@@ -96,7 +96,6 @@ class FramesController < ApplicationController
     return unless permitted_params[:commit] == "戻る"
 
     @frame.confirming = ""
-    @frame.joined_tags = form_params[:tag_list]
     # @frame.file_derivatives! if @frame.file.present?
     case action_name
     when "create"
