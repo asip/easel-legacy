@@ -62,7 +62,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def login_failed
-    success, user = User.validate_login(form_params: sign_in_params)
+    success, user = Login::User.validate_on_login(form_params: sign_in_params)
     self.resource = user unless success
     @prev_url = session[:prev_url]
     flashes[:alert] = self.resource.full_error_messages_on_login

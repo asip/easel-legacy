@@ -44,7 +44,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     # puts auth
 
-    user = User.from_omniauth(auth)
+    user = Login::User.from_omniauth(auth)
 
     if user.persisted?
       sign_in_and_redirect user, event: :authentication
