@@ -6,11 +6,11 @@ module Preview
   module Image
     # Component
     class Component < ViewComponent::Base
-      def initialize(model:, original:, photoswipe: false, session: false)
+      def initialize(model:, original: false, photoswipe: false, small: false)
         @model = model
         @original = original
         @photoswipe = photoswipe
-        @session = session
+        @small = small
       end
     end
   end

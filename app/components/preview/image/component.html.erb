@@ -17,7 +17,7 @@
     </div>
   <% end %>
 <% elsif @model.class == User && @model.image.present? %>
-  <% unless @session %>
+  <% unless @small %>
     <% if @original %>
       <div class="flex justify-center mb-2">
         <%= link_to image_tag(@model.image_proxy_url(:three), class: "mx-auto"),
