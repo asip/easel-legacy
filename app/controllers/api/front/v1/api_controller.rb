@@ -22,18 +22,18 @@ module Api
           @current_user
         end
 
-        # Authorizationヘッダーに基づいてユーザーを認証します。
+        # (Authorizationヘッダーに基づいてユーザーを認証します。)
         def authenticate
-          # Authorizationヘッダーの存在とフォーマットをチェック
+          # (Authorizationヘッダーの存在とフォーマットをチェック)
           authorization_header = request.headers["Authorization"]
-          # ヘッダーがない、または "Bearer " で始まっていない場合はエラー
+          # (ヘッダーがない、または "Bearer " で始まっていない場合はエラー)
           unless authorization_header&.start_with?("Bearer ")
             raise Api::ErrorRenderable::UnauthorizedError.new("Authorizationヘッダーがないか、形式が不正です。「Bearer [トークン]」の形式を期待します。")
           end
 
-          # トークン文字列を抽出
+          # (トークン文字列を抽出)
           token = authorization_header.split(" ")[1]
-          # トークンが空の場合はエラー
+          # (トークンが空の場合はエラー)
           unless token.present?
             raise Api::ErrorRenderable::UnauthorizedError.new("Authorizationヘッダーからトークンが見つかりません。")
           end
