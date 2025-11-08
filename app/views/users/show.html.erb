@@ -6,7 +6,7 @@
         <%= link_to back_to_path, class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %><%= @user.name %>
       </div>
       <div>
-        <%= render Sessions::Preview::Image::Component.new(user: @user, original: false) %>
+        <%= render ::Preview::Image::Component.new(model: @user, original: false, session: true) %>
         <div class="flex justify-center mt-2">
           <% if user_signed_in? && @user.id != current_user.id %>
             <% if current_user.following?(@user) %>

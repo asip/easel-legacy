@@ -17,7 +17,7 @@
         </div>
       </div>
       <div>
-        <%= render Sessions::Preview::Image::Component.new(user: @user, original: false) %>
+        <%= render ::Preview::Image::Component.new(model: @user, original: false, session: true) %>
         <div class="flex justify-center mt-2">
           <table class="table table-bordered table-rounded">
             <tbody>
