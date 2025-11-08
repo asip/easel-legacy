@@ -28,7 +28,10 @@ class FramesController < ApplicationController
   end
 
   def new
-    session[:prev_url] = request.referer || root_path(query_map)
+    from = request.referer
+    unless from&.include?("/profile") || from&.include?("/account/password/edit") || from&.include?("/frames/new")
+      session[:prev_url] = from || root_path(query_map)
+    end
     @prev_url = session[:prev_url]
     @frame = Frame.new
   end
