@@ -1,6 +1,6 @@
 <% if @tag_paths.size > 0 %>
 <div class="flex justify-center flex-wrap gap-1 mb-2">
-  <%= render Frames::Preview::Tags::Component.new(tag_paths: @tag_paths, link: false) %>
+  <%= render ::Preview::Tags::Component.new(tag_paths: @tag_paths, link: false) %>
 </div>
 <% end %>
 <%= @form.hidden_field :tag_list, value: @frame.tag_list %>

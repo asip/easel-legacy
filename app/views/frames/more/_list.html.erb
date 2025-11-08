@@ -9,7 +9,7 @@
       <% @tag_paths = tag_paths(frame) %>
       <% if @tag_paths.size > 0 %>
       <div class="flex justify-center flex-wrap gap-1">
-        <%= render Frames::Preview::Tags::Component.new(tag_paths: @tag_paths, list: true) %>
+        <%= render ::Preview::Tags::Component.new(tag_paths: @tag_paths, list: true) %>
       </div>
       <% end %>
       <div class="flex justify-center">
