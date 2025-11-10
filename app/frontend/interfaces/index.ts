@@ -1,5 +1,5 @@
-export { Comment } from './comment'
-export { User } from './user'
+export { Comment } from './entity/comment'
+export { User } from './entity/user'
 
 export { RefQuery } from './ref/ref-query'
 
