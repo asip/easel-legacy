@@ -28,7 +28,7 @@
           <label for="tag_list" class="">タグ</label>
         </td>
         <td>
-          <input type="text" name="tag_editor" id="tag_editor" value="" data-tagify-target="te" class="input h-auto" autocomplete="off">
+          <%= text_field_tag "", "", placeholder: "", class: "input h-auto", autocomplete: "off", "data-tagify-target": "te" %>
           <%= @form.hidden_field :tag_list, id: "tag_list", "data-tagify-target": "tl", value: @frame.tag_list %>
         </td>
       </tr>

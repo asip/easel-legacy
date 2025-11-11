@@ -127,7 +127,7 @@ class FramesController < ApplicationController
 
   def permitted_params
     params.permit(
-      :id, :q, :page, :ref, :commit, :tag_editor, :_method, :authenticity_token,
+      :id, :q, :page, :ref, :commit, :_method, :authenticity_token,
       frame: %i[name tag_list comment file creator_name shooted_at confirming]
     ).to_h
   end
