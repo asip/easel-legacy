@@ -15,16 +15,16 @@ export default class TagifyController extends ApplicationController {
   declare readonly hasTlTarget: boolean
 
   connect() {
-    let teTrigger: HTMLInputElement | null = null
+    let teElement: HTMLInputElement | null = null
     if (this.hasTeTarget){
-      teTrigger = this.teTarget
+      teElement = this.teTarget
     }
     if (this.hasTlTarget){
       this.tagList = this.tlTarget
     }
 
-    if (teTrigger){
-      this.tagEditor = new Tagify(teTrigger, {
+    if (teElement){
+      this.tagEditor = new Tagify(teElement, {
         maxTags: 5,
         dropdown: {
           classname: 'color-blue',

@@ -19,22 +19,22 @@ export default class CalendarController extends ApplicationController {
   calendar: Datepicker | null = null
 
   connect() {
-    let calTrigger: HTMLElement | null = null
+    let calElement: HTMLElement | null = null
     if (this.hasCalTarget){
-      calTrigger = this.calTarget
+      calElement = this.calTarget
     }
 
-    let wordTrigger: HTMLInputElement | null = null
+    let wordElement: HTMLInputElement | null = null
     if (this.hasWordTarget){
-      wordTrigger = this.wordTarget
+      wordElement = this.wordTarget
     }
 
-    if (calTrigger){
+    if (calElement){
       const date = this.dateValue
 
       Object.assign(Datepicker.locales, ja)
 
-      this.calendar = new Datepicker(calTrigger, {
+      this.calendar = new Datepicker(calElement, {
         buttonClass: 'btn',
         format: 'yyyy/mm/dd',
         language: 'ja'
@@ -42,13 +42,13 @@ export default class CalendarController extends ApplicationController {
 
       if (date) this.calendar.setDate(Datepicker.parseDate(date, 'yyyy/mm/dd'))
 
-      calTrigger.addEventListener('changeDate', function (e: CustomEvent) {
+      calElement.addEventListener('changeDate', function (e: CustomEvent) {
         // globalThis.console.log(e);
         // globalThis.console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
-        // globalThis.console.log(wordTrigger)
+        // globalThis.console.log(wordElement)
 
         // eslint-disable-next-line
-        if (wordTrigger) wordTrigger.value = e.detail.datepicker.getDate('yyyy/mm/dd')
+        if (wordElement) wordElement.value = e.detail.datepicker.getDate('yyyy/mm/dd')
       })
     }
   }

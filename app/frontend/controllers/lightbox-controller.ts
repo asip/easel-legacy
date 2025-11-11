@@ -6,19 +6,19 @@ export default class LightboxController extends ApplicationController {
 
   // declare readonly lbTarget: HTMLElement
 
-  lightbox: any
+  lightbox: ReturnType<typeof GLightbox> | null = null
 
   // declare readonly hasLbTarget: boolean
 
   connect() {
     /*
-    let lbTrigger: HTMLElement | null = null
+    let lbElement: HTMLElement | null = null
     if (this.hasLbTarget){
-      lbTrigger = this.lbTarget
+      lbElement = this.lbTarget
     }
     */
 
-    //if (lbTrigger){
+    //if (lbElement){
 
     this.lightbox = GLightbox({ selector: '.lb' })
     //}
@@ -26,7 +26,6 @@ export default class LightboxController extends ApplicationController {
 
   disconnect(){
     if (this.lightbox){
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       this.lightbox.close()
     }
   }

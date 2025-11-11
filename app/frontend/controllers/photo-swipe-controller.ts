@@ -1,7 +1,7 @@
 import ApplicationController from './application-controller'
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
 // @ts-expect-error : @types doesn't exist
-import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
+import PhotoSwipeFullscreen from 'photoswipe-fullscreen'
 
 export default class PhotoSwipeController extends ApplicationController {
   static targets = ['ps']
@@ -13,14 +13,14 @@ export default class PhotoSwipeController extends ApplicationController {
   declare readonly hasPsTarget: boolean
 
   connect() {
-    let psTrigger: HTMLElement | null = null
+    let psElement: HTMLElement | null = null
     if (this.hasPsTarget){
-      psTrigger = this.psTarget
+      psElement = this.psTarget
     }
 
-    if (psTrigger){
+    if (psElement){
       void (async () => {
-        await this.assignSize(psTrigger)
+        await this.assignSize(psElement)
       })()
 
       this.lightbox = new PhotoSwipeLightbox({
