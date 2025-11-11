@@ -93,7 +93,7 @@ class Frame < ApplicationRecord
   end
 
   def tags_preview
-    joined_tags&.split(/\s*,\s*/)
+    joined_tags&.split(",")
   end
 
   alias_method :plain_tags, :tags_preview
