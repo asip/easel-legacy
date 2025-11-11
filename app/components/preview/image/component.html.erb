@@ -1,7 +1,9 @@
+<%= @model.class %>
 <% if @model.class == Frame && @model.file.present? %>
+  test
   <% if @original %>
     <div class="flex justify-center mb-2">
-      <% if @photoswipe.present? && @photoswipe == true %>
+      <% if @photoswipe %>
         <div data-controller="pswipe" data-pswipe-target="ps" id="image">
           <%= link_to image_tag(@model.file_proxy_url(:three), class: ""), @model.file_proxy_url(:original), class: "" %>
         </div>
