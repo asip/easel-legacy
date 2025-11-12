@@ -47,16 +47,15 @@ class Frame < ApplicationRecord
     tag_name = items[:tag_name]
 
     if word.present?
-      if DateAndTime::Util.valid_date?(word)
-        date_word = Time.zone.parse(word)
-        scope = scope.merge(
+      scope = if DateAndTime::Util.valid_date?(word)
+                date_word = Time.zone.parse(word)
+                scope.merge(
                   Frame.where(shooted_at: date_word.beginning_of_day..date_word.end_of_day)
                        .or(Frame.where(created_at: date_word.beginning_of_day..date_word.end_of_day))
                        .or(Frame.where(updated_at: date_word.beginning_of_day..date_word.end_of_day))
                 )
-
       else
-        scope = scope.merge(
+                scope.merge(
                   Frame.left_joins(:user)
                        .merge(Frame.where("EXISTS(#{Frame.tags_where(tag_name: word).to_sql})"))
                        .or(Frame.where("frames.name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))

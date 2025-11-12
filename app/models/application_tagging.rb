@@ -24,5 +24,5 @@
 class ApplicationTagging < ApplicationRecord
   include NoFlyList::ApplicationTagging
 
-  belongs_to :application_tag
+  # belongs_to :application_tag, optional: true
 end

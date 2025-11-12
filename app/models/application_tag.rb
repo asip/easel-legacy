@@ -14,5 +14,5 @@
 class ApplicationTag < ApplicationRecord
   include NoFlyList::ApplicationTag
 
-  has_many :taggings, class_name: "ApplicationTagging", dependent: :destroy
+  # has_many :taggings, class_name: "ApplicationTagging", dependent: :destroy
 end
