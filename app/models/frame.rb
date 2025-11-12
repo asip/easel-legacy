@@ -40,7 +40,7 @@ class Frame < ApplicationRecord
 
   # after_validation :assign_derivatives
 
-  scope :search_by, lambda { |items:|
+  scope :search_by, ->(items:) do
     scope = current_scope || relation
 
     word = items[:word]
@@ -70,9 +70,9 @@ class Frame < ApplicationRecord
 
     # puts scope.to_sql
     scope
-  }
+  end
 
-  def self.tags_with(tag_name:)
+  scope :tags_with, ->(tag_name:) do
     where(
       "EXISTS(:tags)",
       tags: ApplicationTag.joins(:taggings)
