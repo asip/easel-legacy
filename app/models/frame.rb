@@ -57,17 +57,14 @@ class Frame < ApplicationRecord
       else
                 scope.merge(
                   Frame.left_joins(:user)
-                       .merge(Frame.where("EXISTS(#{Frame.tags_where(tag_name: word).to_sql})"))
-                       .or(Frame.where("frames.name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
+                       .merge(Frame.tags_with(tag_name: word))
                        .or(Frame.where("frames.creator_name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
                        .or(User.where("users.name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
                 )
       end
     else
       if tag_name.present?
-        scope = scope.merge(
-          Frame.where("EXISTS(#{Frame.tags_where(tag_name:).to_sql})")
-        )
+        scope = scope.merge(Frame.tags_with(tag_name:))
       end
     end
 
@@ -75,13 +72,16 @@ class Frame < ApplicationRecord
     scope
   }
 
-  def self.tags_where(tag_name:)
-    ApplicationTag.joins(:taggings)
+  def self.tags_with(tag_name:)
+    where(
+      "EXISTS(:tags)",
+      tags: ApplicationTag.joins(:taggings)
                   .where("application_taggings.tag_id=application_tags.id")
                   .where("application_taggings.taggable_type='Frame'")
                   .where("application_taggings.taggable_id=frames.id")
                   .where("application_tags.name like ?",
                          "#{ActiveRecord::Base.sanitize_sql_like(tag_name)}%")
+    )
   end
 
   def tag_list
