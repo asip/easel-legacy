@@ -40,7 +40,7 @@
   <div class="drawer-side">
     <label for="search-sidebar" aria-label="close sidebar" class="drawer-overlay"></label>
     <div class="mt-[70px]">
-      <%= render Drawer::SearchBar::Component.new(day: @day, word: (@items.present? ? @items["word"]: nil)) %>
+      <%= render Drawer::SearchBar::Component.new(day: @day, word: (@items.present? ? @items[:word]: nil)) %>
     </div>
   </div>
 </div>

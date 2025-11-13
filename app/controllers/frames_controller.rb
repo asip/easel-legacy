@@ -77,7 +77,7 @@ class FramesController < ApplicationController
   end
 
   def set_day
-    word = @items["word"]
+    word = @items[:word]
     @day = if word.blank? || !DateAndTime::Util.valid_date?(word)
       ""
     else
