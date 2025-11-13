@@ -11,7 +11,7 @@ export default class PreviewController extends ApplicationController {
   declare readonly hasContentTarget: boolean
   declare readonly hasImageTarget: boolean
 
-  connect() {
+  connect(): void {
     let elmUpload: HTMLInputElement | null = null
     if (this.hasUploadTarget){
       elmUpload = this.uploadTarget

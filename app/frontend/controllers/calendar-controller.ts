@@ -18,7 +18,7 @@ export default class CalendarController extends ApplicationController {
 
   calendar: Datepicker | null = null
 
-  connect() {
+  connect(): void {
     let calElement: HTMLElement | null = null
     if (this.hasCalTarget){
       calElement = this.calTarget
@@ -53,7 +53,7 @@ export default class CalendarController extends ApplicationController {
     }
   }
 
-  disconnect(){
+  disconnect(): void {
     if (this.calendar){
       this.calendar.destroy()
     }

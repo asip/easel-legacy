@@ -12,10 +12,10 @@ interface UseAlertCallerType {
   setExternalErrors?: (errors: ErrorMessages<string>) => void
 }
 
-export function useAlert({ flash, caller } : UseAlertOptions) {
-  const reloading401 = ref(false)
+export function useAlert({ flash, caller }: UseAlertOptions) {
+  const reloading401 = ref<boolean>(false)
 
-  const setAlert= async ({ response, off = false } : { response: Response, off?: boolean }) => {
+  const setAlert= async ({ response, off = false }: { response: Response, off?: boolean }): Promise<void> => {
     if (off) {
       switch(response.status){
       case 401:
@@ -52,7 +52,7 @@ export function useAlert({ flash, caller } : UseAlertOptions) {
     }
   }
 
-  const reload401 = () => {
+  const reload401 = (): void => {
     if (reloading401.value) {
       globalThis.setTimeout(() => {
         globalThis.location.href = ''

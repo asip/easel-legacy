@@ -8,7 +8,7 @@ export const useQueryApi = async <T>({ url, token }: { url: string, token?: stri
 
   const headers: Record<string, string> = commonHeaders.value
 
-  const ok = ref(false)
+  const ok = ref<boolean>(false)
   const data = ref<T>()
   // const tokenRef = ref<string>()
 

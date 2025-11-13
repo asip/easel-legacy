@@ -24,19 +24,19 @@ const { commentRules } = useCommentRules()
 
 const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 
-const queryString = ref('')
+const queryString = ref<string>('')
 
-const edit = ref(false)
+const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-const refItems = computed( () => {
+const refItems = computed<RefQuery>( () => {
   const items: RefQuery = { from: 'frame', id: id }
   if (page) items.page = page
   return items
 })
 
-const queryMap = computed(() => {
+const queryMap = computed<Record<string, string>>(() => {
   const map: Record<string, string> = {
     ref: JSON.stringify(refItems.value)
   }
@@ -49,21 +49,21 @@ onMounted(() => {
   queryString.value = new globalThis.URLSearchParams(queryMap.value).toString()
 })
 
-const sanitizedCommentBody = computed(() =>
+const sanitizedCommentBody = computed<string>(() =>
   sanitizeHtml(commentModel.value?.body ?? '').replace(/\n/g, '<br>')
 )
 
-const onEditClick = () => {
+const onEditClick = (): void => {
   edit.value = true
   setComment({ from: commentModel.value })
 }
 
-const onCancelClick = () => {
+const onCancelClick = (): void => {
   edit.value = false
   setComment({ from: commentModel.value })
 }
 
-const onUpdateClick = async () => {
+const onUpdateClick = async (): Promise<void> => {
   r$.$touch()
   r$.$reset()
   const { valid } =await r$.$validate()
@@ -80,7 +80,7 @@ const onUpdateClick = async () => {
   }
 }
 
-const onDeleteClick = async () => {
+const onDeleteClick = async (): Promise<void> => {
   if(commentModel.value) { await deleteComment(commentModel.value) }
   setFlash(flash.value)
   if (isSuccess()) {

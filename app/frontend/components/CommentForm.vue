@@ -18,7 +18,7 @@ const { commentRules } = useCommentRules()
 
 const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 
-const onPostClick = async () => {
+const onPostClick = async (): Promise<void> => {
   r$.$touch()
   r$.$reset()
   const { valid } =await r$.$validate()

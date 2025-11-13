@@ -5,7 +5,7 @@ import type { Flash } from '../interfaces'
 export function useFlash () {
   const flash = ref<Flash>({})
 
-  const clearFlash = () => {
+  const clearFlash = (): void => {
     flash.value = {}
   }
 

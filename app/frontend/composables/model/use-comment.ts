@@ -31,7 +31,7 @@ export function useComment() {
     return create({ from })
   }
 
-  const setComment = ({ from, to } : { from?: Comment | CommentResource | undefined, to?: Comment}) => {
+  const setComment = ({ from, to }: { from?: Comment | CommentResource | undefined, to?: Comment}): void => {
     if (from) {
       copy({ from, to: comment.value })
     } else if (to) {
@@ -46,18 +46,18 @@ export function useComment() {
     base: []
   })
 
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>): void => {
     externalErrors.value.body = errors.body ?? []
   }
 
-  const clearExternalErrors = () => {
+  const clearExternalErrors = (): void => {
     externalErrors.value.body = []
     externalErrors.value.base = []
   }
 
   const { setAlert, reload401 } = useAlert({ flash, caller: { setExternalErrors } })
 
-  const getComments = async (frameId: string) => {
+  const getComments = async (frameId: string): Promise<void> => {
     clearFlash()
     //console.log(frameId)
 
@@ -84,7 +84,7 @@ export function useComment() {
     }
   }
 
-  const createComment = async (frameId: string) => {
+  const createComment = async (frameId: string): Promise<void> => {
     clearFlash()
 
     try {
@@ -109,7 +109,7 @@ export function useComment() {
     }
   }
 
-  const updateComment = async () => {
+  const updateComment = async (): Promise<void> => {
     clearFlash()
 
     try {
@@ -142,7 +142,7 @@ export function useComment() {
     }
   }
 
-  const deleteComment = async (comment: Comment) => {
+  const deleteComment = async (comment: Comment): Promise<void> => {
     clearFlash()
 
     try {
@@ -163,7 +163,7 @@ export function useComment() {
     }
   }
 
-  const isSuccess = () => {
+  const isSuccess = (): boolean => {
     let result = true
 
     if (externalErrors.value.body && externalErrors.value.body.length > 0 || 

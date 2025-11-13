@@ -7,7 +7,7 @@ export function useConstants(){
 
   const baseURL = '/api/front/v1'
 
-  const commonHeaders = computed(() => ({
+  const commonHeaders = computed<Record<string, string>>(() => ({
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/json',
     'Accept': 'application/json',

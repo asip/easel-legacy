@@ -5,7 +5,7 @@ import type { Flash } from '../interfaces'
 const Toastify = (await import('toastify-js')).default
 
 export function useToast() {
-  const setFlash = (flash: Flash) => {
+  const setFlash = (flash: Flash): void => {
     for(const message of Object.values(flash) as string[]){
       if (message != ''){
         Toastify({

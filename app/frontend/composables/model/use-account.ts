@@ -19,7 +19,7 @@ export function useAccount() {
 
   const { setAlert } = useAlert({ flash })
 
-  const authenticate = async () => {
+  const authenticate = async (): Promise<void> => {
     clearFlash()
 
     if (!token.value) {

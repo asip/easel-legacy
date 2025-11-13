@@ -10,7 +10,7 @@ export default class LightboxController extends ApplicationController {
 
   // declare readonly hasLbTarget: boolean
 
-  connect() {
+  connect(): void {
     /*
     let lbElement: HTMLElement | null = null
     if (this.hasLbTarget){
@@ -24,7 +24,7 @@ export default class LightboxController extends ApplicationController {
     //}
   }
 
-  disconnect(){
+  disconnect(): void {
     if (this.lightbox){
       this.lightbox.close()
     }

@@ -14,7 +14,7 @@ export default class TagifyController extends ApplicationController {
   declare readonly hasTeTarget: boolean
   declare readonly hasTlTarget: boolean
 
-  connect() {
+  connect(): void {
     let teElement: HTMLInputElement | null = null
     if (this.hasTeTarget){
       teElement = this.teTarget
@@ -46,13 +46,13 @@ export default class TagifyController extends ApplicationController {
     }
   }
 
-  saveTagList() {
+  saveTagList(): void {
     if (this.tagList){
       this.tagList.value = this.tagEditor?.value.map(v => v.value).join(',') ?? ''
     }
   }
 
-  disconnect(){
+  disconnect(): void {
     if (this.tagEditor){
       this.tagEditor.destroy()
       this.removeElementsByClassName('tagify')

@@ -15,7 +15,7 @@ export const useMutationApi = async <T>({ url, method, body, token }: MutationAp
 
   const headers: Record<string, string> = commonHeaders.value
 
-  const ok = ref(false)
+  const ok = ref<boolean>(false)
   const data = ref<T>()
   const response = ref<Response>()
   // const tokenRef = ref<string>()

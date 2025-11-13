@@ -14,7 +14,7 @@ export default class FrameSearchController extends ApplicationController {
   wordElement: HTMLInputElement | null = null
   qElement: HTMLInputElement | null = null
 
-  connect() {
+  connect(): void {
     if (this.hasTooltipTarget) {
       this.tooltipElement = this.tooltipTarget
     }
@@ -28,7 +28,7 @@ export default class FrameSearchController extends ApplicationController {
     this.tooltipElement?.classList.remove('tooltip-error')
   }
 
-  submit(event: Event) {
+  submit(event: Event): void {
     // globalThis.console.log(this.wordElement?.value)
     if (this.qElement) {
       if (this.wordElement?.value) {
@@ -51,7 +51,7 @@ export default class FrameSearchController extends ApplicationController {
     }
   }
 
-  clearTooltip(){
+  clearTooltip(): void {
     if (this.tooltipElement && this.tooltipElement.dataset['tip'] !=  'タグ or 名前 or 撮影/登録/更新日') {
       this.tooltipElement.dataset['tip'] =  'タグ or 名前 or 撮影/登録/更新日'
       this.tooltipElement.classList.remove('tooltip-error')
