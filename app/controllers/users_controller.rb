@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   private
 
   def permitted_params
-    params.permit(:id, :page, :ref, :q).to_h
+    params.permit(:id, :page, :q, :ref).to_h
   end
 
   def set_query_items
