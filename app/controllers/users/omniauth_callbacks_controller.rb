@@ -5,7 +5,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 
-  skip_before_action :verify_authenticity_token, only: :google_oauth2
+  protect_from_forgery except: :google_oauth2
+  # skip_before_action :verify_authenticity_token, only: :google_oauth2
+  before_action :verify_g_csrf_token
 
   # You should also create an action method in this controller like this:
   # def twitter
@@ -31,7 +33,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def auth_params
-    params.permit(:provider, :credential).to_h
+    params.permit(:authenticity_token, :g_csrf_token, :provider, :credential).to_h
   end
 
   def callback_for(provider)
@@ -56,7 +58,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # puts user.token
     else
       session["devise.#{provider}_data"] = request.env["omniauth.auth"].except(:extra)
-      redirect_to new_user_registration_url
+      redirect_to login_path
     end
   end
 
@@ -66,4 +68,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def after_omniauth_failure_path_for(scope)
   #   super(scope)
   # end
+
+  private
+
+  def verify_g_csrf_token
+    g_csrf_token_ = cookies["g_csrf_token"]
+    g_csrf_token = auth_params[:g_csrf_token]
+
+    if g_csrf_token_.blank? || g_csrf_token.blank? || g_csrf_token_ != g_csrf_token
+      redirect_to login_path
+    end
+  end
 end
