@@ -63,7 +63,7 @@
       </div>
       <% if user_signed_in? && @frame.user_id == current_user.id %>
       <div class="flex justify-center gap-2">
-        <%= link_to "変更", edit_frame_path(@frame, query_map), class: "btn btn-outline btn-primary", "data-turbo": true %>
+        <%= link_to "変更", edit_frame_path(@frame, query_map), class: "btn btn-outline btn-primary", "data-turbo-prefetch": false %>
         <%# Button trigger modal %>
         <button type="button" class="btn btn-outline btn-secondary" onclick="delete_modal.showModal()">
           削除

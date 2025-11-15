@@ -35,7 +35,7 @@
 <%= @form.hidden_field :password %>
 <%= @form.hidden_field :password_confirmation %>
 <div class="flex justify-center gap-2 mt-2">
-  <button type="submit" class="btn btn-outline btn-primary">
+  <button type="submit" class="btn btn-outline btn-primary" data-turbo-prefetch="false">
     <span class="show-when-enabled">登録</span>
     <span class="show-when-disabled">送信中...</span>
   </button>
