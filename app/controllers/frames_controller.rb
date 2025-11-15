@@ -127,12 +127,13 @@ class FramesController < ApplicationController
 
   def permitted_params
     params.permit(
-      :id, :q, :page, :ref, :commit, :_method, :authenticity_token,
-      frame: %i[name tag_list comment file creator_name shooted_at confirming]
+      :id, :q, :page, :ref, :commit, :authenticity_token
     ).to_h
   end
 
   def form_params
-    permitted_params[:frame]
+    params.expect(
+      frame: %i[name tag_list comment file creator_name shooted_at confirming]
+    )
   end
 end

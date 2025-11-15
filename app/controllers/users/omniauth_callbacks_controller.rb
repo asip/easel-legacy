@@ -33,7 +33,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def auth_params
-    params.permit(:authenticity_token, :g_csrf_token, :provider, :credential).to_h
+    params.permit(
+      :authenticity_token, :g_csrf_token, :provider, :credential
+    ).to_h
   end
 
   def callback_for(provider)
