@@ -106,7 +106,8 @@ class FramesController < ApplicationController
 
   def permitted_params
     params.permit(
-      :id, :q, :page, :ref, :commit, :authenticity_token
+      :id, :q, :page, :ref, :commit, :authenticity_token, :_method,
+      frame: {}
     ).to_h
   end
 
