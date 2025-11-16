@@ -27,7 +27,9 @@
             </ul>
           </details>
         <% else %>
+          <% unless controller_name == "sessions" || controller_name == "registrations" %>
           <%= link_to "ログイン", login_path, class: "" %>
+          <% end %>
         <% end %>
       </div>
       <div class="navbar-end flex gap-2">
