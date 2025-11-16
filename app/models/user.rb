@@ -84,9 +84,23 @@ class User < ApplicationRecord
     token
   end
 
+  def assign_token(token_)
+    @token = token_
+  end
+
+  def update_token
+    # return unless saved_change_to_email?
+  end
+
+  def reset_token
+    @token = nil
+  end
+
   def image_proxy_url(key)
     if image.present?
       case key.to_s
+      # when "original"
+      #   image.imgproxy_url
       when "thumb"
         image.imgproxy_url(width: 50, height: 50, resizing_type: :fill)
       when "one"
@@ -109,28 +123,16 @@ class User < ApplicationRecord
     end
   end
 
-  def full_error_messages
-    full_error_messages_for(%i[image name email current_password password password_confirmation])
-  end
-
-  def assign_token(token_)
-    @token = token_
-  end
-
-  def update_token
-    # return unless saved_change_to_email?
-  end
-
-  def reset_token
-    @token = nil
-  end
-
   # def assign_derivatives
   #   return if image.blank?
   #   return unless errors[:image].empty?
   #
   #   image_derivatives!
   # end
+
+  def full_error_messages
+    full_error_messages_for(%i[image name email current_password password password_confirmation])
+  end
 
   # (フォローしたときの処理)
   def follow(user_id)

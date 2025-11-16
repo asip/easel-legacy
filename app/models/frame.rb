@@ -93,11 +93,9 @@ class Frame < ApplicationRecord
     self.joined_tags = tags_list
   end
 
-  def tags_preview
+  def plain_tags
     joined_tags&.split(",")
   end
-
-  alias_method :plain_tags, :tags_preview
 
   def file_proxy_url(key)
     # puts key
@@ -115,10 +113,6 @@ class Frame < ApplicationRecord
     end
   end
 
-  def full_error_messages
-    full_error_messages_for(%i[file name tag_list])
-  end
-
   # def assign_derivatives
   #   return if file.blank?
   #   return unless errors[:file].empty?
@@ -126,11 +120,15 @@ class Frame < ApplicationRecord
   #   file_derivatives!
   # end
 
+  def full_error_messages
+    full_error_messages_for(%i[file name tag_list])
+  end
+
   private
 
   def check_tag
-    errors.add(:tag_list, I18n.t("validations.message.frame.tags.array_length")) if tags_preview.size > 5
-    tags_preview.each do |tag|
+    errors.add(:tag_list, I18n.t("validations.message.frame.tags.array_length")) if plain_tags.size > 5
+    plain_tags.each do |tag|
       if tag.to_s.size > 10
         errors.add(:tag_list, I18n.t("validations.message.frame.tags.length"))
         break
