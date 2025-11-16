@@ -4,6 +4,7 @@
 class Users::SessionsController < Devise::SessionsController
   include Flashes
   include Query::Search
+  include Session
 
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -11,7 +12,6 @@ class Users::SessionsController < Devise::SessionsController
   def new
     from = request.referer
     session[:prev_url] = from || root_path(query_map) unless from&.include?("/signup")
-    @prev_url = session[:prev_url]
     super
   end
 
@@ -42,6 +42,10 @@ class Users::SessionsController < Devise::SessionsController
 
   private
 
+  def q_items
+    {}
+  end
+
   def query_map
     {}
   end
@@ -64,7 +68,6 @@ class Users::SessionsController < Devise::SessionsController
   def login_failed
     success, user = User.validate_on_login(form_params: sign_in_params)
     self.resource = user unless success
-    @prev_url = session[:prev_url]
     flashes[:alert] = self.resource.full_error_messages_on_login
     render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
   end

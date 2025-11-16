@@ -7,23 +7,19 @@ class FramesController < ApplicationController
   include Query::List
   include Ref::FrameRef
   include More
+  include Session
 
   skip_before_action :authenticate_user!, only: %i[index show]
 
-  # rubocop:disable Rails/LexicallyScopedActionFilter
-  before_action :set_query_items, only: %i[index prev next show new edit]
-  # rubocop:enable Rails/LexicallyScopedActionFilter
-  before_action :set_day, only: [ :index ]
   before_action :set_frame, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
   def index
-    form = FrameSearchForm.new(@items)
-    @pagy, @frames = list_frames(items: form.to_h, page: @page)
+    form = FrameSearchForm.new(q_items)
+    @pagy, @frames = list_frames(items: form.to_h, page: page_str)
   end
 
   def show
-    @q_str = q_string
     @frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id], private: false)
   end
 
@@ -32,7 +28,6 @@ class FramesController < ApplicationController
     unless from&.include?("/profile") || from&.include?("/account/password/edit") || from&.include?("/frames/new")
       session[:prev_url] = from || root_path(query_map)
     end
-    @prev_url = session[:prev_url]
     @frame = Frame.new
   end
 
@@ -42,7 +37,6 @@ class FramesController < ApplicationController
     if mutation.success?
       redirect_to root_path # (query_map)
     else
-      @prev_url = session[:prev_url]
       flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
       render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
     end
@@ -71,20 +65,6 @@ class FramesController < ApplicationController
 
   private
 
-  def set_query_items
-    @items = q_items
-    @page = permitted_params[:page]
-  end
-
-  def set_day
-    word = @items[:word]
-    @day = if word.blank? || !DateAndTime::Util.valid_date?(word)
-      ""
-    else
-      word
-    end
-  end
-
   def set_frame
     case action_name
     when "create"
@@ -102,7 +82,6 @@ class FramesController < ApplicationController
     # @frame.file_derivatives! if @frame.file.present?
     case action_name
     when "create"
-      @prev_url = session[:prev_url]
       render :create, layout: false, content_type: "text/vnd.turbo-stream.html"
     when "update"
       render :update, layout: false, content_type: "text/vnd.turbo-stream.html"
@@ -120,7 +99,7 @@ class FramesController < ApplicationController
     items = Json::Util.to_hash(permitted_params[:ref])
     if items.blank?
       items = { from: "frame", id: @frame.id }
-      items[:page] = @page if @page.present?
+      items[:page] = page_str if page_str.present?
       items.with_indifferent_access
     end
   end

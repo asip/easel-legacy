@@ -8,6 +8,10 @@ module Query
 
     included do
       # helper_method :query_list
+      helper_method :q_str
+      helper_method :page_str
+      helper_method :day_str
+      helper_method :q_items
       helper_method :query_map
       helper_method :paging_query_map
     end
@@ -33,12 +37,27 @@ module Query
     end
 
     def q_items
-      Json::Util.to_hash(permitted_params[:q])
+      @q_items ||= Json::Util.to_hash(permitted_params[:q])
+      @q_items
     end
 
-    def q_string
+    def q_str
       items = permitted_params[:q]
       items.present? ? items : nil
+    end
+
+    def page_str
+      permitted_params[:page]
+    end
+
+    def day_str
+      word = q_items[:word]
+      day = if word.blank? || !DateAndTime::Util.valid_date?(word)
+        ""
+      else
+        word
+      end
+      day
     end
   end
 end

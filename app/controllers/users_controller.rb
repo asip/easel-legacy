@@ -9,8 +9,6 @@ class UsersController < ApplicationController
 
   skip_before_action :authenticate_user!
 
-  before_action :set_query_items, only: %i[show]
-
   def show
     user_id = permitted_params[:id]
     @user = Queries::Users::FindUser.run(user_id:)
@@ -30,11 +28,7 @@ class UsersController < ApplicationController
   private
 
   def permitted_params
-    params.permit(:id, :page, :q, :ref).to_h
-  end
-
-  def set_query_items
-    @items = q_items
+    params.permit(:id, :q, :page, :ref).to_h
   end
 
   def query_map

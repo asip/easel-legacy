@@ -77,4 +77,4 @@
     <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame)) %>
   <% end %>
 </div>
-<%= render Comments::Component.new(frame: @frame, page: @page, q: @q_str) %>
+<%= render Comments::Component.new(frame: @frame, page: @page, q: q_str) %>

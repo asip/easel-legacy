@@ -3,6 +3,7 @@
 # users / Registrations Controller
 class Users::RegistrationsController < Devise::RegistrationsController
   include Query::Search
+  include Session
 
   before_action :configure_sign_up_params, only: [ :create ]
   before_action :configure_account_update_params, only: [ :update ]
@@ -42,7 +43,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    @prev_url = session[:prev_url]
     super
   end
 
@@ -84,6 +84,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
+  def q_items
+    {}
+  end
+
   def query_map
     {}
   end
@@ -114,7 +118,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     case action_name
     when "create"
       saved = resource.persisted?
-      redirect_path = @prev_url
+      redirect_path = prev_url
       create_or_update = true
     when "update"
       saved = @resource_updated
