@@ -22,13 +22,15 @@
 
 # User
 class User < ApplicationRecord
+  include Discard::Model
+  include Profile::Image::Uploader::Attachment(:image)
   include Errors::Sortable
   include Errors::Login
   include Errors::User
+  include Jwt::Token
   include Login::User
   include Page::Confirmable
-  include Discard::Model
-  include Profile::Image::Uploader::Attachment(:image)
+  include Follow::User
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :trackable and :omniauthable
@@ -38,8 +40,6 @@ class User < ApplicationRecord
   # authenticates_with_sorcery!
 
   self.discard_column = :deleted_at
-
-  attr_reader :token
 
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
@@ -79,39 +79,16 @@ class User < ApplicationRecord
   #   super && !discarded?
   # end
 
-  def create_token
-    payload = { user_id: self.id, exp: (DateTime.current + 60.minutes).to_i }
-    secret_key = Rails.application.credentials.secret_key_base
-    token = JWT.encode(payload, secret_key)
-    token
-  end
-
-  def assign_token(token_)
-    @token = token_
-  end
-
-  def update_token
-    # return unless saved_change_to_email?
-  end
-
-  def reset_token
-    @token = nil
-  end
-
   def image_proxy_url(key)
-    if image.present?
-      case key.to_s
-      # when "original"
-      #   image.imgproxy_url
-      when "thumb"
-        image.imgproxy_url(width: 50, height: 50, resizing_type: :fill)
-      when "one"
-        image.imgproxy_url(width: 100, height: 100, resizing_type: :fill)
-      when "three"
-        image.imgproxy_url(width: 320, height: 320, resizing_type: :fill)
-      else
-        nil
-      end
+    case key.to_s
+    # when "original"
+    #   image&.imgproxy_url
+    when "thumb"
+      image&.imgproxy_url(width: 50, height: 50, resizing_type: :fill)
+    when "one"
+      image&.imgproxy_url(width: 100, height: 100, resizing_type: :fill)
+    when "three"
+      image&.imgproxy_url(width: 320, height: 320, resizing_type: :fill)
     else
       nil
     end
@@ -131,19 +108,4 @@ class User < ApplicationRecord
   #
   #   image_derivatives!
   # end
-
-  # (フォローしたときの処理)
-  def follow(user_id)
-    follower_relationships.create(followee_id: user_id)
-  end
-
-  # (フォローを外すときの処理)
-  def unfollow(user_id)
-    follower_relationships.find_by(followee_id: user_id)&.destroy
-  end
-
-  # (フォローしているか判定)
-  def following?(user)
-    followees.include?(user)
-  end
 end

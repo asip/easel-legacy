@@ -19,12 +19,12 @@
 
 # Frame
 class Frame < ApplicationRecord
-  include Errors::Sortable
-  include Errors::Frame
-  include Page::Confirmable
   # has_one_attached :file
   include Contents::Uploader::Attachment(:file)
   include NoFlyList::TaggableRecord
+  include Errors::Sortable
+  include Errors::Frame
+  include Page::Confirmable
 
   has_tags :tags, polymorphic: true
 
@@ -102,13 +102,13 @@ class Frame < ApplicationRecord
     # puts key
     case key.to_s
     when "original"
-      file.imgproxy_url
+      file&.imgproxy_url
     when "two"
-      file.imgproxy_url(width: 240, height: 240, resizing_type: :fit)
+      file&.imgproxy_url(width: 240, height: 240, resizing_type: :fit)
     when  "three"
-      file.imgproxy_url(width: 320, height: 320, resizing_type: :fit)
+      file&.imgproxy_url(width: 320, height: 320, resizing_type: :fit)
     when  "six"
-      file.imgproxy_url(width: 640, height: 640, resizing_type: :fit)
+      file&.imgproxy_url(width: 640, height: 640, resizing_type: :fit)
     else
       nil
     end
