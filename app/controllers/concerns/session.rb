@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Session module
 module Session
   extend ActiveSupport::Concern
 

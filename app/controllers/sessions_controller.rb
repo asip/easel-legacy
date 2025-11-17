@@ -12,11 +12,13 @@ class SessionsController < ApplicationController
     unless from&.include?("/profile") || from&.include?("/account/password/edit") || from&.include?("/frames/new")
       session[:prev_url] = from || root_path(query_map)
     end
-    @user = current_user
-    @pagy, @frames = list_frames(user: @user, page: permitted_params[:page])
+    self.user = current_user
+    @pagy, @frames = list_frames(user: user, page: permitted_params[:page])
   end
 
   private
+
+  attr_accessor :user
 
   def query_map
     {}

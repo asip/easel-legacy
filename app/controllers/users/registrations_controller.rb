@@ -50,10 +50,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    @resource_updated = update_resource(resource, account_update_params)
+    self.resource_updated = update_resource(resource, account_update_params)
     yield resource if block_given?
     if resource.confirming.present?
-      if @resource_updated
+      if resource_updated
         set_flash_message_for_update(resource, prev_unconfirmed_email)
         bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
         # else
@@ -83,6 +83,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   private
+
+  attr_accessor :resource_updated
 
   def q_items
     {}
@@ -121,7 +123,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       redirect_path = prev_url
       create_or_update = true
     when "update"
-      saved = @resource_updated
+      saved = resource_updated
       redirect_path = profile_path
       create_or_update = true
     else

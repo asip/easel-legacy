@@ -20,7 +20,7 @@ class FramesController < ApplicationController
   end
 
   def show
-    @frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id], private: false)
+    self.frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id], private: false)
   end
 
   def new
@@ -28,32 +28,32 @@ class FramesController < ApplicationController
     unless from&.include?("/profile") || from&.include?("/account/password/edit") || from&.include?("/frames/new")
       session[:prev_url] = from || root_path(query_map)
     end
-    @frame = Frame.new
+    self.frame = Frame.new
   end
 
   def create
-    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame)
-    @frame = mutation.frame
+    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: frame)
+    self.frame = mutation.frame
     if mutation.success?
       redirect_to root_path # (query_map)
     else
-      flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
+      flashes[:alert] = frame.full_error_messages unless frame.errors.empty?
       render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
     end
   end
 
   def edit
-    @frame = Queries::Frames::FindFrame.run(user: current_user, frame_id: permitted_params[:id])
+    self.frame = Queries::Frames::FindFrame.run(user: current_user, frame_id: permitted_params[:id])
     render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
   def update
-    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: @frame)
-    @frame = mutation.frame
+    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: frame)
+    self.frame = mutation.frame
     if mutation.success?
-      redirect_to frame_path(@frame, query_map)
+      redirect_to frame_path(frame, query_map)
     else
-      flashes[:alert] = @frame.full_error_messages unless @frame.errors.empty?
+      flashes[:alert] = frame.full_error_messages unless frame.errors.empty?
       render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
     end
   end
@@ -65,21 +65,23 @@ class FramesController < ApplicationController
 
   private
 
+  attr_accessor :frame
+
   def set_frame
     case action_name
     when "create"
-      @frame = Frame.new(form_params)
+      self.frame = Frame.new(form_params)
     when "update"
-      @frame = Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
-      @frame.attributes = form_params
+      self.frame = Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
+      self.frame.attributes = form_params
     end
   end
 
   def back_to_form
     return unless permitted_params[:commit] == "戻る"
 
-    @frame.confirming = false
-    # @frame.file_derivatives! if @frame.file.present?
+    self.frame.confirming = false
+    # self.frame.file_derivatives! if frame.file.present?
     case action_name
     when "create"
       render :create, layout: false, content_type: "text/vnd.turbo-stream.html"
@@ -98,7 +100,7 @@ class FramesController < ApplicationController
   def ref_items
     items = Json::Util.to_hash(permitted_params[:ref])
     if items.blank?
-      items = { from: "frame", id: @frame.id }
+      items = { from: "frame", id: frame.id }
       items[:page] = page_str if page_str.present?
       items.with_indifferent_access
     end
