@@ -31,6 +31,10 @@ class Account::PasswordsController < ApplicationController
     ).to_h
   end
 
+  def q_items
+    {}
+  end
+
   def query_map
     {}
   end
