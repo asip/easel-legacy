@@ -20,6 +20,7 @@
 # Frame
 class Frame < ApplicationRecord
   include Errors::Sortable
+  include Errors::Frame
   include Page::Confirmable
   # has_one_attached :file
   include Contents::Uploader::Attachment(:file)
@@ -119,10 +120,6 @@ class Frame < ApplicationRecord
   #
   #   file_derivatives!
   # end
-
-  def full_error_messages
-    full_error_messages_for(%i[file name tag_list])
-  end
 
   private
 

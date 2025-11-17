@@ -6,8 +6,8 @@ module Login
   module User
     extend ActiveSupport::Concern
 
-    def full_error_messages_on_login
-      full_error_messages_for(%i[email password])
+    def social_login?
+      authentications.present?
     end
 
     def validate_password_on_login(form_params)
@@ -22,7 +22,6 @@ module Login
       errors.delete(:email) if errors[:email].include?(I18n.t("errors.messages.taken"))
       errors.add(:email, I18n.t("action.login.invalid")) if form_params[:email].present? && !errors.include?(:email)
     end
-
 
     class_methods do
       def validate_on_login(form_params:)

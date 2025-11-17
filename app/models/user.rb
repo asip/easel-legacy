@@ -23,8 +23,10 @@
 # User
 class User < ApplicationRecord
   include Errors::Sortable
-  include Page::Confirmable
+  include Errors::Login
+  include Errors::User
   include Login::User
+  include Page::Confirmable
   include Discard::Model
   include Profile::Image::Uploader::Attachment(:image)
 
@@ -130,10 +132,6 @@ class User < ApplicationRecord
   #   image_derivatives!
   # end
 
-  def full_error_messages
-    full_error_messages_for(%i[image name email current_password password password_confirmation])
-  end
-
   # (フォローしたときの処理)
   def follow(user_id)
     follower_relationships.create(followee_id: user_id)
@@ -147,9 +145,5 @@ class User < ApplicationRecord
   # (フォローしているか判定)
   def following?(user)
     followees.include?(user)
-  end
-
-  def social_login?
-    authentications.present?
   end
 end
