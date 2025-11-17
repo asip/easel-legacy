@@ -78,7 +78,7 @@ class FramesController < ApplicationController
   def back_to_form
     return unless permitted_params[:commit] == "戻る"
 
-    @frame.confirming = ""
+    @frame.confirming = false
     # @frame.file_derivatives! if @frame.file.present?
     case action_name
     when "create"

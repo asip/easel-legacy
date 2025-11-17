@@ -7,7 +7,7 @@ module Page
     extend ActiveSupport::Concern
 
     included do
-      attr_accessor :confirming
+      attribute :confirming, :boolean, default: false
 
       validates :confirming, acceptance: true
 
@@ -18,7 +18,7 @@ module Page
 
     def check_confirming
       errors.delete(:confirming)
-      @confirming = errors.empty? ? "true" : ""
+      self.confirming = errors.empty? ? true : false
     end
   end
 end

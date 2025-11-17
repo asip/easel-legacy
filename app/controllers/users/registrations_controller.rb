@@ -22,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     resource.save
     yield resource if block_given?
-    if resource.confirming.present?
+    if resource.confirming
       if resource.active_for_authentication?
         if resource.persisted?
           set_flash_message! :notice, :signed_up
@@ -104,7 +104,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def back_to_form
     return unless params[:commit] == "戻る"
 
-    resource.confirming = ""
+    resource.confirming = false
     # resource.image_derivatives! if resource.image.present?
     case action_name
     when "create", "update"

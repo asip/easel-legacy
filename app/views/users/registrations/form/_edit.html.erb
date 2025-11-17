@@ -7,12 +7,12 @@
       </div>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
-        <% if resource.confirming == "true" %>
+        <% if resource.confirming %>
           <%= render Users::Edit::Confirm::Component.new(form:, user: resource) %>
         <% else %>
           <%= render Users::Edit::Input::Component.new(form:, user: resource, back_to_path: profile_path) %>
-          <%= form.hidden_field :confirming %>
         <% end %>
+        <%= form.hidden_field :confirming %>
       <% end %>
     </div>
   </div>
