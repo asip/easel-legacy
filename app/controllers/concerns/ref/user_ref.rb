@@ -23,13 +23,13 @@ module Ref
       end
     end
 
-    protected
-
     def self.query_from(ref_items:, q_items:)
       page = ref_items[:page]
+      items = {}
+      items[:page] = page if page.present?
       query = {}
       query[:q] = q_items if q_items.present?
-      query[:page] = page if page.present?
+      query[:ref] = items.to_json if items.present?
       query
     end
   end

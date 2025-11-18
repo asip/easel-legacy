@@ -90,20 +90,30 @@ class FramesController < ApplicationController
     end
   end
 
-  def query_map_with_ref
-    q_items = permitted_params[:q]
-    items = { ref: ref_items.to_json }
-    items[:q] = q_items if q_items.present?
+  def ref_items
+    items = Json::Util.to_hash(permitted_params[:ref])
+    if items.blank? || (items.present? && items[:from].blank?)
+      items[:from] = "frame"
+      items[:id] = frame.id
+    end
     items
   end
 
-  def ref_items
-    items = Json::Util.to_hash(permitted_params[:ref])
-    if items.blank?
-      items = { from: "frame", id: frame.id }
-      items[:page] = page_str if page_str.present?
-      items.with_indifferent_access
-    end
+  def query_map_with_ref
+    items_q = q_str
+    items_ref = ref_items
+    items = {}
+    items[:ref] = items_ref.to_json if items_ref.present?
+    items[:q] = items_q if items_q.present?
+    items
+  end
+
+  def query_map
+    query = {}
+    items = Json::Util.to_hash(ref_str)
+    query[:page] = items[:page]
+    query[:q] = q_str if q_str.present?
+    query
   end
 
   def permitted_params

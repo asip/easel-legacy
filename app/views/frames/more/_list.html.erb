@@ -14,7 +14,7 @@
       <% end %>
       <div class="flex justify-center">
         <div class="mx-auto">
-          <%= link_to frame.name, frame_path(frame, params: query_map_for_list(page:)),
+          <%= link_to frame.name, frame_path(frame, params: query_map_for_frame(from: , page: pagy.page)),
                       class: "link link-hover",
                       "data-turbo": true %>
         </div>

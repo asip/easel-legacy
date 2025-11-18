@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   include Query::Search
   include Query::List
   include Queries::Sessions::Pagination
+  include Ref::SessionRef
   include Session
 
   def show
@@ -24,7 +25,7 @@ class SessionsController < ApplicationController
     {}
   end
 
-  def ref_items_for_list
+  def default_ref_items
     { from: "profile" }
   end
 

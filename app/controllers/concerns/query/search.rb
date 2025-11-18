@@ -46,6 +46,11 @@ module Query
       items.present? ? items : nil
     end
 
+    def ref_str
+      items = permitted_params[:ref]
+      items.present? ? items : nil
+    end
+
     def page_str
       permitted_params[:page]
     end

@@ -13,7 +13,8 @@ const { setFlash } = useToast()
 
 const route = inject('route') as UseRouteType
 const { id } = route.params
-const { q, page } = route.query
+const { q } = route.query
+const refStr = route.query.ref
 
 const { loggedIn, currentUser } = useAccount()
 const { getComments } = useComment()
@@ -31,8 +32,10 @@ const edit = ref<boolean>(false)
 const commentModel = defineModel<Comment>()
 
 const refItems = computed<RefQuery>( () => {
-  const items: RefQuery = { from: 'frame', id: id }
-  if (page) items.page = page
+  const items: RefQuery = refStr ? JSON.parse(refStr) : {}
+  items.from = 'frame'
+  items.id = id
+
   return items
 })
 
