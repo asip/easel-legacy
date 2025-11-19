@@ -8,6 +8,7 @@ class DatetimeValidator < ActiveModel::EachValidator
     begin
       DateTime.parse(value.to_s)
     rescue
+      attribute = attribute.to_s.sub("_before_type_cast", "").to_sym if attribute.to_s.include?("_before_type_cast")
       record.errors.add(options[:attribute] || attribute, options[:message] || I18n.t("validations.message.model.datetime.invalid"))
     end
   end
