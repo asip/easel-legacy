@@ -1,0 +1,5 @@
+en:
+  enums:
+    private:
+      final: 'public'
+      draft: 'private'

@@ -41,6 +41,8 @@ class Frame < ApplicationRecord
 
   # after_validation :assign_derivatives
 
+  enum :private, { final: false, draft: true }
+
   scope :search_by, ->(items:) do
     scope = current_scope || relation
 

@@ -1,15 +1,21 @@
 <%= render ::Preview::Image::Component.new(model: @frame, original: true) %>
-<% if @tag_paths.size > 0 %>
+<% if @frame.draft? || @tag_paths.size > 0 %>
 <div class="flex justify-center flex-wrap gap-1 mb-2">
-  <%= render ::Preview::Tags::Component.new(tag_paths: @tag_paths, link: false) %>
+  <% if @frame.draft? %>
+  <div class="badge badge-outline badge-accent rounded-full"><%= t("enums.private.#{@frame.private}") %></div>
+  <% end %>
+  <% if @tag_paths.size > 0 %>
+  <%= render ::Preview::Tags::Component.new(tag_paths: @tag_paths) %>
+  <% end %>
 </div>
 <% end %>
+<%= @form.hidden_field :private %>
 <%= @form.hidden_field :tag_list, value: @frame.tag_list %>
 <div class="flex justify-center">
   <table class="table table-bordered table-rounded">
     <tbody>
       <tr>
-        <td class="w-[8em]">
+        <td class="w-[9em]">
           名前
         </td>
         <td>

@@ -12,7 +12,7 @@
   <table class="table table-bordered table-rounded">
     <tbody>
       <tr>
-        <td class="w-[8em]">
+        <td class="w-[9em]">
           <label for="name" class="">名前</label>
         </td>
         <td>
@@ -50,6 +50,14 @@
         </td>
         <td class="wrap-break-word">
           <%= @form.text_area :comment, class: "block text-sm border border-gray-300 rounded w-full min-h-[50px] field-sizing-content" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="private" class="">プライベート</label>
+        </td>
+        <td>
+          <%= @form.check_box :private, {}, "draft", "final" %>
         </td>
       </tr>
     </tbody>

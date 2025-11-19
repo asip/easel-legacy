@@ -20,7 +20,11 @@ class FramesController < ApplicationController
   end
 
   def show
-    self.frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id], private: false)
+    if current_user
+      self.frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id], user: current_user)
+    else
+      self.frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id], private: false)
+    end
   end
 
   def new
@@ -125,7 +129,7 @@ class FramesController < ApplicationController
 
   def form_params
     params.expect(
-      frame: %i[name tag_list comment file creator_name shooted_at confirming]
+      frame: %i[name tag_list comment file creator_name shooted_at private confirming]
     )
   end
 end
