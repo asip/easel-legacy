@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   private
 
   def permitted_params
-    params.permit(:id, :q, :page, :ref).to_h
+    @permitted_params ||= params.permit(:id, :q, :page, :ref).to_h
   end
 
   def query_map

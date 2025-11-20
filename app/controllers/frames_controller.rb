@@ -20,10 +20,11 @@ class FramesController < ApplicationController
   end
 
   def show
+    frame_id = permitted_params[:id]
     if current_user
-      self.frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id], user: current_user)
+      self.frame = Queries::Frames::FindFrame.run(frame_id:, user: current_user)
     else
-      self.frame = Queries::Frames::FindFrame.run(frame_id: permitted_params[:id], private: false)
+      self.frame = Queries::Frames::FindFrame.run(frame_id:, private: false)
     end
   end
 
@@ -121,14 +122,14 @@ class FramesController < ApplicationController
   end
 
   def permitted_params
-    params.permit(
+    @permitted_params ||= params.permit(
       :id, :q, :page, :ref, :commit, :authenticity_token, :_method,
       frame: {}
     ).to_h
   end
 
   def form_params
-    params.expect(
+    @form_params ||= params.expect(
       frame: %i[name tag_list comment file creator_name shooted_at private confirming]
     )
   end
