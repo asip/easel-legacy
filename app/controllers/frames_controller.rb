@@ -33,7 +33,7 @@ class FramesController < ApplicationController
     unless from&.include?("/profile") || from&.include?("/account/password/edit") || from&.include?("/frames/new")
       session[:prev_url] = from || root_path(query_map)
     end
-    self.frame = Frame.new
+    self.frame = Frame.new(confirming: false)
   end
 
   def create
@@ -49,6 +49,7 @@ class FramesController < ApplicationController
 
   def edit
     self.frame = Queries::Frames::FindFrame.run(user: current_user, frame_id: permitted_params[:id])
+    self.frame.confirming = false
     render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 

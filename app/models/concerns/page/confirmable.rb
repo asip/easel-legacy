@@ -7,7 +7,7 @@ module Page
     extend ActiveSupport::Concern
 
     included do
-      attribute :confirming, :boolean, default: false
+      attribute :confirming, :boolean, default: true
 
       validates :confirming, acceptance: true
 
