@@ -5,7 +5,9 @@
       <div class="flex justify-start">
         <%= link_to frame_path(@frame) do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
       </div>
-      <%= render ::Preview::Image::Component.new(model: @frame, original: true) %>
+      <div class="flex justify-center mb-2">
+        <%= render ::Preview::Image::Component.new(model: @frame, original: true) %>
+      </div>
       <%= form_with model: @frame, local: true do |form| %>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <% if @frame.confirming %>

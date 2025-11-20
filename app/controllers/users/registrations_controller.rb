@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_user, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
-  FORM_PARAMS = [ :name, :email, :password, :password_confirmation, :image, :time_zone, :confirming ]
+  FORM_PARAMS = [ :name, :email, :password, :password_confirmation, :image, :profile, :time_zone, :confirming ]
 
   # GET /resource/sign_up
   # def new

@@ -1,4 +1,6 @@
-<%= render ::Preview::Image::Component.new(model: @frame, original: true) %>
+<div class="flex justify-center mb-2">
+  <%= render ::Preview::Image::Component.new(model: @frame, original: true) %>
+</div>
 <% if @frame.draft? || @tag_paths.size > 0 %>
 <div class="flex justify-center flex-wrap gap-1 mb-2">
   <% if @frame.draft? %>

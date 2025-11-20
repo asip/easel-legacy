@@ -17,7 +17,9 @@
         </div>
       </div>
       <div>
-        <%= render ::Preview::Image::Component.new(model: @user, small: true) %>
+        <div class="flex justify-center mb-2">
+          <%= render ::Preview::Image::Component.new(model: @user, small: true) %>
+        </div>
         <div class="flex justify-center mt-2">
           <table class="table table-bordered table-rounded">
             <tbody>
@@ -35,6 +37,14 @@
                 </td>
                 <td>
                   <%= @user.email %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="profile" class=""><%= t("activerecord.attributes.user.profile") %></label>
+                </td>
+                <td class="wrap-break-word">
+                  <%= simple_format(h(@user.profile)) %>
                 </td>
               </tr>
               <tr>

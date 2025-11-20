@@ -12,7 +12,9 @@
           <% end %>
         </div>
       </div>
-      <%= render ::Preview::Image::Component.new(model: @frame, original: true, photoswipe: true) %>
+      <div class="flex justify-center mb-2">
+        <%= render ::Preview::Image::Component.new(model: @frame, original: true, photoswipe: true) %>
+      </div>
       <% @tag_paths = tag_paths(@frame) %>
       <div class="flex justify-center flex-wrap gap-1 mb-2">
         <% if user_signed_in? && @frame.user_id == current_user.id %>

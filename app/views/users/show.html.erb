@@ -1,24 +1,43 @@
 <div id="users">
   <br>
   <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2">
-    <div class="card-body divide-y divide-gray-200">
-      <div class="flex justify-start pb-1">
-        <%= link_to back_to_path, class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %><%= @user.name %>
+    <div class="flex justify-between pl-4 pr-4 pt-1 pb-1">
+      <div>
+        <%= link_to back_to_path, class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
+      </div>
+      <div class="flex items-center">
+        <div class="link" onclick="user_profile_modal.showModal()"><%= @user.name %></div>
       </div>
       <div>
-        <%= render ::Preview::Image::Component.new(model: @user, small: true) %>
-        <div class="flex justify-center mt-2">
-          <% if user_signed_in? && @user.id != current_user.id %>
-            <% if current_user.following?(@user) %>
-              <%= link_to user_follow_relationships_path(@user.id, query_map_with_ref), data: { turbo_method: :delete } do %><button type="button" class="btn btn-outline btn-primary btn-sm">フォローを外す</button><% end %>
-            <% else %>
-              <%= link_to user_follow_relationships_path(@user.id, query_map_with_ref), data: { turbo_method: :post } do %><button type="button" class="btn btn-outline btn-primary btn-sm">フォローする</button><% end %>
-            <% end %>
+        <% if user_signed_in? && @user.id != current_user.id %>
+          <% if current_user.following?(@user) %>
+            <%= link_to user_follow_relationships_path(@user.id, query_map_with_ref), data: { turbo_method: :delete } do %><button type="button" class="btn btn-outline btn-primary btn-xs">フォローを外す</button><% end %>
+          <% else %>
+            <%= link_to user_follow_relationships_path(@user.id, query_map_with_ref), data: { turbo_method: :post } do %><button type="button" class="btn btn-outline btn-primary btn-xs">フォローする</button><% end %>
           <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
+  <dialog id="user_profile_modal" class="modal">
+    <div class="modal-box">
+      <div class="flex gap-1">
+        <%= render ::Preview::Image::Component.new(model: @user, small: true) %>
+        <table class="table table-bordered table-rounded flex-auto">
+          <tbody>
+            <tr>
+              <td class="flex wrap-break-word items-baseline">
+                <%= simple_format(h(@user.profile)) %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
 
   <div id="list" class="pt-2">
     <%= render partial: "frames/more/list", locals: { frames: @frames, from: "user_profile", pagy: @pagy } %>

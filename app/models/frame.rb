@@ -10,7 +10,7 @@
 #  file_data    :text
 #  joined_tags  :string
 #  name         :string           not null
-#  private      :boolean          default(FALSE)
+#  private      :boolean          default("final")
 #  shooted_at   :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null

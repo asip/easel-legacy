@@ -1,4 +1,6 @@
-<%= render ::Preview::Image::Component.new(model: @user) %>
+<div class="flex justify-center mb-2">
+  <%= render ::Preview::Image::Component.new(model: @user) %>
+</div>
 <div class="flex justify-center">
   <table class="table table-bordered table-rounded">
     <tbody>
@@ -18,6 +20,15 @@
         <td>
           <%= @user.email %>
           <%= @form.hidden_field :email %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="profile" class=""><%= t("activerecord.attributes.user.profile") %></label>
+        </td>
+        <td class="wrap-break-word">
+          <%= simple_format(h(@user.profile)) %>
+          <%= @form.hidden_field :profile %>
         </td>
       </tr>
       <tr>

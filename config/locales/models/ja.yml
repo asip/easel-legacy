@@ -11,6 +11,7 @@ ja:
         email: 'Eメール'
         password: 'パスワード'
         password_confirmation: 'パスワード(確認)'
+        profile: 'プロフィール'
         time_zone: 'タイムゾーン'
       admin:
         email: 'Eメール'

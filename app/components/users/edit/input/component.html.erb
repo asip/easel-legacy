@@ -56,6 +56,14 @@
       <% end %>
       <tr>
         <td>
+          <label for="profile" class=""><%= t("activerecord.attributes.user.profile") %></label>
+        </td>
+        <td class="wrap-break-word">
+          <%= @form.text_area :profile, class: "block text-sm border border-gray-300 rounded w-full min-h-[50px] field-sizing-content" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <label for="time_zone" class=""><%= t("activerecord.attributes.user.time_zone") %></label>
         </td>
         <td>
