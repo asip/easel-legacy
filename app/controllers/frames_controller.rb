@@ -95,28 +95,28 @@ class FramesController < ApplicationController
     end
   end
 
-  def ref_items
-    items = Json::Util.to_hash(permitted_params[:ref])
-    if items.blank? || (items.present? && items[:from].blank?)
-      items[:from] = "frame"
-      items[:id] = frame.id
+  def ref_items_next
+    @ref_items_next ||= ref_items_for_next_page
+  end
+
+  def ref_items_for_next_page
+    if ref_items.blank? || (ref_items.present? && ref_items[:from].blank?)
+      ref_items[:from] = "frame"
+      ref_items[:id] = frame.id
     end
-    items
+    ref_items
   end
 
   def query_map_with_ref
-    items_q = q_str
-    items_ref = ref_items
     items = {}
-    items[:ref] = items_ref.to_json if items_ref.present?
-    items[:q] = items_q if items_q.present?
+    items[:ref] = ref_items_next.to_json if ref_items_next.present?
+    items[:q] = q_str if q_str.present?
     items
   end
 
   def query_map
     query = {}
-    items = Json::Util.to_hash(ref_str)
-    query[:page] = items[:page]
+    query[:page] = ref_items[:page]
     query[:q] = q_str if q_str.present?
     query
   end

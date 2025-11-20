@@ -24,7 +24,7 @@ module Query
     end
 
     def ref_items
-      Json::Util.to_hash(permitted_params[:ref])
+      @ref_items ||= Json::Util.to_hash(permitted_params[:ref])
     end
   end
 end

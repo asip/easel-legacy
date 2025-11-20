@@ -18,9 +18,7 @@ module Api
 
         protected
 
-        def current_user
-          @current_user
-        end
+        attr_accessor :current_user
 
         # (Authorizationヘッダーに基づいてユーザーを認証します。)
         def authenticate
@@ -44,9 +42,9 @@ module Api
             decoded_token = JWT.decode(token, secret_key, true, { algorithm: "HS256" })
             user_id = decoded_token[0]["user_id"]
 
-            @current_user = User.find(user_id)
+            self.current_user = User.find(user_id)
             # (current_user にトークンを割り当てる)
-            @current_user.assign_token(token)
+            current_user.assign_token(token)
 
           rescue ActiveRecord::RecordNotFound
             # (トークン内のユーザーIDが既存のユーザーに対応しない場合)

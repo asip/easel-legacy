@@ -13,32 +13,25 @@ module Query
     protected
 
     def query_map_for_frame(from:, page:)
-      q_ = q_str
-      query = q_.present? ? { q: q_ } : {}
-      query.merge(ref_items_for_frame(from:, page:))
+      query = q_str.present? ? { q: q_str } : {}
+      query.merge(query_map_with_ref_for_frame(from:, page:))
     end
 
-    def self.ref_items_from(page:)
-      page.present? && page != 1 ? page : nil
-    end
-
-    def ref_items_for_frame(from:, page:)
+    def query_map_with_ref_for_frame(from:, page:)
       query = {}
-      items_ref = default_ref_items
-      page_ = Query::List.ref_items_from(page:)
-      if page_.present?
+      if page.present? && page != 1
         case from
         when "user_profile", "profile"
-          query[:page] = page_
+          query[:page] = page
         else
-          items_ref[:page] = page_
+          ref_items_for_frame[:page] = page
         end
       end
-      query[:ref] = items_ref.to_json if items_ref.present?
+      query[:ref] = ref_items_for_frame.to_json if ref_items_for_frame.present?
       query
     end
 
-    def default_ref_items
+    def ref_items_for_frame
       {}
     end
   end

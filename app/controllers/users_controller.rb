@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     items.present? ? { q: items } : {}
   end
 
-  def default_ref_items
+  def ref_items_for_frame
     { from: "user_profile", id: permitted_params[:id] }
   end
 end

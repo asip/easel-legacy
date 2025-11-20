@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
     {}
   end
 
-  def default_ref_items
+  def ref_items_for_frame
     { from: "profile" }
   end
 

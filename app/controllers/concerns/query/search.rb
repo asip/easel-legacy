@@ -7,7 +7,6 @@ module Query
     extend ActiveSupport::Concern
 
     included do
-      # helper_method :query_list
       helper_method :q_str
       helper_method :page_str
       helper_method :day_str
@@ -29,9 +28,8 @@ module Query
     end
 
     def paging_query_map(page:)
-      items = permitted_params[:q]
       query = {}
-      query[:q] = items if items.present?
+      query[:q] = q_str if q_str.present?
       query[:page] = page if page.present? && page != "1"
       query
     end
@@ -52,7 +50,8 @@ module Query
     end
 
     def page_str
-      permitted_params[:page]
+      page = permitted_params[:page]
+      page.present? && page != "1" ? page : nil
     end
 
     def day_str

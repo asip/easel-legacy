@@ -21,13 +21,13 @@ module Ref
         user_path(
           User.with_discarded.find(items[:id]),
           Ref::FrameRef.query_from(
-            q_items: q_str, ref_items: ref_str, page: page_str
+            q_items: q_str, ref_items:, page: page_str
           )
         )
       when "profile"
         profile_path(
           Ref::FrameRef.query_from(
-            ref_items: ref_str, page: page_str
+            ref_items:, page: page_str
           )
         )
       else
@@ -38,10 +38,9 @@ module Ref
     def self.query_from(q_items: nil, ref_items:, page:)
       query = {}
       query[:q] = q_items if q_items.present?
-      items = Json::Util.to_hash(ref_items)
-      items.delete(:from)
-      items.delete(:id)
-      query[:ref] = items.to_json if items.present?
+      ref_items.delete(:from)
+      ref_items.delete(:id)
+      query[:ref] = ref_items.to_json if ref_items.present?
       query[:page] = page if page.present?
       query
     end
