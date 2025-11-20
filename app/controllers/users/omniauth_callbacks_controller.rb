@@ -39,16 +39,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def callback_for(provider)
-    auth = {}
-    auth[:info] = Google::Auth::IDTokens.verify_oidc(auth_params[:credential],
-                                                     aud: Settings.google.client_id)
-                                        .with_indifferent_access
-    auth[:uid] = auth[:info][:sub]
-    auth[:provider] = provider
-    auth[:time_zone] = cookies[:time_zone]
-
-    # puts auth
-
+    auth = User.auth_from(provider:, credential: auth_params[:credential], time_zone: cookies[:time_zone])
     user = User.from(auth:)
 
     if user.persisted?

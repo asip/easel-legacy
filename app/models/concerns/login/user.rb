@@ -36,11 +36,22 @@ module Login
         [ success, user ]
       end
 
+      def auth_from(credential:, provider:, time_zone:)
+        auth = {}
+        auth[:info] = Google::Auth::IDTokens.verify_oidc(credential,
+                                                         aud: Settings.google.client_id)
+                                            .with_indifferent_access
+        auth[:uid] = auth[:info][:sub]
+        auth[:provider] = provider
+        auth[:time_zone] = time_zone
+        auth
+      end
+
       def from(auth:)
         uid = auth[:uid]
         provider = auth[:provider]
         time_zone = auth[:time_zone]
-        info = auth[:info] || {}.with_indifferent_access
+        info = auth[:info] || {}
 
         # (認証レコードを検索)
         authentication = Authentication.find_by(uid: uid, provider: provider)
