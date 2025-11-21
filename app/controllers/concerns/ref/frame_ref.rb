@@ -15,22 +15,23 @@ module Ref
 
     def back_to_path
       # puts ref_items
-      from = ref_items[:from]
+      items = Json::Util.to_hash(ref_str)
+      from = items[:from]
       if from.blank?
         root_path(query_map)
       else
         case from
         when "user_profile"
           user_path(
-            User.with_discarded.find(ref_items[:id]),
+            User.with_discarded.find(items[:id]),
             Ref::FrameRef.query_from(
-              q_items: q_str, ref_items:, page: page_str
+              q_items: q_str, ref_items: items, page: page_str
             )
           )
         when "profile"
           profile_path(
             Ref::FrameRef.query_from(
-              ref_items:, page: page_str
+              ref_items: items, page: page_str
             )
           )
         else

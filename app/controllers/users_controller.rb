@@ -48,9 +48,9 @@ class UsersController < ApplicationController
   end
 
   def query_map
-    items = permitted_params[:q]
+    items_q = permitted_params[:q]
 
-    items.present? ? { q: items } : {}
+    items_q.present? ? { q: items_q } : {}
   end
 
   def ref_items_for_frame

@@ -3,7 +3,7 @@
   <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2" data-controller="tagify preview">
     <div class="card-body">
       <div class="flex justify-start">
-        <%= link_to frame_path(@frame) do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
+        <%= link_to frame_path(@frame, query_map) do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
       </div>
       <div class="flex justify-center mb-2">
         <%= render ::Preview::Image::Component.new(model: @frame, original: true) %>
