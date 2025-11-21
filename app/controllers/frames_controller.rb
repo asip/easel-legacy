@@ -11,6 +11,7 @@ class FramesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: %i[index show]
 
+  before_action :set_prev_url, only: %i[show new]
   before_action :set_frame, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
@@ -20,8 +21,6 @@ class FramesController < ApplicationController
   end
 
   def show
-    from = request.referer
-    session[:prev_url] = from || root_path(query_map) unless from&.include?("/frames")
     frame_id = permitted_params[:id]
     if current_user
       self.frame = Queries::Frames::FindFrame.run(frame_id:, user: current_user)
@@ -31,10 +30,6 @@ class FramesController < ApplicationController
   end
 
   def new
-    from = request.referer
-    unless from&.include?("/profile") || from&.include?("/account/password/edit") || from&.include?("/frames/new")
-      session[:prev_url] = from || root_path(query_map)
-    end
     self.frame = Frame.new(confirming: false)
   end
 
@@ -74,6 +69,15 @@ class FramesController < ApplicationController
   private
 
   attr_accessor :frame
+
+  def set_prev_url
+    from = request.referer
+    if (action_name == "show" && !from&.include?("/frames")) ||
+       (action_name == "new" && !from&.include?("/profile") &&
+        !from&.include?("/account/password/edit") && !from&.include?("/frames/new"))
+      session[:prev_url] = from || root_path(query_map)
+    end
+  end
 
   def set_frame
     case action_name

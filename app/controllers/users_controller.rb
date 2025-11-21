@@ -10,17 +10,9 @@ class UsersController < ApplicationController
 
   skip_before_action :authenticate_user!
 
-  def show
-    from = request.referer
-    unless from&.include?("/user") || from&.include?("/profile") || from&.include?("/account/password/edit") || from&.include?("/frames/new")
-      path = root_path(query_map)
-      if from&.include?("/frame") && from&.include?("user_profile")
-        session[:prev_url] = path
-      else
-        session[:prev_url] = from || path
-      end
-    end
+  before_action :set_prev_url, only: [ :show ]
 
+  def show
     user_id = permitted_params[:id]
     @user = Queries::Users::FindUser.run(user_id:)
     @pagy, @frames = list_frames(user_id:, page: permitted_params[:page])
@@ -37,6 +29,19 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_prev_url
+    from = request.referer
+    unless from&.include?("/user") || from&.include?("/profile") ||
+           from&.include?("/account/password/edit") || from&.include?("/frames/new")
+      path = root_path(query_map)
+      if from&.include?("/frame") && from&.include?("user_profile")
+        session[:prev_url] = path
+      else
+        session[:prev_url] = from || path
+      end
+    end
+  end
 
   def permitted_params
     @permitted_params ||= params.permit(:id, :q, :page, :ref).to_h

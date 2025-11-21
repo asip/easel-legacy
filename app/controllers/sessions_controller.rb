@@ -8,17 +8,9 @@ class SessionsController < ApplicationController
   include Ref::SessionRef
   include Session
 
-  def show
-    from = request.referer
-    unless from&.include?("/profile") || from&.include?("/account/password/edit") || from&.include?("/frames/new")
-      path = root_path(query_map)
-      if from&.include?("/frame") && from&.include?("profile")
-        session[:prev_url] = path
-      else
-        session[:prev_url] = from || path
-      end
-    end
+  before_action :set_prev_url, only: [ :show ]
 
+  def show
     self.user = current_user
     @pagy, @frames = list_frames(user: user, page: permitted_params[:page])
   end
@@ -26,6 +18,19 @@ class SessionsController < ApplicationController
   private
 
   attr_accessor :user
+
+  def set_prev_url
+    from = request.referer
+    unless from&.include?("/profile") || from&.include?("/account/password/edit") ||
+           from&.include?("/frames/new")
+      path = root_path(query_map)
+      if from&.include?("/frame") && from&.include?("profile")
+        session[:prev_url] = path
+      else
+        session[:prev_url] = from || path
+      end
+    end
+  end
 
   def query_map
     {}
