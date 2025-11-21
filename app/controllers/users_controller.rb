@@ -6,10 +6,21 @@ class UsersController < ApplicationController
   include Query::List
   include Ref::UserRef
   include Queries::Users::Pagination
+  include Session
 
   skip_before_action :authenticate_user!
 
   def show
+    from = request.referer
+    unless from&.include?("/user") || from&.include?("/profile") || from&.include?("/account/password/edit") || from&.include?("/frames/new")
+      path = root_path(query_map)
+      if from&.include?("/frame") && from&.include?("user_profile")
+        session[:prev_url] = path
+      else
+        session[:prev_url] = from || path
+      end
+    end
+
     user_id = permitted_params[:id]
     @user = Queries::Users::FindUser.run(user_id:)
     @pagy, @frames = list_frames(user_id:, page: permitted_params[:page])

@@ -19,7 +19,7 @@ module Ref
       when "frame"
         frame_path(Frame.find(items[:id]), Ref::UserRef.query_from(ref_items: items, q_items: permitted_params[:q]))
       else
-        root_path(query_map)
+        prev_url
       end
     end
 
