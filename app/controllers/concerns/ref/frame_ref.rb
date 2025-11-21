@@ -15,22 +15,27 @@ module Ref
 
     def back_to_path
       # puts ref_items
-      case ref_items[:from]
-      when "user_profile"
-        user_path(
-          User.with_discarded.find(ref_items[:id]),
-          Ref::FrameRef.query_from(
-            q_items: q_str, ref_items:, page: page_str
-          )
-        )
-      when "profile"
-        profile_path(
-          Ref::FrameRef.query_from(
-            ref_items:, page: page_str
-          )
-        )
+      from = ref_items[:from]
+      if from.blank?
+        root_path(query_map)
       else
-        prev_url
+        case from
+        when "user_profile"
+          user_path(
+            User.with_discarded.find(ref_items[:id]),
+            Ref::FrameRef.query_from(
+              q_items: q_str, ref_items:, page: page_str
+            )
+          )
+        when "profile"
+          profile_path(
+            Ref::FrameRef.query_from(
+              ref_items:, page: page_str
+            )
+          )
+        else
+          prev_url
+        end
       end
     end
 
