@@ -20,6 +20,8 @@ class FramesController < ApplicationController
   end
 
   def show
+    from = request.referer
+    session[:prev_url] = from || root_path(query_map) unless from&.include?("/frames")
     frame_id = permitted_params[:id]
     if current_user
       self.frame = Queries::Frames::FindFrame.run(frame_id:, user: current_user)

@@ -14,12 +14,11 @@ module Ref
     protected
 
     def back_to_path
-      items = ref_items
-      # puts items
-      case items[:from]
+      # puts ref_items
+      case ref_items[:from]
       when "user_profile"
         user_path(
-          User.with_discarded.find(items[:id]),
+          User.with_discarded.find(ref_items[:id]),
           Ref::FrameRef.query_from(
             q_items: q_str, ref_items:, page: page_str
           )
@@ -31,7 +30,7 @@ module Ref
           )
         )
       else
-        root_path(query_map)
+        prev_url
       end
     end
 
