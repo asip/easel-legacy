@@ -14,9 +14,7 @@ module Ref
     protected
 
     def back_to_path
-      from = prev_url
-      from = root_path(query_map) if from&.include?("/profile") || (from&.include?("/frame") && from&.include?("profile"))
-      from
+      prev_url
     end
   end
 end

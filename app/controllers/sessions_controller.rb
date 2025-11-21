@@ -11,8 +11,14 @@ class SessionsController < ApplicationController
   def show
     from = request.referer
     unless from&.include?("/profile") || from&.include?("/account/password/edit") || from&.include?("/frames/new")
-      session[:prev_url] = from || root_path(query_map)
+      path = root_path(query_map)
+      if from&.include?("/frame") && from&.include?("profile")
+        session[:prev_url] = path
+      else
+        session[:prev_url] = from || path
+      end
     end
+
     self.user = current_user
     @pagy, @frames = list_frames(user: user, page: permitted_params[:page])
   end
