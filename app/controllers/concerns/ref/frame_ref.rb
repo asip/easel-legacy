@@ -43,12 +43,12 @@ module Ref
     end
 
     def self.query_from(q_items: nil, ref_items:, page:)
-      query = {}
-      query[:q] = q_items if q_items.present?
       ref_items.delete(:from)
       ref_items.delete(:id)
+      query = {}
+      query[:q] = q_items if q_items.present?
       query[:ref] = ref_items.to_json if ref_items.present?
-      query[:page] = page if page.present?
+      query[:page] = page if page.present? && page != "1"
       query
     end
 

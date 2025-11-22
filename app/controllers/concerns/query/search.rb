@@ -50,8 +50,7 @@ module Query
     end
 
     def page_str
-      page = permitted_params[:page]
-      page.present? && page != "1" ? page : nil
+      permitted_params[:page]
     end
 
     def day_str
