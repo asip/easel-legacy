@@ -14,17 +14,15 @@ module Ref
     protected
 
     def back_to_path
-      @back_to_path ||= back_to_prev_page
-    end
-
-    def back_to_prev_page
-      items = ref_items
-      case items[:from]
-      when "frame"
-        frame_path(Frame.find(items[:id]), Ref::UserRef.query_from(ref_items: items, q_items: permitted_params[:q]))
-      else
-        prev_url
-      end
+      @back_to_path ||= ->() {
+        items = ref_items
+        case items[:from]
+        when "frame"
+          frame_path(Frame.find(items[:id]), Ref::UserRef.query_from(ref_items: items, q_items: permitted_params[:q]))
+        else
+          prev_url
+        end
+      }.call
     end
 
     def self.query_from(ref_items:, q_items:)

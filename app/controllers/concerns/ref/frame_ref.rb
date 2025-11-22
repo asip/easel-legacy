@@ -14,34 +14,32 @@ module Ref
     protected
 
     def back_to_path
-      @back_to_path ||= back_to_prev_page
-    end
-
-    def back_to_prev_page
-      # puts ref_items
-      items = Json::Util.to_hash(ref_str)
-      from = items[:from]
-      if from.blank?
-        root_path(query_map)
-      else
-        case from
-        when "user_profile"
-          user_path(
-            User.with_discarded.find(items[:id]),
-            Ref::FrameRef.query_from(
-              q_items: q_str, ref_items: items, page: page_str
-            )
-          )
-        when "profile"
-          profile_path(
-            Ref::FrameRef.query_from(
-              ref_items: items, page: page_str
-            )
-          )
+      @back_to_path ||= -> {
+        # puts ref_items
+        items = Json::Util.to_hash(ref_str)
+        from = items[:from]
+        if from.blank?
+          root_path(query_map)
         else
-          prev_url
+          case from
+          when "user_profile"
+            user_path(
+              User.with_discarded.find(items[:id]),
+              Ref::FrameRef.query_from(
+                q_items: q_str, ref_items: items, page: page_str
+              )
+            )
+          when "profile"
+            profile_path(
+              Ref::FrameRef.query_from(
+                ref_items: items, page: page_str
+              )
+            )
+          else
+            prev_url
+          end
         end
-      end
+      }.call
     end
 
     def self.query_from(q_items: nil, ref_items:, page:)
