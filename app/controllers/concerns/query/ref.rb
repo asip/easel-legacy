@@ -18,7 +18,7 @@ module Query
     end
 
     def query_map_with_ref
-      permitted_params.to_h.filter do |key, value|
+      @query_map_with_ref ||= permitted_params.to_h.filter do |key, value|
         query_list_with_ref.include?(key.to_sym) if value.present?
       end
     end
