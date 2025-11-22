@@ -95,12 +95,7 @@ class FramesController < ApplicationController
 
     self.frame.confirming = false
     # self.frame.file_derivatives! if frame.file.present?
-    case action_name
-    when "create"
-      render :create, layout: false, content_type: "text/vnd.turbo-stream.html"
-    when "update"
-      render :update, layout: false, content_type: "text/vnd.turbo-stream.html"
-    end
+    render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
   def permitted_params
