@@ -7,11 +7,10 @@ class Users::SessionsController < Devise::SessionsController
   include Session
 
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :set_prev_url, only: [ :new ]
 
   # GET /resource/sign_in
   def new
-    from = request.referer
-    session[:prev_url] = from || root_path(query_map) unless from&.include?("/signup")
     super
   end
 
@@ -41,6 +40,11 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   private
+
+  def set_prev_url
+    from = request.referer
+    session[:prev_url] = from || root_path(query_map) unless from&.include?("/signup")
+  end
 
   def q_items
     {}
