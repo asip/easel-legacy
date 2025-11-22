@@ -14,7 +14,7 @@ module Query
     protected
 
     def query_list_with_ref
-      %i[ref q]
+      %i[q ref page]
     end
 
     def query_map_with_ref
