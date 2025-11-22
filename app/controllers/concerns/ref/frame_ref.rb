@@ -14,7 +14,7 @@ module Ref
     protected
 
     def back_to_path
-      @back_to_path ||= -> {
+      @back_to_path ||= ->() {
         # puts ref_items
         items = Json::Util.to_hash(ref_str)
         from = items[:from]
