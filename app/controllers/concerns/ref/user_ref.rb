@@ -14,6 +14,10 @@ module Ref
     protected
 
     def back_to_path
+      @back_to_path ||= back_to_prev_page
+    end
+
+    def back_to_prev_page
       items = ref_items
       case items[:from]
       when "frame"
