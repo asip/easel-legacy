@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   include Query::List
   include Queries::Sessions::Pagination
   include Ref::SessionRef
+  include Query::SessionQuery
   include Session
 
   before_action :set_prev_url, only: [ :show ]
@@ -30,14 +31,6 @@ class SessionsController < ApplicationController
         session[:prev_url] = from || path
       end
     end
-  end
-
-  def query_map
-    {}
-  end
-
-  def ref_items_for_frame
-    { from: "profile" }
   end
 
   def permitted_params

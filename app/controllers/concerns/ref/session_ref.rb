@@ -16,5 +16,9 @@ module Ref
     def back_to_path
       prev_url
     end
+
+    def ref_items_for_frame
+      { from: "profile" }
+    end
   end
 end

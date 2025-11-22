@@ -51,5 +51,18 @@ module Ref
       query[:page] = page if page.present?
       query
     end
+
+    def ref_items_next
+      @ref_items_next ||= Ref::FrameRef.ref_items_from(ref: ref_str, frame:)
+    end
+
+    def self.ref_items_from(ref:, frame:)
+      items = Json::Util.to_hash(ref)
+      if items.blank? || (items.present? && items[:from].blank?)
+        items[:from] = "frame"
+        items[:id] = frame.id
+      end
+      items
+    end
   end
 end

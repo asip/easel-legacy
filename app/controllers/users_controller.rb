@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   include Query::Search
   include Query::List
   include Ref::UserRef
+  include Query::UserQuery
   include Queries::Users::Pagination
   include Session
 
@@ -45,15 +46,5 @@ class UsersController < ApplicationController
 
   def permitted_params
     @permitted_params ||= params.permit(:id, :q, :page, :ref).to_h
-  end
-
-  def query_map
-    items_q = permitted_params[:q]
-
-    items_q.present? ? { q: items_q } : {}
-  end
-
-  def ref_items_for_frame
-    { from: "user_profile", id: permitted_params[:id] }
   end
 end

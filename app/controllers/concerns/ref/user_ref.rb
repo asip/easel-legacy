@@ -34,5 +34,9 @@ module Ref
       query[:ref] = items.to_json if items.present?
       query
     end
+
+    def ref_items_for_frame
+      { from: "user_profile", id: permitted_params[:id] }
+    end
   end
 end
