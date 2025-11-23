@@ -2,7 +2,7 @@
 
 module PageTransition
   def self.redirect_url(from:)
-    if from.nil?
+    if from.blank?
       to_path = "/admins/sign_in"
     elsif from.include?("/login") || from.include?("/frames/new")||
        from.include?("/profile") || from.include?("/account/password/edit")

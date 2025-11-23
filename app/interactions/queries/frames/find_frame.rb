@@ -15,11 +15,11 @@ module Queries
       end
 
       def execute
-        if @private.nil? && @user.nil?
+        if @user.blank? && @private.blank?
           Frame.find_by!(id: @frame_id)
-        elsif @user.nil? && !@private.nil?
+        elsif @user.blank? && @private.present?
           Frame.find_by!(id: @frame_id, private: @private)
-        elsif !@user.nil? && @private.nil?
+        elsif @user.present? && @private.blank?
           Frame.merge(
             Frame.where(user_id: @user.id).or(
               Frame.where(private: false).where.not(user_id: @user.id)
