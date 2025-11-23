@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   include PageTransition::Query::SessionQuery
   include Session
 
-  before_action :set_prev_url, only: [ :show ]
+  before_action :store_location, only: [ :show ]
 
   def show
     self.user = current_user
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
   attr_accessor :user
 
-  def set_prev_url
+  def store_location
     from = request.referer
     unless from&.include?("/profile") || from&.include?("/account/password/edit") ||
            from&.include?("/frames/new")

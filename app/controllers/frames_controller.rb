@@ -12,7 +12,7 @@ class FramesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: %i[index show]
 
-  before_action :set_prev_url, only: %i[show new]
+  before_action :store_location, only: %i[show new]
   before_action :set_frame, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
@@ -71,7 +71,7 @@ class FramesController < ApplicationController
 
   attr_accessor :frame
 
-  def set_prev_url
+  def store_location
     from = request.referer
     if (action_name == "show" && !from&.include?("/frames")) ||
        (action_name == "new" && !from&.include?("/profile") &&
