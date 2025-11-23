@@ -2,11 +2,11 @@
 
 # Sessions Controller
 class SessionsController < ApplicationController
-  include Query::Search
-  include Query::List
   include Queries::Sessions::Pagination
-  include Ref::SessionRef
-  include Query::SessionQuery
+  include PageTransition::Query::Search
+  include PageTransition::Query::List
+  include PageTransition::Ref::SessionRef
+  include PageTransition::Query::SessionQuery
   include Session
 
   before_action :set_prev_url, only: [ :show ]

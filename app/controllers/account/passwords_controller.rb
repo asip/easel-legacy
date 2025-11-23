@@ -2,7 +2,7 @@
 
 # account / Passwords Controller
 class Account::PasswordsController < ApplicationController
-  include Query::Search
+  include PageTransition::Query::Search
 
   # before_action :authenticate_user!
 

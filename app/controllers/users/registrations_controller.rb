@@ -2,7 +2,7 @@
 
 # users / Registrations Controller
 class Users::RegistrationsController < Devise::RegistrationsController
-  include Query::Search
+  include PageTransition::Query::Search
   include Session
 
   before_action :configure_sign_up_params, only: [ :create ]

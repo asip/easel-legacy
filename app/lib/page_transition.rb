@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PageTransition
+module PageTransition
   def self.redirect_url(from:)
     if from.nil?
       to_path = "/admins/sign_in"

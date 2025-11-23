@@ -3,10 +3,10 @@
 # Frames Controller
 class FramesController < ApplicationController
   include Queries::Frames::Pagination
-  include Query::Search
-  include Query::List
-  include Ref::FrameRef
-  include Query::FrameQuery
+  include PageTransition::Query::Search
+  include PageTransition::Query::List
+  include PageTransition::Ref::FrameRef
+  include PageTransition::Query::FrameQuery
   include More
   include Session
 

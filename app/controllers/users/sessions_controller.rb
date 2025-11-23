@@ -3,7 +3,7 @@
 # users / Sessions Controller
 class Users::SessionsController < Devise::SessionsController
   include Flashes
-  include Query::Search
+  include PageTransition::Query::Search
   include Session
 
   # before_action :configure_sign_in_params, only: [:create]

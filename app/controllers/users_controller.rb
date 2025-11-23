@@ -2,11 +2,11 @@
 
 # Users Controller
 class UsersController < ApplicationController
-  include Query::Search
-  include Query::List
-  include Ref::UserRef
-  include Query::UserQuery
   include Queries::Users::Pagination
+  include PageTransition::Query::Search
+  include PageTransition::Query::List
+  include PageTransition::Ref::UserRef
+  include PageTransition::Query::UserQuery
   include Session
 
   skip_before_action :authenticate_user!
