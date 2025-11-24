@@ -13,4 +13,8 @@ module Session
   def prev_url
     session[:prev_url]
   end
+
+  def prev_url=(prev_url)
+    session[:prev_url] = prev_url
+  end
 end

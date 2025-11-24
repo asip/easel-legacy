@@ -76,7 +76,7 @@ class FramesController < ApplicationController
     if (action_name == "show" && !from&.include?("/frames")) ||
        (action_name == "new" && !from&.include?("/profile") &&
         !from&.include?("/account/password/edit") && !from&.include?("/frames/new"))
-      session[:prev_url] = from || root_path(query_map)
+      self.prev_url = from || root_path(query_map)
     end
   end
 

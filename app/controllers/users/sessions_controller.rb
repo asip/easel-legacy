@@ -43,7 +43,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def store_location
     from = request.referer
-    session[:prev_url] = from || root_path(query_map) unless from&.include?("/signup")
+    self.prev_url = from || root_path(query_map) unless from&.include?("/signup")
   end
 
   def q_items

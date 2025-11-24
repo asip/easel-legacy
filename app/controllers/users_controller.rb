@@ -37,9 +37,9 @@ class UsersController < ApplicationController
            from&.include?("/account/password/edit") || from&.include?("/frames/new")
       path = root_path(query_map)
       if from&.include?("/frame") && from&.include?("user_profile")
-        session[:prev_url] = path
+        self.prev_url = path
       else
-        session[:prev_url] = from || path
+        self.prev_url = from || path
       end
     end
   end
