@@ -21,8 +21,14 @@ module Mutations
         frame.attributes = @form_params
         mutation = Mutations::Frames::SaveFrame.run(user: @user, frame:)
         errors.merge!(mutation.errors) unless mutation.success?
-        @frame = mutation.frame
+        self.frame = mutation.frame
       end
+    end
+
+    private
+
+    def frame=(frame)
+      @frame = frame
     end
   end
 end

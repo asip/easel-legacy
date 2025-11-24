@@ -12,19 +12,27 @@ module Mutations
 
       def initialize(user:, frame:)
         @user = user
-        @frame = frame
+        self.frame = frame
       end
 
       def execute
-        @frame.user_id = @user.id
-        @success = @frame.save
-        return if @success
+        frame.user_id = @user.id
+        self.success = frame.save
+        return if success
 
-        errors.merge!(@frame.errors)
+        errors.merge!(frame.errors)
       end
 
       def success?
-        @success
+        success
+      end
+
+      private
+
+      attr_accessor :success
+
+      def frame=(frame)
+        @frame = frame
       end
     end
   end

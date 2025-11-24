@@ -11,17 +11,25 @@ module Mutations
       attr_reader :user
 
       def initialize(user:)
-        @user = user
+        self.user = user
       end
 
       def execute
-        @success = @user.save(context: :with_validation)
+        self.success = user.save(context: :with_validation)
 
-        errors.merge!(@user.errors) unless @success
+        errors.merge!(user.errors) unless success
       end
 
       def success?
-        @success
+        success
+      end
+
+      private
+
+      attr_accessor :success
+
+      def user=(user)
+        @user = user
       end
     end
   end

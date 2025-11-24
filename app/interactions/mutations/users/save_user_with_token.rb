@@ -15,17 +15,25 @@ module Mutations
       end
 
       def execute
-        @success = @user.save(context: :with_validation)
-        if @success
+        self.success = user.save(context: :with_validation)
+        if success
           # puts @user.saved_change_to_email?
-          @user.update_token
+          user.update_token
         else
-          errors.merge!(@user.errors)
+          errors.merge!(user.errors)
         end
       end
 
       def success?
-        @success
+        success
+      end
+
+      private
+
+      attr_accessor :success
+
+      def user=(user)
+        @user = user
       end
     end
   end
