@@ -37,7 +37,7 @@ class Frame < ApplicationRecord
   validates :file, presence: true
   validates :creator_name, length: { maximum: 40 }
   validates :shooted_at, datetime: true
-  validate :check_tag
+  validate :validate_tag
 
   # after_validation :assign_derivatives
 
@@ -125,7 +125,7 @@ class Frame < ApplicationRecord
 
   private
 
-  def check_tag
+  def validate_tag
     errors.add(:tag_list, I18n.t("validations.message.frame.tags.array_length")) if plain_tags.size > 5
     plain_tags.each do |tag|
       if tag.to_s.size > 10
