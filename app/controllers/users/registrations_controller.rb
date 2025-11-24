@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     build_resource
-    self.resource.confirming = false
+    resource.confirming = false
     yield resource if block_given?
     respond_with resource
   end
@@ -46,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    self.resource.confirming = false
+    resource.confirming = false
     super
   end
 

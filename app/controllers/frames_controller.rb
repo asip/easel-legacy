@@ -47,7 +47,7 @@ class FramesController < ApplicationController
 
   def edit
     self.frame = Queries::Frames::FindFrame.run(user: current_user, frame_id: permitted_params[:id])
-    self.frame.confirming = false
+    frame.confirming = false
     render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
@@ -86,7 +86,7 @@ class FramesController < ApplicationController
       self.frame = Frame.new(form_params)
     when "update"
       self.frame = Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
-      self.frame.attributes = form_params
+      frame.attributes = form_params
     end
   end
 
@@ -94,7 +94,7 @@ class FramesController < ApplicationController
     return unless permitted_params[:commit] == "戻る"
 
     self.frame.confirming = false
-    # self.frame.file_derivatives! if frame.file.present?
+    # frame.file_derivatives! if frame.file.present?
     render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
