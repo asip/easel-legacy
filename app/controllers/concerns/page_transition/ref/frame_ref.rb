@@ -23,35 +23,9 @@ module PageTransition
           if from.blank?
             root_path(query_map)
           else
-            case from
-            when "user_profile"
-              user_path(
-                User.with_discarded.find(items[:id]),
-                Ref::FrameRef.query_from(
-                  q_items: q_str, ref_items: items, page: page_str
-                )
-              )
-            when "profile"
-              profile_path(
-                Ref::FrameRef.query_from(
-                  ref_items: items, page: page_str
-                )
-              )
-            else
-              prev_url
-            end
+            prev_url
           end
         }.call
-      end
-
-      def self.query_from(q_items: nil, ref_items:, page:)
-        ref_items.delete(:from)
-        ref_items.delete(:id)
-        query = {}
-        query[:q] = q_items if q_items.present?
-        query[:ref] = ref_items.to_json if ref_items.present?
-        query[:page] = page if page.present? && page != "1"
-        query
       end
 
       def ref_items_next

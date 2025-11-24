@@ -11,10 +11,10 @@ module Session
   protected
 
   def prev_url
-    session[:prev_url]
+    session["prev_url[#{request.path}]".to_sym]
   end
 
   def prev_url=(prev_url)
-    session[:prev_url] = prev_url
+    session["prev_url[#{request.path}]".to_sym] = prev_url
   end
 end
