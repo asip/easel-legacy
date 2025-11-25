@@ -10,8 +10,12 @@ module Session
 
   protected
 
+  def prev_url_for(path:)
+    session["prev_url[#{path}]".to_sym]
+  end
+
   def prev_url
-    session["prev_url[#{request.path}]".to_sym]
+    prev_url_for(path: request.path)
   end
 
   def prev_url=(prev_url)

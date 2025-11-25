@@ -12,7 +12,7 @@ class FramesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: %i[index show]
 
-  before_action :store_location, only: %i[show new]
+  before_action :store_location, only: %i[show new edit]
   before_action :set_frame, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
@@ -55,7 +55,7 @@ class FramesController < ApplicationController
     mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: frame)
     self.frame = mutation.frame
     if mutation.success?
-      redirect_to frame_path(frame, query_map)
+      redirect_to prev_url_for(path: edit_frame_path(frame))
     else
       flashes[:alert] = frame.full_error_messages unless frame.errors.empty?
       render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
@@ -75,7 +75,8 @@ class FramesController < ApplicationController
     from = request.referer
     if (action_name == "show" && !from&.include?("/frames")) ||
        (action_name == "new" && !from&.include?("/profile") &&
-        !from&.include?("/account/password/edit") && !from&.include?("/frames/new"))
+        !from&.include?("/account/password/edit") && !from&.include?("/frames/new")) ||
+       (action_name == "edit" && !from.include?(request.path))
       self.prev_url = from || root_path(query_map)
     end
   end

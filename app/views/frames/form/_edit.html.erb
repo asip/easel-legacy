@@ -3,7 +3,7 @@
   <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2" data-controller="tagify preview">
     <div class="card-body">
       <div class="flex justify-start">
-        <%= link_to frame_path(@frame, query_map) do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
+        <%= link_to back_to_path do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
       </div>
       <div class="flex justify-center mb-2">
         <%= render ::Preview::Image::Component.new(model: @frame, original: true) %>
@@ -14,7 +14,7 @@
           <%= render Frames::Edit::Confirm::Component.new(form:, frame: @frame, tag_paths: tag_paths(@frame)) %>
         <% else %>
           <%= render Frames::Edit::Input::Component.new(form:, frame: @frame,
-                                                        back_to_path: frame_path(@frame, query_map)) %>
+                                                        back_to_path:) %>
         <% end %>
         <%= form.hidden_field :confirming %>
         <%= query_map_hidden_field_tags %>
