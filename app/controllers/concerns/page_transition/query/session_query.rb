@@ -8,9 +8,7 @@ module PageTransition
     module SessionQuery
       extend ActiveSupport::Concern
 
-      def query_map
-        {}
-      end
+      protected
     end
   end
 end

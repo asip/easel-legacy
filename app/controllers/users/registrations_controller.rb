@@ -125,7 +125,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       create_or_update = true
     when "update"
       saved = resource_updated
-      redirect_path = profile_path
+      redirect_path = profile_path(query_map)
       create_or_update = true
     else
       create_or_update = false

@@ -19,7 +19,7 @@
               </span>
             </summary>
             <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-20 z-999">
-              <li><%= link_to "profile", profile_path, class: "" %></li>
+              <li><%= link_to "profile", profile_path(query_map), class: "" %></li>
               <li><%= link_to "Upload", new_frame_path(query_map), class: "", "data-turbo": true %></li>
               <li><%= link_to "Logout", account_logout_path, data: { turbo_method: :delete },
                                                              class: "" %></li>

@@ -7,7 +7,7 @@ class Account::PasswordsController < ApplicationController
   # before_action :authenticate_user!
 
   def show
-    redirect_to edit_account_password_path
+    redirect_to edit_account_password_path(query_map)
   end
 
   def edit
@@ -15,7 +15,7 @@ class Account::PasswordsController < ApplicationController
   def update
     if current_user.update_with_password(password_params)
       bypass_sign_in current_user
-      redirect_to profile_path, notice: "パスワードを更新しました。"
+      redirect_to profile_path(query_map), notice: "パスワードを更新しました。"
     else
       # puts current_user.errors.to_hash(true)
       flashes[:alert] = current_user.full_error_messages unless current_user.errors.empty?

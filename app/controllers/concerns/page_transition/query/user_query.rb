@@ -8,10 +8,7 @@ module PageTransition
     module UserQuery
       extend ActiveSupport::Concern
 
-      def query_map
-        items_q = permitted_params[:q]
-        items_q.present? ? { q: items_q } : {}
-      end
+      protected
     end
   end
 end

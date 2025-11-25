@@ -8,6 +8,8 @@ module PageTransition
     module FrameQuery
       extend ActiveSupport::Concern
 
+      protected
+
       def query_map
         @query_map ||= ->() {
           query = {}

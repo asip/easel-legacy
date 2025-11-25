@@ -7,9 +7,9 @@
           <%= link_to back_to_path, class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>プロフィール
         </div>
         <div>
-          <%= link_to edit_profile_path do %><i class="bi bi-pencil-square text-accent hover:text-primary"></i><% end %>
+          <%= link_to edit_profile_path(query_map) do %><i class="bi bi-pencil-square text-accent hover:text-primary"></i><% end %>
           <% unless @user.social_login? %>
-            <%= link_to account_password_path do %><i class="bi bi-lock text-accent hover:text-primary"></i><% end %>
+            <%= link_to account_password_path(query_map) do %><i class="bi bi-lock text-accent hover:text-primary"></i><% end %>
           <% end %>
           <a onclick="delete_modal.showModal()">
             <i class="bi bi-x-circle text-accent hover:text-primary"></i>
