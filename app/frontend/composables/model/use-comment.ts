@@ -2,11 +2,11 @@ import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
 import type { Comment , CommentResource, CommentsResource } from '../../interfaces'
-import type { ErrorMessages } from '../../types'
+import type { ErrorMessages, CommentErrorProperty } from '../../types'
 import { useAccount, useQueryApi, useMutationApi, useEntity, useAlert, useConstants, useFlash } from '../'
 import { useCommentsStore } from '../../stores'
 
-type ErrorProperty = 'body' | 'base'
+type ErrorProperty = CommentErrorProperty
 
 export function useComment() {
   const { baseURL } = useConstants()
