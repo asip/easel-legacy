@@ -28,6 +28,11 @@ module PageTransition
       def ref_items
         @ref_items ||= Json::Util.to_hash(permitted_params[:ref])
       end
+
+      def ref_str
+        items = permitted_params[:ref]
+        items.present? ? items : nil
+      end
     end
   end
 end
