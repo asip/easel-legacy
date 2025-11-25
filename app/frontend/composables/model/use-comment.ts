@@ -7,7 +7,6 @@ import { useAccount, useQueryApi, useMutationApi, useEntity, useAlert, useConsta
 import { useCommentsStore } from '../../stores'
 
 type ErrorProperty = 'body' | 'base'
-type ExternalErrorProperty = 'body'
 
 export function useComment() {
   const { baseURL } = useConstants()
@@ -46,7 +45,7 @@ export function useComment() {
     base: []
   })
 
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>): void => {
+  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>): void => {
     externalErrors.value.body = errors.body ?? []
   }
 
