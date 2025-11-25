@@ -3,6 +3,7 @@
 # users / Registrations Controller
 class Users::RegistrationsController < Devise::RegistrationsController
   include PageTransition::Query::Search
+  include PageTransition::Query::Users::RegistrationQuery
   include Session
 
   before_action :configure_sign_up_params, only: [ :create ]
@@ -89,14 +90,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   attr_accessor :resource_updated
-
-  def q_items
-    {}
-  end
-
-  def query_map
-    {}
-  end
 
   def set_user
     case action_name

@@ -27,7 +27,7 @@
     </div>
     <div class="flex justify-center gap-2 mt-2">
       <%= form.submit "ログイン", class: "btn btn-outline btn-primary" %>
-      <%= link_to "戻る", prev_url, class: "btn btn-outline btn-warning", "data-turbo": true %>
+      <%= link_to "戻る", prev_url_for(path: login_path), class: "btn btn-outline btn-warning", "data-turbo": true %>
     </div>
   <% end %>
 </div>

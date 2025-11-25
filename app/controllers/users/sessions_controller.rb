@@ -4,6 +4,7 @@
 class Users::SessionsController < Devise::SessionsController
   include Flashes
   include PageTransition::Query::Search
+  include PageTransition::Query::Users::SessionQuery
   include Session
 
   # before_action :configure_sign_in_params, only: [:create]
@@ -43,15 +44,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def store_location
     from = request.referer
-    self.prev_url = from || root_path(query_map) unless from&.include?("/signup")
-  end
-
-  def q_items
-    {}
-  end
-
-  def query_map
-    {}
+    self.prev_url = from || root_path(query_map) unless from&.include?("/login") || from&.include?("/signup")
   end
 
   def respond_with(resource, _opts = {})

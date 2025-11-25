@@ -6,6 +6,7 @@ module Session
 
   included do
     helper_method :prev_url
+    helper_method :prev_url_for
   end
 
   protected
