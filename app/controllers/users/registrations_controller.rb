@@ -3,7 +3,6 @@
 # users / Registrations Controller
 class Users::RegistrationsController < Devise::RegistrationsController
   include PageTransition::Query::Search
-  include PageTransition::Query::Users::RegistrationQuery
   include Session
 
   before_action :configure_sign_up_params, only: [ :create ]
@@ -118,7 +117,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       create_or_update = true
     when "update"
       saved = resource_updated
-      redirect_path = profile_path(query_map)
+      redirect_path = profile_path
       create_or_update = true
     else
       create_or_update = false

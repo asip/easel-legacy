@@ -3,10 +3,10 @@
   <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2">
     <div class="card-body divide-y divide-gray-200">
       <div class="flex justify-start pb-1">
-        <%= link_to profile_path(query_map), class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>パスワード更新
+        <%= link_to prev_url_for(path: edit_account_password_path), class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>パスワード更新
       </div>
       <%= form_with(model: current_user, url: account_password_path, html: { method: :put }) do |form| %>
-        <%= render Passwords::Edit::Input::Component.new(form:, user: current_user, back_to_path: profile_path(query_map)) %>
+        <%= render Passwords::Edit::Input::Component.new(form:, user: current_user, back_to_path: prev_url_for(path: edit_account_password_path)) %>
       <% end %>
     </div>
   </div>

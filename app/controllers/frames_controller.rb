@@ -63,8 +63,8 @@ class FramesController < ApplicationController
   end
 
   def destroy
-    Mutations::Frames::DeleteFrame.run(user: current_user, frame_id: permitted_params[:id])
-    redirect_to root_path(query_map), status: :see_other
+    mutation = Mutations::Frames::DeleteFrame.run(user: current_user, frame_id: permitted_params[:id])
+    redirect_to prev_url_for(path: frame_path(mutation.frame)), status: :see_other
   end
 
   private
