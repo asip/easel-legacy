@@ -15,13 +15,13 @@
       <div class="flex justify-center mb-2">
         <%= render ::Preview::Image::Component.new(model: @frame, original: true, photoswipe: true) %>
       </div>
-      <% @tag_paths = tag_paths(@frame) %>
+      <% @tag_map = tag_map(frame: @frame) %>
       <div class="flex justify-center flex-wrap gap-1 mb-2">
         <% if user_signed_in? && @frame.user_id == current_user.id %>
         <div class="badge badge-outline badge-accent rounded-full"><%= t("enums.private.#{@frame.private}") %></div>
         <% end %>
-        <% if @tag_paths.size > 0 %>
-        <%= render ::Preview::Tags::Component.new(tag_paths: @tag_paths) %>
+        <% if @tag_map.size > 0 %>
+        <%= render ::Preview::Tags::Component.new(tag_map: @tag_map) %>
         <% end %>
       </div>
       <div class="flex justify-center">

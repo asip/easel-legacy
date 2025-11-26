@@ -4,8 +4,7 @@
 module FrameSearch
   # Component
   class Component < ViewComponent::Base
-    def initialize(word:)
-      @word = word
+    def initialize
     end
   end
 end

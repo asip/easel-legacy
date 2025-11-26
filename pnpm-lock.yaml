@@ -20,6 +20,9 @@ importers:
       '@hotwired/turbo-rails':
         specifier: ^8.0.20
         version: 8.0.20
+      '@nanostores/persistent':
+        specifier: ^1.2.0
+        version: 1.2.0(nanostores@1.1.0)
       '@regle/core':
         specifier: ^1.9.8
         version: 1.9.8(pinia@3.0.4(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3)))(vue@3.5.24(typescript@5.9.3))
@@ -38,6 +41,9 @@ importers:
       glightbox:
         specifier: ^3.3.1
         version: 3.3.1
+      nanostores:
+        specifier: ^1.1.0
+        version: 1.1.0
       photoswipe:
         specifier: 5.4.4
         version: 5.4.4
@@ -529,6 +535,12 @@ packages:
 
   '@markuplint/vue-spec@4.5.22':
     resolution: {integrity: sha512-IFSLA6Vo5+/5PyD501xzyWhdMOreQtPKVkl5IDxEVPpS/rkteH8dgxGB++SnIbuCDOTwQCbzw7RT2/xDksngaA==}
+
+  '@nanostores/persistent@1.2.0':
+    resolution: {integrity: sha512-kf5WOLpVI9Pk+AwXHIax4in3pesNe8299BEGQ2H8kgI05SZw7KKWCDv7bt2FOlND8E5y7rO5PRW34q0UCAl/DA==}
+    engines: {node: ^20.0.0 || >=22.0.0}
+    peerDependencies:
+      nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^1.0.0
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2014,6 +2026,10 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanostores@1.1.0:
+    resolution: {integrity: sha512-yJBmDJr18xy47dbNVlHcgdPrulSn1nhSE6Ns9vTG+Nx9VPT6iV1MD6aQFp/t52zpf82FhLLTXAXr30NuCnxvwA==}
+    engines: {node: ^20.0.0 || >=22.0.0}
+
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
@@ -3114,6 +3130,10 @@ snapshots:
       '@markuplint/ml-spec': 4.10.1
     transitivePeerDependencies:
       - supports-color
+
+  '@nanostores/persistent@1.2.0(nanostores@1.1.0)':
+    dependencies:
+      nanostores: 1.1.0
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -4557,6 +4577,8 @@ snapshots:
   mustache@4.2.0: {}
 
   nanoid@3.3.11: {}
+
+  nanostores@1.1.0: {}
 
   natural-compare@1.4.0: {}
 

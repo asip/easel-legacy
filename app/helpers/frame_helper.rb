@@ -11,12 +11,16 @@ module FrameHelper
     # rubocop:enable Rails/OutputSafety
   end
 
-  def tag_paths(frame)
+  def tag_map(frame:)
     tags = frame.plain_tags
-    tag_map = {}
+    map = {}
     tags.each do |tag|
-      tag_map[tag] = root_path({ q: { tag_name: tag }.to_json })
+      criteria = { tag_name: tag }.to_json
+      map[tag] = {
+        criteria:,
+        path: root_path({ q: criteria })
+      }
     end
-    tag_map
+    map
   end
 end

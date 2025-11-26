@@ -2,11 +2,10 @@ import ApplicationController from './application-controller'
 import { Datepicker } from 'vanillajs-datepicker'
 import ja from '../locales/date-picker/ja'
 
+import { searchCriteria } from '../stores'
+
 export default class CalendarController extends ApplicationController {
   static targets = ['cal', 'word']
-  static values = {
-    date: String,
-  }
 
   declare readonly calTarget: HTMLElement
   declare readonly hasCalTarget: boolean
@@ -30,7 +29,8 @@ export default class CalendarController extends ApplicationController {
     }
 
     if (calElement){
-      const date = this.dateValue
+      const qItems: Record<'word', string> = JSON.parse(searchCriteria.get()) as Record<'word', string>
+      const date = this.#isValidDate(qItems['word']) ? qItems['word'] : null
 
       Object.assign(Datepicker.locales, ja)
 
@@ -57,5 +57,9 @@ export default class CalendarController extends ApplicationController {
     if (this.calendar){
       this.calendar.destroy()
     }
+  }
+
+  #isValidDate(str: string):boolean {
+    return !isNaN(Date.parse(str))
   }
 }
