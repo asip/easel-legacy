@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   include PageTransition::Query::Search
   include PageTransition::Query::List
   include PageTransition::Ref::SessionRef
-  include PageTransition::Query::SessionQuery
   include Session
 
   before_action :store_location, only: [ :show ]
