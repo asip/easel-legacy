@@ -13,7 +13,6 @@
           <%= render Frames::New::Input::Component.new(form:, frame: @frame, back_to_path: prev_url_for(path: new_frame_path)) %>
         <% end %>
         <%= form.hidden_field :confirming %>
-        <%= query_map_hidden_field_tags %>
       <% end %>
     </div>
   </div>
