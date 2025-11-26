@@ -11,7 +11,6 @@ module PageTransition
       included do
         helper_method :q_str
         helper_method :page_str
-        helper_method :day_str
         helper_method :q_items
         helper_method :query_map
         helper_method :paging_query_map
@@ -48,16 +47,6 @@ module PageTransition
 
       def page_str
         permitted_params[:page]
-      end
-
-      def day_str
-        word = q_items[:word]
-        day = if word.blank? || !DateAndTime::Util.valid_date?(word)
-          ""
-        else
-          word
-        end
-        day
       end
     end
   end
