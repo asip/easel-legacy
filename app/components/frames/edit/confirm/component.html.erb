@@ -1,10 +1,10 @@
-<% if @frame.draft? || @tag_paths.size > 0 %>
+<% if @frame.draft? || @tag_map.size > 0 %>
 <div class="flex justify-center flex-wrap gap-1 mb-2">
   <% if @frame.draft? %>
   <div class="badge badge-outline badge-accent rounded-full"><%= t("enums.private.#{@frame.private}") %></div>
   <% end %>
-  <% if @tag_paths.size > 0 %>
-  <%= render ::Preview::Tags::Component.new(tag_paths: @tag_paths) %>
+  <% if @tag_map.size > 0 %>
+  <%= render ::Preview::Tags::Component.new(tag_map: @tag_map) %>
   <% end %>
 </div>
 <% end %>

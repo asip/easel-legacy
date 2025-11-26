@@ -6,9 +6,7 @@ module Drawer
   module SearchBar
     # Component
     class Component < ViewComponent::Base
-      def initialize(word:, day:)
-        @word = word
-        @day = day
+      def initialize
       end
     end
   end

@@ -1,5 +1,7 @@
 import ApplicationController from './application-controller'
 
+import { searchCriteria } from '../stores'
+
 export default class FrameSearchController extends ApplicationController {
   static targets = ['tooltip', 'word', 'q']
 
@@ -26,6 +28,11 @@ export default class FrameSearchController extends ApplicationController {
     }
 
     this.tooltipElement?.classList.remove('tooltip-error')
+
+    if(this.wordElement) {
+      const qItems: Record<'word', string>  = JSON.parse(searchCriteria.get()) as Record<'word', string>
+      this.wordElement.value = qItems['word'] ? qItems['word'] : ''
+    }
   }
 
   submit(event: Event): void {
@@ -33,9 +40,12 @@ export default class FrameSearchController extends ApplicationController {
     if (this.qElement) {
       if (this.wordElement?.value) {
         this.qElement.value = JSON.stringify({ word: this.wordElement.value })
+        // globalThis.console.log(searchCriteria.get())
       } else {
-        this.qElement.name= ''
+        this.qElement.name = ''
+        this.qElement.value = '{}'
       }
+      searchCriteria.set(this.qElement.value)
     }
     // globalThis.console.log(this.qElement?.value)
 

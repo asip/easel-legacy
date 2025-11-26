@@ -8,10 +8,10 @@ module Frames
     module Confirm
       # Component
       class Component < ViewComponent::Base
-        def initialize(frame:, form:, tag_paths:)
+        def initialize(frame:, form:, tag_map:)
           @frame = frame
           @form = form
-          @tag_paths = tag_paths
+          @tag_map = tag_map
         end
       end
     end

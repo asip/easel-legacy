@@ -6,8 +6,8 @@ module Preview
   module Tags
     # Component
     class Component < ViewComponent::Base
-      def initialize(tag_paths:, list: false, link: true)
-        @tag_paths = tag_paths
+      def initialize(tag_map:, list: false, link: true)
+        @tag_map = tag_map
         @list = list
         @link = link
       end
