@@ -3,6 +3,7 @@
 # account / Passwords Controller
 class Account::PasswordsController < ApplicationController
   include PageTransition::Query::Search
+  include PageTransition::Query::Account::PasswordsQuery
 
   # before_action :authenticate_user!
 
@@ -29,13 +30,5 @@ class Account::PasswordsController < ApplicationController
     @password_params ||= params.expect(
       user: [ :current_password, :password, :password_confirmation ]
     ).to_h
-  end
-
-  def q_items
-    {}
-  end
-
-  def query_map
-    {}
   end
 end
