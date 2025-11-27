@@ -1,25 +1,22 @@
 <script lang="ts" setup >
 import sanitizeHtml from 'sanitize-html'
-import { computed, inject, onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 import type { Comment, RefQuery } from '../interfaces'
-import type { UseRouteType } from '../composables'
-import { useAccount, useComment, useCommentRules, useI18nRegle, useToast } from '../composables'
+import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../composables'
 
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'
 
 const { setFlash } = useToast()
 
-const route = inject('route') as UseRouteType
-const { id } = route.params
-const { q } = route.query
-const refStr = route.query.ref
+const route = useRoute()
+const id: string = route.params?.id ?? ''
+const q: string = route.query?.q ?? ''
+const refStr: string = route.query?.ref ?? ''
 
 const { loggedIn, currentUser } = useAccount()
-const { getComments } = useComment()
-
-const { flash, comment, externalErrors, updateComment, deleteComment, isSuccess, reload401, setComment } = useComment()
+const { flash, comment, externalErrors, getComments, updateComment, deleteComment, isSuccess, reload401, setComment } = useComment()
 
 const { commentRules } = useCommentRules()
 

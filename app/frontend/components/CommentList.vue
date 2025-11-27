@@ -1,12 +1,10 @@
 <script lang="ts" setup>
 import CommentItem from './CommentItem.vue'
 
-import { inject } from 'vue'
+import { useComment, useRoute } from '../composables'
 
-import { useComment, type UseRouteType } from '../composables'
-
-const route = inject('route') as UseRouteType
-const { id } = route.params
+const route = useRoute()
+const id: string = route.params?.id ?? ''
 
 const { comments, getComments } = useComment()
 

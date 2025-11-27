@@ -40,6 +40,8 @@
     "@hotwired/turbo": "^8.0.20",
     "@hotwired/turbo-rails": "^8.0.20",
     "@nanostores/persistent": "^1.2.0",
+    "@nanostores/vue": "^1.0.1",
+    "@nanostores/router": "^1.0.0",
     "@regle/core": "^1.9.8",
     "@regle/rules": "^1.9.8",
     "@vueuse/integrations": "^14.0.0",

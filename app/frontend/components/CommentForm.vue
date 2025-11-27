@@ -1,18 +1,14 @@
 <script lang="ts" setup >
-import { inject } from 'vue'
+import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../composables'
 
-import type { UseRouteType } from '../composables'
-import { useAccount, useComment, useCommentRules, useI18nRegle, useToast } from '../composables'
-
-const route = inject('route') as UseRouteType
-const { id } = route.params
+const route = useRoute()
+const id: string = route.params?.id ?? ''
 
 const { setFlash } = useToast()
 
 const { loggedIn } = useAccount()
 
-const { comment, externalErrors, isSuccess, flash, createComment, reload401 } = useComment()
-const { getComments } = useComment()
+const { comment, externalErrors, isSuccess, flash, getComments, createComment, reload401 } = useComment()
 
 const { commentRules } = useCommentRules()
 

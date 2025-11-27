@@ -1,11 +1,14 @@
+import { $router } from '../stores'
+import { useStore } from '@nanostores/vue'
+
 export function useRoute(){
-  const url = new URL(globalThis.location.href)
+  const router = useStore($router)
 
-  const params: Record<string, string> = {}
+  const params = router.value?.params
 
-  const query: Record<string, string> = Object.fromEntries(url.searchParams.entries())
+  const query = router.value?.search
 
-  const path = url.pathname
+  const path = router.value?.path
 
   // globalThis.console.log(path)
   // globalThis.console.log(query)
