@@ -7,12 +7,12 @@ export const i18n = createI18n({
   messages: {
     en: {
       rules: {
-        required: 'Required.',
+        required: 'Required.'
       }
     },
     ja: {
       rules: {
-        required: '必須です。',
+        required: '必須です。'
       }
     }
   }

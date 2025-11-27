@@ -1,5 +1,11 @@
 import ApplicationController from './application-controller'
 
+import * as v from 'valibot'
+import { maxLengthMessage } from '../utils/valibot'
+
+import { i18n } from '../utils'
+import { useLocale } from '../composables'
+
 import { searchCriteria } from '../stores'
 
 export default class FrameSearchController extends ApplicationController {
@@ -49,11 +55,19 @@ export default class FrameSearchController extends ApplicationController {
     }
     // globalThis.console.log(this.qElement?.value)
 
-    if (this.wordElement?.value != null && this.wordElement.value.length <= 40) {
+    const { autoDetect } = useLocale()
+
+    autoDetect()
+
+    const schema = v.pipe(v.string(), v.maxLength(40))
+    maxLengthMessage(40)
+    const result = v.safeParse(schema, this.wordElement?.value, { lang: i18n.global.locale.value })
+
+    if (result.success) {
       (this.element as HTMLFormElement).requestSubmit()
     } else {
       if (this.tooltipElement) {
-        this.tooltipElement.dataset['tip'] = '40文字以内で入力してください'
+        this.tooltipElement.dataset['tip'] = result.issues[0]['message']
         this.tooltipElement.classList.add('tooltip-open')
         this.tooltipElement.classList.add('tooltip-error')
       }
