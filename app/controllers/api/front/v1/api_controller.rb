@@ -36,7 +36,7 @@ module Api
             raise Api::ErrorRenderable::UnauthorizedError.new("Authorizationヘッダーからトークンが見つかりません。")
           end
 
-          secret_key = Rails.application.credentials.secret_key_base
+          secret_key = Rails.application.secret_key_base
 
           begin
             decoded_token = JWT.decode(token, secret_key, true, { algorithm: "HS256" })
