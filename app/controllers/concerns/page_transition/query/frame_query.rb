@@ -24,7 +24,7 @@ module PageTransition
       def query_map_without_q
         @query_map_without_q ||= ->() {
           query = {}
-          query[:ref] = ref_items_next.to_json if ref_items_next.present?
+          query[:ref] = ref_items_for_user.to_json if ref_items_for_user.present?
           query
         }.call
       end

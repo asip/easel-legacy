@@ -28,8 +28,8 @@ module PageTransition
         }.call
       end
 
-      def ref_items_next
-        @ref_items_next ||= Ref::FrameRef.ref_items_from(ref: ref_str, frame:)
+      def ref_items_for_user
+        @ref_items_for_user ||= Ref::FrameRef.ref_items_from(ref: ref_str, frame:)
       end
 
       def self.ref_items_from(ref:, frame:)
