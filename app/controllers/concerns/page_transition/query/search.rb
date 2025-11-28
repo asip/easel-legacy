@@ -9,9 +9,6 @@ module PageTransition
       extend ActiveSupport::Concern
 
       included do
-        helper_method :q_str
-        helper_method :page_str
-        helper_method :q_items
         helper_method :query_map
         helper_method :paging_query_map
       end
@@ -20,6 +17,7 @@ module PageTransition
 
       def query_list
         %i[q ref page]
+        # %i[ref page]
       end
 
       def query_map
@@ -30,19 +28,9 @@ module PageTransition
 
       def paging_query_map(page:)
         query = {}
-        query[:q] = q_str if q_str.present?
+        query[:q] = criteria if criteria.present?
         query[:page] = page if page.present? && page != "1"
         query
-      end
-
-      def q_items
-        @q_items ||= Json::Util.to_hash(permitted_params[:q])
-        @q_items
-      end
-
-      def q_str
-        items = permitted_params[:q]
-        items.present? ? items : nil
       end
 
       def page_str

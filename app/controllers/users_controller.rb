@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   include PageTransition::Query::Search
   include PageTransition::Query::List
   include PageTransition::Ref::UserRef
-  include Session
+  include Cookie
 
   skip_before_action :authenticate_user!
 

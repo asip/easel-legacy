@@ -6,10 +6,10 @@ module FrameHelper
     tags = frame.plain_tags
     map = {}
     tags.each do |tag|
-      criteria = { tag_name: tag }.to_json
+      criteria_ = { tag_name: tag }.to_json
       map[tag] = {
-        q: criteria,
-        path: root_path({ q: criteria })
+        q: criteria_,
+        path: root_path({ q: criteria_ })
       }
     end
     map

@@ -15,7 +15,8 @@ module PageTransition
       protected
 
       def query_map_for_frame(from:, page:)
-        query = q_str.present? ? { q: q_str } : {}
+        query = criteria.present? ? { q: criteria } : {}
+        # query = {}
         query.merge(query_map_with_ref_for_frame(from:, page:))
       end
 

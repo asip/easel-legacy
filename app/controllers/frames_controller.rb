@@ -8,7 +8,7 @@ class FramesController < ApplicationController
   include PageTransition::Ref::FrameRef
   include PageTransition::Query::FrameQuery
   include More
-  include Session
+  include Cookie
 
   skip_before_action :authenticate_user!, only: %i[index show]
 
@@ -17,6 +17,7 @@ class FramesController < ApplicationController
   before_action :back_to_form, only: %i[create update]
 
   def index
+    self.criteria = permitted_params[:q]
     form = FrameSearchForm.new(q_items)
     @pagy, @frames = list_frames(items: form.to_h, page: page_str)
   end
