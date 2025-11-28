@@ -28,7 +28,6 @@ module PageTransition
 
       def paging_query_map(page:)
         query = {}
-        query[:q] = criteria if criteria.present?
         query[:page] = page if page.present? && page != "1"
         query
       end

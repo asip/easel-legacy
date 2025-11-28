@@ -16,10 +16,6 @@ module Cookie
     criteria.present? ? criteria : "{}"
   end
 
-  def criteria=(criteria)
-    cookies[:q] = criteria
-  end
-
   def q_items
     @q_items ||= Json::Util.to_hash(criteria)
     @q_items

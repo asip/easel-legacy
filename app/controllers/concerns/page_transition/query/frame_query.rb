@@ -17,7 +17,6 @@ module PageTransition
           items_page = ref_items[:page]
           query[:page] = items_page if items_from.blank? && items_page.present?
           query[:ref] = ref_items.to_json if items_from.present?
-          query[:q] = criteria if criteria.present?
           query
         }.call
       end
@@ -26,7 +25,6 @@ module PageTransition
         @query_map_with_ref ||= ->() {
           query = {}
           query[:ref] = ref_items_next.to_json if ref_items_next.present?
-          query[:q] = criteria if criteria.present?
           query
         }.call
       end

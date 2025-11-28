@@ -20,7 +20,7 @@ module PageTransition
       end
 
       def ref_items_for_frame
-        { from: "profile" }
+        @ref_items_for_frame ||= { from: "profile" }
       end
     end
   end

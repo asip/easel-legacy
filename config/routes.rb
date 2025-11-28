@@ -45,9 +45,12 @@ Rails.application.routes.draw do
     get "followers" => "users#followers", as: "followers"
   end
   resources :frames, except: [ :index ] do
-    get :next, on: :collection
-    get :prev, on: :collection
+    # get :next, on: :collection
+    # get :prev, on: :collection
   end
+
+  get "/next" => "frames#next"
+  get "/prev" => "frames#prev"
 
   namespace :account do
     resource :password

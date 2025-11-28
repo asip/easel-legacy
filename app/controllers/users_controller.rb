@@ -32,10 +32,10 @@ class UsersController < ApplicationController
 
   def store_location
     from = request.referer
-    unless from&.include?("/user") || from&.include?("/profile") ||
+    unless from&.include?("/users") || from&.include?("/profile") ||
            from&.include?("/account/password/edit") || from&.include?("/frames/new")
-      path = root_path(query_map)
-      if from&.include?("/frame") && from&.include?("user_profile")
+      path = root_path
+      if from&.include?("/frames") && from&.include?("user_profile")
         self.prev_url = path
       else
         self.prev_url = from || path
@@ -44,6 +44,6 @@ class UsersController < ApplicationController
   end
 
   def permitted_params
-    @permitted_params ||= params.permit(:id, :q, :page, :ref).to_h
+    @permitted_params ||= params.permit(:id, :page, :ref).to_h
   end
 end

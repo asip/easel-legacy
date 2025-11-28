@@ -12,7 +12,6 @@ const { setFlash } = useToast()
 
 const route = useRoute()
 const id: string = route.params?.id ?? ''
-const q: string = route.query?.q ?? ''
 const refStr: string = route.query?.ref ?? ''
 
 const { loggedIn, currentUser } = useAccount()
@@ -40,7 +39,6 @@ const queryMap = computed<Record<string, string>>(() => {
   const map: Record<string, string> = {
     ref: JSON.stringify(refItems.value)
   }
-  if (q) map.q = q
 
   return map
 })

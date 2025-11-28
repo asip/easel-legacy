@@ -9,14 +9,13 @@ module PageTransition
       extend ActiveSupport::Concern
 
       included do
-        # helper_method :query_list_with_ref
         helper_method :query_map_with_ref
       end
 
       protected
 
       def query_list_with_ref
-        %i[q ref page]
+        %i[ref page]
       end
 
       def query_map_with_ref

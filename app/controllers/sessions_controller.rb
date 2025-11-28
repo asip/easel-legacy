@@ -33,6 +33,6 @@ class SessionsController < ApplicationController
   end
 
   def permitted_params
-    @permitted_params ||= params.permit(:q, :page).to_h
+    @permitted_params ||= params.permit(:page).to_h
   end
 end

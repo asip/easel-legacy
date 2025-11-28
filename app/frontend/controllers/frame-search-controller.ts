@@ -61,7 +61,7 @@ export default class FrameSearchController extends ApplicationController {
           this.qElement.value = '{}'
         }
         searchCriteria.set(this.qElement.value)
-        cookies.set('q', this.qElement.value);
+        cookies.set('q', this.qElement.value, { path: '/' });
         (this.element as HTMLFormElement).requestSubmit()
       } else {
         if (this.tooltipElement) {
