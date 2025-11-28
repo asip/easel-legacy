@@ -4,7 +4,7 @@ import * as v from 'valibot'
 import { maxLengthMessage } from '../utils/valibot'
 
 import { i18n } from '../utils'
-import { useLocale } from '../composables'
+import { useLocale, useCookie } from '../composables'
 import { searchCriteria } from '../stores'
 
 export default class FrameSearchController extends ApplicationController {
@@ -43,6 +43,7 @@ export default class FrameSearchController extends ApplicationController {
   submit(event: Event): void {
     // globalThis.console.log(this.wordElement?.value)
     if (this.qElement) {
+      const { cookies } = useCookie()
       const { autoDetect } = useLocale()
 
       autoDetect()
@@ -59,7 +60,8 @@ export default class FrameSearchController extends ApplicationController {
           this.qElement.name = ''
           this.qElement.value = '{}'
         }
-        searchCriteria.set(this.qElement.value);
+        searchCriteria.set(this.qElement.value)
+        cookies.set('q', this.qElement.value);
         (this.element as HTMLFormElement).requestSubmit()
       } else {
         if (this.tooltipElement) {

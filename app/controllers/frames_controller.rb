@@ -17,7 +17,6 @@ class FramesController < ApplicationController
   before_action :back_to_form, only: %i[create update]
 
   def index
-    self.criteria = permitted_params[:q]
     form = FrameSearchForm.new(q_items)
     @pagy, @frames = list_frames(items: form.to_h, page: page_str)
   end
