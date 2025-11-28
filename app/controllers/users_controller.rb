@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def show
     user_id = permitted_params[:id]
     @user = Queries::Users::FindUser.run(user_id:)
-    @pagy, @frames = list_frames(user_id:, page: permitted_params[:page])
+    @pagy, @frames = list_frames(user_id:, page: page_str)
   end
 
   # followees list (フォロイー一覧)
