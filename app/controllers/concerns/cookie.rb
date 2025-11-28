@@ -30,6 +30,6 @@ module Cookie
   end
 
   def prev_url=(prev_url)
-    cookies["prev_url[#{request.path}]".to_sym] = prev_url
+    cookies["prev_url[#{request.path}]".to_sym] = { value: prev_url, expires: Time.zone.now + 1.day, http_only: true }
   end
 end
