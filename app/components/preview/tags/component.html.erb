@@ -1,14 +1,14 @@
 <% if @list %>
   <% if @tag_map.size > 0 %>
     <% @tag_map.each do |tag, map| %>
-      <%= link_to map[:path], "data-turbo": true, "data-controller": "frameTagSearch", "data-action": "click->frameTagSearch#setCriteria", "data-frameTagSearch-criteria-value": map[:criteria] do %><div class="badge badge-sm badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div><% end %>
+      <%= link_to map[:path], "data-turbo": true, "data-controller": "frameTagSearch", "data-action": "click->frameTagSearch#setCriteria", "data-frameTagSearch-q-value": map[:q] do %><div class="badge badge-sm badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div><% end %>
     <% end %>
   <% end %>
 <% else %>
   <% if @link %>
     <% if @tag_map.size > 0 %>
       <% @tag_map.each do |tag, map| %>
-        <%= link_to map[:path], "data-turbo": true, "data-controller": "frameTagSearch", "data-action": "click->frameTagSearch#setCriteria", "data-frameTagSearch-criteria-value": map[:criteria] do %><div class="badge badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div><% end %>
+        <%= link_to map[:path], "data-turbo": true, "data-controller": "frameTagSearch", "data-action": "click->frameTagSearch#setCriteria", "data-frameTagSearch-q-value": map[:q] do %><div class="badge badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div><% end %>
       <% end %>
     <% end %>
   <% else %>

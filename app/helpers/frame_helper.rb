@@ -8,7 +8,7 @@ module FrameHelper
     tags.each do |tag|
       criteria = { tag_name: tag }.to_json
       map[tag] = {
-        criteria:,
+        q: criteria,
         path: root_path({ q: criteria })
       }
     end

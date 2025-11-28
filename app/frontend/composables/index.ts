@@ -9,6 +9,7 @@ export { useLocale } from './use-locale'
 export { useToast } from './use-toast'
 export { useConstants } from './use-constants'
 export { useRoute } from './use-route'
+export { useCookie } from './use-cookie'
 
 export type { UseAccountType } from './model/use-account'
 export type { UseCommentType } from './model/use-comment'

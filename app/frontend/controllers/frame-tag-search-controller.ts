@@ -1,16 +1,19 @@
 import ApplicationController from './application-controller'
 
+import { useCookie } from '../composables'
 import { searchCriteria } from '../stores'
 
 export default class FrameTagSearchController extends ApplicationController {
   static values = {
-    criteria: String
+    q: String
   }
 
-  declare readonly criteriaValue: string
+  declare readonly qValue: string
 
   setCriteria(): void {
-    searchCriteria.set(this.criteriaValue)
+    const { cookies } = useCookie()
+    searchCriteria.set(this.qValue)
+    cookies.set('q', this.qValue)
   }
 
 }

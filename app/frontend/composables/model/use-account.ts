@@ -1,16 +1,15 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useCookies } from '@vueuse/integrations/useCookies'
 
 import type { AccountResource } from '../../interfaces'
-import { useAlert, useConstants, useFlash, useQueryApi } from '../'
+import { useAlert, useConstants, useFlash, useQueryApi, useCookie } from '../'
 import { useAccountStore } from '../../stores'
 
 export function useAccount() {
   const { loggedIn, currentUser } = storeToRefs(useAccountStore())
   const { clearCurrentUser } = useAccountStore()
 
-  const cookies = useCookies(['access_token'])
+  const { cookies } = useCookie()
 
   const { flash, clearFlash } = useFlash()
   const { baseURL } = useConstants()
