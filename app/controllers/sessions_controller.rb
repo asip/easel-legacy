@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
     from = request.referer
     unless from&.include?("/profile") || from&.include?("/account/password/edit") ||
            from&.include?("/frames/new")
-      path = root_path(query_map)
+      path = root_path
       if from&.include?("/frame") && from&.include?("profile")
         self.prev_url = path
       else
