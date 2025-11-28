@@ -1,5 +1,7 @@
 import ApplicationController from './application-controller'
 
+// import { useCookies } from '@vueuse/integrations/useCookies'
+
 import * as v from 'valibot'
 import { maxLengthMessage } from '../utils/valibot'
 
@@ -44,35 +46,37 @@ export default class FrameSearchController extends ApplicationController {
   submit(event: Event): void {
     // globalThis.console.log(this.wordElement?.value)
     if (this.qElement) {
-      if (this.wordElement?.value) {
-        this.qElement.value = JSON.stringify({ word: this.wordElement.value })
-        // globalThis.console.log(searchCriteria.get())
+      // const cookies = useCookies(['search_criteria'])
+
+      const { autoDetect } = useLocale()
+
+      autoDetect()
+
+      const schema = v.pipe(v.string(), v.maxLength(40))
+      maxLengthMessage(40)
+      const result = v.safeParse(schema, this.wordElement?.value, { lang: i18n.global.locale.value })
+
+      if (result.success) {
+        if (this.wordElement?.value) {
+          this.qElement.value = JSON.stringify({ word: this.wordElement.value })
+          // globalThis.console.log(searchCriteria.get())
+        } else {
+          this.qElement.name = ''
+          this.qElement.value = '{}'
+        }
+        searchCriteria.set(this.qElement.value);
+        (this.element as HTMLFormElement).requestSubmit()
       } else {
-        this.qElement.name = ''
-        this.qElement.value = '{}'
+        if (this.tooltipElement) {
+          this.tooltipElement.dataset['tip'] = result.issues[0]['message']
+          this.tooltipElement.classList.add('tooltip-open')
+          this.tooltipElement.classList.add('tooltip-error')
+        }
+        event.preventDefault()
       }
-      searchCriteria.set(this.qElement.value)
     }
     // globalThis.console.log(this.qElement?.value)
 
-    const { autoDetect } = useLocale()
-
-    autoDetect()
-
-    const schema = v.pipe(v.string(), v.maxLength(40))
-    maxLengthMessage(40)
-    const result = v.safeParse(schema, this.wordElement?.value, { lang: i18n.global.locale.value })
-
-    if (result.success) {
-      (this.element as HTMLFormElement).requestSubmit()
-    } else {
-      if (this.tooltipElement) {
-        this.tooltipElement.dataset['tip'] = result.issues[0]['message']
-        this.tooltipElement.classList.add('tooltip-open')
-        this.tooltipElement.classList.add('tooltip-error')
-      }
-      event.preventDefault()
-    }
   }
 
   clearTooltip(): void {
