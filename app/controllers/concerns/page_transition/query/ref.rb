@@ -9,18 +9,18 @@ module PageTransition
       extend ActiveSupport::Concern
 
       included do
-        helper_method :query_map_with_ref
+        helper_method :query_map_without_q
       end
 
       protected
 
-      def query_list_with_ref
+      def query_list_without_q
         %i[ref page]
       end
 
-      def query_map_with_ref
-        @query_map_with_ref ||= permitted_params.to_h.filter do |key, value|
-          query_list_with_ref.include?(key.to_sym) if value.present?
+      def query_map_without_q
+        @query_map_without_q ||= permitted_params.to_h.filter do |key, value|
+          query_list_without_q.include?(key.to_sym) if value.present?
         end
       end
 

@@ -16,10 +16,10 @@ module PageTransition
 
       def query_map_for_frame(from:, page:)
         query = {}
-        query.merge(query_map_with_ref_for_frame(from:, page:))
+        query.merge(query_map_without_q_for_frame(from:, page:))
       end
 
-      def query_map_with_ref_for_frame(from:, page:)
+      def query_map_without_q_for_frame(from:, page:)
         query = {}
         if page.present? && page != 1
           case from

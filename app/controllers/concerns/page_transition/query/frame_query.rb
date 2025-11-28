@@ -21,8 +21,8 @@ module PageTransition
         }.call
       end
 
-      def query_map_with_ref
-        @query_map_with_ref ||= ->() {
+      def query_map_without_q
+        @query_map_without_q ||= ->() {
           query = {}
           query[:ref] = ref_items_next.to_json if ref_items_next.present?
           query
