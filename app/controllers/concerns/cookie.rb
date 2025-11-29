@@ -22,7 +22,7 @@ module Cookie
   end
 
   def prev_url_for(path:)
-    cookies["prev_url[#{path}]".to_sym]
+    cookies["prev_url#{path.gsub("/", "_")}".to_sym]
   end
 
   def prev_url
@@ -30,6 +30,6 @@ module Cookie
   end
 
   def prev_url=(prev_url)
-    cookies["prev_url[#{request.path}]".to_sym] = { value: prev_url, expires: Time.zone.now + 1.day, http_only: true }
+    cookies["prev_url#{request.path.gsub("/", "_")}".to_sym] = { value: prev_url, expires: Time.zone.now + 1.day, http_only: true }
   end
 end
