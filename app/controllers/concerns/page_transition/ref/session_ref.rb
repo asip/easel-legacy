@@ -16,7 +16,7 @@ module PageTransition
       protected
 
       def back_to_path
-        prev_url
+        @back_to_path ||= prev_url
       end
 
       def ref_items_for_frame
