@@ -35,9 +35,7 @@ class UsersController < ApplicationController
     unless from&.include?("/users") || from&.include?("/profile") ||
            from&.include?("/account/password/edit") || from&.include?("/frames/new")
       path = root_path
-      if from&.include?("/frames") && from&.include?("user_profile")
-        self.prev_url = path
-      else
+      unless from&.include?("/frames") && from&.include?("user_profile")
         self.prev_url = from || path
       end
     end
