@@ -36,7 +36,6 @@ module PageTransition
         items = Json::Util.to_hash(ref)
         if items.blank? || (items.present? && items[:from].blank?)
           items[:from] = "frame"
-          items[:id] = frame.id
         end
         items
       end

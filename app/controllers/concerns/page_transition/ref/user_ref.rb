@@ -20,7 +20,7 @@ module PageTransition
       end
 
       def ref_items_for_frame
-        @ref_items_for_frame ||= { from: "user_profile", id: permitted_params[:id] }
+        @ref_items_for_frame ||= { from: "user_profile" }
       end
     end
   end

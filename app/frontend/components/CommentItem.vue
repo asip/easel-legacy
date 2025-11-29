@@ -30,7 +30,6 @@ const commentModel = defineModel<Comment>()
 const refItems = computed<RefQuery>( () => {
   const items: RefQuery = refStr ? JSON.parse(refStr) : {}
   items.from = 'frame'
-  items.id = id
 
   return items
 })
