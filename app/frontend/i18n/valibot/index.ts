@@ -1,0 +1,1 @@
+export { maxLengthMessage } from './maxLengthMessage'

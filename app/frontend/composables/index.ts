@@ -1,8 +1,7 @@
+export { useMutationApi, useQueryApi } from './api'
+export { useAccount, useComment } from './model'
+
 export { useEntity } from './use-entity'
-export { useQueryApi } from './api/use-query-api'
-export { useMutationApi } from './api/use-mutation-api'
-export { useAccount} from './model/use-account'
-export { useComment } from './model/use-comment'
 export { useAlert } from './use-alert'
 export { useFlash } from './use-flash'
 export { useLocale } from './use-locale'
@@ -11,8 +10,8 @@ export { useConstants } from './use-constants'
 export { useRoute } from './use-route'
 export { useCookie } from './use-cookie'
 
-export type { UseAccountType } from './model/use-account'
-export type { UseCommentType } from './model/use-comment'
+export { UseAccountType, UseCommentType } from './model'
+
 export type { UseAlertType } from './use-alert'
 export type { UseFlashType } from './use-flash'
 export type { ConstantsType } from './use-constants'
@@ -20,4 +19,4 @@ export type { UseRouteType } from './use-route'
 
 export { useI18nRegle } from './use-i18n-regle'
 
-export { useCommentRules } from './model/validation/use-comment-rules'
+export { useCommentRules } from './model/validation'

@@ -1,9 +1,9 @@
 import ApplicationController from './application-controller'
 
 import * as v from 'valibot'
-import { maxLengthMessage } from '../utils/valibot'
+import { maxLengthMessage } from '../i18n/valibot'
 
-import { i18n } from '../utils'
+import { i18n } from '../i18n'
 import { useLocale, useCookie } from '../composables'
 import { searchCriteria } from '../stores'
 

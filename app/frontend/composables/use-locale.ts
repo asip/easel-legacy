@@ -1,4 +1,4 @@
-import { i18n } from '../utils'
+import { i18n } from '../i18n'
 
 export const useLocale = () => {
   const { locale, availableLocales } = i18n.global
