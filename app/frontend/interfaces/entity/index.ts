@@ -1,2 +1,2 @@
-export { Comment } from './comment'
-export { User } from './user'
+export type { Comment } from './comment'
+export type { User } from './user'

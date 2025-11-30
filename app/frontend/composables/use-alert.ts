@@ -1,7 +1,7 @@
 import { ref, Ref } from 'vue'
 
-import { ErrorsResource, Flash } from '../interfaces'
-import { ErrorMessages } from '../types'
+import type { ErrorsResource, Flash } from '../interfaces'
+import type { ErrorMessages } from '../types'
 
 interface UseAlertOptions {
   flash: Ref<Flash>

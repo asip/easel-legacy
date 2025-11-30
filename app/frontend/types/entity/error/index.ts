@@ -1,1 +1,1 @@
-export { CommentErrorProperty } from './comment-error-property'
+export type { CommentErrorProperty } from './comment-error-property'

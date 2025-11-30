@@ -1,3 +1,3 @@
-export { ErrorMessages } from './error-messages'
+export type { ErrorMessages } from './error-messages'
 
-export { CommentErrorProperty } from './entity/error'
+export type { CommentErrorProperty } from './entity/error'
