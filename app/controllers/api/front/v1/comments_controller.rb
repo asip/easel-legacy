@@ -10,7 +10,7 @@ module Api
       class CommentsController < Api::Front::V1::ApiController
         def create
           mutation = Mutations::Comments::CreateComment.run(user: current_user, frame_id: params[:frame_id],
-                                                            form_params:)
+                                                            form: form_params)
           comment = mutation.comment
           if mutation.success?
             # logger.debug CommentResource.new(comment).serialize
@@ -22,7 +22,7 @@ module Api
 
         def update
           mutation = Mutations::Comments::UpdateComment.run(user: current_user, comment_id: params[:id],
-                                                        form_params:)
+                                                            form: form_params)
           comment = mutation.comment
           if mutation.success?
             # logger.debug CommentResource.new(comment).serialize
