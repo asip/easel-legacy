@@ -10,7 +10,7 @@ export { useConstants } from './use-constants'
 export { useRoute } from './use-route'
 export { useCookie } from './use-cookie'
 
-export { UseAccountType, UseCommentType } from './model'
+export type { UseAccountType, UseCommentType } from './model'
 
 export type { UseAlertType } from './use-alert'
 export type { UseFlashType } from './use-flash'
