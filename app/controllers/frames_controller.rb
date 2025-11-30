@@ -109,6 +109,6 @@ class FramesController < ApplicationController
   def form_params
     @form_params ||= params.expect(
       frame: %i[name tag_list comment file creator_name shooted_at private confirming]
-    )
+    ).to_h
   end
 end

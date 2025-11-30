@@ -57,7 +57,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def login_success(resource)
-    redirect_to session.delete(:prev_url) || after_sign_in_path_for(resource)
+    redirect_to prev_url_for(path: login_path) || after_sign_in_path_for(resource)
   end
 
   def login_failed
