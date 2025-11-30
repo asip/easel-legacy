@@ -18,7 +18,7 @@ class FramesController < ApplicationController
 
   def index
     form = FrameSearchForm.new(q_items)
-    @pagy, @frames = list_frames(items: form.to_h, page: page_str)
+    @pagy, @frames = list_frames(items: form.to_h, page:)
   end
 
   def show

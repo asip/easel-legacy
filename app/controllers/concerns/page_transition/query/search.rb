@@ -16,8 +16,7 @@ module PageTransition
       protected
 
       def query_list
-        %i[q ref page]
-        # %i[ref page]
+        %i[ref page]
       end
 
       def query_map
@@ -32,7 +31,7 @@ module PageTransition
         query
       end
 
-      def page_str
+      def page
         permitted_params[:page]
       end
     end
