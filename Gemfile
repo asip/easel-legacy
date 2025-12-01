@@ -38,16 +38,16 @@ gem "turbo-mount", "~> 0.4.3"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.18.6", require: false
+gem "bootsnap", "~> 1.19.0", require: false
 
 # vite integration
 gem "vite_rails", "3.0.19"
 
 # view component
-gem "view_component", "~> 4.1.0"
+gem "view_component", "~> 4.1.1"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.203.1"
+gem "aws-sdk-s3", "~> 1.205.0"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
@@ -56,7 +56,7 @@ gem "shrine", "~> 3.6.0"
 gem "imgproxy", "~> 3.0.0", require: false
 
 # i18n
-gem "rails-i18n", "~> 8.0.2"
+gem "rails-i18n", "~> 8.1.0"
 
 # error page handling
 gem "rambulance", "~> 3.3.0"
@@ -67,13 +67,13 @@ gem "devise-i18n", "1.15.0"
 gem "omniauth-google-oauth2", "1.2.1"
 gem "jwt", "3.1.2"
 
-gem "googleauth", "~> 1.15.1"
+gem "googleauth", "~> 1.16.0"
 
 # settings
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.0.2"
+gem "pagy", "~> 43.1.8"
 
 # tags
 gem "no_fly_list", "0.7.3"
