@@ -43,11 +43,17 @@ class Frame < ApplicationRecord
 
   enum :private, { final: false, draft: true }
 
-  scope :search_by, ->(items:) do
+  scope :search_by, ->(user:, items:) do
     scope = current_scope || relation
 
     word = items[:word]
     tag_name = items[:tag_name]
+
+    scope = scope.where(private: false)
+
+    if user.present?
+      scope = scope.or(Frame.where(user_id: user.id, private: true))
+    end
 
     if word.present?
       scope = if DateAndTime::Util.valid_date?(word)
