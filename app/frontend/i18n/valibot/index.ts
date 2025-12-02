@@ -1,1 +1,3 @@
-export { maxLengthMessage } from './maxLengthMessage'
+import { maxLengthMessage } from './maxLengthMessage'
+
+maxLengthMessage()

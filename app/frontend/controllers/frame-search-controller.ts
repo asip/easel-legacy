@@ -1,7 +1,7 @@
 import ApplicationController from './application-controller'
 
 import * as v from 'valibot'
-import { maxLengthMessage } from '../i18n/valibot'
+import '../i18n/valibot'
 
 import { i18n } from '../i18n'
 import { useLocale, useCookie } from '../composables'
@@ -49,7 +49,6 @@ export default class FrameSearchController extends ApplicationController {
       autoDetect()
 
       const schema = v.pipe(v.string(), v.maxLength(40))
-      maxLengthMessage(40)
       const result = v.safeParse(schema, this.wordElement?.value, { lang: i18n.global.locale.value })
 
       if (result.success) {
