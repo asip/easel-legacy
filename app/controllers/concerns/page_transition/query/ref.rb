@@ -10,6 +10,7 @@ module PageTransition
 
       included do
         helper_method :query_map_without_q
+        helper_method :back_to_path
       end
 
       protected

@@ -2,7 +2,7 @@
 
 # Frame Helper
 module FrameHelper
-  def tag_map(frame:)
+  def self.tag_map(frame:)
     tags = frame.plain_tags
     map = {}
     tags.each do |tag|
@@ -11,5 +11,11 @@ module FrameHelper
       }
     end
     map
+  end
+
+  def self.paging_query_map(page:)
+    query = {}
+    query[:page] = page if page.present? && page != "1"
+    query
   end
 end

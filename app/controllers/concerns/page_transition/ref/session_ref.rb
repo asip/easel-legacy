@@ -9,10 +9,6 @@ module PageTransition
       extend ActiveSupport::Concern
       include PageTransition::Query::Ref
 
-      included do
-        helper_method :back_to_path
-      end
-
       protected
 
       def ref_items_for_frame

@@ -10,7 +10,6 @@ module PageTransition
 
       included do
         helper_method :query_map
-        helper_method :paging_query_map
       end
 
       protected
@@ -23,12 +22,6 @@ module PageTransition
         @query_map ||= permitted_params.to_h.filter do |key, value|
           query_list.include?(key.to_sym) if value.present?
         end
-      end
-
-      def paging_query_map(page:)
-        query = {}
-        query[:page] = page if page.present? && page != "1"
-        query
       end
 
       def page

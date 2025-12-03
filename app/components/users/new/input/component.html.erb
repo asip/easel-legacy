@@ -48,7 +48,7 @@
         </td>
         <td>
           <% @user.time_zone = Time.zone.name %>
-          <%= @form.select :time_zone, helpers.tzinfo_options, {}, class: "select" %>
+          <%= @form.select :time_zone, UsersHelper.tzinfo_options, {}, class: "select" %>
         </td>
       </tr>
       <tr>
