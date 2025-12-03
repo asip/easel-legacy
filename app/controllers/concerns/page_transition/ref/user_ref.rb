@@ -15,10 +15,6 @@ module PageTransition
 
       protected
 
-      def back_to_path
-        @back_to_path ||= prev_url
-      end
-
       def ref_items_for_frame
         @ref_items_for_frame ||= { from: "user_profile" }
       end
