@@ -13,7 +13,7 @@ class FramesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   before_action :store_location, only: %i[show new edit]
-  before_action :set_frame, only: %i[create update]
+  before_action :set_model, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
   def index
@@ -81,7 +81,7 @@ class FramesController < ApplicationController
     end
   end
 
-  def set_frame
+  def set_model
     case action_name
     when "create"
       self.frame = Frame.new(form_params)

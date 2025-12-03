@@ -7,7 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [ :create ]
   before_action :configure_account_update_params, only: [ :update ]
 
-  before_action :set_user, only: %i[create update]
+  before_action :set_model, only: %i[create update]
   before_action :back_to_form, only: %i[create update]
 
   FORM_PARAMS = [ :name, :email, :password, :password_confirmation, :image, :profile, :time_zone, :confirming ]
@@ -89,7 +89,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   attr_accessor :resource_updated
 
-  def set_user
+  def set_model
     case action_name
     when "create"
       build_resource(sign_up_params)
