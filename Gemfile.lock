@@ -344,6 +344,8 @@ GEM
     rack-cors (3.0.0)
       logger
       rack (>= 3.0.14)
+    rack-mini-profiler (4.0.1)
+      rack (>= 1.2.0)
     rack-protection (4.1.1)
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
@@ -557,6 +559,7 @@ DEPENDENCIES
   puma (~> 7.1.0)
   rack-contrib (= 2.5.0)
   rack-cors (~> 3.0.0)
+  rack-mini-profiler (~> 4.0.0)
   rails (~> 8.1.1)
   rails-erd (~> 1.7.2)
   rails-i18n (~> 8.1.0)

@@ -112,7 +112,7 @@ group :development do
   gem "web-console", "~> 4.2.1"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
+  gem "rack-mini-profiler", "~> 4.0.0"
 
   gem "annotaterb", "~> 4.20.0"
   gem "rails-erd", "~> 1.7.2"
