@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { RegleVuePlugin } from '@regle/core'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import plugin from 'turbo-mount/vue'
@@ -12,7 +13,7 @@ pinia.use(piniaPluginPersistedstate)
 plugin.mountComponent = (mountProps) => {
   const { el, Component, props } = mountProps
   const app = createApp(Component, props)
-  app.use(pinia).mount(el)
+  app.use(RegleVuePlugin).use(pinia).mount(el)
   return () => {
     app.unmount()
   }
