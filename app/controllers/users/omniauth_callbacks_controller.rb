@@ -39,8 +39,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def callback_for(provider)
-    auth = User.auth_from(provider:, credential: auth_params[:credential], time_zone: cookies[:time_zone])
-    user = User.from(auth:)
+    auth = User.auth_from(provider:, credential: auth_params[:credential])
+    user = User.from(auth:, time_zone: cookies[:time_zone])
 
     if user.persisted?
       sign_in_and_redirect user, event: :authentication
