@@ -47,7 +47,7 @@ gem "vite_rails", "3.0.19"
 gem "view_component", "~> 4.1.1"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.205.0"
+gem "aws-sdk-s3", "~> 1.206.0"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
@@ -73,7 +73,7 @@ gem "googleauth", "~> 1.16.0"
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.1.8"
+gem "pagy", "~> 43.2.0"
 
 # tags
 gem "no_fly_list", "0.7.3"
@@ -112,7 +112,7 @@ group :development do
   gem "web-console", "~> 4.2.1"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  gem "rack-mini-profiler", "~> 4.0.0"
+  gem "rack-mini-profiler", "~> 4.0.1"
 
   gem "annotaterb", "~> 4.20.0"
   gem "rails-erd", "~> 1.7.2"

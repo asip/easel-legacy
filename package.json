@@ -16,17 +16,17 @@
     "@types/toastify-js": "^1.12.4",
     "@types/vanillajs-datepicker": "^1.3.5",
     "@types/yaireo__tagify": "^4.27.0",
-    "@typescript-eslint/eslint-plugin": "^8.48.0",
-    "@typescript-eslint/parser": "^8.48.0",
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
     "@vitejs/plugin-vue": "^6.0.2",
     "@vue/eslint-config-typescript": "^14.6.0",
     "copyfiles": "^2.4.1",
-    "daisyui": "5.5.5",
+    "daisyui": "5.5.8",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.6.2",
     "markuplint": "^4.14.0",
-    "prettier": "^3.7.2",
+    "prettier": "^3.7.4",
     "sass-embedded": "1.93.3",
     "tailwindcss": "4.1.17",
     "tsc-watch": "^7.2.0",
@@ -42,8 +42,8 @@
     "@nanostores/persistent": "^1.2.0",
     "@nanostores/vue": "^1.0.1",
     "@nanostores/router": "^1.0.0",
-    "@regle/core": "^1.11.0",
-    "@regle/rules": "^1.11.0",
+    "@regle/core": "^1.12.1",
+    "@regle/rules": "^1.12.1",
     "@vueuse/integrations": "^14.1.0",
     "@yaireo/tagify": "^4.35.6",
     "bootstrap-icons": "^1.13.1",
@@ -63,7 +63,9 @@
     "vue": "3.5.25",
     "vue-i18n": "11.2.2"
   },
-  "peerDependencies": {
-    "typescript": "5.9.3"
+  "pnpm": {
+    "overrides": {
+      "typescript": "5.9.3"
+    }
   }
 }
