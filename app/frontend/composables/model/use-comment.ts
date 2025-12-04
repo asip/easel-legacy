@@ -45,16 +45,12 @@ export function useComment() {
     base: []
   })
 
-  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>): void => {
-    externalErrors.value.body = errors.body ?? []
-  }
-
   const clearExternalErrors = (): void => {
     externalErrors.value.body = []
     externalErrors.value.base = []
   }
 
-  const { setAlert, reload401 } = useAlert({ flash, caller: { setExternalErrors } })
+  const { setAlert, reload401 } = useAlert({ flash, caller: { externalErrors } })
 
   const getComments = async (frameId: string): Promise<void> => {
     clearFlash()
