@@ -39,7 +39,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def callback_for(provider)
-    auth = User.auth_from(provider:, credential: auth_params[:credential])
+    auth = Google::Oauth.auth_from(provider:, credential: auth_params[:credential])
     user = User.from(auth:, time_zone: cookies[:time_zone])
 
     if user.persisted?
