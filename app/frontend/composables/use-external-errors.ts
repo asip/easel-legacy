@@ -1,7 +1,7 @@
 import { ref, type Ref } from 'vue'
 
 import { ErrorMessages } from '../types'
-import { Flash } from '../interfaces'
+import type { Flash } from '../interfaces'
 
 export function useExternalErrors<ErrorProperty extends string>({ flash } : { flash: Ref<Flash> }) {
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({})
