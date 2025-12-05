@@ -2,7 +2,7 @@
 import sanitizeHtml from 'sanitize-html'
 import { computed, onMounted, ref } from 'vue'
 
-import type { Comment, RefQuery } from '../interfaces'
+import type { Comment, RefItems } from '../interfaces'
 import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../composables'
 
 // If running in Node.js or SSR, uncomment the following line:
@@ -27,8 +27,8 @@ const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-const refItems = computed<RefQuery>( () => {
-  const items: RefQuery = refStr ? JSON.parse(refStr) : {}
+const refItems = computed<RefItems>( () => {
+  const items: RefItems = refStr ? JSON.parse(refStr) : {}
   items.from = 'frame'
 
   return items
