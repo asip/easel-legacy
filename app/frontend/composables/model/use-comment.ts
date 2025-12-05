@@ -38,7 +38,7 @@ export function useComment() {
     }
   }
 
-  const { externalErrors, clearExternalErrors } = useExternalErrors<CommentErrorProperty>()
+  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
 
   const { setAlert, reload401 } = useAlert({ flash, caller: { externalErrors } })
 
@@ -146,21 +146,6 @@ export function useComment() {
       flash.value.alert = '不具合が発生しました'
       globalThis.console.log((error as Error).message)
     }
-  }
-
-  const isSuccess = (): boolean => {
-    let result = true
-
-    if (externalErrors.value.body && externalErrors.value.body.length > 0 || 
-      externalErrors.value.base && externalErrors.value.base.length > 0) {
-      result = false
-    }
-
-    if (flash.value.alert) {
-      result = false
-    }
-
-    return result
   }
 
   return {
