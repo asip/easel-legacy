@@ -2,11 +2,9 @@ import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
 import type { Comment , CommentResource, CommentsResource } from '../../interfaces'
-import type { ErrorMessages, CommentErrorProperty } from '../../types'
-import { useAccount, useQueryApi, useMutationApi, useEntity, useAlert, useConstants, useFlash } from '../'
+import type { CommentErrorProperty } from '../../types'
+import { useAccount, useQueryApi, useMutationApi, useEntity, useExternalErrors, useAlert, useConstants, useFlash } from '../'
 import { useCommentsStore } from '../../stores'
-
-type ErrorProperty = CommentErrorProperty
 
 export function useComment() {
   const { baseURL } = useConstants()
@@ -40,15 +38,7 @@ export function useComment() {
     }
   }
 
-  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
-    body: [],
-    base: []
-  })
-
-  const clearExternalErrors = (): void => {
-    externalErrors.value.body = []
-    externalErrors.value.base = []
-  }
+  const { externalErrors, clearExternalErrors } = useExternalErrors<CommentErrorProperty>()
 
   const { setAlert, reload401 } = useAlert({ flash, caller: { externalErrors } })
 

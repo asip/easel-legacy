@@ -2,6 +2,7 @@ export { useMutationApi, useQueryApi } from './api'
 export { useAccount, useComment } from './model'
 
 export { useEntity } from './use-entity'
+export { useExternalErrors } from './use-external-errors'
 export { useAlert } from './use-alert'
 export { useFlash } from './use-flash'
 export { useLocale } from './use-locale'
