@@ -6,6 +6,8 @@ import type { CommentErrorProperty } from '../../types'
 import { useAccount, useQueryApi, useMutationApi, useEntity, useExternalErrors, useAlert, useConstants, useFlash } from '../'
 import { useCommentsStore } from '../../stores'
 
+import { i18n } from '../../i18n'
+
 export function useComment() {
   const { baseURL } = useConstants()
   const { flash, clearFlash } = useFlash()
@@ -64,7 +66,7 @@ export function useComment() {
       }
       //console.log(comments);
     } catch (error) {
-      flash.value.alert = '不具合が発生しました'
+      flash.value.alert = i18n.global.t('action.error.system', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }
@@ -89,7 +91,7 @@ export function useComment() {
         await setAlert({ response })
       }
     } catch (error) {
-      flash.value.alert = '不具合が発生しました'
+      flash.value.alert = i18n.global.t('action.error.system', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }
@@ -122,7 +124,7 @@ export function useComment() {
         setComment({ from: commentAttrs })
       }
     } catch (error) {
-      flash.value.alert = '不具合が発生しました'
+      flash.value.alert = i18n.global.t('action.error.system', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }
@@ -143,7 +145,7 @@ export function useComment() {
         await setAlert({ response })
       }
     } catch (error) {
-      flash.value.alert = '不具合が発生しました'
+      flash.value.alert = i18n.global.t('action.error.system', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }

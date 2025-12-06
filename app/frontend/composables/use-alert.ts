@@ -3,6 +3,8 @@ import { ref, Ref } from 'vue'
 import type { ErrorsResource, Flash } from '../interfaces'
 import type { ErrorMessages } from '../types'
 
+import { i18n } from '../i18n'
+
 interface UseAlertOptions {
   flash: Ref<Flash>
   caller?: UseAlertCallerType
@@ -20,16 +22,13 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       switch(response.status){
       case 401:
         break
-      case 500:
-        flash.value.alert = '不具合が発生しました'
-        break
       default:
-        flash.value.alert = '不具合が発生しました'
+        flash.value.alert = i18n.global.t('action.error.api', { statusCode: response.status })
       }
     } else {
       switch(response.status){
       case 401:
-        flash.value.alert = 'ログインしなおしてください'
+        flash.value.alert = i18n.global.t('action.error.login')
         reloading401.value = true
         break
       case 404:
@@ -43,11 +42,8 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
           }
         }
         break
-      case 500:
-        flash.value.alert = '不具合が発生しました'
-        break
       default:
-        flash.value.alert = '不具合が発生しました'
+        flash.value.alert = i18n.global.t('action.error.api', { statusCode: response.status })
       }
     }
   }

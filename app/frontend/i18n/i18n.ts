@@ -8,11 +8,25 @@ export const i18n = createI18n({
     en: {
       rules: {
         required: 'Required.'
+      },
+      action: {
+        error: {
+          api: 'An error has occurred.({statusCode})',
+          system: 'An error has occurred.({message})',
+          login: 'Please log in.'
+        }
       }
     },
     ja: {
       rules: {
         required: '必須です。'
+      },
+      action: {
+        error: {
+          api: '不具合が発生しました。({statusCode})',
+          system: '不具合が発生しました。({message})',
+          login: 'ログインしなおしてください'
+        }
       }
     }
   }

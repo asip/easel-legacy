@@ -5,6 +5,8 @@ import type { AccountResource } from '../../interfaces'
 import { useAlert, useConstants, useFlash, useQueryApi, useCookie } from '../'
 import { useAccountStore } from '../../stores'
 
+import { i18n } from '../../i18n'
+
 export function useAccount() {
   const { loggedIn, currentUser } = storeToRefs(useAccountStore())
   const { clearCurrentUser } = useAccountStore()
@@ -42,7 +44,7 @@ export function useAccount() {
         loggedIn.value = true
       }
     } catch(error) {
-      flash.value.alert = '不具合が発生しました'
+      flash.value.alert = i18n.global.t('action.error.system', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }
