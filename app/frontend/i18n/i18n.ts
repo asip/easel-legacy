@@ -11,8 +11,7 @@ export const i18n = createI18n({
       },
       action: {
         error: {
-          api: 'An error has occurred.({statusCode})',
-          system: 'An error has occurred.({message})',
+          api: 'An error has occurred.({message})',
           login: 'Please log in.'
         }
       }
@@ -23,8 +22,7 @@ export const i18n = createI18n({
       },
       action: {
         error: {
-          api: '不具合が発生しました。({statusCode})',
-          system: '不具合が発生しました。({message})',
+          api: '不具合が発生しました。({message})',
           login: 'ログインしなおしてください'
         }
       }

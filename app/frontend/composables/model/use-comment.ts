@@ -66,7 +66,7 @@ export function useComment() {
       }
       //console.log(comments);
     } catch (error) {
-      flash.value.alert = i18n.global.t('action.error.system', { message: (error as Error).message })
+      flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }
@@ -91,7 +91,7 @@ export function useComment() {
         await setAlert({ response })
       }
     } catch (error) {
-      flash.value.alert = i18n.global.t('action.error.system', { message: (error as Error).message })
+      flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }
@@ -124,7 +124,7 @@ export function useComment() {
         setComment({ from: commentAttrs })
       }
     } catch (error) {
-      flash.value.alert = i18n.global.t('action.error.system', { message: (error as Error).message })
+      flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }
@@ -145,7 +145,7 @@ export function useComment() {
         await setAlert({ response })
       }
     } catch (error) {
-      flash.value.alert = i18n.global.t('action.error.system', { message: (error as Error).message })
+      flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }

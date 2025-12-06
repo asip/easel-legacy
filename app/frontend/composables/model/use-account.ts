@@ -44,7 +44,7 @@ export function useAccount() {
         loggedIn.value = true
       }
     } catch(error) {
-      flash.value.alert = i18n.global.t('action.error.system', { message: (error as Error).message })
+      flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }

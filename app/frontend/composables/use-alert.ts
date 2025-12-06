@@ -23,7 +23,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       case 401:
         break
       default:
-        flash.value.alert = i18n.global.t('action.error.api', { statusCode: response.status })
+        flash.value.alert = i18n.global.t('action.error.api', { message: response.status })
       }
     } else {
       switch(response.status){
@@ -43,7 +43,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
         }
         break
       default:
-        flash.value.alert = i18n.global.t('action.error.api', { statusCode: response.status })
+        flash.value.alert = i18n.global.t('action.error.api', { message: response.status })
       }
     }
   }
