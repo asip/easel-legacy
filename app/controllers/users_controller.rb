@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def store_location
     from = request.referer
-    unless from&.include?("/users") || from&.include?("/profile") ||
+    unless from&.include?("/users") || from&.include?("/login") || from&.include?("/profile") ||
            from&.include?("/account/password/edit") || from&.include?("/frames/new")
       path = root_path
       unless from&.include?("/frames") && from&.include?("user_profile")

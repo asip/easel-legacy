@@ -73,10 +73,11 @@ class FramesController < ApplicationController
 
   def store_location
     from = request.referer
-    if (action_name == "show" && !from&.include?("/frames")) ||
-       (action_name == "new" && !from&.include?("/profile") &&
-        !from&.include?("/account/password/edit") && !from&.include?("/frames/new")) ||
-       (action_name == "edit" && !from.include?(request.path))
+    if (action_name == "show" && !from&.include?("/frames") && !from&.include?("/login")) ||
+       (action_name == "new" && !from&.include?("/frames/new") && !from&.include?("/profile") &&
+        !from&.include?("/account/password/edit")) ||
+       (action_name == "edit" && !from.include?(request.path) && !from&.include?("/profile") &&
+        !from&.include?("/account/password/edit") && !from&.include?("/frames/new"))
       self.prev_url = from || root_path(query_map)
     end
   end
