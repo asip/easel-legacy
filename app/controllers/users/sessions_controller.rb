@@ -23,7 +23,7 @@ class Users::SessionsController < Devise::SessionsController
       # yield resource if block_given?
 
       resource.assign_token(resource.create_token)
-      cookies[:access_token] = { value: resource.token, expires: Time.zone.now + 60.minutes }
+      cookies[:access_token] = { value: resource.token, expires: 60.minutes.from_now }
     end
 
     respond_with resource
