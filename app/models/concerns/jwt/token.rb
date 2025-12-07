@@ -11,10 +11,7 @@ module Jwt
     end
 
     def create_token
-      payload = { user_id: self.id, exp: (60.minutes.from_now).to_i }
-      secret_key = Rails.application.secret_key_base
-      token = JWT.encode(payload, secret_key)
-      token
+      Jwt::Token.create_token_from(user: self)
     end
 
     def assign_token(token_)
@@ -27,6 +24,30 @@ module Jwt
 
     def reset_token
       @token = nil
+    end
+
+    class_methods do
+      def find_from(token:)
+        payload = Jwt::Token.decode_token(token)
+        # puts payload
+        user_id = payload[:sub]
+        User.find(user_id)
+      end
+    end
+
+    def self.decode_token(token)
+      secret_key = Rails.application.secret_key_base
+      decoded_token = JWT.decode(token, secret_key, true, { algorithm: "HS256" })
+      decoded_token[0].with_indifferent_access
+    end
+
+    private
+
+    def self.create_token_from(user:)
+      payload = { sub: user.id, exp: (60.minutes.from_now).to_i }
+      secret_key = Rails.application.secret_key_base
+      token = JWT.encode(payload, secret_key)
+      token
     end
   end
 end

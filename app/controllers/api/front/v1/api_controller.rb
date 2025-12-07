@@ -36,13 +36,8 @@ module Api
             raise Api::ErrorRenderable::UnauthorizedError.new("Authorizationヘッダーからトークンが見つかりません。")
           end
 
-          secret_key = Rails.application.secret_key_base
-
           begin
-            decoded_token = JWT.decode(token, secret_key, true, { algorithm: "HS256" })
-            user_id = decoded_token[0]["user_id"]
-
-            self.current_user = User.find(user_id)
+            self.current_user = User.find_from(token:)
             # (current_user にトークンを割り当てる)
             current_user.assign_token(token)
 
