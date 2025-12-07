@@ -11,7 +11,7 @@ interface UseAlertOptions {
 }
 
 interface UseAlertCallerType {
-  externalErrors?: Ref<ErrorMessages<string>>
+  setExternalErrors?: (from: ErrorMessages<string>) => void
 }
 
 export function useAlert({ flash, caller }: UseAlertOptions) {
@@ -35,22 +35,16 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
         break
       case 422:
         {
-          if (caller && 'externalErrors' in caller) {
+          if (caller && 'setExternalErrors' in caller) {
             const { errors } = (await response.json()) as ErrorsResource<ErrorMessages<string>>
             // globalThis.console.log(errors)
-            if(caller.externalErrors) copyErrors(errors, caller.externalErrors)
+            if(caller.setExternalErrors) caller.setExternalErrors(errors)
           }
         }
         break
       default:
         flash.value.alert = i18n.global.t('action.error.api', { message: response.status })
       }
-    }
-  }
-
-  const copyErrors = (errors: ErrorMessages<string>, externalErrors: Ref<ErrorMessages<string>>): void => {
-    for(const key in errors) {
-      externalErrors.value[key] = errors[key] ?? []
     }
   }
 

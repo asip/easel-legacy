@@ -13,6 +13,13 @@ export function useExternalErrors<ErrorProperty extends string>({ flash } : { fl
     }
   }
 
+  const setExternalErrors = (from: ErrorMessages<string>): void => {
+    for(const key in from) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      externalErrors.value[key] = from[key] ?? []
+    }
+  }
+
   const isSuccess = (): boolean => {
     let result = true
 
@@ -27,6 +34,6 @@ export function useExternalErrors<ErrorProperty extends string>({ flash } : { fl
   }
 
   return {
-    externalErrors, clearExternalErrors, isSuccess
+    externalErrors, clearExternalErrors, setExternalErrors, isSuccess
   }
 }

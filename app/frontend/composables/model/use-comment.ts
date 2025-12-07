@@ -40,9 +40,9 @@ export function useComment() {
     }
   }
 
-  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
+  const { externalErrors, setExternalErrors,  clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { setAlert, reload401 } = useAlert({ flash, caller: { externalErrors } })
+  const { setAlert, reload401 } = useAlert({ flash, caller: { setExternalErrors } })
 
   const getComments = async (frameId: string): Promise<void> => {
     clearFlash()
