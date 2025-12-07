@@ -7,7 +7,6 @@ class FramesController < ApplicationController
   include PageTransition::Query::List
   include PageTransition::Ref::FrameRef
   include PageTransition::Query::FrameQuery
-  include PageTransition::Path
   include More
   include Cookie
 
@@ -74,9 +73,9 @@ class FramesController < ApplicationController
 
   def store_location
     from = request.referer
-    if (action_name == "show" && !from&.include?("/frames") && not_before_login_unsaved_paths?(from)) ||
-       (action_name == "new" && not_after_login_unsaved_paths?(from)) ||
-       (action_name == "edit" && !from.include?(request.path) && not_after_login_unsaved_paths?(from))
+    if (action_name == "show" && !from&.include?("/frames") && PageTransition::Path.not_before_login_unsaved_paths?(from)) ||
+       ((action_name == "new" || (action_name == "edit" && !from.include?(request.path))) &&
+        PageTransition::Path.not_after_login_unsaved_paths?(from))
       self.prev_url = from || root_path(query_map)
     end
   end

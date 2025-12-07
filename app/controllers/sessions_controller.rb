@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   include PageTransition::Query::Search
   include PageTransition::Query::List
   include PageTransition::Ref::SessionRef
-  include PageTransition::Path
   include Cookie
 
   before_action :store_location, only: [ :show ]
@@ -22,7 +21,7 @@ class SessionsController < ApplicationController
 
   def store_location
     from = request.referer
-    if not_after_login_unsaved_paths?(from)
+    if PageTransition::Path.not_after_login_unsaved_paths?(from)
       path = root_path
       if from&.include?("/frame") && from&.include?("profile")
         self.prev_url = path

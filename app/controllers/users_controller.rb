@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   include PageTransition::Query::Search
   include PageTransition::Query::List
   include PageTransition::Ref::UserRef
-  include PageTransition::Path
   include Cookie
 
   skip_before_action :authenticate_user!
@@ -33,7 +32,8 @@ class UsersController < ApplicationController
 
   def store_location
     from = request.referer
-    if !from&.include?("/users") && not_before_login_unsaved_paths?(from) && not_after_login_unsaved_paths?(from)
+    if !from&.include?("/users") && PageTransition::Path.not_before_login_unsaved_paths?(from) &&
+       PageTransition::Path.not_after_login_unsaved_paths?(from)
       path = root_path
       unless from&.include?("/frames") && from&.include?("user_profile")
         self.prev_url = from || path
