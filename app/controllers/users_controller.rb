@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def store_location
     from = request.referer
-    if !from&.include?("/users") && exclude_before_login_unsaved_paths?(from) && exclude_after_login_unsaved_paths?(from)
+    if !from&.include?("/users") && not_before_login_unsaved_paths?(from) && not_after_login_unsaved_paths?(from)
       path = root_path
       unless from&.include?("/frames") && from&.include?("user_profile")
         self.prev_url = from || path

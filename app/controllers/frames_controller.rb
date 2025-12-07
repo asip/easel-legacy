@@ -74,9 +74,9 @@ class FramesController < ApplicationController
 
   def store_location
     from = request.referer
-    if (action_name == "show" && !from&.include?("/frames") && exclude_before_login_unsaved_paths?(from)) ||
-       (action_name == "new" && exclude_after_login_unsaved_paths?(from)) ||
-       (action_name == "edit" && !from.include?(request.path) && exclude_after_login_unsaved_paths?(from))
+    if (action_name == "show" && !from&.include?("/frames") && not_before_login_unsaved_paths?(from)) ||
+       (action_name == "new" && not_after_login_unsaved_paths?(from)) ||
+       (action_name == "edit" && !from.include?(request.path) && not_after_login_unsaved_paths?(from))
       self.prev_url = from || root_path(query_map)
     end
   end

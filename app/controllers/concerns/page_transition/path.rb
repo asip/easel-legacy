@@ -6,12 +6,12 @@ module PageTransition
   module Path
     protected
 
-    def exclude_after_login_unsaved_paths?(from)
+    def not_after_login_unsaved_paths?(from)
       !from&.include?("/frames/new") && !from&.include?("/profile") &&
       !from&.include?("/account/password/edit")
     end
 
-    def exclude_before_login_unsaved_paths?(from)
+    def not_before_login_unsaved_paths?(from)
       !from&.include?("/login") && !from&.include?("/signup")
     end
   end

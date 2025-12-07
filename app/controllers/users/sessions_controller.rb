@@ -42,7 +42,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def store_location
     from = request.referer
-    self.prev_url = from || root_path if exclude_before_login_unsaved_paths?(from)
+    self.prev_url = from || root_path if not_before_login_unsaved_paths?(from)
   end
 
   def respond_with(resource, _opts = {})
