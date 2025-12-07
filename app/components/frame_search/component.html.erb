@@ -1,7 +1,7 @@
 <%= form_with url: root_path, local: true, method: :get, class: "flex items-center gap-2", html: { data: { controller: "frameSearch", action: "submit->frameSearch#submit" } } do |form| %>
   <div class="tooltip tooltip-bottom tooltip-error" data-tip="タグ or 名前 or 撮影/登録/更新日" data-frameSearch-target="tooltip">
     <%= form.text_field "", placeholder: "", class: "input input-bordered w-50", value: "", "data-calendar-target": "word", "data-frameSearch-target": "word", "data-action": "input->frameSearch#clearTooltip" %>
-    <%= form.hidden_field :q, "data-frameSearch-target": "q" %>
+    <%= form.hidden_field "", "data-frameSearch-target": "q" %>
   </div>
   <%= form.submit "検索", class: "btn btn-outline btn-primary", name: nil %>
 <% end %>
