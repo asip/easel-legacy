@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-import { useConstants} from '../'
+import { useHttpHeaders} from './'
 
 interface MutationApiOptions {
   url: string,
@@ -11,7 +11,7 @@ interface MutationApiOptions {
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export const useMutationApi = async <T>({ url, method, body, token }: MutationApiOptions) => {
-  const { commonHeaders } = useConstants()
+  const { commonHeaders } = useHttpHeaders()
 
   const headers: Record<string, string> = commonHeaders.value
 

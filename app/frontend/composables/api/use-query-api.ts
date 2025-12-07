@@ -1,10 +1,10 @@
 import { ref } from 'vue'
 
-import { useConstants} from '../'
+import { useHttpHeaders} from './'
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export const useQueryApi = async <T>({ url, token }: { url: string, token?: string }) => {
-  const { commonHeaders } = useConstants()
+  const { commonHeaders } = useHttpHeaders()
 
   const headers: Record<string, string> = commonHeaders.value
 
