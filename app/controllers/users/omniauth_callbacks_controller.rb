@@ -5,8 +5,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 
-  protect_from_forgery except: :google_oauth2
-  # skip_before_action :verify_authenticity_token, only: :google_oauth2
+  protect_from_forgery except: :google
+  # skip_before_action :verify_authenticity_token, only: :google
   before_action :verify_g_csrf_token
 
   # You should also create an action method in this controller like this:
@@ -16,7 +16,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # More info at:
   # https://github.com/heartcombo/devise#omniauth
 
-  def google_oauth2
+  def google
     callback_for(:google)
   end
 
