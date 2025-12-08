@@ -49,7 +49,9 @@ export function useComment() {
     //console.log(frameId)
 
     try{
-      const { ok, data, response } = await useQueryApi<CommentsResource>({url: `${baseURL}/frames/${frameId}/comments` })
+      const { ok, data, response } = await useQueryApi<CommentsResource>({
+        url: `${baseURL}/frames/${frameId}/comments`
+      })
 
       if (!ok) {
         await setAlert({ response })
@@ -83,7 +85,12 @@ export function useComment() {
       //  }
       //}
 
-      const { ok, response } = await useMutationApi<CommentResource>({ url: `${baseURL}/frames/${frameId}/comments`, method: 'post', body: params, token: token.value })
+      const { ok, response } = await useMutationApi<CommentResource>({
+        url: `${baseURL}/frames/${frameId}/comments`,
+        method: 'post',
+        body: params,
+        token: token.value
+      })
 
       clearExternalErrors()
 

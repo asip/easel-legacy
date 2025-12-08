@@ -30,7 +30,10 @@ export function useAccount() {
     }
 
     try {
-      const { ok, data, response } = await useQueryApi<AccountResource>({ url: `${baseURL}/account`, token: token.value })
+      const { ok, data, response } = await useQueryApi<AccountResource>({
+        url: `${baseURL}/account`,
+        token: token.value
+      })
 
       if (!ok) {
         loggedIn.value = false
