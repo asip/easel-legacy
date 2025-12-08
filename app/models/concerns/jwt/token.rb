@@ -46,7 +46,7 @@ module Jwt
     def self.create_token_from(user:)
       payload = { sub: user.id, exp: (60.minutes.from_now).to_i }
       secret_key = Rails.application.secret_key_base
-      token = JWT.encode(payload, secret_key)
+      token = JWT.encode(payload, secret_key, "HS256")
       token
     end
   end
