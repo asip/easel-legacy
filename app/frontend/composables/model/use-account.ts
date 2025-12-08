@@ -43,7 +43,6 @@ export function useAccount() {
         if (accountAttrs) {
           currentUser.value.id = accountAttrs.id
         }
-        currentUser.value.token = token.value
         loggedIn.value = true
       }
     } catch(error) {

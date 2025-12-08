@@ -8,13 +8,11 @@ export const useAccountStore = defineStore(
   () => {
     const loggedIn: Ref<boolean> = ref<boolean>(false)
     const currentUser = ref<User>({
-      id: null,
-      token: null
+      id: null
     })
 
     const clearCurrentUser = () => {
       currentUser.value.id = null
-      currentUser.value.token = null
     }
 
     return { loggedIn, currentUser, clearCurrentUser }
