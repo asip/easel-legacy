@@ -24,7 +24,6 @@ export function useAccount() {
     clearFlash()
 
     if (!token.value) {
-      loggedIn.value = false
       clearCurrentUser()
       return
     }
@@ -36,7 +35,6 @@ export function useAccount() {
       })
 
       if (!ok) {
-        loggedIn.value = false
         await setAlert({ response, off: true })
       } else {
         const accountAttrs = data

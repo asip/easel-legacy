@@ -3,6 +3,8 @@ import { ref, Ref } from 'vue'
 import type { ErrorsResource, Flash } from '../interfaces'
 import type { ErrorMessages } from '../types'
 
+import { useAccountStore } from '../stores'
+
 import { i18n } from '../i18n'
 
 interface UseAlertOptions {
@@ -16,11 +18,13 @@ interface UseAlertCallerType {
 
 export function useAlert({ flash, caller }: UseAlertOptions) {
   const reloading401 = ref<boolean>(false)
+  const { clearCurrentUser } = useAccountStore()
 
   const setAlert= async ({ response, off = false }: { response: Response, off?: boolean }): Promise<void> => {
     if (off) {
       switch(response.status){
       case 401:
+        clearCurrentUser()
         break
       default:
         flash.value.alert = i18n.global.t('action.error.api', { message: response.status })
@@ -29,6 +33,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       switch(response.status){
       case 401:
         flash.value.alert = i18n.global.t('action.error.login')
+        clearCurrentUser()
         reloading401.value = true
         break
       case 404:

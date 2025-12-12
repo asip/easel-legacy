@@ -13,6 +13,7 @@ export const useAccountStore = defineStore(
 
     const clearCurrentUser = () => {
       currentUser.value.id = null
+      loggedIn.value = false
     }
 
     return { loggedIn, currentUser, clearCurrentUser }
