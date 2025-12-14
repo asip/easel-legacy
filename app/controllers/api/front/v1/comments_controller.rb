@@ -26,8 +26,7 @@ module Api
           frame = Queries::Frames::FindFrame.run(user: current_user, frame_id: params[:frame_id])
           comment = Queries::Comments::FindComment.run(user: current_user, frame_id: frame.id, comment_id: params[:id])
 
-          mutation = Mutations::Comments::UpdateComment.run(user: current_user, comment_id: comment.id,
-                                                            form: form_params)
+          mutation = Mutations::Comments::UpdateComment.run(comment:, form: form_params)
           comment = mutation.comment
           if mutation.success?
             # logger.debug CommentResource.new(comment).serialize
@@ -41,7 +40,7 @@ module Api
           frame = Queries::Frames::FindFrame.run(user: current_user, frame_id: params[:frame_id])
           comment = Queries::Comments::FindComment.run(user: current_user, frame_id: frame.id, comment_id: params[:id])
 
-          Mutations::Comments::DeleteComment.run(user: current_user, comment_id: comment.id)
+          Mutations::Comments::DeleteComment.run(comment:)
           head :no_content
         end
 

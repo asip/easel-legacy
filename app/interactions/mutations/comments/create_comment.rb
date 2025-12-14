@@ -18,8 +18,9 @@ module Mutations
 
       def execute
         comment = Comment.new(@form)
+        comment.user_id = @user.id
         comment.frame_id = @frame_id
-        mutation = Mutations::Comments::SaveComment.run(user: @user, comment:)
+        mutation = Mutations::Comments::SaveComment.run(comment:)
         errors.merge!(mutation.errors) unless mutation.success?
         self.comment = mutation.comment
       end
