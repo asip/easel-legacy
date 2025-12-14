@@ -1,4 +1,5 @@
 export type { Comment, User } from './entity'
 export type  { RefItems } from './query'
-export type  { AccountResource, CommentResource,CommentsResource, ErrorsResource } from './resource'
+export type { AccountResource, CommentResource,CommentsResource, ErrorsResource, BackendErrorResource } from './resource'
+export type { BackendErrorInfo } from './error'
 export type { Flash } from './flash'

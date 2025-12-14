@@ -42,7 +42,7 @@ export function useComment() {
 
   const { externalErrors, setExternalErrors,  clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { setAlert, reload401 } = useAlert({ flash, caller: { setExternalErrors } })
+  const { backendErrorInfo, setAlert, reload } = useAlert({ flash, caller: { setExternalErrors } })
 
   const getComments = async (frameId: string): Promise<void> => {
     clearFlash()
@@ -141,7 +141,7 @@ export function useComment() {
 
     try {
       const { ok, response } = await useMutationApi({
-        url: `${baseURL}/comments/${comment.id?.toString(10) ?? ''}`,
+        url: `${baseURL}/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
         method: 'delete',
         token: token.value
       })
@@ -160,7 +160,8 @@ export function useComment() {
   return {
     comment, comments, flash, getComments,
     createComment, updateComment, deleteComment, setComment,
-    clearExternalErrors, isSuccess, externalErrors, reload401
+    clearExternalErrors, externalErrors, isSuccess,
+    backendErrorInfo, reload
   }
 }
 

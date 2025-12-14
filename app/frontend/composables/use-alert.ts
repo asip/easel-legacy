@@ -1,9 +1,10 @@
 import { ref, Ref } from 'vue'
 
-import type { ErrorsResource, Flash } from '../interfaces'
+import type { BackendErrorResource, ErrorsResource, Flash } from '../interfaces'
 import type { ErrorMessages } from '../types'
 
 import { useAccountStore } from '../stores'
+import { useBackendErrorInfo } from './'
 
 import { i18n } from '../i18n'
 
@@ -17,10 +18,13 @@ interface UseAlertCallerType {
 }
 
 export function useAlert({ flash, caller }: UseAlertOptions) {
-  const reloading401 = ref<boolean>(false)
+  const { backendErrorInfo, clearBackendErrorInfo, setBackendErrorInfo } = useBackendErrorInfo()
+  const reloading = ref<boolean>(false)
   const { clearCurrentUser } = useAccountStore()
 
   const setAlert= async ({ response, off = false }: { response: Response, off?: boolean }): Promise<void> => {
+    clearBackendErrorInfo()
+    backendErrorInfo.value.status = response.status
     if (off) {
       switch(response.status){
       case 401:
@@ -34,9 +38,14 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       case 401:
         flash.value.alert = i18n.global.t('action.error.login')
         clearCurrentUser()
-        reloading401.value = true
+        reloading.value = true
         break
       case 404:
+        {
+          const error = (await response.json()) as BackendErrorResource
+          setBackendErrorInfo(error)
+          reloading.value = true
+        }
         break
       case 422:
         {
@@ -53,15 +62,15 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
     }
   }
 
-  const reload401 = (): void => {
-    if (reloading401.value) {
+  const reload = (): void => {
+    if (reloading.value) {
       globalThis.setTimeout(() => {
         globalThis.location.href = ''
       }, 1000)
     }
   }
 
-  return { setAlert, reload401 }
+  return { backendErrorInfo, setAlert, reload }
 }
 
 export type UseAlertType = ReturnType<typeof useAlert>

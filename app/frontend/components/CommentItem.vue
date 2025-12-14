@@ -2,6 +2,8 @@
 import sanitizeHtml from 'sanitize-html'
 import { computed, onMounted, ref } from 'vue'
 
+import { i18n } from '../i18n'
+
 import type { Comment, RefItems } from '../interfaces'
 import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../composables'
 
@@ -15,7 +17,7 @@ const id: string = route.params?.id ?? ''
 const refStr: string = route.query?.ref ?? ''
 
 const { loggedIn, currentUser } = useAccount()
-const { flash, comment, externalErrors, getComments, updateComment, deleteComment, isSuccess, reload401, setComment } = useComment()
+const { flash, comment, externalErrors, backendErrorInfo, getComments, updateComment, deleteComment, isSuccess, reload, setComment } = useComment()
 
 const { commentRules } = useCommentRules()
 
@@ -66,6 +68,7 @@ const onUpdateClick = async (): Promise<void> => {
   const { valid } =await r$.$validate()
   if (valid) {
     await updateComment()
+    set404Alert()
     setFlash(flash.value)
     if (isSuccess()) {
       r$.$touch()
@@ -73,17 +76,36 @@ const onUpdateClick = async (): Promise<void> => {
       setComment({ to: commentModel.value })
       edit.value = false
     }
-    reload401()
+    await reload401404()
   }
 }
 
 const onDeleteClick = async (): Promise<void> => {
   if(commentModel.value) { await deleteComment(commentModel.value) }
+  set404Alert()
   setFlash(flash.value)
   if (isSuccess()) {
     await getComments(id)
   }
-  reload401()
+  await reload401404()
+}
+
+const set404Alert = () => {
+  if (backendErrorInfo.value.status == 404) {
+    if (backendErrorInfo.value.source == 'Frame') {
+      flash.value.alert = i18n.global.t('action.error.not_found', { source: i18n.global.t('misc.page') })
+    } else if (backendErrorInfo.value.source == 'Comment') {
+      flash.value.alert = i18n.global.t('action.error.not_found', { source: i18n.global.t('models.comment') })
+    }
+  }
+}
+
+const reload401404 = async () => {
+  if (backendErrorInfo.value.status == 401 || (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame')) {
+    reload()
+  } else if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Comment') {
+    await getComments(id)
+  }
 }
 </script>
 
