@@ -73,7 +73,6 @@ module Api
         response[:source] = exception.model
       end
 
-      puts response
       render json: response, status: code
     end
   end
