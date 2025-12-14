@@ -35,7 +35,8 @@ class FramesController < ApplicationController
   end
 
   def create
-    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: frame)
+    frame.user_id = current_user.id
+    mutation = Mutations::Frames::SaveFrame.run(frame: frame)
     self.frame = mutation.frame
     if mutation.success?
       redirect_to root_path # (query_map)
@@ -52,7 +53,8 @@ class FramesController < ApplicationController
   end
 
   def update
-    mutation = Mutations::Frames::SaveFrame.run(user: current_user, frame: frame)
+    frame.user_id = current_user.id
+    mutation = Mutations::Frames::SaveFrame.run(frame: frame)
     self.frame = mutation.frame
     if mutation.success?
       redirect_to prev_url_for(path: edit_frame_path(frame))

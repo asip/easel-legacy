@@ -10,13 +10,11 @@ module Mutations
 
       attr_reader :frame
 
-      def initialize(user:, frame:)
-        @user = user
+      def initialize(frame:)
         self.frame = frame
       end
 
       def execute
-        frame.user_id = @user.id
         self.success = frame.save
         return if success
 
