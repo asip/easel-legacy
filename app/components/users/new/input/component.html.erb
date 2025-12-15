@@ -6,7 +6,7 @@
           <label for="image" class="">アイコン</label>
         </td>
         <td>
-          <%= @form.file_field :image, accept: "image/jpg,image/jpeg,image/png",
+          <%= @form.file_field :image, accept: "image/jpg,image/jpeg,image/png,image/webp,image/avif",
                                        multiple: false,
                                        class: "file-input",
                                        "data-preview-target": "upload" %><%#= @form.file_field :image, multiple: false, class: "file-input" %>
