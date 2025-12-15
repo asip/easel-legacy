@@ -2,8 +2,6 @@
 import sanitizeHtml from 'sanitize-html'
 import { computed, onMounted, ref } from 'vue'
 
-import { i18n } from '../i18n'
-
 import type { Comment, RefItems } from '../interfaces'
 import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../composables'
 
@@ -17,7 +15,7 @@ const id: string = route.params?.id ?? ''
 const refStr: string = route.query?.ref ?? ''
 
 const { loggedIn, currentUser } = useAccount()
-const { flash, comment, externalErrors, backendErrorInfo, getComments, updateComment, deleteComment, isSuccess, reload, setComment } = useComment()
+const { flash, comment, externalErrors, backendErrorInfo, getComments, updateComment, deleteComment, isSuccess, set404Alert, reload, setComment } = useComment()
 
 const { commentRules } = useCommentRules()
 
@@ -90,17 +88,7 @@ const onDeleteClick = async (): Promise<void> => {
   await reload401404()
 }
 
-const set404Alert = () => {
-  if (backendErrorInfo.value.status == 404) {
-    if (backendErrorInfo.value.source == 'Frame') {
-      flash.value.alert = i18n.global.t('action.error.not_found', { source: i18n.global.t('misc.page') })
-    } else if (backendErrorInfo.value.source == 'Comment') {
-      flash.value.alert = i18n.global.t('action.error.not_found', { source: i18n.global.t('models.comment') })
-    }
-  }
-}
-
-const reload401404 = async () => {
+const reload401404 = async (): Promise<void> => {
   if (backendErrorInfo.value.status == 401 || (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame')) {
     reload()
   } else if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Comment') {

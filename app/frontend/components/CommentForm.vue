@@ -1,6 +1,4 @@
 <script lang="ts" setup >
-import { i18n } from '../i18n'
-
 import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../composables'
 
 const route = useRoute()
@@ -10,7 +8,7 @@ const { setFlash } = useToast()
 
 const { loggedIn } = useAccount()
 
-const { comment, externalErrors, backendErrorInfo, isSuccess, flash, getComments, createComment, reload } = useComment()
+const { comment, externalErrors, backendErrorInfo, isSuccess, flash, getComments, createComment, set404Alert, reload } = useComment()
 
 const { commentRules } = useCommentRules()
 
@@ -32,12 +30,6 @@ const onPostClick = async (): Promise<void> => {
       await getComments(id)
     }
     reload()
-  }
-}
-
-const set404Alert = () => {
-  if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame') {
-    flash.value.alert = i18n.global.t('action.error.not_found', { source: i18n.global.t('misc.page') })
   }
 }
 </script>

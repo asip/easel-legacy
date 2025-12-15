@@ -11,7 +11,7 @@ export function useBackendErrorInfo() {
     copy({ from, to: backendErrorInfo.value })
   }
 
-  const clearBackendErrorInfo = () => {
+  const clearBackendErrorInfo = (): void => {
     backendErrorInfo.value = {}
   }
 

@@ -44,6 +44,16 @@ export function useComment() {
 
   const { backendErrorInfo, setAlert, reload } = useAlert({ flash, caller: { setExternalErrors } })
 
+  const set404Alert = (): void => {
+    if (backendErrorInfo.value.status == 404) {
+      if (backendErrorInfo.value.source == 'Frame') {
+        flash.value.alert = i18n.global.t('action.error.not_found', { source: i18n.global.t('misc.page') })
+      } else if (backendErrorInfo.value.source == 'Comment') {
+        flash.value.alert = i18n.global.t('action.error.not_found', { source: i18n.global.t('models.comment') })
+      }
+    }
+  }
+
   const getComments = async (frameId: string): Promise<void> => {
     clearFlash()
     //console.log(frameId)
@@ -160,7 +170,7 @@ export function useComment() {
   return {
     comment, comments, flash, getComments,
     createComment, updateComment, deleteComment, setComment,
-    clearExternalErrors, externalErrors, isSuccess,
+    clearExternalErrors, externalErrors, isSuccess, set404Alert,
     backendErrorInfo, reload
   }
 }
