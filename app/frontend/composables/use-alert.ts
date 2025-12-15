@@ -65,7 +65,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
   const reload = (): void => {
     if (reloading.value) {
       globalThis.setTimeout(() => {
-        globalThis.location.href = ''
+        globalThis.location.reload()
       }, 1000)
     }
   }
