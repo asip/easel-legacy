@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-import { useHttpHeaders} from './'
+import { useHttpHeaders} from './use-http-headers'
 
 interface MutationApiOptions {
   url: string,

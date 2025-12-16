@@ -1,7 +1,8 @@
-export { useMutationApi, useQueryApi } from './api'
-export { useAccount, useComment } from './model'
-export { useExternalErrors, useBackendErrorInfo, useAlert } from './backend'
+export { useMutationApi, useQueryApi } from './backend'
+export { useExternalErrors, useAlert } from './backend'
 export { useToast } from './ui'
+
+export { useAccount, useComment } from './model'
 
 export { useEntity } from './use-entity'
 export { useFlash } from './use-flash'

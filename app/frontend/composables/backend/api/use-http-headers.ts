@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { useLocale } from '../use-locale'
+import { useLocale } from '../../use-locale'
 
 export const useHttpHeaders = () => {
   const { locale } = useLocale()

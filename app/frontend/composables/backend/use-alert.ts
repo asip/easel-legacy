@@ -4,7 +4,7 @@ import type { BackendErrorResource, ErrorsResource, Flash } from '../../interfac
 import type { ErrorMessages } from '../../types'
 
 import { useAccountStore } from '../../stores'
-import { useBackendErrorInfo } from '../'
+import { useBackendErrorInfo } from './use-backend-error-info'
 
 import { i18n } from '../../i18n'
 

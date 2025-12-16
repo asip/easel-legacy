@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-import { useHttpHeaders} from './'
+import { useHttpHeaders } from './use-http-headers'
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export const useQueryApi = async <T>({ url, token }: { url: string, token?: string }) => {
