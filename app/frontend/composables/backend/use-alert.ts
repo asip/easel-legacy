@@ -49,10 +49,10 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
         break
       case 422:
         {
-          if (caller && 'setExternalErrors' in caller) {
+          if (caller && 'setExternalErrors' in caller && caller.setExternalErrors) {
             const { errors } = (await response.json()) as ErrorsResource<ErrorMessages<string>>
             // globalThis.console.log(errors)
-            if(caller.setExternalErrors) caller.setExternalErrors(errors)
+            caller.setExternalErrors(errors)
           }
         }
         break
