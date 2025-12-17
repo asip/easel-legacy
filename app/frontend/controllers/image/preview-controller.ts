@@ -13,32 +13,20 @@ export default class PreviewController extends ApplicationController {
 
   connect(): void {
     let elmUpload: HTMLInputElement | null = null
-    if (this.hasUploadTarget) {
-      elmUpload = this.uploadTarget
-    }
     let content: HTMLElement| null = null
-    if (this.hasContentTarget) {
-      content = this.contentTarget
-    }
     let preview: HTMLImageElement | null = null
-    if (this.hasImageTarget) {
-      preview = this.imageTarget
-    }
+
+    if (this.hasUploadTarget) elmUpload = this.uploadTarget
+    if (this.hasContentTarget) content = this.contentTarget
+    if (this.hasImageTarget) preview = this.imageTarget
 
     if (elmUpload) {
       elmUpload.addEventListener('change', function () {
-        // let blob: Blob | null| undefined
         const file: { data?: File | null } = {}
 
         // (.file_fieldからデータを取得して変数file.dataに代入します)
         file.data = this.files?.item(0)
-        /*
-        if (file.data) {
-          const buffer = await file.data.arrayBuffer()
-          blob = new Blob([buffer], { type: file.data.type })
-        }
-        */
-        if (file.data?.type.match(/^image\/(jpeg|jpg|png|gif)$/)) {
+        if (file.data?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
           // (FileReaderオブジェクトを作成します)
           const reader = new FileReader()
           // (読み込みが完了したら処理が実行されます)
