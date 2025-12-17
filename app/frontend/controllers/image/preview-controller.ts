@@ -13,7 +13,7 @@ export default class PreviewController extends ApplicationController {
 
   connect(): void {
     let elmUpload: HTMLInputElement | null = null
-    if (this.hasUploadTarget){
+    if (this.hasUploadTarget) {
       elmUpload = this.uploadTarget
     }
     let content: HTMLElement| null = null

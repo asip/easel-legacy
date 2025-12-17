@@ -14,11 +14,10 @@ export default class PhotoSwipeController extends ApplicationController {
 
   connect(): void {
     let psElement: HTMLElement | null = null
-    if (this.hasPsTarget){
-      psElement = this.psTarget
-    }
 
-    if (psElement){
+    if (this.hasPsTarget) psElement = this.psTarget
+
+    if (psElement) {
       void (async () => {
         await this.assignSize(psElement)
       })()
@@ -35,7 +34,7 @@ export default class PhotoSwipeController extends ApplicationController {
   }
 
   disconnect(): void {
-    if (this.lightbox){
+    if (this.lightbox) {
       this.lightbox.destroy()
       this.removeElementsByClassName('pswp')
     }
@@ -43,7 +42,7 @@ export default class PhotoSwipeController extends ApplicationController {
 
   async assignSize(trigger: HTMLElement): Promise<void> {
     const gallery = trigger.querySelectorAll('a')
-    for  (const el of gallery){
+    for (const el of gallery) {
       const img: HTMLImageElement = await this.loadImage(el.href)
       el.setAttribute('data-pswp-width', img.naturalWidth.toString())
       el.setAttribute('data-pswp-height', img.naturalHeight.toString())
@@ -51,7 +50,7 @@ export default class PhotoSwipeController extends ApplicationController {
     }
   }
 
-  async loadImage(src: string): Promise<HTMLImageElement>{
+  async loadImage(src: string): Promise<HTMLImageElement> {
     const img: HTMLImageElement = new globalThis.Image()
     img.src = src
     await img.decode()

@@ -19,16 +19,12 @@ export default class CalendarController extends ApplicationController {
 
   connect(): void {
     let calElement: HTMLElement | null = null
-    if (this.hasCalTarget){
-      calElement = this.calTarget
-    }
-
     let wordElement: HTMLInputElement | null = null
-    if (this.hasWordTarget){
-      wordElement = this.wordTarget
-    }
 
-    if (calElement){
+    if (this.hasCalTarget) calElement = this.calTarget
+    if (this.hasWordTarget) wordElement = this.wordTarget
+
+    if (calElement) {
       const qItems: Record<'word', string> = JSON.parse(searchCriteria.get()) as Record<'word', string>
       const date = this.#isValidDate(qItems['word']) ? qItems['word'] : null
 
@@ -54,9 +50,7 @@ export default class CalendarController extends ApplicationController {
   }
 
   disconnect(): void {
-    if (this.calendar){
-      this.calendar.destroy()
-    }
+    if (this.calendar) this.calendar.destroy()
   }
 
   #isValidDate(str: string):boolean {

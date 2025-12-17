@@ -13,20 +13,16 @@ export default class LightboxController extends ApplicationController {
   connect(): void {
     /*
     let lbElement: HTMLElement | null = null
-    if (this.hasLbTarget){
-      lbElement = this.lbTarget
-    }
+
+    if (this.hasLbTarget) lbElement = this.lbTarget
     */
 
-    //if (lbElement){
-
+    //if (lbElement) {
     this.lightbox = GLightbox({ selector: '.lb' })
     //}
   }
 
   disconnect(): void {
-    if (this.lightbox){
-      this.lightbox.close()
-    }
+    if (this.lightbox) this.lightbox.close()
   }
 }

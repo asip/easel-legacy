@@ -16,14 +16,10 @@ export default class TagifyController extends ApplicationController {
 
   connect(): void {
     let teElement: HTMLInputElement | null = null
-    if (this.hasTeTarget){
-      teElement = this.teTarget
-    }
-    if (this.hasTlTarget){
-      this.tagList = this.tlTarget
-    }
+    if (this.hasTeTarget) teElement = this.teTarget
+    if (this.hasTlTarget) this.tagList = this.tlTarget
 
-    if (teElement){
+    if (teElement) {
       this.tagEditor = new Tagify(teElement, {
         maxTags: 5,
         dropdown: {
@@ -40,20 +36,16 @@ export default class TagifyController extends ApplicationController {
 
       const tags: string | null = this.tagList?.value ?? null
       this.tagEditor.removeAllTags()
-      if (tags && tags.length > 0) {
-        this.tagEditor.addTags(tags.split(','))
-      }
+      if (tags && tags.length > 0) this.tagEditor.addTags(tags.split(','))
     }
   }
 
   saveTagList(): void {
-    if (this.tagList){
-      this.tagList.value = this.tagEditor?.value.map(v => v.value).join(',') ?? ''
-    }
+    if (this.tagList) this.tagList.value = this.tagEditor?.value.map(v => v.value).join(',') ?? ''
   }
 
   disconnect(): void {
-    if (this.tagEditor){
+    if (this.tagEditor) {
       this.tagEditor.destroy()
       this.removeElementsByClassName('tagify')
     }
