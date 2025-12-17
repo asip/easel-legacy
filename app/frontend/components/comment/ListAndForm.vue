@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import CommentForm from './CommentForm.vue'
-import CommentList from './CommentList.vue'
+import CommentForm from './Form.vue'
+import CommentList from './List.vue'
 
-import { useAccount, useToast } from '../composables'
+import { useAccount, useToast } from '../../composables'
 
 const { setFlash } = useToast()
 

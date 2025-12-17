@@ -1,5 +1,5 @@
 <script lang="ts" setup >
-import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../composables'
+import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../composables'
 
 const route = useRoute()
 const id: string = route.params?.id ?? ''
@@ -28,8 +28,9 @@ const onPostClick = async (): Promise<void> => {
       r$.$touch()
       r$.$reset()
       await getComments(id)
+    } else {
+      reload()
     }
-    reload()
   }
 }
 </script>

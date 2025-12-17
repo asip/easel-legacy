@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import CommentListAndForm from './CommentListAndForm.vue'
+import CommentListAndForm from './comment/ListAndForm.vue'
 
 import { useLocale } from '../composables'
 

@@ -2,8 +2,8 @@
 import sanitizeHtml from 'sanitize-html'
 import { computed, onMounted, ref } from 'vue'
 
-import type { Comment, RefItems } from '../interfaces'
-import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../composables'
+import type { Comment, RefItems } from '../../interfaces'
+import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../composables'
 
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'
@@ -73,8 +73,9 @@ const onUpdateClick = async (): Promise<void> => {
       r$.$reset()
       setComment({ to: commentModel.value })
       edit.value = false
+    } else {
+      await reload401404()
     }
-    await reload401404()
   }
 }
 
@@ -84,8 +85,9 @@ const onDeleteClick = async (): Promise<void> => {
   setFlash(flash.value)
   if (isSuccess()) {
     await getComments(id)
+  } else {
+    await reload401404()
   }
-  await reload401404()
 }
 
 const reload401404 = async (): Promise<void> => {
