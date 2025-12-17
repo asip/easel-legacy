@@ -21,15 +21,9 @@ export default class FrameSearchController extends ApplicationController {
   qElement: HTMLInputElement | null = null
 
   connect(): void {
-    if (this.hasTooltipTarget) {
-      this.tooltipElement = this.tooltipTarget
-    }
-    if (this.hasWordTarget) {
-      this.wordElement = this.wordTarget
-    }
-    if (this.hasQTarget) {
-      this.qElement = this.qTarget
-    }
+    if (this.hasTooltipTarget) this.tooltipElement = this.tooltipTarget
+    if (this.hasWordTarget) this.wordElement = this.wordTarget
+    if (this.hasQTarget) this.qElement = this.qTarget
 
     this.tooltipElement?.classList.remove('tooltip-error')
 
@@ -51,19 +45,13 @@ export default class FrameSearchController extends ApplicationController {
       const result = v.safeParse(schema, this.wordElement?.value, { lang: i18n.global.locale.value })
 
       if (result.success) {
-        if (this.wordElement?.value) {
-          this.qElement.value = JSON.stringify({ word: this.wordElement.value })
-          // globalThis.console.log(searchCriteria.get())
-        } else {
-          this.qElement.name = ''
-          this.qElement.value = '{}'
-        }
+        this.qElement.value = this.wordElement?.value ? JSON.stringify({ word: this.wordElement.value }) : '{}'
         searchCriteria.set(this.qElement.value)
         cookies.set('q', this.qElement.value, { path: '/' });
         (this.element as HTMLFormElement).requestSubmit()
       } else {
         if (this.tooltipElement) {
-          this.tooltipElement.dataset['tip'] = result.issues[0]['message']
+          this.tooltipElement.dataset['tip'] = result.issues[0].message
           this.tooltipElement.classList.add('tooltip-open')
           this.tooltipElement.classList.add('tooltip-error')
         }
