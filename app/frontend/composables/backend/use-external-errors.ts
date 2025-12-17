@@ -7,7 +7,7 @@ export function useExternalErrors<ErrorProperty extends string>({ flash } : { fl
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({})
 
   const clearExternalErrors = (): void => {
-    for(const key in externalErrors.value){
+    for (const key in externalErrors.value) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       externalErrors.value[key] = []
     }
@@ -23,7 +23,7 @@ export function useExternalErrors<ErrorProperty extends string>({ flash } : { fl
   const isSuccess = (): boolean => {
     let result = true
 
-    for(const key in externalErrors.value){
+    for (const key in externalErrors.value) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (externalErrors.value[key].length > 0) result = false
     }

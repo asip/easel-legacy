@@ -7,7 +7,7 @@ const Toastify = (await import('toastify-js')).default
 export function useToast() {
   const setFlash = (flash: Flash): void => {
     for(const message of Object.values(flash) as string[]) {
-      if (message != ''){
+      if (message != '') {
         Toastify({
           text: message,
           duration: 2000,

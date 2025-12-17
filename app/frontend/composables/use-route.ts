@@ -1,7 +1,7 @@
 import { $router } from '../stores'
 import { useStore } from '@nanostores/vue'
 
-export function useRoute(){
+export function useRoute() {
   const router = useStore($router)
 
   const params = router.value?.params

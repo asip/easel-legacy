@@ -26,7 +26,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
     clearBackendErrorInfo()
     backendErrorInfo.value.status = response.status
     if (off) {
-      switch(response.status){
+      switch (response.status) {
       case 401:
         clearCurrentUser()
         break
@@ -34,7 +34,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
         flash.value.alert = i18n.global.t('action.error.api', { message: response.status })
       }
     } else {
-      switch(response.status){
+      switch (response.status) {
       case 401:
         flash.value.alert = i18n.global.t('action.error.login')
         clearCurrentUser()
