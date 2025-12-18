@@ -8,9 +8,9 @@ export default class PhotoSwipeController extends ApplicationController {
 
   declare readonly psTarget: HTMLElement
 
-  lightbox: PhotoSwipeLightbox | null = null
-
   declare readonly hasPsTarget: boolean
+
+  lightbox: PhotoSwipeLightbox | null = null
 
   connect(): void {
     let psElement: HTMLElement | null = null

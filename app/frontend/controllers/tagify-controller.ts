@@ -8,11 +8,11 @@ export default class TagifyController extends ApplicationController {
   declare readonly teTarget: HTMLInputElement
   declare readonly tlTarget: HTMLInputElement
 
-  tagList: HTMLInputElement | null = null
-  tagEditor: Tagify | null = null
-
   declare readonly hasTeTarget: boolean
   declare readonly hasTlTarget: boolean
+
+  tagList: HTMLInputElement | null = null
+  tagEditor: Tagify | null = null
 
   connect(): void {
     let teElement: HTMLInputElement | null = null
