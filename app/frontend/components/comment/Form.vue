@@ -8,7 +8,7 @@ const { setFlash } = useToast()
 
 const { loggedIn } = useAccount()
 
-const { comment, externalErrors, backendErrorInfo, isSuccess, flash, getComments, createComment, set404Alert, reload } = useComment()
+const { comment, externalErrors, isSuccess, flash, getComments, createComment, set404Alert, reload } = useComment()
 
 const { commentRules } = useCommentRules()
 
@@ -20,7 +20,6 @@ const onPostClick = async (): Promise<void> => {
   const { valid } =await r$.$validate()
   if (valid) {
     await createComment(id)
-    globalThis.console.log(backendErrorInfo)
     set404Alert()
     setFlash(flash.value)
     if (isSuccess()) {
