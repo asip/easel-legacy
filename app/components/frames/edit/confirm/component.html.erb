@@ -4,7 +4,7 @@
   <div class="badge badge-outline badge-accent rounded-full"><%= t("enums.private.#{@frame.private}") %></div>
   <% end %>
   <% if @tag_map.size > 0 %>
-  <%= render ::Preview::Tags::Component.new(tag_map: @tag_map) %>
+  <%= render ::Display::Tags::Component.new(tag_map: @tag_map) %>
   <% end %>
 </div>
 <% end %>

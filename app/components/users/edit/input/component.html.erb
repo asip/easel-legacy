@@ -14,7 +14,7 @@
       </tr>
       <tr>
         <td colspan="2">
-          <%= render Image::Preview::Component.new(model: @user) %>
+          <%= render ::Preview::Image::Component.new(model: @user) %>
         </td>
       </tr>
       <% if @user.social_login? %>

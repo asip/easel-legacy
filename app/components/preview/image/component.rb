@@ -1,16 +1,13 @@
 # frozen_string_literal: true
 
-# preview
+# Preview
 module Preview
-  # image
+  # Image
   module Image
     # Component
     class Component < ViewComponent::Base
-      def initialize(model:, original: false, photoswipe: false, small: false)
+      def initialize(model:)
         @model = model
-        @original = original
-        @photoswipe = photoswipe
-        @small = small
       end
     end
   end

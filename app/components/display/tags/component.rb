@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# preview
-module Preview
+# display
+module Display
   # tags
   module Tags
     # Component

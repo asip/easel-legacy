@@ -1,31 +1,15 @@
 <% if @model.class == Frame && @model.file.present? %>
-  <% if @original %>
-    <% if @photoswipe %>
-      <div data-controller="pswipe" data-pswipe-target="ps" id="image">
-        <%= link_to image_tag(@model.file_proxy_url(:three), class: ""), @model.file_proxy_url(:original), class: "" %>
-      </div>
-    <% else %>
-      <div data-controller="lightbox">
-        <%= link_to image_tag(@model.file_proxy_url(:three), class: ""), @model.file_proxy_url(:original), class: "lb" %>
-      </div>
-    <% end %>
-  <% else %>
-    <%= image_tag(@model.file_proxy_url(:three), class: "") %>
-  <% end %>
+<div data-preview-target="content" class="justify-center hidden">
+  <%= image_tag(@model.file_proxy_url(:three), class: "mx-auto max-w-80 max-h-80 block",
+                                               "data-preview-target": "image") %>
+</div>
 <% elsif @model.class == User && @model.image.present? %>
-  <% unless @small %>
-    <% if @original %>
-      <%= link_to image_tag(@model.image_proxy_url(:three), class: "mx-auto"),
-                  @model.image_url_for_view, class: "mx-auto lb" %>
-    <% else %>
-      <%= image_tag(@model.image_proxy_url(:three), class: "mx-auto") %>
-    <% end %>
-  <% else %>
-    <% if @original %>
-      <%= link_to image_tag(@model.image_url_for_view(:three), class: "mx-auto"),
-                  @model.image_url, class: "mx-auto lb w-[100px] h-[100px]" %>
-    <% else %>
-      <%= image_tag(@model.image_url_for_view(:three), class: "mx-auto w-[100px] h-[100px]") %>
-    <% end %>
-  <% end %>
+<div data-preview-target="content" class="justify-center block">
+  <%= image_tag(@model.image_proxy_url(:three), class: "mx-auto max-w-80 max-h-80 block",
+                                                "data-preview-target": "image") %>
+</div>
+<% else %>
+<div data-preview-target="content" class="justify-center hidden">
+  <img data-preview-target="image" alt="" src="" class="mx-auto max-w-80 max-h-80 block">
+</div>
 <% end %>

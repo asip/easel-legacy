@@ -14,7 +14,7 @@
       <% @tag_map = FrameHelper.tag_map(frame:) %>
       <% if @tag_map.size > 0 %>
       <div class="flex justify-center flex-wrap gap-1">
-        <%= render ::Preview::Tags::Component.new(tag_map: @tag_map, list: true) %>
+        <%= render ::Display::Tags::Component.new(tag_map: @tag_map, list: true) %>
       </div>
       <% end %>
       <div class="flex justify-center">
