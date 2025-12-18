@@ -63,8 +63,8 @@ export default class FrameSearchController extends ApplicationController {
   }
 
   clearTooltip(): void {
-    if (this.tooltipElement && this.tooltipElement.dataset['tip'] != 'タグ or 名前 or 撮影/登録/更新日') {
-      this.tooltipElement.dataset['tip'] = 'タグ or 名前 or 撮影/登録/更新日'
+    if (this.tooltipElement && this.tooltipElement.dataset['tip'] != i18n.global.t('search.tooltip.word')) {
+      this.tooltipElement.dataset['tip'] = i18n.global.t('search.tooltip.word')
       this.tooltipElement.classList.remove('tooltip-error')
       this.tooltipElement.classList.remove('tooltip-open')
     }

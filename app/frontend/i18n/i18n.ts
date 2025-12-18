@@ -12,6 +12,11 @@ export const i18n = createI18n({
       models: {
         comment: 'comment'
       },
+      search: {
+        tooltip: {
+          word: 'Tag or Name or Date'
+        }
+      },
       rules: {
         required: 'Required.'
       },
@@ -29,6 +34,11 @@ export const i18n = createI18n({
       },
       models: {
         comment: 'コメント'
+      },
+      search: {
+        tooltip: {
+          word: 'タグ or 名前 or 撮影/登録/更新日'
+        }
       },
       rules: {
         required: '必須です。'
