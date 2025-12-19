@@ -79,7 +79,7 @@
     </div>
   </div>
   <% if user_signed_in? && @frame.user_id == current_user.id %>
-    <%= render Frames::Show::DeleteModal::Component.new(path: frame_path(@frame)) %>
+    <%= render Frames::Delete::Modal::Component.new(path: frame_path(@frame)) %>
   <% end %>
 </div>
 <%= render Comments::Component.new %>
