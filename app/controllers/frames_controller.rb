@@ -39,7 +39,7 @@ class FramesController < ApplicationController
     mutation = Mutations::Frames::SaveFrame.run(frame: frame)
     self.frame = mutation.frame
     if mutation.success?
-      redirect_to root_path
+      redirect_to frame_path(frame)
     else
       flashes[:alert] = frame.full_error_messages unless frame.errors.empty?
       render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
