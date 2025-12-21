@@ -13,8 +13,8 @@ setFlash(flash.value)
 </script>
 
 <template>
-  <div>
-    <CommentForm />
+  <div class="pb-5">
     <CommentList />
+    <CommentForm />
   </div>
 </template>

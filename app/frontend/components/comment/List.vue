@@ -12,7 +12,7 @@ await getComments(id)
 </script>
 
 <template>
-  <div class="pb-5">
+  <div class="pt-2">
     <div v-for="(comment, i) in comments" :key="comment.id">
       <CommentItem v-model="comments[i]" />
     </div>
