@@ -3,7 +3,6 @@
 # Users Controller
 class UsersController < ApplicationController
   include Queries::Users::Pagination
-  include PageTransition::Query::Search
   include PageTransition::Query::List
   include PageTransition::Ref::UserRef
   include Cookie

@@ -23,10 +23,6 @@ module PageTransition
           query_list.include?(key.to_sym) if value.present?
         end
       end
-
-      def page
-        permitted_params[:page]
-      end
     end
   end
 end

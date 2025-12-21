@@ -3,7 +3,6 @@
 # Sessions Controller
 class SessionsController < ApplicationController
   include Queries::Sessions::Pagination
-  include PageTransition::Query::Search
   include PageTransition::Query::List
   include PageTransition::Ref::SessionRef
   include Cookie

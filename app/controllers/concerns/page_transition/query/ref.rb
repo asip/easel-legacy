@@ -34,6 +34,10 @@ module PageTransition
         items.present? ? items : nil
       end
 
+      def page
+        permitted_params[:page]
+      end
+
       def back_to_path
         @back_to_path ||= prev_url
       end
