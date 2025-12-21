@@ -10,8 +10,8 @@ module PageTransition
 
       protected
 
-      def query_map
-        @query_map ||= ->() {
+      def query_map_for_search
+        @query_map_for_search ||= ->() {
           query = {}
           items_from = ref_items[:from]
           items_page = ref_items[:page]
@@ -21,8 +21,8 @@ module PageTransition
         }.call
       end
 
-      def query_map_without_q
-        @query_map_without_q ||= ->() {
+      def query_map
+        @query_map ||= ->() {
           query = {}
           query[:ref] = ref_items_for_user.to_json if ref_items_for_user.present?
           query

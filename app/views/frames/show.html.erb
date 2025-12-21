@@ -7,7 +7,7 @@
           <%= link_to back_to_path do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
         </div>
         <div>
-          <%= link_to user_path(@frame.user, query_map_without_q), class: "link link-hover" do %>
+          <%= link_to user_path(@frame.user, query_map), class: "link link-hover" do %>
             <%= @frame.user.name %>
           <% end %>
         </div>
@@ -68,7 +68,7 @@
       </div>
       <% if user_signed_in? && @frame.user_id == current_user.id %>
       <div class="flex justify-center gap-2">
-        <%= link_to "変更", edit_frame_path(@frame, query_map), class: "btn btn-outline btn-primary", "data-turbo-prefetch": false %>
+        <%= link_to "変更", edit_frame_path(@frame), class: "btn btn-outline btn-primary", "data-turbo-prefetch": false %>
         <%# Button trigger modal %>
         <button type="button" class="btn btn-outline btn-secondary" onclick="delete_modal.showModal()">
           削除

@@ -39,7 +39,7 @@ class FramesController < ApplicationController
     mutation = Mutations::Frames::SaveFrame.run(frame: frame)
     self.frame = mutation.frame
     if mutation.success?
-      redirect_to root_path # (query_map)
+      redirect_to root_path
     else
       flashes[:alert] = frame.full_error_messages unless frame.errors.empty?
       render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
@@ -78,7 +78,7 @@ class FramesController < ApplicationController
     if (action_name == "show" && !from&.include?("/frames") && PageTransition::Path.not_before_login_unsaved_paths?(from)) ||
        ((action_name == "new" || (action_name == "edit" && !from.include?(request.path))) &&
         PageTransition::Path.not_after_login_unsaved_paths?(from))
-      self.prev_url = from || root_path(query_map)
+      self.prev_url = from || root_path(query_map_for_search)
     end
   end
 

@@ -17,7 +17,7 @@ module PageTransition
           items = Json::Util.to_hash(ref)
           from = items[:from]
           if action_name != "new" && action_name != "edit" && from.blank?
-            root_path(query_map)
+            root_path(query_map_for_search)
           else
             prev_url
           end

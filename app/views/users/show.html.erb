@@ -11,9 +11,9 @@
       <div>
         <% if user_signed_in? && @user.id != current_user.id %>
           <% if current_user.following?(@user) %>
-            <%= link_to user_follow_relationships_path(@user.id, query_map_without_q), data: { turbo_method: :delete } do %><button type="button" class="btn btn-outline btn-primary btn-xs">フォローを外す</button><% end %>
+            <%= link_to user_follow_relationships_path(@user.id, query_map), data: { turbo_method: :delete } do %><button type="button" class="btn btn-outline btn-primary btn-xs">フォローを外す</button><% end %>
           <% else %>
-            <%= link_to user_follow_relationships_path(@user.id, query_map_without_q), data: { turbo_method: :post } do %><button type="button" class="btn btn-outline btn-primary btn-xs">フォローする</button><% end %>
+            <%= link_to user_follow_relationships_path(@user.id, query_map), data: { turbo_method: :post } do %><button type="button" class="btn btn-outline btn-primary btn-xs">フォローする</button><% end %>
           <% end %>
         <% end %>
       </div>
