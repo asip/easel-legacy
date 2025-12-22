@@ -1,8 +1,8 @@
-import { computed } from 'vue'
+// import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 
 import type { AccountResource } from '../../interfaces'
-import { useAlert, useConstants, useFlash, useQueryApi, useCookie } from '../'
+import { useAlert, useConstants, useFlash, useQueryApi } from '../'
 import { useAccountStore } from '../../stores'
 
 import { i18n } from '../../i18n'
@@ -11,31 +11,32 @@ export function useAccount() {
   const { loggedIn, currentUser } = storeToRefs(useAccountStore())
   const { clearCurrentUser } = useAccountStore()
 
-  const { cookies } = useCookie()
+  // const { cookies } = useCookie()
 
   const { flash, clearFlash } = useFlash()
   const { baseURL } = useConstants()
 
-  const token = computed<string>(() => cookies.get('access_token'))
+  // const token = computed<string>(() => cookies.get('access_token'))
 
   const { setAlert } = useAlert({ flash })
 
   const authenticate = async (): Promise<void> => {
     clearFlash()
 
-    if (!token.value) {
+    /* if (!token.value) {
       clearCurrentUser()
       return
-    }
+    } */
 
     try {
       const { ok, data, response } = await useQueryApi<AccountResource>({
-        url: `${baseURL}/account`,
-        token: token.value
+        url: `${baseURL}/account`
+        // token: token.value
       })
 
       if (!ok) {
         await setAlert({ response, off: true })
+        clearCurrentUser()
       } else {
         const accountAttrs = data
         if (accountAttrs) {
@@ -52,7 +53,7 @@ export function useAccount() {
   return {
     loggedIn,
     currentUser,
-    token,
+    // token,
     flash,
     authenticate
   }

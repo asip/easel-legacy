@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 
 import type { Comment , CommentResource, CommentsResource } from '../../interfaces'
 import type { CommentErrorProperty } from '../../types'
-import { useAccount, useQueryApi, useMutationApi, useEntity, useExternalErrors, useAlert, useConstants, useFlash } from '../'
+import { useQueryApi, useMutationApi, useEntity, useExternalErrors, useAlert, useConstants, useFlash } from '../'
 import { useCommentsStore } from '../../stores'
 
 import { i18n } from '../../i18n'
@@ -12,7 +12,7 @@ export function useComment() {
   const { baseURL } = useConstants()
   const { flash, clearFlash } = useFlash()
   const { create, copy } = useEntity<Comment, CommentResource>()
-  const { token } = useAccount()
+  // const { token } = useAccount()
   const { comments } = storeToRefs(useCommentsStore())
 
   const comment = ref<Comment>({
@@ -98,8 +98,8 @@ export function useComment() {
       const { ok, response } = await useMutationApi<CommentResource>({
         url: `${baseURL}/frames/${frameId}/comments`,
         method: 'post',
-        body: params,
-        token: token.value
+        body: params
+        // token: token.value
       })
 
       clearExternalErrors()
@@ -128,8 +128,8 @@ export function useComment() {
       const { ok, data,  response } = await useMutationApi<CommentResource>({
         url: `${baseURL}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
         method: 'put',
-        body: params,
-        token: token.value
+        body: params
+        // token: token.value
       })
 
       clearExternalErrors()
@@ -152,8 +152,8 @@ export function useComment() {
     try {
       const { ok, response } = await useMutationApi({
         url: `${baseURL}/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
-        method: 'delete',
-        token: token.value
+        method: 'delete'
+        // token: token.value
       })
 
       clearExternalErrors()

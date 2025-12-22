@@ -47,7 +47,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: provider.to_s.capitalize) if is_navigational_format?
 
       user.assign_token(user.create_token)
-      cookies[:access_token] = { value: user.token, expires: 60.minutes.from_now  }
+      cookies[:access_token] = { value: user.token, expires: 60.minutes.from_now, http_only: true }
       # puts user.token
     else
       session["devise.#{provider}_data"] = request.env["omniauth.auth"].except(:extra)
