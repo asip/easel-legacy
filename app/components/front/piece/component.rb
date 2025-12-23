@@ -6,8 +6,9 @@ module Front
   module Piece
     # Component
     class Component < ViewComponent::Base
-      def initialize(path:)
+      def initialize(path:, view_data: {})
         @path = path
+        @view_data = view_data
       end
     end
   end

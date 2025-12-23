@@ -3,7 +3,11 @@ import CommentListAndForm from './comment/ListAndForm.vue'
 
 import { useLocale } from '../../composables'
 
-// const props = defineProps<{}>()
+defineProps<{ viewData?: any }>()
+/*
+const { viewData } = defineProps<{ viewData?: any }>()
+globalThis.console.log(JSON.stringify(viewData))
+*/
 
 const { autoDetect } = useLocale()
 
