@@ -1,6 +1,6 @@
 <!--  <tr>
         <td class="w-[8em]">
-          <label for="name">ファイル</label>
+          ファイル
         </td>
         <td>
           <%= @form.file_field :file, multiple: false, accept: "image/jpg,image/jpeg,image/png,image/webp,image/avif",
@@ -13,7 +13,7 @@
     <tbody>
       <tr>
         <td class="w-[9em]">
-          <label for="name">名前</label>
+          <label for="frame_name">名前</label>
         </td>
         <td>
           <%= @form.text_field :name, placeholder: "", class: "input" %>
@@ -21,7 +21,7 @@
       </tr>
       <tr>
         <td>
-          <label for="tag_list">タグ</label>
+          タグ
         </td>
         <td>
           <%= text_field_tag "", "", placeholder: "", class: "input h-auto", autocomplete: "off", "data-tagify-target": "te" %>
@@ -30,7 +30,7 @@
       </tr>
       <tr>
         <td>
-          <label for="creator_name">撮影者/作者</label>
+          <label for="frame_creator_name">撮影者/作者</label>
         </td>
         <td>
           <%= @form.text_field :creator_name, placeholder: "", class: "input" %>
@@ -38,7 +38,7 @@
       </tr>
       <tr>
         <td>
-          <label for="shooted_at">撮影日時</label>
+          <label for="frame_shooted_at">撮影日時</label>
         </td>
         <td>
           <%= @form.datetime_local_field :shooted_at, class: "input" %>
@@ -46,7 +46,7 @@
       </tr>
       <tr>
         <td>
-          <label for="comment">コメント</label>
+          <label for="frame_comment">コメント</label>
         </td>
         <td class="wrap-break-word">
           <%= @form.text_area :comment, class: "block text-sm border border-gray-300 rounded w-full min-h-[50px] field-sizing-content" %>
@@ -54,7 +54,7 @@
       </tr>
       <tr>
         <td>
-          <label for="private">プライベート</label>
+          <label for="frame_private">プライベート</label>
         </td>
         <td>
           <%= @form.check_box :private, {}, "draft", "final" %>

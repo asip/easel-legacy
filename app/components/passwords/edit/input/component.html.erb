@@ -3,7 +3,7 @@
     <tbody>
       <tr>
         <td class="w-[11em]">
-          <label for="current_password">現在のパスワード</label>
+          <label for="user_current_password">現在のパスワード</label>
         </td>
         <td>
           <%= @form.password_field :current_password, autofocus: true, autocomplete: "current-password", placeholder: "", class: "input" %>
@@ -11,7 +11,7 @@
       </tr>
       <tr>
         <td>
-          <label for="password">パスワード</label>
+          <label for="user_password">パスワード</label>
         </td>
         <td>
           <%= @form.password_field :password, placeholder: "", autocomplete: "new-password", class: "input" %>
@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td>
-          <label for="password_confirmation">パスワード(確認)</label>
+          <label for="user_password_confirmation">パスワード(確認)</label>
         </td>
         <td>
           <%= @form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "", class: "input" %>

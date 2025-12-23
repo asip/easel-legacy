@@ -6,7 +6,7 @@
         <tbody>
           <tr>
             <td class="w-[8em]">
-              <label for="email"><%= t("activerecord.attributes.user.email") %></label>
+              <label for="user_email"><%= t("activerecord.attributes.user.email") %></label>
             </td>
             <td>
               <%= form.text_field :email, placeholder: "", autofocus: true, autocomplete: "email",
@@ -15,7 +15,7 @@
           </tr>
           <tr>
             <td>
-              <label for="password"><%= t("activerecord.attributes.user.password") %></label>
+              <label for="user_password"><%= t("activerecord.attributes.user.password") %></label>
             </td>
             <td>
               <%= form.password_field :password, placeholder: "", autocomplete: "current-password",
