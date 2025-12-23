@@ -25,7 +25,7 @@
             <tbody>
               <tr>
                 <td class="w-[9em]">
-                  <label for="name" class="">ユーザー名</label>
+                  ユーザー名
                 </td>
                 <td>
                   <%= @user.name %>
@@ -33,7 +33,7 @@
               </tr>
               <tr>
                 <td>
-                  <label for="email" class="">Eメール</label>
+                  Eメール
                 </td>
                 <td>
                   <%= @user.email %>
@@ -41,7 +41,7 @@
               </tr>
               <tr>
                 <td>
-                  <label for="profile" class=""><%= t("activerecord.attributes.user.profile") %></label>
+                  <%= t("activerecord.attributes.user.profile") %>
                 </td>
                 <td class="wrap-break-word">
                   <%= simple_format(h(@user.profile)) %>
@@ -49,7 +49,7 @@
               </tr>
               <tr>
                 <td>
-                  <label for="time_zone" class=""><%= t("activerecord.attributes.user.time_zone") %></label>
+                  <%= t("activerecord.attributes.user.time_zone") %>
                 </td>
                 <td>
                   <%= @user.time_zone %>
@@ -60,13 +60,13 @@
         </div>
       </div>
       <!-- <div class="flex justify-center">
-        <label for="password" class="">パスワード</label>
-        <div class="">
-          <div class=""><%= @user.password %></div>
+        パスワード
+        <div>
+          <div><%= @user.password %></div>
         </div>
       </div> -->
       <!--<div class="flex justify-center">
-        <div class="">
+        <div>
           <%= link_to "戻る", prev_url, class: "btn btn-outline btn-warning", "data-turbo": true %>
         </div>
       </div> -->

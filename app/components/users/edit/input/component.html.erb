@@ -3,7 +3,7 @@
     <tbody>
       <tr>
         <td class="w-[9em]">
-          <label for="image" class="">アイコン</label>
+          <label for="image">アイコン</label>
         </td>
         <td>
           <%= @form.file_field :image, accept: "image/jpg,image/jpeg,image/png,image/webp,image/avif",
@@ -20,7 +20,7 @@
       <% if @user.social_login? %>
       <tr>
         <td>
-          <label for="name" class="">ユーザー名</label>
+          ユーザー名
         </td>
         <td>
           <%= @user.name %>
@@ -29,7 +29,7 @@
       </tr>
       <tr>
         <td>
-          <label for="email" class="">Eメール</label>
+          Eメール
         </td>
         <td>
           <%= @user.email %>
@@ -39,7 +39,7 @@
       <% else %>
       <tr>
         <td>
-          <label for="name" class="">ユーザー名</label>
+          <label for="name">ユーザー名</label>
         </td>
         <td>
           <%= @form.text_field :name, autofocus: true, autocomplete: "username", placeholder: "", class: "input" %>
@@ -47,7 +47,7 @@
       </tr>
       <tr>
         <td>
-          <label for="email" class="">Eメール</label>
+          <label for="email">Eメール</label>
         </td>
         <td>
           <%= @form.email_field :email, autocomplete: "email", placeholder: "", class: "input" %>
@@ -56,7 +56,7 @@
       <% end %>
       <tr>
         <td>
-          <label for="profile" class=""><%= t("activerecord.attributes.user.profile") %></label>
+          <label for="profile"><%= t("activerecord.attributes.user.profile") %></label>
         </td>
         <td class="wrap-break-word">
           <%= @form.text_area :profile, class: "block text-sm border border-gray-300 rounded w-full min-h-[50px] field-sizing-content" %>
@@ -64,7 +64,7 @@
       </tr>
       <tr>
         <td>
-          <label for="time_zone" class=""><%= t("activerecord.attributes.user.time_zone") %></label>
+          <label for="time_zone"><%= t("activerecord.attributes.user.time_zone") %></label>
         </td>
         <td>
           <% @user.time_zone = Time.zone.name if @user.time_zone.blank? %>

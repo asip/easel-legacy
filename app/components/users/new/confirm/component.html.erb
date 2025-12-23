@@ -6,25 +6,25 @@
     <tbody>
       <tr>
         <td class="w-[11em]">
-          <label for="name" class="">ユーザー名</label>
+          ユーザー名
         </td>
         <td>
-          <div class=""><%= @user.name %></div>
+          <div><%= @user.name %></div>
           <%= @form.hidden_field :name %>
         </td>
       </tr>
       <tr>
         <td>
-          <label for="email" class="">Eメール</label>
+          Eメール
         </td>
         <td>
-          <div class=""><%= @user.email %></div>
+          <div><%= @user.email %></div>
           <%= @form.hidden_field :email %>
         </td>
       </tr>
       <tr>
         <td>
-          <label for="profile" class=""><%= t("activerecord.attributes.user.profile") %></label>
+          <%= t("activerecord.attributes.user.profile") %>
         </td>
         <td class="wrap-break-word">
           <%= simple_format(h(@user.profile)) %>
@@ -33,10 +33,10 @@
       </tr>
       <tr>
         <td>
-          <label for="time_zone" class=""><%= t("activerecord.attributes.user.time_zone") %></label>
+          <%= t("activerecord.attributes.user.time_zone") %>
         </td>
         <td>
-          <div class=""><%= @user.time_zone %></div>
+          <div><%= @user.time_zone %></div>
           <%= @form.hidden_field :time_zone %>
         </td>
       </tr>

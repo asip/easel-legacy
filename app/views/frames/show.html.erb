@@ -29,7 +29,7 @@
           <tbody>
             <tr>
               <td class="w-[9em]">
-                <label for="name" class="">名前</label>
+                名前
               </td>
               <td>
                 <%= @frame.name %>
@@ -37,7 +37,7 @@
             </tr>
             <tr>
               <td>
-                <label for="name" class="">撮影者/作者</label>
+                撮影者/作者
               </td>
               <td>
                 <%= @frame.creator_name %>
@@ -45,7 +45,7 @@
             </tr>
             <tr>
               <td>
-                <label for="shooted_at" class="">撮影日時</label>
+                撮影日時
               </td>
               <td>
                 <%= @frame.shooted_at.present? ? l(@frame.shooted_at) : "" %>
@@ -53,7 +53,7 @@
             </tr>
             <tr>
               <td>
-                <label for="comment" class="">コメント</label>
+                コメント
               </td>
               <td class="wrap-break-word">
                 <%= simple_format(h(@frame.comment)) %>
