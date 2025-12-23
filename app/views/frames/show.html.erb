@@ -82,4 +82,4 @@
     <%= render Frames::Delete::Modal::Component.new(path: frame_path(@frame)) %>
   <% end %>
 </div>
-<%= render Comments::Component.new %>
+<%= render Front::Component.new(path: "frame/Comments") %>
