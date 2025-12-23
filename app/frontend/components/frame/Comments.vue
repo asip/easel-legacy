@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import CommentListAndForm from './comment/ListAndForm.vue'
 
-import { useLocale } from '../composables'
+import { useLocale } from '../../composables'
 
 // const props = defineProps<{}>()
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import CommentItem from './Item.vue'
 
-import { useComment, useRoute } from '../../composables'
+import { useComment, useRoute } from '../../../composables'
 
 const route = useRoute()
 const id: string = route.params?.id ?? ''

@@ -1,5 +1,5 @@
 <script lang="ts" setup >
-import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../composables'
+import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../../composables'
 
 const route = useRoute()
 const id: string = route.params?.id ?? ''
