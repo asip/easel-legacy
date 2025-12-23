@@ -3,7 +3,6 @@ import CommentListAndForm from './comment/ListAndForm.vue'
 
 import { useLocale } from '../../composables'
 
-defineProps<{ viewData?: any }>()
 /*
 const { viewData } = defineProps<{ viewData?: any }>()
 globalThis.console.log(JSON.stringify(viewData))

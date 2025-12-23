@@ -1,15 +1,16 @@
 <script lang="ts" setup>
 import { defineAsyncComponent } from 'vue'
 
-const { path, viewData } = defineProps<{ path: string, viewData?: string }>()
+const { path, viewData: data } = defineProps<{ path: string, viewData?: string }>()
 
-const viewDataMap = JSON.parse(viewData ?? '{}')
+const viewDataMap = JSON.parse(data ?? '{}')
+const viewData = viewDataMap && Object.keys(viewDataMap).length !== 0 ? viewDataMap : null
 
 const AsyncComponent = defineAsyncComponent(() => import(`./${path}.vue`))
 </script>
 
 <template>
   <Suspense>
-    <AsyncComponent :view-data="viewDataMap" />
+    <AsyncComponent v-bind=" viewData && { viewData }" />
   </Suspense>
 </template>
