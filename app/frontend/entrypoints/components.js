@@ -5,7 +5,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import plugin from 'turbo-mount/vue'
 import { registerComponent } from 'turbo-mount/vue'
 import { TurboMount } from 'turbo-mount'
-import Piece from '../components/Piece.vue'
+import index from '../components/index.vue'
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
@@ -27,4 +27,4 @@ const turboMount = new TurboMount()
 // to override the default controller use:
 // registerComponent(turboMount, "Hello", Hello, HelloController); // where HelloController is a Stimulus controller extended from TurboMountController
 
-registerComponent(turboMount, 'Piece', Piece)
+registerComponent(turboMount, 'index', index)
