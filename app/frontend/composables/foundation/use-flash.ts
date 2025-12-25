@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-import type { Flash } from '../interfaces'
+import type { Flash } from '../../interfaces'
 
 export function useFlash () {
   const flash = ref<Flash>({})

@@ -1,23 +1,19 @@
-export { useMutationApi, useQueryApi } from './backend'
-export { useExternalErrors, useAlert } from './backend'
+export { useMutationApi, useQueryApi } from './foundation'
+export { useExternalErrors, useAlert } from './foundation'
+export { useEntity,  useFlash, useLocale, useRoute } from './foundation'
+
+export type { UseAlertType, UseFlashType, UseRouteType } from './foundation'
+
+export { useI18nRegle } from './foundation'
+
 export { useToast } from './ui'
 
 export { useAccount, useComment } from './model'
-
-export { useEntity } from './use-entity'
-export { useFlash } from './use-flash'
-export { useLocale } from './use-locale'
-export { useConstants } from './use-constants'
-export { useRoute } from './use-route'
-export { useCookie } from './use-cookie'
-
 export type { UseAccountType, UseCommentType } from './model'
 
-export type { UseAlertType } from './backend'
-export type { UseFlashType } from './use-flash'
-export type { ConstantsType } from './use-constants'
-export type { UseRouteType } from './use-route'
-
-export { useI18nRegle } from './use-i18n-regle'
-
 export { useCommentRules } from './model/validation'
+
+export { useConstants } from './use-constants'
+export type { ConstantsType } from './use-constants'
+
+export { useCookie } from './use-cookie'
