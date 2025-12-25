@@ -4,7 +4,7 @@ export { useEntity,  useFlash, useLocale, useRoute } from './foundation'
 
 export type { UseAlertType, UseFlashType, UseRouteType } from './foundation'
 
-export { useI18nRegle } from './foundation'
+export { useI18nRegle } from './use-i18n-regle'
 
 export { useToast } from './ui'
 
