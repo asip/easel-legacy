@@ -7,33 +7,31 @@ import { useLocale, useCookie } from '../composables'
 import { searchCriteria } from '../stores'
 
 export default class FrameSearchController extends ApplicationController {
-  static targets = ['tooltip', 'message', 'word', 'tag', 'q']
+  static targets = ['word', 'tag', 'q', 'wordMessage', 'tagMessage']
 
-  declare readonly tooltipTarget: HTMLDivElement
-  declare readonly hasTooltipTarget: boolean
-  declare readonly messageTarget: HTMLInputElement
-  declare readonly hasMessageTarget: boolean
   declare readonly wordTarget: HTMLInputElement
   declare readonly hasWordTarget: boolean
   declare readonly tagTarget: HTMLInputElement
   declare readonly hasTagTarget: boolean
   declare readonly qTarget: HTMLInputElement
   declare readonly hasQTarget: boolean
+  declare readonly wordMessageTarget: HTMLDivElement
+  declare readonly hasWordMessageTarget: boolean
+  declare readonly tagMessageTarget: HTMLDivElement
+  declare readonly hasTagMessageTarget: boolean
 
-  tooltipElement: HTMLDivElement | null = null
-  messageElement: HTMLDivElement | null = null
   wordElement: HTMLInputElement | null = null
   tagElement: HTMLInputElement | null = null
   qElement: HTMLInputElement | null = null
+  wordMessageElement: HTMLDivElement | null = null
+  tagMessageElement: HTMLDivElement | null = null
 
   connect(): void {
-    if (this.hasTooltipTarget) this.tooltipElement = this.tooltipTarget
-    if (this.hasMessageTarget) this.messageElement = this.messageTarget
     if (this.hasWordTarget) this.wordElement = this.wordTarget
     if (this.hasTagTarget) this.tagElement = this.tagTarget
     if (this.hasQTarget) this.qElement = this.qTarget
-
-    this.tooltipElement?.classList.remove('tooltip-error')
+    if (this.hasWordMessageTarget) this.wordMessageElement = this.wordMessageTarget
+    if (this.hasTagMessageTarget) this.tagMessageElement = this.tagMessageTarget
 
     if(this.wordElement && this.tagElement) {
       const qItems: Record<'word'|'tag_name', string>  = JSON.parse(searchCriteria.get()) as Record<'word'|'tag_name', string>
@@ -57,11 +55,7 @@ export default class FrameSearchController extends ApplicationController {
           this.qElement.value = JSON.stringify({ word: this.wordElement.value })
           this.#search()
         } else {
-          if (this.tooltipElement) {
-            this.tooltipElement.dataset['tip'] = wordResult.issues[0].message
-            this.tooltipElement.classList.add('tooltip-open')
-            this.tooltipElement.classList.add('tooltip-error')
-          }
+          if (this.wordMessageElement) this.wordMessageElement.innerHTML = wordResult.issues[0].message
           event.preventDefault()
         }
       } else {
@@ -72,7 +66,7 @@ export default class FrameSearchController extends ApplicationController {
           this.qElement.value = this.tagElement?.value ? JSON.stringify({ tag_name: this.tagElement.value }) : '{}'
           this.#search()
         } else {
-          if (this.messageElement) this.messageElement.innerHTML = tagResult.issues[0].message
+          if (this.tagMessageElement) this.tagMessageElement.innerHTML = tagResult.issues[0].message
           event.preventDefault()
         }
       }
@@ -90,15 +84,11 @@ export default class FrameSearchController extends ApplicationController {
     }
   }
 
-  clearTooltip(): void {
-    if (this.tooltipElement && this.tooltipElement.dataset['tip'] != i18n.global.t('search.tooltip.word')) {
-      this.tooltipElement.dataset['tip'] = i18n.global.t('search.tooltip.word')
-      this.tooltipElement.classList.remove('tooltip-error')
-      this.tooltipElement.classList.remove('tooltip-open')
-    }
+  clearWordMessage(): void {
+    if (this.wordMessageElement && this.wordMessageElement.innerHTML != '') this.wordMessageElement.innerHTML = ''
   }
 
-  clearMessage(): void {
-    if (this.messageElement && this.messageElement.innerHTML != '') this.messageElement.innerHTML = ''
+  clearTagMessage(): void {
+    if (this.tagMessageElement && this.tagMessageElement.innerHTML != '') this.tagMessageElement.innerHTML = ''
   }
 }
