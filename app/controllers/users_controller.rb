@@ -3,8 +3,8 @@
 # Users Controller
 class UsersController < ApplicationController
   include Queries::Users::Pagination
-  include PageTransition::Query::List
-  include PageTransition::Ref::UserRef
+  include PageTransition::Query::Ref
+  include PageTransition::User::List
   include Cookie
 
   skip_before_action :authenticate_user!

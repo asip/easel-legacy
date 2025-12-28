@@ -3,8 +3,8 @@
 # Sessions Controller
 class SessionsController < ApplicationController
   include Queries::Sessions::Pagination
-  include PageTransition::Query::List
-  include PageTransition::Ref::SessionRef
+  include PageTransition::Query::Ref
+  include PageTransition::Session::List
   include Cookie
 
   before_action :store_location, only: [ :show ]

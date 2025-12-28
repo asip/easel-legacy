@@ -2,11 +2,12 @@
 
 # page transition
 module PageTransition
-  # query
-  module Query
-    # FrameQuery module
-    module FrameQuery
+  # frame
+  module Frame
+    # Search module
+    module Search
       extend ActiveSupport::Concern
+      include PageTransition::Query::Search
 
       protected
 
@@ -17,14 +18,6 @@ module PageTransition
           items_page = ref_items[:page]
           query[:page] = items_page if items_from.blank? && items_page.present?
           query[:ref] = ref_items.to_json if items_from.present?
-          query
-        }.call
-      end
-
-      def query_map
-        @query_map ||= ->() {
-          query = {}
-          query[:ref] = ref_items_for_user.to_json if ref_items_for_user.present?
           query
         }.call
       end

@@ -2,14 +2,22 @@
 
 # page transition
 module PageTransition
-  # referer
-  module Ref
-    # FrameRef module
-    module FrameRef
+  # frame
+  module Frame
+    # Ref module
+    module Ref
       extend ActiveSupport::Concern
       include PageTransition::Query::Ref
 
       protected
+
+      def query_map
+        @query_map ||= ->() {
+          query = {}
+          query[:ref] = ref_items_for_user.to_json if ref_items_for_user.present?
+          query
+        }.call
+      end
 
       def back_to_path
         @back_to_path ||= ->() {
@@ -25,7 +33,7 @@ module PageTransition
       end
 
       def ref_items_for_user
-        @ref_items_for_user ||= Ref::FrameRef.ref_items_from(ref:)
+        @ref_items_for_user ||= Frame::Ref.ref_items_from(ref:)
       end
 
       def self.ref_items_from(ref:)

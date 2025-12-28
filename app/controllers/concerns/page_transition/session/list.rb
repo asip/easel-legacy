@@ -2,12 +2,12 @@
 
 # page transition
 module PageTransition
-  # referer
-  module Ref
-    # SessionRef module
-    module SessionRef
+  # session
+  module Session
+    # List module
+    module List
       extend ActiveSupport::Concern
-      include PageTransition::Query::Ref
+      include PageTransition::Query::List
 
       protected
 

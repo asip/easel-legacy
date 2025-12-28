@@ -3,10 +3,9 @@
 # Frames Controller
 class FramesController < ApplicationController
   include Queries::Frames::Pagination
-  include PageTransition::Query::Search
   include PageTransition::Query::List
-  include PageTransition::Ref::FrameRef
-  include PageTransition::Query::FrameQuery
+  include PageTransition::Frame::Ref
+  include PageTransition::Frame::Search
   include More
   include Cookie
 
