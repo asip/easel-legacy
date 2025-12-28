@@ -38,14 +38,12 @@ export default class PreviewController extends ApplicationController {
             // (プレビュー画像がなければ表示します)
             if (content && content.classList.contains('hidden')) {
               content.classList.remove('hidden')
-              content.classList.add('block')
             }
           }
           // (DataURIScheme文字列を取得します)
           reader.readAsDataURL(file.data)
         } else {
           if (content && content.classList.contains('block')) {
-            content.classList.remove('block')
             content.classList.add('hidden')
           }
         }
