@@ -29,9 +29,10 @@ class User < ApplicationRecord
   include Errors::Login
   include Errors::User
   include Jwt::Token
-  include Login::User
   include Page::Confirmable
-  include Follow::User
+  include Login
+  include Login::Save
+  include Follow
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :trackable and :omniauthable
