@@ -39,8 +39,8 @@ export default class FrameSearchController extends ApplicationController {
 
     if(this.wordElement && this.tagElement) {
       const qItems: Record<'word'|'tag_name', string>  = JSON.parse(searchCriteria.get()) as Record<'word'|'tag_name', string>
-      this.wordElement.value = qItems['word'] ? qItems['word'] : ''
-      this.tagElement.value = qItems['tag_name'] ? qItems['tag_name'] : ''
+      this.wordElement.value = qItems.word ? qItems.word : ''
+      this.tagElement.value = qItems.tag_name ? qItems.tag_name : ''
     }
   }
 
