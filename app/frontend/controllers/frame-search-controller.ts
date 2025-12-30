@@ -2,9 +2,9 @@ import ApplicationController from './application-controller'
 
 import * as v from 'valibot'
 
-import { i18n } from '../i18n'
-import { useLocale, useCookie } from '../composables'
-import { searchCriteria } from '../stores'
+import { i18n } from '~/i18n'
+import { useLocale, useCookie } from '~/composables'
+import { searchCriteria } from '~/stores'
 
 interface SearchParams {
   word?: string | null

@@ -1,12 +1,12 @@
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
-import type { Comment , CommentResource, CommentsResource } from '../../interfaces'
-import type { CommentErrorProperty } from '../../types'
-import { useQueryApi, useMutationApi, useEntity, useExternalErrors, useAlert, useConstants, useFlash } from '../'
-import { useCommentsStore } from '../../stores'
+import type { Comment , CommentResource, CommentsResource } from '~/interfaces'
+import type { CommentErrorProperty } from '~/types'
+import { useQueryApi, useMutationApi, useEntity, useExternalErrors, useAlert, useConstants, useFlash } from '~/composables'
+import { useCommentsStore } from '~/stores'
 
-import { i18n } from '../../i18n'
+import { i18n } from '~/i18n'
 
 export function useComment() {
   const { baseURL } = useConstants()

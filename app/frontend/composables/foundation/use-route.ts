@@ -1,4 +1,4 @@
-import { $router } from '../../stores'
+import { $router } from '~/stores'
 import { useStore } from '@nanostores/vue'
 
 export function useRoute() {

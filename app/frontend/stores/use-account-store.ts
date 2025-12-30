@@ -1,7 +1,7 @@
 import { Ref, ref } from 'vue'
 import { defineStore } from 'pinia'
 
-import type { User } from '../interfaces'
+import type { User } from '~/interfaces'
 
 export const useAccountStore = defineStore(
   'account',

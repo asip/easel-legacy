@@ -1,1 +1,1 @@
-import '../i18n/valibot'
+import '~/i18n/valibot'

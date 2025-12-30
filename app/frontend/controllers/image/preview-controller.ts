@@ -1,4 +1,4 @@
-import ApplicationController from '../application-controller'
+import ApplicationController from '~/controllers/application-controller'
 
 export default class PreviewController extends ApplicationController {
   static targets = ['upload', 'content', 'image']

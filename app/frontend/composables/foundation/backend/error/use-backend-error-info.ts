@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
-import type { BackendErrorInfo, BackendErrorResource } from '../../../../interfaces'
-import { useEntity } from '../../../../composables'
+import type { BackendErrorInfo, BackendErrorResource } from '~/interfaces'
+import { useEntity } from '~/composables'
 
 export function useBackendErrorInfo() {
   const backendErrorInfo = ref<BackendErrorInfo>({})

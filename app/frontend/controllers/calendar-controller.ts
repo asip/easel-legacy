@@ -1,8 +1,8 @@
 import ApplicationController from './application-controller'
 import { Datepicker } from 'vanillajs-datepicker'
-import ja from '../locales/date-picker/ja'
+import ja from '~/locales/date-picker/ja'
 
-import { searchCriteria } from '../stores'
+import { searchCriteria } from '~/stores'
 
 export default class CalendarController extends ApplicationController {
   static targets = ['cal', 'word']

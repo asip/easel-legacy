@@ -1,11 +1,11 @@
 // import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 
-import type { AccountResource } from '../../interfaces'
-import { useAlert, useConstants, useFlash, useQueryApi } from '../'
-import { useAccountStore } from '../../stores'
+import type { AccountResource } from '~/interfaces'
+import { useAlert, useConstants, useFlash, useQueryApi } from '~/composables'
+import { useAccountStore } from '~/stores'
 
-import { i18n } from '../../i18n'
+import { i18n } from '~/i18n'
 
 export function useAccount() {
   const { loggedIn, currentUser } = storeToRefs(useAccountStore())
