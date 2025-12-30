@@ -81,7 +81,6 @@ export default class FrameSearchController extends ApplicationController {
         event.preventDefault()
       }
     }
-    // globalThis.console.log(this.qElement?.value)
   }
 
   #search(): void {
