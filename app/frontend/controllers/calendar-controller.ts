@@ -26,7 +26,7 @@ export default class CalendarController extends ApplicationController {
 
     if (calElement) {
       const qItems: Record<'word', string> = JSON.parse(searchCriteria.get()) as Record<'word', string>
-      const date = this.#isValidDate(qItems['word']) ? qItems['word'] : null
+      const date = this.#isValidDate(qItems.word) ? qItems.word : null
 
       Object.assign(Datepicker.locales, ja)
 
