@@ -6,7 +6,6 @@
           <td colspan="2">
             <div class="tooltip tooltip-top" data-tip="タグ or 名前 or 撮影/登録/更新日">
               <%= form.text_field "", id: "word", placeholder: "", class: "input input-bordered w-60", value: "", "data-calendar-target": "word", "data-frameSearch-target": "word", "data-action": "input->frameSearch#clearWordMessage" %>
-              <%= form.hidden_field "", id: "q", "data-frameSearch-target": "q" %>
             </div>
             <div data-frameSearch-target="wordMessage" class="text-red-500"></div>
           </td>
