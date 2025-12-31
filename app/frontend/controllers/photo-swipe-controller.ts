@@ -4,27 +4,26 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox'
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen'
 
 export default class PhotoSwipeController extends ApplicationController {
-  static targets = ['ps']
+  static values = {
+    selector: String,
+    anchor: String
+  }
 
-  declare readonly psTarget: HTMLElement
-
-  declare readonly hasPsTarget: boolean
+  declare readonly selectorValue: string
+  declare readonly anchorValue: string
 
   lightbox: PhotoSwipeLightbox | null = null
 
   connect(): void {
-    let psElement: HTMLElement | null = null
 
-    if (this.hasPsTarget) psElement = this.psTarget
-
-    if (psElement) {
+    if (this.selectorValue) {
       void (async () => {
-        await this.assignSize(psElement)
+        await this.assignSize()
       })()
 
       this.lightbox = new PhotoSwipeLightbox({
-        gallery: '#image',
-        children: 'a',
+        gallery: this.selectorValue,
+        children: this.anchorValue ? this.anchorValue : 'a',
         initialZoomLevel: 'fit',
         pswpModule: () => import('photoswipe')
       })
@@ -40,10 +39,15 @@ export default class PhotoSwipeController extends ApplicationController {
     }
   }
 
-  async assignSize(trigger: HTMLElement): Promise<void> {
-    const gallery = trigger.querySelectorAll('a')
-    for (const el of gallery) {
-      const img: HTMLImageElement = await this.loadImage(el.href)
+  async assignSize(): Promise<void> {
+    const galleryAnchors = globalThis.document.querySelectorAll(`${this.selectorValue} ${this.anchorValue ? this.anchorValue : 'a'}`)
+    // globalThis.console.log(`${this.selectorValue} ${this.anchorValue ? this.anchorValue : 'a'}`)
+    // globalThis.console.log(galleryAnchors)
+
+    for (const el of galleryAnchors) {
+      const img: HTMLImageElement = await this.loadImage((el as HTMLLinkElement).href)
+      // globalThis.console.log(img.naturalWidth.toString())
+      // globalThis.console.log(img.naturalHeight.toString())
       el.setAttribute('data-pswp-width', img.naturalWidth.toString())
       el.setAttribute('data-pswp-height', img.naturalHeight.toString())
       el.firstElementChild?.removeAttribute('style')
