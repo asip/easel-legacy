@@ -5,7 +5,7 @@
         <%= link_to image_tag(@model.file_proxy_url(:three), class: ""), @model.file_proxy_url(:original), class: "" %>
       </div>
     <% else %>
-      <div data-controller="lightbox">
+      <div data-controller="lightbox" data-lightbox-selector-value=".lb">
         <%= link_to image_tag(@model.file_proxy_url(:three), class: ""), @model.file_proxy_url(:original), class: "lb" %>
       </div>
     <% end %>

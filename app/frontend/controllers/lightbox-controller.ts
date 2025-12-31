@@ -2,24 +2,16 @@ import ApplicationController from './application-controller'
 import GLightbox from 'glightbox'
 
 export default class LightboxController extends ApplicationController {
-  // static targets = ['lb']
+  static values = {
+    selector: String
+  }
 
-  // declare readonly lbTarget: HTMLElement
+  declare readonly selectorValue: string
 
   lightbox: ReturnType<typeof GLightbox> | null = null
 
-  // declare readonly hasLbTarget: boolean
-
   connect(): void {
-    /*
-    let lbElement: HTMLElement | null = null
-
-    if (this.hasLbTarget) lbElement = this.lbTarget
-    */
-
-    //if (lbElement) {
-    this.lightbox = GLightbox({ selector: '.lb' })
-    //}
+    this.lightbox = GLightbox({ selector: this.selectorValue })
   }
 
   disconnect(): void {
