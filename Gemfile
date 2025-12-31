@@ -11,13 +11,13 @@ gem "propshaft", "~> 1.3.1"
 # Use mysql as the database for Active Record
 # gem "mysql2", "~> 0.5.6"
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.6.2"
+gem "pg", "~> 1.6.3"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 7.1.0"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", "~> 0.1.16", require: false
+gem "thruster", "~> 0.1.17", require: false
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.20"
@@ -26,7 +26,7 @@ gem "turbo-rails", "~> 2.0.20"
 gem "stimulus-rails", "~> 1.3.4"
 
 # Turbo Mount
-gem "turbo-mount", "~> 0.4.3"
+gem "turbo-mount", "~> 0.4.4"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -38,7 +38,7 @@ gem "turbo-mount", "~> 0.4.3"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.19.0", require: false
+gem "bootsnap", "~> 1.20.1", require: false
 
 # vite integration
 gem "vite_rails", "3.0.19"
@@ -47,7 +47,7 @@ gem "vite_rails", "3.0.19"
 gem "view_component", "~> 4.1.1"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.206.0"
+gem "aws-sdk-s3", "~> 1.209.0"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
@@ -73,7 +73,7 @@ gem "googleauth", "~> 1.16.0"
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.2.0"
+gem "pagy", "~> 43.2.2"
 
 # tags
 gem "no_fly_list", "0.7.3"
@@ -98,12 +98,12 @@ gem "mutex_m", "~> 0.3.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "debug", "~> 1.11.0", platforms: %i[mri windows], require: "debug/prelude"
+  gem "debug", "~> 1.11.1", platforms: %i[mri windows], require: "debug/prelude"
   # gem "rspec-rails", "~> 8.0.2"
 end
 
 group :development do
-  gem "brakeman", "~> 7.1.1", require: false
+  gem "brakeman", "~> 7.1.2", require: false
   gem "bullet", "~> 8.1.0"
   gem "pg_query", "~> 6.1.0"
   gem "prosopite", "~> 2.1.2"
