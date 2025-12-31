@@ -1,7 +1,7 @@
 <div id="frames">
   <br>
   <%= render partial: "frames/more/load_prev", locals: { pagy: @pagy } %>
-  <div id="list">
+  <div id="list" class="lb" data-controller="pswipe" data-pswipe-selector-value=".lb" data-pswipe-anchor-value="a.ps">
     <%= render partial: "frames/more/list", locals: { frames: @frames, from: "", pagy: @pagy } %>
   </div>
   <%= render partial: "frames/more/load_next", locals: { pagy: @pagy } %>

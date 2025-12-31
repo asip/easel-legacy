@@ -39,7 +39,7 @@
     </form>
   </dialog>
 
-  <div id="list" class="pt-2">
+  <div id="list" class="pt-2 lb" data-controller="pswipe" data-pswipe-selector-value=".lb" data-pswipe-anchor-value="a.ps">
     <%= render partial: "frames/more/list", locals: { frames: @frames, from: "user_profile", pagy: @pagy } %>
   </div>
 
