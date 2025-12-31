@@ -43,11 +43,11 @@ class Frame < ApplicationRecord
 
   enum :private, { final: false, draft: true }
 
-  scope :search_by, ->(user:, items:) do
+  scope :search_by, ->(user:, form:) do
     scope = current_scope || relation
 
-    word = items[:word]
-    tag_name = items[:tag_name]
+    word = form.word
+    tag_name = form.tag_name
 
     scope = scope.where(private: false)
 
