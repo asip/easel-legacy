@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, vaporInteropPlugin } from 'vue'
 import { RegleVuePlugin } from '@regle/core'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
@@ -13,7 +13,7 @@ pinia.use(piniaPluginPersistedstate)
 plugin.mountComponent = (mountProps) => {
   const { el, Component, props } = mountProps
   const app = createApp(Component, props)
-  app.use(RegleVuePlugin).use(pinia).mount(el)
+  app.use(RegleVuePlugin).use(pinia).use(vaporInteropPlugin).mount(el)
   return () => {
     app.unmount()
   }

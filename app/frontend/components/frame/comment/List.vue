@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" setup vapor>
 import CommentItem from './Item.vue'
 
 import { useComment, useRoute } from '../../../composables'

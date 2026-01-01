@@ -1,4 +1,4 @@
-<script lang="ts" setup >
+<script lang="ts" setup vapor>
 import sanitizeHtml from 'sanitize-html'
 import { computed, onMounted, ref } from 'vue'
 
