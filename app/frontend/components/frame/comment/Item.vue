@@ -102,7 +102,7 @@ const reload401404 = async (): Promise<void> => {
 <template>
   <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2">
     <div class="card-body">
-      <div class="flex justify-between leading-[35px]">
+      <div class="flex justify-between leading-8.75">
         <div class="flex items-center gap-1">
           <a :href="`/users/${commentModel?.user_id}?${queryString}`" class="avatar">
             <img :src="commentModel?.user_image_url" alt="" class="rounded w-5 h-5">
@@ -137,7 +137,7 @@ const reload401404 = async (): Promise<void> => {
           </tbody>
         </table>
         <form v-else class="w-full">
-          <textarea v-model="comment.body" class="block text-sm border border-gray-300 rounded w-full min-h-[50px] field-sizing-content" />
+          <textarea v-model="comment.body" class="block text-sm border border-gray-300 rounded w-full min-h-12.5 field-sizing-content" />
           <div class="flex flex-col">
             <div
               v-for="error of r$.$errors.body"
