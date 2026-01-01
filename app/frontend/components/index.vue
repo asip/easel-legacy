@@ -11,7 +11,7 @@ const AsyncComponent = defineAsyncComponent(() => import(`./${path}.vue`))
 
 <template>
   <Suspense>
-    <AsyncComponent v-bind=" viewData && { viewData }" />
+    <AsyncComponent v-bind="viewData && { viewData }" />
     <template #fallback>
       <div>Loading...</div>
     </template>
