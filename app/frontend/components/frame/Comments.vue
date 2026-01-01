@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" setup vapor>
 import CommentList from './comment/List.vue'
 import CommentForm from './comment/Form.vue'
 
@@ -23,13 +23,8 @@ setFlash(flash.value)
 </script>
 
 <template>
-  <Suspense>
-    <div class="pb-5">
-      <CommentList />
-      <CommentForm />
-    </div>
-    <template #fallback>
-      <div>Loading...</div>
-    </template>
-  </Suspense>
+  <div class="pb-5">
+    <CommentList />
+    <CommentForm />
+  </div>
 </template>
