@@ -3,10 +3,9 @@
 # admins / Sessions Controller
 class Admins::SessionsController < Devise::SessionsController
   include Flashes
+  include Account::Authentication::Skip
 
   layout "admins/application"
-
-  skip_before_action :authenticate_user!
 
   # before_action :configure_sign_in_params, only: [:create]
 

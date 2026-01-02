@@ -6,10 +6,7 @@ class ApplicationController < ActionController::Base
   include TimeZone::Detect
   include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
   include Flashes
+  include Account::Authentication
 
   protect_from_forgery with: :exception
-
-  before_action :authenticate_user!
-
-  helper_method :current_user
 end

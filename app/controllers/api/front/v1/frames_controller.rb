@@ -8,7 +8,7 @@ module Api
     module V1
       # Frames Controller
       class FramesController < Api::Front::V1::ApiController
-        skip_before_action :authenticate, only: [ :comments ]
+        include Api::Authentication::Frames::Skip
 
         def comments
           comments = Queries::Frames::ListCommentsWithUser.run(frame_id: path_params[:frame_id])

@@ -2,14 +2,13 @@
 
 # Frames Controller
 class FramesController < ApplicationController
+  include Account::Authentication::Frames::Skip
   include Queries::Frames::Pagination
   include PageTransition::Query::List
   include PageTransition::Frame::Ref
   include PageTransition::Frame::Search
   include More
   include Cookie
-
-  skip_before_action :authenticate_user!, only: %i[index show]
 
   before_action :store_location, only: %i[show new edit]
   before_action :set_model, only: %i[create update]

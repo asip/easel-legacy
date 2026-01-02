@@ -2,12 +2,11 @@
 
 # Users Controller
 class UsersController < ApplicationController
+  include Account::Authentication::Skip
   include Queries::Users::Pagination
   include PageTransition::Query::Ref
   include PageTransition::User::List
   include Cookie
-
-  skip_before_action :authenticate_user!
 
   before_action :store_location, only: [ :show ]
 
