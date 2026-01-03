@@ -8,6 +8,7 @@ module Admins
     # include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
     include Flashes
     include Admin::Authentication
+    include Account::Authentication::Skip
 
     protect_from_forgery with: :exception
   end
