@@ -7,12 +7,12 @@ class FramesController < ApplicationController
   include PageTransition::Query::List
   include PageTransition::Frame::Ref
   include PageTransition::Frame::Search
+  include ::Frames::Confirmable
+
   include More
   include Cookie
 
   before_action :store_location, only: %i[show new edit]
-  before_action :set_model, only: %i[create update]
-  before_action :back_to_form, only: %i[create update]
 
   def index
     form = FrameSearchForm.new(q_items)
@@ -78,24 +78,6 @@ class FramesController < ApplicationController
         PageTransition::Path.not_after_login_unsaved_paths?(from))
       self.prev_url = from || root_path(query_map_for_search)
     end
-  end
-
-  def set_model
-    case action_name
-    when "create"
-      self.frame = Frame.new(form_params)
-    when "update"
-      self.frame = Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
-      frame.attributes = form_params
-    end
-  end
-
-  def back_to_form
-    return unless permitted_params[:commit] == "戻る"
-
-    self.frame.confirming = false
-    # frame.file_derivatives! if frame.file.present?
-    render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
   def permitted_params
