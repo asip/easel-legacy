@@ -1,8 +1,8 @@
 
 # frozen_string_literal: true
 
-# api/Authentication module
-module Api::Authentication
+# api/accounr/Authentication module
+module Api::Account::Authentication
   extend ActiveSupport::Concern
 
   included do

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# api/authentication/frames/skip module
-module Api::Authentication::Frames::Skip
+# api/account/authentication/frames/skip module
+module Api::Account::Authentication::Frames::Skip
   extend ActiveSupport::Concern
 
   included do
