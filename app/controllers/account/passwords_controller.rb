@@ -2,11 +2,10 @@
 
 # account / Passwords Controller
 class Account::PasswordsController < ApplicationController
+  include Location::Account::Passwords::Store
   include Cookie
 
   # before_action :authenticate_user!
-
-  before_action :store_location, only: [ :edit ]
 
   def show
     redirect_to edit_account_password_path
@@ -27,11 +26,6 @@ class Account::PasswordsController < ApplicationController
   end
 
   private
-
-  def store_location
-    from = request.referer
-    self.prev_url = from || profile_path  if !from&.include?("/account/password/edit")
-  end
 
   def password_params
     @password_params ||= params.expect(

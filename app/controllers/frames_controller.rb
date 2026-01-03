@@ -8,11 +8,9 @@ class FramesController < ApplicationController
   include PageTransition::Frame::Ref
   include PageTransition::Frame::Search
   include ::Frames::Confirmable
-
+  include Location::Frames::Store
   include More
   include Cookie
-
-  before_action :store_location, only: %i[show new edit]
 
   def index
     form = FrameSearchForm.new(q_items)
@@ -70,15 +68,6 @@ class FramesController < ApplicationController
   private
 
   attr_accessor :frame
-
-  def store_location
-    from = request.referer
-    if (action_name == "show" && !from&.include?("/frames") && PageTransition::Path.not_before_login_unsaved_paths?(from)) ||
-       ((action_name == "new" || (action_name == "edit" && !from.include?(request.path))) &&
-        PageTransition::Path.not_after_login_unsaved_paths?(from))
-      self.prev_url = from || root_path(query_map_for_search)
-    end
-  end
 
   def permitted_params
     @permitted_params ||= params.permit(
