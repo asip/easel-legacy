@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Easel Legacy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= vite_client_tag %>
+    <%= favicon_link_tag "/palette.png", { type: "image/png" } %>
+    <%= favicon_link_tag "/palette.svg", { type: "image/svg+xml" } %>
+    <%= vite_stylesheet_tag "tailwind", media: "all", "data-turbo-track": "reload" %>
+    <%= vite_stylesheet_tag "application", media: "all", "data-turbo-track": "reload" %>
+    <%= vite_javascript_tag "turbo", "data-turbo-track": "reload", type: "module" %>
+    <%= vite_javascript_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= vite_javascript_tag "components", "data-turbo-track": "reload", type: "module" %>
+    <!--
+      Visit the guide for more information: https://vite-ruby.netlify.app/guide/rails
+    -->
+
+  </head>
+  <body class="min-h-screen">
+    <%= render "layouts/header" %>
+    <div id="flash_message">
+      <%= render "layouts/flash" %>
+    </div>
+    <div class="container mx-auto">
+      <%= render Front::Component.new(path: "#{controller_name}/#{action_name}", view_data: @view_data) %>
+    </div>
+  </body>
+</html>
