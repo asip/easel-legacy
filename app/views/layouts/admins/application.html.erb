@@ -14,7 +14,7 @@
     <%= vite_javascript_tag "admin", "data-turbo-track": "reload", type: "module" %>
   </head>
   <body class="min-h-screen">
-    <%= render "layouts/admins/header" %>
+    <%= render Admins::Header::Component.new %>
     <div id="flash_message"></div>
     <div class="container mx-auto">
       <%= yield %>
