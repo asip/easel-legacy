@@ -2,7 +2,7 @@
 
 # Application Controller
 class ApplicationController < ActionController::Base
-  include Locale::AutoDetect
+  include Locale::Detect
   include TimeZone::Detect
   include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
   include Flashes
