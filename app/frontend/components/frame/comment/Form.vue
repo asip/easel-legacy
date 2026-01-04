@@ -1,4 +1,4 @@
-<script lang="ts" setup vapor>
+<script lang="ts" setup>
 import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../../composables'
 
 const route = useRoute()
@@ -7,6 +7,8 @@ const id: string = route.params?.id ?? ''
 const { setFlash } = useToast()
 
 const { loggedIn } = useAccount()
+
+// console.log('loggedIn:', loggedIn.value)
 
 const { comment, externalErrors, isSuccess, flash, getComments, createComment, set404Alert, reload } = useComment()
 
