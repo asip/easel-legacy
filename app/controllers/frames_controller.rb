@@ -38,7 +38,7 @@ class FramesController < ApplicationController
       redirect_to frame_path(frame)
     else
       flashes[:alert] = frame.full_error_messages unless frame.errors.empty?
-      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
+      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_content
     end
   end
 
@@ -56,7 +56,7 @@ class FramesController < ApplicationController
       redirect_to prev_url_for(path: edit_frame_path(frame))
     else
       flashes[:alert] = frame.full_error_messages unless frame.errors.empty?
-      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
+      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_content
     end
   end
 

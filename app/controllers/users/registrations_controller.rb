@@ -134,7 +134,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def render_with_flash(resource)
     flashes[:alert] = resource.full_error_messages unless resource.errors.empty?
     # puts resource.errors.to_hash(true)
-    render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
+    render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_content
   end
 
   def update_resource(resource, params)

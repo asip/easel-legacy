@@ -21,7 +21,7 @@ class Account::PasswordsController < ApplicationController
     else
       # puts current_user.errors.to_hash(true)
       flashes[:alert] = current_user.full_error_messages unless current_user.errors.empty?
-      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_entity
+      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_content
     end
   end
 
