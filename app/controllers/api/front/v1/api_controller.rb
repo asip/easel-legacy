@@ -12,7 +12,6 @@ module Api
         include Locale::Detect
         include TimeZone::Detect
         include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
-        include Api::ErrorRenderable
         include Api::Account::Authentication
       end
     end
