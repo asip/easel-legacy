@@ -42,14 +42,20 @@ module Api::Account::Authentication
     rescue JWT::ExpiredSignature
       # (トークンの 'exp' (有効期限) クレームが期限切れを示している場合)
       raise Api::UnauthorizedError.new("認証トークンの有効期限が切れています。")
-    rescue JWT::DecodeError => e
+    rescue JWT::DecodeError => error
       # (一般的なJWTデコード失敗 (例: 無効な署名、不正なトークン構造))
-      Rails.logger.error("JWT Decode Error: #{e.message}")
+      Api::Account::Authentication.error_log("JWT Decode Error: #{error.message}")
       raise Api::UnauthorizedError.new("認証トークンが無効です。")
-    rescue => e
+    rescue => exception
       # (認証プロセス中のその他の予期せぬエラーを捕捉)
-      Rails.logger.error("JWT処理中に予期せぬ認証エラーが発生しました: #{e.message}")
+      Api::Account::Authentication.error_log("JWT処理中に予期せぬ認証エラーが発生しました: #{exception.message}")
       raise Api::UnauthorizedError.new("認証中に予期せぬエラーが発生しました。")
+    end
+
+    private
+
+    def self.error_log(str)
+      Rails.logger.error(str)
     end
   end
 end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Frontend module
 module Frontend
   extend ActiveSupport::Concern
 
