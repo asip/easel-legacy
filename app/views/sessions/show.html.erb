@@ -1,87 +1,11 @@
-<div id="users">
-  <br>
-  <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2">
-    <div class="card-body divide-y divide-gray-200">
-      <div class="flex justify-between pb-1">
-        <div>
-          <%= link_to back_to_path, class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>プロフィール
-        </div>
-        <div>
-          <%= link_to edit_profile_path do %><i class="bi bi-pencil-square text-accent hover:text-primary"></i><% end %>
-          <% unless @user.social_login? %>
-            <%= link_to account_password_path do %><i class="bi bi-lock text-accent hover:text-primary"></i><% end %>
-          <% end %>
-          <a onclick="delete_modal.showModal()">
-            <i class="bi bi-x-circle text-accent hover:text-primary"></i>
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="flex justify-center mb-2">
-          <%= render ::Display::Image::Component.new(model: @user, small: true) %>
-        </div>
-        <div class="flex justify-center mt-2">
-          <table class="table table-bordered table-rounded">
-            <tbody>
-              <tr>
-                <td class="w-[9em]">
-                  ユーザー名
-                </td>
-                <td>
-                  <%= @user.name %>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Eメール
-                </td>
-                <td>
-                  <%= @user.email %>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <%= t("activerecord.attributes.user.profile") %>
-                </td>
-                <td class="wrap-break-word">
-                  <%= simple_format(h(@user.profile)) %>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <%= t("activerecord.attributes.user.time_zone") %>
-                </td>
-                <td>
-                  <%= @user.time_zone %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <!-- <div class="flex justify-center">
-        パスワード
-        <div>
-          <div><%= @user.password %></div>
-        </div>
-      </div> -->
-      <!--<div class="flex justify-center">
-        <div>
-          <%= link_to "戻る", prev_url, class: "btn btn-outline btn-warning", "data-turbo": true %>
-        </div>
-      </div> -->
-    </div>
-  </div>
+<%= render Sessions::Show::Component.new(user: @user) %>
 
-  <div id="list" class="pt-2 lb" data-controller="pswipe" data-pswipe-selector-value=".lb" data-pswipe-anchor-value="a.ps">
-    <%= render partial: "frames/more/list", locals: { frames: @frames, from: "profile", pagy: @pagy } %>
-  </div>
+<div id="list" class="pt-2 lb" data-controller="pswipe" data-pswipe-selector-value=".lb" data-pswipe-anchor-value="a.ps">
+  <%= render partial: "frames/more/list", locals: { frames: @frames, from: "profile", pagy: @pagy } %>
+</div>
 
-  <div class="flex justify-center">
-    <div class="mx-auto rounded-[5px] pt-2">
-      <%== @pagy.series_nav %>
-    </div>
+<div class="flex justify-center">
+  <div class="mx-auto rounded-[5px] pt-2">
+    <%== @pagy.series_nav %>
   </div>
-
-  <%= render Sessions::Delete::Modal::Component.new(path: delete_account_path) %>
 </div>

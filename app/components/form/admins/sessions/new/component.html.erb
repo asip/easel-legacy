@@ -1,0 +1,39 @@
+<div id="admins">
+  <br>
+  <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2">
+    <div class="card-body divide-y divide-gray-200">
+      <div class="flex justify-start pb-1">
+        <%= t("action.administration.title") %>
+      </div>
+      <%= form_for(@resource, as: @resource_name, method: :post, url: helpers.session_path(@resource_name)) do |form| %>
+        <div class="flex justify-center">
+          <table class="table table-bordered table-rounded">
+            <tbody>
+              <tr>
+                <td class="w-[8em]">
+                  <label for="admin_email"><%= t("activerecord.attributes.user.email") %></label>
+                </td>
+                <td>
+                  <%= form.text_field :email, placeholder: "", autofocus: true, autocomplete: "email",
+                                              class: "input" %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="admin_password"><%= t("activerecord.attributes.user.password") %></label>
+                </td>
+                <td>
+                  <%= form.password_field :password, placeholder: "", autocomplete: "current-password",
+                                                     class: "input" %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flex justify-start mt-2">
+            <%= form.submit t("action.administration.login"), class: "btn btn-outline btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
