@@ -1,7 +1,7 @@
 
 # frozen_string_literal: true
 
-# api/accounr/Authentication module
+# api/account/Authentication module
 module Api::Account::Authentication
   extend ActiveSupport::Concern
 
@@ -51,11 +51,9 @@ module Api::Account::Authentication
       Api::Account::Authentication.error_log("JWT処理中に予期せぬ認証エラーが発生しました: #{exception.message}")
       raise Api::UnauthorizedError.new("認証中に予期せぬエラーが発生しました。")
     end
+  end
 
-    private
-
-    def self.error_log(str)
-      Rails.logger.error(str)
-    end
+  def self.error_log(str)
+    Rails.logger.error(str)
   end
 end
