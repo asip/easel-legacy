@@ -6,8 +6,7 @@ const { path, viewData: data } = defineProps<{ path: string, viewData?: string }
 const viewDataMap = JSON.parse(data ?? '{}')
 const viewData = viewDataMap && Object.keys(viewDataMap).length !== 0 ? viewDataMap : null
 
-const componentPath = `./views/${path}.vue`
-const AsyncComponent = defineAsyncComponent(() => import( /* @vite-ignore */componentPath))
+const AsyncComponent = defineAsyncComponent(() => import(/* @vite-ignore */`./${path}.vue`))
 </script>
 
 <template>
