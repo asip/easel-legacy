@@ -4,7 +4,7 @@
 module Queries
   # frames
   module Users
-    # ListFollowers
+    # ListFollowers class
     class ListFollowers
       include Query
 

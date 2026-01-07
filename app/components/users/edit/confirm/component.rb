@@ -6,7 +6,7 @@ module Users
   module Edit
     # confirm
     module Confirm
-      # Component
+      # Component class
       class Component < ViewComponent::Base
         def initialize(user:, form:)
           @user = user

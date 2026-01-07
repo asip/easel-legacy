@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# PageTransition module
 module PageTransition
   def self.redirect_url(from:)
     if from.blank?

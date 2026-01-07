@@ -8,7 +8,7 @@ module Form
     module Registrations
       # edit
       module Edit
-        # Component
+        # Component class
         class Component < ViewComponent::Base
           def initialize(resource:, resource_name:)
             @resource = resource

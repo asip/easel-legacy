@@ -8,7 +8,7 @@ module Form
     module Passwords
       # edit
       module Edit
-        # Component
+        # Component class
         class Component < ViewComponent::Base
           def initialize
           end

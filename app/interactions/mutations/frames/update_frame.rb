@@ -2,9 +2,9 @@
 
 # mutations
 module Mutations
-  # frames
+  # frames module
   module Frames
-    # UpdateFrame
+    # UpdateFrame class
     class UpdateFrame
       include Mutation
 
@@ -17,9 +17,10 @@ module Mutations
       end
 
       def execute
-        frame = Frame.find_by!(id: @frame_id, user_id: @user.id)
+        user_id = @user.id
+        frame = Frame.find_by!(id: @frame_id, user_id:)
         frame.attributes = @form
-        frame.user_id = @user.id
+        frame.user_id = user_id
         mutation = Mutations::Frames::SaveFrame.run(frame:)
         errors.merge!(mutation.errors) unless mutation.success?
         self.frame = mutation.frame

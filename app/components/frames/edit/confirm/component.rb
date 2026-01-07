@@ -6,7 +6,7 @@ module Frames
   module Edit
     # confirm
     module Confirm
-      # Component
+      # Component class
       class Component < ViewComponent::Base
         def initialize(frame:, form:, tag_map:)
           @frame = frame

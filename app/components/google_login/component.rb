@@ -2,7 +2,7 @@
 
 # google login
 module GoogleLogin
-  # Component
+  # Component class
   class Component < ViewComponent::Base
     def initialize
     end

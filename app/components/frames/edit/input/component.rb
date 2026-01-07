@@ -6,7 +6,7 @@ module Frames
   module Edit
     # input
     module Input
-      # Component
+      # Component class
       class Component < ViewComponent::Base
         def initialize(frame:, form:, back_to_path:)
           @frame = frame

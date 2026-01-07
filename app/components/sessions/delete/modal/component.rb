@@ -6,7 +6,7 @@ module Sessions
   module Delete
     # modal
     module Modal
-      # Component
+      # Component class
       class Component < ViewComponent::Base
         def initialize(path:)
           @path = path

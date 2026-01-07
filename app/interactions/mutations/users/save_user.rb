@@ -4,7 +4,7 @@
 module Mutations
   # users
   module Users
-    # SaveUser
+    # SaveUser class
     class SaveUser
       include Mutation
 

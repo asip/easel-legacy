@@ -6,7 +6,7 @@ module Passwords
   module Edit
     # input
     module Input
-      # Component
+      # Component class
       class Component < ViewComponent::Base
         def initialize(user:, form:, back_to_path:)
           @user = user

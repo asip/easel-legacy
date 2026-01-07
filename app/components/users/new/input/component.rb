@@ -6,7 +6,7 @@ module Users
   module New
     # input
     module Input
-      # Component
+      # Component class
       class Component < ViewComponent::Base
         def initialize(form:, user:, back_to_path:)
           @form = form

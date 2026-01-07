@@ -2,7 +2,7 @@
 
 # front
 module Front
-  # Component
+  # Component class
   class Component < ViewComponent::Base
     def initialize(path:, view_data: {})
       @path = path

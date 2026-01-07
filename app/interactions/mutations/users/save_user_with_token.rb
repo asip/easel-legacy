@@ -4,7 +4,7 @@
 module Mutations
   # users
   module Users
-    # SaveUserWithToken
+    # SaveUserWithToken class
     class SaveUserWithToken
       include Mutation
 

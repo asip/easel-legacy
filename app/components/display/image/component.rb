@@ -4,7 +4,7 @@
 module Display
   # image
   module Image
-    # Component
+    # Component class
     class Component < ViewComponent::Base
       def initialize(model:, original: false, photoswipe: false, small: false)
         @model = model

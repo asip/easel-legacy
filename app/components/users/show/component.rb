@@ -4,7 +4,7 @@
 module Users
   # show
   module Show
-    # Component
+    # Component class
     class Component < ViewComponent::Base
       def initialize(user:)
         @user = user

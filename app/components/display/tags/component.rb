@@ -4,7 +4,7 @@
 module Display
   # tags
   module Tags
-    # Component
+    # Component class
     class Component < ViewComponent::Base
       def initialize(tag_map:, list: false, link: true)
         @tag_map = tag_map

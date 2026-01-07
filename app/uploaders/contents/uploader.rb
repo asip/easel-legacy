@@ -2,7 +2,7 @@
 
 # contents
 module Contents
-  # Uploader
+  # Uploader class
   class Uploader < Shrine
     # Attacher.derivatives do |original|
     #   pipeline = ImageProcessing::Vips.source(original)

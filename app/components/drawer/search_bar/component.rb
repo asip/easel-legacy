@@ -4,7 +4,7 @@
 module Drawer
   # search bar
   module SearchBar
-    # Component
+    # Component class
     class Component < ViewComponent::Base
       def initialize
       end

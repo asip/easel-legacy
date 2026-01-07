@@ -4,7 +4,7 @@
 module Queries
   # frames
   module Frames
-    # ListCommentsWithUser module
+    # ListCommentsWithUser class
     class ListCommentsWithUser
       include Query
 

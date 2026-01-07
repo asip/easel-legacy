@@ -2,7 +2,7 @@
 
 # frame search
 module FrameSearch
-  # Component
+  # Component class
   class Component < ViewComponent::Base
     def initialize
     end
