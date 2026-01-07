@@ -2,5 +2,5 @@
   <%= render "frames/more/list", frames: @frames, from: "", pagy: @pagy %>
 <% end %>
 <%= turbo_stream.replace "load-prev" do %>
-  <%= render "frames/more/load_prev", pagy: @pagy %>
+  <%= render "frames/more/prev", pagy: @pagy %>
 <% end %>
