@@ -1,6 +1,6 @@
 <%= turbo_stream.replace "frames" do %>
-  <%= render "frames/form/new" %>
+  <%= render Form::Frames::New::Component.new(frame: @frame) %>
 <% end %>
 <%= turbo_stream.prepend "flash_message" do %>
-  <%= render "layouts/flash" %>
+  <%= render Toast::Component.new(flash:, flashes: @flashes) %>
 <% end %>

@@ -21,7 +21,7 @@
   <body class="min-h-screen">
     <%= render Header::Component.new %>
     <div id="flash_message">
-      <%= render "layouts/flash" %>
+      <%= render Toast::Component.new(flash:, flashes: @flashes) %>
     </div>
     <div class="container mx-auto">
       <%= render Front::Component.new(path: "#{controller_name}/#{action_name}", view_data: @view_data) %>

@@ -1,6 +1,6 @@
 <%= turbo_stream.prepend "list" do %>
-  <%= render "frames/more/list", frames: @frames, from: "", pagy: @pagy %>
+  <%= render Frames::More::List::Component.new(frames: @frames, from: "", pagy: @pagy) %>
 <% end %>
 <%= turbo_stream.replace "load-prev" do %>
-  <%= render "frames/more/prev", pagy: @pagy %>
+  <%= render Frames::More::Prev::Component.new(pagy: @pagy) %>
 <% end %>

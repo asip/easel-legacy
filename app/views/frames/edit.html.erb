@@ -1,3 +1,3 @@
 <%= turbo_stream.replace "frames" do %>
-  <%= render "frames/form/edit" %>
+  <%= render Form::Frames::Edit::Component.new(frame: @frame) %>
 <% end %>

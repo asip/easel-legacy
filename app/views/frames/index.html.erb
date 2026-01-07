@@ -1,10 +1,10 @@
 <div id="frames">
   <br>
-  <%= render partial: "frames/more/prev", locals: { pagy: @pagy } %>
+  <%= render Frames::More::Prev::Component.new(pagy: @pagy) %>
   <div id="list" class="lb" data-controller="pswipe" data-pswipe-selector-value=".lb" data-pswipe-anchor-value="a.ps">
-    <%= render partial: "frames/more/list", locals: { frames: @frames, from: "", pagy: @pagy } %>
+    <%= render Frames::More::List::Component.new(frames: @frames, from: "", pagy: @pagy) %>
   </div>
-  <%= render partial: "frames/more/next", locals: { pagy: @pagy } %>
+  <%= render Frames::More::Next::Component.new(pagy: @pagy) %>
 
   <% if false %><div class="flex justify-center">
     <div class="mx-auto rounded-[5px] pt-2">

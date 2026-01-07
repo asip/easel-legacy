@@ -9,7 +9,7 @@
         <%= render GoogleLogin::Component.new %>
         <%= link_to "ユーザー登録", signup_path, class: "btn btn-outline btn-primary" %>
       </div>
-      <%= render "users/sessions/form/new" %>
+      <%= render Form::Sessions::New::Component.new(resource:, resource_name:) %>
     </div>
   </div>
 </div>
