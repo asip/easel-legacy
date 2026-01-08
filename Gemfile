@@ -41,13 +41,13 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", "~> 1.20.1", require: false
 
 # vite integration
-gem "vite_rails", "3.0.19"
+gem "vite_rails", "3.0.20"
 
 # view component
 gem "view_component", "~> 4.1.1"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.209.0"
+gem "aws-sdk-s3", "~> 1.210.1"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
