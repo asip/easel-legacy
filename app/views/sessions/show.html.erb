@@ -1,6 +1,6 @@
 <%= render Sessions::Show::Component.new(user: @user) %>
 
-<div id="list" class="pt-2 lb">
+<div id="list" class="grid grid-cols-1 sm:grid-cols-4 items-start pt-2 lb">
   <%= render Frames::More::List::Component.new(frames: @frames, from: "profile", pagy: @pagy) %>
 </div>
 
