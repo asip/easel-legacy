@@ -15,7 +15,7 @@ export default class PhotoSwipeController extends ApplicationController {
   lightbox: PhotoSwipeLightbox | null = null
 
   async connect(): Promise<void> {
-    if (this.selectorValue && this.anchorValue) {
+    if (this.selectorValue) {
       await this.assignSize()
 
       this.lightbox = new PhotoSwipeLightbox({
@@ -38,7 +38,7 @@ export default class PhotoSwipeController extends ApplicationController {
 
   async assignSize(): Promise<void> {
     const galleryAnchors = globalThis.document.querySelectorAll(`${this.selectorValue} ${this.anchorValue ? this.anchorValue : 'a'}`)
-    // globalThis.console.log(`${this.selectorValue} ${this.anchorValue ? this.anchorValue : 'a'}`)
+    globalThis.console.log(`${this.selectorValue} ${this.anchorValue ? this.anchorValue : 'a'}`)
     // globalThis.console.log(galleryAnchors)
 
     for (const el of galleryAnchors) {
