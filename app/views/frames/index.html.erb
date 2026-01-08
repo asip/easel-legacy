@@ -1,7 +1,7 @@
 <div id="frames">
   <br>
   <%= render Frames::More::Prev::Component.new(pagy: @pagy) %>
-  <div id="list" class="lb" data-controller="pswipe" data-pswipe-selector-value=".lb" data-pswipe-anchor-value="a.ps">
+  <div id="list" class="lb">
     <%= render Frames::More::List::Component.new(frames: @frames, from: "", pagy: @pagy) %>
   </div>
   <%= render Frames::More::Next::Component.new(pagy: @pagy) %>

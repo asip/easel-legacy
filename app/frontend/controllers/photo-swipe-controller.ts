@@ -14,12 +14,9 @@ export default class PhotoSwipeController extends ApplicationController {
 
   lightbox: PhotoSwipeLightbox | null = null
 
-  connect(): void {
-
-    if (this.selectorValue) {
-      void (async () => {
-        await this.assignSize()
-      })()
+  async connect(): Promise<void> {
+    if (this.selectorValue && this.anchorValue) {
+      await this.assignSize()
 
       this.lightbox = new PhotoSwipeLightbox({
         gallery: this.selectorValue,

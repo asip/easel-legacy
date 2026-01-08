@@ -1,6 +1,6 @@
 <%= render Sessions::Show::Component.new(user: @user) %>
 
-<div id="list" class="pt-2 lb" data-controller="pswipe" data-pswipe-selector-value=".lb" data-pswipe-anchor-value="a.ps">
+<div id="list" class="pt-2 lb">
   <%= render Frames::More::List::Component.new(frames: @frames, from: "profile", pagy: @pagy) %>
 </div>
 
