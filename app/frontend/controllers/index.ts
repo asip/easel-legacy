@@ -25,7 +25,7 @@ application.register('frameTagSearch', FrameTagSearchController)
 application.register('preview', PreviewController)
 // frame
 application.register('lightbox', LightboxController)
-application.register('pswipe', PhotoSwipeController)
+application.register('pswp', PhotoSwipeController)
 application.register('tagify', TagifyController)
 
 export { application }

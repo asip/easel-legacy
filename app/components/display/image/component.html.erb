@@ -1,7 +1,7 @@
 <% if @model.class == Frame && @model.file.present? %>
   <% if @original %>
     <% if @photoswipe %>
-      <div class="hidden" data-controller="pswipe" data-pswipe-selector-value="#image"></div>
+      <div class="hidden" data-controller="pswp" data-pswp-selector-value="#image"></div>
       <div id="image">
         <%= link_to image_tag(@model.file_proxy_url(:three), class: ""), @model.file_proxy_url(:original), class: "" %>
       </div>
