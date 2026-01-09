@@ -1,0 +1,3 @@
+<div data-turbo="false">
+  <%= helpers.turbo_mount("indexReact", props: { path: @path, "view-data" => @view_data.to_json }) %>
+</div>

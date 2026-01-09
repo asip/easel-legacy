@@ -3,9 +3,12 @@ import { RegleVuePlugin } from '@regle/core'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import plugin from 'turbo-mount/vue'
-import { registerComponent } from 'turbo-mount/vue'
 import { TurboMount } from 'turbo-mount'
+import { registerComponent } from 'turbo-mount/vue'
 import index from '../components/index.vue'
+
+import { registerComponent as registerReactComponent } from 'turbo-mount/react'
+import indexReact from '../components/index'
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
@@ -28,3 +31,4 @@ const turboMount = new TurboMount()
 // registerComponent(turboMount, "Hello", Hello, HelloController); // where HelloController is a Stimulus controller extended from TurboMountController
 
 registerComponent(turboMount, 'index', index)
+registerReactComponent(turboMount, 'indexReact', indexReact)
