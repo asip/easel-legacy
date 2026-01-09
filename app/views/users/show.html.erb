@@ -4,8 +4,4 @@
   <%= render Frames::More::List::Component.new(frames: @frames, from: "user_profile", pagy: @pagy) %>
 </div>
 
-<div class="flex justify-center">
-  <div class="mx-auto rounded-[5px] pt-2">
-    <%== @pagy.series_nav %>
-  </div>
-</div>
+<%= render Frames::Pager::Component.new(pagy: @pagy) %>
