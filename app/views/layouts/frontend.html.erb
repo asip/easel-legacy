@@ -26,5 +26,6 @@
     <div class="container mx-auto">
       <%= render Front::Component.new(path: "#{controller_name}/#{action_name}", view_data: @view_data) %>
     </div>
+    <%= render Footer::Component.new %>
   </body>
 </html>

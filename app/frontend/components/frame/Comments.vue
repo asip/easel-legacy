@@ -23,7 +23,7 @@ setFlash(flash.value)
 </script>
 
 <template>
-  <div class="pb-5">
+  <div>
     <CommentList />
     <CommentForm />
   </div>
