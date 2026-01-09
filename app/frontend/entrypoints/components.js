@@ -10,6 +10,9 @@ import index from '../components/index.vue'
 import { registerComponent as registerReactComponent } from 'turbo-mount/react'
 import indexReact from '../components/index'
 
+import { registerComponent as registerSvelteComponent } from 'turbo-mount/svelte'
+import indexSvelte from '../components/index.svelte'
+
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
@@ -32,3 +35,4 @@ const turboMount = new TurboMount()
 
 registerComponent(turboMount, 'index', index)
 registerReactComponent(turboMount, 'indexReact', indexReact)
+registerSvelteComponent(turboMount, 'indexSvelte', indexSvelte)
