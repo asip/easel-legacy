@@ -38,7 +38,7 @@ export default class PhotoSwipeController extends ApplicationController {
 
   async assignSize(): Promise<void> {
     const galleryAnchors = globalThis.document.querySelectorAll(`${this.selectorValue} ${this.anchorValue ? this.anchorValue : 'a'}`)
-    globalThis.console.log(`${this.selectorValue} ${this.anchorValue ? this.anchorValue : 'a'}`)
+    // globalThis.console.log(`${this.selectorValue} ${this.anchorValue ? this.anchorValue : 'a'}`)
     // globalThis.console.log(galleryAnchors)
 
     for (const el of galleryAnchors) {
