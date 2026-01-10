@@ -28,7 +28,4 @@
 // Example: Import a stylesheet in app/frontend/index.css
 // import '~/index.css'
 
-import '../libraries/i18n.ts'
-import '../libraries/time-zone.js'
-
-import '../controllers/index.ts'
+import '../startup/index'

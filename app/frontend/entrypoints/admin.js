@@ -1,1 +1,1 @@
-import '../controllers/admin/index.ts'
+import '../startup/admin/index'
