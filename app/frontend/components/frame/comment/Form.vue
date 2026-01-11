@@ -50,7 +50,7 @@ const onPostClick = async (): Promise<void> => {
           v-for="error of r$.$errors.body"
           :key="error"
         >
-          <div class="text-red-500">{{ error }}</div>
+          <div class="text-red-500 text-xs">{{ error }}</div>
         </div>
       </div>
       <div class="flex justify-center">
