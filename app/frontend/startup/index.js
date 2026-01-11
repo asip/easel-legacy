@@ -1,3 +1,4 @@
+import './items/locale'
 import './items/i18n'
 import './items/time-zone'
 import './items/turbo'

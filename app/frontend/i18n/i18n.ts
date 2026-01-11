@@ -18,7 +18,9 @@ export const i18n = createI18n({
         }
       },
       rules: {
-        required: 'Required.'
+        required: 'Required.',
+        schemaMessage: 'Invalid type: Please enter as type {expected}, not type {received}.',
+        maxLength: 'are limited to {max} characters.'
       },
       action: {
         error: {
@@ -41,7 +43,9 @@ export const i18n = createI18n({
         }
       },
       rules: {
-        required: '必須です。'
+        required: '必須です。',
+        schemaMessage: '無効な型です：{received}型ではなく{expected}型で入力してください',
+        maxLength: '{max}文字以内で入力してください'
       },
       action: {
         error: {
