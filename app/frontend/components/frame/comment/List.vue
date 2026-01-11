@@ -1,5 +1,5 @@
 <script lang="ts" setup vapor>
-import CommentItem from './Item.vue'
+import Item from './list/Item.vue'
 
 import { useComment, useRoute } from '../../../composables'
 
@@ -14,7 +14,7 @@ await getComments(id)
 <template>
   <div class="pt-2">
     <div v-for="(comment, i) in comments" :key="comment.id">
-      <CommentItem v-model="comments[i]" />
+      <Item v-model="comments[i]" />
     </div>
   </div>
 </template>

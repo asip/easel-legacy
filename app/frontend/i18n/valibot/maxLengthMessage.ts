@@ -1,7 +1,7 @@
 import * as v from 'valibot'
 import { i18n } from '../i18n'
 
-import { useLocale } from '~/composables';
+import { useLocale } from '~/composables'
 
 const maxLengthMessage = () => {
   /*

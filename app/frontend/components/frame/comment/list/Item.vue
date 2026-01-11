@@ -2,8 +2,8 @@
 import sanitizeHtml from 'sanitize-html'
 import { computed, onMounted, ref } from 'vue'
 
-import type { Comment, RefItems } from '../../../interfaces'
-import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../../composables'
+import type { Comment, RefItems } from '../../../../interfaces'
+import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../../../composables'
 
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'
