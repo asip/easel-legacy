@@ -6,8 +6,6 @@ const id: string = route.params?.id ?? ''
 
 const { setFlash } = useToast()
 
-const { loggedIn } = useAccount()
-
 // console.log('loggedIn:', loggedIn.value)
 
 const { comment, externalErrors, isSuccess, flash, getComments, createComment, set404Alert, reload } = useComment()
@@ -37,7 +35,7 @@ const onPostClick = async (): Promise<void> => {
 </script>
 
 <template>
-  <div v-if="loggedIn" class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2">
+  <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2">
     <div class="card-body">
       <div class="flex justify-start">
         <div class="card-title text-[16px] font-bold">コメント</div>
