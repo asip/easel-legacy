@@ -15,13 +15,13 @@ module PageTransition
 
       protected
 
-      def query_list_without_q
+      def query_list
         %i[ref page]
       end
 
       def query_map
         @query_map ||= permitted_params.to_h.filter do |key, value|
-          query_list_without_q.include?(key.to_sym) if value.present?
+          query_list.include?(key.to_sym) if value.present?
         end
       end
 
