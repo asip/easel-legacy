@@ -12,8 +12,8 @@ module Location::Users::Store
 
   def store_location
     from = request.referer
-    if !from&.include?("/users") && PageTransition::Path.not_before_login_unsaved_paths?(from) &&
-       PageTransition::Path.not_after_login_unsaved_paths?(from)
+    if !from&.include?("/users") && PageTransition::Path.not_unsaved_paths_before_login?(from) &&
+       PageTransition::Path.not_unsaved_paths_after_login?(from)
       path = root_path
       unless from&.include?("/frames") && from&.include?("user_profile")
         self.prev_url = from || path

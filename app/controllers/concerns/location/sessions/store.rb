@@ -12,7 +12,7 @@ module Location::Sessions::Store
 
   def store_location
     from = request.referer
-    if PageTransition::Path.not_after_login_unsaved_paths?(from)
+    if PageTransition::Path.not_unsaved_paths_after_login?(from)
       path = root_path
       if from&.include?("/frame") && from&.include?("profile")
         self.prev_url = path
