@@ -13,7 +13,7 @@ globalThis.console.log(JSON.stringify(viewData))
 
 const { autoDetect } = useLocale()
 const { setFlash } = useToast()
-const { loggedIn, authenticate, flash } = useAccount()
+const { authenticate, flash } = useAccount()
 
 autoDetect()
 
@@ -25,6 +25,6 @@ setFlash(flash.value)
 <template>
   <div>
     <CommentList />
-    <CommentForm v-if="loggedIn" />
+    <CommentForm />
   </div>
 </template>

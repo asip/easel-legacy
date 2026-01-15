@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../../composables'
+import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../../composables'
 
 const route = useRoute()
 const id: string = route.params?.id ?? ''
@@ -8,6 +8,7 @@ const { setFlash } = useToast()
 
 // console.log('loggedIn:', loggedIn.value)
 
+const { loggedIn } = useAccount()
 const { comment, externalErrors, isSuccess, flash, getComments, createComment, set404Alert, reload } = useComment()
 
 const { commentRules } = useCommentRules()
@@ -35,7 +36,7 @@ const onPostClick = async (): Promise<void> => {
 </script>
 
 <template>
-  <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2">
+  <div v-if="loggedIn" class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2">
     <div class="card-body">
       <div class="flex justify-start">
         <div class="card-title text-[16px] font-bold">コメント</div>
