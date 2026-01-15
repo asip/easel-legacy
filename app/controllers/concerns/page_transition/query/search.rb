@@ -14,10 +14,6 @@ module PageTransition
 
       protected
 
-      def query_list
-        %i[ref page]
-      end
-
       def query_map_for_search
         @query_map_for_search ||= permitted_params.to_h.filter do |key, value|
           query_list.include?(key.to_sym) if value.present?
