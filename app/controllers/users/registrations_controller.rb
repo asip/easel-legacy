@@ -2,15 +2,8 @@
 
 # users / Registrations Controller
 class Users::RegistrationsController < Devise::RegistrationsController
+  include Users::Registrations::Confirmable
   include Cookie
-
-  before_action :configure_sign_up_params, only: [ :create ]
-  before_action :configure_account_update_params, only: [ :update ]
-
-  before_action :set_model, only: %i[create update]
-  before_action :back_to_form, only: %i[create update]
-
-  FORM_PARAMS = [ :name, :email, :password, :password_confirmation, :image, :profile, :time_zone, :confirming ]
 
   # GET /resource/sign_up
   def new
@@ -89,30 +82,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   attr_accessor :resource_updated
 
-  def set_model
-    case action_name
-    when "create"
-      build_resource(sign_up_params)
-    when "update"
-      self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-    end
-  end
-
-  def back_to_form
-    return unless params[:commit] == "戻る"
-
-    resource.confirming = false
-    # resource.image_derivatives! if resource.image.present?
-    render layout: false, content_type: "text/vnd.turbo-stream.html"
-  end
-
   protected
 
   def respond_with(resource, _opts = {})
     case action_name
     when "create"
       saved = resource.persisted?
-      redirect_path = prev_url
+      redirect_path = prev_url_for(path: login_path) || root_path
       create_or_update = true
     when "update"
       saved = resource_updated
@@ -140,26 +116,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: FORM_PARAMS)
-  end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: FORM_PARAMS)
-  end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
