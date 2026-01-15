@@ -25,6 +25,6 @@ setFlash(flash.value)
 <template>
   <div>
     <CommentList />
-    <CommentForm v-if="loggedIn"  />
+    <CommentForm v-if="loggedIn" />
   </div>
 </template>
