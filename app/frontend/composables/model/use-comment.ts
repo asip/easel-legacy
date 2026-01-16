@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia'
 import type { Comment , CommentResource, CommentsResource } from '~/interfaces'
 import type { CommentErrorProperty } from '~/types'
 import { useQueryApi, useMutationApi, useEntity, useExternalErrors, useAlert, useConstants, useFlash } from '~/composables'
-import { useCommentsStore } from '~/stores'
+import { useAccountStore, useCommentsStore } from '~/stores'
 
 import { i18n } from '~/i18n'
 
@@ -13,6 +13,7 @@ export function useComment() {
   const { flash, clearFlash } = useFlash()
   const { create, copy } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()
+  const { clearCurrentUser } = useAccountStore()
   const { comments } = storeToRefs(useCommentsStore())
 
   const comment = ref<Comment>({
@@ -42,7 +43,7 @@ export function useComment() {
 
   const { externalErrors, setExternalErrors,  clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { backendErrorInfo, setAlert, reload } = useAlert({ flash, caller: { setExternalErrors } })
+  const { backendErrorInfo, setAlert, reload } = useAlert({ flash, caller: { setExternalErrors, clearLoginUser: clearCurrentUser } })
 
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404) {

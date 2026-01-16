@@ -3,7 +3,6 @@ import { ref, Ref } from 'vue'
 import type { BackendErrorResource, ErrorsResource, Flash } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-import { useAccountStore } from '~/stores'
 import { useBackendErrorInfo } from './error'
 
 import { i18n } from '~/i18n'
@@ -15,12 +14,12 @@ interface UseAlertOptions {
 
 interface UseAlertCallerType {
   setExternalErrors?: (from: ErrorMessages<string>) => void
+  clearLoginUser?: () => void
 }
 
 export function useAlert({ flash, caller }: UseAlertOptions) {
   const { backendErrorInfo, clearBackendErrorInfo, setBackendErrorInfo } = useBackendErrorInfo()
   const reloading = ref<boolean>(false)
-  const { clearCurrentUser } = useAccountStore()
 
   const setAlert= async ({ response, off = false }: { response: Response, off?: boolean }): Promise<void> => {
     clearBackendErrorInfo()
@@ -28,7 +27,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
     if (off) {
       switch (response.status) {
       case 401:
-        clearCurrentUser()
+        if (caller && 'clearLoginUser' in caller && caller.clearLoginUser) caller.clearLoginUser()
         break
       default:
         flash.value.alert = i18n.global.t('action.error.api', { message: response.status })
@@ -37,7 +36,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       switch (response.status) {
       case 401:
         flash.value.alert = i18n.global.t('action.error.login')
-        clearCurrentUser()
+        if (caller && 'clearLoginUser' in caller && caller.clearLoginUser) caller.clearLoginUser()
         reloading.value = true
         break
       case 404:
