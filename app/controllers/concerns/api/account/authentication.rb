@@ -30,6 +30,12 @@ module Api::Account::Authentication
     # end
 
     token = cookies[:access_token]
+    # puts "token:#{token}"
+
+    # (トークンが空の場合はエラー)
+    unless token.present?
+      raise Api::UnauthorizedError.new("Cookieからトークンが見つかりません。")
+    end
 
     begin
       self.current_user = User.find_from(token:)
