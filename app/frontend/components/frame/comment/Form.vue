@@ -41,22 +41,24 @@ const onPostClick = async (): Promise<void> => {
       <div class="flex justify-start">
         <div class="card-title text-[16px] font-bold">コメント</div>
       </div>
-      <div class="flex justify-center wrap-break-word">
-        <textarea v-model="comment.body" class="block text-sm border border-gray-300 rounded w-full min-h-12.5 field-sizing-content" />
-      </div>
-      <div class="flex flex-col">
-        <div
-          v-for="error of r$.$errors.body"
-          :key="error"
-        >
-          <div class="text-red-500 text-xs">{{ error }}</div>
+      <form>
+        <div class="flex justify-center wrap-break-word">
+          <textarea v-model="comment.body" class="block text-sm border border-gray-300 rounded w-full min-h-12.5 field-sizing-content" />
         </div>
-      </div>
-      <div class="flex justify-center">
-        <button type="button" class="btn btn-outline btn-primary w-full" @click="onPostClick">
-          投稿
-        </button>
-      </div>
+        <div class="flex flex-col">
+          <div
+            v-for="error of r$.$errors.body"
+            :key="error"
+          >
+            <div class="text-red-500 text-xs">{{ error }}</div>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <button type="button" class="btn btn-outline btn-primary w-full" @click="onPostClick">
+            投稿
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
