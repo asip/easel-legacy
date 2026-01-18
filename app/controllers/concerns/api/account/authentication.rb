@@ -4,6 +4,7 @@
 # api/account/Authentication module
 module Api::Account::Authentication
   extend ActiveSupport::Concern
+  include Cookie::AccessToken
 
   included do
     attr_accessor :current_user
@@ -29,7 +30,7 @@ module Api::Account::Authentication
     #  raise Api::UnauthorizedError.new("Authorizationヘッダーからトークンが見つかりません。")
     # end
 
-    token = cookies[:access_token]
+    token = access_token
     # puts "token:#{token}"
 
     # (トークンが空の場合はエラー)

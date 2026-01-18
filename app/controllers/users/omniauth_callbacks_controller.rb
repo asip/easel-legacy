@@ -5,6 +5,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 
+  include Cookie::AccessToken
+
   protect_from_forgery except: :google
   # skip_before_action :verify_authenticity_token, only: :google
   before_action :verify_g_csrf_token
@@ -47,7 +49,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: provider.to_s.capitalize) if is_navigational_format?
 
       user.assign_token(user.create_token)
-      cookies[:access_token] = { value: user.token, expires: 60.minutes.from_now, http_only: true }
+      self.access_token = user.token
       # puts user.token
     else
       session["devise.#{provider}_data"] = request.env["omniauth.auth"].except(:extra)

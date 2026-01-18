@@ -5,6 +5,7 @@ class Users::SessionsController < Devise::SessionsController
   include Flashes
   include Location::Users::Sessions::Store
   include Cookie
+  include Cookie::AccessToken
 
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -22,7 +23,7 @@ class Users::SessionsController < Devise::SessionsController
       # yield resource if block_given?
 
       resource.assign_token(resource.create_token)
-      cookies[:access_token] = { value: resource.token, expires: 60.minutes.from_now, http_only: true }
+      self.access_token = resource.token
     end
 
     respond_with resource
