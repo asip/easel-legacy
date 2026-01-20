@@ -27,7 +27,23 @@ module PageTransition
           if action_name != "new" && action_name != "edit" && from.blank?
             root_path(query_map_for_search)
           else
-            prev_url
+            if page.present?
+              if prev_url.include?("page=")
+                prev_url.sub(/page=[0-9]+/, "page=#{page}")
+              else
+                if prev_url.match(/\?[a-z]+=/)
+                  "#{prev_url}&page=#{page}"
+                else
+                  "#{prev_url}?page=#{page}"
+                end
+              end
+            else
+              if prev_url.include?("page=")
+                prev_url.sub(/(&|\?)page=[0-9]+/, "")
+              else
+                prev_url
+              end
+            end
           end
         }.call
       end

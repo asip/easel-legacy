@@ -11,11 +11,13 @@
         <%= link_to image_tag(frame.file_proxy_url(:six), class: ""), frame.file_proxy_url(:original),
                     class: "mx-auto ps" %>
       <% end %>
-      <% @tag_map = FrameHelper.tag_map(frame:) %>
-      <% if @tag_map.size > 0 %>
-      <div class="flex justify-center flex-wrap gap-1">
-        <%= render ::Display::Tags::Component.new(tag_map: @tag_map, list: true) %>
-      </div>
+      <% if @tag %>
+        <% @tag_map = FrameHelper.tag_map(frame:) %>
+        <% if @tag_map.size > 0 %>
+        <div class="flex justify-center flex-wrap gap-1">
+          <%= render ::Display::Tags::Component.new(tag_map: @tag_map, list: true) %>
+        </div>
+        <% end %>
       <% end %>
       <div class="flex justify-center">
         <div class="mx-auto">

@@ -1,0 +1,6 @@
+<%= turbo_stream.append "list" do %>
+  <%= render Frames::More::List::Component.new(frames: @frames, tag: false, from: "profile", pagy: @pagy) %>
+<% end %>
+<%= turbo_stream.replace "load-next" do %>
+  <%= render Frames::More::Next::Component.new(pagy: @pagy) %>
+<% end %>

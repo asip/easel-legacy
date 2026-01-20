@@ -19,7 +19,7 @@ module Users::Registrations::Confirmable
   def set_model
     case action_name
     when "create"
-      puts sign_up_params
+      # puts sign_up_params
       build_resource(sign_up_params)
     when "update"
       self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)

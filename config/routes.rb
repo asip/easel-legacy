@@ -45,6 +45,10 @@ Rails.application.routes.draw do
     get "followees" => "users#followees", as: "followees"
     get "followers" => "users#followers", as: "followers"
   end
+
+  get "/users/:id/next" => "users#next"
+  get "/users/:id/prev" => "users#prev"
+
   resources :frames, except: [ :index ] do
     # get :next, on: :collection
     # get :prev, on: :collection
@@ -58,6 +62,8 @@ Rails.application.routes.draw do
   end
 
   get "/profile" => "sessions#show", as: "profile"
+  get "/profile/next" => "sessions#next"
+  get "/peofile/prev" => "sessions#prev"
 
   namespace :api do
     namespace :front do

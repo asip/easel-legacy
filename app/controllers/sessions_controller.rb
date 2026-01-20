@@ -7,10 +7,15 @@ class SessionsController < ApplicationController
   include PageTransition::Session::List
   include Location::Sessions::Store
   include Cookie
+  include More
 
   def show
     self.user = current_user
     @pagy, @frames = list_frames(user: user, page:)
+  end
+
+  def index
+    show
   end
 
   private

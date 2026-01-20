@@ -2,16 +2,22 @@
 
 # Users Controller
 class UsersController < ApplicationController
-  include Account::Authentication::Skip
+  include Account::Authentication::Users::Skip
   include Queries::Users::Pagination
   include PageTransition::Query::Ref
   include PageTransition::User::List
   include Location::Users::Store
   include Cookie
+  include More
 
   def show
     user_id = permitted_params[:id]
     @user = Queries::Users::FindUser.run(user_id:)
+    @pagy, @frames = list_frames(user_id:, page:)
+  end
+
+  def index
+    user_id = permitted_params[:id]
     @pagy, @frames = list_frames(user_id:, page:)
   end
 
@@ -28,6 +34,6 @@ class UsersController < ApplicationController
   private
 
   def permitted_params
-    @permitted_params ||= params.permit(:id, :page, :ref).to_h
+    @permitted_params ||= params.permit(:id, :user_id, :page, :ref).to_h
   end
 end

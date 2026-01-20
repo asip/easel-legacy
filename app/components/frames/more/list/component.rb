@@ -8,8 +8,9 @@ module Frames
     module List
       # Component class
       class Component < ViewComponent::Base
-        def initialize(frames:, from:, pagy:)
+        def initialize(frames:, tag: true, from:, pagy:)
           @frames = frames
+          @tag = tag
           @from = from
           @pagy = pagy
         end
