@@ -11,7 +11,7 @@
       <%= form_with model: @frame, local: true do |form| %>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <% if @frame.confirming %>
-          <%= render Frames::Edit::Confirm::Component.new(form:, frame: @frame, tag_map: FrameHelper.tag_map(frame: @frame)) %>
+          <%= render Frames::Edit::Confirm::Component.new(form:, frame: @frame, tag_map: FramesHelper.tag_map(frame: @frame)) %>
         <% else %>
           <%= render Frames::Edit::Input::Component.new(form:, frame: @frame,
                                                         back_to_path: helpers.prev_url_for(path: edit_frame_path(@frame))) %>

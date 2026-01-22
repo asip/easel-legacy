@@ -15,7 +15,7 @@
       <div class="flex justify-center mb-2">
         <%= render ::Display::Image::Component.new(model: @frame, original: true, photoswipe: true) %>
       </div>
-      <% @tag_map = FrameHelper.tag_map(frame: @frame) %>
+      <% @tag_map = FramesHelper.tag_map(frame: @frame) %>
       <div class="flex justify-center flex-wrap gap-1 mb-2">
         <% if helpers.user_signed_in? && @frame.user_id == helpers.current_user.id %>
         <div class="badge badge-outline badge-accent rounded-full"><%= t("enums.private.#{@frame.private}") %></div>

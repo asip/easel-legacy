@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Frame Helper
-module FrameHelper
+# Frames Helper
+module FramesHelper
   def self.tag_map(frame:)
     tags = frame.plain_tags
     map = {}

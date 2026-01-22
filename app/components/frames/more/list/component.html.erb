@@ -12,7 +12,7 @@
                     class: "mx-auto ps" %>
       <% end %>
       <% if @tag %>
-        <% @tag_map = FrameHelper.tag_map(frame:) %>
+        <% @tag_map = FramesHelper.tag_map(frame:) %>
         <% if @tag_map.size > 0 %>
         <div class="flex justify-center flex-wrap gap-1">
           <%= render ::Display::Tags::Component.new(tag_map: @tag_map, list: true) %>
