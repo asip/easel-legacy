@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" setup vapor>
 import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../../composables'
 
 const route = useRoute()
