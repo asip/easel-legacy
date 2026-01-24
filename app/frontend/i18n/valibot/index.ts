@@ -1,5 +1,1 @@
-import { schemaMessage } from './schemaMessage'
-import { maxLengthMessage } from './maxLengthMessage'
-
-schemaMessage()
-maxLengthMessage()
+export { valibotMessages } from './valibotMessages'
