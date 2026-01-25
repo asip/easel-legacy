@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# users/registrations/Confirmable module
+# Users::Registrations::Confirmable module
 module Users::Registrations::Confirmable
   extend ActiveSupport::Concern
 

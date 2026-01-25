@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# admin/authentication/Skip module
+# Admin::Authentication::Skip module
 module Admin::Authentication::Skip
   extend ActiveSupport::Concern
 

@@ -2,11 +2,11 @@
 
 # Users Controller
 class UsersController < ApplicationController
-  include Account::Authentication::Users::Skip
-  include Queries::Users::Pagination
+  include Users::Authentication::Skip
+  include Users::Queries::Pagination
   include PageTransition::Query::Ref
-  include PageTransition::User::List
-  include Location::Users::Store
+  include Users::PageTransition::List
+  include Users::Location::Store
   include Cookie
   include More
 

@@ -2,13 +2,13 @@
 
 # Frames Controller
 class FramesController < ApplicationController
-  include Account::Authentication::Frames::Skip
-  include Queries::Frames::Pagination
+  include Frames::Authentication::Skip
+  include Frames::Queries::Pagination
   include PageTransition::Query::List
-  include PageTransition::Frame::Ref
-  include PageTransition::Frame::Search
-  include ::Frames::Confirmable
-  include Location::Frames::Store
+  include Frames::PageTransition::Ref
+  include Frames::PageTransition::Search
+  include Frames::Confirmable
+  include Frames::Location::Store
   include More
   include Cookie
 

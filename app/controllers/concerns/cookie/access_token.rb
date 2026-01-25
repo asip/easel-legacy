@@ -1,7 +1,7 @@
 
 # frozen_string_literal: true
 
-# cookie/AccessToken Module
+# Cookie::AccessToken Module
 module Cookie::AccessToken
   extend ActiveSupport::Concern
 

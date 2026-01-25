@@ -1,30 +1,21 @@
 # frozen_string_literal: true
 
-# api
-module Api
-  # front
-  module Front
-    # v1
-    module V1
-      # Frames Controller
-      class FramesController < Api::Front::V1::ApiController
-        include Api::Account::Authentication::Frames::Skip
+# frame api controller
+class Api::Front::V1::FramesController < Api::Front::V1::ApiController
+  include Api::Frames::Authentication::Skip
 
-        def comments
-          comments = Queries::Frames::ListCommentsWithUser.run(frame_id: path_params[:frame_id])
+  def comments
+    comments = Queries::Frames::ListCommentsWithUser.run(frame_id: path_params[:frame_id])
 
-          # options = {}
-          # options[:include] = [:user]
+    # options = {}
+    # options[:include] = [:user]
 
-          render json: CommentResource.new(comments).serialize
-        end
+    render json: CommentResource.new(comments).serialize
+  end
 
-        private
+  private
 
-        def path_params
-          @path_params ||= params.permit(:frame_id).to_h
-        end
-      end
-    end
+  def path_params
+    @path_params ||= params.permit(:frame_id).to_h
   end
 end

@@ -2,10 +2,10 @@
 
 # Sessions Controller
 class SessionsController < ApplicationController
-  include Queries::Sessions::Pagination
+  include Sessions::Queries::Pagination
   include PageTransition::Query::Ref
-  include PageTransition::Session::List
-  include Location::Sessions::Store
+  include Sessions::PageTransition::List
+  include Sessions::Location::Store
   include Cookie
   include More
 

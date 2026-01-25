@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# frames/Confirmable module
+# Frames::Confirmable module
 module Frames::Confirmable
   extend ActiveSupport::Concern
 

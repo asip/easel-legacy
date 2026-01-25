@@ -3,7 +3,7 @@
 # users / Sessions Controller
 class Users::SessionsController < Devise::SessionsController
   include Flashes
-  include Location::Users::Sessions::Store
+  include Users::Sessions::Location::Store
   include Cookie
   include Cookie::AccessToken
 

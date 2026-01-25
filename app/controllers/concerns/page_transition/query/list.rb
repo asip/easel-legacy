@@ -1,36 +1,30 @@
 # frozen_string_literal: true
 
-# page transition
-module PageTransition
-  # query
-  module Query
-    # List module
-    module List
-      extend ActiveSupport::Concern
+# PageTransition::Query::List module
+module PageTransition::Query::List
+  extend ActiveSupport::Concern
 
-      included do
-        helper_method :query_map_for_frame
-      end
+  included do
+    helper_method :query_map_for_frame
+  end
 
-      protected
+  protected
 
-      def query_map_for_frame(from:, page:)
-        query = {}
-        if page.present? && page != 1
-          case from
-          when "user_profile", "profile"
-            query[:page] = page
-          else
-            ref_items_for_frame[:page] = page
-          end
-        end
-        query[:ref] = ref_items_for_frame.to_json if ref_items_for_frame.present?
-        query
-      end
-
-      def ref_items_for_frame
-        @ref_items_for_frame ||= {}
+  def query_map_for_frame(from:, page:)
+    query = {}
+    if page.present? && page != 1
+      case from
+      when "user_profile", "profile"
+        query[:page] = page
+      else
+        ref_items_for_frame[:page] = page
       end
     end
+    query[:ref] = ref_items_for_frame.to_json if ref_items_for_frame.present?
+    query
+  end
+
+  def ref_items_for_frame
+    @ref_items_for_frame ||= {}
   end
 end

@@ -1,7 +1,7 @@
 
 # frozen_string_literal: true
 
-# api/account/Authentication module
+# Api::Account::Authentication module
 module Api::Account::Authentication
   extend ActiveSupport::Concern
   include Cookie::AccessToken
