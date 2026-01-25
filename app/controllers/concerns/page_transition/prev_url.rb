@@ -2,9 +2,7 @@
 
 # PageTransition::PrevUrl module
 module PageTransition::PrevUrl
-  extend ActiveSupport::Concern
-
-  def upsert_page_query
+  def self.upsert_page_query(prev_url:, page:)
     include_page_query = prev_url.include?("page=")
     if page.present?
       if include_page_query

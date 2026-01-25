@@ -5,7 +5,6 @@ module Frames::PageTransition::Ref
   extend ActiveSupport::Concern
 
   include PageTransition::Query::Ref
-  include PageTransition::PrevUrl
 
   protected
 
@@ -25,7 +24,7 @@ module Frames::PageTransition::Ref
       if action_name != "new" && action_name != "edit" && from.blank?
           root_path(query_map_for_search)
       else
-        upsert_page_query
+        PageTransition::PrevUrl.upsert_page_query(prev_url:, page:)
       end
     }.call
   end
