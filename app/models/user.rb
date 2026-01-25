@@ -25,9 +25,9 @@
 class User < ApplicationRecord
   include Discard::Model
   include Profile::Image::Uploader::Attachment(:image)
-  include Errors::Sortable
-  include Errors::Login
-  include Errors::User
+  include ::Errors::Sortable
+  include ::Errors::Login
+  include Errors
   include Jwt::Token
   include Page::Confirmable
   include Login

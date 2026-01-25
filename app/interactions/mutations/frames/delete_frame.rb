@@ -1,31 +1,25 @@
 # frozen_string_literal: true
 
-# mutations
-module Mutations
-  # frames
-  module Frames
-    # DeleteFrame class
-    class DeleteFrame
-      include Mutation
+# Mutations::Frames::DeleteFrame class
+class Mutations::Frames::DeleteFrame
+  include Mutation
 
-      attr_reader :frame
+  attr_reader :frame
 
-      def initialize(user:, frame_id:)
-        @user = user
-        @frame_id = frame_id
-      end
+  def initialize(user:, frame_id:)
+    @user = user
+    @frame_id = frame_id
+  end
 
-      def execute
-        frame = Frame.find_by!(id: @frame_id, user_id: @user.id)
-        frame.destroy
-        self.frame = frame
-      end
+  def execute
+    frame = Frame.find_by!(id: @frame_id, user_id: @user.id)
+    frame.destroy
+    self.frame = frame
+  end
 
-      private
+  private
 
-      def frame=(frame)
-        @frame = frame
-      end
-    end
+  def frame=(frame)
+    @frame = frame
   end
 end

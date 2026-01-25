@@ -1,36 +1,30 @@
 # frozen_string_literal: true
 
-# mutations
-module Mutations
-  # frames module
-  module Frames
-    # UpdateFrame class
-    class UpdateFrame
-      include Mutation
+# Mutations::Frames::UpdateFrame class
+class Mutations::Frames::UpdateFrame
+  include Mutation
 
-      attr_reader :frame
+  attr_reader :frame
 
-      def initialize(user:, frame_id:, form:)
-        @user = user
-        @frame_id = frame_id
-        @form = form
-      end
+  def initialize(user:, frame_id:, form:)
+    @user = user
+    @frame_id = frame_id
+    @form = form
+  end
 
-      def execute
-        user_id = @user.id
-        frame = Frame.find_by!(id: @frame_id, user_id:)
-        frame.attributes = @form
-        frame.user_id = user_id
-        mutation = Mutations::Frames::SaveFrame.run(frame:)
-        errors.merge!(mutation.errors) unless mutation.success?
-        self.frame = mutation.frame
-      end
-    end
+  def execute
+    user_id = @user.id
+    frame = Frame.find_by!(id: @frame_id, user_id:)
+    frame.attributes = @form
+    frame.user_id = user_id
+    mutation = Mutations::Frames::SaveFrame.run(frame:)
+    errors.merge!(mutation.errors) unless mutation.success?
+    self.frame = mutation.frame
+  end
 
-    private
+  private
 
-    def frame=(frame)
-      @frame = frame
-    end
+  def frame=(frame)
+    @frame = frame
   end
 end

@@ -1,20 +1,14 @@
 # frozen_string_literal: true
 
-# queries
-module Queries
-  # frames
-  module Users
-    # ListFollowees class
-    class ListFollowees
-      include Query
+# Queries::Users::ListFollowees class
+class Queries::Users::ListFollowees
+  include Query
 
-      def initialize(user_id:)
-        @user_id = user_id
-      end
+  def initialize(user_id:)
+    @user_id = user_id
+  end
 
-      def execute
-        User.with_discarded.find(@user_id).followees
-      end
-    end
+  def execute
+    User.with_discarded.find(@user_id).followees
   end
 end

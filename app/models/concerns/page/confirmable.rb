@@ -1,24 +1,21 @@
 # frozen_string_literal: true
 
-# page
-module Page
-  # Confirmable module
-  module Confirmable
-    extend ActiveSupport::Concern
+# Page::Confirmable module
+module Page::Confirmable
+  extend ActiveSupport::Concern
 
-    included do
-      attribute :confirming, :boolean, default: true
+  included do
+    attribute :confirming, :boolean, default: true
 
-      validates :confirming, acceptance: true
+    validates :confirming, acceptance: true
 
-      after_validation :check_confirming
-    end
+    after_validation :check_confirming
+  end
 
-    protected
+  protected
 
-    def check_confirming
-      errors.delete(:confirming)
-      self.confirming = errors.empty? ? true : false
-    end
+  def check_confirming
+    errors.delete(:confirming)
+    self.confirming = errors.empty? ? true : false
   end
 end

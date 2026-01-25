@@ -1,36 +1,30 @@
 # frozen_string_literal: true
 
-# mutations
-module Mutations
-  # users
-  module Users
-    # SaveUser class
-    class SaveUser
-      include Mutation
+# Mutations::Users::SaveUser class
+class Mutations::Users::SaveUser
+  include Mutation
 
-      attr_reader :user
+  attr_reader :user
 
-      def initialize(user:)
-        self.user = user
-      end
+  def initialize(user:)
+    self.user = user
+  end
 
-      def execute
-        self.success = user.save(context: :with_validation)
+  def execute
+    self.success = user.save(context: :with_validation)
 
-        errors.merge!(user.errors) unless success
-      end
+    errors.merge!(user.errors) unless success
+  end
 
-      def success?
-        success
-      end
+  def success?
+    success
+  end
 
-      private
+  private
 
-      attr_accessor :success
+  attr_accessor :success
 
-      def user=(user)
-        @user = user
-      end
-    end
+  def user=(user)
+    @user = user
   end
 end
