@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Mutations::Comments::CreateComment class
-class Mutations::Comments::CreateComment
+# Mutations::Comment::CreateComment class
+class Mutations::Comment::CreateComment
   include Mutation
   attr_reader :comment
 
@@ -15,7 +15,7 @@ class Mutations::Comments::CreateComment
     comment = Comment.new(@form)
     comment.user_id = @user.id
     comment.frame_id = @frame_id
-    mutation = Mutations::Comments::SaveComment.run(comment:)
+    mutation = Mutations::Comment::SaveComment.run(comment:)
     errors.merge!(mutation.errors) unless mutation.success?
     self.comment = mutation.comment
   end

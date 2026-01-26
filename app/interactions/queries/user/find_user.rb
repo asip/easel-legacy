@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Queries::Users::ListFollowers class
-class Queries::Users::ListFollowers
+# queries
+class Queries::User::FindUser
   include Query
 
   def initialize(user_id:)
@@ -9,6 +9,6 @@ class Queries::Users::ListFollowers
   end
 
   def execute
-    User.with_discarded.find(@user_id).followers
+    User.with_discarded.find_by!(id: @user_id)
   end
 end

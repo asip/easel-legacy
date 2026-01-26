@@ -20,9 +20,9 @@ class FramesController < ApplicationController
   def show
     frame_id = permitted_params[:id]
     if current_user
-      self.frame = Queries::Frames::FindFrame.run(frame_id:, user: current_user)
+      self.frame = Queries::Frame::FindFrame.run(frame_id:, user: current_user)
     else
-      self.frame = Queries::Frames::FindFrame.run(frame_id:, private: false)
+      self.frame = Queries::Frame::FindFrame.run(frame_id:, private: false)
     end
   end
 
@@ -32,7 +32,7 @@ class FramesController < ApplicationController
 
   def create
     frame.user_id = current_user.id
-    mutation = Mutations::Frames::SaveFrame.run(frame: frame)
+    mutation = Mutations::Frame::SaveFrame.run(frame: frame)
     self.frame = mutation.frame
     if mutation.success?
       redirect_to frame_path(frame)
@@ -43,14 +43,14 @@ class FramesController < ApplicationController
   end
 
   def edit
-    self.frame = Queries::Frames::FindFrame.run(user: current_user, frame_id: permitted_params[:id])
+    self.frame = Queries::Frame::FindFrame.run(user: current_user, frame_id: permitted_params[:id])
     frame.confirming = false
     render layout: false, content_type: "text/vnd.turbo-stream.html"
   end
 
   def update
     frame.user_id = current_user.id
-    mutation = Mutations::Frames::SaveFrame.run(frame: frame)
+    mutation = Mutations::Frame::SaveFrame.run(frame: frame)
     self.frame = mutation.frame
     if mutation.success?
       redirect_to prev_url_for(path: edit_frame_path(frame))
@@ -61,7 +61,7 @@ class FramesController < ApplicationController
   end
 
   def destroy
-    mutation = Mutations::Frames::DeleteFrame.run(user: current_user, frame_id: permitted_params[:id])
+    mutation = Mutations::Frame::DeleteFrame.run(user: current_user, frame_id: permitted_params[:id])
     redirect_to prev_url_for(path: frame_path(mutation.frame)), status: :see_other
   end
 

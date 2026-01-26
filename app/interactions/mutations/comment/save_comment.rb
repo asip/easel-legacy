@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Mutations::Comments::SaveComment class
-class Mutations::Comments::SaveComment
+# Mutations::Comment::SaveComment class
+class Mutations::Comment::SaveComment
   include Mutation
 
   attr_reader :comment

@@ -5,7 +5,7 @@ class Api::Front::V1::FramesController < Api::Front::V1::ApiController
   include Api::Frames::Authentication::Skip
 
   def comments
-    comments = Queries::Frames::ListCommentsWithUser.run(frame_id: path_params[:frame_id])
+    comments = Queries::Frame::ListCommentsWithUser.run(frame_id: path_params[:frame_id])
 
     # options = {}
     # options[:include] = [:user]

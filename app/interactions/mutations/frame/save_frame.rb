@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Mutations::Frames::SaveFrame class
-class Mutations::Frames::SaveFrame
+# Mutations::Frame::SaveFrame class
+class Mutations::Frame::SaveFrame
   include Mutation
 
   attr_reader :frame

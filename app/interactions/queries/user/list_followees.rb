@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Queries::Users::ListFollowees class
-class Queries::Users::ListFollowees
+# Queries::User::ListFollowees class
+class Queries::User::ListFollowees
   include Query
 
   def initialize(user_id:)

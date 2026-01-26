@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Mutations::Comments::DeleteComment class
-class Mutations::Comments::DeleteComment
+# Mutations::Comment::DeleteComment class
+class Mutations::Comment::DeleteComment
   include Mutation
 
   attr_reader :comment
