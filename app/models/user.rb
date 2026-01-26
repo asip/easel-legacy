@@ -111,4 +111,8 @@ class User < ApplicationRecord
   #
   #   image_derivatives!
   # end
+
+  def social_login?
+    authentications.present?
+  end
 end
