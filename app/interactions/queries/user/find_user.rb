@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# queries
+# Queries::User::FindUser class
 class Queries::User::FindUser
   include Query
 
