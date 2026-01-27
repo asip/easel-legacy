@@ -14,12 +14,6 @@ module Frames::PageTransition::Ref
     }.call
   end
 
-  def self.query_map(ref_items:)
-    query = {}
-    query[:ref] = ref_items.to_json if ref_items.present?
-    query
-  end
-
   def back_to_path
     @back_to_path ||= ->() {
       Frames::PageTransition::Ref.back_to_path(
@@ -27,6 +21,18 @@ module Frames::PageTransition::Ref
         prev_url:, page:, action_name:
       )
     }.call
+  end
+
+  def ref_items_for_user
+    @ref_items_for_user ||= Frames::PageTransition::Ref.ref_items_from(ref:)
+  end
+
+  private
+
+  def self.query_map(ref_items:)
+    query = {}
+    query[:ref] = ref_items.to_json if ref_items.present?
+    query
   end
 
   def self.back_to_path(ref:, root_path:, prev_url:, page:, action_name:)
@@ -37,10 +43,6 @@ module Frames::PageTransition::Ref
     else
       PageTransition::PrevUrl.upsert_page_query(prev_url:, page:)
     end
-  end
-
-  def ref_items_for_user
-    @ref_items_for_user ||= Frames::PageTransition::Ref.ref_items_from(ref:)
   end
 
   def self.ref_items_from(ref:)

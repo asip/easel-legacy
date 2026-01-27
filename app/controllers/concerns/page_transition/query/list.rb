@@ -14,6 +14,12 @@ module PageTransition::Query::List
     PageTransition::Query::List.query_map_for_frame(from:, page:, ref_items: ref_items_for_frame)
   end
 
+  def ref_items_for_frame
+    @ref_items_for_frame ||= {}
+  end
+
+  private
+
   def self.query_map_for_frame(from:, page:, ref_items:)
     query = {}
     if page.present? && page != 1
@@ -26,10 +32,5 @@ module PageTransition::Query::List
     end
     query[:ref] = ref_items.to_json if ref_items.present?
     query
-  end
-
-
-  def ref_items_for_frame
-    @ref_items_for_frame ||= {}
   end
 end

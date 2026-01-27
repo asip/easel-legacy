@@ -13,6 +13,8 @@ module Frames::PageTransition::Search
     }.call
   end
 
+  private
+
   def self.query_map_for_search(ref_items:)
     query = {}
     items_from = ref_items[:from]
