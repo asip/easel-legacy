@@ -33,13 +33,13 @@ module Jwt::Token
     end
   end
 
+  private
+
   def self.decode_token(token)
     secret_key = Rails.application.secret_key_base
     decoded_token = JWT.decode(token, secret_key, true, { algorithm: "HS256" })
     decoded_token[0].with_indifferent_access
   end
-
-  private
 
   def self.create_token_from(user:)
     payload = { sub: user.id, exp: (60.minutes.from_now).to_i }
