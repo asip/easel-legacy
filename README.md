@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/asip/easel-back/blob/main/public/palette.svg)
 
-This is legacy frontend and backend of Easel.
+This is old version and legacy frontend and backend of [Easel](https://github.com/asip/easel).
 
 Rails8.1 + Devise(authentication) + Pagy(paging) +
 Shrine(upload) + No Fly List(tag) +
