@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# locale
+# Locale::Detect module
 module Locale::Detect
   extend ActiveSupport::Concern
 

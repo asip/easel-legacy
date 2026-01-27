@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# api
+# Api::ErrorRenderable module
 module Api::ErrorRenderable
   extend ActiveSupport::Concern
 
