@@ -30,7 +30,7 @@ class User < ApplicationRecord
   include Errors
   include Jwt::Token
   include Page::Confirmable
-  include Login
+  include ::Login
   include Login::Save
   include Follow
 
