@@ -73,6 +73,12 @@ Rails.application.routes.draw do
           resources :comments, only: %i[create update destroy]
         end
 
+        resources :tags, only: [] do
+          collection do
+            get :search
+          end
+        end
+
         get "/account" => "/api/front/v1/account#show"
       end
     end

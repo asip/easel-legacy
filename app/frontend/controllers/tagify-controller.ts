@@ -1,6 +1,8 @@
+import Tagify from '@yaireo/tagify'
+
 import ApplicationController from './application-controller'
 
-import Tagify from '@yaireo/tagify'
+import { useConstants } from '~/composables'
 
 export default class TagifyController extends ApplicationController {
   static targets = ['te', 'tl']
@@ -16,6 +18,7 @@ export default class TagifyController extends ApplicationController {
 
   connect(): void {
     let teElement: HTMLInputElement | null = null
+
     if (this.hasTeTarget) teElement = this.teTarget
     if (this.hasTlTarget) this.tagList = this.tlTarget
 
@@ -30,6 +33,29 @@ export default class TagifyController extends ApplicationController {
           highlightFirst: true,
         }
       })
+
+      const { baseURL } = useConstants()
+
+      let controller: AbortController | null
+      let tagify = this.tagEditor
+
+      function onInput(event: CustomEvent): void {
+        // eslint-disable-next-line
+        const value = event.detail.value as string
+        tagify.whitelist = []
+
+        controller?.abort()
+        controller = new AbortController()
+
+        void (async () => {
+          const res = await globalThis.fetch(`${baseURL}/tags/search?q=${value}`, { signal: controller.signal })
+          const { tags: newWhiteList } = (await res.json()) as { tags: string[] }
+          tagify.whitelist = newWhiteList
+          tagify.loading(false).dropdown.show(value)
+        })()
+      }
+
+      this.tagEditor.on('input', onInput)
 
       this.tagEditor.on('add', () => { this.saveTagList() })
       this.tagEditor.on('remove', () => { this.saveTagList() })
