@@ -16,6 +16,8 @@ export default class TagifyController extends ApplicationController {
   tagList: HTMLInputElement | null = null
   tagEditor: Tagify | null = null
 
+  controller: AbortController | null = null
+
   connect(): void {
     let teElement: HTMLInputElement | null = null
 
@@ -34,28 +36,8 @@ export default class TagifyController extends ApplicationController {
         }
       })
 
-      const { baseURL } = useConstants()
 
-      let controller: AbortController | null
-      let tagify = this.tagEditor
-
-      function onInput(event: CustomEvent): void {
-        // eslint-disable-next-line
-        const value = event.detail.value as string
-        tagify.whitelist = []
-
-        controller?.abort()
-        controller = new AbortController()
-
-        void (async () => {
-          const res = await globalThis.fetch(`${baseURL}/tags/search?q=${value}`, { signal: controller.signal })
-          const { tags: newWhiteList } = (await res.json()) as { tags: string[] }
-          tagify.whitelist = newWhiteList
-          tagify.loading(false).dropdown.show(value)
-        })()
-      }
-
-      this.tagEditor.on('input', onInput)
+      this.tagEditor.on('input', (ev) => this.#onInput(ev))
 
       this.tagEditor.on('add', () => { this.saveTagList() })
       this.tagEditor.on('remove', () => { this.saveTagList() })
@@ -64,6 +46,28 @@ export default class TagifyController extends ApplicationController {
       this.tagEditor.removeAllTags()
       if (tags && tags.length > 0) this.tagEditor.addTags(tags.split(','))
     }
+  }
+
+  #onInput(ev: CustomEvent): void {
+    const { baseURL } = useConstants()
+
+    // eslint-disable-next-line
+    const value = ev.detail.value as string
+    if(this.tagEditor) this.tagEditor.whitelist = []
+
+    this.controller?.abort()
+    this.controller = new AbortController()
+
+    void (async () => {
+      const url = value ? `${baseURL}/tags/search?q=${value}` : `${baseURL}/tags/search`
+
+      const res = await globalThis.fetch(url, { signal: this.controller?.signal })
+      const { tags } = (await res.json()) as { tags: string[] }
+      if(this.tagEditor) {
+        this.tagEditor.whitelist = tags
+        this.tagEditor.loading(false).dropdown.show(value)
+      }
+    })()
   }
 
   saveTagList(): void {
