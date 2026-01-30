@@ -39,8 +39,8 @@ export default class TagifyController extends ApplicationController {
 
       this.tagEditor.on('input', (ev) => { this.#onInput(ev) })
 
-      this.tagEditor.on('add', () => { this.saveTagList() })
-      this.tagEditor.on('remove', () => { this.saveTagList() })
+      this.tagEditor.on('add', () => { this.#saveTagList() })
+      this.tagEditor.on('remove', () => { this.#saveTagList() })
 
       const tags: string | null = this.tagList?.value ?? null
       this.tagEditor.removeAllTags()
@@ -70,7 +70,7 @@ export default class TagifyController extends ApplicationController {
     })()
   }
 
-  saveTagList(): void {
+  #saveTagList(): void {
     if (this.tagList) this.tagList.value = this.tagEditor?.value.map(v => v.value).join(',') ?? ''
   }
 
