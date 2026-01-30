@@ -43,7 +43,7 @@ class Frame < ApplicationRecord
 
   enum :private, { final: false, draft: true }
 
-  scope :search_by, ->(user:, form:) do
+  scope :filter_by, ->(user:, form:) do
     scope = current_scope || relation
 
     word = form.word
