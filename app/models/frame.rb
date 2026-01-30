@@ -57,23 +57,14 @@ class Frame < ApplicationRecord
 
     if word.present?
       scope = if DateAndTime::Util.valid_date?(word)
-                date_word = Time.zone.parse(word)
-                scope.merge(
-                  Frame.where(shooted_at: date_word.beginning_of_day..date_word.end_of_day)
-                       .or(Frame.where(created_at: date_word.beginning_of_day..date_word.end_of_day))
-                       .or(Frame.where(updated_at: date_word.beginning_of_day..date_word.end_of_day))
-                )
+                date = Time.zone.parse(word)
+                scope.filter_by_date(date)
       else
-                scope.merge(
-                  Frame.left_joins(:user)
-                       .merge(Frame.tags_with(tag_name: word))
-                       .or(Frame.where("frames.creator_name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
-                       .or(User.where("users.name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
-                )
+                scope.filter_by_word(word)
       end
     else
       if tag_name.present?
-        scope = scope.merge(Frame.tags_with(tag_name:))
+        scope = scope.filter_by_tag_name(tag_name)
       end
     end
 
@@ -81,15 +72,36 @@ class Frame < ApplicationRecord
     scope
   end
 
+  scope :filter_by_date, ->(date) do
+    merge(
+      Frame.where(shooted_at: date.beginning_of_day..date.end_of_day)
+           .or(Frame.where(created_at: date.beginning_of_day..date.end_of_day))
+           .or(Frame.where(updated_at: date.beginning_of_day..date.end_of_day))
+    )
+  end
+
+  scope :filter_by_word, ->(word) do
+    merge(
+      Frame.left_joins(:user)
+           .merge(Frame.tags_with(tag_name: word))
+           .or(Frame.where("frames.creator_name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
+           .or(User.where("users.name like ?", "#{ActiveRecord::Base.sanitize_sql_like(word)}%"))
+    )
+  end
+
+  scope :filter_by_tag_name, ->(tag_name) do
+    merge(Frame.tags_with(tag_name:))
+  end
+
   scope :tags_with, ->(tag_name:) do
     where(
       "EXISTS(:tags)",
       tags: ApplicationTag.joins(:taggings)
-                  .where("application_taggings.tag_id=application_tags.id")
-                  .where("application_taggings.taggable_type='Frame'")
-                  .where("application_taggings.taggable_id=frames.id")
-                  .where("application_tags.name like ?",
-                         "#{ActiveRecord::Base.sanitize_sql_like(tag_name)}%")
+                          .where("application_taggings.tag_id=application_tags.id")
+                          .where("application_taggings.taggable_type='Frame'")
+                          .where("application_taggings.taggable_id=frames.id")
+                          .where("application_tags.name like ?",
+                                 "#{ActiveRecord::Base.sanitize_sql_like(tag_name)}%")
     )
   end
 
