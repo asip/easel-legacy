@@ -37,7 +37,7 @@ export default class TagifyController extends ApplicationController {
       })
 
 
-      this.tagEditor.on('input', (ev) => this.#onInput(ev))
+      this.tagEditor.on('input', (ev) => { this.#onInput(ev) })
 
       this.tagEditor.on('add', () => { this.saveTagList() })
       this.tagEditor.on('remove', () => { this.saveTagList() })
