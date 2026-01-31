@@ -16,5 +16,4 @@ export default class FrameTagSearchController extends ApplicationController {
     searchCriteria.set(this.qValue)
     cookies.set('q', this.qValue, { path: '/' })
   }
-
 }

@@ -31,6 +31,11 @@ export default class FrameSearchController extends ApplicationController {
 
   #params: SearchParams = {}
 
+  #schema = v.object({
+    word: v.pipe(v.string(), v.maxLength(40)),
+    tag_name: v.pipe(v.string(), v.maxLength(10))
+  })
+
   connect(): void {
     if (this.hasWordTarget) this.wordElement = this.wordTarget
     if (this.hasTagTarget) this.tagElement = this.tagTarget
@@ -55,16 +60,11 @@ export default class FrameSearchController extends ApplicationController {
       tag_name: this.tagElement?.value
     }
 
-    const schema = v.object({
-      word: v.pipe(v.string(), v.maxLength(40)),
-      tag_name: v.pipe(v.string(), v.maxLength(10))
-    })
-
-    const result = v.safeParse(schema, this.#params, { lang: i18n.global.locale.value })
+    const result = v.safeParse(this.#schema, this.#params, { lang: i18n.global.locale.value })
     const messages = result.issues ? v.flatten(result.issues).nested : {}
     // globalThis.console.log(messages)
 
-    if (this.#params.word) {
+    const searchWord = (): void => {
       if (result.success) {
         this.#params.q = JSON.stringify({ word: this.#params.word })
         this.#search()
@@ -72,7 +72,9 @@ export default class FrameSearchController extends ApplicationController {
         if (this.wordMessageElement) this.wordMessageElement.innerHTML = messages?.word?.at(0) ?? ''
         event.preventDefault()
       }
-    } else {
+    }
+
+    const searchTagName = (): void => {
       if (result.success) {
         this.#params.q = this.tagElement?.value ? JSON.stringify({ tag_name: this.#params.tag_name }) : '{}'
         this.#search()
@@ -80,6 +82,12 @@ export default class FrameSearchController extends ApplicationController {
         if (this.tagMessageElement) this.tagMessageElement.innerHTML = messages?.tag_name?.at(0) ?? ''
         event.preventDefault()
       }
+    }
+
+    if (this.#params.word) {
+      searchWord()
+    } else {
+      searchTagName()
     }
   }
 

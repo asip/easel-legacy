@@ -19,6 +19,7 @@ export default class TagifyController extends ApplicationController {
   controller: AbortController | null = null
 
   connect(): void {
+
     let teElement: HTMLInputElement | null = null
 
     if (this.hasTeTarget) teElement = this.teTarget
@@ -36,21 +37,21 @@ export default class TagifyController extends ApplicationController {
         }
       })
 
-
-      this.tagEditor.on('input', (ev) => { this.#onInput(ev) })
-
-      this.tagEditor.on('add', () => { this.#saveTagList() })
-      this.tagEditor.on('remove', () => { this.#saveTagList() })
-
-      const tags: string | null = this.tagList?.value ?? null
       this.tagEditor.removeAllTags()
+      const tags: string | null = this.tagList?.value ?? null
       if (tags && tags.length > 0) this.tagEditor.addTags(tags.split(','))
+
+      this.#setEventCallbacks()
     }
   }
 
-  #onInput(ev: CustomEvent): void {
-    const { baseURL } = useConstants()
+  #setEventCallbacks(): void {
+    this.tagEditor?.on('input', (ev) => { this.#onInput(ev) })
+    this.tagEditor?.on('add', () => { this.#saveTagList() })
+    this.tagEditor?.on('remove', () => { this.#saveTagList() })
+  }
 
+  #onInput(ev: CustomEvent): void {
     // eslint-disable-next-line
     const value = ev.detail.value as string
     if(this.tagEditor) this.tagEditor.whitelist = []
@@ -59,15 +60,26 @@ export default class TagifyController extends ApplicationController {
     this.controller = new AbortController()
 
     void (async () => {
-      const url = value ? `${baseURL}/tags/search?q=${value}` : `${baseURL}/tags/search`
-
-      const res = await globalThis.fetch(url, { signal: this.controller?.signal })
-      const { tags } = (await res.json()) as { tags: string[] }
-      if(this.tagEditor) {
-        this.tagEditor.whitelist = tags
-        this.tagEditor.loading(false).dropdown.show(value)
-      }
+      await this.#setAutocomplete(value)
     })()
+  }
+
+  #searchTag = async (tag: string): Promise<string[]> => {
+    const { baseURL } = useConstants()
+
+    const url = tag ? `${baseURL}/tags/search?q=${tag}` : `${baseURL}/tags/search`
+
+    const res = await globalThis.fetch(url, { signal: this.controller?.signal })
+    const { tags } = (await res.json()) as { tags: string[] }
+    return tags
+  }
+
+  #setAutocomplete = async (tag: string): Promise<void> => {
+    if(this.tagEditor) {
+      const tags = await this.#searchTag(tag)
+      this.tagEditor.whitelist = tags
+      this.tagEditor.loading(false).dropdown.show(tag)
+    }
   }
 
   #saveTagList(): void {
