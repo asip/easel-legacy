@@ -60,7 +60,8 @@ export default class TagifyController extends ApplicationController {
     this.controller = new AbortController()
 
     void (async () => {
-      await this.#setAutocomplete(value)
+      const tags = await this.#searchTag(value)
+      this.#setAutocomplete(value, tags)
     })()
   }
 
@@ -74,11 +75,10 @@ export default class TagifyController extends ApplicationController {
     return tags
   }
 
-  #setAutocomplete = async (tag: string): Promise<void> => {
+  #setAutocomplete = (value: string, tags: string[]): void => {
     if(this.tagEditor) {
-      const tags = await this.#searchTag(tag)
       this.tagEditor.whitelist = tags
-      this.tagEditor.loading(false).dropdown.show(tag)
+      this.tagEditor.loading(false).dropdown.show(value)
     }
   }
 
