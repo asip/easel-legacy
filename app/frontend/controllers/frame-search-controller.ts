@@ -49,7 +49,7 @@ export default class FrameSearchController extends ApplicationController {
     }
   }
 
-  submit(event: Event): void {
+  submit(ev: Event): void {
     // globalThis.console.log(this.wordElement?.value)
     const { autoDetect } = useLocale()
 
@@ -62,32 +62,33 @@ export default class FrameSearchController extends ApplicationController {
 
     const result = v.safeParse(this.#schema, this.#params, { lang: i18n.global.locale.value })
     const messages = result.issues ? v.flatten(result.issues).nested : {}
+    const success = result.success
     // globalThis.console.log(messages)
 
-    const searchWord = (): void => {
-      if (result.success) {
-        this.#params.q = JSON.stringify({ word: this.#params.word })
-        this.#search()
-      } else {
-        if (this.wordMessageElement) this.wordMessageElement.innerHTML = messages?.word?.at(0) ?? ''
-        event.preventDefault()
-      }
-    }
-
-    const searchTagName = (): void => {
-      if (result.success) {
-        this.#params.q = this.tagElement?.value ? JSON.stringify({ tag_name: this.#params.tag_name }) : '{}'
-        this.#search()
-      } else {
-        if (this.tagMessageElement) this.tagMessageElement.innerHTML = messages?.tag_name?.at(0) ?? ''
-        event.preventDefault()
-      }
-    }
-
     if (this.#params.word) {
-      searchWord()
+      this.#searchWord({ ev, success, message: messages?.word?.at(0) ?? '' })
     } else {
-      searchTagName()
+      this.#searchTagName({ ev, success, message: messages?.tag_name?.at(0) ?? '' })
+    }
+  }
+
+  #searchWord({ ev, success, message }: { ev: Event, success: boolean, message: string }): void {
+    if (success) {
+      this.#params.q = JSON.stringify({ word: this.#params.word })
+      this.#search()
+    } else {
+      if (this.wordMessageElement) this.wordMessageElement.innerHTML = message
+      ev.preventDefault()
+    }
+  }
+
+  #searchTagName({ ev, success, message }: { ev: Event, success: boolean, message: string }): void {
+    if (success) {
+      this.#params.q = this.tagElement?.value ? JSON.stringify({ tag_name: this.#params.tag_name }) : '{}'
+      this.#search()
+    } else {
+      if (this.tagMessageElement) this.tagMessageElement.innerHTML = message
+      ev.preventDefault()
     }
   }
 

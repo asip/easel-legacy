@@ -19,7 +19,6 @@ export default class TagifyController extends ApplicationController {
   controller: AbortController | null = null
 
   connect(): void {
-
     let teElement: HTMLInputElement | null = null
 
     if (this.hasTeTarget) teElement = this.teTarget
@@ -37,12 +36,15 @@ export default class TagifyController extends ApplicationController {
         }
       })
 
-      this.tagEditor.removeAllTags()
-      const tags: string | null = this.tagList?.value ?? null
-      if (tags && tags.length > 0) this.tagEditor.addTags(tags.split(','))
-
+      this.#initTags()
       this.#setEventCallbacks()
     }
+  }
+
+  #initTags(): void {
+    this.tagEditor?.removeAllTags()
+    const tags: string | null = this.tagList?.value ?? null
+    if (tags && tags.length > 0) this.tagEditor?.addTags(tags.split(','))
   }
 
   #setEventCallbacks(): void {
