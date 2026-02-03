@@ -1,20 +1,18 @@
 import { ref } from 'vue'
-import { storeToRefs } from 'pinia'
 
-import type { Comment , CommentResource, CommentsResource } from '~/interfaces'
+import type { Comment , CommentResource } from '~/interfaces'
 import type { CommentErrorProperty } from '~/types'
-import { useQueryApi, useMutationApi, useEntity, useExternalErrors, useAlert, useConstants, useFlash } from '~/composables'
-import { useAccountStore, useCommentsStore } from '~/stores'
+import { useMutationApi, useEntity, useExternalErrors, useAlert, useConstants, useFlash } from '~/composables'
+import { useAccountStore } from '~/stores'
 
 import { i18n } from '~/i18n'
 
 export function useComment() {
   const { baseURL } = useConstants()
   const { flash, clearFlash } = useFlash()
-  const { create, copy } = useEntity<Comment, CommentResource>()
+  const { copy } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()
   const { clearCurrentUser } = useAccountStore()
-  const { comments } = storeToRefs(useCommentsStore())
 
   const comment = ref<Comment>({
     id: undefined,
@@ -26,10 +24,6 @@ export function useComment() {
     created_at: '',
     updated_at: null
   })
-
-  const makeComment = ({ from }: { from: CommentResource }): Comment => {
-    return create({ from })
-  }
 
   const setComment = ({ from, to }: { from?: Comment | CommentResource | undefined, to?: Comment}): void => {
     if (from) {
@@ -52,35 +46,6 @@ export function useComment() {
       } else if (backendErrorInfo.value.source == 'Comment') {
         flash.value.alert = i18n.global.t('action.error.not_found', { source: i18n.global.t('models.comment') })
       }
-    }
-  }
-
-  const getComments = async (frameId: string): Promise<void> => {
-    clearFlash()
-    //console.log(frameId)
-
-    try{
-      const { ok, data, response } = await useQueryApi<CommentsResource>({
-        url: `${baseURL}/frames/${frameId}/comments`
-      })
-
-      if (!ok) {
-        await setAlert({ response })
-      } else {
-        const commentList: [CommentResource] | undefined = data?.comments
-        //console.log(comment_list);
-        comments.value.splice(0, comments.value.length)
-        if (commentList) {
-          for (const comment of commentList) {
-            //console.log(comment);
-            comments.value.push(makeComment({ from: comment }))
-          }
-        }
-      }
-      //console.log(comments);
-    } catch (error) {
-      flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
-      globalThis.console.log((error as Error).message)
     }
   }
 
@@ -169,7 +134,7 @@ export function useComment() {
   }
 
   return {
-    comment, comments, flash, getComments,
+    comment, flash,
     createComment, updateComment, deleteComment, setComment,
     clearExternalErrors, externalErrors, isSuccess, set404Alert,
     backendErrorInfo, reload

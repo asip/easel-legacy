@@ -1,12 +1,12 @@
 <script lang="ts" setup vapor>
 import Item from './list/Item.vue'
 
-import { useComment, useRoute } from '../../../composables'
+import { useComments, useRoute } from '../../../composables'
 
 const route = useRoute()
 const id: string = route.params?.id ?? ''
 
-const { comments, getComments } = useComment()
+const { comments, getComments } = useComments()
 
 await getComments(id)
 </script>

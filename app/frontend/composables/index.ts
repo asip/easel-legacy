@@ -8,7 +8,7 @@ export { useI18nRegle } from './use-i18n-regle'
 
 export { useToast } from './ui'
 
-export { useAccount, useComment } from './model'
+export { useAccount, useComment, useComments } from './model'
 export type { UseAccountType, UseCommentType } from './model'
 
 export { useCommentRules } from './model/validation'

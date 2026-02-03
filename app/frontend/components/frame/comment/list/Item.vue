@@ -3,7 +3,7 @@ import sanitizeHtml from 'sanitize-html'
 import { computed, onMounted, ref } from 'vue'
 
 import type { Comment, RefItems } from '../../../../interfaces'
-import { useAccount, useComment, useCommentRules, useI18nRegle, useRoute, useToast } from '../../../../composables'
+import { useAccount, useComment, useComments, useCommentRules, useI18nRegle, useRoute, useToast } from '../../../../composables'
 
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'
@@ -15,7 +15,8 @@ const id: string = route.params?.id ?? ''
 const refStr: string = route.query?.ref ?? ''
 
 const { loggedIn, currentUser } = useAccount()
-const { flash, comment, externalErrors, backendErrorInfo, getComments, updateComment, deleteComment, isSuccess, set404Alert, reload, setComment } = useComment()
+const { flash, comment, externalErrors, backendErrorInfo, updateComment, deleteComment, isSuccess, set404Alert, reload, setComment } = useComment()
+const { getComments } = useComments()
 
 const { commentRules } = useCommentRules()
 
