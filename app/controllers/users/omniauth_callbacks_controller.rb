@@ -32,6 +32,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   super
   # end
 
+  # protected
+
+  # The path used when OmniAuth fails
+  # def after_omniauth_failure_path_for(scope)
+  #   super(scope)
+  # end
+
   private
 
   def auth_params
@@ -45,26 +52,25 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.from(auth:, time_zone: cookies[:time_zone])
 
     if user.persisted?
-      sign_in_and_redirect user, event: :authentication
-      set_flash_message(:notice, :success, kind: provider.to_s.capitalize) if is_navigational_format?
-
-      user.assign_token(user.create_token)
-      self.access_token = user.token
-      # puts user.token
+      login_success(user:, provider:)
     else
-      session["devise.#{provider}_data"] = request.env["omniauth.auth"].except(:extra)
-      redirect_to login_path
+      login_failed
     end
   end
 
-  # protected
+  def login_success(user:, provider:)
+    sign_in_and_redirect user, event: :authentication
+    set_flash_message(:notice, :success, kind: provider.to_s.capitalize) if is_navigational_format?
 
-  # The path used when OmniAuth fails
-  # def after_omniauth_failure_path_for(scope)
-  #   super(scope)
-  # end
+    user.assign_token(user.create_token)
+    self.access_token = user.token
+    # puts user.token
+  end
 
-  private
+  def login_failed
+    session["devise.#{provider}_data"] = request.env["omniauth.auth"].except(:extra)
+    redirect_to login_path
+  end
 
   def verify_g_csrf_token
     g_csrf_token_ = cookies["g_csrf_token"]
