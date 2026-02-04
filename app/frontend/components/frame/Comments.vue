@@ -2,7 +2,7 @@
 import CommentList from './comment/List.vue'
 import CommentForm from './comment/Form.vue'
 
-import { useAccount, useToast } from '../../composables'
+import { useAccount, useComments, useRoute, useToast } from '../../composables'
 
 import { useLocale } from '../../composables'
 
@@ -14,12 +14,17 @@ globalThis.console.log(JSON.stringify(viewData))
 const { autoDetect } = useLocale()
 const { setFlash } = useToast()
 const { authenticate, flash } = useAccount()
+const { getComments } = useComments()
 
 autoDetect()
 
 await authenticate()
 setFlash(flash.value)
 
+const route = useRoute()
+const id: string = route.params?.id ?? ''
+
+await getComments(id)
 </script>
 
 <template>
