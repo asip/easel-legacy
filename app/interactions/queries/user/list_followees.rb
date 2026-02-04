@@ -9,6 +9,7 @@ class Queries::User::ListFollowees
   end
 
   def execute
-    User.with_discarded.find(@user_id).followees
+    user = Queries::User::FindUser.run(user_id: @user_id)
+    user.followees
   end
 end
