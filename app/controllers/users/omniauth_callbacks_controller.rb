@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 
-  include Cookie::AccessToken
+  include Session::AccessToken
 
   protect_from_forgery except: :google
   # skip_before_action :verify_authenticity_token, only: :google

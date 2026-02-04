@@ -4,7 +4,7 @@
 # Api::Account::Authentication module
 module Api::Account::Authentication
   extend ActiveSupport::Concern
-  include Cookie::AccessToken
+  include Session::AccessToken
 
   included do
     attr_accessor :current_user

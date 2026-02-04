@@ -5,7 +5,7 @@ class Users::SessionsController < Devise::SessionsController
   include Flashes
   include Users::Sessions::Location::Store
   include Cookie
-  include Cookie::AccessToken
+  include Session::AccessToken
 
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -34,7 +34,7 @@ class Users::SessionsController < Devise::SessionsController
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
     set_flash_message! :notice, :signed_out if signed_out
     yield if block_given?
-    cookies.delete(:access_token)
+    session.delete(:access_token)
     respond_to_on_destroy
   end
 
