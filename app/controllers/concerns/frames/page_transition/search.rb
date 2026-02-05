@@ -20,7 +20,7 @@ module Frames::PageTransition::Search
     items_from = ref_items[:from]
     items_page = ref_items[:page]
     query[:page] = items_page if items_from.blank? && items_page.present?
-    query[:ref] = ref_items.to_json if items_from.present?
+    query[:ref] = Oj.dump(ref_items) if items_from.present?
     query
   end
 end

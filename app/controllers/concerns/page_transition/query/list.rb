@@ -30,7 +30,7 @@ module PageTransition::Query::List
         ref_items[:page] = page
       end
     end
-    query[:ref] = ref_items.to_json if ref_items.present?
+    query[:ref] = Oj.dump(ref_items) if ref_items.present?
     query
   end
 end

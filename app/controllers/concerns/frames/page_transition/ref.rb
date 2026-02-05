@@ -31,7 +31,7 @@ module Frames::PageTransition::Ref
 
   def self.query_map(ref_items:)
     query = {}
-    query[:ref] = ref_items.to_json if ref_items.present?
+    query[:ref] = Oj.dump(ref_items) if ref_items.present?
     query
   end
 

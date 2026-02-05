@@ -7,7 +7,7 @@ module FramesHelper
     map = {}
     tags.each do |tag|
       map[tag] = {
-        q: { tag_name: tag }.to_json
+        q: Oj.dump({ tag_name: tag })
       }
     end
     map
