@@ -17,7 +17,7 @@ gem "pg", "~> 1.6.3"
 gem "puma", "~> 7.2.0"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", "~> 0.1.17", require: false
+gem "thruster", "~> 0.1.18", require: false
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.23"
@@ -38,7 +38,7 @@ gem "turbo-mount", "~> 0.4.4"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.21.1", require: false
+gem "bootsnap", "~> 1.22.0", require: false
 
 # vite integration
 gem "vite_rails", "3.0.20"
@@ -73,13 +73,13 @@ gem "googleauth", "~> 1.16.1"
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.2.8"
+gem "pagy", "~> 43.2.9"
 
 # tags
 gem "no_fly_list", "0.7.3"
 
 # json
-gem "oj", "3.16.13"
+gem "oj", "3.16.15"
 gem "alba", "3.10.0"
 
 # Rack::Locale
@@ -105,7 +105,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "brakeman", "~> 8.0.1", require: false
+  gem "brakeman", "~> 8.0.2", require: false
   gem "bullet", "~> 8.1.0"
   gem "pg_query", "~> 6.2.2"
   gem "prosopite", "~> 2.1.2"
@@ -119,7 +119,7 @@ group :development do
   gem "annotaterb", "~> 4.21.0"
   gem "rails-erd", "~> 1.7.2"
   # Ruby style guide, linter, and formatter
-  gem "rubocop", "~> 1.84.0", require: false
+  gem "rubocop", "~> 1.84.1", require: false
   gem "rubocop-rails", "~> 2.34.3", require: false
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
   # Shopify/erb-lint
