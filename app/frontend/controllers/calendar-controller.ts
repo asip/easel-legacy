@@ -17,36 +17,46 @@ export default class CalendarController extends ApplicationController {
 
   calendar: Datepicker | null = null
 
+  wordElement: HTMLInputElement | null = null
+
   connect(): void {
     let calElement: HTMLElement | null = null
-    let wordElement: HTMLInputElement | null = null
 
     if (this.hasCalTarget) calElement = this.calTarget
-    if (this.hasWordTarget) wordElement = this.wordTarget
+    if (this.hasWordTarget) this.wordElement = this.wordTarget
 
     if (calElement) {
-      const qItems: Record<'word', string> = JSON.parse(searchCriteria.get()) as Record<'word', string>
-      const date = this.#isValidDate(qItems.word) ? qItems.word : null
+      const date = this.#getDateValue()
 
-      Object.assign(Datepicker.locales, ja)
-
-      this.calendar = new Datepicker(calElement, {
-        buttonClass: 'btn',
-        format: 'yyyy/mm/dd',
-        language: 'ja'
-      })
-
-      if (date) this.calendar.setDate(Datepicker.parseDate(date, 'yyyy/mm/dd'))
-
-      calElement.addEventListener('changeDate', function (e: CustomEvent) {
-        // globalThis.console.log(e);
-        // globalThis.console.log(e.detail.datepicker.getDate("yyyy/mm/dd"));
-        // globalThis.console.log(wordElement)
-
-        // eslint-disable-next-line
-        if (wordElement) wordElement.value = e.detail.datepicker.getDate('yyyy/mm/dd')
-      })
+      this.#initCalendar({ el: calElement, date })
     }
+  }
+
+  #getDateValue(): string | null {
+    const qItems: Record<'word', string> = JSON.parse(searchCriteria.get()) as Record<'word', string>
+    return this.#isValidDate(qItems.word) ? qItems.word : null
+  }
+
+  #initCalendar({el, date}: { el: HTMLElement, date: string | null }): void {
+    Object.assign(Datepicker.locales, ja)
+
+    this.calendar = new Datepicker(el, {
+      buttonClass: 'btn',
+      format: 'yyyy/mm/dd',
+      language: 'ja'
+    })
+
+    this.#setChangeEventListener(el)
+    if (date) this.calendar.setDate(Datepicker.parseDate(date, 'yyyy/mm/dd'))
+  }
+
+  #setChangeEventListener(el: HTMLElement): void {
+    const wordElement = this.wordElement
+
+    el.addEventListener('changeDate', function (e: CustomEvent) {
+      // eslint-disable-next-line
+      if (wordElement) wordElement.value = e.detail.datepicker.getDate('yyyy/mm/dd')
+    })
   }
 
   disconnect(): void {

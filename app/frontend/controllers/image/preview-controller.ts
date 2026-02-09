@@ -1,9 +1,3 @@
-interface SetImageOptions {
-  preview: HTMLImageElement | null
-  content: HTMLElement| null
-  file: { data?: File | null }
-}
-
 import ApplicationController from '~/controllers/application-controller'
 
 export default class PreviewController extends ApplicationController {
@@ -17,38 +11,38 @@ export default class PreviewController extends ApplicationController {
   declare readonly hasContentTarget: boolean
   declare readonly hasImageTarget: boolean
 
+  elmUpload: HTMLInputElement | null = null
+  content: HTMLElement| null = null
+  preview: HTMLImageElement | null = null
+
   connect(): void {
-    let elmUpload: HTMLInputElement | null = null
-    let content: HTMLElement| null = null
-    let preview: HTMLImageElement | null = null
+    if (this.hasUploadTarget) this.elmUpload = this.uploadTarget
+    if (this.hasContentTarget) this.content = this.contentTarget
+    if (this.hasImageTarget) this.preview = this.imageTarget
 
-    if (this.hasUploadTarget) elmUpload = this.uploadTarget
-    if (this.hasContentTarget) content = this.contentTarget
-    if (this.hasImageTarget) preview = this.imageTarget
-
-    if (elmUpload) {
-      this.#setEventListeners(elmUpload, { preview, content })
-    }
+    this.#setUploadEventListener()
   }
 
-  #setEventListeners(elmUpload: HTMLInputElement, { preview, content }: { preview: HTMLImageElement | null, content: HTMLElement | null }): void {
-    const setImage = this.#setImage.bind(this)
+  #setUploadEventListener(): void {
+    const previewImage = this.#previewImage.bind(this)
+    const hidePreview = this.#hidePreview.bind(this)
 
-    elmUpload.addEventListener('change', function () {
+    this.elmUpload?.addEventListener('change', function () {
       const file: { data?: File | null } = {}
       // (.file_fieldからデータを取得して変数file.dataに代入します)
       file.data = this.files?.item(0)
       if (file.data?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
-        setImage({ preview, content, file })
+        previewImage({ file })
       } else {
-        if (content && content.classList.contains('block')) {
-          content.classList.add('hidden')
-        }
+        hidePreview()
       }
     })
   }
 
-  #setImage({ preview, content, file }: SetImageOptions): void {
+  #previewImage({ file }: { file: { data?: File | null } }): void {
+    const content = this.content
+    const preview = this.preview
+
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
     // (読み込みが完了したら処理が実行されます)
@@ -64,5 +58,11 @@ export default class PreviewController extends ApplicationController {
     }
     // (DataURIScheme文字列を取得します)
     if (file.data) reader.readAsDataURL(file.data)
+  }
+
+  #hidePreview(): void {
+    if (this.content && this.content.classList.contains('block')) {
+      this.content.classList.add('hidden')
+    }
   }
 }

@@ -16,9 +16,7 @@ export default class PhotoSwipeController extends ApplicationController {
 
   connect(): void {
     if (this.selectorValue) {
-      void (async () => {
-        await this.#assignSize()
-      })()
+      void (async () => { await this.#assignSize() })()
 
       this.lightbox = new PhotoSwipeLightbox({
         gallery: this.selectorValue,
@@ -40,13 +38,10 @@ export default class PhotoSwipeController extends ApplicationController {
 
   async #assignSize(): Promise<void> {
     const galleryAnchors = globalThis.document.querySelectorAll(`${this.selectorValue} ${this.anchorValue ? this.anchorValue : 'a'}`)
-    // globalThis.console.log(`${this.selectorValue} ${this.anchorValue ? this.anchorValue : 'a'}`)
-    // globalThis.console.log(galleryAnchors)
 
     for (const el of galleryAnchors) {
       const img: HTMLImageElement = await this.#loadImage((el as HTMLLinkElement).href)
-      // globalThis.console.log(img.naturalWidth.toString())
-      // globalThis.console.log(img.naturalHeight.toString())
+
       el.setAttribute('data-pswp-width', img.naturalWidth.toString())
       el.setAttribute('data-pswp-height', img.naturalHeight.toString())
       el.firstElementChild?.removeAttribute('style')

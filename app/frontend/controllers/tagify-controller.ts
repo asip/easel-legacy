@@ -25,20 +25,23 @@ export default class TagifyController extends ApplicationController {
     if (this.hasTlTarget) this.tagList = this.tlTarget
 
     if (teElement) {
-      this.tagEditor = new Tagify(teElement, {
-        maxTags: 5,
-        dropdown: {
-          classname: 'color-blue',
-          enabled: 0,
-          maxItems: 30,
-          closeOnSelect: false,
-          highlightFirst: true,
-        }
-      })
-
+      this.#initTagEditor(teElement)
       this.#initTags()
       this.#setEventCallbacks()
     }
+  }
+
+  #initTagEditor(el: HTMLInputElement): void {
+    this.tagEditor = new Tagify(el, {
+      maxTags: 5,
+      dropdown: {
+        classname: 'color-blue',
+        enabled: 0,
+        maxItems: 30,
+        closeOnSelect: false,
+        highlightFirst: true,
+      }
+    })
   }
 
   #initTags(): void {
