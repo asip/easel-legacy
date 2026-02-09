@@ -29,12 +29,12 @@ export function useAccount() {
     } */
 
     try {
-      const { ok, data, response } = await useQueryApi<AccountResource>({
+      const { data, response } = await useQueryApi<AccountResource>({
         url: `${baseURL}/account`
         // token: token.value
       })
 
-      if (!ok) {
+      if (!response.ok) {
         await setAlert({ response, off: true })
         clearCurrentUser()
       } else {

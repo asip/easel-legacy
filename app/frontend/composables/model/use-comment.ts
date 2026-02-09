@@ -61,7 +61,7 @@ export function useComment() {
       //  }
       //}
 
-      const { ok, response } = await useMutationApi<CommentResource>({
+      const { response } = await useMutationApi<CommentResource>({
         url: `${baseURL}/frames/${frameId}/comments`,
         method: 'post',
         body: params
@@ -70,7 +70,7 @@ export function useComment() {
 
       clearExternalErrors()
 
-      if (!ok && response) {
+      if (response && !response.ok ) {
         await setAlert({ response })
       }
     } catch (error) {
@@ -91,7 +91,7 @@ export function useComment() {
       //  }
       //}
 
-      const { ok, data,  response } = await useMutationApi<CommentResource>({
+      const { data, response } = await useMutationApi<CommentResource>({
         url: `${baseURL}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
         method: 'put',
         body: params
@@ -100,7 +100,7 @@ export function useComment() {
 
       clearExternalErrors()
 
-      if (!ok && response) {
+      if (response && !response.ok) {
         await setAlert({ response })
       } else {
         const commentAttrs: CommentResource | undefined = data
@@ -116,7 +116,7 @@ export function useComment() {
     clearFlash()
 
     try {
-      const { ok, response } = await useMutationApi({
+      const { response } = await useMutationApi({
         url: `${baseURL}/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
         method: 'delete'
         // token: token.value
@@ -124,7 +124,7 @@ export function useComment() {
 
       clearExternalErrors()
 
-      if (!ok && response) {
+      if (response && !response.ok ) {
         await setAlert({ response })
       }
     } catch (error) {

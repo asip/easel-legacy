@@ -8,7 +8,6 @@ export const useQueryApi = async <T>({ url, token }: { url: string, token?: stri
 
   const headers: Record<string, string> = commonHeaders.value
 
-  const ok = ref<boolean>(false)
   const data = ref<T>()
   // const tokenRef = ref<string>()
 
@@ -22,13 +21,11 @@ export const useQueryApi = async <T>({ url, token }: { url: string, token?: stri
       headers
     })
 
-  ok.value = response.ok
-
-  if (ok.value) {
+  if (response.ok) {
     data.value = (await response.json()) as T
 
     // tokenRef.value = response.headers.get('authorization')?.split(' ')[1]
   }
 
-  return { ok: ok.value, data: data.value, response: response }
+  return { data: data.value, response: response }
 }

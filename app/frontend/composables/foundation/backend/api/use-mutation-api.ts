@@ -15,7 +15,6 @@ export const useMutationApi = async <T>({ url, method, body, token }: MutationAp
 
   const headers: Record<string, string> = commonHeaders.value
 
-  const ok = ref<boolean>(false)
   const data = ref<T>()
   const response = ref<Response>()
   // const tokenRef = ref<string>()
@@ -32,9 +31,7 @@ export const useMutationApi = async <T>({ url, method, body, token }: MutationAp
         headers
       })
 
-    ok.value = response.value.ok
-
-    if (ok.value) {
+    if (response.value.ok) {
       data.value = (await response.value.json()) as T
 
       // tokenRef.value = response.headers.get('authorization')?.split(' ')[1]
@@ -46,9 +43,7 @@ export const useMutationApi = async <T>({ url, method, body, token }: MutationAp
         method,
         headers
       })
-
-    ok.value = response.value.ok
   }
 
-  return { ok: ok.value, data: data.value, response: response.value }
+  return { data: data.value, response: response.value }
 }
