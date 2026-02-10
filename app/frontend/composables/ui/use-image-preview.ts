@@ -7,10 +7,10 @@ interface ImagePreviewOptions {
 export function useImagePreview({ el, contentEl, previewEl }: ImagePreviewOptions) {
   const setUploadEventListener = (): void => {
     el?.addEventListener('change', function () {
-      const file: { data?: File | null } = {}
-      // (.file_fieldからデータを取得して変数file.dataに代入します)
-      file.data = this.files?.item(0)
-      if (file.data?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
+      // (.file_fieldからデータを取得して変数fileに代入します)
+      const file: File | null | undefined = this.files?.item(0)
+
+      if (file?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
         setImage({ file })
       } else {
         hidePreview()
@@ -18,7 +18,7 @@ export function useImagePreview({ el, contentEl, previewEl }: ImagePreviewOption
     })
   }
 
-  const setImage = ({ file }: { file: { data?: File | null } }): void => {
+  const setImage = ({ file }: { file: File }): void => {
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
     // (読み込みが完了したら処理が実行されます)
@@ -33,7 +33,7 @@ export function useImagePreview({ el, contentEl, previewEl }: ImagePreviewOption
       }
     }
     // (DataURIScheme文字列を取得します)
-    if (file.data) reader.readAsDataURL(file.data)
+    reader.readAsDataURL(file)
   }
 
   const hidePreview = (): void => {
