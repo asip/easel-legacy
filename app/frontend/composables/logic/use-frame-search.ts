@@ -13,6 +13,10 @@ interface FrameSearchOptions {
   tagMessageEl: HTMLDivElement | null
 }
 
+interface SearchOptions {
+  ev: Event, success: boolean, message: string
+}
+
 interface SearchParams {
   word?: string | null
   tagName?: string | null
@@ -49,27 +53,28 @@ export function useFrameSearch({ el, wordEl, wordMessageEl, tagEl, tagMessageEl}
     return { success, errorMessages }
   }
 
-  const searchByWord = ({ ev, success, message }: { ev: Event, success: boolean, message: string }): void => {
+  const searchByWord = ({ ev, success, message }: SearchOptions): void => {
     if (success) {
       params.q = JSON.stringify({ word: params.word })
       submit()
     } else {
-      setErrorMessage({ ev, el: wordMessageEl, message })
+      setErrorMessage({ el: wordMessageEl, message })
+      ev.preventDefault()
     }
   }
 
-  const searchByTagName = ({ ev, success, message }: { ev: Event, success: boolean, message: string }): void => {
+  const searchByTagName = ({ ev, success, message }: SearchOptions): void => {
     if (success) {
       params.q = tagEl?.value ? JSON.stringify({ tag_name: params.tagName }) : '{}'
       submit()
     } else {
-      setErrorMessage({ ev, el: tagMessageEl, message })
+      setErrorMessage({ el: tagMessageEl, message })
+      ev.preventDefault()
     }
   }
 
-  const setErrorMessage = ({ ev, el, message }: { ev: Event, el: HTMLDivElement | null, message: string }) => {
+  const setErrorMessage = ({ el, message }: { el: HTMLDivElement | null, message: string }) => {
     if (el) el.innerHTML = message
-    ev.preventDefault()
   }
 
   const submit = (): void => {
