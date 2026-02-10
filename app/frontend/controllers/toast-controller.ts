@@ -1,7 +1,7 @@
 // import Toastify from 'toastify-js'
 import ApplicationController from './application-controller'
 
-const Toastify = (await import('toastify-js')).default
+import { useToast } from '~/composables'
 
 export default class ToastController extends ApplicationController {
   static values = {
@@ -11,18 +11,10 @@ export default class ToastController extends ApplicationController {
   declare readonly flashesValue: string
 
   connect(): void {
+    const { setMessages } = useToast()
+
     const flashes = this.flashesValue.valueOf() !== '' ? JSON.parse(this.flashesValue.valueOf()) as Record<string, string[]> : {}
 
-    Object.keys(flashes).forEach(
-      (flashType: string) => {
-        flashes[flashType].reverse().forEach((message: string) => {
-          Toastify({
-            text: message,
-            duration: 2000,
-            style: { 'border-radius': '5px' }
-          }).showToast()
-        })
-      }
-    )
+    setMessages(flashes)
   }
 }

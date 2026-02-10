@@ -17,5 +17,19 @@ export function useToast() {
     }
   }
 
-  return { setFlash }
+  const setMessages = (flashes: Record<string, string[]>) => {
+    Object.keys(flashes).forEach(
+      (flashType: string) => {
+        flashes[flashType].reverse().forEach((message: string) => {
+          Toastify({
+            text: message,
+            duration: 2000,
+            style: { 'border-radius': '5px' }
+          }).showToast()
+        })
+      }
+    )
+  }
+
+  return { setFlash, setMessages }
 }
