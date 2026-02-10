@@ -1,6 +1,4 @@
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
-// @ts-expect-error : @types doesn't exist
-import PhotoSwipeFullscreen from 'photoswipe-fullscreen'
 
 import ApplicationController from './application-controller'
 
@@ -26,8 +24,6 @@ export default class PhotoSwipeController extends ApplicationController {
       void (async () => { await assignSize() })()
 
       this.lightbox = initPhotoSwipe()
-      new PhotoSwipeFullscreen(this.lightbox) // eslint-disable-line
-      this.lightbox.init()
     }
   }
 
