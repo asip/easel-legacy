@@ -20,7 +20,6 @@ export function useCalendar({el, wordEl, date}: { el: HTMLElement, wordEl: HTMLI
   }
 
   const setChangeEventListener = ({ el, wordEl }: { el: HTMLElement, wordEl: HTMLInputElement | null }): void => {
-
     el.addEventListener('changeDate', function (e: CustomEvent) {
       // eslint-disable-next-line
       if (wordEl) wordEl.value = e.detail.datepicker.getDate('yyyy/mm/dd')

@@ -19,7 +19,6 @@ export function useImagePreview({ el, contentEl, previewEl }: ImagePreviewOption
   }
 
   const setImage = ({ file }: { file: { data?: File | null } }): void => {
-
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
     // (読み込みが完了したら処理が実行されます)
