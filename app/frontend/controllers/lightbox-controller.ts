@@ -1,5 +1,6 @@
-import ApplicationController from './application-controller'
 import GLightbox from 'glightbox'
+
+import ApplicationController from './application-controller'
 
 export default class LightboxController extends ApplicationController {
   static values = {

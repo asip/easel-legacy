@@ -1,7 +1,9 @@
-import ApplicationController from './application-controller'
-import { Datepicker } from 'vanillajs-datepicker'
-import ja from '~/locales/date-picker/ja'
 
+import ApplicationController from './application-controller'
+
+import { Datepicker } from 'vanillajs-datepicker'
+
+import { useCalendar } from '~/composables'
 import { searchCriteria } from '~/stores'
 
 export default class CalendarController extends ApplicationController {
@@ -17,46 +19,25 @@ export default class CalendarController extends ApplicationController {
 
   calendar: Datepicker | null = null
 
-  wordElement: HTMLInputElement | null = null
-
   connect(): void {
     let calElement: HTMLElement | null = null
+    let wordElement: HTMLInputElement | null = null
 
     if (this.hasCalTarget) calElement = this.calTarget
-    if (this.hasWordTarget) this.wordElement = this.wordTarget
+    if (this.hasWordTarget) wordElement = this.wordTarget
 
     if (calElement) {
       const date = this.#getDateValue()
 
-      this.#initCalendar({ el: calElement, date })
+      const { initCalendar } = useCalendar({ el: calElement, wordEl: wordElement, date })
+
+      this.calendar = initCalendar()
     }
   }
 
   #getDateValue(): string | null {
     const qItems: Record<'word', string> = JSON.parse(searchCriteria.get()) as Record<'word', string>
     return this.#isValidDate(qItems.word) ? qItems.word : null
-  }
-
-  #initCalendar({el, date}: { el: HTMLElement, date: string | null }): void {
-    Object.assign(Datepicker.locales, ja)
-
-    this.calendar = new Datepicker(el, {
-      buttonClass: 'btn',
-      format: 'yyyy/mm/dd',
-      language: 'ja'
-    })
-
-    this.#setChangeEventListener(el)
-    if (date) this.calendar.setDate(Datepicker.parseDate(date, 'yyyy/mm/dd'))
-  }
-
-  #setChangeEventListener(el: HTMLElement): void {
-    const wordElement = this.wordElement
-
-    el.addEventListener('changeDate', function (e: CustomEvent) {
-      // eslint-disable-next-line
-      if (wordElement) wordElement.value = e.detail.datepicker.getDate('yyyy/mm/dd')
-    })
   }
 
   disconnect(): void {

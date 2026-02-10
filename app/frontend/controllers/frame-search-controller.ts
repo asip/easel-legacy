@@ -1,6 +1,6 @@
-import ApplicationController from './application-controller'
-
 import * as v from 'valibot'
+
+import ApplicationController from './application-controller'
 
 import { i18n } from '~/i18n'
 import { useLocale, useCookie } from '~/composables'
@@ -54,10 +54,7 @@ export default class FrameSearchController extends ApplicationController {
 
     autoDetect()
 
-    this.#params = {
-      word: this.wordElement?.value,
-      tag_name: this.tagElement?.value
-    }
+    this.#initParams()
 
     const { success, errorMessages } = this.#validateParams()
 
@@ -68,7 +65,14 @@ export default class FrameSearchController extends ApplicationController {
     }
   }
 
-  #validateParams(){
+  #initParams() {
+    this.#params = {
+      word: this.wordElement?.value,
+      tag_name: this.tagElement?.value
+    }
+  }
+
+  #validateParams() {
     const result = v.safeParse(this.#schema, this.#params, { lang: i18n.global.locale.value })
     const errorMessages = result.issues ? v.flatten(result.issues).nested : {}
     const success = result.success
@@ -110,10 +114,14 @@ export default class FrameSearchController extends ApplicationController {
   }
 
   clearWordMessage(): void {
-    if (this.wordMessageElement && this.wordMessageElement.innerHTML != '') this.wordMessageElement.innerHTML = ''
+    this.#clearErrorMessage(this.wordMessageElement)
   }
 
   clearTagMessage(): void {
-    if (this.tagMessageElement && this.tagMessageElement.innerHTML != '') this.tagMessageElement.innerHTML = ''
+    this.#clearErrorMessage(this.tagMessageElement)
+  }
+
+  #clearErrorMessage(el: HTMLDivElement | null): void {
+    if (el && el.innerHTML != '') el.innerHTML = ''
   }
 }
