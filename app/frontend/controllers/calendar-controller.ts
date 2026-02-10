@@ -3,7 +3,7 @@ import ApplicationController from './application-controller'
 
 import { Datepicker } from 'vanillajs-datepicker'
 
-import { useCalendar } from '~/composables'
+import { useCalendar, useDateUtil } from '~/composables'
 import { searchCriteria } from '~/stores'
 
 export default class CalendarController extends ApplicationController {
@@ -36,15 +36,13 @@ export default class CalendarController extends ApplicationController {
   }
 
   #getDateValue(): string | null {
+    const { isValidDate } = useDateUtil()
+
     const qItems: Record<'word', string> = JSON.parse(searchCriteria.get()) as Record<'word', string>
-    return this.#isValidDate(qItems.word) ? qItems.word : null
+    return isValidDate(qItems.word) ? qItems.word : null
   }
 
   disconnect(): void {
     if (this.calendar) this.calendar.destroy()
-  }
-
-  #isValidDate(str: string):boolean {
-    return !isNaN(Date.parse(str))
   }
 }

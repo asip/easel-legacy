@@ -15,6 +15,8 @@ export { useCommentRules } from './model/validation'
 
 export { useFrameSearch } from './logic'
 
+export { useDateUtil } from './util'
+
 export { useConstants } from './use-constants'
 export type { ConstantsType } from './use-constants'
 
