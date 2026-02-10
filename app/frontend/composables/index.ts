@@ -13,6 +13,8 @@ export type { UseAccountType, UseCommentType } from './model'
 
 export { useCommentRules } from './model/validation'
 
+export { useFrameSearch } from './logic'
+
 export { useConstants } from './use-constants'
 export type { ConstantsType } from './use-constants'
 
