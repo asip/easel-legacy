@@ -6,11 +6,11 @@ import { useLocale, useCookie } from '~/composables'
 import { searchCriteria } from '~/stores'
 
 interface FrameSearchOptions {
-  el: Element
-  wordEl: HTMLInputElement | null
-  wordMessageEl: HTMLDivElement | null
-  tagEl: HTMLInputElement | null
-  tagMessageEl: HTMLDivElement | null
+  el?: Element
+  wordEl?: HTMLInputElement | null
+  wordMessageEl?: HTMLDivElement | null
+  tagEl?: HTMLInputElement | null
+  tagMessageEl?: HTMLDivElement | null
 }
 
 interface SearchOptions {
@@ -73,7 +73,7 @@ export function useFrameSearch({ el, wordEl, wordMessageEl, tagEl, tagMessageEl}
     }
   }
 
-  const setErrorMessage = ({ el, message }: { el: HTMLDivElement | null, message: string }) => {
+  const setErrorMessage = ({ el, message }: { el: HTMLDivElement | null | undefined, message: string }) => {
     if (el) el.innerHTML = message
   }
 
@@ -87,5 +87,9 @@ export function useFrameSearch({ el, wordEl, wordMessageEl, tagEl, tagMessageEl}
     }
   }
 
-  return { search }
+  const clearErrorMessage = (el: HTMLDivElement | null): void => {
+    if (el && el.innerHTML != '') el.innerHTML = ''
+  }
+
+  return { search, clearErrorMessage }
 }

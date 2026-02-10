@@ -47,14 +47,14 @@ export default class FrameSearchController extends ApplicationController {
   }
 
   clearWordMessage(): void {
-    this.#clearErrorMessage(this.wordMessageElement)
+    const { clearErrorMessage } = useFrameSearch({})
+
+    clearErrorMessage(this.wordMessageElement)
   }
 
   clearTagMessage(): void {
-    this.#clearErrorMessage(this.tagMessageElement)
-  }
+    const { clearErrorMessage } = useFrameSearch({})
 
-  #clearErrorMessage(el: HTMLDivElement | null): void {
-    if (el && el.innerHTML != '') el.innerHTML = ''
+    clearErrorMessage(this.tagMessageElement)
   }
 }
