@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # api controller
-class Api::Front::V1::ApiController < ActionController::API
+class Front::Api::V1::ApiController < ActionController::API
   include ActionController::Cookies
   include Locale::Detect
   include TimeZone::Detect

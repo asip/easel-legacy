@@ -65,11 +65,11 @@ Rails.application.routes.draw do
   get "/profile/next" => "sessions#next"
   get "/peofile/prev" => "sessions#prev"
 
-  namespace :api do
-    namespace :front do
+  namespace :front do
+    namespace :api do
       namespace :v1 do
         resources :frames, only: [] do
-          get "/comments" => "/api/front/v1/frames#comments"
+          get "/comments" => "/front/api/v1/frames#comments"
           resources :comments, only: %i[create update destroy]
         end
 
@@ -79,7 +79,7 @@ Rails.application.routes.draw do
           end
         end
 
-        get "/account" => "/api/front/v1/account#show"
+        get "/account" => "/front/api/v1/account#show"
       end
     end
   end

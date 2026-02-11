@@ -1,7 +1,7 @@
 
 
 export function useConstants() {
-  const baseURL = '/api/front/v1'
+  const baseURL = '/front/api/v1'
 
   return { baseURL }
 }

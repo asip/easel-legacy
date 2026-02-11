@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # comment api controller
-class Api::Front::V1::CommentsController < Api::Front::V1::ApiController
+class Front::Api::V1::CommentsController < Front::Api::V1::ApiController
   def create
     frame = Queries::Frame::FindFrame.run(user: current_user, frame_id: params[:frame_id])
 

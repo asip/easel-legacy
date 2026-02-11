@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # frame api controller
-class Api::Front::V1::FramesController < Api::Front::V1::ApiController
+class Front::Api::V1::FramesController < Front::Api::V1::ApiController
   include Api::Frames::Authentication::Skip
 
   def comments
