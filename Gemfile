@@ -44,7 +44,7 @@ gem "bootsnap", "~> 1.22.0", require: false
 gem "vite_rails", "3.0.20"
 
 # view component
-gem "view_component", "~> 4.2.0"
+gem "view_component", "~> 4.3.0"
 
 # Shrine
 gem "aws-sdk-s3", "~> 1.213.0"
@@ -116,10 +116,10 @@ group :development do
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem "rack-mini-profiler", "~> 4.0.1"
 
-  gem "annotaterb", "~> 4.21.0"
+  gem "annotaterb", "~> 4.22.0"
   gem "rails-erd", "~> 1.7.2"
   # Ruby style guide, linter, and formatter
-  gem "rubocop", "~> 1.84.1", require: false
+  gem "rubocop", "~> 1.84.2", require: false
   gem "rubocop-rails", "~> 2.34.3", require: false
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
   # Shopify/erb-lint
