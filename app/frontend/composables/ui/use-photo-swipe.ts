@@ -2,9 +2,11 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox'
 // @ts-expect-error : @types doesn't exist
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen'
 
-export function usePhotoSwipe({ selector, anchor }: { selector: string, anchor: string }) {
+export function usePhotoSwipe({ selector, anchor }: { selector: string; anchor: string }) {
   const assignSize = async (): Promise<void> => {
-    const galleryAnchors = globalThis.document.querySelectorAll(`${selector} ${anchor ? anchor : 'a'}`)
+    const galleryAnchors = globalThis.document.querySelectorAll(
+      `${selector} ${anchor ? anchor : 'a'}`,
+    )
 
     for (const el of galleryAnchors) {
       const img: HTMLImageElement = await loadImage((el as HTMLLinkElement).href)
@@ -20,7 +22,7 @@ export function usePhotoSwipe({ selector, anchor }: { selector: string, anchor: 
       gallery: selector,
       children: anchor ? anchor : 'a',
       initialZoomLevel: 'fit',
-      pswpModule: () => import('photoswipe')
+      pswpModule: () => import('photoswipe'),
     })
     new PhotoSwipeFullscreen(lightbox) // eslint-disable-line
     lightbox.init()

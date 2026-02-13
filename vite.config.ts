@@ -15,19 +15,19 @@ export default defineConfig({
     port: 3036,
     hmr: {
       protocol: 'ws',
-    }
+    },
   },
   plugins: [
     RubyPlugin(),
     vue(),
     //react(),
     svelte(),
-    tailwindcss()
+    tailwindcss(),
   ],
   resolve: {
     alias: {
       'vanillajs-datepicker': path.resolve(__dirname, 'node_modules/vanillajs-datepicker'),
-      '~': path.resolve(__dirname, 'app/frontend')
+      '~': path.resolve(__dirname, 'app/frontend'),
     },
   },
 })

@@ -2,7 +2,13 @@ import Tagify from '@yaireo/tagify'
 
 import { useConstants } from '~/composables'
 
-export function useTagEditor({ el, tagListEl}: { el: HTMLInputElement, tagListEl: HTMLInputElement | null }) {
+export function useTagEditor({
+  el,
+  tagListEl,
+}: {
+  el: HTMLInputElement
+  tagListEl: HTMLInputElement | null
+}) {
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
 
@@ -15,7 +21,7 @@ export function useTagEditor({ el, tagListEl}: { el: HTMLInputElement, tagListEl
         maxItems: 30,
         closeOnSelect: false,
         highlightFirst: true,
-      }
+      },
     })
 
     initTags()
@@ -31,15 +37,21 @@ export function useTagEditor({ el, tagListEl}: { el: HTMLInputElement, tagListEl
   }
 
   const setEventCallbacks = (): void => {
-    tagEditor?.on('input', (ev) => { onInput(ev) })
-    tagEditor?.on('add', () => { saveTagList() })
-    tagEditor?.on('remove', () => { saveTagList() })
+    tagEditor?.on('input', (ev) => {
+      onInput(ev)
+    })
+    tagEditor?.on('add', () => {
+      saveTagList()
+    })
+    tagEditor?.on('remove', () => {
+      saveTagList()
+    })
   }
 
   const onInput = (ev: CustomEvent): void => {
     // eslint-disable-next-line
     const value = ev.detail.value as string
-    if(tagEditor) tagEditor.whitelist = []
+    if (tagEditor) tagEditor.whitelist = []
 
     controller?.abort()
     controller = new AbortController()
@@ -61,14 +73,14 @@ export function useTagEditor({ el, tagListEl}: { el: HTMLInputElement, tagListEl
   }
 
   const setAutocomplete = (value: string, tags: string[]): void => {
-    if(tagEditor) {
+    if (tagEditor) {
       tagEditor.whitelist = tags
       tagEditor.loading(false).dropdown.show(value)
     }
   }
 
   const saveTagList = (): void => {
-    if (tagListEl) tagListEl.value = tagEditor?.value.map(v => v.value).join(',') ?? ''
+    if (tagListEl) tagListEl.value = tagEditor?.value.map((v) => v.value).join(',') ?? ''
   }
 
   return { initTagEditor }

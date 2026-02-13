@@ -3,7 +3,7 @@ import { ref, type Ref } from 'vue'
 import type { ErrorMessages } from '~/types'
 import type { Flash } from '~/interfaces'
 
-export function useExternalErrors<ErrorProperty extends string>({ flash } : { flash: Ref<Flash> }) {
+export function useExternalErrors<ErrorProperty extends string>({ flash }: { flash: Ref<Flash> }) {
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({})
 
   const clearExternalErrors = (): void => {
@@ -14,7 +14,7 @@ export function useExternalErrors<ErrorProperty extends string>({ flash } : { fl
   }
 
   const setExternalErrors = (from: ErrorMessages<string>): void => {
-    for(const key in from) {
+    for (const key in from) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       externalErrors.value[key] = from[key] ?? []
     }
@@ -34,6 +34,9 @@ export function useExternalErrors<ErrorProperty extends string>({ flash } : { fl
   }
 
   return {
-    externalErrors, clearExternalErrors, setExternalErrors, isSuccess
+    externalErrors,
+    clearExternalErrors,
+    setExternalErrors,
+    isSuccess,
   }
 }

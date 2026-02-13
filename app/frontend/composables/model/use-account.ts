@@ -30,7 +30,7 @@ export function useAccount() {
 
     try {
       const { data, response } = await useQueryApi<AccountResource>({
-        url: `${baseURL}/account`
+        url: `${baseURL}/account`,
         // token: token.value
       })
 
@@ -44,7 +44,7 @@ export function useAccount() {
         }
         loggedIn.value = true
       }
-    } catch(error) {
+    } catch (error) {
       flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
@@ -55,7 +55,7 @@ export function useAccount() {
     currentUser,
     // token,
     flash,
-    authenticate
+    authenticate,
   }
 }
 

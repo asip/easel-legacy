@@ -8,29 +8,29 @@ import vueESLintParser from 'vue-eslint-parser'
 export default [
   {
     ignores: [
-      './app/assets/builds/**/*' // Ignore built files.
-    ]
+      './app/assets/builds/**/*', // Ignore built files.
+    ],
   },
   js.configs.recommended,
   eslintConfigPrettier,
   {
     languageOptions: {
       globals: {
-        es2022: true
-      }
+        es2022: true,
+      },
     },
     rules: {
       // 共通のルールを設定
       semi: ['error', 'never'],
       quotes: ['error', 'single'],
-      indent: ['error', 2]
-    }
+      indent: ['error', 2],
+    },
   },
   {
     files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 2022,
-      sourceType: 'module'
+      sourceType: 'module',
     },
   },
   {
@@ -40,11 +40,11 @@ export default [
       sourceType: 'module',
       parser: typescriptESLintParser,
       parserOptions: {
-        project: './tsconfig.json'
-      }
+        project: './tsconfig.json',
+      },
     },
     plugins: {
-      '@typescript-eslint': typescriptESLint
+      '@typescript-eslint': typescriptESLint,
     },
     rules: {
       ...typescriptESLint.configs.recommended.rules,
@@ -54,14 +54,14 @@ export default [
       ...typescriptESLint.configs['strict-type-checked'].rules,
       ...typescriptESLint.configs.stylistic.rules,
       '@typescript-eslint/no-explicit-any': 0,
-      '@typescript-eslint/no-non-null-assertion': 0
-    }
+      '@typescript-eslint/no-non-null-assertion': 0,
+    },
   },
   {
     files: ['**/*.vue'],
     languageOptions: {
       globals: {
-        'vue/setup-compiler-macros': true
+        'vue/setup-compiler-macros': true,
       },
       ecmaVersion: 2022,
       sourceType: 'module',
@@ -69,14 +69,14 @@ export default [
       parserOptions: {
         parser: typescriptESLintParser,
         parserOptions: {
-          project: './tsconfig.json'
+          project: './tsconfig.json',
         },
-        extraFileExtensions: ['.vue']
-      }
+        extraFileExtensions: ['.vue'],
+      },
     },
     plugins: {
       vue: vueESLint,
-      '@typescript-eslint': typescriptESLint
+      '@typescript-eslint': typescriptESLint,
     },
     rules: {
       ...typescriptESLint.configs.recommended.rules,
@@ -92,7 +92,7 @@ export default [
       '@typescript-eslint/no-non-null-assertion': 0,
       '@typescript-eslint/ban-ts-comment': 0,
       'vue/no-v-html': 0,
-      'vue/max-attributes-per-line': 0
-    }
-  }
+      'vue/max-attributes-per-line': 0,
+    },
+  },
 ]

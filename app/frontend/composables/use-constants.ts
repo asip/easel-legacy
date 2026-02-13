@@ -1,5 +1,3 @@
-
-
 export function useConstants() {
   const baseURL = '/front/api/v1'
 

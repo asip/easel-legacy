@@ -15,16 +15,18 @@ export default class PreviewController extends ApplicationController {
 
   connect(): void {
     let uploadElement: HTMLInputElement | null = null
-    let contentElement: HTMLElement| null = null
+    let contentElement: HTMLElement | null = null
     let previewElement: HTMLImageElement | null = null
 
     if (this.hasUploadTarget) uploadElement = this.uploadTarget
     if (this.hasContentTarget) contentElement = this.contentTarget
     if (this.hasImageTarget) previewElement = this.imageTarget
 
-    const { setUploadEventListener } = useImagePreview(
-      { el: uploadElement, contentEl: contentElement, previewEl: previewElement }
-    )
+    const { setUploadEventListener } = useImagePreview({
+      el: uploadElement,
+      contentEl: contentElement,
+      previewEl: previewElement,
+    })
 
     setUploadEventListener()
   }

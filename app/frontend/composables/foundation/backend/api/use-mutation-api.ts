@@ -1,11 +1,11 @@
 import { ref } from 'vue'
 
-import { useHttpHeaders} from './use-http-headers'
+import { useHttpHeaders } from './use-http-headers'
 
 interface MutationApiOptions {
-  url: string,
-  method: 'post' | 'put' | 'delete',
-  body?: URLSearchParams | FormData,
+  url: string
+  method: 'post' | 'put' | 'delete'
+  body?: URLSearchParams | FormData
   token?: string
 }
 
@@ -24,25 +24,23 @@ export const useMutationApi = async <T>({ url, method, body, token }: MutationAp
   }
 
   if (method == 'post' || method == 'put') {
-    response.value = await globalThis.fetch(url,
-      {
-        method,
-        body,
-        headers
-      })
+    response.value = await globalThis.fetch(url, {
+      method,
+      body,
+      headers,
+    })
 
     if (response.value.ok) {
       data.value = (await response.value.json()) as T
 
       // tokenRef.value = response.headers.get('authorization')?.split(' ')[1]
     }
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   } else if (method == 'delete') {
-    response.value = await globalThis.fetch(url,
-      {
-        method,
-        headers
-      })
+    response.value = await globalThis.fetch(url, {
+      method,
+      headers,
+    })
   }
 
   return { data: data.value, response: response.value }

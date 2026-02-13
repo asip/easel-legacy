@@ -5,6 +5,6 @@ import { required, withMessage } from '@regle/rules'
 
 export const { useRegle: useI18nRegle } = defineRegleConfig({
   rules: () => ({
-    required: withMessage(required, () => i18n.global.t('rules.required'))
-  })
+    required: withMessage(required, () => i18n.global.t('rules.required')),
+  }),
 })

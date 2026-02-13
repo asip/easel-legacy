@@ -21,7 +21,13 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
   const { backendErrorInfo, clearBackendErrorInfo, setBackendErrorInfo } = useBackendErrorInfo()
   const reloading = ref<boolean>(false)
 
-  const setAlert= async ({ response, off = false }: { response: Response, off?: boolean }): Promise<void> => {
+  const setAlert = async ({
+    response,
+    off = false,
+  }: {
+    response: Response
+    off?: boolean
+  }): Promise<void> => {
     clearBackendErrorInfo()
     backendErrorInfo.value.status = response.status
     if (off) {

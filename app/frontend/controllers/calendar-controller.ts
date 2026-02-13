@@ -1,4 +1,3 @@
-
 import ApplicationController from './application-controller'
 
 import { Datepicker } from 'vanillajs-datepicker'
@@ -38,7 +37,10 @@ export default class CalendarController extends ApplicationController {
   #getDateValue(): string | null {
     const { isValidDate } = useDateUtil()
 
-    const qItems: Record<'word', string> = JSON.parse(searchCriteria.get()) as Record<'word', string>
+    const qItems: Record<'word', string> = JSON.parse(searchCriteria.get()) as Record<
+      'word',
+      string
+    >
     return isValidDate(qItems.word) ? qItems.word : null
   }
 

@@ -9,7 +9,14 @@ const schemaMessage = () => {
   v.setSchemaMessage((issue) => `無効な型です：${issue.received}型ではなく${issue.expected || ''}型で入力してください`, 'ja')
   */
   const { locale } = useLocale()
-  v.setSchemaMessage((issue) => i18n.global.t('rules.schemaMessage', { received: issue.received, expected: issue.expected || '' }), locale.value)
+  v.setSchemaMessage(
+    (issue) =>
+      i18n.global.t('rules.schemaMessage', {
+        received: issue.received,
+        expected: issue.expected || '',
+      }),
+    locale.value,
+  )
 }
 
 export { schemaMessage }

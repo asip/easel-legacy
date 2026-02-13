@@ -1,8 +1,15 @@
 import { ref } from 'vue'
 
-import type { Comment , CommentResource } from '~/interfaces'
+import type { Comment, CommentResource } from '~/interfaces'
 import type { CommentErrorProperty } from '~/types'
-import { useMutationApi, useEntity, useExternalErrors, useAlert, useConstants, useFlash } from '~/composables'
+import {
+  useMutationApi,
+  useEntity,
+  useExternalErrors,
+  useAlert,
+  useConstants,
+  useFlash,
+} from '~/composables'
 import { useAccountStore } from '~/stores'
 
 import { i18n } from '~/i18n'
@@ -22,10 +29,16 @@ export function useComment() {
     user_name: '',
     user_image_url: '',
     created_at: '',
-    updated_at: null
+    updated_at: null,
   })
 
-  const setComment = ({ from, to }: { from?: Comment | CommentResource | undefined, to?: Comment}): void => {
+  const setComment = ({
+    from,
+    to,
+  }: {
+    from?: Comment | CommentResource | undefined
+    to?: Comment
+  }): void => {
     if (from) {
       copy({ from, to: comment.value })
     } else if (to) {
@@ -35,16 +48,24 @@ export function useComment() {
     }
   }
 
-  const { externalErrors, setExternalErrors,  clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
+  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } =
+    useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { backendErrorInfo, setAlert, reload } = useAlert({ flash, caller: { setExternalErrors, clearLoginUser: clearCurrentUser } })
+  const { backendErrorInfo, setAlert, reload } = useAlert({
+    flash,
+    caller: { setExternalErrors, clearLoginUser: clearCurrentUser },
+  })
 
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404) {
       if (backendErrorInfo.value.source == 'Frame') {
-        flash.value.alert = i18n.global.t('action.error.not_found', { source: i18n.global.t('misc.page') })
+        flash.value.alert = i18n.global.t('action.error.not_found', {
+          source: i18n.global.t('misc.page'),
+        })
       } else if (backendErrorInfo.value.source == 'Comment') {
-        flash.value.alert = i18n.global.t('action.error.not_found', { source: i18n.global.t('models.comment') })
+        flash.value.alert = i18n.global.t('action.error.not_found', {
+          source: i18n.global.t('models.comment'),
+        })
       }
     }
   }
@@ -64,13 +85,13 @@ export function useComment() {
       const { response } = await useMutationApi<CommentResource>({
         url: `${baseURL}/frames/${frameId}/comments`,
         method: 'post',
-        body: params
+        body: params,
         // token: token.value
       })
 
       clearExternalErrors()
 
-      if (response && !response.ok ) {
+      if (response && !response.ok) {
         await setAlert({ response })
       }
     } catch (error) {
@@ -94,7 +115,7 @@ export function useComment() {
       const { data, response } = await useMutationApi<CommentResource>({
         url: `${baseURL}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
         method: 'put',
-        body: params
+        body: params,
         // token: token.value
       })
 
@@ -118,13 +139,13 @@ export function useComment() {
     try {
       const { response } = await useMutationApi({
         url: `${baseURL}/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
-        method: 'delete'
+        method: 'delete',
         // token: token.value
       })
 
       clearExternalErrors()
 
-      if (response && !response.ok ) {
+      if (response && !response.ok) {
         await setAlert({ response })
       }
     } catch (error) {
@@ -134,10 +155,18 @@ export function useComment() {
   }
 
   return {
-    comment, flash,
-    createComment, updateComment, deleteComment, setComment,
-    clearExternalErrors, externalErrors, isSuccess, set404Alert,
-    backendErrorInfo, reload
+    comment,
+    flash,
+    createComment,
+    updateComment,
+    deleteComment,
+    setComment,
+    clearExternalErrors,
+    externalErrors,
+    isSuccess,
+    set404Alert,
+    backendErrorInfo,
+    reload,
   }
 }
 

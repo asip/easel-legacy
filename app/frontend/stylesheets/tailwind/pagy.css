@@ -12,13 +12,13 @@
   --font-weight: 600;
   --line-height: 1.75;
 
-  --text:               hsla(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
-  --text-hover:         white; /* hsla(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A)); */
-  --text-current:       lightblue; /* hsla(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A)); */
-  --background:         white; /* hsla(var(--H) var(--S) calc(var(--L) + (30 * var(--B))) / var(--A)); */
-  --background-hover:   lightcyan; /* hsla(var(--H) var(--S) calc(var(--L) + (20 * var(--B))) / var(--A)); */
+  --text: hsla(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
+  --text-hover: white; /* hsla(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A)); */
+  --text-current: lightblue; /* hsla(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A)); */
+  --background: white; /* hsla(var(--H) var(--S) calc(var(--L) + (30 * var(--B))) / var(--A)); */
+  --background-hover: lightcyan; /* hsla(var(--H) var(--S) calc(var(--L) + (20 * var(--B))) / var(--A)); */
   --background-current: white; /* hsla(var(--H) var(--S) var(--L) / var(--A)); */
-  --background-input:   hsla(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
+  --background-input: hsla(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
 
   color: var(--text);
   font-size: var(--font-size);
@@ -36,7 +36,8 @@
   --space-reverse: 1;
 }
 
-.pagy a:not([role="separator"]) { /* all but gaps */
+.pagy a:not([role='separator']) {
+  /* all but gaps */
   display: block;
   text-decoration: none;
   background-color: var(--background);
@@ -46,20 +47,24 @@
   color: inherit;
 }
 
-.pagy a[href]:hover { /* all links on hover */
+.pagy a[href]:hover {
+  /* all links on hover */
   background-color: var(--background-hover);
-  color: var(--text-hover)
+  color: var(--text-hover);
 }
 
-.pagy a:not([href]) { /* all but links */
+.pagy a:not([href]) {
+  /* all but links */
   cursor: default;
 }
 
-.pagy a[role="link"]:not([aria-current]) { /* disabled links */
-  opacity: .6;
+.pagy a[role='link']:not([aria-current]) {
+  /* disabled links */
+  opacity: 0.6;
 }
 
-.pagy a[aria-current] {  /* current page */
+.pagy a[aria-current] {
+  /* current page */
   background-color: var(--background-current);
   color: var(--text-current);
   border-color: var(--text);

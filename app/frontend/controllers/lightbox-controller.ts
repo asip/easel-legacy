@@ -4,7 +4,7 @@ import ApplicationController from './application-controller'
 
 export default class LightboxController extends ApplicationController {
   static values = {
-    selector: String
+    selector: String,
   }
 
   declare readonly selectorValue: string

@@ -27,21 +27,23 @@ export default class FrameSearchController extends ApplicationController {
     if (this.hasWordMessageTarget) this.wordMessageElement = this.wordMessageTarget
     if (this.hasTagMessageTarget) this.tagMessageElement = this.tagMessageTarget
 
-    if(this.wordElement && this.tagElement) {
-      const qItems: Record<'word'|'tag_name', string>  = JSON.parse(searchCriteria.get()) as Record<'word'|'tag_name', string>
+    if (this.wordElement && this.tagElement) {
+      const qItems: Record<'word' | 'tag_name', string> = JSON.parse(
+        searchCriteria.get(),
+      ) as Record<'word' | 'tag_name', string>
       this.wordElement.value = qItems.word ? qItems.word : ''
       this.tagElement.value = qItems.tag_name ? qItems.tag_name : ''
     }
   }
 
   submit(ev: Event): void {
-    const { search } = useFrameSearch(
-      {
-        el: this.element,
-        wordEl: this.wordElement, wordMessageEl: this.wordMessageElement,
-        tagEl: this.tagElement, tagMessageEl: this.tagMessageElement
-      }
-    )
+    const { search } = useFrameSearch({
+      el: this.element,
+      wordEl: this.wordElement,
+      wordMessageEl: this.wordMessageElement,
+      tagEl: this.tagElement,
+      tagMessageEl: this.tagMessageElement,
+    })
 
     search(ev)
   }

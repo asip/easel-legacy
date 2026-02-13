@@ -7,7 +7,7 @@ import { usePhotoSwipe } from '~/composables'
 export default class PhotoSwipeController extends ApplicationController {
   static values = {
     selector: String,
-    anchor: String
+    anchor: String,
   }
 
   declare readonly selectorValue: string
@@ -17,11 +17,14 @@ export default class PhotoSwipeController extends ApplicationController {
 
   connect(): void {
     if (this.selectorValue) {
-      const { assignSize, initPhotoSwipe } = usePhotoSwipe(
-        { selector: this.selectorValue, anchor: this.anchorValue }
-      )
+      const { assignSize, initPhotoSwipe } = usePhotoSwipe({
+        selector: this.selectorValue,
+        anchor: this.anchorValue,
+      })
 
-      void (async () => { await assignSize() })()
+      void (async () => {
+        await assignSize()
+      })()
 
       this.lightbox = initPhotoSwipe()
     }

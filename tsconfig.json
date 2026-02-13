@@ -13,12 +13,6 @@
       "~/*": ["./app/frontend/*"]
     }
   },
-  "include": [
-    "./app/frontend/**/*.ts",
-    "./app/frontend/**/*.svelte",
-    "./vite.config.ts"
-  ],
-  "exclude": [
-    "./node_modules"
-  ]
+  "include": ["./app/frontend/**/*.ts", "./app/frontend/**/*.svelte", "./vite.config.ts"],
+  "exclude": ["./node_modules"]
 }

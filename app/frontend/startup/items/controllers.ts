@@ -1,11 +1,15 @@
 import { Application } from '@hotwired/stimulus'
 
-import { ToastController, CalendarController,
-  FrameSearchController, FrameTagSearchController,
-  PreviewController, LightboxController,PhotoSwipeController,
-  TagifyController
+import {
+  ToastController,
+  CalendarController,
+  FrameSearchController,
+  FrameTagSearchController,
+  PreviewController,
+  LightboxController,
+  PhotoSwipeController,
+  TagifyController,
 } from '../../controllers/index'
-
 
 const application: Application = Application.start()
 

@@ -3,7 +3,15 @@ import sanitizeHtml from 'sanitize-html'
 import { computed, onMounted, ref } from 'vue'
 
 import type { Comment, RefItems } from '../../../../interfaces'
-import { useAccount, useComment, useComments, useCommentRules, useI18nRegle, useRoute, useToast } from '../../../../composables'
+import {
+  useAccount,
+  useComment,
+  useComments,
+  useCommentRules,
+  useI18nRegle,
+  useRoute,
+  useToast,
+} from '../../../../composables'
 
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'
@@ -15,7 +23,18 @@ const id: string = route.params?.id ?? ''
 const refStr: string = route.query?.ref ?? ''
 
 const { loggedIn, currentUser } = useAccount()
-const { flash, comment, externalErrors, backendErrorInfo, updateComment, deleteComment, isSuccess, set404Alert, reload, setComment } = useComment()
+const {
+  flash,
+  comment,
+  externalErrors,
+  backendErrorInfo,
+  updateComment,
+  deleteComment,
+  isSuccess,
+  set404Alert,
+  reload,
+  setComment,
+} = useComment()
 const { getComments } = useComments()
 
 const { commentRules } = useCommentRules()
@@ -28,7 +47,7 @@ const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-const refItems = computed<RefItems>( () => {
+const refItems = computed<RefItems>(() => {
   const items: RefItems = refStr ? JSON.parse(refStr) : {}
   items.from = 'frame'
 
@@ -37,7 +56,7 @@ const refItems = computed<RefItems>( () => {
 
 const queryMap = computed<Record<string, string>>(() => {
   const map: Record<string, string> = {
-    ref: JSON.stringify(refItems.value)
+    ref: JSON.stringify(refItems.value),
   }
 
   return map
@@ -48,7 +67,7 @@ onMounted(() => {
 })
 
 const sanitizedCommentBody = computed<string>(() =>
-  sanitizeHtml(commentModel.value?.body ?? '').replace(/\n/g, '<br>')
+  sanitizeHtml(commentModel.value?.body ?? '').replace(/\n/g, '<br>'),
 )
 
 const onEditClick = (): void => {
@@ -64,7 +83,7 @@ const onCancelClick = (): void => {
 const onUpdateClick = async (): Promise<void> => {
   r$.$touch()
   r$.$reset()
-  const { valid } =await r$.$validate()
+  const { valid } = await r$.$validate()
   if (valid) {
     await updateComment()
     set404Alert()
@@ -81,7 +100,9 @@ const onUpdateClick = async (): Promise<void> => {
 }
 
 const onDeleteClick = async (): Promise<void> => {
-  if(commentModel.value) { await deleteComment(commentModel.value) }
+  if (commentModel.value) {
+    await deleteComment(commentModel.value)
+  }
   set404Alert()
   setFlash(flash.value)
   if (isSuccess()) {
@@ -92,7 +113,10 @@ const onDeleteClick = async (): Promise<void> => {
 }
 
 const reload401404 = async (): Promise<void> => {
-  if (backendErrorInfo.value.status == 401 || (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame')) {
+  if (
+    backendErrorInfo.value.status == 401 ||
+    (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame')
+  ) {
     reload()
   } else if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Comment') {
     await getComments(id)
@@ -106,25 +130,25 @@ const reload401404 = async (): Promise<void> => {
       <div class="flex justify-between leading-8.75">
         <div class="flex items-center gap-1">
           <a :href="`/users/${commentModel?.user_id}?${queryString}`" class="avatar">
-            <img :src="commentModel?.user_image_url" alt="" class="rounded w-5 h-5">
+            <img :src="commentModel?.user_image_url" alt="" class="rounded w-5 h-5" />
           </a>
-          <a :href="`/users/${commentModel?.user_id}?${queryString}`" class="badge badge-outline badge-accent hover:badge-primary rounded-full">
+          <a
+            :href="`/users/${commentModel?.user_id}?${queryString}`"
+            class="badge badge-outline badge-accent hover:badge-primary rounded-full"
+          >
             {{ commentModel?.user_name }}
           </a>
           <div class="badge badge-outline badge-accent rounded-full">
             {{ commentModel?.created_at }}
           </div>
         </div>
-        <div v-if="loggedIn && commentModel?.user_id === currentUser.id" class="flex items-center gap-1">
-          <button v-if="!edit" class="link link-hover" @click="onEditClick">
-            編集
-          </button>
-          <button v-else class="link link-hover" @click="onCancelClick">
-            キャンセル
-          </button>
-          <button class="link link-hover" @click="onDeleteClick">
-            削除
-          </button>
+        <div
+          v-if="loggedIn && commentModel?.user_id === currentUser.id"
+          class="flex items-center gap-1"
+        >
+          <button v-if="!edit" class="link link-hover" @click="onEditClick">編集</button>
+          <button v-else class="link link-hover" @click="onCancelClick">キャンセル</button>
+          <button class="link link-hover" @click="onDeleteClick">削除</button>
         </div>
       </div>
       <div class="flex justify-start">
@@ -138,12 +162,12 @@ const reload401404 = async (): Promise<void> => {
           </tbody>
         </table>
         <form v-else class="w-full">
-          <textarea v-model="comment.body" class="block text-sm border border-gray-300 rounded w-full min-h-12.5 field-sizing-content" />
+          <textarea
+            v-model="comment.body"
+            class="block text-sm border border-gray-300 rounded w-full min-h-12.5 field-sizing-content"
+          />
           <div class="flex flex-col">
-            <div
-              v-for="error of r$.$errors.body"
-              :key="error"
-            >
+            <div v-for="error of r$.$errors.body" :key="error">
               <div class="text-red-500 text-xs">{{ error }}</div>
             </div>
           </div>

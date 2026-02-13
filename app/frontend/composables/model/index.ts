@@ -1,4 +1,4 @@
-export { useAccount} from './use-account'
+export { useAccount } from './use-account'
 export { useComment } from './use-comment'
 export { useComments } from './use-comments'
 

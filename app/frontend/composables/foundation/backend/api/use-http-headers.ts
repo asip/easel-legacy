@@ -6,8 +6,8 @@ export const useHttpHeaders = () => {
 
   const commonHeaders = computed<Record<string, string>>(() => ({
     'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-    'Accept-Language': locale.value
+    Accept: 'application/json',
+    'Accept-Language': locale.value,
   }))
 
   return { commonHeaders }

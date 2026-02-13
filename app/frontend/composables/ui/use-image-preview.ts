@@ -26,7 +26,9 @@ export function useImagePreview({ el, contentEl, previewEl }: ImagePreviewOption
       // (読み込んだファイルの内容を取得して変数imageに代入します)
       const image: string | ArrayBuffer | null = this.result
       //console.log(content.classList);
-      if (previewEl) { previewEl.src = image as string }
+      if (previewEl) {
+        previewEl.src = image as string
+      }
       // (プレビュー画像がなければ表示します)
       if (contentEl && contentEl.classList.contains('hidden')) {
         contentEl.classList.remove('hidden')

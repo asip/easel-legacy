@@ -1,6 +1,6 @@
 import { storeToRefs } from 'pinia'
 
-import type { Comment , CommentResource, CommentsResource } from '~/interfaces'
+import type { Comment, CommentResource, CommentsResource } from '~/interfaces'
 import { useQueryApi, useEntity, useAlert, useConstants, useFlash } from '~/composables'
 import { useCommentsStore } from '~/stores'
 
@@ -23,9 +23,9 @@ export function useComments() {
     clearFlash()
     //console.log(frameId)
 
-    try{
+    try {
       const { data, response } = await useQueryApi<CommentsResource>({
-        url: `${baseURL}/frames/${frameId}/comments`
+        url: `${baseURL}/frames/${frameId}/comments`,
       })
 
       if (!response.ok) {

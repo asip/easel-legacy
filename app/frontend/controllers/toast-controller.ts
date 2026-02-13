@@ -5,7 +5,7 @@ import { useToast } from '~/composables'
 
 export default class ToastController extends ApplicationController {
   static values = {
-    flashes: String
+    flashes: String,
   }
 
   declare readonly flashesValue: string
@@ -13,7 +13,10 @@ export default class ToastController extends ApplicationController {
   connect(): void {
     const { setMessages } = useToast()
 
-    const flashes = this.flashesValue.valueOf() !== '' ? JSON.parse(this.flashesValue.valueOf()) as Record<string, string[]> : {}
+    const flashes =
+      this.flashesValue.valueOf() !== ''
+        ? (JSON.parse(this.flashesValue.valueOf()) as Record<string, string[]>)
+        : {}
 
     setMessages(flashes)
   }

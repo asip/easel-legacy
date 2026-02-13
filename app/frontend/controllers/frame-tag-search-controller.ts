@@ -5,7 +5,7 @@ import { searchCriteria } from '~/stores'
 
 export default class FrameTagSearchController extends ApplicationController {
   static values = {
-    q: String
+    q: String,
   }
 
   declare readonly qValue: string

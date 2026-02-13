@@ -17,4 +17,3 @@ linters:
         Enabled: false
       Layout/TrailingEmptyLines:
         Enabled: false
-

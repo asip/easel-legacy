@@ -1,5 +1,5 @@
 export function useDateUtil() {
-  const isValidDate = (str: string):boolean => {
+  const isValidDate = (str: string): boolean => {
     return !isNaN(Date.parse(str))
   }
 

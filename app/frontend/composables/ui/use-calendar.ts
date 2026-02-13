@@ -1,7 +1,15 @@
 import { Datepicker } from 'vanillajs-datepicker'
 import ja from '~/locales/date-picker/ja'
 
-export function useCalendar({el, wordEl, date}: { el: HTMLElement, wordEl: HTMLInputElement | null, date: string | null }) {
+export function useCalendar({
+  el,
+  wordEl,
+  date,
+}: {
+  el: HTMLElement
+  wordEl: HTMLInputElement | null
+  date: string | null
+}) {
   let calendar: Datepicker | null = null
 
   const initCalendar = (): Datepicker => {
@@ -10,7 +18,7 @@ export function useCalendar({el, wordEl, date}: { el: HTMLElement, wordEl: HTMLI
     calendar = new Datepicker(el, {
       buttonClass: 'btn',
       format: 'yyyy/mm/dd',
-      language: 'ja'
+      language: 'ja',
     })
 
     setChangeEventListener({ el, wordEl })
@@ -19,7 +27,13 @@ export function useCalendar({el, wordEl, date}: { el: HTMLElement, wordEl: HTMLI
     return calendar
   }
 
-  const setChangeEventListener = ({ el, wordEl }: { el: HTMLElement, wordEl: HTMLInputElement | null }): void => {
+  const setChangeEventListener = ({
+    el,
+    wordEl,
+  }: {
+    el: HTMLElement
+    wordEl: HTMLInputElement | null
+  }): void => {
     el.addEventListener('changeDate', function (e: CustomEvent) {
       // eslint-disable-next-line
       if (wordEl) wordEl.value = e.detail.datepicker.getDate('yyyy/mm/dd')

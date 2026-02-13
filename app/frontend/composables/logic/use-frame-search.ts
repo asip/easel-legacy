@@ -14,7 +14,9 @@ interface FrameSearchOptions {
 }
 
 interface SearchOptions {
-  ev: Event, success: boolean, message: string
+  ev: Event
+  success: boolean
+  message: string
 }
 
 interface SearchParams {
@@ -23,14 +25,20 @@ interface SearchParams {
   q?: string
 }
 
-export function useFrameSearch({ el, wordEl, wordMessageEl, tagEl, tagMessageEl}: FrameSearchOptions ) {
+export function useFrameSearch({
+  el,
+  wordEl,
+  wordMessageEl,
+  tagEl,
+  tagMessageEl,
+}: FrameSearchOptions) {
   const { autoDetect } = useLocale()
 
   autoDetect()
 
   const schema = v.object({
     word: v.pipe(v.string(), v.maxLength(40)),
-    tagName: v.pipe(v.string(), v.maxLength(10))
+    tagName: v.pipe(v.string(), v.maxLength(10)),
   })
 
   let params: SearchParams = { word: wordEl?.value, tagName: tagEl?.value }
@@ -73,7 +81,13 @@ export function useFrameSearch({ el, wordEl, wordMessageEl, tagEl, tagMessageEl}
     }
   }
 
-  const setErrorMessage = ({ el, message }: { el: HTMLDivElement | null | undefined, message: string }) => {
+  const setErrorMessage = ({
+    el,
+    message,
+  }: {
+    el: HTMLDivElement | null | undefined
+    message: string
+  }) => {
     if (el) el.innerHTML = message
   }
 
@@ -82,8 +96,8 @@ export function useFrameSearch({ el, wordEl, wordMessageEl, tagEl, tagMessageEl}
 
     if (params.q) {
       searchCriteria.set(params.q)
-      cookies.set('q', params.q, { path: '/' });
-      (el as HTMLFormElement).requestSubmit()
+      cookies.set('q', params.q, { path: '/' })
+      ;(el as HTMLFormElement).requestSubmit()
     }
   }
 
