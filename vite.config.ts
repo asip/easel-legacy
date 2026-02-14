@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import RubyPlugin from 'vite-plugin-ruby'
 import vue from '@vitejs/plugin-vue'
 // import react from '@vitejs/plugin-react'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+// import { svelte } from '@sveltejs/vite-plugin-svelte'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -21,7 +21,7 @@ export default defineConfig({
     RubyPlugin(),
     vue(),
     //react(),
-    svelte(),
+    //svelte(),
     tailwindcss(),
   ],
   resolve: {
