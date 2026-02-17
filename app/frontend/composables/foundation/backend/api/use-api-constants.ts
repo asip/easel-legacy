@@ -1,9 +1,14 @@
-import { ref } from 'vue'
+import { useStore } from '@nanostores/vue'
+import { $baseUrl } from '~/stores/foundation/nano'
 
 export function useApiConstants() {
-  const baseURL = ref<string>()
+  const baseURL = useStore($baseUrl)
 
-  return { baseURL }
+  const setBaseUrl = (baseURL: string) => {
+    $baseUrl.set(baseURL)
+  }
+
+  return { baseURL, setBaseUrl }
 }
 
 export type ApiConstantsType = ReturnType<typeof useApiConstants>

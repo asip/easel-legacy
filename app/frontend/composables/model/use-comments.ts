@@ -1,13 +1,12 @@
 import { storeToRefs } from 'pinia'
 
 import type { Comment, CommentResource, CommentsResource } from '~/interfaces'
-import { useQueryApi, useEntity, useAlert, useConstants, useFlash } from '~/composables'
+import { useQueryApi, useEntity, useAlert, useFlash } from '~/composables'
 import { useCommentsStore } from '~/stores'
 
 import { i18n } from '~/i18n'
 
 export function useComments() {
-  const { baseURL } = useConstants()
   const { flash, clearFlash } = useFlash()
   const { create } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()
@@ -25,7 +24,7 @@ export function useComments() {
 
     try {
       const { data, response } = await useQueryApi<CommentsResource>({
-        url: `${baseURL}/frames/${frameId}/comments`,
+        url: `/frames/${frameId}/comments`,
       })
 
       if (!response.ok) {

@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 
 import { useHttpHeaders } from './use-http-headers'
+import { useApiConstants } from './use-api-constants'
 
 interface MutationApiOptions {
   url: string
@@ -12,6 +13,7 @@ interface MutationApiOptions {
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export const useMutationApi = async <T>({ url, method, body, token }: MutationApiOptions) => {
   const { commonHeaders } = useHttpHeaders()
+  const { baseURL } = useApiConstants()
 
   const headers: Record<string, string> = commonHeaders.value
 
@@ -24,7 +26,7 @@ export const useMutationApi = async <T>({ url, method, body, token }: MutationAp
   }
 
   if (method == 'post' || method == 'put') {
-    response.value = await globalThis.fetch(url, {
+    response.value = await globalThis.fetch(`${baseURL.value}${url}`, {
       method,
       body,
       headers,
@@ -37,7 +39,7 @@ export const useMutationApi = async <T>({ url, method, body, token }: MutationAp
     }
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   } else if (method == 'delete') {
-    response.value = await globalThis.fetch(url, {
+    response.value = await globalThis.fetch(`${baseURL.value}${url}`, {
       method,
       headers,
     })

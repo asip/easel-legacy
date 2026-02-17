@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia'
 
 import type { AccountResource } from '~/interfaces'
-import { useAlert, useConstants, useFlash, useQueryApi } from '~/composables'
+import { useAlert, useFlash, useQueryApi } from '~/composables'
 import { useAccountStore } from '~/stores'
 
 import { i18n } from '~/i18n'
@@ -14,7 +14,6 @@ export function useAccount() {
   // const { cookies } = useCookie()
 
   const { flash, clearFlash } = useFlash()
-  const { baseURL } = useConstants()
 
   // const token = computed<string>(() => cookies.get('access_token'))
 
@@ -30,7 +29,7 @@ export function useAccount() {
 
     try {
       const { data, response } = await useQueryApi<AccountResource>({
-        url: `${baseURL}/account`,
+        url: `/account`,
         // token: token.value
       })
 

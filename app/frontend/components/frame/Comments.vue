@@ -2,9 +2,14 @@
 import CommentList from './comment/List.vue'
 import CommentForm from './comment/Form.vue'
 
-import { useAccount, useComments, useRoute, useToast } from '../../composables'
-
-import { useLocale } from '../../composables'
+import {
+  useAccount,
+  useComments,
+  useRoute,
+  useToast,
+  useConstants,
+  useLocale,
+} from '../../composables'
 
 /*
 const { viewData } = defineProps<{ viewData?: any }>()
@@ -13,10 +18,12 @@ globalThis.console.log(JSON.stringify(viewData))
 
 const { autoDetect } = useLocale()
 const { setFlash } = useToast()
+const { setConstants } = useConstants()
 const { authenticate, flash } = useAccount()
 const { getComments } = useComments()
 
 autoDetect()
+setConstants()
 
 await authenticate()
 setFlash(flash.value)

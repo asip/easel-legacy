@@ -2,20 +2,12 @@ import { ref } from 'vue'
 
 import type { Comment, CommentResource } from '~/interfaces'
 import type { CommentErrorProperty } from '~/types'
-import {
-  useMutationApi,
-  useEntity,
-  useExternalErrors,
-  useAlert,
-  useConstants,
-  useFlash,
-} from '~/composables'
+import { useMutationApi, useEntity, useExternalErrors, useAlert, useFlash } from '~/composables'
 import { useAccountStore } from '~/stores'
 
 import { i18n } from '~/i18n'
 
 export function useComment() {
-  const { baseURL } = useConstants()
   const { flash, clearFlash } = useFlash()
   const { copy } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()
@@ -83,7 +75,7 @@ export function useComment() {
       //}
 
       const { response } = await useMutationApi<CommentResource>({
-        url: `${baseURL}/frames/${frameId}/comments`,
+        url: `/frames/${frameId}/comments`,
         method: 'post',
         body: params,
         // token: token.value
@@ -113,7 +105,7 @@ export function useComment() {
       //}
 
       const { data, response } = await useMutationApi<CommentResource>({
-        url: `${baseURL}/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
+        url: `/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
         method: 'put',
         body: params,
         // token: token.value
@@ -138,7 +130,7 @@ export function useComment() {
 
     try {
       const { response } = await useMutationApi({
-        url: `${baseURL}/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
+        url: `/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
         method: 'delete',
         // token: token.value
       })

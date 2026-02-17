@@ -9,6 +9,8 @@ export function useTagEditor({
   el: HTMLInputElement
   tagListEl: HTMLInputElement | null
 }) {
+  const { baseURL } = useConstants()
+
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
 
@@ -63,8 +65,6 @@ export function useTagEditor({
   }
 
   const searchTag = async (tag: string): Promise<string[]> => {
-    const { baseURL } = useConstants()
-
     const url = tag ? `${baseURL}/tags/search?q=${tag}` : `${baseURL}/tags/search`
 
     const res = await globalThis.fetch(url, { signal: controller?.signal })
