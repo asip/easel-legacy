@@ -1,4 +1,4 @@
-export { useMutationApi, useQueryApi } from './backend'
+export { useApiConstants, useMutationApi, useQueryApi } from './backend'
 export { useExternalErrors, useAlert } from './backend'
 
 export { useEntity } from './use-entity'

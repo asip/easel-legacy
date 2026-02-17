@@ -1,7 +1,11 @@
-export function useConstants() {
-  const baseURL = '/front/api/v1'
+import { useApiConstants } from './foundation'
 
-  return { baseURL }
+export function useConstants() {
+  const { baseURL } = useApiConstants()
+
+  baseURL.value = '/front/api/v1'
+
+  return { baseURL: baseURL.value }
 }
 
 export type ConstantsType = ReturnType<typeof useConstants>

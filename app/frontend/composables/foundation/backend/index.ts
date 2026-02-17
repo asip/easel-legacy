@@ -1,4 +1,4 @@
-export { useMutationApi, useQueryApi } from './api'
+export { useApiConstants, useMutationApi, useQueryApi } from './api'
 
 export { useExternalErrors } from './error'
 export { useAlert } from './use-alert'
