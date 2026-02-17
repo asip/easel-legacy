@@ -59,14 +59,17 @@ export function useTagEditor({
     controller = new AbortController()
 
     void (async () => {
-      const tags = await searchTag(value)
-      setAutocomplete(value, tags)
+      try {
+        const tags = await searchTag(value)
+        setAutocomplete(value, tags)
+      } catch (error) {
+        globalThis.console.log((error as Error).message)
+      }
     })()
   }
 
   const searchTag = async (tag: string): Promise<string[]> => {
     const url = tag ? `${baseURL}/tags/search?q=${tag}` : `${baseURL}/tags/search`
-
     const res = await globalThis.fetch(url, { signal: controller?.signal })
     const { tags } = (await res.json()) as { tags: string[] }
     return tags
