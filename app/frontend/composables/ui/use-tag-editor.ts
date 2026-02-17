@@ -1,6 +1,6 @@
 import Tagify from '@yaireo/tagify'
 
-import { useConstants } from '~/composables'
+import { useQueryApi } from '~/composables'
 
 export function useTagEditor({
   el,
@@ -9,8 +9,6 @@ export function useTagEditor({
   el: HTMLInputElement
   tagListEl: HTMLInputElement | null
 }) {
-  const { baseURL } = useConstants()
-
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
 
@@ -69,10 +67,18 @@ export function useTagEditor({
   }
 
   const searchTag = async (tag: string): Promise<string[]> => {
-    const url = tag ? `${baseURL}/tags/search?q=${tag}` : `${baseURL}/tags/search`
-    const res = await globalThis.fetch(url, { signal: controller?.signal })
-    const { tags } = (await res.json()) as { tags: string[] }
-    return tags
+    const { data, response } = await useQueryApi<{ tags: string[] }>({
+      url: '/tags/search',
+      query: tag ? { q: tag } : {},
+      abort: controller,
+    })
+
+    if (response.ok && data) {
+      const { tags } = data
+      return tags
+    } else {
+      return []
+    }
   }
 
   const setAutocomplete = (value: string, tags: string[]): void => {
