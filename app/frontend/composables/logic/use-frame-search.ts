@@ -43,6 +43,16 @@ export function useFrameSearch({
 
   let params: SearchParams = { word: wordEl?.value, tagName: tagEl?.value }
 
+  const setSearchParams = () => {
+    if (wordEl && tagEl) {
+      const qItems: Record<'word' | 'tag_name', string> = JSON.parse(
+        searchCriteria.get(),
+      ) as Record<'word' | 'tag_name', string>
+      wordEl.value = qItems.word ? qItems.word : ''
+      tagEl.value = qItems.tag_name ? qItems.tag_name : ''
+    }
+  }
+
   const search = (ev: Event): void => {
     const { success, errorMessages } = validateParams()
 
@@ -105,5 +115,5 @@ export function useFrameSearch({
     if (el && el.innerHTML != '') el.innerHTML = ''
   }
 
-  return { search, clearErrorMessage }
+  return { setSearchParams, search, clearErrorMessage }
 }

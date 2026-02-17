@@ -2,7 +2,6 @@ import { useFrameSearch } from '~/composables'
 import ApplicationController from './application-controller'
 
 export { useFrameSearch } from '~/composables'
-import { searchCriteria } from '~/stores'
 
 export default class FrameSearchController extends ApplicationController {
   static targets = ['word', 'tag', 'wordMessage', 'tagMessage']
@@ -27,13 +26,8 @@ export default class FrameSearchController extends ApplicationController {
     if (this.hasWordMessageTarget) this.wordMessageElement = this.wordMessageTarget
     if (this.hasTagMessageTarget) this.tagMessageElement = this.tagMessageTarget
 
-    if (this.wordElement && this.tagElement) {
-      const qItems: Record<'word' | 'tag_name', string> = JSON.parse(
-        searchCriteria.get(),
-      ) as Record<'word' | 'tag_name', string>
-      this.wordElement.value = qItems.word ? qItems.word : ''
-      this.tagElement.value = qItems.tag_name ? qItems.tag_name : ''
-    }
+    const { setSearchParams } = useFrameSearch({ wordEl: this.wordElement, tagEl: this.tagElement })
+    setSearchParams()
   }
 
   submit(ev: Event): void {
