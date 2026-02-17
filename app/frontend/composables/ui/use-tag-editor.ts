@@ -70,7 +70,7 @@ export function useTagEditor({
     const { data, response } = await useQueryApi<{ tags: string[] }>({
       url: '/tags/search',
       query: tag ? { q: tag } : {},
-      abort: controller,
+      signal: controller?.signal,
     })
 
     if (response.ok && data) {

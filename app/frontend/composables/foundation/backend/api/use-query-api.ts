@@ -9,11 +9,11 @@ interface QueryApiOptions {
   url: string
   query?: SearchParams
   token?: string
-  abort?: AbortController | null
+  signal?: AbortSignal | null
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-export const useQueryApi = async <T>({ url, token, query = {}, abort }: QueryApiOptions) => {
+export const useQueryApi = async <T>({ url, token, query = {}, signal }: QueryApiOptions) => {
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
 
@@ -34,8 +34,8 @@ export const useQueryApi = async <T>({ url, token, query = {}, abort }: QueryApi
     headers,
   }
 
-  if (abort) {
-    options.signal = abort.signal
+  if (signal) {
+    options.signal = signal
   }
 
   const response = await globalThis.fetch(`${baseURL.value}${url}`, options)
