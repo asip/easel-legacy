@@ -48,6 +48,7 @@ export default [
       ...typescriptESLint.configs.strict.rules,
       ...typescriptESLint.configs['strict-type-checked'].rules,
       ...typescriptESLint.configs.stylistic.rules,
+      '@typescript-eslint/no-explicit-any': 0,
     },
   },
   {
