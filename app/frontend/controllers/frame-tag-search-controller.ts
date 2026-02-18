@@ -11,10 +11,10 @@ export default class FrameTagSearchController extends ApplicationController {
   declare readonly qValue: string
 
   setCriteria(): void {
-    const { cookies } = useCookie()
     const { setCriteria } = useSearchCriteria()
+    const { setCriteriaToCookie } = useCookie()
 
     setCriteria(this.qValue)
-    cookies.set('q', this.qValue, { path: '/' })
+    setCriteriaToCookie(this.qValue)
   }
 }
