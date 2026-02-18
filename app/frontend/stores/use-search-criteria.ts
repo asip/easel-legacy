@@ -1,6 +1,8 @@
 import { searchCriteria } from './nano'
 import { Criteria } from '~/types'
 
+import { useDateUtil } from '~/composables'
+
 export function useSearchCriteria() {
   const getCriteria = (): Criteria => {
     return JSON.parse(searchCriteria.get()) as Criteria
@@ -10,5 +12,13 @@ export function useSearchCriteria() {
     searchCriteria.set(criteria)
   }
 
-  return { getCriteria, setCriteria }
+  const getDateValue = (): string | null => {
+    const { isValidDate } = useDateUtil()
+    const { getCriteria } = useSearchCriteria()
+
+    const criteria: Criteria = getCriteria()
+    return isValidDate(criteria.word) ? criteria.word : null
+  }
+
+  return { getCriteria, setCriteria, getDateValue }
 }

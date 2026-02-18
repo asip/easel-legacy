@@ -2,9 +2,7 @@ import ApplicationController from './application-controller'
 
 import { Datepicker } from 'vanillajs-datepicker'
 
-import { Criteria } from '~/types'
-
-import { useCalendar, useDateUtil } from '~/composables'
+import { useCalendar } from '~/composables'
 import { useSearchCriteria } from '~/stores'
 
 export default class CalendarController extends ApplicationController {
@@ -28,20 +26,14 @@ export default class CalendarController extends ApplicationController {
     if (this.hasWordTarget) wordElement = this.wordTarget
 
     if (calElement) {
-      const date = this.#getDateValue()
+      const { getDateValue } = useSearchCriteria()
+
+      const date = getDateValue()
 
       const { initCalendar } = useCalendar({ el: calElement, wordEl: wordElement, date })
 
       this.calendar = initCalendar()
     }
-  }
-
-  #getDateValue(): string | null {
-    const { isValidDate } = useDateUtil()
-    const { getCriteria } = useSearchCriteria()
-
-    const qItems: Criteria = getCriteria()
-    return isValidDate(qItems.word) ? qItems.word : null
   }
 
   disconnect(): void {
