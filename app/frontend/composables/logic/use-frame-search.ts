@@ -3,7 +3,7 @@ import * as v from 'valibot'
 import { i18n } from '~/i18n'
 
 import { useLocale, useCookie } from '~/composables'
-import { searchCriteria } from '~/stores'
+import { useSearchCriteria } from '~/stores'
 
 interface FrameSearchOptions {
   el?: Element
@@ -34,6 +34,8 @@ export function useFrameSearch({
 }: FrameSearchOptions) {
   const { autoDetect } = useLocale()
 
+  const { getCriteria, setCriteria } = useSearchCriteria()
+
   autoDetect()
 
   const schema = v.object({
@@ -45,9 +47,7 @@ export function useFrameSearch({
 
   const setSearchParams = () => {
     if (wordEl && tagEl) {
-      const qItems: Record<'word' | 'tag_name', string> = JSON.parse(
-        searchCriteria.get(),
-      ) as Record<'word' | 'tag_name', string>
+      const qItems: Record<'word' | 'tag_name', string> = getCriteria()
       wordEl.value = qItems.word ? qItems.word : ''
       tagEl.value = qItems.tag_name ? qItems.tag_name : ''
     }
@@ -105,7 +105,7 @@ export function useFrameSearch({
     const { cookies } = useCookie()
 
     if (params.q) {
-      searchCriteria.set(params.q)
+      setCriteria(params.q)
       cookies.set('q', params.q, { path: '/' })
       ;(el as HTMLFormElement).requestSubmit()
     }

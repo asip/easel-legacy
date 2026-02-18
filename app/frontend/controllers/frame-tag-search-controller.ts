@@ -1,7 +1,7 @@
 import ApplicationController from './application-controller'
 
 import { useCookie } from '~/composables'
-import { searchCriteria } from '~/stores'
+import { useSearchCriteria } from '~/stores'
 
 export default class FrameTagSearchController extends ApplicationController {
   static values = {
@@ -12,8 +12,9 @@ export default class FrameTagSearchController extends ApplicationController {
 
   setCriteria(): void {
     const { cookies } = useCookie()
+    const { setCriteria } = useSearchCriteria()
 
-    searchCriteria.set(this.qValue)
+    setCriteria(this.qValue)
     cookies.set('q', this.qValue, { path: '/' })
   }
 }
