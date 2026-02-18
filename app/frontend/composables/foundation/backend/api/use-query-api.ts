@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SearchParams = Record<string, any>
 
 interface QueryApiOptions {
