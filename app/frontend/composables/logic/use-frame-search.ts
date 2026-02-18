@@ -5,6 +5,8 @@ import { i18n } from '~/i18n'
 import { useLocale, useCookie } from '~/composables'
 import { useSearchCriteria } from '~/stores'
 
+import { Criteria } from '~/types'
+
 interface FrameSearchOptions {
   el?: Element
   wordEl?: HTMLInputElement | null
@@ -47,9 +49,9 @@ export function useFrameSearch({
 
   const setSearchParams = () => {
     if (wordEl && tagEl) {
-      const qItems: Record<'word' | 'tag_name', string> = getCriteria()
-      wordEl.value = qItems.word ? qItems.word : ''
-      tagEl.value = qItems.tag_name ? qItems.tag_name : ''
+      const criteria: Criteria = getCriteria()
+      wordEl.value = criteria.word ? criteria.word : ''
+      tagEl.value = criteria.tag_name ? criteria.tag_name : ''
     }
   }
 
@@ -73,7 +75,7 @@ export function useFrameSearch({
 
   const searchByWord = ({ ev, success, message }: SearchOptions): void => {
     if (success) {
-      params.q = JSON.stringify({ word: params.word })
+      params.q = params.word ? JSON.stringify({ word: params.word }) : '{}'
       submit()
     } else {
       setErrorMessage({ el: wordMessageEl, message })
@@ -83,7 +85,7 @@ export function useFrameSearch({
 
   const searchByTagName = ({ ev, success, message }: SearchOptions): void => {
     if (success) {
-      params.q = tagEl?.value ? JSON.stringify({ tag_name: params.tagName }) : '{}'
+      params.q = params.tagName ? JSON.stringify({ tag_name: params.tagName }) : '{}'
       submit()
     } else {
       setErrorMessage({ el: tagMessageEl, message })
