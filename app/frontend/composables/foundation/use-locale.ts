@@ -6,11 +6,11 @@ export const useLocale = () => {
   const autoDetect = (): void => {
     const viewLocale = globalThis.navigator.languages[0]
 
-    type AllowedLocale = (typeof availableLocales)[number]
+    type AvailableLocales = (typeof availableLocales)[number]
 
     locale.value = (
       (availableLocales as string[]).includes(viewLocale) ? viewLocale : 'en'
-    ) as AllowedLocale
+    ) as AvailableLocales
   }
 
   return { locale, autoDetect }
