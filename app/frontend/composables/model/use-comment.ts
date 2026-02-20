@@ -86,7 +86,7 @@ export function useComment() {
       if (!response.ok) {
         await setAlert({ response })
       }
-    } catch (error) {
+    } catch (error: unknown) {
       flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
@@ -119,7 +119,7 @@ export function useComment() {
         const commentAttrs: CommentResource | undefined = data
         setComment({ from: commentAttrs })
       }
-    } catch (error) {
+    } catch (error: unknown) {
       flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
@@ -140,7 +140,7 @@ export function useComment() {
       if (!response.ok) {
         await setAlert({ response })
       }
-    } catch (error) {
+    } catch (error: unknown) {
       flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
