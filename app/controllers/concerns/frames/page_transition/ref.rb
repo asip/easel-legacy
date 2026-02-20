@@ -9,18 +9,14 @@ module Frames::PageTransition::Ref
   protected
 
   def query_map
-    @query_map ||= ->() {
-      Frames::PageTransition::Ref.query_map(ref_items: ref_items_for_user)
-    }.call
+    @query_map ||= Frames::PageTransition::Ref.query_map(ref_items: ref_items_for_user)
   end
 
   def back_to_path
-    @back_to_path ||= ->() {
-      Frames::PageTransition::Ref.back_to_path(
-        ref:, root_path: root_path(query_map_for_search),
-        prev_url:, page:, action_name:
-      )
-    }.call
+    @back_to_path ||= Frames::PageTransition::Ref.back_to_path(
+      ref:, root_path: root_path(query_map_for_search),
+      prev_url:, page:, action_name:
+    )
   end
 
   def ref_items_for_user
@@ -38,7 +34,7 @@ module Frames::PageTransition::Ref
   def self.back_to_path(ref:, root_path:, prev_url:, page:, action_name:)
     items = Json::Util.to_hash(ref)
     from = items[:from]
-    if action_name != "new" && action_name != "edit" && from.blank?
+    if ![ "new", "edit" ].include?(action_name) && from.blank?
       root_path
     else
       PageTransition::PrevUrl.upsert_page_query(prev_url:, page:)

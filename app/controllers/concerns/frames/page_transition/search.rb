@@ -8,9 +8,7 @@ module Frames::PageTransition::Search
   protected
 
   def query_map_for_search
-    @query_map_for_search ||= ->() {
-      Frames::PageTransition::Search.query_map_for_search(ref_items:)
-    }.call
+    @query_map_for_search ||= Frames::PageTransition::Search.query_map_for_search(ref_items:)
   end
 
   private
