@@ -47,5 +47,5 @@ export const useQueryApi = async <T>({ url, token, query = {}, signal }: QueryAp
     // tokenRef.value = response.headers.get('authorization')?.split(' ')[1]
   }
 
-  return { data: data.value, response: response }
+  return { data: data.value, response }
 }
