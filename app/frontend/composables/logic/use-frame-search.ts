@@ -5,8 +5,6 @@ import { i18n } from '~/i18n'
 import { useLocale, useCookie } from '~/composables'
 import { useSearchCriteria } from '~/stores'
 
-import { Criteria } from '~/types'
-
 interface FrameSearchOptions {
   el?: Element
   wordEl?: HTMLInputElement | null
@@ -36,7 +34,7 @@ export function useFrameSearch({
 }: FrameSearchOptions) {
   const { autoDetect } = useLocale()
 
-  const { getCriteria, setCriteria } = useSearchCriteria()
+  const { criteria } = useSearchCriteria()
 
   autoDetect()
 
@@ -49,9 +47,8 @@ export function useFrameSearch({
 
   const setSearchParams = () => {
     if (wordEl && tagEl) {
-      const criteria: Criteria = getCriteria()
-      wordEl.value = criteria.word ? criteria.word : ''
-      tagEl.value = criteria.tag_name ? criteria.tag_name : ''
+      wordEl.value = criteria.value.word ? criteria.value.word : ''
+      tagEl.value = criteria.value.tag_name ? criteria.value.tag_name : ''
     }
   }
 
@@ -107,7 +104,7 @@ export function useFrameSearch({
     const { setCriteriaToCookie } = useCookie()
 
     if (params.q) {
-      setCriteria(params.q)
+      criteria.value = params.q
       setCriteriaToCookie(params.q)
       ;(el as HTMLFormElement).requestSubmit()
     }
