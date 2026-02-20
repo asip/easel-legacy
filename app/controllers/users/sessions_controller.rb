@@ -38,6 +38,25 @@ class Users::SessionsController < Devise::SessionsController
     respond_to_on_destroy
   end
 
+  protected
+
+  def auth_options
+    { scope: resource_name, locale: I18n.locale }
+  end
+
+  # If you have extra params to permit, append them to the sanitizer.
+  # def configure_sign_in_params
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+  # end
+
+  def after_sign_in_path_for(_resource_or_scope)
+    PageTransition.redirect_url(from: request.referer)
+  end
+
+  def after_sign_out_path_for(_resource_or_scope)
+    PageTransition.redirect_url(from: request.referer)
+  end
+
   private
 
   def respond_with(resource, _opts = {})
@@ -60,24 +79,5 @@ class Users::SessionsController < Devise::SessionsController
     self.resource = user unless success
     flashes[:alert] = resource.full_error_messages_on_login
     render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_content
-  end
-
-  protected
-
-  def auth_options
-    { scope: resource_name, locale: I18n.locale }
-  end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
-
-  def after_sign_in_path_for(_resource_or_scope)
-    PageTransition.redirect_url(from: request.referer)
-  end
-
-  def after_sign_out_path_for(_resource_or_scope)
-    PageTransition.redirect_url(from: request.referer)
   end
 end
