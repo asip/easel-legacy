@@ -10,6 +10,6 @@ module Account::Passwords::Location::Store
 
   def store_location
     from = request.referer
-    self.prev_url = from || profile_path  if !from&.include?("/account/password/edit")
+    self.prev_url = from || profile_path if !from&.include?("/account/password/edit")
   end
 end
