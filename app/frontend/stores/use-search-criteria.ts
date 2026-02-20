@@ -15,7 +15,7 @@ export function useSearchCriteria() {
     },
   })
 
-  const date = computed(() => {
+  const date = computed<string | null>(() => {
     const { isValidDate } = useDateUtil()
 
     return isValidDate(criteria.value.word) ? criteria.value.word : null
