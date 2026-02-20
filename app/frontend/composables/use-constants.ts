@@ -7,7 +7,7 @@ export function useConstants() {
     baseURL.value = '/front/api/v1'
   }
 
-  return { setConstants, baseURL: baseURL.value }
+  return { setConstants }
 }
 
 export type ConstantsType = ReturnType<typeof useConstants>
