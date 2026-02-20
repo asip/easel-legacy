@@ -11,11 +11,11 @@ export function useAccount() {
   const { loggedIn, currentUser } = storeToRefs(useAccountStore())
   const { clearCurrentUser } = useAccountStore()
 
-  // const { getAccessToken } = useCookie()
+  // const { accessToken } = useCookie()
 
   const { flash, clearFlash } = useFlash()
 
-  // const token = computed<string>(() => getAccessToken())
+  // const token = computed<string>(() => accessToken.value)
 
   const { setAlert } = useAlert({ flash })
 

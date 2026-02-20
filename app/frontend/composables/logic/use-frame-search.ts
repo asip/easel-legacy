@@ -101,11 +101,11 @@ export function useFrameSearch({
   }
 
   const submit = (): void => {
-    const { setCriteriaToCookie } = useCookie()
+    const { criteriaCookie } = useCookie()
 
     if (params.q) {
       criteria.value = params.q
-      setCriteriaToCookie(params.q)
+      criteriaCookie.value = params.q
       ;(el as HTMLFormElement).requestSubmit()
     }
   }

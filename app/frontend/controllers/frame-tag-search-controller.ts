@@ -12,9 +12,9 @@ export default class FrameTagSearchController extends ApplicationController {
 
   setCriteria(): void {
     const { criteria } = useSearchCriteria()
-    const { setCriteriaToCookie } = useCookie()
+    const { criteriaCookie } = useCookie()
 
     criteria.value = this.qValue
-    setCriteriaToCookie(this.qValue)
+    criteriaCookie.value = this.qValue
   }
 }
