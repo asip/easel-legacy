@@ -21,19 +21,13 @@ export function useCalendar({
       language: 'ja',
     })
 
-    setChangeEventListener({ el, wordEl })
+    setChangeEventListener()
     if (date) calendar.setDate(Datepicker.parseDate(date, 'yyyy/mm/dd'))
 
     return calendar
   }
 
-  const setChangeEventListener = ({
-    el,
-    wordEl,
-  }: {
-    el: HTMLElement
-    wordEl: HTMLInputElement | null
-  }): void => {
+  const setChangeEventListener = (): void => {
     el.addEventListener('changeDate', function (e: CustomEvent) {
       // eslint-disable-next-line
       if (wordEl) wordEl.value = e.detail.datepicker.getDate('yyyy/mm/dd')
