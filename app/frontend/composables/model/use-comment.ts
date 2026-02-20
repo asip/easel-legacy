@@ -83,7 +83,7 @@ export function useComment() {
 
       clearExternalErrors()
 
-      if (response && !response.ok) {
+      if (!response.ok) {
         await setAlert({ response })
       }
     } catch (error) {
@@ -113,7 +113,7 @@ export function useComment() {
 
       clearExternalErrors()
 
-      if (response && !response.ok) {
+      if (!response.ok) {
         await setAlert({ response })
       } else {
         const commentAttrs: CommentResource | undefined = data
@@ -137,7 +137,7 @@ export function useComment() {
 
       clearExternalErrors()
 
-      if (response && !response.ok) {
+      if (!response.ok) {
         await setAlert({ response })
       }
     } catch (error) {

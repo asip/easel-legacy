@@ -37,7 +37,7 @@ export const useMutationApi = async <T>({ url, method, body, token }: MutationAp
 
       // tokenRef.value = response.headers.get('authorization')?.split(' ')[1]
     }
-  } else if (method == 'delete') { // eslint-disable-line @typescript-eslint/no-unnecessary-condition
+  } else {
     response.value = await globalThis.fetch(`${baseURL.value}${url}`, {
       method,
       headers,
