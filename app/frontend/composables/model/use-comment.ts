@@ -74,8 +74,7 @@ export function useComment() {
       //  }
       //}
 
-      const { response } = await useMutationApi<CommentResource>({
-        url: `/frames/${frameId}/comments`,
+      const { response } = await useMutationApi<CommentResource>(`/frames/${frameId}/comments`, {
         method: 'post',
         body: params,
         // token: token.value
@@ -104,12 +103,14 @@ export function useComment() {
       //  }
       //}
 
-      const { data, response } = await useMutationApi<CommentResource>({
-        url: `/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
-        method: 'put',
-        body: params,
-        // token: token.value
-      })
+      const { data, response } = await useMutationApi<CommentResource>(
+        `/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
+        {
+          method: 'put',
+          body: params,
+          // token: token.value
+        },
+      )
 
       clearExternalErrors()
 
@@ -129,11 +130,13 @@ export function useComment() {
     clearFlash()
 
     try {
-      const { response } = await useMutationApi({
-        url: `/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
-        method: 'delete',
-        // token: token.value
-      })
+      const { response } = await useMutationApi(
+        `/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
+        {
+          method: 'delete',
+          // token: token.value
+        },
+      )
 
       clearExternalErrors()
 

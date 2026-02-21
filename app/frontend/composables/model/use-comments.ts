@@ -23,9 +23,7 @@ export function useComments() {
     //console.log(frameId)
 
     try {
-      const { data, response } = await useQueryApi<CommentsResource>({
-        url: `/frames/${frameId}/comments`,
-      })
+      const { data, response } = await useQueryApi<CommentsResource>(`/frames/${frameId}/comments`)
 
       if (!response.ok) {
         await setAlert({ response })

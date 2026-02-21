@@ -4,14 +4,16 @@ import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
 
 interface MutationApiOptions {
-  url: string
   method: 'post' | 'put' | 'delete'
   body?: URLSearchParams | FormData
   token?: string
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-export const useMutationApi = async <T>({ url, method, body, token }: MutationApiOptions) => {
+export const useMutationApi = async <T>(
+  url: string,
+  { method, body, token }: MutationApiOptions,
+) => {
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
 

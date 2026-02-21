@@ -7,14 +7,13 @@ import { useApiConstants } from './use-api-constants'
 type SearchParams = Record<string, any>
 
 interface QueryApiOptions {
-  url: string
   query?: SearchParams
   token?: string
   signal?: AbortSignal | null
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-export const useQueryApi = async <T>({ url, token, query = {}, signal }: QueryApiOptions) => {
+export const useQueryApi = async <T>(url: string, options?: QueryApiOptions) => {
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
 
@@ -23,23 +22,25 @@ export const useQueryApi = async <T>({ url, token, query = {}, signal }: QueryAp
   const data = ref<T>()
   // const tokenRef = ref<string>()
 
-  if (token) {
-    headers.Authorization = `Bearer ${token}`
+  // { token, query = {}, signal }
+
+  if (options?.token) {
+    headers.Authorization = `Bearer ${options.token}`
   }
 
-  const queryString = new globalThis.URLSearchParams(query).toString()
+  const queryString = new globalThis.URLSearchParams(options?.query || {}).toString()
   url = `${url}?${queryString}`
 
-  const options: RequestInit = {
+  const getOptions: RequestInit = {
     method: 'GET',
     headers,
   }
 
-  if (signal) {
-    options.signal = signal
+  if (options?.signal) {
+    getOptions.signal = options.signal
   }
 
-  const response = await globalThis.fetch(`${baseURL.value}${url}`, options)
+  const response = await globalThis.fetch(`${baseURL.value}${url}`, getOptions)
 
   if (response.ok) {
     data.value = (await response.json()) as T

@@ -28,10 +28,7 @@ export function useAccount() {
     } */
 
     try {
-      const { data, response } = await useQueryApi<AccountResource>({
-        url: `/account`,
-        // token: token.value
-      })
+      const { data, response } = await useQueryApi<AccountResource>('/account')
 
       if (!response.ok) {
         await setAlert({ response, off: true })
