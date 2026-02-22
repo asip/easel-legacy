@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   root "frames#index"
 
   resources :users, except: [ :index ] do
-    resource :follow_relationships, only: %i[create destroy]
+    resource :follower_relationships, only: %i[create destroy]
     get "followees" => "users#followees", as: "followees"
     get "followers" => "users#followers", as: "followers"
   end

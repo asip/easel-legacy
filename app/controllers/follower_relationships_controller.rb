@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Follow Relationships Controller
-class FollowRelationshipsController < ApplicationController
+# Follower Relationships Controller
+class FollowerRelationshipsController < ApplicationController
   # follow (フォローするとき)
   def create
     current_user.follow(permitted_params[:user_id])
