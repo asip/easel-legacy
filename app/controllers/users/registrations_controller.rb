@@ -19,9 +19,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource.confirming
       if resource.active_for_authentication?
-        login_success
+        save_success
       else
-        login_failed
+        save_failed
       end
     else
       clean_up_passwords resource
@@ -74,7 +74,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def login_success
+  def save_success
     if resource.persisted?
       set_flash_message! :notice, :signed_up
       sign_up(resource_name, resource)
@@ -82,7 +82,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     respond_with resource, location: after_sign_up_path_for(resource)
   end
 
-  def login_failed
+  def save_failed
     set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
     expire_data_after_sign_in!
     respond_with resource, location: after_inactive_sign_up_path_for(resource)
