@@ -50,10 +50,14 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(_resource_or_scope)
-    PageTransition.redirect_url(from: request.referer)
+    after_sign_in_and_out_path
   end
 
   def after_sign_out_path_for(_resource_or_scope)
+    after_sign_in_and_out_path
+  end
+
+  def after_sign_in_and_out_path
     PageTransition.redirect_url(from: request.referer)
   end
 
