@@ -19,14 +19,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource.confirming
       if resource.active_for_authentication?
-        save_success
+        create_success
       else
-        save_failed
+        create_failed
       end
     else
-      clean_up_passwords resource
-      set_minimum_password_length
-      respond_with resource
+      create_back
     end
   end
 
@@ -44,11 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource.confirming.present?
       if resource_updated
-        set_flash_message_for_update(resource, prev_unconfirmed_email)
-        bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
-        # else
-        #   # clean_up_passwords resource
-        #   # set_minimum_password_length
+        update_success(prev_unconfirmed_email)
       end
     end
     respond_with resource
@@ -74,7 +68,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def save_success
+  def create_success
     if resource.persisted?
       set_flash_message! :notice, :signed_up
       sign_up(resource_name, resource)
@@ -82,10 +76,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
     respond_with resource, location: after_sign_up_path_for(resource)
   end
 
-  def save_failed
+  def create_failed
     set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
     expire_data_after_sign_in!
     respond_with resource, location: after_inactive_sign_up_path_for(resource)
+  end
+
+  def create_back
+    clean_up_passwords resource
+    set_minimum_password_length
+    respond_with resource
+  end
+
+  def update_success(prev_unconfirmed_email)
+    set_flash_message_for_update(resource, prev_unconfirmed_email)
+    bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
+    # else
+    #   # clean_up_passwords resource
+    #   # set_minimum_password_length
   end
 
   def respond_with(resource, _opts = {})
