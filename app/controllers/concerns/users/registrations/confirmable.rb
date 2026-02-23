@@ -31,7 +31,7 @@ module Users::Registrations::Confirmable
 
     resource.confirming = false
     # resource.image_derivatives! if resource.image.present?
-    render layout: false, content_type: "text/vnd.turbo-stream.html"
+    render_stream
   end
 
   # If you have extra params to permit, append them to the sanitizer.

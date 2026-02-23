@@ -20,6 +20,6 @@ module More
 
   def more
     index
-    render layout: false, content_type: "text/vnd.turbo-stream.html"
+    render_stream
   end
 end

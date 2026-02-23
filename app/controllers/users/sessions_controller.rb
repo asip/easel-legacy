@@ -81,7 +81,6 @@ class Users::SessionsController < Devise::SessionsController
   def login_failed
     success, user = User.validate_on_login(form: sign_in_params)
     self.resource = user unless success
-    flashes[:alert] = resource.full_error_messages_on_login
-    render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_content
+    render_errors(resource:, login: true)
   end
 end

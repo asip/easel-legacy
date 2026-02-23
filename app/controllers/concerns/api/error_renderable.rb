@@ -17,7 +17,7 @@ module Api::ErrorRenderable
     rescue_from Api::UnauthorizedError, with: ->(exception) { request.format.json? ? unauthorized(exception) : raise(exception) }
   end
 
-  protected
+  private
 
   # Common helper methods for rendering error response (エラーレスポンスをレンダリングする共通のヘルパーメソッド
 

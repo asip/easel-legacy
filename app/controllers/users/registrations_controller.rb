@@ -144,9 +144,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def render_with_flash(resource)
-    flashes[:alert] = resource.full_error_messages unless resource.errors.empty?
-    # puts resource.errors.to_hash(true)
-    render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_content
+    render_errors(resource:)
   end
 
   # The path used after sign up.

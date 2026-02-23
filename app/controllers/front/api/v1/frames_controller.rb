@@ -9,8 +9,7 @@ class Front::Api::V1::FramesController < Front::Api::V1::ApiController
 
     # options = {}
     # options[:include] = [:user]
-
-    render json: CommentResource.new(comments).serialize
+    render_comments(comments:)
   end
 
   private

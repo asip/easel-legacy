@@ -26,6 +26,6 @@ module Frames::Confirmable
 
     self.frame.confirming = false
     # frame.file_derivatives! if frame.file.present?
-    render layout: false, content_type: "text/vnd.turbo-stream.html"
+    render_stream
   end
 end

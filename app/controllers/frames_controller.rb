@@ -37,15 +37,14 @@ class FramesController < ApplicationController
     if mutation.success?
       redirect_to frame_path(frame)
     else
-      flashes[:alert] = frame.full_error_messages unless frame.errors.empty?
-      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_content
+      render_errors(resource: frame)
     end
   end
 
   def edit
     self.frame = Queries::Frame::FindFrame.run(user: current_user, frame_id: permitted_params[:id])
     frame.confirming = false
-    render layout: false, content_type: "text/vnd.turbo-stream.html"
+    render_stream
   end
 
   def update
@@ -55,8 +54,7 @@ class FramesController < ApplicationController
     if mutation.success?
       redirect_to prev_url_for(path: edit_frame_path(frame))
     else
-      flashes[:alert] = frame.full_error_messages unless frame.errors.empty?
-      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_content
+      render_errors(resource: frame)
     end
   end
 
