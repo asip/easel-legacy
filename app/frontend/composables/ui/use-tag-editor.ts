@@ -67,8 +67,7 @@ export function useTagEditor({
   }
 
   const searchTag = async (tag: string): Promise<string[]> => {
-    const { data, response } = await useQueryApi<{ tags: string[] }>({
-      url: '/tags/search',
+    const { data, response } = await useQueryApi<{ tags: string[] }>('/tags/search', {
       query: tag ? { q: tag } : {},
       signal: controller?.signal,
     })
