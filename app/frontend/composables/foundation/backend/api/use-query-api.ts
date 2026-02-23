@@ -13,7 +13,13 @@ interface QueryApiOptions {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-export const useQueryApi = async <T>(url: string, options?: QueryApiOptions) => {
+export const useQueryApi = async <T>(
+  url: string,
+  options?: QueryApiOptions,
+): Promise<{
+  data: T | undefined
+  response: Response
+}> => {
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
 

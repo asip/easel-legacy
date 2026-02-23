@@ -13,7 +13,10 @@ interface MutationApiOptions {
 export const useMutationApi = async <T>(
   url: string,
   { method, body, token }: MutationApiOptions,
-) => {
+): Promise<{
+  data: T | undefined
+  response: Response
+}> => {
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
 
