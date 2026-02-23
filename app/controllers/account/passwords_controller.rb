@@ -2,7 +2,7 @@
 
 # account / Passwords Controller
 class Account::PasswordsController < ApplicationController
-  include Location::Account::Passwords::Store
+  include Account::Passwords::Location::Store
   include Cookie
 
   # before_action :authenticate_user!
@@ -19,9 +19,7 @@ class Account::PasswordsController < ApplicationController
       bypass_sign_in current_user
       redirect_to prev_url_for(path: edit_account_password_path), notice: "パスワードを更新しました。"
     else
-      # puts current_user.errors.to_hash(true)
-      flashes[:alert] = current_user.full_error_messages unless current_user.errors.empty?
-      render layout: false, content_type: "text/vnd.turbo-stream.html", status: :unprocessable_content
+      render_errors(resource: current_user)
     end
   end
 
