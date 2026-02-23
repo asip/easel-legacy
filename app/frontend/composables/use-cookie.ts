@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed } from '@vue/reactivity'
 
 import { useCookies } from '@vueuse/integrations/useCookies'
 

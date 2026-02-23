@@ -1,4 +1,4 @@
-import { ref, Ref } from 'vue'
+import { ref, Ref } from '@vue/reactivity'
 
 import type { BackendErrorResource, ErrorsResource, Flash } from '~/interfaces'
 import type { ErrorMessages } from '~/types'

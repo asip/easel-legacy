@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref } from '@vue/reactivity'
 import { defineStore } from 'pinia'
 
 import type { Comment } from '~/interfaces'

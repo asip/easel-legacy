@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed } from '@vue/reactivity'
 
 import { searchCriteria } from './nano'
 import { Criteria } from '~/types'

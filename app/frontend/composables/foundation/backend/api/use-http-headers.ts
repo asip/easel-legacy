@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed } from '@vue/reactivity'
 import { useLocale } from '~/composables'
 
 export const useHttpHeaders = () => {
