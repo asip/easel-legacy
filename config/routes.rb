@@ -42,20 +42,20 @@ Rails.application.routes.draw do
 
   resources :users, except: [ :index ] do
     resource :follower_relationships, only: %i[create destroy]
-    get "followees" => "users#followees", as: "followees"
-    get "followers" => "users#followers", as: "followers"
+    member do
+      get :next
+      get :prev
+      get :followees, as: "followees"
+      get :followers, as: "followers"
+    end
   end
-
-  get "/users/:id/next" => "users#next"
-  get "/users/:id/prev" => "users#prev"
 
   resources :frames, except: [ :index ] do
-    # get :next, on: :collection
-    # get :prev, on: :collection
+    collection do
+      get :next
+      get :prev
+    end
   end
-
-  get "/next" => "frames#next"
-  get "/prev" => "frames#prev"
 
   namespace :account do
     resource :password
@@ -69,7 +69,7 @@ Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
         resources :frames, only: [] do
-          get "/comments" => "/front/api/v1/frames#comments"
+          get :comments
           resources :comments, only: %i[create update destroy]
         end
 
@@ -79,7 +79,7 @@ Rails.application.routes.draw do
           end
         end
 
-        get "/account" => "/front/api/v1/account#show"
+        get "/account" => "account#show"
       end
     end
   end
