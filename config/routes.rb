@@ -61,9 +61,11 @@ Rails.application.routes.draw do
     resource :password
   end
 
-  get "/profile" => "sessions#show", as: "profile"
-  get "/profile/next" => "sessions#next"
-  get "/peofile/prev" => "sessions#prev"
+  scope :profile do
+    get "/" => "sessions#show", as: "profile"
+    get "/next" => "sessions#next"
+    get "/prev" => "sessions#prev"
+  end
 
   namespace :front do
     namespace :api do
