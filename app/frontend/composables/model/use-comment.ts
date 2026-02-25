@@ -51,11 +51,11 @@ export function useComment() {
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404) {
       if (backendErrorInfo.value.source == 'Frame') {
-        flash.value.alert = i18n.global.t('action.error.not_found', {
+        flash.value.alert = i18n.global.t('backend.error.not_found', {
           source: i18n.global.t('misc.page'),
         })
       } else if (backendErrorInfo.value.source == 'Comment') {
-        flash.value.alert = i18n.global.t('action.error.not_found', {
+        flash.value.alert = i18n.global.t('backend.error.not_found', {
           source: i18n.global.t('models.comment'),
         })
       }
@@ -86,7 +86,7 @@ export function useComment() {
         await setAlert({ response })
       }
     } catch (error: unknown) {
-      flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
+      flash.value.alert = i18n.global.t('backend.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }
@@ -121,7 +121,7 @@ export function useComment() {
         setComment({ from: commentAttrs })
       }
     } catch (error: unknown) {
-      flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
+      flash.value.alert = i18n.global.t('backend.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }
@@ -144,7 +144,7 @@ export function useComment() {
         await setAlert({ response })
       }
     } catch (error: unknown) {
-      flash.value.alert = i18n.global.t('action.error.api', { message: (error as Error).message })
+      flash.value.alert = i18n.global.t('backend.error.api', { message: (error as Error).message })
       globalThis.console.log((error as Error).message)
     }
   }

@@ -22,7 +22,7 @@ export const i18n = createI18n({
         schemaMessage: 'Invalid type: Please enter as type {expected}, not type {received}.',
         maxLength: 'are limited to {max} characters.',
       },
-      action: {
+      backend: {
         error: {
           api: 'An error has occurred.({message})',
           login: 'Please log in.',
@@ -47,7 +47,7 @@ export const i18n = createI18n({
         schemaMessage: '無効な型です：{received}型ではなく{expected}型で入力してください',
         maxLength: '{max}文字以内で入力してください',
       },
-      action: {
+      backend: {
         error: {
           api: '不具合が発生しました。({message})',
           login: 'ログインしなおしてください。',

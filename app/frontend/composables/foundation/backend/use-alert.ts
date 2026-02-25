@@ -36,12 +36,12 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
           if (caller && 'clearAccount' in caller && caller.clearAccount) caller.clearAccount()
           break
         default:
-          flash.value.alert = i18n.global.t('action.error.api', { message: response.status })
+          flash.value.alert = i18n.global.t('backend.error.api', { message: response.status })
       }
     } else {
       switch (response.status) {
         case 401:
-          flash.value.alert = i18n.global.t('action.error.login')
+          flash.value.alert = i18n.global.t('backend.error.login')
           if (caller && 'clearAccount' in caller && caller.clearAccount) caller.clearAccount()
           reloading.value = true
           break
@@ -62,7 +62,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
           }
           break
         default:
-          flash.value.alert = i18n.global.t('action.error.api', { message: response.status })
+          flash.value.alert = i18n.global.t('backend.error.api', { message: response.status })
       }
     }
   }
