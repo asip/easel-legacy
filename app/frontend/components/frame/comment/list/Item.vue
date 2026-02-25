@@ -22,7 +22,7 @@ const route = useRoute()
 const id: string = route.params?.id ?? ''
 const refStr: string = route.query?.ref ?? ''
 
-const { loggedIn, currentUser } = useAccount()
+const { loggedIn, account } = useAccount()
 const {
   flash,
   comment,
@@ -143,7 +143,7 @@ const reload401404 = async (): Promise<void> => {
           </div>
         </div>
         <div
-          v-if="loggedIn && commentModel?.user_id === currentUser.id"
+          v-if="loggedIn && commentModel?.user_id === account.id"
           class="flex items-center gap-1"
         >
           <button v-if="!edit" class="link link-hover" @click="onEditClick">編集</button>

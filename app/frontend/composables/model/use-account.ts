@@ -7,8 +7,8 @@ import { useAccountStore } from '~/stores'
 import { i18n } from '~/i18n'
 
 export function useAccount() {
-  const { loggedIn, currentUser } = storeToRefs(useAccountStore())
-  const { clearCurrentUser } = useAccountStore()
+  const { loggedIn, account } = storeToRefs(useAccountStore())
+  const { clearAccount } = useAccountStore()
 
   // const { accessToken } = useCookie()
 
@@ -22,7 +22,7 @@ export function useAccount() {
     clearFlash()
 
     /* if (!token.value) {
-      clearCurrentUser()
+      clearAccount()
       return
     } */
 
@@ -31,11 +31,11 @@ export function useAccount() {
 
       if (!response.ok) {
         await setAlert({ response, off: true })
-        clearCurrentUser()
+        clearAccount()
       } else {
         const accountAttrs = data
         if (accountAttrs) {
-          currentUser.value.id = accountAttrs.id
+          account.value.id = accountAttrs.id
         }
         loggedIn.value = true
       }
@@ -47,7 +47,7 @@ export function useAccount() {
 
   return {
     loggedIn,
-    currentUser,
+    account,
     // token,
     flash,
     authenticate,

@@ -11,7 +11,7 @@ export function useComment() {
   const { flash, clearFlash } = useFlash()
   const { copy } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()
-  const { clearCurrentUser } = useAccountStore()
+  const { clearAccount } = useAccountStore()
 
   const comment = ref<Comment>({
     id: undefined,
@@ -45,7 +45,7 @@ export function useComment() {
 
   const { backendErrorInfo, setAlert, reload } = useAlert({
     flash,
-    caller: { setExternalErrors, clearLoginUser: clearCurrentUser },
+    caller: { setExternalErrors, clearAccount },
   })
 
   const set404Alert = (): void => {
