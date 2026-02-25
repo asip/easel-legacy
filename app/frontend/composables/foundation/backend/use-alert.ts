@@ -14,7 +14,7 @@ interface UseAlertOptions {
 
 interface UseAlertCallerType {
   setExternalErrors?: (from: ErrorMessages<string>) => void
-  clearLoginUser?: () => void
+  clearAccount?: () => void
 }
 
 export function useAlert({ flash, caller }: UseAlertOptions) {
@@ -33,7 +33,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
     if (off) {
       switch (response.status) {
         case 401:
-          if (caller && 'clearLoginUser' in caller && caller.clearLoginUser) caller.clearLoginUser()
+          if (caller && 'clearAccount' in caller && caller.clearAccount) caller.clearAccount()
           break
         default:
           flash.value.alert = i18n.global.t('action.error.api', { message: response.status })
@@ -42,7 +42,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       switch (response.status) {
         case 401:
           flash.value.alert = i18n.global.t('action.error.login')
-          if (caller && 'clearLoginUser' in caller && caller.clearLoginUser) caller.clearLoginUser()
+          if (caller && 'clearAccount' in caller && caller.clearAccount) caller.clearAccount()
           reloading.value = true
           break
         case 404:
