@@ -79,6 +79,6 @@
     </div>
   </div>
   <% if helpers.user_signed_in? && @frame.user_id == helpers.current_user.id %>
-    <%= render Frames::Delete::Modal::Component.new(path: frame_path(@frame)) %>
+    <%= render Modal::Frames::Delete::Component.new(path: frame_path(@frame)) %>
   <% end %>
 </div>

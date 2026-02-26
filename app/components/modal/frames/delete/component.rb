@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-# frames
-module Frames
-  # Delete
-  module Delete
-    # modal
-    module Modal
+# modal
+module Modal
+  # frames
+  module Frames
+    # Delete
+    module Delete
       # Component class
       class Component < ViewComponent::Base
         def initialize(path:)
