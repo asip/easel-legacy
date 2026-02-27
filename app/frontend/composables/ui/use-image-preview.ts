@@ -1,24 +1,23 @@
+import { ref } from '@vue/reactivity'
+
 interface ImagePreviewOptions {
-  el: HTMLInputElement | null
+  file: File | null
   contentEl: HTMLElement | null
   previewEl: HTMLImageElement | null
 }
 
-export function useImagePreview({ el, contentEl, previewEl }: ImagePreviewOptions) {
-  const setUploadEventListener = (): void => {
-    el?.addEventListener('change', function () {
-      // (.file_fieldからデータを取得して変数fileに代入します)
-      const file: File | null | undefined = this.files?.item(0)
+export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOptions) {
+  const previewUrl = ref<string | null>()
 
-      if (file?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
-        setImage({ file })
-      } else {
-        hidePreview()
-      }
-    })
+  const showPreview = (): void => {
+    if (previewEl) previewEl.src = previewUrl.value ?? ''
+    // (プレビュー画像がなければ表示します)
+    if (contentEl && contentEl.classList.contains('hidden')) {
+      contentEl.classList.remove('hidden')
+    }
   }
 
-  const setImage = ({ file }: { file: File }): void => {
+  const setPreview = (): void => {
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
     // (読み込みが完了したら処理が実行されます)
@@ -26,16 +25,12 @@ export function useImagePreview({ el, contentEl, previewEl }: ImagePreviewOption
       // (読み込んだファイルの内容を取得して変数imageに代入します)
       const image: string | ArrayBuffer | null = this.result
       //console.log(content.classList);
-      if (previewEl) {
-        previewEl.src = image as string
-      }
-      // (プレビュー画像がなければ表示します)
-      if (contentEl && contentEl.classList.contains('hidden')) {
-        contentEl.classList.remove('hidden')
-      }
+      // eslint-disable-next-line
+      previewUrl.value = image?.toString()
+      showPreview()
     }
     // (DataURIScheme文字列を取得します)
-    reader.readAsDataURL(file)
+    if (file) reader.readAsDataURL(file)
   }
 
   const hidePreview = (): void => {
@@ -44,5 +39,14 @@ export function useImagePreview({ el, contentEl, previewEl }: ImagePreviewOption
     }
   }
 
-  return { setUploadEventListener }
+  const previewImage = (): void => {
+    if (file?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
+      setPreview()
+    } else {
+      previewUrl.value = null
+      hidePreview()
+    }
+  }
+
+  previewImage()
 }

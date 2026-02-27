@@ -1,5 +1,5 @@
 <div class="flex justify-center">
-  <table class="table table-bordered table-rounded">
+  <table class="table table-bordered table-rounded" data-controller="preview">
     <tbody>
       <tr>
         <td class="w-[11em]">
@@ -9,7 +9,8 @@
           <%= @form.file_field :image, accept: "image/jpg,image/jpeg,image/png,image/webp,image/avif",
                                        multiple: false,
                                        class: "file-input",
-                                       "data-preview-target": "upload" %><%#= @form.file_field :image, multiple: false, class: "file-input" %>
+                                       "data-action": "change->preview#upload" %>
+                                       <%#= @form.file_field :image, multiple: false, class: "file-input" %>
         </td>
       </tr>
       <tr>

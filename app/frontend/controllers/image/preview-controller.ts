@@ -3,9 +3,8 @@ import ApplicationController from '~/controllers/application-controller'
 import { useImagePreview } from '~/composables'
 
 export default class PreviewController extends ApplicationController {
-  static targets = ['upload', 'content', 'image']
+  static targets = ['content', 'image']
 
-  declare readonly uploadTarget: HTMLInputElement
   declare readonly contentTarget: HTMLElement
   declare readonly imageTarget: HTMLImageElement
 
@@ -13,21 +12,17 @@ export default class PreviewController extends ApplicationController {
   declare readonly hasContentTarget: boolean
   declare readonly hasImageTarget: boolean
 
+  contentElement: HTMLElement | null = null
+  previewElement: HTMLImageElement | null = null
+
   connect(): void {
-    let uploadElement: HTMLInputElement | null = null
-    let contentElement: HTMLElement | null = null
-    let previewElement: HTMLImageElement | null = null
+    if (this.hasContentTarget) this.contentElement = this.contentTarget
+    if (this.hasImageTarget) this.previewElement = this.imageTarget
+  }
 
-    if (this.hasUploadTarget) uploadElement = this.uploadTarget
-    if (this.hasContentTarget) contentElement = this.contentTarget
-    if (this.hasImageTarget) previewElement = this.imageTarget
-
-    const { setUploadEventListener } = useImagePreview({
-      el: uploadElement,
-      contentEl: contentElement,
-      previewEl: previewElement,
-    })
-
-    setUploadEventListener()
+  upload(evt: Event): void {
+    // (.file_fieldからデータを取得して変数fileに代入します)
+    const file: File | null = (evt.target as HTMLInputElement).files?.item(0) ?? null
+    useImagePreview({ file, contentEl: this.contentElement, previewEl: this.previewElement })
   }
 }

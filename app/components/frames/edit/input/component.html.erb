@@ -5,8 +5,11 @@
           ファイル
         </td>
         <td>
-          <%= @form.file_field :file, multiple: false, accept: "image/jpg,image/jpeg,image/png,image/webp,image/avif",
-                                        class: "file-input", "data-preview-target": "upload" %><%#= @form.file_field :file, multiple: false, class: "file-input" %>
+          <%= @form.file_field :file, accept: "image/jpg,image/jpeg,image/png,image/webp,image/avif",
+                                      multiple: false,
+                                      class: "file-input",
+                                      "data-action": "change->preview#upload" %>
+                                      <%#= @form.file_field :file, multiple: false, class: "file-input" %>
         </td>
       </tr>
 <% end %>
