@@ -1,4 +1,4 @@
-import { ref } from '@vue/reactivity'
+import { computed } from '@vue/reactivity'
 
 interface ImagePreviewOptions {
   file: File | null
@@ -7,7 +7,14 @@ interface ImagePreviewOptions {
 }
 
 export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOptions) {
-  const previewUrl = ref<string | null>()
+  const previewUrl = computed<string | null>({
+    get() {
+      return previewEl?.src ?? null
+    },
+    set(value: string | null) {
+      if (previewEl) previewEl.src = value ?? ''
+    },
+  })
 
   const showPreview = (): void => {
     if (previewEl) previewEl.src = previewUrl.value ?? ''
@@ -26,7 +33,7 @@ export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOpti
       const image: string | ArrayBuffer | null = this.result
       //console.log(content.classList);
       // eslint-disable-next-line
-      previewUrl.value = image?.toString()
+      previewUrl.value = image?.toString() ?? null
       showPreview()
     }
     // (DataURIScheme文字列を取得します)
