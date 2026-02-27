@@ -5,7 +5,7 @@ import { useApiConstants } from './use-api-constants'
 
 interface MutationApiOptions {
   method: 'post' | 'put' | 'delete'
-  body?: URLSearchParams | FormData
+  body?: FormData | object
   token?: string
 }
 
@@ -30,10 +30,16 @@ export const useMutationApi = async <T>(
     headers.Authorization = `Bearer ${token}`
   }
 
+  const isBodyFormData = body && body instanceof FormData
+
+  if (!isBodyFormData) {
+    headers['Content-Type'] = 'application/json'
+  }
+
   if (method == 'post' || method == 'put') {
     response.value = await globalThis.fetch(`${baseURL.value}${url}`, {
       method,
-      body,
+      body: isBodyFormData ? body : JSON.stringify(body),
       headers,
     })
 

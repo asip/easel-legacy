@@ -66,13 +66,13 @@ export function useComment() {
     clearFlash()
 
     try {
-      const params = new FormData()
-      params.append('comment[body]', comment.value.body)
-      //const params = {
-      //  comment: {
-      //    body: comment.value.body
-      //  }
-      //}
+      // const params = new FormData()
+      // params.append('comment[body]', comment.value.body)
+      const params = {
+        comment: {
+          body: comment.value.body,
+        },
+      }
 
       const { response } = await useMutationApi<CommentResource>(`/frames/${frameId}/comments`, {
         method: 'post',
@@ -95,13 +95,13 @@ export function useComment() {
     clearFlash()
 
     try {
-      const params = new FormData()
-      params.append('comment[body]', comment.value.body)
-      //const params = {
-      //  comment: {
-      //    body: comment.value.body
-      //  }
-      //}
+      // const params = new FormData()
+      // params.append('comment[body]', comment.value.body)
+      const params = {
+        comment: {
+          body: comment.value.body,
+        },
+      }
 
       const { data, response } = await useMutationApi<CommentResource>(
         `/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
