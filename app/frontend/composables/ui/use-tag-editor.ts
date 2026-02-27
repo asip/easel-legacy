@@ -1,4 +1,5 @@
 import Tagify from '@yaireo/tagify'
+import { ref } from '@vue/reactivity'
 
 import { useQueryApi } from '~/composables'
 
@@ -11,6 +12,8 @@ export function useTagEditor({
 }) {
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
+
+  const tagList = ref<string>()
 
   const initTagEditor = (): Tagify => {
     tagEditor = new Tagify(el, {
@@ -32,8 +35,8 @@ export function useTagEditor({
 
   const initTags = (): void => {
     tagEditor?.removeAllTags()
-    const tags: string | null = tagListEl?.value ?? null
-    if (tags && tags.length > 0) tagEditor?.addTags(tags.split(','))
+    tagList.value = tagListEl?.value ?? ''
+    if (tagList.value.length > 0) tagEditor?.addTags(tagList.value.split(','))
   }
 
   const setEventCallbacks = (): void => {
@@ -88,7 +91,8 @@ export function useTagEditor({
   }
 
   const saveTagList = (): void => {
-    if (tagListEl) tagListEl.value = tagEditor?.value.map((v) => v.value).join(',') ?? ''
+    tagList.value = tagEditor?.value.map((v) => v.value).join(',')
+    if (tagListEl) tagListEl.value = tagList.value ?? ''
   }
 
   return { initTagEditor }
