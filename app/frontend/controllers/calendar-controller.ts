@@ -18,26 +18,38 @@ export default class CalendarController extends ApplicationController {
 
   calendar: Datepicker | null = null
 
+  calElement: HTMLElement | null = null
+  wordElement: HTMLInputElement | null = null
+
   connect(): void {
-    let calElement: HTMLElement | null = null
-    let wordElement: HTMLInputElement | null = null
+    if (this.hasCalTarget) this.calElement = this.calTarget
+    if (this.hasWordTarget) this.wordElement = this.wordTarget
 
-    if (this.hasCalTarget) calElement = this.calTarget
-    if (this.hasWordTarget) wordElement = this.wordTarget
-
-    if (calElement) {
+    if (this.calElement) {
       const { date } = useSearchCriteria()
 
       const { initCalendar } = useCalendar({
-        el: calElement,
-        wordEl: wordElement,
+        el: this.calElement,
+        wordEl: this.wordElement,
         date: date.value,
       })
       this.calendar = initCalendar()
     }
   }
 
+  clear(): void {
+    this.calendar?.destroy()
+    if (this.calElement) {
+      const { initCalendar } = useCalendar({
+        el: this.calElement,
+        wordEl: this.wordElement,
+        date: '',
+      })
+      this.calendar = initCalendar()
+    }
+  }
+
   disconnect(): void {
-    if (this.calendar) this.calendar.destroy()
+    this.calendar?.destroy()
   }
 }
