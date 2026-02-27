@@ -35,7 +35,7 @@ export const useQueryApi = async <T>(
   }
 
   const queryString = new globalThis.URLSearchParams(options?.query || {}).toString()
-  url = `${url}?${queryString}`
+  url = queryString ? `${url}?${queryString}` : url
 
   const getOptions: RequestInit = {
     method: 'GET',
