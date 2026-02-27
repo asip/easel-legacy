@@ -1,4 +1,5 @@
 import * as v from 'valibot'
+import { ref } from '@vue/reactivity'
 
 import { i18n } from '~/i18n'
 
@@ -7,10 +8,6 @@ import { useSearchCriteria } from '~/stores'
 
 interface FrameSearchOptions {
   el?: Element
-  wordEl?: HTMLInputElement | null
-  wordMessageEl?: HTMLDivElement | null
-  tagEl?: HTMLInputElement | null
-  tagMessageEl?: HTMLDivElement | null
 }
 
 interface SearchOptions {
@@ -19,19 +16,13 @@ interface SearchOptions {
   message: string
 }
 
-interface SearchParams {
+interface SearchPropertys {
   word?: string | null
   tagName?: string | null
   q?: string
 }
 
-export function useFrameSearch({
-  el,
-  wordEl,
-  wordMessageEl,
-  tagEl,
-  tagMessageEl,
-}: FrameSearchOptions) {
+export function useFrameSearch(options?: FrameSearchOptions) {
   const { autoDetect } = useLocale()
 
   const { criteria } = useSearchCriteria()
@@ -43,19 +34,19 @@ export function useFrameSearch({
     tagName: v.pipe(v.string(), v.maxLength(10)),
   })
 
-  let params: SearchParams = { word: wordEl?.value, tagName: tagEl?.value }
+  const searchParams = ref<SearchPropertys>({})
+
+  const errorMessages = ref<SearchPropertys>({ word: '', tagName: '' })
 
   const setSearchParams = () => {
-    if (wordEl && tagEl) {
-      wordEl.value = criteria.value.word ? criteria.value.word : ''
-      tagEl.value = criteria.value.tag_name ? criteria.value.tag_name : ''
-    }
+    searchParams.value.word = criteria.value.word ? criteria.value.word : ''
+    searchParams.value.tagName = criteria.value.tag_name ? criteria.value.tag_name : ''
   }
 
   const search = (ev: Event): void => {
     const { success, errorMessages } = validateParams()
 
-    if (params.word) {
+    if (searchParams.value.word) {
       searchByWord({ ev, success, message: errorMessages?.word?.at(0) ?? '' })
     } else {
       searchByTagName({ ev, success, message: errorMessages?.tagName?.at(0) ?? '' })
@@ -63,7 +54,7 @@ export function useFrameSearch({
   }
 
   const validateParams = () => {
-    const result = v.safeParse(schema, params, { lang: i18n.global.locale.value })
+    const result = v.safeParse(schema, searchParams.value, { lang: i18n.global.locale.value })
     const errorMessages = result.issues ? v.flatten(result.issues).nested : {}
     const success = result.success
 
@@ -72,47 +63,43 @@ export function useFrameSearch({
 
   const searchByWord = ({ ev, success, message }: SearchOptions): void => {
     if (success) {
-      params.q = params.word ? JSON.stringify({ word: params.word }) : '{}'
+      searchParams.value.q = searchParams.value.word
+        ? JSON.stringify({ word: searchParams.value.word ?? '' })
+        : '{}'
       submit()
     } else {
-      setErrorMessage({ el: wordMessageEl, message })
+      errorMessages.value.word = message
       ev.preventDefault()
     }
   }
 
   const searchByTagName = ({ ev, success, message }: SearchOptions): void => {
     if (success) {
-      params.q = params.tagName ? JSON.stringify({ tag_name: params.tagName }) : '{}'
+      searchParams.value.q = searchParams.value.tagName
+        ? JSON.stringify({ tag_name: searchParams.value.tagName ?? '' })
+        : '{}'
       submit()
     } else {
-      setErrorMessage({ el: tagMessageEl, message })
+      errorMessages.value.tagName = message
       ev.preventDefault()
     }
-  }
-
-  const setErrorMessage = ({
-    el,
-    message,
-  }: {
-    el: HTMLDivElement | null | undefined
-    message: string
-  }) => {
-    if (el) el.innerHTML = message
   }
 
   const submit = (): void => {
     const { criteriaCookie } = useCookie()
 
-    if (params.q) {
-      criteria.value = params.q
-      criteriaCookie.value = params.q
-      ;(el as HTMLFormElement).requestSubmit()
+    if (searchParams.value.q) {
+      criteria.value = searchParams.value.q
+      criteriaCookie.value = searchParams.value.q
+      ;(options?.el as HTMLFormElement).requestSubmit()
     }
   }
 
+  /*
   const clearErrorMessage = (el: HTMLDivElement | null): void => {
     if (el && el.innerHTML != '') el.innerHTML = ''
   }
+  */
 
-  return { setSearchParams, search, clearErrorMessage }
+  return { searchParams, errorMessages, setSearchParams, search }
 }
