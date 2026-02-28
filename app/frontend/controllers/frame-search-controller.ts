@@ -26,30 +26,30 @@ export default class FrameSearchController extends ApplicationController {
     if (this.hasWordMessageTarget) this.wordMessageElement = this.wordMessageTarget
     if (this.hasTagMessageTarget) this.tagMessageElement = this.tagMessageTarget
 
-    const { searchParams, setSearchParams } = useFrameSearch()
+    const { searchParams, setSearchParams, setValue } = useFrameSearch()
     setSearchParams()
-    if (this.wordElement && this.tagElement) {
-      this.wordElement.value = searchParams.value.word ?? ''
-      this.tagElement.value = searchParams.value.tagName ?? ''
-    }
+    setValue({ el: this.wordElement, value: searchParams.value.word ?? '' })
+    setValue({ el: this.tagElement, value: searchParams.value.tagName ?? '' })
   }
 
   submit(ev: Event): void {
-    const { searchParams, errorMessages, search } = useFrameSearch({ el: this.element })
+    const { searchParams, errorMessages, search, setErrorMessage } = useFrameSearch({
+      el: this.element,
+    })
     searchParams.value.word = this.wordElement?.value
     searchParams.value.tagName = this.tagElement?.value
     search(ev)
-    if (this.wordMessageElement && this.tagMessageElement) {
-      this.wordMessageElement.innerHTML = errorMessages.value.word ?? ''
-      this.tagMessageElement.innerHTML = errorMessages.value.tagName ?? ''
-    }
+    setErrorMessage({ el: this.wordMessageElement, message: errorMessages.value.word ?? '' })
+    setErrorMessage({ el: this.tagMessageElement, message: errorMessages.value.tagName ?? '' })
   }
 
   clearWordMessage(): void {
-    if (this.wordMessageElement) this.wordMessageElement.innerHTML = ''
+    const { setErrorMessage } = useFrameSearch()
+    setErrorMessage({ el: this.wordMessageElement, message: '' })
   }
 
   clearTagMessage(): void {
-    if (this.tagMessageElement) this.tagMessageElement.innerHTML = ''
+    const { setErrorMessage } = useFrameSearch()
+    setErrorMessage({ el: this.tagMessageElement, message: '' })
   }
 }

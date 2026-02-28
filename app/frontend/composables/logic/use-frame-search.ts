@@ -95,11 +95,19 @@ export function useFrameSearch(options?: FrameSearchOptions) {
     }
   }
 
-  /*
-  const clearErrorMessage = (el: HTMLDivElement | null): void => {
-    if (el && el.innerHTML != '') el.innerHTML = ''
+  const setValue = ({ el, value }: { el: HTMLInputElement | null; value: string }): void => {
+    if (el) el.value = value
   }
-  */
 
-  return { searchParams, errorMessages, setSearchParams, search }
+  const setErrorMessage = ({
+    el,
+    message,
+  }: {
+    el: HTMLDivElement | null
+    message: string
+  }): void => {
+    if (el) el.innerHTML = message
+  }
+
+  return { searchParams, errorMessages, setSearchParams, search, setValue, setErrorMessage }
 }
