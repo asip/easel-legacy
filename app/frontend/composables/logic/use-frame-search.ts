@@ -38,7 +38,7 @@ export function useFrameSearch(options?: FrameSearchOptions) {
 
   const errorMessages = ref<SearchPropertys>({ word: '', tagName: '' })
 
-  const setSearchParams = () => {
+  const initSearchParams = () => {
     searchParams.value.word = criteria.value.word ? criteria.value.word : ''
     searchParams.value.tagName = criteria.value.tag_name ? criteria.value.tag_name : ''
   }
@@ -109,5 +109,5 @@ export function useFrameSearch(options?: FrameSearchOptions) {
     if (el) el.innerHTML = message
   }
 
-  return { searchParams, errorMessages, setSearchParams, search, setValue, setErrorMessage }
+  return { searchParams, errorMessages, initSearchParams, search, setValue, setErrorMessage }
 }

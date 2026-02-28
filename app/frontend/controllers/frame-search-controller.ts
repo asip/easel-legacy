@@ -26,8 +26,8 @@ export default class FrameSearchController extends ApplicationController {
     if (this.hasWordMessageTarget) this.wordMessageElement = this.wordMessageTarget
     if (this.hasTagMessageTarget) this.tagMessageElement = this.tagMessageTarget
 
-    const { searchParams, setSearchParams, setValue } = useFrameSearch()
-    setSearchParams()
+    const { searchParams, initSearchParams, setValue } = useFrameSearch()
+    initSearchParams()
     setValue({ el: this.wordElement, value: searchParams.value.word ?? '' })
     setValue({ el: this.tagElement, value: searchParams.value.tagName ?? '' })
   }
