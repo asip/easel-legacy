@@ -34,7 +34,7 @@ export const useQueryApi = async <T>(
     headers.Authorization = `Bearer ${options.token}`
   }
 
-  const queryString = new globalThis.URLSearchParams(options?.query || {}).toString()
+  const queryString = new globalThis.URLSearchParams(options?.query ?? {}).toString()
   url = queryString ? `${url}?${queryString}` : url
 
   const getOptions: RequestInit = {
