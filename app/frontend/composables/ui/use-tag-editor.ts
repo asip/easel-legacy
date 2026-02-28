@@ -1,7 +1,7 @@
 import Tagify from '@yaireo/tagify'
 import { computed } from '@vue/reactivity'
 
-import { useQueryApi } from '~/composables'
+import { useTagSearch } from '../model/use-tag-search'
 
 export function useTagEditor({
   el,
@@ -66,27 +66,14 @@ export function useTagEditor({
     controller = new AbortController()
 
     void (async () => {
+      const { tags, searchTag } = useTagSearch()
       try {
-        const tags = await searchTag(value)
-        setAutocomplete(value, tags)
+        await searchTag(value, { signal: controller.signal })
+        setAutocomplete(value, tags.value)
       } catch (error) {
         globalThis.console.log((error as Error).message)
       }
     })()
-  }
-
-  const searchTag = async (tag: string): Promise<string[]> => {
-    const { data, response } = await useQueryApi<{ tags: string[] }>('/tags/search', {
-      query: tag ? { q: tag } : {},
-      signal: controller?.signal,
-    })
-
-    if (response.ok && data) {
-      const { tags } = data
-      return tags
-    } else {
-      return []
-    }
   }
 
   const setAutocomplete = (value: string, tags: string[]): void => {
