@@ -33,14 +33,14 @@ export default class FrameSearchController extends ApplicationController {
   }
 
   submit(ev: Event): void {
-    const { searchParams, errorMessages, search, setErrorMessage } = useFrameSearch({
+    const { searchParams, errors, search, setErrorMessage } = useFrameSearch({
       el: this.element,
     })
     searchParams.value.word = this.wordElement?.value
     searchParams.value.tagName = this.tagElement?.value
     search(ev)
-    setErrorMessage({ el: this.wordMessageElement, message: errorMessages.value.word ?? '' })
-    setErrorMessage({ el: this.tagMessageElement, message: errorMessages.value.tagName ?? '' })
+    setErrorMessage({ el: this.wordMessageElement, message: errors.value.word ?? '' })
+    setErrorMessage({ el: this.tagMessageElement, message: errors.value.tagName ?? '' })
   }
 
   clearWordMessage(): void {

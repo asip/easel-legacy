@@ -12,7 +12,6 @@ interface FrameSearchOptions {
 
 interface SearchOptions {
   ev: Event
-  success: boolean
   message: string
 }
 
@@ -24,7 +23,6 @@ interface SearchPropertys {
 
 export function useFrameSearch(options?: FrameSearchOptions) {
   const { autoDetect } = useLocale()
-
   const { criteria } = useSearchCriteria()
 
   autoDetect()
@@ -36,51 +34,53 @@ export function useFrameSearch(options?: FrameSearchOptions) {
 
   const searchParams = ref<SearchPropertys>({})
 
-  const errorMessages = ref<SearchPropertys>({ word: '', tagName: '' })
+  const errors = ref<SearchPropertys>({ word: '', tagName: '' })
+
+  const success = ref<boolean>()
 
   const initSearchParams = () => {
-    searchParams.value.word = criteria.value.word ? criteria.value.word : ''
-    searchParams.value.tagName = criteria.value.tag_name ? criteria.value.tag_name : ''
+    searchParams.value.word = criteria.value.word
+    searchParams.value.tagName = criteria.value.tag_name
   }
 
   const search = (ev: Event): void => {
-    const { success, errorMessages } = validateParams()
+    const errorMessages = validateSearchParams()
 
     if (searchParams.value.word) {
-      searchByWord({ ev, success, message: errorMessages?.word?.at(0) ?? '' })
+      searchByWord({ ev, message: errorMessages?.word?.at(0) ?? '' })
     } else {
-      searchByTagName({ ev, success, message: errorMessages?.tagName?.at(0) ?? '' })
+      searchByTagName({ ev, message: errorMessages?.tagName?.at(0) ?? '' })
     }
   }
 
-  const validateParams = () => {
+  const validateSearchParams = () => {
     const result = v.safeParse(schema, searchParams.value, { lang: i18n.global.locale.value })
     const errorMessages = result.issues ? v.flatten(result.issues).nested : {}
-    const success = result.success
+    success.value = result.success
 
-    return { success, errorMessages }
+    return errorMessages
   }
 
-  const searchByWord = ({ ev, success, message }: SearchOptions): void => {
-    if (success) {
+  const searchByWord = ({ ev, message }: SearchOptions): void => {
+    if (success.value) {
       searchParams.value.q = searchParams.value.word
         ? JSON.stringify({ word: searchParams.value.word ?? '' })
         : '{}'
       submit()
     } else {
-      errorMessages.value.word = message
+      errors.value.word = message
       ev.preventDefault()
     }
   }
 
-  const searchByTagName = ({ ev, success, message }: SearchOptions): void => {
-    if (success) {
+  const searchByTagName = ({ ev, message }: SearchOptions): void => {
+    if (success.value) {
       searchParams.value.q = searchParams.value.tagName
         ? JSON.stringify({ tag_name: searchParams.value.tagName ?? '' })
         : '{}'
       submit()
     } else {
-      errorMessages.value.tagName = message
+      errors.value.tagName = message
       ev.preventDefault()
     }
   }
@@ -109,5 +109,5 @@ export function useFrameSearch(options?: FrameSearchOptions) {
     if (el) el.innerHTML = message
   }
 
-  return { searchParams, errorMessages, initSearchParams, search, setValue, setErrorMessage }
+  return { searchParams, errors, initSearchParams, search, setValue, setErrorMessage }
 }
