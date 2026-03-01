@@ -81,4 +81,5 @@
   <% if helpers.user_signed_in? && @frame.user_id == helpers.current_user.id %>
     <%= render Modal::Frames::Delete::Component.new(path: frame_path(@frame)) %>
   <% end %>
+  <%= render Front::Component.new(path: "frame/Comments") %>
 </div>
