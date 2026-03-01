@@ -1,8 +1,8 @@
-import { $router } from '~/stores'
+import { Router, RouterConfig } from '@nanostores/router'
 import { useStore } from '@nanostores/vue'
 
-export function useRoute() {
-  const router = useStore($router)
+export function useNanoRoute<T extends RouterConfig>(nano: Router<T>) {
+  const router = useStore(nano)
 
   const params = router.value?.params
 
@@ -16,4 +16,4 @@ export function useRoute() {
   return { params, query, path }
 }
 
-export type UseRouteType = ReturnType<typeof useRoute>
+export type UseRouteType = ReturnType<typeof useNanoRoute>

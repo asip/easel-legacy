@@ -19,8 +19,8 @@ import {
 const { setFlash } = useToast()
 
 const route = useRoute()
-const id: string = route.params?.id ?? ''
-const refStr: string = route.query?.ref ?? ''
+const id: string = route.params?.id
+const refStr: string = route.query?.ref
 
 const { loggedIn, account } = useAccount()
 const {

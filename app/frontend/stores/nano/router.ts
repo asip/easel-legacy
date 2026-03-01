@@ -1,3 +1,7 @@
 import { createRouter } from '@nanostores/router'
 
-export const $router = createRouter({ frame: '/frames/:id' }, { links: false })
+const routes = { frame: '/frames/:id' }
+
+export const router = createRouter(routes, { links: false })
+
+export type RoutesType = typeof routes

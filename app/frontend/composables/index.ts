@@ -1,6 +1,6 @@
 export { useMutationApi, useQueryApi } from './foundation'
 export { useExternalErrors, useAlert } from './foundation'
-export { useEntity, useFlash, useLocale, useRoute } from './foundation'
+export { useEntity, useFlash, useLocale, useNanoRoute } from './foundation'
 
 export type { UseAlertType, UseFlashType, UseRouteType } from './foundation'
 
@@ -28,3 +28,5 @@ export { useConstants } from './use-constants'
 export type { ConstantsType } from './use-constants'
 
 export { useCookie } from './use-cookie'
+
+export { useRoute } from './use-route'

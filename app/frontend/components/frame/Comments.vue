@@ -29,7 +29,8 @@ await authenticate()
 setFlash(flash.value)
 
 const route = useRoute()
-const id: string = route.params?.id ?? ''
+const id: string = route.params?.id
+globalThis.console.log(id)
 
 await getComments(id)
 </script>
