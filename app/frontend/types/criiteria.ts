@@ -1,1 +1,1 @@
-export type Criteria = Record<'word' | 'tag_name', string>
+export type Criteria = Partial<Record<'word' | 'tag_name', string>>
