@@ -2,6 +2,8 @@ import { Datepicker } from 'vanillajs-datepicker'
 import ja from '~/locales/date-picker/ja'
 import { computed } from '@vue/reactivity'
 
+import { useDateUtil } from '../../composables'
+
 export function useCalendar({ el, wordEl }: { el: HTMLElement; wordEl: HTMLInputElement | null }) {
   const word = computed<string>({
     get() {
@@ -10,6 +12,12 @@ export function useCalendar({ el, wordEl }: { el: HTMLElement; wordEl: HTMLInput
     set(value: string) {
       if (wordEl) wordEl.value = value
     },
+  })
+
+  const date = computed<string>(() => {
+    const { isValidDate } = useDateUtil()
+
+    return isValidDate(word.value) ? word.value : ''
   })
 
   const initCalendar = (): Datepicker => {
@@ -22,7 +30,7 @@ export function useCalendar({ el, wordEl }: { el: HTMLElement; wordEl: HTMLInput
     })
 
     setChangeEventListener()
-    calendar.setDate(Datepicker.parseDate(word.value, 'yyyy/mm/dd'))
+    calendar.setDate(Datepicker.parseDate(date.value, 'yyyy/mm/dd'))
 
     return calendar
   }

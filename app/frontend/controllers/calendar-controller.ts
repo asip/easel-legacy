@@ -40,7 +40,6 @@ export default class CalendarController extends ApplicationController {
   clear(): void {
     this.calendar?.destroy()
     if (this.calElement && this.wordElement) {
-      this.wordElement.value = ''
       const { initCalendar } = useCalendar({
         el: this.calElement,
         wordEl: this.wordElement,
