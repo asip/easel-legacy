@@ -42,8 +42,12 @@ export function useFrameSearch(options?: { el?: Element }) {
   const errors = ref<SearchPropertys>({ word: '', tagName: '' })
 
   const initSearchParams = () => {
-    searchParams.value.word = criteria.value.word
-    searchParams.value.tagName = criteria.value.tag_name
+    setSearchParams({ word: criteria.value.word ?? '', tagName: criteria.value.tag_name ?? '' })
+  }
+
+  const setSearchParams = ({ word, tagName }: { word: string; tagName: string }): void => {
+    searchParams.value.word = word
+    searchParams.value.tagName = tagName
   }
 
   const search = (ev: Event): void => {
@@ -91,5 +95,13 @@ export function useFrameSearch(options?: { el?: Element }) {
     if (el) el.innerHTML = message
   }
 
-  return { searchParams, errors, initSearchParams, search, setValue, setErrorMessage }
+  return {
+    searchParams: searchParams.value,
+    errors: errors.value,
+    initSearchParams,
+    setSearchParams,
+    search,
+    setValue,
+    setErrorMessage,
+  }
 }
