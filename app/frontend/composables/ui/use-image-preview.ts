@@ -17,10 +17,15 @@ export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOpti
   })
 
   const showPreview = (): void => {
-    if (previewEl) previewEl.src = previewUrl.value ?? ''
     // (プレビュー画像がなければ表示します)
     if (contentEl && contentEl.classList.contains('hidden')) {
       contentEl.classList.remove('hidden')
+    }
+  }
+
+  const hidePreview = (): void => {
+    if (contentEl && contentEl.classList.contains('block')) {
+      contentEl.classList.add('hidden')
     }
   }
 
@@ -38,12 +43,6 @@ export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOpti
     }
     // (DataURIScheme文字列を取得します)
     if (file) reader.readAsDataURL(file)
-  }
-
-  const hidePreview = (): void => {
-    if (contentEl && contentEl.classList.contains('block')) {
-      contentEl.classList.add('hidden')
-    }
   }
 
   const previewImage = (): void => {
