@@ -28,7 +28,7 @@ export default class CalendarController extends ApplicationController {
     if (this.calElement && this.wordElement) {
       const { date } = useSearchCriteria()
 
-      this.wordElement.value = date.value ?? ''
+      this.wordElement.value = date ?? ''
       const { initCalendar } = useCalendar({
         el: this.calElement,
         wordEl: this.wordElement,

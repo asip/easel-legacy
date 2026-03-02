@@ -38,5 +38,5 @@ export function useSearchCriteria() {
   }
   */
 
-  return { criteria, date /* getCriteria, setCriteria, getDateValue */ }
+  return { criteria, date: date.value /* getCriteria, setCriteria, getDateValue */ }
 }
