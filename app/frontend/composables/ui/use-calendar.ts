@@ -11,8 +11,6 @@ export function useCalendar({
   wordEl: HTMLInputElement | null
   date: string | null
 }) {
-  let calendar: Datepicker | null = null
-
   const word = computed<string>({
     get() {
       return wordEl?.value ?? ''
@@ -25,7 +23,7 @@ export function useCalendar({
   const initCalendar = (): Datepicker => {
     Object.assign(Datepicker.locales, ja)
 
-    calendar = new Datepicker(el, {
+    let calendar = new Datepicker(el, {
       buttonClass: 'btn',
       format: 'yyyy/mm/dd',
       language: 'ja',
