@@ -10,7 +10,7 @@ import {
 } from '../../../composables'
 
 const route = useRoute()
-const id: string = route.params?.id ?? ''
+const id = route.params.id as string
 
 const { setFlash } = useToast()
 

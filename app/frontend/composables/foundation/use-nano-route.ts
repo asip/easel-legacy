@@ -1,14 +1,11 @@
 import { Router, RouterConfig } from '@nanostores/router'
-import { useStore } from '@nanostores/vue'
 
-export function useNanoRoute<T extends RouterConfig>(nano: Router<T>) {
-  const router = useStore(nano)
+export function useNanoRoute<T extends RouterConfig>(router: Router<T>) {
+  const page = router.get()
 
-  const params = router.value?.params
-
-  const query = router.value?.search
-
-  const path = router.value?.path
+  const params = page?.params
+  const query = page?.search
+  const path = page?.path
 
   // globalThis.console.log(path)
   // globalThis.console.log(query)
