@@ -25,13 +25,13 @@ export default class CalendarController extends ApplicationController {
     if (this.hasCalTarget) this.calElement = this.calTarget
     if (this.hasWordTarget) this.wordElement = this.wordTarget
 
-    if (this.calElement) {
+    if (this.calElement && this.wordElement) {
       const { date } = useSearchCriteria()
 
+      this.wordElement.value = date.value ?? ''
       const { initCalendar } = useCalendar({
         el: this.calElement,
         wordEl: this.wordElement,
-        date: date.value,
       })
       this.calendar = initCalendar()
     }
@@ -39,11 +39,11 @@ export default class CalendarController extends ApplicationController {
 
   clear(): void {
     this.calendar?.destroy()
-    if (this.calElement) {
+    if (this.calElement && this.wordElement) {
+      this.wordElement.value = ''
       const { initCalendar } = useCalendar({
         el: this.calElement,
         wordEl: this.wordElement,
-        date: '',
       })
       this.calendar = initCalendar()
     }

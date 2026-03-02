@@ -2,15 +2,7 @@ import { Datepicker } from 'vanillajs-datepicker'
 import ja from '~/locales/date-picker/ja'
 import { computed } from '@vue/reactivity'
 
-export function useCalendar({
-  el,
-  wordEl,
-  date,
-}: {
-  el: HTMLElement
-  wordEl: HTMLInputElement | null
-  date: string | null
-}) {
+export function useCalendar({ el, wordEl }: { el: HTMLElement; wordEl: HTMLInputElement | null }) {
   const word = computed<string>({
     get() {
       return wordEl?.value ?? ''
@@ -30,7 +22,7 @@ export function useCalendar({
     })
 
     setChangeEventListener()
-    calendar.setDate(Datepicker.parseDate(date ?? '', 'yyyy/mm/dd'))
+    calendar.setDate(Datepicker.parseDate(word.value, 'yyyy/mm/dd'))
 
     return calendar
   }
