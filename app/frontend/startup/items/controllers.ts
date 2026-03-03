@@ -9,7 +9,7 @@ import {
   LightboxController,
   PhotoSwipeController,
   TagifyController,
-} from '../../controllers/index'
+} from '~/controllers/index'
 
 const application: Application = Application.start()
 
