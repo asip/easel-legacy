@@ -10,7 +10,9 @@
     "outDir": "./app/assets/builds",
     "paths": {
       "~": ["./app/frontend"],
-      "~/*": ["./app/frontend/*"]
+      "~/*": ["./app/frontend/*"],
+      "vanillajs-datepicker": ["./node_modules/vanillajs-datepicker"],
+      "vanillajs-datepicker/*": ["./node_modules/vanillajs-datepicker/*"]
     }
   },
   "include": ["./app/frontend/**/*.ts", "./app/frontend/**/*.svelte", "./vite.config.ts"],
