@@ -15,12 +15,10 @@ export {
   useElement,
 } from './ui'
 
-export { useAccount, useComment, useComments } from './model'
+export { useAccount, useComment, useComments, useFrameSearch } from './model'
 export type { UseAccountType, UseCommentType } from './model'
 
 export { useCommentRules } from './model/validation'
-
-export { useFrameSearch } from './logic'
 
 export { useDateUtil } from './util'
 
