@@ -1,7 +1,7 @@
 <script lang="ts" setup vapor>
 import Item from './list/Item.vue'
 
-import { useComments } from '../../../composables'
+import { useComments } from '~/composables'
 
 const { comments } = useComments()
 </script>

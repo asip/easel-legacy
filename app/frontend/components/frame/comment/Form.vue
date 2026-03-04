@@ -7,10 +7,10 @@ import {
   useI18nRegle,
   useRoute,
   useToast,
-} from '../../../composables'
+} from '~/composables'
 
 const route = useRoute()
-const id = route.params.id as string
+const id = (route.params as {id?: string})?.id ?? ''
 
 const { setFlash } = useToast()
 

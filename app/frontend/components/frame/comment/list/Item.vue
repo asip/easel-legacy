@@ -2,7 +2,7 @@
 import sanitizeHtml from 'sanitize-html'
 import { computed, onMounted, ref } from 'vue'
 
-import type { Comment, RefItems } from '../../../../interfaces'
+import type { Comment, RefItems } from '~/interfaces'
 import {
   useAccount,
   useComment,
@@ -11,7 +11,7 @@ import {
   useI18nRegle,
   useRoute,
   useToast,
-} from '../../../../composables'
+} from '~/composables'
 
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'
@@ -19,7 +19,7 @@ import {
 const { setFlash } = useToast()
 
 const route = useRoute()
-const id = route.params.id as string
+const id = (route.params as {id?: string})?.id ?? ''
 const refStr: string = route.query?.ref ?? ''
 
 const { loggedIn, account } = useAccount()

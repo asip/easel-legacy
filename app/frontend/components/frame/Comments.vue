@@ -2,14 +2,7 @@
 import CommentList from './comment/List.vue'
 import CommentForm from './comment/Form.vue'
 
-import {
-  useAccount,
-  useComments,
-  useRoute,
-  useToast,
-  useConstants,
-  useLocale,
-} from '../../composables'
+import { useAccount, useComments, useRoute, useToast, useConstants, useLocale } from '~/composables'
 
 /*
 const { viewData } = defineProps<{ viewData?: any }>()
@@ -29,8 +22,7 @@ await authenticate()
 setFlash(flash.value)
 
 const route = useRoute()
-const id: string = route.params?.id
-globalThis.console.log(id)
+const id: string = (route.params as {id?: string})?.id ?? ''
 
 await getComments(id)
 </script>
