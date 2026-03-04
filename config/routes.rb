@@ -29,9 +29,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "/login", to: "users/sessions#new", as: "login"
 
-    scope :sessions do
-      post "/user", to: "users/sessions#create"
-    end
+    post "/sessions/user", to: "users/sessions#create"
 
     get "/signup", to: "users/registrations#new", as: :signup
 
