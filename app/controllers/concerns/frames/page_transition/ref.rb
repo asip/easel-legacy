@@ -20,6 +20,6 @@ module Frames::PageTransition::Ref
   end
 
   def ref_items_for_user
-    @ref_items_for_user ||= RefItems.build(ref:)
+    @ref_items_for_user ||= RefItems.build(ref_items: Json::Util.to_hash(ref))
   end
 end
