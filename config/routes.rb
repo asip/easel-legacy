@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resource :password
+    resource :password, only: [ :show, :edit, :update ]
   end
 
   scope :profile do
