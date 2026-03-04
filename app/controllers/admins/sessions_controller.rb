@@ -51,7 +51,7 @@ class Admins::SessionsController < Devise::SessionsController
   def login_failed
     success, admin = Admin.validate_on_login(form: sign_in_params)
     self.resource = admin unless success
-    render_errors(resource:, login: true)
+    render_login_errors(resource:)
   end
 
   protected
