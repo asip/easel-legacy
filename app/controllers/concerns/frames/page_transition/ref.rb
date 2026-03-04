@@ -14,7 +14,8 @@ module Frames::PageTransition::Ref
 
   def back_to_path
     @back_to_path ||= BackToPath.build(
-      ref:, root_path: root_path(query_map_for_search),
+      ref_items: Json::Util.to_hash(ref),
+      root_path: root_path(query_map_for_search),
       prev_url:, page:, action_name:
     )
   end
