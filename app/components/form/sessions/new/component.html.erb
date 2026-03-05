@@ -1,5 +1,5 @@
 <div id="users">
-  <%= form_for(@resource, as: @resource_name, method: :post, url: helpers.session_path(@resource_name)) do |form| %>
+  <%= form_with(model: @resource, as: @resource_name, method: :post, url: helpers.session_path(@resource_name)) do |form| %>
     <div class="flex justify-center">
       <table class="table table-bordered table-rounded">
         <tbody>

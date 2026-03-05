@@ -5,7 +5,7 @@
       <div class="flex justify-start pb-1">
         <%= link_to login_path, class: "mr-1" do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>ユーザー登録
       </div>
-      <%= form_for(@resource, as: @resource_name, url: helpers.registration_path(@resource_name)) do |form| %>
+      <%= form_with(model: @resource, as: @resource_name, url: helpers.registration_path(@resource_name)) do |form| %>
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
         <% if @resource.confirming %>
           <%= render Users::New::Confirm::Component.new(form:, user: @resource) %>
