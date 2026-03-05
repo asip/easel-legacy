@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
   def show
     self.user = current_user
-    @pagy, @frames = list_frames(user: user, page:)
+    @pagy, @frames = list_frames(user:, page:)
   end
 
   def index
