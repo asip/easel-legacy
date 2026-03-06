@@ -4,7 +4,7 @@
 
 [I converted a my own Rails app to MPA (SPA) with Nuxt3.(japanese)](https://qiita.com/asip2k25/items/8fd4a4d0f3ee515e0012)
 
-This is old version and legacy frontend and backend of [Easel](https://github.com/asip/easel).
+This is legacy frontend and backend (old version) of [Easel](https://github.com/asip/easel).
 
 Rails8.1 + Devise(authentication) + Pagy(paging) +
 Shrine(upload) + No Fly List(tag) +
