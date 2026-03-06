@@ -1,5 +1,4 @@
 import { computed } from '@vue/reactivity'
-//import { useStore } from '@nanostores/vue'
 import { $baseUrl } from '~/stores/foundation/nano'
 
 export function useApiConstants() {
