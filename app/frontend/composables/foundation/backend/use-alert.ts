@@ -1,4 +1,4 @@
-import { ref, Ref } from '@vue/reactivity'
+import { Ref } from '@vue/reactivity'
 
 import type { FetchError } from 'ofetch'
 
@@ -26,7 +26,6 @@ interface AlertOptions {
 
 export function useAlert({ flash, caller }: UseAlertOptions) {
   const { backendErrorInfo, clearBackendErrorInfo, setBackendErrorInfo } = useBackendErrorInfo()
-  const reloading = ref<boolean>(false)
 
   const setAlert = function ({ error, off = false }: AlertOptions): void {
     clearBackendErrorInfo()
@@ -50,7 +49,6 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
           {
             const backendError = error.data as BackendErrorResource
             setBackendErrorInfo(backendError)
-            reloading.value = true
           }
           break
         case 422: {
@@ -68,7 +66,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
   }
 
   const reload = (): void => {
-    if (reloading.value) {
+    if (backendErrorInfo.value.status == 404) {
       globalThis.setTimeout(() => {
         globalThis.location.reload()
       }, 1000)
