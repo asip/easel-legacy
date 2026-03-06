@@ -1,8 +1,8 @@
 export { useMutationApi, useQueryApi } from './foundation'
 export { useExternalErrors, useAlert } from './foundation'
-export { useEntity, useFlash, useLocale, useNanoRoute } from './foundation'
+export { useEntity, useFlash, useLocale } from './foundation'
 
-export type { UseAlertType, UseFlashType, UseRouteType } from './foundation'
+export type { UseAlertType, UseFlashType } from './foundation'
 
 export { useI18nRegle } from './use-i18n-regle'
 

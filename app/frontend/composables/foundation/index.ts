@@ -8,4 +8,4 @@ export { useNanoRoute } from './use-nano-route'
 
 export type { UseAlertType } from './backend'
 export type { UseFlashType } from './use-flash'
-export type { UseRouteType } from './use-nano-route'
+export type { UseNanoRouteType } from './use-nano-route'

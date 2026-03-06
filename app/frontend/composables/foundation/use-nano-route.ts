@@ -13,4 +13,4 @@ export function useNanoRoute<T extends RouterConfig>(router: Router<T>) {
   return { params, query, path }
 }
 
-export type UseRouteType = ReturnType<typeof useNanoRoute>
+export type UseNanoRouteType = ReturnType<typeof useNanoRoute>
