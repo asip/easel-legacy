@@ -16,7 +16,7 @@ module PageTransition::Query::Ref
   end
 
   def query_map
-    @query_map ||= permitted_params.to_h.filter do |key, value|
+    @query_map ||= permitted_params.filter do |key, value|
       query_list.include?(key.to_sym) if value.present?
     end
   end

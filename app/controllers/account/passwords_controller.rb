@@ -15,7 +15,7 @@ class Account::PasswordsController < ApplicationController
   end
 
   def update
-    if current_user.update_with_password(password_params)
+    if current_user.update_with_password(form_params)
       bypass_sign_in current_user
       redirect_to prev_url_for(path: edit_account_password_path), notice: "パスワードを更新しました。"
     else
@@ -25,8 +25,8 @@ class Account::PasswordsController < ApplicationController
 
   private
 
-  def password_params
-    @password_params ||= params.expect(
+  def form_params
+    @form_params ||= params.expect(
       user: [ :current_password, :password, :password_confirmation ]
     ).to_h
   end
