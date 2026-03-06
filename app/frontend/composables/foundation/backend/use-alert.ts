@@ -1,6 +1,8 @@
 import { ref, Ref } from '@vue/reactivity'
 
-import type { BackendErrorResource, ErrorsResource, Flash } from '~/interfaces'
+import type { FetchError } from 'ofetch'
+
+import type { ErrorsResource, BackendErrorResource, Flash } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
 import { useBackendErrorInfo } from './error'
@@ -17,52 +19,50 @@ interface UseAlertCallerType {
   clearAccount?: () => void
 }
 
+interface AlertOptions {
+  error: FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>
+  off?: boolean
+}
+
 export function useAlert({ flash, caller }: UseAlertOptions) {
   const { backendErrorInfo, clearBackendErrorInfo, setBackendErrorInfo } = useBackendErrorInfo()
   const reloading = ref<boolean>(false)
 
-  const setAlert = async ({
-    response,
-    off = false,
-  }: {
-    response: Response
-    off?: boolean
-  }): Promise<void> => {
+  const setAlert = function ({ error, off = false }: AlertOptions): void {
     clearBackendErrorInfo()
-    backendErrorInfo.value.status = response.status
+    backendErrorInfo.value.status = error.status
     if (off) {
-      switch (response.status) {
+      switch (error.status) {
         case 401:
+          // flash.value.alert = i18n.t('backend.error.login')
           if (caller && 'clearAccount' in caller && caller.clearAccount) caller.clearAccount()
           break
-        default:
-          flash.value.alert = i18n.global.t('backend.error.api', { message: response.status })
+        // default:
+        //  flash.value.alert = $i18n.t('backend.error.api', { message: error.message })
       }
     } else {
-      switch (response.status) {
+      switch (error.status) {
         case 401:
           flash.value.alert = i18n.global.t('backend.error.login')
           if (caller && 'clearAccount' in caller && caller.clearAccount) caller.clearAccount()
-          reloading.value = true
           break
         case 404:
           {
-            const error = (await response.json()) as BackendErrorResource
-            setBackendErrorInfo(error)
+            const backendError = error.data as BackendErrorResource
+            setBackendErrorInfo(backendError)
             reloading.value = true
           }
           break
-        case 422:
-          {
-            if (caller && 'setExternalErrors' in caller && caller.setExternalErrors) {
-              const { errors } = (await response.json()) as ErrorsResource<ErrorMessages<string>>
-              // globalThis.console.log(errors)
-              caller.setExternalErrors(errors)
-            }
+        case 422: {
+          if (caller && 'setExternalErrors' in caller && caller.setExternalErrors && error.data) {
+            const { errors } = error.data as ErrorsResource<ErrorMessages<string>>
+            // globalThis.console.log(errors)
+            caller.setExternalErrors(errors)
           }
           break
+        }
         default:
-          flash.value.alert = i18n.global.t('backend.error.api', { message: response.status })
+          flash.value.alert = i18n.global.t('backend.error.api', { message: error.message })
       }
     }
   }

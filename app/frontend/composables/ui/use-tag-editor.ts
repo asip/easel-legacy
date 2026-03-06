@@ -67,12 +67,8 @@ export function useTagEditor({
 
     void (async () => {
       const { tags, searchTag } = useTagSearch()
-      try {
-        await searchTag(value, { signal: controller.signal })
-        setAutocomplete(value, tags.value)
-      } catch (error) {
-        globalThis.console.log((error as Error).message)
-      }
+      await searchTag(value, { signal: controller.signal })
+      setAutocomplete(value, tags.value)
     })()
   }
 

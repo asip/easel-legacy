@@ -1,58 +1,73 @@
 import { ref } from '@vue/reactivity'
 
+import { ofetch } from 'ofetch'
+import type { FetchOptions, FetchError, FetchResponse } from 'ofetch'
+
 import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SearchParams = Record<string, any>
 
-interface QueryApiOptions {
+export interface QueryAPIOptions {
   query?: SearchParams
-  token?: string
-  signal?: AbortSignal | null
+  token?: string | null
+  signal?: AbortSignal
+  onRequestError?: ({ error }: { error: Error }) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onResponseError?: ({ response }: { response: FetchResponse<any> }) => void
+  fresh?: boolean
+  cache?: boolean
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-export const useQueryApi = async <T>(
-  url: string,
-  options?: QueryApiOptions,
-): Promise<{
-  data: T | undefined
-  response: Response
-}> => {
+// eslint-disable-next-line
+export const useQueryApi = async <T = unknown, E = any>(url: string, options?: QueryAPIOptions) => {
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
 
+  const tokenRef = ref<string>()
+
   const headers: Record<string, string> = commonHeaders.value
-
-  const data = ref<T>()
-  // const tokenRef = ref<string>()
-
-  // { token, query = {}, signal }
 
   if (options?.token) {
     headers.Authorization = `Bearer ${options.token}`
+    tokenRef.value = options.token
   }
 
-  const queryString = new globalThis.URLSearchParams(options?.query ?? {}).toString()
-  url = queryString ? `${url}?${queryString}` : url
-
-  const getOptions: RequestInit = {
-    method: 'GET',
+  const getOptions: FetchOptions<'json'> = {
+    baseURL: baseURL.value,
+    method: 'get',
+    query: options?.query ?? {},
     headers,
+    onResponse({ response }: { response: FetchResponse<T> }) {
+      if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
+    },
   }
 
   if (options?.signal) {
     getOptions.signal = options.signal
   }
 
-  const response = await globalThis.fetch(`${baseURL.value}${url}`, getOptions)
-
-  if (response.ok) {
-    data.value = (await response.json()) as T
-
-    // tokenRef.value = response.headers.get('authorization')?.split(' ')[1]
+  if (options?.onRequestError) {
+    getOptions.onRequestError = options.onRequestError
   }
 
-  return { data: data.value, response }
+  if (options?.onResponseError) {
+    getOptions.onResponseError = options.onResponseError
+  }
+
+  const pending = ref<boolean>(true)
+
+  const data = ref<T>()
+  const error = ref<FetchError<E>>()
+
+  try {
+    data.value = await ofetch<T>(url, getOptions)
+  } catch (err: unknown) {
+    error.value = err as FetchError<E>
+  }
+
+  pending.value = false
+
+  return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
 }

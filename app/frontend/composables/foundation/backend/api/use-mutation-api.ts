@@ -1,59 +1,96 @@
 import { ref } from '@vue/reactivity'
 
+import { ofetch } from 'ofetch'
+import type { FetchOptions, FetchError, FetchResponse } from 'ofetch'
+
 import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
 
-interface MutationApiOptions {
+interface MutationAPIOptions {
   method: 'post' | 'put' | 'delete'
-  body?: FormData | object
-  token?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body?: Record<string, any> | FormData
+  token?: string | null
+  onRequestError?: ({ error }: { error: Error }) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onResponseError?: ({ response }: { response: FetchResponse<any> }) => void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-export const useMutationApi = async <T>(
+// eslint-disable-next-line
+export const useMutationApi = async <T = unknown, E = any>(
   url: string,
-  { method, body, token }: MutationApiOptions,
+  { method, body = {}, token = null, onRequestError, onResponseError }: MutationAPIOptions,
 ): Promise<{
+  token: string | undefined
   data: T | undefined
-  response: Response
+  error: FetchError<E> | undefined
+  pending: boolean
 }> => {
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
 
   const headers: Record<string, string> = commonHeaders.value
 
-  const data = ref<T>()
-  const response = ref<Response>()
-  // const tokenRef = ref<string>()
+  const pending = ref<boolean>(true)
+
+  const tokenRef = ref<string>()
 
   if (token) {
     headers.Authorization = `Bearer ${token}`
+    tokenRef.value = token
   }
 
-  const isBodyFormData = body && body instanceof FormData
-
-  if (!isBodyFormData) {
-    headers['Content-Type'] = 'application/json'
-  }
+  const data = ref<T>()
+  const error = ref<FetchError<E>>()
 
   if (method == 'post' || method == 'put') {
-    response.value = await globalThis.fetch(`${baseURL.value}${url}`, {
+    const options: FetchOptions<'json'> = {
+      baseURL: baseURL.value,
       method,
-      body: isBodyFormData ? body : JSON.stringify(body),
+      body,
       headers,
-    })
+      onResponse({ response }: { response: FetchResponse<T> }) {
+        if ((method == 'post' && !tokenRef.value) || method == 'put')
+          tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
+      },
+    }
 
-    if (response.value.ok) {
-      data.value = (await response.value.json()) as T
+    if (onRequestError) {
+      options.onRequestError = onRequestError
+    }
 
-      // tokenRef.value = response.headers.get('authorization')?.split(' ')[1]
+    if (onResponseError) {
+      options.onResponseError = onResponseError
+    }
+
+    try {
+      data.value = await ofetch<T>(url, options)
+    } catch (err: unknown) {
+      error.value = err as FetchError<E>
     }
   } else {
-    response.value = await globalThis.fetch(`${baseURL.value}${url}`, {
-      method,
+    const options: FetchOptions<'json'> = {
+      baseURL: baseURL.value,
+      method: 'delete',
       headers,
-    })
+    }
+
+    if (onRequestError) {
+      options.onRequestError = onRequestError
+    }
+
+    if (onResponseError) {
+      options.onResponseError = onResponseError
+    }
+
+    try {
+      data.value = await ofetch<T>(url, options)
+    } catch (err: unknown) {
+      error.value = err as FetchError<E>
+    }
   }
 
-  return { data: data.value, response: response.value }
+  pending.value = false
+
+  return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
 }

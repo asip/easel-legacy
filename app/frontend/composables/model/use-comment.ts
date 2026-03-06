@@ -1,7 +1,7 @@
 import { ref } from '@vue/reactivity'
 
-import type { Comment, CommentResource } from '~/interfaces'
-import type { CommentErrorProperty } from '~/types'
+import type { Comment, CommentResource, ErrorsResource } from '~/interfaces'
+import type { CommentErrorProperty, ErrorMessages } from '~/types'
 import { useMutationApi, useEntity, useExternalErrors, useAlert, useFlash } from '~/composables'
 import { useAccountStore } from '~/stores'
 
@@ -65,87 +65,78 @@ export function useComment() {
   const createComment = async (frameId: string): Promise<void> => {
     clearFlash()
 
-    try {
-      // const params = new FormData()
-      // params.append('comment[body]', comment.value.body)
-      const params = {
-        comment: {
-          body: comment.value.body,
-        },
-      }
+    // const params = new FormData()
+    // params.append('comment[body]', comment.value.body)
+    const params = {
+      comment: {
+        body: comment.value.body,
+      },
+    }
 
-      const { response } = await useMutationApi<CommentResource>(`/frames/${frameId}/comments`, {
+    const { error } = await useMutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>(
+      `/frames/${frameId}/comments`,
+      {
         method: 'post',
         body: params,
         // token: token.value
-      })
+      },
+    )
 
-      clearExternalErrors()
+    clearExternalErrors()
 
-      if (!response.ok) {
-        await setAlert({ response })
-      }
-    } catch (error: unknown) {
-      flash.value.alert = i18n.global.t('backend.error.api', { message: (error as Error).message })
-      globalThis.console.log((error as Error).message)
+    if (error) {
+      setAlert({ error })
     }
   }
 
   const updateComment = async (): Promise<void> => {
     clearFlash()
 
-    try {
-      // const params = new FormData()
-      // params.append('comment[body]', comment.value.body)
-      const params = {
-        comment: {
-          body: comment.value.body,
-        },
-      }
+    // const params = new FormData()
+    // params.append('comment[body]', comment.value.body)
+    const params = {
+      comment: {
+        body: comment.value.body,
+      },
+    }
 
-      const { data, response } = await useMutationApi<CommentResource>(
-        `/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
-        {
-          method: 'put',
-          body: params,
-          // token: token.value
-        },
-      )
+    const { data, error } = await useMutationApi<
+      CommentResource,
+      ErrorsResource<ErrorMessages<string>>
+    >(
+      `/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
+      {
+        method: 'put',
+        body: params,
+        // token: token.value
+      },
+    )
 
-      clearExternalErrors()
+    clearExternalErrors()
 
-      if (!response.ok) {
-        await setAlert({ response })
-      } else {
-        const commentAttrs: CommentResource | undefined = data
-        setComment({ from: commentAttrs })
-      }
-    } catch (error: unknown) {
-      flash.value.alert = i18n.global.t('backend.error.api', { message: (error as Error).message })
-      globalThis.console.log((error as Error).message)
+    if (error) {
+      setAlert({ error })
+    } else {
+      const commentAttrs: CommentResource | undefined = data
+      setComment({ from: commentAttrs })
     }
   }
 
   const deleteComment = async (comment: Comment): Promise<void> => {
     clearFlash()
 
-    try {
-      const { response } = await useMutationApi(
-        `/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
-        {
-          method: 'delete',
-          // token: token.value
-        },
-      )
+    const { error } = await useMutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>(
+      `/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
+      {
+        method: 'delete',
+        // token: token.value
+      },
+    )
 
-      clearExternalErrors()
+    clearExternalErrors()
 
-      if (!response.ok) {
-        await setAlert({ response })
-      }
-    } catch (error: unknown) {
-      flash.value.alert = i18n.global.t('backend.error.api', { message: (error as Error).message })
-      globalThis.console.log((error as Error).message)
+    if (error) {
+      setAlert({ error })
     }
   }
 

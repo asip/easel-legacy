@@ -1,10 +1,10 @@
 import { storeToRefs } from 'pinia'
 
-import type { AccountResource } from '~/interfaces'
+import type { AccountResource, ErrorsResource } from '~/interfaces'
+import type { ErrorMessages } from '~/types'
+
 import { useAlert, useFlash, useQueryApi } from '~/composables'
 import { useAccountStore } from '~/stores'
-
-import { i18n } from '~/i18n'
 
 export function useAccount() {
   const { loggedIn, account } = storeToRefs(useAccountStore())
@@ -26,22 +26,20 @@ export function useAccount() {
       return
     } */
 
-    try {
-      const { data, response } = await useQueryApi<AccountResource>('/account')
+    const { data, error } = await useQueryApi<
+      AccountResource,
+      ErrorsResource<ErrorMessages<string>>
+    >('/account')
 
-      if (!response.ok) {
-        await setAlert({ response, off: true })
-        clearAccount()
-      } else {
-        const accountAttrs = data
-        if (accountAttrs) {
-          account.value.id = accountAttrs.id
-        }
-        loggedIn.value = true
+    if (error) {
+      setAlert({ error, off: true })
+      clearAccount()
+    } else {
+      const accountAttrs = data
+      if (accountAttrs) {
+        account.value.id = accountAttrs.id
       }
-    } catch (error: unknown) {
-      flash.value.alert = i18n.global.t('backend.error.api', { message: (error as Error).message })
-      globalThis.console.log((error as Error).message)
+      loggedIn.value = true
     }
   }
 

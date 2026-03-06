@@ -1,10 +1,10 @@
 import { storeToRefs } from 'pinia'
 
-import type { Comment, CommentResource, CommentsResource } from '~/interfaces'
+import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
+import type { ErrorMessages } from '~/types'
+
 import { useQueryApi, useEntity, useAlert, useFlash } from '~/composables'
 import { useCommentsStore } from '~/stores'
-
-import { i18n } from '~/i18n'
 
 export function useComments() {
   const { flash, clearFlash } = useFlash()
@@ -22,27 +22,25 @@ export function useComments() {
     clearFlash()
     //console.log(frameId)
 
-    try {
-      const { data, response } = await useQueryApi<CommentsResource>(`/frames/${frameId}/comments`)
+    const { data, error } = await useQueryApi<
+      CommentsResource,
+      ErrorsResource<ErrorMessages<string>>
+    >(`/frames/${frameId}/comments`)
 
-      if (!response.ok) {
-        await setAlert({ response })
-      } else {
-        const commentList: [CommentResource] | undefined = data?.comments
-        //console.log(comment_list);
-        comments.value.splice(0, comments.value.length)
-        if (commentList) {
-          for (const comment of commentList) {
-            //console.log(comment);
-            comments.value.push(makeComment({ from: comment }))
-          }
+    if (error) {
+      setAlert({ error })
+    } else {
+      const commentList: [CommentResource] | undefined = data?.comments
+      //console.log(comment_list);
+      comments.value.splice(0, comments.value.length)
+      if (commentList) {
+        for (const comment of commentList) {
+          //console.log(comment);
+          comments.value.push(makeComment({ from: comment }))
         }
       }
-      //console.log(comments);
-    } catch (error: unknown) {
-      flash.value.alert = i18n.global.t('backend.error.api', { message: (error as Error).message })
-      globalThis.console.log((error as Error).message)
     }
+    //console.log(comments);
   }
 
   return { comments, getComments, flash }

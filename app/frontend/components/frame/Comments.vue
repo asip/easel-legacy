@@ -22,7 +22,7 @@ await authenticate()
 setFlash(flash.value)
 
 const route = useRoute()
-const id: string = (route.params as {id?: string})?.id ?? ''
+const id: string = (route.params as { id?: string })?.id ?? ''
 
 await getComments(id)
 </script>

@@ -1,7 +1,8 @@
 import { ref } from '@vue/reactivity'
 
 import { useAlert, useQueryApi, useFlash } from '~/composables'
-import type { TagsResource } from '~/interfaces'
+import type { TagsResource, ErrorsResource } from '~/interfaces'
+import type { ErrorMessages } from '~/types'
 
 export const useTagSearch = () => {
   const { flash, clearFlash } = useFlash()
@@ -10,15 +11,18 @@ export const useTagSearch = () => {
   const tags = ref<string[]>([])
 
   const searchTag = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
-    const { data, response } = await useQueryApi<TagsResource>('/tags/search', {
-      query: { q: name },
-      signal,
-    })
+    const { data, error } = await useQueryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(
+      '/tags/search',
+      {
+        query: { q: name },
+        signal,
+      },
+    )
 
     clearFlash()
 
-    if (!response.ok) {
-      await setAlert({ response })
+    if (error) {
+      setAlert({ error })
       tags.value = []
     } else if (data) {
       const { tags: tagList } = data
