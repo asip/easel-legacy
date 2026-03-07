@@ -1,8 +1,8 @@
-export { useMutationApi, useQueryApi } from './foundation'
-export { useExternalErrors, useAlert } from './foundation'
-export { useEntity, useFlash, useLocale } from './foundation'
+export { useMutationApi, useQueryApi } from '@voyage/vue/composables'
+export { useExternalErrors, useAlert } from '@voyage/vue/composables'
+export { useEntity, useFlash, useLocale } from '@voyage/vue/composables'
 
-export type { UseAlertType, UseFlashType } from './foundation'
+export type { UseAlertType, UseFlashType } from '@voyage/vue/composables'
 
 export { useI18nRegle } from './use-i18n-regle'
 

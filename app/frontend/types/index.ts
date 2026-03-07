@@ -1,4 +1,4 @@
-export type { ErrorMessages } from './foundation'
+export type { ErrorMessages } from '@voyage/vue/types'
 
 export type { CommentErrorProperty } from './entity/error'
 

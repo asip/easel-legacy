@@ -2,8 +2,8 @@ import { Ref } from '@vue/reactivity'
 
 import type { FetchError } from 'ofetch'
 
-import type { ErrorsResource, BackendErrorResource, Flash } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import type { ErrorsResource, BackendErrorResource, Flash } from '../../interfaces'
+import type { ErrorMessages } from '../../types'
 
 import { useBackendErrorInfo } from './error'
 

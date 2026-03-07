@@ -1,5 +1,5 @@
 import { computed } from '@vue/reactivity'
-import { $baseUrl } from '~/stores/foundation/nano'
+import { $baseUrl } from '../../../stores'
 
 export function useApiConstants() {
   const baseURL = computed<string>({

@@ -1,4 +1,4 @@
-import { useApiConstants } from './foundation'
+import { useApiConstants } from '@voyage/vue/composables'
 
 export function useConstants() {
   const { baseURL } = useApiConstants()

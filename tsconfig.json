@@ -11,6 +11,8 @@
     "paths": {
       "~": ["./app/frontend"],
       "~/*": ["./app/frontend/*"],
+      "@voyage/vue": ["./app/frontend/packages/voyage-vue"],
+      "@voyage/vue/*": ["./app/frontend/packages/voyage-vue/*"],
       "vanillajs-datepicker": ["./node_modules/vanillajs-datepicker"],
       "vanillajs-datepicker/*": ["./node_modules/vanillajs-datepicker/*"]
     }

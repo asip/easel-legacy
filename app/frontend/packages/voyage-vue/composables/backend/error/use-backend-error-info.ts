@@ -1,7 +1,7 @@
 import { ref } from '@vue/reactivity'
 
-import type { BackendErrorInfo, BackendErrorResource } from '~/interfaces'
-import { useEntity } from '~/composables'
+import type { BackendErrorInfo, BackendErrorResource } from '../../../interfaces'
+import { useEntity } from '../../use-entity'
 
 export function useBackendErrorInfo() {
   const backendErrorInfo = ref<BackendErrorInfo>({})
