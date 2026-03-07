@@ -1,6 +1,8 @@
 export { useApiConstants, useMutationApi, useQueryApi } from './backend'
 export { useExternalErrors, useAlert } from './backend'
 
+export { useDate } from './util'
+
 export { useEntity } from './use-entity'
 export { useFlash } from './use-flash'
 export { useLocale } from './use-locale'

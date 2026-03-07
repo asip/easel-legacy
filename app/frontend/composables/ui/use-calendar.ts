@@ -2,7 +2,7 @@ import { Datepicker } from 'vanillajs-datepicker'
 import ja from '~/locales/date-picker/ja'
 import { computed } from '@vue/reactivity'
 
-import { useDateUtil } from '~/composables'
+import { useDate } from '~/composables'
 
 export function useCalendar({ el, wordEl }: { el: HTMLElement; wordEl: HTMLInputElement | null }) {
   const word = computed<string>({
@@ -15,7 +15,7 @@ export function useCalendar({ el, wordEl }: { el: HTMLElement; wordEl: HTMLInput
   })
 
   const date = computed<string>(() => {
-    const { isValidDate } = useDateUtil()
+    const { isValidDate } = useDate()
 
     return isValidDate(word.value) ? word.value : ''
   })
