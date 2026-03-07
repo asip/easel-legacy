@@ -17,7 +17,7 @@ gem "pg", "~> 1.6.3"
 gem "puma", "~> 7.2.0"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", "~> 0.1.18", require: false
+gem "thruster", "~> 0.1.19", require: false
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.23"
@@ -47,7 +47,7 @@ gem "vite_rails", "3.0.20"
 gem "view_component", "~> 4.5.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.213.0"
+gem "aws-sdk-s3", "~> 1.215.0"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
@@ -119,7 +119,7 @@ group :development do
   gem "annotaterb", "~> 4.22.0"
   gem "rails-erd", "~> 1.7.2"
   # Ruby style guide, linter, and formatter
-  gem "rubocop", "~> 1.85.0", require: false
+  gem "rubocop", "~> 1.85.1", require: false
   gem "rubocop-rails", "~> 2.34.3", require: false
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
   # Shopify/erb-lint
