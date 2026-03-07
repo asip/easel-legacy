@@ -4,25 +4,21 @@
 module Jwt::Token
   extend ActiveSupport::Concern
 
-  included do
-    attr_reader :token
-  end
+  # included do
+  #   attr_reader :token
+  # end
 
   def create_token
     Jwt::Token.create_token_from(user: self)
   end
 
-  def assign_token(token_)
-    @token = token_
-  end
+  # def token=(token_)
+  #   @token = token_
+  # end
 
-  def update_token
-    # return unless saved_change_to_email?
-  end
-
-  def reset_token
-    @token = nil
-  end
+  # def update_token
+  #   # return unless saved_change_to_email?
+  # end
 
   class_methods do
     def find_from(token:)

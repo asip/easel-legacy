@@ -22,8 +22,9 @@ class Users::SessionsController < Devise::SessionsController
       sign_in(resource_name, resource)
       # yield resource if block_given?
 
-      resource.assign_token(resource.create_token)
-      self.access_token = resource.token
+      # resource.token = resource.create_token
+      # self.access_token = resource.token
+      self.access_token = resource.create_token
     end
 
     respond_with resource

@@ -40,8 +40,8 @@ module Api::Account::Authentication
 
     begin
       self.current_user = User.find_from(token:)
-      # (current_user にトークンを割り当てる)
-      current_user.assign_token(token)
+      ## (current_user にトークンを割り当てる)
+      # current_user.token = token
 
     rescue ActiveRecord::RecordNotFound
       # (トークン内のユーザーIDが既存のユーザーに対応しない場合)
