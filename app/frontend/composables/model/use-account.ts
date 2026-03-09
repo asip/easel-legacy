@@ -16,7 +16,7 @@ export function useAccount() {
 
   // const token = computed<string>(() => accessToken.value)
 
-  const { setAlert } = useAlert({ flash })
+  const { setError } = useAlert({ flash })
 
   const authenticate = async (): Promise<void> => {
     clearFlash()
@@ -32,7 +32,7 @@ export function useAccount() {
     >('/account')
 
     if (error) {
-      setAlert({ error, off: true })
+      setError({ error, off: true })
       clearAccount()
     } else {
       const accountAttrs = data

@@ -27,7 +27,7 @@ interface AlertOptions {
 export function useAlert({ flash, caller }: UseAlertOptions) {
   const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo()
 
-  const setAlert = function ({ error, off = false }: AlertOptions): void {
+  const setError = function ({ error, off = false }: AlertOptions): void {
     clearBackendErrorInfo()
     backendErrorInfo.value.status = error.status
     if (off) {
@@ -73,7 +73,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
     }
   }
 
-  return { backendErrorInfo, setAlert, reload }
+  return { backendErrorInfo, setError, reload }
 }
 
 export type UseAlertType = ReturnType<typeof useAlert>

@@ -43,7 +43,7 @@ export function useComment() {
   const { externalErrors, clearExternalErrors, isSuccess } =
     useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { backendErrorInfo, setAlert, reload } = useAlert({
+  const { backendErrorInfo, setError, reload } = useAlert({
     flash,
     caller: { externalErrors, clearAccount },
   })
@@ -85,7 +85,7 @@ export function useComment() {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     }
   }
 
@@ -115,7 +115,7 @@ export function useComment() {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else {
       const commentAttrs: CommentResource | undefined = data
       setComment({ from: commentAttrs })
@@ -136,7 +136,7 @@ export function useComment() {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     }
   }
 

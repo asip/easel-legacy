@@ -12,7 +12,7 @@ export function useComments() {
   // const { token } = useAccount()
   const { comments } = storeToRefs(useCommentsStore())
 
-  const { setAlert } = useAlert({ flash })
+  const { setError } = useAlert({ flash })
 
   const makeComment = ({ from }: { from: CommentResource }): Comment => {
     return create({ from })
@@ -28,7 +28,7 @@ export function useComments() {
     >(`/frames/${frameId}/comments`)
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else {
       const commentList: [CommentResource] | undefined = data?.comments
       //console.log(comment_list);
