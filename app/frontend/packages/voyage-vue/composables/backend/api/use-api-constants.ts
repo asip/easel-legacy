@@ -1,25 +1,9 @@
-import { computed } from '@vue/reactivity'
-import { $baseUrl } from '../../../stores'
+import { useBaseUrlStore } from '../../../stores/use-base-url-store'
 
 export function useApiConstants() {
-  const baseURL = computed<string>({
-    get() {
-      return $baseUrl.get()
-    },
-    set(value: string) {
-      $baseUrl.set(value)
-    },
-  })
+  const { baseURL } = useBaseUrlStore()
 
-  /*
-  const baseURL = useStore($baseUrl)
-
-  const setBaseUrl = (baseURL: string) => {
-    $baseUrl.set(baseURL)
-  }
-  */
-
-  return { baseURL /* setBaseUrl */ }
+  return { baseURL }
 }
 
 export type ApiConstantsType = ReturnType<typeof useApiConstants>

@@ -1,1 +1,0 @@
-export { $baseUrl } from './nano'
