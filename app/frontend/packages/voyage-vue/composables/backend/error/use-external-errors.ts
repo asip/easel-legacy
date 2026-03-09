@@ -1,31 +1,32 @@
-import { ref, type Ref } from '@vue/reactivity'
+import { computed, ref, type Ref } from '@vue/reactivity'
 
 import type { ErrorMessages } from '../../../types'
 import type { Flash } from '../../../interfaces'
 
 export function useExternalErrors<ErrorProperty extends string>({ flash }: { flash: Ref<Flash> }) {
-  const externalErrors = ref<ErrorMessages<ErrorProperty>>({})
+  const errors = ref<ErrorMessages<ErrorProperty>>({})
+
+  const externalErrors = computed<ErrorMessages<ErrorProperty>>({
+    get() {
+      return errors.value as ErrorMessages<string>
+    },
+    set(value: ErrorMessages<ErrorProperty>) {
+      for (const key in value) {
+        ;(errors.value as ErrorMessages<ErrorProperty>)[key] = value[key] ?? []
+      }
+    },
+  })
 
   const clearExternalErrors = (): void => {
-    for (const key in externalErrors.value) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      externalErrors.value[key] = []
-    }
-  }
-
-  const setExternalErrors = (from: ErrorMessages<string>): void => {
-    for (const key in from) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      externalErrors.value[key] = from[key] ?? []
-    }
+    externalErrors.value = {}
   }
 
   const isSuccess = (): boolean => {
     let result = true
 
-    for (const key in externalErrors.value) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (externalErrors.value[key].length > 0) result = false
+    for (const key in errors.value) {
+      const error = errors.value as ErrorMessages<string>
+      if ((error[key] as string[]).length > 0) result = false
     }
 
     if (flash.value.alert) result = false
@@ -36,7 +37,6 @@ export function useExternalErrors<ErrorProperty extends string>({ flash }: { fla
   return {
     externalErrors,
     clearExternalErrors,
-    setExternalErrors,
     isSuccess,
   }
 }

@@ -7,7 +7,7 @@ import type { ErrorMessages } from '../../types'
 
 import { useBackendErrorInfo } from './error'
 
-import { i18n } from '~/i18n'
+import { i18n } from '../../i18n'
 
 interface UseAlertOptions {
   flash: Ref<Flash>
@@ -15,7 +15,7 @@ interface UseAlertOptions {
 }
 
 interface UseAlertCallerType {
-  setExternalErrors?: (from: ErrorMessages<string>) => void
+  externalErrors?: Ref<ErrorMessages<string>>
   clearAccount?: () => void
 }
 
@@ -52,10 +52,10 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
           }
           break
         case 422: {
-          if (caller && 'setExternalErrors' in caller && caller.setExternalErrors && error.data) {
+          if (caller && 'externalErrors' in caller && caller.externalErrors && error.data) {
             const { errors } = error.data as ErrorsResource<ErrorMessages<string>>
             // globalThis.console.log(errors)
-            caller.setExternalErrors(errors)
+            caller.externalErrors.value = errors
           }
           break
         }
