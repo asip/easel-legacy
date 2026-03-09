@@ -25,7 +25,7 @@ interface AlertOptions {
 }
 
 export function useAlert({ flash, caller }: UseAlertOptions) {
-  const { backendErrorInfo, clearBackendErrorInfo, setBackendErrorInfo } = useBackendErrorInfo()
+  const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo()
 
   const setAlert = function ({ error, off = false }: AlertOptions): void {
     clearBackendErrorInfo()
@@ -48,7 +48,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
         case 404:
           {
             const backendError = error.data as BackendErrorResource
-            setBackendErrorInfo(backendError)
+            backendErrorInfo.value = backendError
           }
           break
         case 422: {
