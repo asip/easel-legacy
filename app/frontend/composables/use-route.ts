@@ -1,8 +1,8 @@
 import { useNanoRoute } from '@voyage/vue/composables'
-import { router, RoutesType } from '~/stores'
+import { $router, RoutesType } from '~/stores'
 
 export function useRoute() {
-  const { params, query, path } = useNanoRoute<RoutesType>(router)
+  const { params, query, path } = useNanoRoute<RoutesType>($router)
   // globalThis.console.log(path)
   // globalThis.console.log(query)
 
