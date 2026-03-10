@@ -1,20 +1,29 @@
 import { computed } from '@vue/reactivity'
-
 import { useCookies } from '@vueuse/integrations/useCookies'
+
+import { Criteria } from '~/types'
+import { useDate } from '~/composables'
 
 export function useCookieStore() {
   const cookies = useCookies(['access_token', 'q'])
 
-  const criteriaCookie = computed<string, string>({
+  const criteria = computed<Criteria, string>({
     get() {
-      return cookies.get('q')
+      return cookies.get<Criteria>('q')
     },
     set(value: string) {
       cookies.set('q', value, { path: '/' })
     },
   })
 
-  const accessToken = computed<string>(() => cookies.get('access_token'))
+  const date = computed<string | null>(() => {
+    const { isValidDate } = useDate()
 
-  return { criteriaCookie, accessToken }
+    const value = criteria.value.word ?? ''
+    return isValidDate(value) ? value : null
+  })
+
+  const accessToken = computed<string>(() => cookies.get<string>('access_token'))
+
+  return { criteria, date: date.value, accessToken }
 }

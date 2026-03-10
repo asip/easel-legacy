@@ -4,7 +4,6 @@ import { ref, computed } from '@vue/reactivity'
 import { i18n } from '~/i18n'
 
 import { useLocale, useCookieStore } from '~/composables'
-import { useCriteriaStore } from '~/stores'
 
 interface SearchPropertys {
   word?: string | null
@@ -13,7 +12,7 @@ interface SearchPropertys {
 
 export function useFrameSearch(options?: { el?: Element }) {
   const { autoDetect } = useLocale()
-  const { criteria } = useCriteriaStore()
+  const { criteria } = useCookieStore()
 
   autoDetect()
 
@@ -72,11 +71,8 @@ export function useFrameSearch(options?: { el?: Element }) {
   }
 
   const submit = (): void => {
-    const { criteriaCookie } = useCookieStore()
-
     if (queryMap.value.q) {
       criteria.value = queryMap.value.q
-      criteriaCookie.value = queryMap.value.q
       ;(options?.el as HTMLFormElement).requestSubmit()
     }
   }
