@@ -3,7 +3,7 @@ import ApplicationController from './application-controller'
 import { Datepicker } from 'vanillajs-datepicker'
 
 import { useCalendar } from '~/composables'
-import { useSearchCriteria } from '~/stores'
+import { useCriteriaStore } from '~/stores'
 
 export default class CalendarController extends ApplicationController {
   static targets = ['cal', 'word']
@@ -26,7 +26,7 @@ export default class CalendarController extends ApplicationController {
     if (this.hasWordTarget) this.wordElement = this.wordTarget
 
     if (this.calElement && this.wordElement) {
-      const { date } = useSearchCriteria()
+      const { date } = useCriteriaStore()
 
       this.wordElement.value = date ?? ''
       const { initCalendar } = useCalendar({

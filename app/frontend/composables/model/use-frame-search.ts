@@ -4,7 +4,7 @@ import { ref, computed } from '@vue/reactivity'
 import { i18n } from '~/i18n'
 
 import { useLocale, useCookieStore } from '~/composables'
-import { useSearchCriteria } from '~/stores'
+import { useCriteriaStore } from '~/stores'
 
 interface SearchPropertys {
   word?: string | null
@@ -13,7 +13,7 @@ interface SearchPropertys {
 
 export function useFrameSearch(options?: { el?: Element }) {
   const { autoDetect } = useLocale()
-  const { criteria } = useSearchCriteria()
+  const { criteria } = useCriteriaStore()
 
   autoDetect()
 

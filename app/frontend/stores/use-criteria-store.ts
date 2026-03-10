@@ -1,17 +1,17 @@
 import { computed } from '@vue/reactivity'
 
-import { searchCriteria } from './nano'
+import { $criteria } from './nano'
 import { Criteria } from '~/types'
 
 import { useDate } from '~/composables'
 
-export function useSearchCriteria() {
+export function useCriteriaStore() {
   const criteria = computed<Criteria, string>({
     get() {
-      return JSON.parse(searchCriteria.get()) as Criteria
+      return JSON.parse($criteria.get()) as Criteria
     },
     set(value: string) {
-      searchCriteria.set(value)
+      $criteria.set(value)
     },
   })
 
