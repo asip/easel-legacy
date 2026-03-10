@@ -2,7 +2,7 @@ import { computed } from '@vue/reactivity'
 
 import { useCookies } from '@vueuse/integrations/useCookies'
 
-export function useCookie() {
+export function useCookieStore() {
   const cookies = useCookies(['access_token', 'q'])
 
   const criteriaCookie = computed<string, string>({
@@ -16,15 +16,5 @@ export function useCookie() {
 
   const accessToken = computed<string>(() => cookies.get('access_token'))
 
-  /*
-  const setCriteriaToCookie = (criteria: string): void => {
-    cookies.set('q', criteria, { path: '/' })
-  }
-
-  const getAccessToken = () => {
-    cookies.get('access_token')
-  }
-  */
-
-  return { criteriaCookie, accessToken /* setCriteriaToCookie, getAccessToken */ }
+  return { criteriaCookie, accessToken }
 }

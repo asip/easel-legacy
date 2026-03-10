@@ -3,7 +3,7 @@ import { ref, computed } from '@vue/reactivity'
 
 import { i18n } from '~/i18n'
 
-import { useLocale, useCookie } from '~/composables'
+import { useLocale, useCookieStore } from '~/composables'
 import { useSearchCriteria } from '~/stores'
 
 interface SearchPropertys {
@@ -72,7 +72,7 @@ export function useFrameSearch(options?: { el?: Element }) {
   }
 
   const submit = (): void => {
-    const { criteriaCookie } = useCookie()
+    const { criteriaCookie } = useCookieStore()
 
     if (queryMap.value.q) {
       criteria.value = queryMap.value.q

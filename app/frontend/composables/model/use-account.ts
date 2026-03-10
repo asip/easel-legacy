@@ -10,18 +10,16 @@ export function useAccount() {
   const { loggedIn, account } = storeToRefs(useAccountStore())
   const { clearAccount } = useAccountStore()
 
-  // const { accessToken } = useCookie()
+  // const { accessToken } = useCookieStore()
 
   const { flash, clearFlash } = useFlash()
-
-  // const token = computed<string>(() => accessToken.value)
 
   const { setError } = useAlert({ flash })
 
   const authenticate = async (): Promise<void> => {
     clearFlash()
 
-    /* if (!token.value) {
+    /* if (!accessToken.value) {
       clearAccount()
       return
     } */
@@ -46,7 +44,7 @@ export function useAccount() {
   return {
     loggedIn,
     account,
-    // token,
+    // token: accessToken,
     flash,
     authenticate,
   }

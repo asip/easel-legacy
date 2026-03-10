@@ -25,6 +25,6 @@ export { useCommentRules } from './model/validation'
 export { useConstants } from './use-constants'
 export type { ConstantsType } from './use-constants'
 
-export { useCookie } from './use-cookie'
+export { useCookieStore } from './use-cookie-store'
 
 export { useRoute } from './use-route'
