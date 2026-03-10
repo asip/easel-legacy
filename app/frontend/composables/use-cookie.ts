@@ -14,7 +14,7 @@ export function useCookie() {
     },
   })
 
-  const accessToken = computed<string>
+  const accessToken = computed<string>(() => cookies.get('access_token'))
 
   /*
   const setCriteriaToCookie = (criteria: string): void => {
