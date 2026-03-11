@@ -4,7 +4,7 @@
 class UsersController < ApplicationController
   include Users::Authentication::Skip
   include Users::Queries::Pagination
-  include PageTransition::Query::Ref
+  include Users::PageTransition::Ref
   include Users::PageTransition::List
   include Users::Location::Store
   include Cookie
@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    self.page = permitted_params[:page]
     user_id = permitted_params[:id]
     @pagy, @frames = list_frames(user_id:, page:)
   end

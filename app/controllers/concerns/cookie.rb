@@ -21,6 +21,23 @@ module Cookie
     @q_items
   end
 
+  def ref_items
+    @ref_items ||= Json::Util.to_hash(ref)
+  end
+
+  def ref
+    items = cookies[:ref]
+    items.present? ? items : nil
+  end
+
+  def page
+    cookies[:page]
+  end
+
+  def page=(page)
+    cookies[:page] = page
+  end
+
   def prev_url_for(path:)
     cookies["prev_url#{path.gsub("/", "_")}".to_sym]
   end
