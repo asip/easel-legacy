@@ -85,7 +85,7 @@ export function useComment() {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     }
   }
 
@@ -115,7 +115,7 @@ export function useComment() {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else {
       const commentAttrs: CommentResource | undefined = data
       setComment({ from: commentAttrs })
@@ -136,7 +136,7 @@ export function useComment() {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     }
   }
 

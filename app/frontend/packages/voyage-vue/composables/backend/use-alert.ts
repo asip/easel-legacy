@@ -19,15 +19,15 @@ interface UseAlertCallerType {
   clearAccount?: () => void
 }
 
-interface AlertOptions {
-  error: FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>
-  off?: boolean
-}
-
 export function useAlert({ flash, caller }: UseAlertOptions) {
   const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo()
 
-  const setError = function ({ error, off = false }: AlertOptions): void {
+  const setError = function (
+    error: FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>,
+    options?: { off?: boolean },
+  ): void {
+    const off = options?.off ?? false
+
     clearBackendErrorInfo()
     backendErrorInfo.value.status = error.status
     if (off) {

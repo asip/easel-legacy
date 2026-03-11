@@ -30,7 +30,7 @@ export function useAccount() {
     >('/account')
 
     if (error) {
-      setError({ error, off: true })
+      setError(error, { off: true })
       clearAccount()
     } else {
       const accountAttrs = data

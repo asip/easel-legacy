@@ -28,7 +28,7 @@ export function useComments() {
     >(`/frames/${frameId}/comments`)
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else {
       const commentList: [CommentResource] | undefined = data?.comments
       //console.log(comment_list);
