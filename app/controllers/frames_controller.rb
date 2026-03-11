@@ -13,6 +13,7 @@ class FramesController < ApplicationController
   include Cookie
 
   def index
+    self.page = permitted_params[:page]
     form = FrameSearchForm.new(q_items)
     @pagy, @frames = list_frames(user: current_user, form:, page:)
   end

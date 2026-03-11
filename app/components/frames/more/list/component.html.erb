@@ -21,9 +21,15 @@
       <% end %>
       <div class="flex justify-center">
         <div class="mx-auto">
-          <%= link_to frame.name, frame_path(frame, params: helpers.query_map_for_frame(from: @from, page: @pagy.page)),
+          <% map = helpers.query_map_for_frame(from: @from, page: @pagy.page) %>
+          <%#= map %>
+          <%= link_to frame.name, frame_path(frame),
                       class: "link link-hover",
-                      "data-turbo": true %>
+                      "data-turbo": true,
+                      "data-controller": "queryMap",
+                      "data-action": "click->queryMap#setQueryMap",
+                      "data-queryMap-ref-value": map[:ref],
+                      "data-queryMap-page-value": map[:page] %>
         </div>
       </div>
     </div>

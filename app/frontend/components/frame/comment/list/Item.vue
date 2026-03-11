@@ -1,8 +1,8 @@
 <script lang="ts" setup vapor>
 import sanitizeHtml from 'sanitize-html'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 
-import type { Comment, RefItems } from '~/interfaces'
+import type { Comment } from '~/interfaces'
 import {
   useAccount,
   useComment,
@@ -10,6 +10,7 @@ import {
   useCommentRules,
   useI18nRegle,
   useRoute,
+  useCookieStore,
   useToast,
 } from '~/composables'
 
@@ -20,7 +21,8 @@ const { setFlash } = useToast()
 
 const route = useRoute()
 const id = (route.params as { id?: string })?.id ?? ''
-const refStr: string = route.query?.ref ?? ''
+
+const { refItems } = useCookieStore()
 
 const { loggedIn, account } = useAccount()
 const {
@@ -41,30 +43,11 @@ const { commentRules } = useCommentRules()
 
 const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 
-const queryString = ref<string>('')
-
 const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-const refItems = computed<RefItems>(() => {
-  const items: RefItems = refStr ? JSON.parse(refStr) : {}
-  items.from = 'frame'
-
-  return items
-})
-
-const queryMap = computed<Record<string, string>>(() => {
-  const map: Record<string, string> = {
-    ref: JSON.stringify(refItems.value),
-  }
-
-  return map
-})
-
-onMounted(() => {
-  queryString.value = new globalThis.URLSearchParams(queryMap.value).toString()
-})
+refItems.value.from = 'frame'
 
 const sanitizedCommentBody = computed<string>(() =>
   sanitizeHtml(commentModel.value?.body ?? '').replace(/\n/g, '<br>'),
@@ -129,11 +112,11 @@ const reload401404 = async (): Promise<void> => {
     <div class="card-body">
       <div class="flex justify-between leading-8.75">
         <div class="flex items-center gap-1">
-          <a :href="`/users/${commentModel?.user_id}?${queryString}`" class="avatar">
+          <a :href="`/users/${commentModel?.user_id}`" class="avatar">
             <img :src="commentModel?.user_image_url" alt="" class="rounded w-5 h-5" />
           </a>
           <a
-            :href="`/users/${commentModel?.user_id}?${queryString}`"
+            :href="`/users/${commentModel?.user_id}`"
             class="badge badge-outline badge-accent hover:badge-primary rounded-full"
           >
             {{ commentModel?.user_name }}

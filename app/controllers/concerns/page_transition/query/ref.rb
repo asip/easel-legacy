@@ -16,22 +16,9 @@ module PageTransition::Query::Ref
   end
 
   def query_map
-    @query_map ||= permitted_params.filter do |key, value|
+    @query_map ||= cookies.to_hash.filter do |key, value|
       query_list.include?(key.to_sym) if value.present?
-    end
-  end
-
-  def ref_items
-    @ref_items ||= Json::Util.to_hash(ref)
-  end
-
-  def ref
-    items = permitted_params[:ref]
-    items.present? ? items : nil
-  end
-
-  def page
-    permitted_params[:page]
+    end.with_indifferent_access
   end
 
   def back_to_path

@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
   include More
 
   def show
+    self.page = permitted_params[:page]
     self.user = current_user
     @pagy, @frames = list_frames(user:, page:)
   end

@@ -5,6 +5,7 @@ import {
   CalendarController,
   FrameSearchController,
   FrameTagSearchController,
+  QueryMapController,
   PreviewController,
   LightboxController,
   PhotoSwipeController,
@@ -20,7 +21,8 @@ application.register('toast', ToastController)
 application.register('calendar', CalendarController)
 application.register('frameSearch', FrameSearchController)
 application.register('frameTagSearch', FrameTagSearchController)
-
+// query map
+application.register('queryMap', QueryMapController)
 // image preview
 application.register('preview', PreviewController)
 // frame
