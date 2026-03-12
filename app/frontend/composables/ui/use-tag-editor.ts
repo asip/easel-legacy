@@ -1,7 +1,7 @@
 import Tagify from '@yaireo/tagify'
-import { computed } from '@vue/reactivity'
 
 import { useTagSearch } from '../model/use-tag-search'
+import { useElement } from './use-element'
 
 export function useTagEditor({
   el,
@@ -13,14 +13,7 @@ export function useTagEditor({
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
 
-  const tagList = computed<string>({
-    get() {
-      return tagListEl?.value ?? ''
-    },
-    set(value: string) {
-      if (tagListEl) tagListEl.value = value
-    },
-  })
+  const { value: tagList } = useElement(tagListEl)
 
   const initTagEditor = (): Tagify => {
     tagEditor = new Tagify(el, {
