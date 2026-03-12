@@ -64,8 +64,8 @@ importers:
         specifier: 5.4.4
         version: 5.4.4
       photoswipe-fullscreen:
-        specifier: git+https://github.com/arnowelzel/photoswipe-fullscreen
-        version: https://codeload.github.com/arnowelzel/photoswipe-fullscreen/tar.gz/c13d52d7d1d19b88990aee56df99044932ef2a48
+        specifier: git+https://codeberg.org/askaaron/photoswipe-fullscreen
+        version: git+https://codeberg.org/askaaron/photoswipe-fullscreen#a5b91778544c14db83220bbfcccf1d699cee9c45
       pinia:
         specifier: 3.0.4
         version: 3.0.4(typescript@5.9.3)(vue@3.6.0-beta.7(typescript@5.9.3))
@@ -2259,8 +2259,8 @@ packages:
   perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
 
-  photoswipe-fullscreen@https://codeload.github.com/arnowelzel/photoswipe-fullscreen/tar.gz/c13d52d7d1d19b88990aee56df99044932ef2a48:
-    resolution: {tarball: https://codeload.github.com/arnowelzel/photoswipe-fullscreen/tar.gz/c13d52d7d1d19b88990aee56df99044932ef2a48}
+  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#a5b91778544c14db83220bbfcccf1d699cee9c45:
+    resolution: {commit: a5b91778544c14db83220bbfcccf1d699cee9c45, repo: https://codeberg.org/askaaron/photoswipe-fullscreen, type: git}
     version: 1.0.5
 
   photoswipe@5.4.4:
@@ -4970,7 +4970,7 @@ snapshots:
 
   perfect-debounce@1.0.0: {}
 
-  photoswipe-fullscreen@https://codeload.github.com/arnowelzel/photoswipe-fullscreen/tar.gz/c13d52d7d1d19b88990aee56df99044932ef2a48: {}
+  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#a5b91778544c14db83220bbfcccf1d699cee9c45: {}
 
   photoswipe@5.4.4: {}
 

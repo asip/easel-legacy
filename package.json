@@ -27,7 +27,7 @@
     "nanostores": "^1.1.1",
     "ofetch": "1.5.1",
     "photoswipe": "5.4.4",
-    "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
+    "photoswipe-fullscreen": "git+https://codeberg.org/askaaron/photoswipe-fullscreen",
     "pinia": "3.0.4",
     "pinia-plugin-persistedstate": "4.7.1",
     "rails_admin": "3.3.0",
