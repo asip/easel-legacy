@@ -35,5 +35,5 @@ export function useCalendar({ el, wordEl }: { el: HTMLElement; wordEl: HTMLInput
     })
   }
 
-  return { initCalendar }
+  return { initCalendar, word }
 }

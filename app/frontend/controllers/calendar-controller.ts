@@ -27,11 +27,11 @@ export default class CalendarController extends ApplicationController {
     if (this.calElement && this.wordElement) {
       const { date } = useCookieStore()
 
-      this.wordElement.value = date ?? ''
-      const { initCalendar } = useCalendar({
+      const { initCalendar, word } = useCalendar({
         el: this.calElement,
         wordEl: this.wordElement,
       })
+      word.value = date
       this.calendar = initCalendar()
     }
   }
