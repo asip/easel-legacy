@@ -12,6 +12,12 @@ export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOpti
       return previewEl?.src ?? null
     },
     set(value: string | null) {
+      if (value) {
+        showPreview()
+      } else {
+        hidePreview()
+      }
+
       if (previewEl) previewEl.src = value ?? ''
     },
   })
@@ -39,7 +45,6 @@ export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOpti
       //console.log(content.classList);
       // eslint-disable-next-line
       previewUrl.value = image?.toString() ?? null
-      showPreview()
     }
     // (DataURIScheme文字列を取得します)
     if (file) reader.readAsDataURL(file)
@@ -50,7 +55,6 @@ export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOpti
       setPreview()
     } else {
       previewUrl.value = null
-      hidePreview()
     }
   }
 
