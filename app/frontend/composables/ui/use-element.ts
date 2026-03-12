@@ -1,10 +1,32 @@
-export function useElement(el: Element) {
+import { computed } from '@vue/reactivity'
+
+export function useElement(el: Element | null) {
+  const value = computed<string, string | null | undefined>({
+    get() {
+      return (el as HTMLInputElement).value
+    },
+    set(value: string | null | undefined) {
+      if (el) (el as HTMLInputElement).value = value ?? ''
+    },
+  })
+
+  const message = computed<string, string | null | undefined>({
+    get() {
+      return (el as HTMLDivElement).innerHTML
+    },
+    set(value: string | null | undefined) {
+      if (el) (el as HTMLDivElement).innerHTML = value ?? ''
+    },
+  })
+
   const removeElements = ({ className }: { className: string }): void => {
-    const elements: NodeListOf<Element> = el.querySelectorAll(`.${className}`)
-    Array.from(elements).forEach((e) => {
-      e.remove()
-    })
+    if (el) {
+      const elements: NodeListOf<Element> = el.querySelectorAll(`.${className}`)
+      Array.from(elements).forEach((e) => {
+        e.remove()
+      })
+    }
   }
 
-  return { removeElements }
+  return { value, message, removeElements }
 }

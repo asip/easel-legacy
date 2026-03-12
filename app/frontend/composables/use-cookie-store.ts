@@ -9,7 +9,7 @@ import { useDate } from '~/composables'
 export function useCookieStore() {
   const cookies = useCookies(['access_token', 'q', 'ref', 'page'])
 
-  const criteria = computed<Criteria, string>({
+  const criteria = computed<Criteria | undefined, string>({
     get() {
       return cookies.get<Criteria>('q')
     },
@@ -21,7 +21,7 @@ export function useCookieStore() {
   const date = computed<string | null>(() => {
     const { isValidDate } = useDate()
 
-    const value = criteria.value.word ?? ''
+    const value = criteria.value?.word ?? ''
     return isValidDate(value) ? value : null
   })
 

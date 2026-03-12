@@ -24,13 +24,12 @@ export function useFrameSearch(options?: { el?: Element }) {
   const searchParams = ref<SearchPropertys>({})
 
   const queryMap = computed<{ q?: string }>(() => {
-    const items = searchParams.value
     const query: { q?: string } = {}
 
-    if (items.word) {
-      query.q = JSON.stringify({ word: items.word })
-    } else if (items.tagName) {
-      query.q = JSON.stringify({ tag_name: items.tagName })
+    if (searchParams.value.word) {
+      query.q = JSON.stringify({ word: searchParams.value.word })
+    } else if (searchParams.value.tagName) {
+      query.q = JSON.stringify({ tag_name: searchParams.value.tagName })
     } else {
       query.q = JSON.stringify({})
     }
@@ -41,12 +40,8 @@ export function useFrameSearch(options?: { el?: Element }) {
   const errors = ref<SearchPropertys>({ word: '', tagName: '' })
 
   const initSearchParams = () => {
-    setSearchParams({ word: criteria.value.word ?? '', tagName: criteria.value.tag_name ?? '' })
-  }
-
-  const setSearchParams = ({ word, tagName }: { word: string; tagName: string }): void => {
-    searchParams.value.word = word
-    searchParams.value.tagName = tagName
+    searchParams.value.word = criteria.value?.word ?? ''
+    searchParams.value.tagName = criteria.value?.tag_name ?? ''
   }
 
   const search = (ev: Event): void => {
@@ -71,33 +66,17 @@ export function useFrameSearch(options?: { el?: Element }) {
   }
 
   const submit = (): void => {
+    const el = options?.el
     if (queryMap.value.q) {
-      criteria.value = queryMap.value.q
-      ;(options?.el as HTMLFormElement).requestSubmit()
+      if (criteria.value) criteria.value = queryMap.value.q
+      if (el) (el as HTMLFormElement).requestSubmit()
     }
   }
 
-  const setValue = ({ el, value }: { el: HTMLInputElement | null; value: string }): void => {
-    if (el) el.value = value
-  }
-
-  const setErrorMessage = ({
-    el,
-    message,
-  }: {
-    el: HTMLDivElement | null
-    message: string
-  }): void => {
-    if (el) el.innerHTML = message
-  }
-
   return {
-    searchParams: searchParams.value,
+    searchParams,
     errors: errors.value,
     initSearchParams,
-    setSearchParams,
     search,
-    setValue,
-    setErrorMessage,
   }
 }

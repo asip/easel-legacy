@@ -1,7 +1,5 @@
-import { useFrameSearch } from '~/composables'
+import { useElement, useFrameSearch } from '~/composables'
 import ApplicationController from './application-controller'
-
-export { useFrameSearch } from '~/composables'
 
 export default class FrameSearchController extends ApplicationController {
   static targets = ['word', 'tag', 'wordMessage', 'tagMessage']
@@ -26,29 +24,36 @@ export default class FrameSearchController extends ApplicationController {
     if (this.hasWordMessageTarget) this.wordMessageElement = this.wordMessageTarget
     if (this.hasTagMessageTarget) this.tagMessageElement = this.tagMessageTarget
 
-    const { searchParams, initSearchParams, setValue } = useFrameSearch()
+    const { searchParams, initSearchParams } = useFrameSearch()
+    const { value: wordValue } = useElement(this.wordElement)
+    const { value: tagValue } = useElement(this.tagElement)
+
     initSearchParams()
-    setValue({ el: this.wordElement, value: searchParams.word ?? '' })
-    setValue({ el: this.tagElement, value: searchParams.tagName ?? '' })
+    wordValue.value = searchParams.value.word
+    tagValue.value = searchParams.value.tagName
   }
 
   submit(ev: Event): void {
-    const { errors, setSearchParams, search, setErrorMessage } = useFrameSearch({
+    const { errors, searchParams, search } = useFrameSearch({
       el: this.element,
     })
-    setSearchParams({ word: this.wordElement?.value ?? '', tagName: this.tagElement?.value ?? '' })
+    const { message: wordMessage } = useElement(this.wordMessageElement)
+    const { message: tagMessage } = useElement(this.tagMessageElement)
+
+    searchParams.value.word = this.wordElement?.value
+    searchParams.value.tagName = this.tagElement?.value
     search(ev)
-    setErrorMessage({ el: this.wordMessageElement, message: errors.word ?? '' })
-    setErrorMessage({ el: this.tagMessageElement, message: errors.tagName ?? '' })
+    wordMessage.value = errors.word
+    tagMessage.value = errors.tagName
   }
 
   clearWordMessage(): void {
-    const { setErrorMessage } = useFrameSearch()
-    setErrorMessage({ el: this.wordMessageElement, message: '' })
+    const { message: wordMessage } = useElement(this.wordMessageElement)
+    wordMessage.value = ''
   }
 
   clearTagMessage(): void {
-    const { setErrorMessage } = useFrameSearch()
-    setErrorMessage({ el: this.tagMessageElement, message: '' })
+    const { message: tagMessage } = useElement(this.tagMessageElement)
+    tagMessage.value = ''
   }
 }
