@@ -1,10 +1,10 @@
 import { ref } from '@vue/reactivity'
 
-import { ofetch } from 'ofetch'
 import type { FetchOptions, FetchError, FetchResponse } from 'ofetch'
 
 import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
+import { useOFetch } from './use-ofetch'
 
 interface MutationAPIOptions {
   method: 'post' | 'put' | 'delete'
@@ -31,8 +31,6 @@ export const useMutationApi = async <T = unknown, E = any>(
 
   const headers: Record<string, string> = commonHeaders.value
 
-  const pending = ref<boolean>(true)
-
   const tokenRef = ref<string>()
 
   if (token) {
@@ -40,57 +38,29 @@ export const useMutationApi = async <T = unknown, E = any>(
     tokenRef.value = token
   }
 
-  const data = ref<T>()
-  const error = ref<FetchError<E>>()
+  const options: FetchOptions<'json'> = {
+    baseURL: baseURL.value,
+    headers,
+    method,
+  }
+
+  if (onRequestError) {
+    options.onRequestError = onRequestError
+  }
+
+  if (onResponseError) {
+    options.onResponseError = onResponseError
+  }
 
   if (method == 'post' || method == 'put') {
-    const options: FetchOptions<'json'> = {
-      baseURL: baseURL.value,
-      method,
-      body,
-      headers,
-      onResponse({ response }: { response: FetchResponse<T> }) {
-        if ((method == 'post' && !tokenRef.value) || method == 'put')
-          tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
-      },
-    }
-
-    if (onRequestError) {
-      options.onRequestError = onRequestError
-    }
-
-    if (onResponseError) {
-      options.onResponseError = onResponseError
-    }
-
-    try {
-      data.value = await ofetch<T>(url, options)
-    } catch (err: unknown) {
-      error.value = err as FetchError<E>
-    }
-  } else {
-    const options: FetchOptions<'json'> = {
-      baseURL: baseURL.value,
-      method: 'delete',
-      headers,
-    }
-
-    if (onRequestError) {
-      options.onRequestError = onRequestError
-    }
-
-    if (onResponseError) {
-      options.onResponseError = onResponseError
-    }
-
-    try {
-      data.value = await ofetch<T>(url, options)
-    } catch (err: unknown) {
-      error.value = err as FetchError<E>
+    options.body = body
+    options.onResponse = ({ response }: { response: FetchResponse<T> }) => {
+      if ((method == 'post' && !tokenRef.value) || method == 'put')
+        tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
     }
   }
 
-  pending.value = false
+  const { data, error, pending } = await useOFetch<T, E>(url, options)
 
-  return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
+  return { token: tokenRef.value, data, error, pending }
 }

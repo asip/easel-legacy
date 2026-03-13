@@ -1,10 +1,10 @@
 import { ref } from '@vue/reactivity'
 
-import { ofetch } from 'ofetch'
 import type { FetchOptions, FetchError, FetchResponse } from 'ofetch'
 
 import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
+import { useOFetch } from './use-ofetch'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SearchParams = Record<string, any>
@@ -21,7 +21,15 @@ export interface QueryAPIOptions {
 }
 
 // eslint-disable-next-line
-export const useQueryApi = async <T = unknown, E = any>(url: string, options?: QueryAPIOptions) => {
+export const useQueryApi = async <T = unknown, E = any>(
+  url: string,
+  options?: QueryAPIOptions,
+): Promise<{
+  token: string | undefined
+  data: T | undefined
+  error: FetchError<E> | undefined
+  pending: boolean
+}> => {
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
 
@@ -56,18 +64,7 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
     getOptions.onResponseError = options.onResponseError
   }
 
-  const pending = ref<boolean>(true)
+  const { data, error, pending } = await useOFetch<T, E>(url, getOptions)
 
-  const data = ref<T>()
-  const error = ref<FetchError<E>>()
-
-  try {
-    data.value = await ofetch<T>(url, getOptions)
-  } catch (err: unknown) {
-    error.value = err as FetchError<E>
-  }
-
-  pending.value = false
-
-  return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
+  return { token: tokenRef.value, data, error, pending: pending }
 }
