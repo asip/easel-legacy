@@ -37,23 +37,25 @@ export default class FrameSearchController extends ApplicationController {
     const { errors, searchParams, search } = useFrameSearch({
       el: this.element,
     })
-    const { message: wordMessage } = useElement(this.wordMessageElement)
-    const { message: tagMessage } = useElement(this.tagMessageElement)
+    const { value: wordValue } = useElement(this.wordElement)
+    const { value: tagValue } = useElement(this.tagElement)
+    const { content: wordMessage } = useElement(this.wordMessageElement)
+    const { content: tagMessage } = useElement(this.tagMessageElement)
 
-    searchParams.value.word = this.wordElement?.value
-    searchParams.value.tagName = this.tagElement?.value
+    searchParams.value.word = wordValue.value
+    searchParams.value.tagName = tagValue.value
     search(ev)
     wordMessage.value = errors.word
     tagMessage.value = errors.tagName
   }
 
   clearWordMessage(): void {
-    const { message: wordMessage } = useElement(this.wordMessageElement)
+    const { content: wordMessage } = useElement(this.wordMessageElement)
     wordMessage.value = ''
   }
 
   clearTagMessage(): void {
-    const { message: tagMessage } = useElement(this.tagMessageElement)
+    const { content: tagMessage } = useElement(this.tagMessageElement)
     tagMessage.value = ''
   }
 }
