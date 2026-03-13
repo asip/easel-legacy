@@ -1,5 +1,7 @@
 import { computed } from '@vue/reactivity'
 
+import { useElement } from './use-element'
+
 interface ImagePreviewOptions {
   file: File | null
   contentEl: HTMLElement | null
@@ -7,9 +9,11 @@ interface ImagePreviewOptions {
 }
 
 export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOptions) {
+  const { src } = useElement(previewEl)
+
   const previewUrl = computed<string | null>({
     get() {
-      return previewEl?.src ?? null
+      return src.value
     },
     set(value: string | null) {
       if (value) {
@@ -18,7 +22,7 @@ export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOpti
         hidePreview()
       }
 
-      if (previewEl) previewEl.src = value ?? ''
+      src.value = value
     },
   })
 

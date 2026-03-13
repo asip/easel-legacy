@@ -19,6 +19,15 @@ export function useElement(el: Element | undefined | null) {
     },
   })
 
+  const src = computed<string | null>({
+    get() {
+      return el ? (el as HTMLImageElement).src : null
+    },
+    set(value: string | null) {
+      if (el) (el as HTMLImageElement).src = value ?? ''
+    },
+  })
+
   const removeElements = ({ className }: { className: string }): void => {
     if (el) {
       const elements: NodeListOf<Element> = el.querySelectorAll(`.${className}`)
@@ -28,5 +37,5 @@ export function useElement(el: Element | undefined | null) {
     }
   }
 
-  return { value, content, removeElements }
+  return { value, content, src, removeElements }
 }
