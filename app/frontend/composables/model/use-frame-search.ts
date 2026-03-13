@@ -10,7 +10,7 @@ interface SearchPropertys {
   tagName?: string | null
 }
 
-export function useFrameSearch(options?: { el?: Element }) {
+export function useFrameSearch() {
   const { autoDetect } = useLocale()
   const { criteria } = useCookieStore()
 
@@ -39,22 +39,12 @@ export function useFrameSearch(options?: { el?: Element }) {
 
   const errors = ref<SearchPropertys>({ word: '', tagName: '' })
 
-  const initSearchParams = () => {
+  const init = () => {
     searchParams.value.word = criteria.value?.word ?? ''
     searchParams.value.tagName = criteria.value?.tag_name ?? ''
   }
 
-  const search = (ev: Event): void => {
-    const success = validateSearchParams()
-
-    if (success) {
-      submit()
-    } else {
-      ev.preventDefault()
-    }
-  }
-
-  const validateSearchParams = () => {
+  const validate = () => {
     const result = v.safeParse(schema, searchParams.value, { lang: i18n.global.locale.value })
     const errorMessages = result.issues ? v.flatten(result.issues).nested : {}
     const success = result.success
@@ -65,18 +55,28 @@ export function useFrameSearch(options?: { el?: Element }) {
     return success
   }
 
-  const submit = (): void => {
-    const el = options?.el
+  const search = (ev: Event): void => {
+    const success = validate()
+
+    if (success) {
+      submit(ev)
+    } else {
+      ev.preventDefault()
+    }
+  }
+
+  const submit = (ev: Event): void => {
+    const el = ev.target as HTMLFormElement
     if (queryMap.value.q) {
       if (criteria.value) criteria.value = queryMap.value.q
-      if (el) (el as HTMLFormElement).requestSubmit()
+      el.requestSubmit()
     }
   }
 
   return {
     searchParams,
     errors: errors.value,
-    initSearchParams,
+    init,
     search,
   }
 }
