@@ -1,18 +1,18 @@
 import { computed } from '@vue/reactivity'
 
-export function useElement(el: Element | null) {
+export function useElement(el: Element | undefined | null) {
   const value = computed<string, string | null | undefined>({
     get() {
-      return (el as HTMLInputElement).value
+      return el ? (el as HTMLInputElement).value : ''
     },
     set(value: string | null | undefined) {
       if (el) (el as HTMLInputElement).value = value ?? ''
     },
   })
 
-  const message = computed<string, string | null | undefined>({
+  const content = computed<string, string | null | undefined>({
     get() {
-      return (el as HTMLDivElement).innerHTML
+      return el ? (el as HTMLDivElement).innerHTML : ''
     },
     set(value: string | null | undefined) {
       if (el) (el as HTMLDivElement).innerHTML = value ?? ''
@@ -28,5 +28,5 @@ export function useElement(el: Element | null) {
     }
   }
 
-  return { value, message, removeElements }
+  return { value, content, removeElements }
 }
