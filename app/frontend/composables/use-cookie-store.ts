@@ -13,7 +13,7 @@ export function useCookieStore() {
     get() {
       return cookies.get<Criteria>('q')
     },
-    set(value: string | undefined) {
+    set(value: string | null | undefined) {
       cookies.set('q', value ?? '{}', { path: '/' })
     },
   })
