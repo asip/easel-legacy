@@ -1,8 +1,13 @@
-import { Ref } from '@vue/reactivity'
+import { Ref, WritableComputedRef } from '@vue/reactivity'
 
 import type { FetchError } from 'ofetch'
 
-import type { ErrorsResource, BackendErrorResource, Flash } from '../../interfaces'
+import type {
+  ErrorsResource,
+  BackendErrorInfo,
+  BackendErrorResource,
+  Flash,
+} from '../../interfaces'
 import type { ErrorMessages } from '../../types'
 
 import { useBackendErrorInfo } from './error'
@@ -19,7 +24,16 @@ interface UseAlertCallerType {
   clearAccount?: () => void
 }
 
-export function useAlert({ flash, caller }: UseAlertOptions) {
+export function useAlert({ flash, caller }: UseAlertOptions): {
+  backendErrorInfo: WritableComputedRef<BackendErrorInfo, BackendErrorResource>
+  setError: (
+    error: FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>,
+    options?: {
+      off?: boolean
+    },
+  ) => void
+  reload: () => void
+} {
   const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo()
 
   const setError = function (
