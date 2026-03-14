@@ -17,7 +17,7 @@
     "@nanostores/router": "^1.0.0",
     "@regle/core": "^1.20.3",
     "@regle/rules": "^1.20.3",
-    "@voyage/vue": "packages:*",
+    "@voyage/vue": "workspace:*",
     "@vueuse/integrations": "^14.2.1",
     "@yaireo/tagify": "^4.36.0",
     "bootstrap-icons": "^1.13.1",
