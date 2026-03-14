@@ -1,10 +1,10 @@
-export { useMutationApi, useQueryApi } from '@voyage/vue/composables'
-export { useExternalErrors, useAlert } from '@voyage/vue/composables'
-export { useEntity, useFlash, useLocale } from '@voyage/vue/composables'
+export { useMutationApi, useQueryApi } from '@voyage/vue'
+export { useExternalErrors, useAlert } from '@voyage/vue'
+export { useEntity, useFlash, useLocale } from '@voyage/vue'
 
-export { useDate } from '@voyage/vue/composables'
+export { useDate } from '@voyage/vue'
 
-export type { UseAlertType, UseFlashType } from '@voyage/vue/composables'
+export type { UseAlertType, UseFlashType } from '@voyage/vue'
 
 export { useI18nRegle } from './use-i18n-regle'
 

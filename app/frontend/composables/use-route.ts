@@ -1,4 +1,4 @@
-import { useNanoRoute } from '@voyage/vue/composables'
+import { useNanoRoute } from '@voyage/vue'
 import { $router, RoutesType } from '~/stores'
 
 export function useRoute() {

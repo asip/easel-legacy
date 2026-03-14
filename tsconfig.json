@@ -11,12 +11,12 @@
     "paths": {
       "~": ["./app/frontend"],
       "~/*": ["./app/frontend/*"],
-      "@voyage/vue": ["./packages/voyage-vue"],
-      "@voyage/vue/*": ["./packages/voyage-vue/*"],
+      "@voyage/vue": ["./packages/voyage-vue/src"],
+      "@voyage/vue/*": ["./packages/voyage-vue/src/*"],
       "vanillajs-datepicker": ["./node_modules/vanillajs-datepicker"],
       "vanillajs-datepicker/*": ["./node_modules/vanillajs-datepicker/*"]
     }
   },
-  "include": ["./app/frontend/**/*.ts", "./packages/voyage-vue/*+/*.ts", "./app/frontend/**/*.vue", "./vite.config.ts"],
+  "include": ["./app/frontend/**/*.ts", "./app/frontend/**/*.vue", "./vite.config.ts"],
   "exclude": ["./node_modules"]
 }

@@ -1,4 +1,4 @@
-import { i18n } from '@voyage/vue/i18n'
+import { i18n } from '@voyage/vue'
 
 const messages = {
   en: {
