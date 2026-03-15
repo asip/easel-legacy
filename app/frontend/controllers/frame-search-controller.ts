@@ -13,32 +13,24 @@ export default class FrameSearchController extends ApplicationController {
   declare readonly tagMessageTarget: HTMLDivElement
   declare readonly hasTagMessageTarget: boolean
 
-  wordElement: HTMLInputElement | null = null
-  tagElement: HTMLInputElement | null = null
-  wordMessageElement: HTMLDivElement | null = null
-  tagMessageElement: HTMLDivElement | null = null
-
   connect(): void {
-    if (this.hasWordTarget) this.wordElement = this.wordTarget
-    if (this.hasTagTarget) this.tagElement = this.tagTarget
-    if (this.hasWordMessageTarget) this.wordMessageElement = this.wordMessageTarget
-    if (this.hasTagMessageTarget) this.tagMessageElement = this.tagMessageTarget
+    if (this.hasWordTarget && this.hasTagTarget) {
+      const { searchParams, init } = useFrameSearch()
+      const { value: wordValue } = useElement(this.wordTarget)
+      const { value: tagValue } = useElement(this.tagTarget)
 
-    const { searchParams, init } = useFrameSearch()
-    const { value: wordValue } = useElement(this.wordElement)
-    const { value: tagValue } = useElement(this.tagElement)
-
-    init()
-    wordValue.value = searchParams.value.word
-    tagValue.value = searchParams.value.tagName
+      init()
+      wordValue.value = searchParams.value.word
+      tagValue.value = searchParams.value.tagName
+    }
   }
 
   submit(ev: Event): void {
     const { errors, searchParams, search } = useFrameSearch()
-    const { value: wordValue } = useElement(this.wordElement)
-    const { value: tagValue } = useElement(this.tagElement)
-    const { content: wordMessage } = useElement(this.wordMessageElement)
-    const { content: tagMessage } = useElement(this.tagMessageElement)
+    const { value: wordValue } = useElement(this.wordTarget)
+    const { value: tagValue } = useElement(this.tagTarget)
+    const { content: wordMessage } = useElement(this.wordMessageTarget)
+    const { content: tagMessage } = useElement(this.tagMessageTarget)
 
     searchParams.value.word = wordValue.value
     searchParams.value.tagName = tagValue.value
@@ -48,12 +40,12 @@ export default class FrameSearchController extends ApplicationController {
   }
 
   clearWordMessage(): void {
-    const { content: wordMessage } = useElement(this.wordMessageElement)
+    const { content: wordMessage } = useElement(this.wordMessageTarget)
     wordMessage.value = ''
   }
 
   clearTagMessage(): void {
-    const { content: tagMessage } = useElement(this.tagMessageElement)
+    const { content: tagMessage } = useElement(this.tagMessageTarget)
     tagMessage.value = ''
   }
 }

@@ -17,19 +17,13 @@ export default class CalendarController extends ApplicationController {
 
   calendar: Datepicker | null = null
 
-  calElement: HTMLElement | null = null
-  wordElement: HTMLInputElement | null = null
-
   connect(): void {
-    if (this.hasCalTarget) this.calElement = this.calTarget
-    if (this.hasWordTarget) this.wordElement = this.wordTarget
-
-    if (this.calElement && this.wordElement) {
+    if (this.hasCalTarget && this.hasWordTarget) {
       const { date } = useCookieStore()
 
       const { initCalendar, word } = useCalendar({
-        el: this.calElement,
-        wordEl: this.wordElement,
+        el: this.calTarget,
+        wordEl: this.wordTarget,
       })
       word.value = date
       this.calendar = initCalendar()
@@ -38,10 +32,10 @@ export default class CalendarController extends ApplicationController {
 
   clear(): void {
     this.calendar?.destroy()
-    if (this.calElement && this.wordElement) {
+    if (this.hasCalTarget && this.hasWordTarget) {
       const { initCalendar } = useCalendar({
-        el: this.calElement,
-        wordEl: this.wordElement,
+        el: this.calTarget,
+        wordEl: this.wordTarget,
       })
       this.calendar = initCalendar()
     }

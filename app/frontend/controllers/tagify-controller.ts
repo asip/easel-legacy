@@ -16,14 +16,8 @@ export default class TagifyController extends ApplicationController {
   tagEditor: Tagify | null = null
 
   connect(): void {
-    let teElement: HTMLInputElement | null = null
-    let tagListElement: HTMLInputElement | null = null
-
-    if (this.hasTeTarget) teElement = this.teTarget
-    if (this.hasTlTarget) tagListElement = this.tlTarget
-
-    if (teElement) {
-      const { initTagEditor } = useTagEditor({ el: teElement, tagListEl: tagListElement })
+    if (this.hasTeTarget && this.hasTlTarget) {
+      const { initTagEditor } = useTagEditor({ el: this.teTarget, tagListEl: this.tlTarget })
 
       this.tagEditor = initTagEditor()
     }
