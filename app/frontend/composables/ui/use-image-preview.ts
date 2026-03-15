@@ -1,44 +1,11 @@
-import { computed } from '@vue/reactivity'
-
-import { useElement } from './use-element'
+import { Ref } from '@vue/reactivity'
 
 interface ImagePreviewOptions {
   file: File | null
-  contentEl: HTMLElement | null
-  previewEl: HTMLImageElement | null
+  previewUrl: Ref<string | null>
 }
 
-export function useImagePreview({ file, contentEl, previewEl }: ImagePreviewOptions) {
-  const { src } = useElement(previewEl)
-
-  const previewUrl = computed<string | null>({
-    get() {
-      return src.value
-    },
-    set(value: string | null) {
-      if (value) {
-        showPreview()
-      } else {
-        hidePreview()
-      }
-
-      src.value = value
-    },
-  })
-
-  const showPreview = (): void => {
-    // (プレビュー画像がなければ表示します)
-    if (contentEl && contentEl.classList.contains('hidden')) {
-      contentEl.classList.remove('hidden')
-    }
-  }
-
-  const hidePreview = (): void => {
-    if (contentEl && contentEl.classList.contains('block')) {
-      contentEl.classList.add('hidden')
-    }
-  }
-
+export function useImagePreview({ file, previewUrl }: ImagePreviewOptions) {
   const setPreview = (): void => {
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()

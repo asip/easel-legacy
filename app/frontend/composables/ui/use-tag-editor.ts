@@ -1,19 +1,11 @@
+import { Ref } from '@vue/reactivity'
 import Tagify from '@yaireo/tagify'
 
 import { useTagSearch } from '../model/use-tag-search'
-import { useElement } from './use-element'
 
-export function useTagEditor({
-  el,
-  tagListEl,
-}: {
-  el: HTMLInputElement
-  tagListEl: HTMLInputElement | null
-}) {
+export function useTagEditor({ el, tagList }: { el: HTMLInputElement; tagList: Ref<string> }) {
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
-
-  const { value: tagList } = useElement(tagListEl)
 
   const initTagEditor = (): Tagify => {
     tagEditor = new Tagify(el, {

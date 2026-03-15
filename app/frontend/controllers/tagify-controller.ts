@@ -2,7 +2,7 @@ import Tagify from '@yaireo/tagify'
 
 import ApplicationController from './application-controller'
 
-import { useTagEditor } from '~/composables'
+import { useTagEditor, useElement } from '~/composables'
 
 export default class TagifyController extends ApplicationController {
   static targets = ['te', 'tl']
@@ -17,7 +17,8 @@ export default class TagifyController extends ApplicationController {
 
   connect(): void {
     if (this.hasTeTarget && this.hasTlTarget) {
-      const { initTagEditor } = useTagEditor({ el: this.teTarget, tagListEl: this.tlTarget })
+      const { value: tagList } = useElement(this.tlTarget)
+      const { initTagEditor } = useTagEditor({ el: this.teTarget, tagList })
 
       this.tagEditor = initTagEditor()
     }

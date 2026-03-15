@@ -9,12 +9,13 @@ export type { UseAlertType, UseFlashType } from '@voyage/vue'
 export { useI18nRegle } from './use-i18n-regle'
 
 export {
+  useElement,
+  usePreviewUrl,
   useCalendar,
   useImagePreview,
   usePhotoSwipe,
   useTagEditor,
   useToast,
-  useElement,
 } from './ui'
 
 export { useAccount, useComment, useComments, useFrameSearch } from './model'

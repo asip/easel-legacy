@@ -1,6 +1,6 @@
 import ApplicationController from '~/controllers/application-controller'
 
-import { useImagePreview } from '~/composables'
+import { useImagePreview, usePreviewUrl } from '~/composables'
 
 export default class PreviewController extends ApplicationController {
   static targets = ['content', 'image']
@@ -15,6 +15,10 @@ export default class PreviewController extends ApplicationController {
   upload(evt: Event): void {
     // (.file_fieldからデータを取得して変数fileに代入します)
     const file: File | null = (evt.target as HTMLInputElement).files?.item(0) ?? null
-    useImagePreview({ file, contentEl: this.contentTarget, previewEl: this.imageTarget })
+    const { previewUrl } = usePreviewUrl({
+      previewEl: this.imageTarget,
+      contentEl: this.contentTarget,
+    })
+    useImagePreview({ file, previewUrl })
   }
 }

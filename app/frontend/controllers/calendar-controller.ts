@@ -2,7 +2,7 @@ import ApplicationController from './application-controller'
 
 import { Datepicker } from 'vanillajs-datepicker'
 
-import { useCalendar, useCookieStore } from '~/composables'
+import { useCalendar, useCookieStore, useElement } from '~/composables'
 
 export default class CalendarController extends ApplicationController {
   static targets = ['cal', 'word']
@@ -20,10 +20,10 @@ export default class CalendarController extends ApplicationController {
   connect(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
       const { date } = useCookieStore()
-
-      const { initCalendar, word } = useCalendar({
+      const { value: word } = useElement(this.wordTarget)
+      const { initCalendar } = useCalendar({
         el: this.calTarget,
-        wordEl: this.wordTarget,
+        word,
       })
       word.value = date
       this.calendar = initCalendar()
@@ -33,9 +33,10 @@ export default class CalendarController extends ApplicationController {
   clear(): void {
     this.calendar?.destroy()
     if (this.hasCalTarget && this.hasWordTarget) {
+      const { value: word } = useElement(this.wordTarget)
       const { initCalendar } = useCalendar({
         el: this.calTarget,
-        wordEl: this.wordTarget,
+        word,
       })
       this.calendar = initCalendar()
     }
