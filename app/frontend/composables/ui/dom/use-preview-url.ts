@@ -3,12 +3,12 @@ import { computed } from '@vue/reactivity'
 import { useElement } from './use-element'
 
 interface PreviewUrlOptions {
-  previewEl: HTMLImageElement | null
+  imageEl: HTMLImageElement | null
   contentEl: HTMLElement | null
 }
 
-export function usePreviewUrl({ previewEl, contentEl }: PreviewUrlOptions) {
-  const { src } = useElement(previewEl)
+export function usePreviewUrl({ imageEl, contentEl }: PreviewUrlOptions) {
+  const { src } = useElement(imageEl)
 
   const previewUrl = computed<string | null>({
     get() {

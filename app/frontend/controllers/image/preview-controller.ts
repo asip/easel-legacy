@@ -16,7 +16,7 @@ export default class PreviewController extends ApplicationController {
     // (.file_fieldからデータを取得して変数fileに代入します)
     const file: File | null = (evt.target as HTMLInputElement).files?.item(0) ?? null
     const { previewUrl } = usePreviewUrl({
-      previewEl: this.imageTarget,
+      imageEl: this.imageTarget,
       contentEl: this.contentTarget,
     })
     useImagePreview({ file, previewUrl })
