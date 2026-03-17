@@ -98,10 +98,13 @@ const onDeleteClick = async (): Promise<void> => {
 const reload401404 = async (): Promise<void> => {
   if (
     backendErrorInfo.value.status == 401 ||
-    (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame')
+    (backendErrorInfo.value.status == 404 && backendErrorInfo.value.error?.source == 'Frame')
   ) {
     reload()
-  } else if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Comment') {
+  } else if (
+    backendErrorInfo.value.status == 404 &&
+    backendErrorInfo.value.error?.source == 'Comment'
+  ) {
     await getComments(id)
   }
 }

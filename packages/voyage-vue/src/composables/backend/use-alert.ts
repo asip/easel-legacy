@@ -1,11 +1,11 @@
-import { Ref, WritableComputedRef } from '@vue/reactivity'
+import { Ref } from '@vue/reactivity'
 
 import type { FetchError } from 'ofetch'
 
 import type {
   ErrorsResource,
-  BackendErrorInfo,
   BackendErrorResource,
+  BackendErrorInfo,
   Flash,
 } from '../../interfaces'
 import type { ErrorMessages } from '../../types'
@@ -24,20 +24,23 @@ interface UseAlertCallerType {
   clearAccount?: () => void
 }
 
-export function useAlert({ flash, caller }: UseAlertOptions): {
-  backendErrorInfo: WritableComputedRef<BackendErrorInfo, BackendErrorResource>
+export function useAlert<BER extends object = BackendErrorResource>({
+  flash,
+  caller,
+}: UseAlertOptions): {
+  backendErrorInfo: Ref<BackendErrorInfo<BER>, BER>
   setError: (
-    error: FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>,
+    error: FetchError<ErrorsResource<ErrorMessages<string>> | BER>,
     options?: {
       off?: boolean
     },
   ) => void
   reload: () => void
 } {
-  const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo()
+  const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo<BER>()
 
   const setError = function (
-    error: FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>,
+    error: FetchError<ErrorsResource<ErrorMessages<string>> | BER>,
     options?: { off?: boolean },
   ): void {
     const off = options?.off ?? false
@@ -61,8 +64,8 @@ export function useAlert({ flash, caller }: UseAlertOptions): {
           break
         case 404:
           {
-            const backendError = error.data as BackendErrorResource
-            backendErrorInfo.value = backendError
+            const backendError = error.data as BER
+            backendErrorInfo.value.error = backendError
           }
           break
         case 422: {
