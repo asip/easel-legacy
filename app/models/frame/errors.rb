@@ -4,7 +4,9 @@
 module Frame::Errors
   extend ActiveSupport::Concern
 
-  def full_error_messages
-    full_error_messages_for(%i[file name tag_list])
+  protected
+
+  def error_properties
+    %i[file name tag_list]
   end
 end
