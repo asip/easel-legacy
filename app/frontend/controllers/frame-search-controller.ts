@@ -29,8 +29,8 @@ export default class FrameSearchController extends ApplicationController {
     const { errors, searchParams, search } = useFrameSearch()
     const { value: wordValue } = useElement(this.wordTarget)
     const { value: tagValue } = useElement(this.tagTarget)
-    const { content: wordMessage } = useElement(this.wordMessageTarget)
-    const { content: tagMessage } = useElement(this.tagMessageTarget)
+    const { innerHtml: wordMessage } = useElement(this.wordMessageTarget)
+    const { innerHtml: tagMessage } = useElement(this.tagMessageTarget)
 
     searchParams.value.word = wordValue.value
     searchParams.value.tagName = tagValue.value
@@ -40,12 +40,12 @@ export default class FrameSearchController extends ApplicationController {
   }
 
   clearWordMessage(): void {
-    const { content: wordMessage } = useElement(this.wordMessageTarget)
+    const { innerHtml: wordMessage } = useElement(this.wordMessageTarget)
     wordMessage.value = ''
   }
 
   clearTagMessage(): void {
-    const { content: tagMessage } = useElement(this.tagMessageTarget)
+    const { innerHtml: tagMessage } = useElement(this.tagMessageTarget)
     tagMessage.value = ''
   }
 }

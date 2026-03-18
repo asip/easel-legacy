@@ -10,23 +10,34 @@ export function useElement(el: Element | undefined | null) {
     },
   })
 
-  const content = computed<string, string | null | undefined>({
+  const innerHtml = computed<string, string | null | undefined>({
     get() {
-      return el ? (el as HTMLDivElement).innerHTML : ''
+      return el ? (el as HTMLDivElement | HTMLTextAreaElement).innerHTML : ''
     },
     set(value: string | null | undefined) {
-      if (el) (el as HTMLDivElement).innerHTML = value ?? ''
+      if (el) (el as HTMLDivElement | HTMLTextAreaElement).innerHTML = value ?? ''
     },
   })
 
   const src = computed<string | null>({
     get() {
-      return el ? (el as HTMLImageElement).src : null
+      return el ? (el as HTMLImageElement | HTMLVideoElement | HTMLAudioElement).src : null
     },
     set(value: string | null) {
-      if (el) (el as HTMLImageElement).src = value ?? ''
+      if (el) (el as HTMLImageElement | HTMLVideoElement | HTMLAudioElement).src = value ?? ''
     },
   })
+
+  /*
+  const href = computed<string | null>({
+    get() {
+      return el ? (el as HTMLLinkElement).href : null
+    },
+    set(value: string | null) {
+      if (el) (el as HTMLLinkElement).href = value ?? ''
+    },
+  })
+  */
 
   const removeElements = ({ className }: { className: string }): void => {
     if (el) {
@@ -37,5 +48,5 @@ export function useElement(el: Element | undefined | null) {
     }
   }
 
-  return { value, content, src, removeElements }
+  return { value, innerHtml, src, /* href, */ removeElements }
 }
