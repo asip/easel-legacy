@@ -13,7 +13,7 @@ export function useImagePreview({ file, previewUrl }: ImagePreviewOptions) {
     reader.onload = function () {
       // (読み込んだファイルの内容を取得して変数imageに代入します)
       const image: string | ArrayBuffer | null = this.result
-      //console.log(content.classList);
+      // console.log(content.classList);
       previewUrl.value = image ? (image as string) : null
     }
     // (DataURIScheme文字列を取得します)

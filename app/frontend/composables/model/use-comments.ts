@@ -20,7 +20,7 @@ export function useComments() {
 
   const getComments = async (frameId: string): Promise<void> => {
     clearFlash()
-    //console.log(frameId)
+    // console.log(frameId)
 
     const { data, error } = await useQueryApi<
       CommentsResource,
@@ -31,16 +31,16 @@ export function useComments() {
       setError(error)
     } else {
       const commentList: [CommentResource] | undefined = data?.comments
-      //console.log(comment_list);
+      // console.log(comment_list);
       comments.value.splice(0, comments.value.length)
       if (commentList) {
         for (const comment of commentList) {
-          //console.log(comment);
+          // console.log(comment);
           comments.value.push(makeComment({ from: comment }))
         }
       }
     }
-    //console.log(comments);
+    // console.log(comments);
   }
 
   return { comments, getComments, flash }
