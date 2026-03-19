@@ -21,15 +21,14 @@
       <% end %>
       <div class="flex justify-center">
         <div class="mx-auto">
-          <% map = helpers.query_map_for_frame(from: @from, page: @pagy.page) %>
+          <% map = Oj.dump(helpers.query_map_for_frame(from: @from, page: @pagy.page)) %>
           <%#= map %>
           <%= link_to frame.name, frame_path(frame),
                       class: "link link-hover",
                       "data-turbo": true,
                       "data-controller": "queryMap",
                       "data-action": "click->queryMap#setQueryMap",
-                      "data-queryMap-ref-value": map[:ref],
-                      "data-queryMap-page-value": map[:page] %>
+                      "data-queryMap-q-value": map %>
         </div>
       </div>
     </div>

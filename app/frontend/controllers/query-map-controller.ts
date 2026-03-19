@@ -1,14 +1,19 @@
+import { RefItems } from '~/interfaces'
 import ApplicationController from './application-controller'
 
 import { useCookieStore } from '~/composables'
 
+interface QueryItems {
+  ref?: string
+  page?: string
+}
+
 export default class QueryMapController extends ApplicationController {
   static values = {
-    ref: String,
-    page: String,
+    q: String,
   }
 
-  declare readonly refValue: string
+  declare readonly qValue: string
   declare readonly pageValue: string
 
   setQueryMap(ev: Event): void {
@@ -16,8 +21,10 @@ export default class QueryMapController extends ApplicationController {
 
     ev.preventDefault()
 
-    refItems.value = this.refValue
-    page.value = this.pageValue
+    const map = JSON.parse(this.qValue) as QueryItems
+
+    refItems.value = map.ref ?? ''
+    page.value = map.page ?? ''
     // globalThis.console.log(refItems.value)
     // globalThis.console.log(page.value)
 

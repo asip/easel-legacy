@@ -9,13 +9,12 @@
           <%= link_to helpers.back_to_path do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
         </div>
         <div>
-          <% map = helpers.query_map %>
+          <% map = Oj.dump(helpers.query_map) %>
           <%= link_to user_path(@frame.user),
                       class: "link link-hover",
                       "data-controller": "queryMap",
                       "data-action": "click->queryMap#setQueryMap",
-                      "data-queryMap-ref-value": map[:ref],
-                      "data-queryMap-page-value": map[:page] do %>
+                      "data-queryMap-q-value": map do %>
             <%= @frame.user.name %>
           <% end %>
         </div>

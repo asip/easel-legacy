@@ -4,12 +4,11 @@
     <div class="card-body divide-y divide-gray-200">
       <div class="flex justify-between pb-1">
         <div>
-          <% map = helpers.query_map %>
+          <% map = Oj.dump(helpers.query_map) %>
           <%= link_to helpers.back_to_path, class: "mr-1",
                       "data-controller": "queryMap",
                       "data-action": "click->queryMap#setQueryMap",
-                      "data-queryMap-ref-value": map[:ref],
-                      "data-queryMap-page-value": map[:page] do %>
+                      "data-queryMap-q-value": map do %>
             <i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i>
             <% end %>
             プロフィール

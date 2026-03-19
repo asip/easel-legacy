@@ -3,13 +3,12 @@
   <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2">
     <div class="flex justify-between pl-4 pr-4 pt-1 pb-1">
       <div>
-        <% map = helpers.query_map %>
+        <% map = Oj.dump(helpers.query_map) %>
         <%= link_to helpers.back_to_path,
                     class: "mr-1", "data-turbo": true,
                     "data-controller": "queryMap",
                     "data-action": "click->queryMap#setQueryMap",
-                    "data-queryMap-ref-value": map[:ref],
-                    "data-queryMap-page-value": map[:page] do %>
+                    "data-queryMap-q-value": map do %>
           <i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i>
         <% end %>
       </div>
