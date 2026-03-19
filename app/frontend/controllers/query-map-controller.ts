@@ -1,4 +1,3 @@
-import { RefItems } from '~/interfaces'
 import ApplicationController from './application-controller'
 
 import { useCookieStore } from '~/composables'
