@@ -5,7 +5,7 @@ class Front::Api::V1::TagsController < Front::Api::V1::ApiController
   include Api::Account::Authentication::Skip
 
   def search
-    tags = Queries::ApplicationTag::ListTagNames.run(name: permitted_params[:q]).pluck(:name)
+    tags = Queries::ApplicationTag::ListTagNames.run(name: route_params[:q]).pluck(:name)
     render_tags(tags:)
   end
 
@@ -15,7 +15,7 @@ class Front::Api::V1::TagsController < Front::Api::V1::ApiController
     render json: { tags: }
   end
 
-  def permitted_params
-    @permitted_params ||= params.permit(:q).to_h
+  def route_params
+    @route_params ||= params.permit(:q).to_h
   end
 end

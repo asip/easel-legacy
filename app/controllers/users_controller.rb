@@ -35,6 +35,6 @@ class UsersController < ApplicationController
   private
 
   def permitted_params
-    @permitted_params ||= params.permit(:id, :user_id, :page, :ref).to_h
+    @permitted_params ||= params.permit(:id, :user_id, :page).to_h
   end
 end
