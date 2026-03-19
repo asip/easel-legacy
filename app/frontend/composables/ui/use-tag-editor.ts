@@ -1,9 +1,18 @@
 import { Ref } from '@vue/reactivity'
 import Tagify from '@yaireo/tagify'
 
-import { useTagSearch } from '../model/use-tag-search'
+interface TagSearchType {
+  searchTag: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
+  tags: Ref<string[]>
+}
 
-export function useTagEditor({ el, tagList }: { el: HTMLInputElement; tagList: Ref<string> }) {
+interface TagEditorOptions {
+  el: HTMLInputElement | HTMLTextAreaElement
+  tagList: Ref<string[] | undefined>
+  tagSearch?: TagSearchType
+}
+
+export function useTagEditor({ el, tagList, tagSearch }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
 
@@ -27,7 +36,7 @@ export function useTagEditor({ el, tagList }: { el: HTMLInputElement; tagList: R
 
   const setTags = (): void => {
     tagEditor?.removeAllTags()
-    if (tagList.value.length > 0) tagEditor?.addTags(tagList.value.split(','))
+    if (tagList.value) tagEditor?.addTags(tagList.value)
   }
 
   const setEventCallbacks = (): void => {
@@ -51,21 +60,18 @@ export function useTagEditor({ el, tagList }: { el: HTMLInputElement; tagList: R
     controller = new AbortController()
 
     void (async () => {
-      const { tags, searchTag } = useTagSearch()
-      await searchTag(value, { signal: controller.signal })
-      setAutocomplete(value, tags.value)
+      await tagSearch?.searchTag(value, { signal: controller.signal })
+      setAutocomplete(value)
     })()
   }
 
-  const setAutocomplete = (value: string, tags: string[]): void => {
-    if (tagEditor) {
-      tagEditor.whitelist = tags
-      tagEditor.loading(false).dropdown.show(value)
-    }
+  const setAutocomplete = (value: string): void => {
+    if (tagEditor) tagEditor.whitelist = tagSearch?.tags.value ?? []
+    tagEditor?.loading(false).dropdown.show(value)
   }
 
   const saveTagList = (): void => {
-    tagList.value = tagEditor?.value.map((v) => v.value).join(',') ?? ''
+    tagList.value = tagEditor?.value.map((v) => v.value)
   }
 
   return { initTagEditor }
