@@ -21,7 +21,7 @@ export default class FrameSearchController extends ApplicationController {
 
       init()
       wordValue.value = searchParams.value.word
-      tagValue.value = searchParams.value.tagName
+      tagValue.value = searchParams.value.tag_name
     }
   }
 
@@ -33,10 +33,10 @@ export default class FrameSearchController extends ApplicationController {
     const { innerHtml: tagMessage } = useElement(this.tagMessageTarget)
 
     searchParams.value.word = wordValue.value
-    searchParams.value.tagName = tagValue.value
+    searchParams.value.tag_name = tagValue.value
     search(ev)
     wordMessage.value = errors.word
-    tagMessage.value = errors.tagName
+    tagMessage.value = errors.tag_name
   }
 
   clearWordMessage(): void {
