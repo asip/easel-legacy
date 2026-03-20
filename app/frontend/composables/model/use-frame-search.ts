@@ -6,6 +6,10 @@ import { i18n } from '~/i18n'
 import { useLocale, useCookieStore } from '~/composables'
 import { Criteria } from '~/types'
 
+interface QueryItems {
+  q?: string
+}
+
 export function useFrameSearch() {
   const { autoDetect } = useLocale()
   const { criteria } = useCookieStore()
@@ -20,11 +24,13 @@ export function useFrameSearch() {
   const searchParams = ref<Criteria>({})
 
   const queryMap = computed<{ q?: string }>(() => {
-    const query: { q?: string } = {}
+    const query: QueryItems = {}
     const qItems: Criteria = {}
 
     if (searchParams.value.word) qItems.word = searchParams.value.word
-    if (searchParams.value.tag_name) { qItems.tag_name = searchParams.value.tag_name }
+    if (searchParams.value.tag_name) {
+      qItems.tag_name = searchParams.value.tag_name
+    }
     query.q = JSON.stringify(qItems)
 
     return query
