@@ -11,12 +11,12 @@
   ],
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
+    ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
   "scripts": {
-    "tsc:build": "tsc -d",
-    "tsc:check": "tsc--noEmit",
+    "build": "tsdown --dts",
+    "build:check": "tsc--noEmit",
     "lint": "eslint --fix './src/**/*.{js,ts}'",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check"
@@ -38,6 +38,7 @@
     "eslint": "^9.39.4",
     "eslint-plugin-vue": "^10.8.0",
     "oxfmt": "^0.41.0",
+    "tsdown": "^0.21.4",
     "typescript": "5.9.3"
   }
 }
