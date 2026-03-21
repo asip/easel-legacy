@@ -41,13 +41,14 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", "~> 1.23.0", require: false
 
 # vite integration
-gem "vite_rails", "3.0.20"
+gem "vite_rails", "3.10.0"
+gem "vite_ruby", "3.10.0"
 
 # view component
 gem "view_component", "~> 4.5.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.215.0"
+gem "aws-sdk-s3", "~> 1.217.0"
 gem "image_processing", "~> 1.14.0"
 gem "shrine", "~> 3.6.0"
 
@@ -62,7 +63,7 @@ gem "rails-i18n", "~> 8.1.0"
 gem "rambulance", "~> 3.3.0"
 
 # authentication
-gem "devise", "5.0.2"
+gem "devise", "5.0.3"
 gem "devise-i18n", "1.16.0"
 gem "omniauth-google-oauth2", "1.2.2"
 gem "jwt", "3.1.2"
@@ -73,13 +74,13 @@ gem "googleauth", "~> 1.16.2"
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.3.1"
+gem "pagy", "~> 43.4.1"
 
 # tags
 gem "no_fly_list", "0.7.3"
 
 # json
-gem "oj", "3.16.15"
+gem "oj", "3.16.16"
 gem "alba", "3.10.0"
 
 # Rack::Locale
