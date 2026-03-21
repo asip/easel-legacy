@@ -1,4 +1,4 @@
-import { i18n } from '@voyage/vue'
+import { i18n } from '@vesperjs/vue'
 
 const messages = {
   en: {

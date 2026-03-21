@@ -1,4 +1,4 @@
-import { useApiConstants } from '@voyage/vue'
+import { useApiConstants } from '@vesperjs/vue'
 
 export function useConstants() {
   const { baseURL } = useApiConstants()

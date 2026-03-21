@@ -1,4 +1,4 @@
-export type { ErrorMessages } from '@voyage/vue'
+export type { ErrorMessages } from '@vesperjs/vue'
 
 export type { CommentErrorProperty } from './model/error'
 
