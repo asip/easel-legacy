@@ -17,12 +17,12 @@ module Cookie
   end
 
   def q_items
-    @q_items ||= Json::Util.to_hash(criteria)
+    @q_items ||= JsonUtil.to_hash(criteria)
     @q_items
   end
 
   def ref_items
-    @ref_items ||= Json::Util.to_hash(ref)
+    @ref_items ||= JsonUtil.to_hash(ref)
   end
 
   def ref
