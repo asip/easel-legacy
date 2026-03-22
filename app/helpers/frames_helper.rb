@@ -3,19 +3,10 @@
 # Frames Helper
 module FramesHelper
   def self.tag_map(frame:)
-    tags = frame.plain_tags
-    map = {}
-    tags.each do |tag|
-      map[tag] = {
-        q: Oj.dump({ tag_name: tag })
-      }
-    end
-    map
+    Frames::PageTransition::TagMap.build(frame:)
   end
 
   def self.paging_query_map(page:)
-    query = {}
-    query[:page] = page if page.present? && page != "1"
-    query
+    Frames::PageTransition::List::QueryMap.build(page:)
   end
 end
