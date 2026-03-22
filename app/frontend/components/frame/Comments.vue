@@ -9,13 +9,13 @@ const { viewData } = defineProps<{ viewData?: any }>()
 globalThis.console.log(JSON.stringify(viewData))
 */
 
-const { autoDetect } = useLocale()
+const { autodetect } = useLocale()
 const { setFlash } = useToast()
 const { setConstants } = useConstants()
 const { authenticate, flash } = useAccount()
 const { getComments } = useComments()
 
-autoDetect()
+autodetect()
 setConstants()
 
 await authenticate()

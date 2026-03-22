@@ -1,5 +1,5 @@
 import { useLocale } from '../../composables'
 
-const { autoDetect } = useLocale()
+const { autodetect } = useLocale()
 
-autoDetect()
+autodetect()

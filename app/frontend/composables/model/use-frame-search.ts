@@ -11,10 +11,10 @@ interface QueryItems {
 }
 
 export function useFrameSearch() {
-  const { autoDetect } = useLocale()
+  const { autodetect } = useLocale()
   const { criteria } = useCookieStore()
 
-  autoDetect()
+  autodetect()
 
   const schema = v.object({
     word: v.pipe(v.string(), v.maxLength(40)),
