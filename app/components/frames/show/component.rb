@@ -6,9 +6,9 @@ module Frames
   module Show
     # Component class
     class Component < ViewComponent::Base
-      def initialize(frame:, tag_map:)
+      def initialize(frame:)
         @frame = frame
-        @tag_map = tag_map
+        @tag_map = Frames::PageTransition::TagMap.build(frame:)
       end
     end
   end
