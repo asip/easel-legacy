@@ -1,36 +1,4 @@
 <div class="hidden" data-controller="pswp" data-pswp-selector-value=".lb" data-pswp-anchor-value="a.ps"></div>
 <% @frames.each do |frame| %>
-  <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2">
-    <div class="card-body">
-      <% if helpers.user_signed_in? && frame.user_id == helpers.current_user.id %>
-      <div class="flex justify-start">
-        <div class="badge badge-xs badge-outline badge-accent rounded-full"><%= t("enums.private.#{frame.private}") %></div>
-      </div>
-      <% end %>
-      <% if frame.file.present? %>
-        <%= link_to image_tag(frame.file_proxy_url(:six), class: ""), frame.file_proxy_url(:original),
-                    class: "mx-auto ps" %>
-      <% end %>
-      <% if @tag %>
-        <% @tag_map = Frame.tag_map(frame:) %>
-        <% if @tag_map.size > 0 %>
-        <div class="flex justify-center flex-wrap gap-1">
-          <%= render ::Display::Tags::Component.new(tag_map: @tag_map, list: true) %>
-        </div>
-        <% end %>
-      <% end %>
-      <div class="flex justify-center">
-        <div class="mx-auto">
-          <% map = Oj.dump(helpers.query_map_for_frame(from: @from, page: @pagy.page)) %>
-          <%#= map %>
-          <%= link_to frame.name, frame_path(frame),
-                      class: "link link-hover",
-                      "data-turbo": true,
-                      "data-controller": "queryMap",
-                      "data-action": "click->queryMap#setQueryMap",
-                      "data-queryMap-q-value": map %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render Frames::More::Item::Component.new(frame:, tag: @tag, from: @from, pagy: @pagy) %>
 <% end %>
