@@ -1,7 +1,1 @@
-<div id="load-next" class="flex justify-center">
-  <%= if @pagy.next.present?
-        link_to("もっとみる #{@pagy.page}/#{@pagy.pages}",
-                { controller: controller_name, action: "next", params: Frame.paging_query_map(page: @pagy.next) },
-                class: "btn btn-outline btn-primary rounded-full bg-white", "data-turbo-prefetch": false)
-      end %>
-</div>
+<%= render Frames::More::Button::Component.new(id: "load-next", label: "もっとみる", action: "next", page: @pagy.next, pagy: @pagy) %>

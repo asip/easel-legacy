@@ -1,0 +1,7 @@
+<div id="<%= @id %>" class="flex justify-center">
+  <%= if @page.present?
+        link_to("#{@label} #{@pagy.page}/#{@pagy.pages}",
+                { controller: controller_name, action: @action, params: Frame.paging_query_map(page: @page) },
+                class: "btn btn-outline btn-primary rounded-full bg-white mb-2", "data-turbo-prefetch": false)
+      end %>
+</div>
