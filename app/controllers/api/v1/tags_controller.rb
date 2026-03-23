@@ -5,11 +5,14 @@ class Api::V1::TagsController < Api::V1::ApiController
   include Api::Account::Authentication::Skip
 
   def search
-    tags = Queries::ApplicationTag::ListTagNames.run(name: route_params[:q]).pluck(:name)
     render_tags(tags:)
   end
 
   private
+
+  def tags
+    Queries::ApplicationTag::ListTagNames.run(name: route_params[:q]).pluck(:name)
+  end
 
   def render_tags(tags:)
     render json: { tags: }

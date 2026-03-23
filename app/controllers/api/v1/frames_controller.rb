@@ -5,14 +5,16 @@ class Api::V1::FramesController < Api::V1::ApiController
   include Api::Frames::Authentication::Skip
 
   def comments
-    comments = Queries::Frame::ListCommentsWithUser.run(frame_id: path_params[:frame_id])
-
     # options = {}
     # options[:include] = [:user]
-    render_comments(comments:)
+    render_comments(comments: comment_list)
   end
 
   private
+
+  def comment_list
+    Queries::Frame::ListCommentsWithUser.run(frame_id: path_params[:frame_id])
+  end
 
   def path_params
     @path_params ||= params.permit(:frame_id).to_h
