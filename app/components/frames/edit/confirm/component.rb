@@ -11,7 +11,7 @@ module Frames
         def initialize(frame:, form:)
           @frame = frame
           @form = form
-          @tag_map = Frames::PageTransition::TagMap.build(frame:)
+          @tag_map = Frame.tag_map(frame: @frame)
         end
       end
     end

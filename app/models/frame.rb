@@ -25,6 +25,7 @@ class Frame < ApplicationRecord
   include ::Errors::Sortable
   include Errors
   include Page::Confirmable
+  include ::Frame::Helper
 
   has_tags :tags, polymorphic: true
 
