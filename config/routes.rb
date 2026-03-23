@@ -76,22 +76,20 @@ Rails.application.routes.draw do
     get "/prev" => "sessions#prev"
   end
 
-  namespace :front do
-    namespace :api do
-      namespace :v1 do
-        resources :frames, only: [] do
-          get :comments
-          resources :comments, only: %i[create update destroy]
-        end
-
-        resources :tags, only: [] do
-          collection do
-            get :search
-          end
-        end
-
-        get "/account" => "account#show"
+  namespace :api do
+    namespace :v1 do
+      resources :frames, only: [] do
+        get :comments
+        resources :comments, only: %i[create update destroy]
       end
+
+      resources :tags, only: [] do
+        collection do
+          get :search
+        end
+      end
+
+      get "/account" => "account#show"
     end
   end
 end

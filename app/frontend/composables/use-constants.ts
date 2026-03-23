@@ -4,7 +4,7 @@ export function useConstants() {
   const { baseURL } = useApiConstants()
 
   const setConstants = () => {
-    baseURL.value = '/front/api/v1'
+    baseURL.value = '/api/v1'
   }
 
   return { setConstants }

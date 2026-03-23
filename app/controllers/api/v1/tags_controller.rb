@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # tag api controller
-class Front::Api::V1::TagsController < Front::Api::V1::ApiController
+class Api::V1::TagsController < Api::V1::ApiController
   include Api::Account::Authentication::Skip
 
   def search
