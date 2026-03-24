@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 import type { User } from '~/interfaces'
 
 export const useAccountStore = defineStore('account', () => {
-  const loggedIn: Ref<boolean> = ref<boolean>(false)
+  const loggedIn = ref(false)
   const account = ref<User>({
     id: null,
   })
