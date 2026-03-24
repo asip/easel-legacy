@@ -7,7 +7,7 @@ import { useAccountStore } from '~/stores'
 
 import { i18n } from '~/i18n'
 
-export function useComment() {
+export const useComment = function () {
   const { flash, clearFlash } = useFlash()
   const { copy } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()

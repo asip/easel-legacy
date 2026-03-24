@@ -1,6 +1,6 @@
 import { useApiConstants } from '@vesperjs/vue'
 
-export function useConstants() {
+export const useConstants = function () {
   const { baseURL } = useApiConstants()
 
   const setConstants = () => {

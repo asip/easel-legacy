@@ -10,7 +10,7 @@ interface QueryItems {
   q?: string
 }
 
-export function useFrameSearch() {
+export const useFrameSearch = function () {
   const { autodetect } = useLocale()
   const { criteria } = useCookieStore()
 

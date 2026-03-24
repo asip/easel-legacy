@@ -6,7 +6,7 @@ import type { ErrorMessages } from '~/types'
 import { useQueryApi, useEntity, useAlert, useFlash } from '~/composables'
 import { useCommentsStore } from '~/stores'
 
-export function useComments() {
+export const useComments = function () {
   const { flash, clearFlash } = useFlash()
   const { create } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()

@@ -4,7 +4,7 @@ import { useAlert, useQueryApi, useFlash } from '~/composables'
 import type { TagsResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-export const useTagSearch = () => {
+export const useTagSearch = function () {
   const { flash, clearFlash } = useFlash()
   const { setError } = useAlert({ flash })
 

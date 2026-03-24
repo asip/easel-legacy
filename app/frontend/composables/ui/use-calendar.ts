@@ -4,7 +4,7 @@ import { computed, Ref } from '@vue/reactivity'
 
 import { useDate } from '~/composables'
 
-export function useCalendar({ el, word }: { el: HTMLElement; word: Ref<string> }) {
+export const useCalendar = function ({ el, word }: { el: HTMLElement; word: Ref<string> }) {
   const date = computed<string>(() => {
     const { isValidDate } = useDate()
 

@@ -5,7 +5,7 @@ interface ImagePreviewOptions {
   previewUrl: Ref<string | null>
 }
 
-export function useImagePreview({ file, previewUrl }: ImagePreviewOptions) {
+export const useImagePreview = function ({ file, previewUrl }: ImagePreviewOptions) {
   const setPreview = (): void => {
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()

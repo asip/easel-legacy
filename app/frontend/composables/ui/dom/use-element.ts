@@ -1,6 +1,6 @@
 import { computed } from '@vue/reactivity'
 
-export function useElement(el: Element | undefined | null) {
+export const useElement = function (el: Element | undefined | null) {
   const value = computed<string, string | null | undefined>({
     get() {
       return el ? (el as HTMLInputElement).value : ''

@@ -7,7 +7,7 @@ interface PreviewUrlOptions {
   contentEl: HTMLElement | null
 }
 
-export function usePreviewUrl({ imageEl, contentEl }: PreviewUrlOptions) {
+export const usePreviewUrl = function ({ imageEl, contentEl }: PreviewUrlOptions) {
   const { src } = useElement(imageEl)
 
   const previewUrl = computed<string | null>({

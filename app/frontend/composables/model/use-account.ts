@@ -6,7 +6,7 @@ import type { ErrorMessages } from '~/types'
 import { useAlert, useFlash, useQueryApi } from '~/composables'
 import { useAccountStore } from '~/stores'
 
-export function useAccount() {
+export const useAccount = function () {
   const { loggedIn, account } = storeToRefs(useAccountStore())
   const { clearAccount } = useAccountStore()
 

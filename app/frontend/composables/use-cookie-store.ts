@@ -6,7 +6,7 @@ import { RefItems } from '~/interfaces'
 
 import { useDate } from '~/composables'
 
-export function useCookieStore() {
+export const useCookieStore = function () {
   const cookies = useCookies(['access_token', 'q', 'ref', 'page'])
 
   const criteria = computed<Criteria | undefined, string>({

@@ -2,7 +2,7 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox'
 // @ts-expect-error : @types doesn't exist
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen'
 
-export function usePhotoSwipe({ selector, anchor }: { selector: string; anchor: string }) {
+export const usePhotoSwipe = function ({ selector, anchor }: { selector: string; anchor: string }) {
   const assignSize = async (): Promise<void> => {
     const galleryAnchors = globalThis.document.querySelectorAll(
       `${selector} ${anchor ? anchor : 'a'}`,
