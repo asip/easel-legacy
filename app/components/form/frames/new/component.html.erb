@@ -8,9 +8,9 @@
       <%= form_with model: @frame, local: true do |form| %>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <% if @frame.confirming %>
-          <%= render Frames::New::Confirm::Component.new(form:, frame: @frame) %>
+          <%= render Form::Frames::New::Confirm::Component.new(form:, frame: @frame) %>
         <% else %>
-          <%= render Frames::New::Input::Component.new(form:, frame: @frame, back_to_path: helpers.prev_url_for(path: new_frame_path)) %>
+          <%= render Form::Frames::New::Input::Component.new(form:, frame: @frame, back_to_path: helpers.prev_url_for(path: new_frame_path)) %>
         <% end %>
         <%= form.hidden_field :confirming %>
       <% end %>

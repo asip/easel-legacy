@@ -8,9 +8,9 @@
       <%= form_with(model: @resource, as: @resource_name, url: helpers.registration_path(@resource_name), html: { method: :put }) do |form| %>
         <%= form.hidden_field :image, value: form.object&.cached_image_data %>
         <% if @resource.confirming %>
-          <%= render Users::Edit::Confirm::Component.new(form:, user: @resource) %>
+          <%= render Form::Users::Registrations::Edit::Confirm::Component.new(form:, user: @resource) %>
         <% else %>
-          <%= render Users::Edit::Input::Component.new(form:, user: @resource, back_to_path: profile_path) %>
+          <%= render Form::Users::Registrations::Edit::Input::Component.new(form:, user: @resource, back_to_path: profile_path) %>
         <% end %>
         <%= form.hidden_field :confirming %>
       <% end %>
