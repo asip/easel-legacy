@@ -1,4 +1,4 @@
-import { Ref, ref } from '@vue/reactivity'
+import { ref } from '@vue/reactivity'
 import { defineStore } from 'pinia'
 
 import type { User } from '~/interfaces'
