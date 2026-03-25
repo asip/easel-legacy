@@ -42,7 +42,7 @@ gem "bootsnap", "~> 1.23.0", require: false
 
 # vite integration
 gem "vite_rails", "3.10.0"
-gem "vite_ruby", "3.10.0"
+gem "vite_ruby", "3.10.1"
 
 # view component
 gem "view_component", "~> 4.5.0"

@@ -91,7 +91,7 @@ importers:
         version: 11.3.0(vue@3.6.0-beta.8(typescript@5.9.3))
     devDependencies:
       '@markuplint/erb-parser':
-        specifier: 4.6.23
+        specifier: ^4.6.23
         version: 4.6.23
       '@markuplint/vue-parser':
         specifier: ^4.6.23
@@ -160,8 +160,8 @@ importers:
         specifier: ^8.0.2
         version: 8.0.2(@types/node@22.15.17)(jiti@2.6.1)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.39.0)
       vite-plugin-ruby:
-        specifier: ^5.2.0
-        version: 5.2.0(vite@8.0.2(@types/node@22.15.17)(jiti@2.6.1)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.39.0))
+        specifier: ^5.2.1
+        version: 5.2.1(vite@8.0.2(@types/node@22.15.17)(jiti@2.6.1)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.39.0))
 
 packages:
 
@@ -2656,8 +2656,8 @@ packages:
   varint@6.0.0:
     resolution: {integrity: sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg==}
 
-  vite-plugin-ruby@5.2.0:
-    resolution: {integrity: sha512-FoCaok2pV7GrcAqdxniI1r5XWBlSg9HwEwaxdQdXUVFfYkyINVakPeyrSK4PqOVhonBCuoc633g6bDTEC7wkcA==}
+  vite-plugin-ruby@5.2.1:
+    resolution: {integrity: sha512-wI3F/Yr4e4mEwiMff/cvNwGu8nZok5wrwUjHxO8we+h3y9+qCluO3Y5dzvz6vHJDBya9fKXkltoMwoJhaB2SRg==}
     peerDependencies:
       vite: '>=5.0.0'
 
@@ -5259,7 +5259,7 @@ snapshots:
 
   varint@6.0.0: {}
 
-  vite-plugin-ruby@5.2.0(vite@8.0.2(@types/node@22.15.17)(jiti@2.6.1)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.39.0)):
+  vite-plugin-ruby@5.2.1(vite@8.0.2(@types/node@22.15.17)(jiti@2.6.1)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.39.0)):
     dependencies:
       obug: 2.1.1
       tinyglobby: 0.2.15
