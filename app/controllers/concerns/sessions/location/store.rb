@@ -11,7 +11,6 @@ module Sessions::Location::Store
   protected
 
   def store_location
-    from = request.referer
     if PageTransition::Path.not_unsaved_paths_after_login?(from)
       path = root_path
       if from&.include?("/frame") && from&.include?("profile")

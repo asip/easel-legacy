@@ -11,7 +11,6 @@ module Users::Sessions::Location::Store
   protected
 
   def store_location
-    from = request.referer
     self.prev_url = from || root_path if PageTransition::Path.not_unsaved_paths_before_login?(from)
   end
 end

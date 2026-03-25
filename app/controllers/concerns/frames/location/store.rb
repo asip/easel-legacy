@@ -11,7 +11,6 @@ module Frames::Location::Store
   protected
 
   def store_location
-    from = request.referer
     if (action_name == "show" && !from&.include?("/frames") && PageTransition::Path.not_unsaved_paths_before_login?(from)) ||
        ((action_name == "new" || (action_name == "edit" && !from.include?(request.path))) &&
         PageTransition::Path.not_unsaved_paths_after_login?(from))
