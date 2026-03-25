@@ -12,11 +12,17 @@ module Sessions::Location::Store
 
   def store_location
     if PageTransition::Path.saved_paths_after_login?(from)
-      if from&.include?("/frame") && from&.include?("profile")
-        self.prev_url = root_path
-      else
+      if saved
         self.prev_url = from || root_path
+      else
+        self.prev_url = root_path
       end
     end
+  end
+
+  private
+
+  def saved
+    !from&.include?("/frames") || !from&.include?("profile")
   end
 end

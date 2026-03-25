@@ -11,6 +11,12 @@ module Users::Sessions::Location::Store
   protected
 
   def store_location
-    self.prev_url = from || root_path if PageTransition::Path.saved_paths_before_login?(from)
+    self.prev_url = from || root_path if saved
+  end
+
+  private
+
+  def saved
+    PageTransition::Path.saved_paths_before_login?(from)
   end
 end

@@ -11,11 +11,14 @@ module Users::Location::Store
   protected
 
   def store_location
-    if !from&.include?("/users") && PageTransition::Path.saved_paths_before_login?(from) &&
-       PageTransition::Path.saved_paths_after_login?(from)
-      unless from&.include?("/frames") && from&.include?("user_profile")
-        self.prev_url = from || root_path
-      end
-    end
+    self.prev_url = from || root_path if saved
+  end
+
+  private
+
+  def saved
+    !from&.include?("/users") && PageTransition::Path.saved_paths_before_login?(from) &&
+    PageTransition::Path.saved_paths_after_login?(from) &&
+    (!from&.include?("/frames") || !from&.include?("user_profile"))
   end
 end
