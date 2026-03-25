@@ -2,12 +2,12 @@
 
 # PageTransition::Path module
 module PageTransition::Path
-  def self.not_unsaved_paths_after_login?(from)
+  def self.saved_paths_after_login?(from)
     !from&.include?("/frames/new") && !from&.include?("/profile") &&
     !from&.include?("/account/password/edit")
   end
 
-  def self.not_unsaved_paths_before_login?(from)
+  def self.saved_paths_before_login?(from)
     !from&.include?("/login") && !from&.include?("/signup")
   end
 end

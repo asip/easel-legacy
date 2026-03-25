@@ -11,9 +11,9 @@ module Frames::Location::Store
   protected
 
   def store_location
-    if (action_name == "show" && !from&.include?("/frames") && PageTransition::Path.not_unsaved_paths_before_login?(from)) ||
+    if (action_name == "show" && !from&.include?("/frames") && PageTransition::Path.saved_paths_before_login?(from)) ||
        ((action_name == "new" || (action_name == "edit" && !from.include?(request.path))) &&
-        PageTransition::Path.not_unsaved_paths_after_login?(from))
+        PageTransition::Path.saved_paths_after_login?(from))
       self.prev_url = from || root_path(query_map_for_search)
     end
   end
