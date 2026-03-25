@@ -13,9 +13,8 @@ module Users::Location::Store
   def store_location
     if !from&.include?("/users") && PageTransition::Path.not_unsaved_paths_before_login?(from) &&
        PageTransition::Path.not_unsaved_paths_after_login?(from)
-      path = root_path
       unless from&.include?("/frames") && from&.include?("user_profile")
-        self.prev_url = from || path
+        self.prev_url = from || root_path
       end
     end
   end
