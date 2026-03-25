@@ -9,7 +9,7 @@ module Frames::PageTransition::Ref
   protected
 
   def query_map
-    @query_map ||= QueryMap.build(ref_items: ref_items_for_user)
+    @query_map ||= QueryMap.build(ref_items: ref_items_for_next)
   end
 
   def back_to_path
@@ -20,7 +20,7 @@ module Frames::PageTransition::Ref
     )
   end
 
-  def ref_items_for_user
-    @ref_items_for_user ||= RefItems.build(ref_items: JsonUtil.to_hash(ref))
+  def ref_items_for_next
+    @ref_items_for_next ||= RefItems.build(ref_items: JsonUtil.to_hash(ref))
   end
 end
