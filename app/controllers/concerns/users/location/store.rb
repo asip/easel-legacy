@@ -3,15 +3,10 @@
 # Users::Location::Store module
 module Users::Location::Store
   extend ActiveSupport::Concern
+  include PageLocation::Store
 
   included do
     before_action :store_location, only: [ :show ]
-  end
-
-  protected
-
-  def store_location
-    self.prev_url = from || root_path if saved
   end
 
   private

@@ -3,6 +3,7 @@
 # Sessions::Location::Store module
 module Sessions::Location::Store
   extend ActiveSupport::Concern
+  include PageLocation::Store
 
   included do
     before_action :store_location, only: [ :show ]
@@ -13,9 +14,9 @@ module Sessions::Location::Store
   def store_location
     if PageTransition::Path.saved_paths_after_login?(from)
       if saved
-        self.prev_url = from || root_path
+        self.prev_url = from || fallback
       else
-        self.prev_url = root_path
+        self.prev_url = fallback
       end
     end
   end
