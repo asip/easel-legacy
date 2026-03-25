@@ -11,7 +11,7 @@ module Account::Passwords::Location::Store
 
   private
 
-  def saved
+  def saved_page?
     !from&.include?("/account/password/edit")
   end
 

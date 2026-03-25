@@ -11,7 +11,7 @@ module Frames::Location::Store
 
   private
 
-  def saved
+  def saved_page?
     (action_name == "show" && !from&.include?("/frames") &&
     PageTransition::Path.saved_paths_before_login?(from)) ||
     ((action_name == "new" || (action_name == "edit" && !from.include?(request.path))) &&
