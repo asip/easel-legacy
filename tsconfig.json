@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "strictFunctionTypes": false,
     "outDir": "./app/assets/builds",
+    "types": ["vite/client"],
     "paths": {
       "~": ["./app/frontend"],
       "~/*": ["./app/frontend/*"],
