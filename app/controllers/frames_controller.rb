@@ -19,7 +19,6 @@ class FramesController < ApplicationController
   end
 
   def show
-    frame_id = permitted_params[:id]
     if current_user
       self.frame = Queries::Frame::FindFrame.run(frame_id:, user: current_user)
     else
@@ -43,7 +42,7 @@ class FramesController < ApplicationController
   end
 
   def edit
-    self.frame = Queries::Frame::FindFrame.run(user: current_user, frame_id: permitted_params[:id])
+    self.frame = Queries::Frame::FindFrame.run(user: current_user, frame_id:)
     frame.confirming = false
     render_stream
   end
@@ -60,7 +59,7 @@ class FramesController < ApplicationController
   end
 
   def destroy
-    mutation = Mutations::Frame::DeleteFrame.run(user: current_user, frame_id: permitted_params[:id])
+    mutation = Mutations::Frame::DeleteFrame.run(user: current_user, frame_id:)
     redirect_to prev_url_for(path: frame_path(mutation.frame)), status: :see_other
   end
 
@@ -73,6 +72,10 @@ class FramesController < ApplicationController
       :id, :page, :commit, :authenticity_token, :_method,
       frame: {}
     ).to_h
+  end
+
+  def frame_id
+    permitted_params[:id]
   end
 
   def form_params
