@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# PageLocation::Store module
-module PageLocation::Store
+# PageTransition::Location::Store module
+module PageTransition::Location::Store
   extend ActiveSupport::Concern
 
   def store_location

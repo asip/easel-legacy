@@ -3,7 +3,7 @@
 # Sessions::Location::Store module
 module Sessions::Location::Store
   extend ActiveSupport::Concern
-  include PageLocation::Store
+  include PageTransition::Location::Store
 
   included do
     before_action :store_location, only: [ :show ]
