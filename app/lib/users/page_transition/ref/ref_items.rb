@@ -6,10 +6,7 @@ class Users::PageTransition::Ref::RefItems
   end
 
   def build_items
-    from = ref_items&.fetch(:from, nil)
-    if from == "frame"
-      ref_items.delete(:from)
-    end
+    ref_items.delete(:from)
     ref_items
   end
 

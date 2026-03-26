@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# PageTransition::Query::Ref::QueryMap class
 class PageTransition::Query::Ref::QueryMap
   def self.build(ref_items:)
     query_map = self.new(ref_items:)
