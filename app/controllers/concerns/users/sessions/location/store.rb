@@ -12,6 +12,6 @@ module Users::Sessions::Location::Store
   private
 
   def saved_page?
-    PageTransition::Path.saved_paths_before_login?(from)
+    PageTransition.saved_paths_before_login?(from)
   end
 end

@@ -14,4 +14,13 @@ module PageTransition
 
     to_path
   end
+
+  def self.saved_paths_after_login?(from)
+    !from&.include?("/frames/new") && !from&.include?("/profile") &&
+    !from&.include?("/account/password/edit")
+  end
+
+  def self.saved_paths_before_login?(from)
+    !from&.include?("/login") && !from&.include?("/signup")
+  end
 end
