@@ -3,11 +3,7 @@
 # Frames::Confirmable module
 module Frames::Confirmable
   extend ActiveSupport::Concern
-
-  included do
-    before_action :set_model, only: %i[create update]
-    before_action :back_to_form, only: %i[create update]
-  end
+  include ::Confirmable
 
   protected
 

@@ -3,16 +3,10 @@
 # Users::Registrations::Confirmable module
 module Users::Registrations::Confirmable
   extend ActiveSupport::Concern
+  include Users::Registrations::ParameterConfiguration
+  include ::Confirmable
 
   FORM_PARAMS = [ :name, :email, :password, :password_confirmation, :image, :profile, :time_zone, :confirming ]
-
-  included do
-    before_action :configure_sign_up_params, only: [ :create ]
-    before_action :configure_account_update_params, only: [ :update ]
-
-    before_action :set_model, only: %i[create update]
-    before_action :back_to_form, only: %i[create update]
-  end
 
   protected
 
