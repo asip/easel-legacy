@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # admins / Sessions Controller
-class Admins::SessionsController < Devise::SessionsController
+class Admins::SessionsController < Admins::Devise::SessionsController
   include Flashes
-  include Account::Authentication::Skip
+  include Admin::Authentication::Skip
 
   layout "admins/application"
 
