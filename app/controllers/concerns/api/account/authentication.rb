@@ -7,12 +7,16 @@ module Api::Account::Authentication
   include Session::AccessToken
 
   included do
-    attr_accessor :current_user
+    attr_reader :current_user
 
     before_action :authenticate
   end
 
   protected
+
+  def current_user=(user)
+    @current_user = user
+  end
 
   # (Authorizationヘッダーに基づいてユーザーを認証します。)
   def authenticate
