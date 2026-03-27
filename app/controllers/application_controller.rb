@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include PageTransition::Location
   include ::ResourceRenderable
   include Account::Authentication
+  include Cookie
 
   protect_from_forgery with: :exception
 end

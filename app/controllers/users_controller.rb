@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   include Users::PageTransition::Ref
   include Users::PageTransition::List
   include Users::Location::Store
-  include Cookie
   include More
 
   def show

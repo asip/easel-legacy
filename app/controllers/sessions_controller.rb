@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   include PageTransition::Query::Ref
   include Sessions::PageTransition::List
   include Sessions::Location::Store
-  include Cookie
   include More
 
   def show

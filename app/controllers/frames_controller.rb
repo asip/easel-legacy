@@ -10,7 +10,6 @@ class FramesController < ApplicationController
   include Frames::Confirmable
   include Frames::Location::Store
   include More
-  include Cookie
 
   def index
     self.page = permitted_params[:page]

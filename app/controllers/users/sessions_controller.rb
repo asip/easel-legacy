@@ -4,7 +4,6 @@
 class Users::SessionsController < Devise::SessionsController
   include Flashes
   include Users::Sessions::Location::Store
-  include Cookie
   include Session::AccessToken
 
   # before_action :configure_sign_in_params, only: [:create]

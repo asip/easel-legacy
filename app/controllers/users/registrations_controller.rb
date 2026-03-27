@@ -3,7 +3,6 @@
 # users / Registrations Controller
 class Users::RegistrationsController < Devise::RegistrationsController
   include Users::Registrations::Confirmable
-  include Cookie
 
   # GET /resource/sign_up
   def new

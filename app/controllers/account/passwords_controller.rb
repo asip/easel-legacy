@@ -3,7 +3,6 @@
 # account / Passwords Controller
 class Account::PasswordsController < ApplicationController
   include Account::Passwords::Location::Store
-  include Cookie
 
   # before_action :authenticate_user!
 
