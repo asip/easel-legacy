@@ -1,5 +1,5 @@
 # page location module
-module PageLocation
+module PageTransition::Location
   include ActiveSupport::Concern
 
   def from

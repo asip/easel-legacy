@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include TimeZone::Detect
   include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
   include Flashes
-  include PageLocation
+  include PageTransition::Location
   include ::ResourceRenderable
   include Account::Authentication
 
