@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   include Flashes
   include PageTransition::Location
   include ::ResourceRenderable
+  include ::ErrorRenderable
   include Account::Authentication
   include Cookie
 
