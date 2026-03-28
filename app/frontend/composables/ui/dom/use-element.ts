@@ -20,8 +20,8 @@ export const useElement = function <EL extends Element, P extends string>(
     },
   })
 
-  const obj: Partial<Record<P, Ref>> = {}
+  const obj: Partial<Record<P, Ref<string, string | null | undefined>>> = {}
   obj[property] = propertyRef
 
-  return obj as Record<P, Ref>
+  return obj as Record<P, Ref<string, string | null | undefined>>
 }
