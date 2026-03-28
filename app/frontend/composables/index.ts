@@ -10,6 +10,7 @@ export { useI18nRegle } from './use-i18n-regle'
 
 export {
   useElement,
+  useElements,
   usePreviewUrl,
   useTagList,
   useCalendar,

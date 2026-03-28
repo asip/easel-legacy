@@ -1,52 +1,24 @@
 import { computed } from '@vue/reactivity'
 
-export const useElement = function (el: Element | undefined | null) {
-  const value = computed<string, string | null | undefined>({
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+export const useElement = function <EL extends Element>(
+  el: EL | undefined | null,
+  { property }: { property: string },
+) {
+  const propertyRef = computed<string, string | null | undefined>({
     get() {
-      return el ? (el as HTMLInputElement).value : ''
+      return el && property in el
+        ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+          ((el as any)[property] as string)
+        : ''
     },
     set(value: string | null | undefined) {
-      if (el) (el as HTMLInputElement).value = value ?? ''
+      if (el && property in el) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+        ;(el as any)[property] = value ?? ''
+      }
     },
   })
 
-  const innerHtml = computed<string, string | null | undefined>({
-    get() {
-      return el ? (el as HTMLDivElement | HTMLTextAreaElement).innerHTML : ''
-    },
-    set(value: string | null | undefined) {
-      if (el) (el as HTMLDivElement | HTMLTextAreaElement).innerHTML = value ?? ''
-    },
-  })
-
-  const src = computed<string | null>({
-    get() {
-      return el ? (el as HTMLImageElement | HTMLVideoElement | HTMLAudioElement).src : null
-    },
-    set(value: string | null) {
-      if (el) (el as HTMLImageElement | HTMLVideoElement | HTMLAudioElement).src = value ?? ''
-    },
-  })
-
-  /*
-  const href = computed<string | null>({
-    get() {
-      return el ? (el as HTMLLinkElement).href : null
-    },
-    set(value: string | null) {
-      if (el) (el as HTMLLinkElement).href = value ?? ''
-    },
-  })
-  */
-
-  const removeElements = ({ className }: { className: string }): void => {
-    if (el) {
-      const elements: NodeListOf<Element> = el.querySelectorAll(`.${className}`)
-      Array.from(elements).forEach((e) => {
-        e.remove()
-      })
-    }
-  }
-
-  return { value, innerHtml, src, /* href, */ removeElements }
+  return { property: propertyRef }
 }

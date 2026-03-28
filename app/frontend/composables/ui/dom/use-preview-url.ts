@@ -8,7 +8,7 @@ interface PreviewUrlOptions {
 }
 
 export const usePreviewUrl = function ({ imageEl, contentEl }: PreviewUrlOptions) {
-  const { src } = useElement(imageEl)
+  const { property: src } = useElement(imageEl, { property: 'src' })
 
   const previewUrl = computed<string | null>({
     get() {

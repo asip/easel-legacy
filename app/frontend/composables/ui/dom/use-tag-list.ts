@@ -3,7 +3,7 @@ import { computed } from '@vue/reactivity'
 import { useElement } from './use-element'
 
 export const useTagList = function (el: HTMLInputElement) {
-  const { value: tags } = useElement(el)
+  const { property: tags } = useElement(el, { property: 'value' })
 
   const tagList = computed<string[] | undefined>({
     get() {
