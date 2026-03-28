@@ -1,9 +1,9 @@
-import { computed } from '@vue/reactivity'
+import { computed, type Ref } from '@vue/reactivity'
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-export const useElement = function <EL extends Element>(
+export const useElement = function <EL extends Element, P extends string>(
   el: EL | undefined | null,
-  { property }: { property: string },
+  { property }: { property: P },
 ) {
   const propertyRef = computed<string, string | null | undefined>({
     get() {
@@ -20,5 +20,8 @@ export const useElement = function <EL extends Element>(
     },
   })
 
-  return { property: propertyRef }
+  const obj: Partial<Record<P, Ref>> = {}
+  obj[property] = propertyRef
+
+  return obj as Record<P, Ref>
 }

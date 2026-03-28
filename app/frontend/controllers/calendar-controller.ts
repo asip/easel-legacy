@@ -20,7 +20,7 @@ export default class CalendarController extends ApplicationController {
   connect(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
       const { date } = useCookieStore()
-      const { property: word } = useElement(this.wordTarget, { property: 'value' })
+      const { value: word } = useElement(this.wordTarget, { property: 'value' })
       const { initCalendar } = useCalendar({
         el: this.calTarget,
         word,
@@ -33,7 +33,7 @@ export default class CalendarController extends ApplicationController {
   clear(): void {
     this.calendar?.destroy()
     if (this.hasCalTarget && this.hasWordTarget) {
-      const { property: word } = useElement(this.wordTarget, { property: 'value' })
+      const { value: word } = useElement(this.wordTarget, { property: 'value' })
       const { initCalendar } = useCalendar({
         el: this.calTarget,
         word,

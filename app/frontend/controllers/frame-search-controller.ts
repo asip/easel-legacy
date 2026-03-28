@@ -16,8 +16,8 @@ export default class FrameSearchController extends ApplicationController {
   connect(): void {
     if (this.hasWordTarget && this.hasTagTarget) {
       const { searchParams, init } = useFrameSearch()
-      const { property: wordValue } = useElement(this.wordTarget, { property: 'value' })
-      const { property: tagValue } = useElement(this.tagTarget, { property: 'value' })
+      const { value: wordValue } = useElement(this.wordTarget, { property: 'value' })
+      const { value: tagValue } = useElement(this.tagTarget, { property: 'value' })
 
       init()
       wordValue.value = searchParams.value.word
@@ -27,10 +27,10 @@ export default class FrameSearchController extends ApplicationController {
 
   submit(ev: Event): void {
     const { errors, searchParams, search } = useFrameSearch()
-    const { property: wordValue } = useElement(this.wordTarget, { property: 'value' })
-    const { property: tagValue } = useElement(this.tagTarget, { property: 'value' })
-    const { property: wordMessage } = useElement(this.wordMessageTarget, { property: 'innerHTML' })
-    const { property: tagMessage } = useElement(this.tagMessageTarget, { property: 'innerHTML' })
+    const { value: wordValue } = useElement(this.wordTarget, { property: 'value' })
+    const { value: tagValue } = useElement(this.tagTarget, { property: 'value' })
+    const { innerHTML: wordMessage } = useElement(this.wordMessageTarget, { property: 'innerHTML' })
+    const { innerHTML: tagMessage } = useElement(this.tagMessageTarget, { property: 'innerHTML' })
 
     searchParams.value.word = wordValue.value
     searchParams.value.tag_name = tagValue.value
@@ -40,12 +40,12 @@ export default class FrameSearchController extends ApplicationController {
   }
 
   clearWordMessage(): void {
-    const { property: wordMessage } = useElement(this.wordMessageTarget, { property: 'innerHTML' })
+    const { innerHTML: wordMessage } = useElement(this.wordMessageTarget, { property: 'innerHTML' })
     wordMessage.value = ''
   }
 
   clearTagMessage(): void {
-    const { property: tagMessage } = useElement(this.tagMessageTarget, { property: 'innerHTML' })
+    const { innerHTML: tagMessage } = useElement(this.tagMessageTarget, { property: 'innerHTML' })
     tagMessage.value = ''
   }
 }
