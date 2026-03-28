@@ -1,6 +1,6 @@
 import { computed } from '@vue/reactivity'
 
-import { useElement } from './use-element'
+import { useElement } from '@vesperjs/vue'
 
 interface PreviewUrlOptions {
   imageEl: HTMLImageElement | null

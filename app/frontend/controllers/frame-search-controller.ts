@@ -1,5 +1,7 @@
-import { useElement, useFrameSearch } from '~/composables'
 import ApplicationController from './application-controller'
+
+import { useElement } from '@vesperjs/vue'
+import { useFrameSearch } from '~/composables'
 
 export default class FrameSearchController extends ApplicationController {
   static targets = ['word', 'tag', 'wordMessage', 'tagMessage']

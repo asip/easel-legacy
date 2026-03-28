@@ -9,7 +9,6 @@ export type { UseAlertType, UseFlashType } from '@vesperjs/vue'
 export { useI18nRegle } from './use-i18n-regle'
 
 export {
-  useElement,
   useElements,
   usePreviewUrl,
   useTagList,

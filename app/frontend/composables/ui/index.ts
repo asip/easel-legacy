@@ -1,4 +1,4 @@
-export { useElement, useElements, usePreviewUrl, useTagList } from './dom'
+export { useElements, usePreviewUrl, useTagList } from './dom'
 
 export { useToast } from './use-toast'
 export { usePhotoSwipe } from './use-photo-swipe'

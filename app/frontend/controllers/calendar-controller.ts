@@ -2,7 +2,8 @@ import ApplicationController from './application-controller'
 
 import { Datepicker } from 'vanillajs-datepicker'
 
-import { useCalendar, useCookieStore, useElement } from '~/composables'
+import { useElement } from '@vesperjs/vue'
+import { useCalendar, useCookieStore } from '~/composables'
 
 export default class CalendarController extends ApplicationController {
   static targets = ['cal', 'word']

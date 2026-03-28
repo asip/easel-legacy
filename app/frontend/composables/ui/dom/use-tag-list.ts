@@ -1,6 +1,6 @@
 import { computed } from '@vue/reactivity'
 
-import { useElement } from './use-element'
+import { useElement } from '@vesperjs/vue'
 
 export const useTagList = function (el: HTMLInputElement) {
   const { value: tags } = useElement(el, { property: 'value' })
