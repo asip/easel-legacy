@@ -3,6 +3,8 @@
 # User::Errors module
 module User::Errors
   extend ActiveSupport::Concern
+  include ::Errors::Sortable
+  include ::Login::Errors
 
   protected
 
