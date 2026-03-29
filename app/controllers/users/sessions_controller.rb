@@ -2,7 +2,6 @@
 
 # users / Sessions Controller
 class Users::SessionsController < Devise::SessionsController
-  include Flashes
   include Users::Sessions::Location::Store
   include Api::Session
 
