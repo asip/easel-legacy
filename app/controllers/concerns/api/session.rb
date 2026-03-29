@@ -1,8 +1,8 @@
 
 # frozen_string_literal: true
 
-# Session::AccessToken Module
-module Session::AccessToken
+# Api::Session Module
+module Api::Session
   extend ActiveSupport::Concern
 
   protected
