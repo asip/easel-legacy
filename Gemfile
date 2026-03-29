@@ -17,7 +17,7 @@ gem "pg", "~> 1.6.3"
 gem "puma", "~> 7.2.0"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", "~> 0.1.19", require: false
+gem "thruster", "~> 0.1.20", require: false
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.23"
@@ -74,7 +74,7 @@ gem "googleauth", "~> 1.16.2"
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.4.2"
+gem "pagy", "~> 43.4.4"
 
 # tags
 gem "no_fly_list", "0.7.3"
