@@ -1,1 +1,1 @@
-export { $router, type RoutesType } from './router'
+export { $router } from './router'
