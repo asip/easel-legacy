@@ -9,7 +9,6 @@ import {
   useComments,
   useCommentRules,
   useI18nRegle,
-  useRoute,
   useCookieStore,
   useToast,
 } from '~/composables'
@@ -18,9 +17,6 @@ import {
 // import { URLSearchParams } from 'url'
 
 const { setFlash } = useToast()
-
-const route = useRoute()
-const id = (route.params as { id?: string })?.id ?? ''
 
 const { refItems } = useCookieStore()
 
@@ -89,7 +85,7 @@ const onDeleteClick = async (): Promise<void> => {
   set404Alert()
   setFlash(flash.value)
   if (isSuccess()) {
-    await getComments(id)
+    await getComments(`${commentModel.value?.frame_id}`)
   } else {
     await reload401404()
   }
@@ -105,7 +101,7 @@ const reload401404 = async (): Promise<void> => {
     backendErrorInfo.value.status == 404 &&
     backendErrorInfo.value.error?.source == 'Comment'
   ) {
-    await getComments(id)
+    await getComments(`${commentModel.value?.frame_id}`)
   }
 }
 </script>

@@ -5,12 +5,10 @@ import {
   useComments,
   useCommentRules,
   useI18nRegle,
-  useRoute,
   useToast,
 } from '~/composables'
 
-const route = useRoute()
-const id = (route.params as { id?: string })?.id ?? ''
+const { frameId } = defineProps<{ frameId: string }>()
 
 const { setFlash } = useToast()
 
@@ -30,14 +28,14 @@ const onPostClick = async (): Promise<void> => {
   r$.$reset()
   const { valid } = await r$.$validate()
   if (valid) {
-    await createComment(id)
+    await createComment(frameId)
     set404Alert()
     setFlash(flash.value)
     if (isSuccess()) {
       comment.value.body = ''
       r$.$touch()
       r$.$reset()
-      await getComments(id)
+      await getComments(frameId)
     } else {
       reload()
     }

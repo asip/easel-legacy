@@ -30,6 +30,6 @@ await getComments(id)
 <template>
   <div>
     <CommentList />
-    <CommentForm />
+    <CommentForm :frame-id="id" />
   </div>
 </template>
