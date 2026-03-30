@@ -2,7 +2,9 @@
 import CommentList from './comment/List.vue'
 import CommentForm from './comment/Form.vue'
 
-import { useAccount, useComments, useRoute, useToast, useConstants, useLocale } from '~/composables'
+import { useLocale } from '@vesperjs/vue'
+
+import { useAccount, useComments, useRoute, useToast, useConstants } from '~/composables'
 
 /*
 const { viewData } = defineProps<{ viewData?: any }>()

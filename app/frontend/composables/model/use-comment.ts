@@ -1,8 +1,11 @@
 import { ref } from '@vue/reactivity'
 
-import type { Comment, CommentResource, ErrorsResource } from '~/interfaces'
-import type { CommentErrorProperty, ErrorMessages } from '~/types'
-import { useMutationApi, useEntity, useExternalErrors, useAlert, useFlash } from '~/composables'
+import { useMutationApi, useEntity, useExternalErrors, useAlert, useFlash } from '@vesperjs/vue'
+import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
+
+import type { Comment, CommentResource } from '~/interfaces'
+import type { CommentErrorProperty } from '~/types'
+
 import { useAccountStore } from '~/stores'
 
 import { i18n } from '~/i18n'

@@ -1,9 +1,9 @@
 import { storeToRefs } from 'pinia'
 
-import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import { useQueryApi, useEntity, useAlert, useFlash } from '@vesperjs/vue'
+import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
-import { useQueryApi, useEntity, useAlert, useFlash } from '~/composables'
+import type { Comment, CommentResource, CommentsResource } from '~/interfaces'
 import { useCommentsStore } from '~/stores'
 
 export const useComments = function () {

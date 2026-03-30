@@ -1,10 +1,12 @@
 import * as v from 'valibot'
 import { ref, computed } from '@vue/reactivity'
 
+import { useLocale } from '@vesperjs/vue'
+
 import { i18n } from '~/i18n'
 
-import { useLocale, useCookieStore } from '~/composables'
 import { Criteria } from '~/types'
+import { useCookieStore } from '~/composables'
 
 interface QueryItems {
   q?: string

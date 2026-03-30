@@ -1,8 +1,9 @@
 import { ref } from '@vue/reactivity'
 
-import { useAlert, useQueryApi, useFlash } from '~/composables'
-import type { TagsResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import { useAlert, useQueryApi, useFlash } from '@vesperjs/vue'
+import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
+
+import type { TagsResource } from '~/interfaces'
 
 export const useTagSearch = function () {
   const { flash, clearFlash } = useFlash()

@@ -1,6 +1,6 @@
 // import Toastify from 'toastify-js'
 
-import type { Flash } from '~/interfaces'
+import type { Flash } from '@vesperjs/vue'
 
 const Toastify = (await import('toastify-js')).default
 

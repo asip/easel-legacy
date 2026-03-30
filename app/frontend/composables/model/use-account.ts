@@ -1,9 +1,9 @@
 import { storeToRefs } from 'pinia'
 
-import type { AccountResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import { useAlert, useFlash, useQueryApi } from '@vesperjs/vue'
+import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
-import { useAlert, useFlash, useQueryApi } from '~/composables'
+import type { AccountResource } from '~/interfaces'
 import { useAccountStore } from '~/stores'
 
 export const useAccount = function () {
