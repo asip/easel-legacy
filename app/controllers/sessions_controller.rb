@@ -10,8 +10,7 @@ class SessionsController < ApplicationController
 
   def show
     self.page = permitted_params[:page]
-    self.user = current_user
-    @pagy, @frames = list_frames(user:, page:)
+    @pagy, @frames = list_frames(user: current_user, page:)
   end
 
   def index
@@ -19,8 +18,6 @@ class SessionsController < ApplicationController
   end
 
   private
-
-  attr_accessor :user
 
   def permitted_params
     @permitted_params ||= params.permit(:page).to_h

@@ -4,7 +4,7 @@
 class Api::V1::CommentsController < Api::V1::ApiController
   def create
     mutation = Mutations::Comment::CreateComment.run(user: current_user, frame_id: frame.id,
-                                                            form: form_params)
+                                                     form: form_params)
     comment = mutation.comment
     if mutation.success?
       render_comment(comment:)

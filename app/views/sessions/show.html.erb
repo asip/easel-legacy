@@ -1,4 +1,4 @@
-<%= render Sessions::Show::Component.new(user: @user) %>
+<%= render Sessions::Show::Component.new(user: current_user) %>
 
 <%= render Frames::More::Prev::Component.new(pagy: @pagy) %>
 <div id="list" class="grid grid-cols-1 sm:grid-cols-4 items-start lb">

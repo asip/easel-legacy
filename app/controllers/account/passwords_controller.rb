@@ -4,8 +4,6 @@
 class Account::PasswordsController < ApplicationController
   include Account::Passwords::Location::Store
 
-  # before_action :authenticate_user!
-
   def show
     redirect_to edit_account_password_path
   end

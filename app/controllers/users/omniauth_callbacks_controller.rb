@@ -9,6 +9,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   protect_from_forgery except: :google
   # skip_before_action :verify_authenticity_token, only: :google
+
   before_action :verify_g_csrf_token
 
   # You should also create an action method in this controller like this:
