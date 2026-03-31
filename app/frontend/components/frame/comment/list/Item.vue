@@ -2,7 +2,7 @@
 import sanitizeHtml from 'sanitize-html'
 import { computed, ref } from 'vue'
 
-import type { Comment } from '~/interfaces'
+import type { Comment } from '~/types'
 import {
   useAccount,
   useComment,

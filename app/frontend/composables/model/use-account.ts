@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 import { useAlert, useFlash, useQueryApi } from '@vesperjs/vue'
 import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
-import type { AccountResource } from '~/interfaces'
+import type { AccountResource } from '~/types'
 import { useAccountStore } from '~/stores'
 
 export const useAccount = function () {
