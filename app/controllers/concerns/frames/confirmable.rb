@@ -9,8 +9,13 @@ module Frames::Confirmable
 
   def set_model
     case action_name
+    when "new"
+      self.frame = Frame.new(confirming: false)
     when "create"
       self.frame = Frame.new(form_params)
+    when "edit"
+      self.frame = Queries::Frame::FindFrame.run(user: current_user, frame_id:)
+      frame.confirming = false
     when "update"
       self.frame = Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
       frame.attributes = form_params

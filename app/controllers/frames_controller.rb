@@ -25,7 +25,6 @@ class FramesController < ApplicationController
   end
 
   def new
-    self.frame = Frame.new(confirming: false)
   end
 
   def create
@@ -40,8 +39,6 @@ class FramesController < ApplicationController
   end
 
   def edit
-    self.frame = Queries::Frame::FindFrame.run(user: current_user, frame_id:)
-    frame.confirming = false
     render_stream
   end
 
