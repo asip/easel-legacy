@@ -8,10 +8,13 @@ export default class FrameSearchController extends ApplicationController {
 
   declare readonly wordTarget: HTMLInputElement
   declare readonly hasWordTarget: boolean
+
   declare readonly tagTarget: HTMLInputElement
   declare readonly hasTagTarget: boolean
+
   declare readonly wordMessageTarget: HTMLDivElement
   declare readonly hasWordMessageTarget: boolean
+
   declare readonly tagMessageTarget: HTMLDivElement
   declare readonly hasTagMessageTarget: boolean
 

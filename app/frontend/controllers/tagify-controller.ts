@@ -8,9 +8,9 @@ export default class TagifyController extends ApplicationController {
   static targets = ['te', 'tl']
 
   declare readonly teTarget: HTMLInputElement
-  declare readonly tlTarget: HTMLInputElement
-
   declare readonly hasTeTarget: boolean
+
+  declare readonly tlTarget: HTMLInputElement
   declare readonly hasTlTarget: boolean
 
   tagEditor: Tagify | null = null

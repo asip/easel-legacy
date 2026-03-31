@@ -10,6 +10,7 @@ export default class CalendarController extends ApplicationController {
 
   declare readonly calTarget: HTMLElement
   declare readonly hasCalTarget: boolean
+
   declare readonly wordTarget: HTMLInputElement
   declare readonly hasWordTarget: boolean
 
