@@ -13,7 +13,6 @@ class FramesController < ApplicationController
 
   def index
     self.page = permitted_params[:page]
-    form = FrameSearchForm.new(q_items)
     @pagy, @frames = list_frames(user: current_user, form:, page:)
   end
 
@@ -81,5 +80,13 @@ class FramesController < ApplicationController
     @form_params ||= params.expect(
       frame: %i[name tag_list comment file creator_name shooted_at private confirming]
     ).to_h
+  end
+
+  def q_items
+    JsonUtil.to_hash(criteria)
+  end
+
+  def form
+    @form ||= FrameSearchForm.new(q_items)
   end
 end

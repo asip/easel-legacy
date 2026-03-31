@@ -10,9 +10,4 @@ module Frames::Cookie
     criteria = cookies[:q]
     criteria.present? ? criteria : "{}"
   end
-
-  def q_items
-    @q_items ||= JsonUtil.to_hash(criteria)
-    @q_items
-  end
 end
