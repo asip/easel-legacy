@@ -13,7 +13,6 @@ export default class QueryMapController extends ApplicationController {
   }
 
   declare readonly qValue: string
-  declare readonly pageValue: string
 
   setQueryMap(ev: Event): void {
     const { refItems, page } = useCookieStore()
