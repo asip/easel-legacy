@@ -134,13 +134,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if saved
         redirect_to redirect_path
       else
-        render_with_flash(resource)
+        render_errors(resource:)
       end
     end
-  end
-
-  def render_with_flash(resource)
-    render_errors(resource:)
   end
 
   # The path used after sign up.

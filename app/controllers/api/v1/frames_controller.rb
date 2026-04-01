@@ -13,10 +13,10 @@ class Api::V1::FramesController < Api::V1::ApiController
   private
 
   def comment_list
-    Queries::Frame::ListCommentsWithUser.run(frame_id: path_params[:frame_id])
+    Queries::Frame::ListCommentsWithUser.run(frame_id: route_params[:frame_id])
   end
 
-  def path_params
-    @path_params ||= params.permit(:frame_id).to_h
+  def route_params
+    @route_params ||= params.permit(:frame_id).to_h
   end
 end

@@ -12,7 +12,7 @@ class FramesController < ApplicationController
   include More
 
   def index
-    self.page = permitted_params[:page]
+    self.page = route_params[:page]
     @pagy, @frames = list_frames(user: current_user, form:, page:)
   end
 
@@ -62,15 +62,19 @@ class FramesController < ApplicationController
 
   attr_accessor :frame
 
-  def permitted_params
-    @permitted_params ||= params.permit(
+  def route_params
+    @route_params ||= params.permit(
       :id, :page, :commit, :authenticity_token, :_method,
       frame: {}
     ).to_h
   end
 
   def frame_id
-    permitted_params[:id]
+    route_params[:id]
+  end
+
+  def commit
+    route_params[:commit]
   end
 
   def form_params

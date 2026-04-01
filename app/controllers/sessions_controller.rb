@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   include More
 
   def show
-    self.page = permitted_params[:page]
+    self.page = route_params[:page]
     @pagy, @frames = list_frames(user: current_user, page:)
   end
 
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def permitted_params
-    @permitted_params ||= params.permit(:page).to_h
+  def route_params
+    @route_params ||= params.permit(:page).to_h
   end
 end

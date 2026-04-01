@@ -17,13 +17,13 @@ module Frames::Confirmable
       self.frame = Queries::Frame::FindFrame.run(user: current_user, frame_id:)
       frame.confirming = false
     when "update"
-      self.frame = Frame.find_by!(id: permitted_params[:id], user_id: current_user.id)
+      self.frame = Frame.find_by!(id: frame_id, user_id: current_user.id)
       frame.attributes = form_params
     end
   end
 
   def back_to_form
-    return unless permitted_params[:commit] == "戻る"
+    return unless commit == "戻る"
 
     self.frame.confirming = false
     # frame.file_derivatives! if frame.file.present?
