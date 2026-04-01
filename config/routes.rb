@@ -36,8 +36,8 @@ Rails.application.routes.draw do
     get "/profile/edit" => "users/registrations#edit", as: "edit_profile"
 
     scope :oauth do
-      post "/callback", to: "users/omniauth_callbacks#google"
-      get "/callback", to: "users/omniauth_callbacks#google"
+      post "/callback", to: "users/omniauth_callbacks#callback"
+      get "/callback", to: "users/omniauth_callbacks#callback"
     end
 
     scope :account do

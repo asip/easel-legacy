@@ -19,8 +19,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # More info at:
   # https://github.com/heartcombo/devise#omniauth
 
-  def google
-    callback_for(:google)
+  def callback
+    if user.persisted?
+      login_success
+    else
+      login_failed
+    end
   end
 
   # GET|POST /resource/auth/twitter
@@ -48,18 +52,28 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     ).to_h
   end
 
-  def callback_for(provider)
-    auth = AuthInfo.from_google(provider:, credential: auth_params[:credential])
-    user = User.from(auth:, time_zone: cookies[:time_zone])
+  def credential
+    auth_params[:credential]
+  end
 
-    if user.persisted?
-      login_success(user:, provider:)
+  def provider
+    auth_params[:provider]
+  end
+
+  def auth
+    if provider == "google"
+      AuthInfo.from_google(provider:, credential:)
     else
-      login_failed
+      nil
     end
   end
 
-  def login_success(user:, provider:)
+  def user
+    @user ||= User.from(auth:, time_zone:)
+  end
+
+
+  def login_success
     sign_in_and_redirect user, event: :authentication
     set_flash_message(:notice, :success, kind: provider.to_s.capitalize) if is_navigational_format?
 
