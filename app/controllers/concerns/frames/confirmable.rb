@@ -13,12 +13,10 @@ module Frames::Confirmable
       self.frame = Frame.new(confirming: false)
     when "create"
       self.frame = Frame.new(form_params)
-    when "edit"
-      self.frame = Queries::Frame::FindFrame.run(user: current_user, frame_id:)
-      frame.confirming = false
-    when "update"
-      self.frame = Frame.find_by!(id: frame_id, user_id: current_user.id)
-      frame.attributes = form_params
+    when "edit", "update"
+      self.frame = Queries::Frame::FindFrame.run(user: current_user, frame_id:, authenticated: true)
+      frame.confirming = false if action_name == "edit"
+      frame.attributes = form_params if action_name == "update"
     end
   end
 
