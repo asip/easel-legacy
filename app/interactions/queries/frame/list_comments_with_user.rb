@@ -12,7 +12,7 @@ class Queries::Frame::ListCommentsWithUser
     frame = Frame.find_by!(id: @frame_id)
     User.unscoped do
       Comment.eager_load(:user).where(frame_id: frame.id)
-              .order(created_at: "asc")
+             .order(created_at: "asc")
     end
   end
 end
