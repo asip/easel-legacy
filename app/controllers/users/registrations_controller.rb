@@ -95,7 +95,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def respond_with(resource, _opts = {})
     case action_name
     when "create"
-      create_with(resource)
+      create_with
     when "update"
       update_with
     else
@@ -117,7 +117,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   attr_accessor :redirect_path
   attr_accessor :create_or_update
 
-  def create_with(resource)
+  def create_with
     self.saved = resource.persisted?
     self.redirect_path = prev_url_for(path: login_path) || root_path
     self.create_or_update = true

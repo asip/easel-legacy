@@ -13,7 +13,11 @@ class Api::V1::FramesController < Api::V1::ApiController
   private
 
   def comment_list
-    Queries::Frame::ListCommentsWithUser.run(frame_id: route_params[:frame_id])
+    Queries::Frame::ListCommentsWithUser.run(frame_id:)
+  end
+
+  def frame_id
+    route_params[:frame_id]
   end
 
   def route_params

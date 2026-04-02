@@ -11,7 +11,11 @@ class Api::V1::TagsController < Api::V1::ApiController
   private
 
   def tags
-    Queries::ApplicationTag::ListTagNames.run(name: route_params[:q]).pluck(:name)
+    Queries::ApplicationTag::ListTagNames.run(name:).pluck(:name)
+  end
+
+  def name
+    route_params[:q]
   end
 
   def render_tags(tags:)

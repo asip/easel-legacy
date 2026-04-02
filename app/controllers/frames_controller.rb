@@ -28,14 +28,7 @@ class FramesController < ApplicationController
   end
 
   def create
-    frame.user_id = current_user.id
-    mutation = Mutations::Frame::SaveFrame.run(frame:)
-    self.frame = mutation.frame
-    if mutation.success?
-      redirect_to frame_path(frame)
-    else
-      render_errors(resource: frame)
-    end
+    save(back_page: ->(frame) { frame_path(frame) })
   end
 
   def edit
@@ -43,14 +36,7 @@ class FramesController < ApplicationController
   end
 
   def update
-    frame.user_id = current_user.id
-    mutation = Mutations::Frame::SaveFrame.run(frame:)
-    self.frame = mutation.frame
-    if mutation.success?
-      redirect_to prev_url_for(path: edit_frame_path(frame))
-    else
-      render_errors(resource: frame)
-    end
+    save(back_page: ->(frame) { prev_url_for(path: edit_frame_path(frame)) })
   end
 
   def destroy
@@ -61,6 +47,17 @@ class FramesController < ApplicationController
   private
 
   attr_accessor :frame
+
+  def save(back_page:)
+    frame.user_id = current_user.id
+    mutation = Mutations::Frame::SaveFrame.run(frame:)
+    self.frame = mutation.frame
+    if mutation.success?
+      redirect_to back_page.(frame)
+    else
+      render_errors(resource: frame)
+    end
+  end
 
   def route_params
     @route_params ||= params.permit(
