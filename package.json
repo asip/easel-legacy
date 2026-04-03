@@ -15,11 +15,11 @@
     "@hotwired/turbo": "^8.0.23",
     "@hotwired/turbo-rails": "^8.0.23",
     "@nanostores/router": "^1.0.0",
-    "@regle/core": "^1.21.1",
-    "@regle/rules": "^1.21.1",
+    "@regle/core": "^1.21.5",
+    "@regle/rules": "^1.21.5",
     "@vesperjs/vue": "0.1.9",
     "@vueuse/integrations": "^14.2.1",
-    "@yaireo/tagify": "^4.36.0",
+    "@yaireo/tagify": "^4.37.0",
     "bootstrap-icons": "^1.13.1",
     "glightbox": "^3.3.1",
     "nanostores": "^1.2.0",
@@ -31,7 +31,7 @@
     "sanitize-html": "^2.17.2",
     "toastify-js": "^1.12.0",
     "turbo-mount": "^0.4.4",
-    "universal-cookie": "^8.0.1",
+    "universal-cookie": "^8.1.0",
     "valibot": "^1.3.1",
     "vanillajs-datepicker": "^1.3.4",
     "vue": "^3.6.0-beta.9",
@@ -46,8 +46,8 @@
     "@types/toastify-js": "^1.12.4",
     "@types/vanillajs-datepicker": "^1.3.5",
     "@types/yaireo__tagify": "^4.27.0",
-    "@typescript-eslint/eslint-plugin": "^8.57.2",
-    "@typescript-eslint/parser": "^8.57.2",
+    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/parser": "^8.58.0",
     "@vitejs/plugin-vue": "^6.0.5",
     "@vue/eslint-config-typescript": "^14.7.0",
     "copyfiles": "^2.4.1",
@@ -55,17 +55,17 @@
     "eslint": "^9.39.4",
     "eslint-plugin-vue": "^10.8.0",
     "markuplint": "^4.14.1",
-    "oxfmt": "^0.42.0",
-    "sass-embedded": "1.98.0",
+    "oxfmt": "^0.43.0",
+    "sass-embedded": "1.99.0",
     "tailwindcss": "4.2.2",
     "tsc-watch": "^7.2.0",
-    "typescript": "5.9.3",
-    "vite": "^8.0.3",
-    "vite-plugin-ruby": "^5.2.1"
+    "typescript": "^5.9.3",
+    "vite": "^8.0.0",
+    "vite-plugin-ruby": "^5.2.0"
   },
   "pnpm": {
     "overrides": {
-      "typescript": "5.9.3"
+      "typescript": "^5.9.3"
     }
   }
 }

@@ -3,5 +3,3 @@ ignoredBuiltDependencies:
   - '@tailwindcss/oxide'
 onlyBuiltDependencies:
   - esbuild
-packages:
-  - 'packages/*'
