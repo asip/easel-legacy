@@ -160,7 +160,7 @@ importers:
         specifier: ^8.0.3
         version: 8.0.3(@types/node@22.15.17)(jiti@2.6.1)(sass-embedded@1.99.0)(sass@1.99.0)(terser@5.39.0)
       vite-plugin-ruby:
-        specifier: ^5.2.0
+        specifier: ^5.2.1
         version: 5.2.1(vite@8.0.3(@types/node@22.15.17)(jiti@2.6.1)(sass-embedded@1.99.0)(sass@1.99.0)(terser@5.39.0))
 
 packages:
