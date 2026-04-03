@@ -7,7 +7,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   include Api::Session
 
-  protect_from_forgery except: :google
+  protect_from_forgery except: :callback
   # skip_before_action :verify_authenticity_token, only: :google
 
   before_action :verify_g_csrf_token
