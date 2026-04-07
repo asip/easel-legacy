@@ -38,6 +38,7 @@
     "vue-i18n": "11.3.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@markuplint/erb-parser": "^4.6.23",
     "@markuplint/vue-parser": "^4.6.23",
     "@markuplint/vue-spec": "^4.5.23",
@@ -52,20 +53,20 @@
     "@vue/eslint-config-typescript": "^14.7.0",
     "copyfiles": "^2.4.1",
     "daisyui": "5.5.19",
-    "eslint": "^9.39.4",
+    "eslint": "^10.2.0",
     "eslint-plugin-vue": "^10.8.0",
     "markuplint": "^4.14.1",
     "oxfmt": "^0.44.0",
     "sass-embedded": "1.99.0",
     "tailwindcss": "4.2.2",
     "tsc-watch": "^7.2.0",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "vite": "^8.0.5",
     "vite-plugin-ruby": "^5.2.1"
   },
   "pnpm": {
     "overrides": {
-      "typescript": "^5.9.3"
+      "typescript": "^6.0.2"
     }
   }
 }

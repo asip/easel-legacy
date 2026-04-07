@@ -79,6 +79,7 @@ export default [
       //...vueESLint.configs['vue3-essential'].rules,
       ...vueESLint.configs['recommended'].rules,
       //...vueESLint.configs['vue3-strongly-recommended'].rules,
+      'no-useless-assignment': 0,
       'vue/no-v-html': 0,
     },
   },
