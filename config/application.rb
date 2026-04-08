@@ -23,16 +23,5 @@ module Easel
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-
-    # timezone
-    config.active_record.default_timezone = :local
-    config.time_zone = "Asia/Tokyo"
-
-    # disable parameter wrapping for JSON.
-    config.action_controller.wrap_parameters_by_default = false
-
-    # config.action_controller.forgery_protection_origin_check = false
-
-    config.middleware.use Rack::Locale
   end
 end
