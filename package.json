@@ -15,8 +15,8 @@
     "@hotwired/turbo": "^8.0.23",
     "@hotwired/turbo-rails": "^8.0.23",
     "@nanostores/router": "^1.0.0",
-    "@regle/core": "^1.21.5",
-    "@regle/rules": "^1.21.5",
+    "@regle/core": "^1.21.6",
+    "@regle/rules": "^1.21.6",
     "@vesperjs/vue": "0.2.1",
     "@vueuse/integrations": "^14.2.1",
     "@yaireo/tagify": "^4.37.0",
@@ -35,7 +35,7 @@
     "valibot": "^1.3.1",
     "vanillajs-datepicker": "^1.3.4",
     "vue": "^3.6.0-beta.9",
-    "vue-i18n": "11.3.1"
+    "vue-i18n": "11.3.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -47,8 +47,8 @@
     "@types/toastify-js": "^1.12.4",
     "@types/vanillajs-datepicker": "^1.3.5",
     "@types/yaireo__tagify": "^4.27.0",
-    "@typescript-eslint/eslint-plugin": "^8.58.0",
-    "@typescript-eslint/parser": "^8.58.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.1",
+    "@typescript-eslint/parser": "^8.58.1",
     "@vitejs/plugin-vue": "^6.0.5",
     "@vue/eslint-config-typescript": "^14.7.0",
     "copyfiles": "^2.4.1",
