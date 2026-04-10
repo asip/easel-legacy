@@ -29,42 +29,7 @@
         <%= render ::Display::Tags::Component.new(tag_map: @tag_map) %>
       </div>
       <div class="flex justify-center">
-        <table class="table table-bordered table-rounded">
-          <tbody>
-            <tr>
-              <td class="w-[9em]">
-                名前
-              </td>
-              <td>
-                <%= @frame.name %>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                撮影者/作者
-              </td>
-              <td>
-                <%= @frame.creator_name %>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                撮影日時
-              </td>
-              <td>
-                <%= @frame.shooted_at.present? ? l(@frame.shooted_at) : "" %>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                コメント
-              </td>
-              <td class="wrap-break-word">
-                <%= simple_format(h(@frame.comment)) %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <%= render Frames::Profile::Component.new(frame: @frame) %>
       </div>
       <div class="flex justify-between">
         <div><%= l @frame.created_at %></div>
