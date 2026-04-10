@@ -1,0 +1,13 @@
+<div class="flex"><%= @user.name %></div>
+<div class="flex gap-1 pt-1">
+  <%= render ::Display::Image::Component.new(model: @user, small: true) %>
+  <table class="table table-bordered table-rounded flex-auto">
+    <tbody>
+      <tr>
+        <td class="flex wrap-break-word items-baseline">
+          <%= simple_format(h(@user.profile)) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

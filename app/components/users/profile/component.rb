@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+# users
+module Users
+  # profile
+  module Profile
+    # Component class
+    class Component < ViewComponent::Base
+      def initialize(user:)
+        @user = user
+      end
+    end
+  end
+end
