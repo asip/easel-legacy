@@ -2,8 +2,8 @@
 
 # modal
 module Modal
-  # user
-  module User
+  # users
+  module Users
     # Profile
     module Profile
       # Component class

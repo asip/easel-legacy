@@ -19,6 +19,11 @@
           <% end %>
         </div>
       </div>
+      <div class="flex justify-center">
+        <a class="badge badge-outline badge-accent rounded-full hover:text-primary link" onclick="frame_profile_modal.showModal()">
+          <%= @frame.name %>
+        </a>
+      </div>
       <div class="flex justify-center mb-2">
         <%= render ::Display::Image::Component.new(model: @frame, original: true, photoswipe: true) %>
       </div>
@@ -28,7 +33,7 @@
         <% end %>
         <%= render ::Display::Tags::Component.new(tag_map: @tag_map) %>
       </div>
-      <%= render Frames::Profile::Component.new(frame: @frame) %>
+      <%= render Modal::Frames::Profile::Component.new(frame: @frame) %>
       <% if helpers.user_signed_in? && @frame.user_id == helpers.current_user.id %>
       <div class="flex justify-center gap-2">
         <%= link_to "変更", edit_frame_path(@frame), class: "btn btn-outline btn-primary", "data-turbo-prefetch": false %>
