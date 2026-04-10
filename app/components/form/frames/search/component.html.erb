@@ -4,7 +4,7 @@
       <tr>
         <td colspan="2">
           <div class="tooltip tooltip-top" data-tip="タグ or 名前 or 撮影/登録/更新日">
-            <%= text_field_tag "word", "", placeholder: "", class: "input input-bordered w-60", "data-calendar-target": "word", "data-frameSearch-target": "word", "data-action": "input->frameSearch#clearWordMessage calendar#clear" %>
+            <%= text_field_tag "word", "", placeholder: "", autocomplete: "off", class: "input input-bordered w-60", "data-calendar-target": "word", "data-frameSearch-target": "word", "data-action": "input->frameSearch#clearWordMessage calendar#clear" %>
           </div>
           <div data-frameSearch-target="wordMessage" class="text-red-500 text-xs"></div>
         </td>
@@ -14,7 +14,7 @@
           <label for="tag_name">タグ：</label>
         </td>
         <td>
-          <%= text_field_tag "tag_name", "", placeholder: "", class: "input input-bordered w-40", "data-frameSearch-target": "tag", "data-action": "input->frameSearch#clearTagMessage" %>
+          <%= text_field_tag "tag_name", "", placeholder: "", autocomplete: "off", class: "input input-bordered w-40", "data-frameSearch-target": "tag", "data-action": "input->frameSearch#clearTagMessage" %>
           <div data-frameSearch-target="tagMessage" class="text-red-500 text-xs"></div>
         </td>
       </tr>
