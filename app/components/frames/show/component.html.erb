@@ -28,13 +28,7 @@
         <% end %>
         <%= render ::Display::Tags::Component.new(tag_map: @tag_map) %>
       </div>
-      <div class="flex justify-center">
-        <%= render Frames::Profile::Component.new(frame: @frame) %>
-      </div>
-      <div class="flex justify-between">
-        <div><%= l @frame.created_at %></div>
-        <div><%= l @frame.updated_at %></div>
-      </div>
+      <%= render Frames::Profile::Component.new(frame: @frame) %>
       <% if helpers.user_signed_in? && @frame.user_id == helpers.current_user.id %>
       <div class="flex justify-center gap-2">
         <%= link_to "変更", edit_frame_path(@frame), class: "btn btn-outline btn-primary", "data-turbo-prefetch": false %>
