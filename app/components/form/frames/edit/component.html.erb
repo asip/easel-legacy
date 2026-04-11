@@ -5,13 +5,6 @@
       <div class="flex justify-start">
         <%= link_to helpers.prev_url_for(path: edit_frame_path(@frame)), "data-turbo": true do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
       </div>
-      <% if false %>
-      <!--
-      <div class="flex justify-center mb-2">
-        <%= render ::Display::Image::Component.new(model: @frame, original: true) %>
-      </div>
-      -->
-      <% end %>
       <%= form_with model: @frame, local: true do |form| %>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <% if @frame.confirming %>
