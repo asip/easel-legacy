@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   include ::ErrorRenderable
   include Account::Authentication
   include Cookie
+  include Api::Session
+  include Jwt::Refresh
 
   protect_from_forgery with: :exception
 end

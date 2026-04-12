@@ -3,7 +3,6 @@
 # users / Sessions Controller
 class Users::SessionsController < Devise::SessionsController
   include Users::Sessions::Location::Store
-  include Api::Session
 
   # before_action :configure_sign_in_params, only: [:create]
 

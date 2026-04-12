@@ -4,7 +4,6 @@
 # Api::Account::Authentication module
 module Api::Account::Authentication
   extend ActiveSupport::Concern
-  include Api::Session
 
   included do
     attr_reader :current_user

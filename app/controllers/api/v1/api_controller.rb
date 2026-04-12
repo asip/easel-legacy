@@ -9,4 +9,6 @@ class Api::V1::ApiController < ActionController::API
   include Api::ErrorRenderable
   include Api::ResourceRenderable
   include Api::Account::Authentication
+  include Api::Session
+  include Jwt::Refresh
 end
