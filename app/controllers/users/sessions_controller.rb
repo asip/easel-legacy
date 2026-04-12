@@ -3,6 +3,7 @@
 # users / Sessions Controller
 class Users::SessionsController < Devise::SessionsController
   include Users::Sessions::Location::Store
+  include Users::Sessions::Jwt::Refresh::Skip
 
   # before_action :configure_sign_in_params, only: [:create]
 
