@@ -80,7 +80,7 @@ gem "pagy", "~> 43.5.0"
 gem "no_fly_list", "0.7.4"
 
 # json
-gem "oj", "3.16.16"
+gem "oj", "3.16.17"
 gem "alba", "3.10.0"
 
 # Rack::Locale
