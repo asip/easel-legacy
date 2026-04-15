@@ -3,6 +3,7 @@
 # frame api controller
 class Api::V1::FramesController < Api::V1::ApiController
   include Api::Frames::Authentication::Skip
+  include Api::Frames::Variables
 
   def comments
     # options = {}
@@ -14,13 +15,5 @@ class Api::V1::FramesController < Api::V1::ApiController
 
   def comment_list
     Queries::Frame::ListCommentsWithUser.run(frame_id:)
-  end
-
-  def frame_id
-    route_params[:frame_id]
-  end
-
-  def route_params
-    @route_params ||= params.permit(:frame_id).to_h
   end
 end

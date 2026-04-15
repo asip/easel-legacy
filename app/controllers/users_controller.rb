@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   include Users::PageTransition::Ref
   include Users::PageTransition::List
   include Users::Location::Store
+  include Users::Variables
   include More
 
   def show
@@ -27,15 +28,5 @@ class UsersController < ApplicationController
   # followers list (フォロワー一覧)
   def followers
     @users = Queries::User::ListFollowers.run(user_id:)
-  end
-
-  private
-
-  def route_params
-    @route_params ||= params.permit(:id, :user_id, :page).to_h
-  end
-
-  def user_id
-    route_params[:id]
   end
 end

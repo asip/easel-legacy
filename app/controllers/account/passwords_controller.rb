@@ -3,6 +3,7 @@
 # account / Passwords Controller
 class Account::PasswordsController < ApplicationController
   include Account::Passwords::Location::Store
+  include Account::Passwords::Variables
 
   def show
     redirect_to edit_account_password_path
@@ -18,13 +19,5 @@ class Account::PasswordsController < ApplicationController
     else
       render_errors(resource: current_user)
     end
-  end
-
-  private
-
-  def form_params
-    @form_params ||= params.expect(
-      user: [ :current_password, :password, :password_confirmation ]
-    ).to_h
   end
 end

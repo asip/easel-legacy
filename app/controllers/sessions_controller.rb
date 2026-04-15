@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   include PageTransition::Query::Ref
   include Sessions::PageTransition::List
   include Sessions::Location::Store
+  include Sessions::Variables
   include More
 
   def show
@@ -15,11 +16,5 @@ class SessionsController < ApplicationController
 
   def index
     show
-  end
-
-  private
-
-  def route_params
-    @route_params ||= params.permit(:page).to_h
   end
 end

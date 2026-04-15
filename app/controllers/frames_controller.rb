@@ -9,6 +9,7 @@ class FramesController < ApplicationController
   include Frames::PageTransition::Search
   include Frames::Confirmable
   include Frames::Location::Store
+  include Frames::Variables
   include More
 
   def index
@@ -57,34 +58,5 @@ class FramesController < ApplicationController
     else
       render_errors(resource: frame)
     end
-  end
-
-  def route_params
-    @route_params ||= params.permit(
-      :id, :page, :commit, :authenticity_token, :_method,
-      frame: {}
-    ).to_h
-  end
-
-  def frame_id
-    route_params[:id]
-  end
-
-  def commit
-    route_params[:commit]
-  end
-
-  def form_params
-    @form_params ||= params.expect(
-      frame: %i[name tag_list comment file creator_name shooted_at private confirming]
-    ).to_h
-  end
-
-  def q_items
-    JsonUtil.to_hash(criteria)
-  end
-
-  def form
-    @form ||= FrameSearchForm.new(q_items)
   end
 end
