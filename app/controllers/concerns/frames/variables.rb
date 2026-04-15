@@ -32,6 +32,6 @@ module Frames::Variables
   end
 
   def form
-    @form ||= FrameSearchForm.new(q_items)
+    @form ||= Frame::SearchForm.new(q_items)
   end
 end
