@@ -130,7 +130,7 @@ const reload401404 = async (): Promise<void> => {
         >
           <button v-if="!edit" class="link link-hover" @click="onEditClick">編集</button>
           <button v-else class="link link-hover" @click="onCancelClick">キャンセル</button>
-          <button class="link link-hover" @click="onDeleteClick">削除</button>
+          <button v-if="!edit" class="link link-hover" @click="onDeleteClick">削除</button>
         </div>
       </div>
       <div class="flex justify-start">
