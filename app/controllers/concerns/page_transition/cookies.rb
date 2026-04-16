@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# PageTransition::Cookie module
-module PageTransition::Cookie
+# PageTransition::Cookies module
+module PageTransition::Cookies
   extend ActiveSupport::Concern
 
   included do

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Frames::Cookie module
-module Frames::Cookie
+# Frames::Cookies module
+module Frames::Cookies
   extend ActiveSupport::Concern
 
   protected

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Cookie Module
-module Cookie
+module Cookies
   extend ActiveSupport::Concern
-  include Frames::Cookie
-  include PageTransition::Cookie
+  include Frames::Cookies
+  include PageTransition::Cookies
 end
