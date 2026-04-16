@@ -25,17 +25,17 @@ module Frames::Variables
     route_params[:commit]
   end
 
-  def form_params
-    @form_params ||= params.expect(
-      frame: %i[name tag_list comment file creator_name shooted_at private confirming]
-    ).to_h
-  end
-
   def q_items
     JsonUtil.to_hash(criteria)
   end
 
   def form
     @form ||= Frame::SearchForm.new(q_items)
+  end
+
+  def form_params
+    @form_params ||= params.expect(
+      frame: %i[name tag_list comment file creator_name shooted_at private confirming]
+    ).to_h
   end
 end
