@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    self.page = route_params[:page]
+    self.page = page_number
     @pagy, @frames = list_frames(user_id:, page:)
   end
 

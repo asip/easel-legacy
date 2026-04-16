@@ -13,7 +13,7 @@ class FramesController < ApplicationController
   include More
 
   def index
-    self.page = route_params[:page]
+    self.page = page_number
     @pagy, @frames = list_frames(user: current_user, form:, page:)
   end
 

@@ -9,4 +9,8 @@ module Sessions::Variables
   def route_params
     @route_params ||= params.permit(:page).to_h
   end
+
+  def page_number
+    route_params[:page]
+  end
 end

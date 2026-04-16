@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   include More
 
   def show
-    self.page = route_params[:page]
+    self.page = page_number
     @pagy, @frames = list_frames(user: current_user, page:)
   end
 

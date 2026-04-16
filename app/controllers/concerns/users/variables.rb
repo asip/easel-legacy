@@ -13,4 +13,8 @@ module Users::Variables
   def user_id
     route_params[:id]
   end
+
+  def page_number
+    route_params[:page]
+  end
 end

@@ -17,6 +17,10 @@ module Frames::Variables
     route_params[:id]
   end
 
+  def page_number
+    route_params[:page]
+  end
+
   def commit
     route_params[:commit]
   end
