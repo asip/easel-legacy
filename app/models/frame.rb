@@ -52,25 +52,24 @@ class Frame < ApplicationRecord
 
     scope = scope.where(private: false)
 
-    if user.present?
-      scope = scope.or(Frame.where(user_id: user.id, private: true))
-    end
+    scope = scope.filter_by_user(user) if user.present?
 
     if word.present?
       scope = if DateUtil.valid?(word)
-                date = Time.zone.parse(word)
-                scope.filter_by_date(date)
+                scope.filter_by_date(Time.zone.parse(word))
       else
                 scope.filter_by_word(word)
       end
     else
-      if tag_name.present?
-        scope = scope.filter_by_tag_name(tag_name)
-      end
+      scope = scope.filter_by_tag_name(tag_name) if tag_name.present?
     end
 
     # puts scope.to_sql
     scope
+  end
+
+  scope :filter_by_user, ->(user) do
+    self.or(Frame.where(user_id: user.id, private: true))
   end
 
   scope :filter_by_date, ->(date) do
