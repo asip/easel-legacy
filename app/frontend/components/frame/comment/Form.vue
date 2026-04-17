@@ -44,7 +44,7 @@ const onPostClick = async (): Promise<void> => {
 </script>
 
 <template>
-  <div v-if="loggedIn" class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2">
+  <div v-if="loggedIn" class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2">
     <div class="card-body">
       <div class="flex justify-start">
         <div class="card-title text-[16px] font-bold">コメント</div>
