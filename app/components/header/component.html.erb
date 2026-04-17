@@ -1,8 +1,8 @@
-<div class="sticky top-0 drawer drawer-end z-1000">
+<div class="sticky top-0 drawer drawer-end z-1000 justify-center">
   <input id="search-sidebar" type="checkbox" class="drawer-toggle">
-  <div class="drawer-content flex flex-col">
-    <div class="navbar bg-base-100 shadow">
-      <div class="navbar-start">
+  <div class="drawer-content flex flex-col w-100">
+    <div class="navbar bg-base-100 shadow rounded-full glass-02">
+      <div class="navbar-start pl-5">
         <%= link_to root_path, "data-controller": "frameTagSearch", "data-action": "click->frameTagSearch#setCriteria", "data-frameTagSearch-q-value": "{}" do %>
           <i class="bi bi-palette"></i> Easel Legacy
         <% end %>
@@ -15,7 +15,7 @@
                 <%= image_tag(helpers.current_user.image_url_for_view(:thumb), alt: helpers.current_user.name, class: "rounded w-10 h-10 inline") %>
               </span>
             </summary>
-            <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-20 z-999">
+            <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-20 z-999 glass-08">
               <li><%= link_to "profile", profile_path, class: "" %></li>
               <li><%= link_to "Upload", new_frame_path, class: "", "data-turbo": true %></li>
               <li><%= link_to "Logout", account_logout_path, data: { turbo_method: :delete },
@@ -29,7 +29,7 @@
           <% end %>
         <% end %>
       </div>
-      <div class="navbar-end flex gap-2">
+      <div class="navbar-end flex gap-2 pr-5">
         <label for="search-sidebar" aria-label="open sidebar" class="btn btn-outline btn-primary">
           <i class="bi bi-search"></i>
         </label>
