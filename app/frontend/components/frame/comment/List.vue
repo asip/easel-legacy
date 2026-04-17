@@ -7,7 +7,7 @@ const { comments } = useComments()
 </script>
 
 <template>
-  <div class="pt-2">
+  <div class="pt-1">
     <div v-for="(comment, i) in comments" :key="comment.id">
       <Item v-model="comments[i]" />
     </div>

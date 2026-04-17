@@ -1,5 +1,9 @@
 <div id="frames">
-  <br>
+  <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2 mb-2">
+    <a class="flex justify-center hover:text-primary link pt-1 pb-1" onclick="frame_profile_modal.showModal()">
+      <%= @frame.name %>
+    </a>
+  </div>
   <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2">
     <div class="card-body">
       <div class="flex justify-between">
@@ -18,11 +22,6 @@
             <%= @frame.user.name %>
           <% end %>
         </div>
-      </div>
-      <div class="flex justify-center">
-        <a class="badge badge-outline badge-accent rounded-full hover:text-primary link" onclick="frame_profile_modal.showModal()">
-          <%= @frame.name %>
-        </a>
       </div>
       <div class="flex justify-center mb-2">
         <%= render ::Display::Image::Component.new(model: @frame, original: true, photoswipe: true) %>
