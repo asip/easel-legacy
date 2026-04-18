@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gem "rails", "~> 8.1.3"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
-gem "propshaft", "~> 1.3.1"
+gem "propshaft", "~> 1.3.2"
 
 # Use mysql as the database for Active Record
 # gem "mysql2", "~> 0.5.6"
@@ -45,7 +45,7 @@ gem "vite_rails", "3.10.0"
 gem "vite_ruby", "3.10.2"
 
 # view component
-gem "view_component", "~> 4.6.0"
+gem "view_component", "~> 4.7.0"
 
 # Shrine
 gem "aws-sdk-s3", "~> 1.219.0"
@@ -109,7 +109,7 @@ group :development do
   gem "brakeman", "~> 8.0.4", require: false
   gem "bullet", "~> 8.1.0"
   gem "pg_query", "~> 6.2.2"
-  gem "prosopite", "~> 2.1.2"
+  gem "prosopite", "~> 2.2.0"
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console", "~> 4.3.0"
