@@ -26,6 +26,7 @@ export const usePreviewUrl = function ({ imageEl, contentEl }: PreviewUrlOptions
   })
 
   const showPreview = (): void => {
+    // If there is no preview image, it will be displayed.
     // (プレビュー画像がなければ表示します)
     if (contentEl && contentEl.classList.contains('hidden')) {
       contentEl.classList.remove('hidden')
