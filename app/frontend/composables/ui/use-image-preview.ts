@@ -7,16 +7,16 @@ interface ImagePreviewOptions {
 
 export const useImagePreview = function ({ file, previewUrl }: ImagePreviewOptions) {
   const setPreview = (): void => {
-    // (FileReaderオブジェクトを作成します)
+    // Create a FileReader object. (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
-    // (読み込みが完了したら処理が実行されます)
+    // The process will execute once loading is complete. (読み込みが完了したら処理が実行されます)
     reader.onload = function () {
-      // (読み込んだファイルの内容を取得して変数imageに代入します)
+      // Read the file content and assign it to the variable 'image'. (読み込んだファイルの内容を取得して変数imageに代入します)
       const image: string | ArrayBuffer | null = this.result
       // console.log(content.classList);
       previewUrl.value = image ? (image as string) : null
     }
-    // (DataURIScheme文字列を取得します)
+    // Retrieves the Data URI scheme string. (DataURI Scheme文字列を取得します)
     if (file) reader.readAsDataURL(file)
   }
 
