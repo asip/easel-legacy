@@ -1,27 +1,29 @@
 <div id="users">
   <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2 mb-2">
-    <div class="flex justify-between pl-4 pr-4 pt-1 pb-1">
-      <div>
-        <% map = Oj.dump(helpers.query_map) %>
-        <%= link_to helpers.back_to_path,
-                    class: "mr-1", "data-turbo": true,
-                    "data-controller": "queryMap",
-                    "data-action": "click->queryMap#setQueryMap",
-                    "data-queryMap-q-value": map do %>
-          <i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i>
-        <% end %>
-      </div>
-      <div class="flex items-center">
-        <div class="link" onclick="user_profile_modal.showModal()"><%= @user.name %></div>
-      </div>
-      <div>
-        <% if helpers.user_signed_in? && @user.id != helpers.current_user.id %>
-          <% if helpers.current_user.following?(@user) %>
-            <%= link_to user_follower_relationships_path(@user.id), data: { turbo_method: :delete } do %><button type="button" class="btn btn-outline btn-primary btn-xs">フォローを外す</button><% end %>
-          <% else %>
-            <%= link_to user_follower_relationships_path(@user.id), data: { turbo_method: :post } do %><button type="button" class="btn btn-outline btn-primary btn-xs">フォローする</button><% end %>
+    <div class="relative">
+      <div class="flex justify-between items-center pl-4 pr-4 pt-1 pb-1">
+        <div class="cursor-pointer z-0">
+          <% map = Oj.dump(helpers.query_map) %>
+          <%= link_to helpers.back_to_path,
+                      class: "mr-1", "data-turbo": true,
+                      "data-controller": "queryMap",
+                      "data-action": "click->queryMap#setQueryMap",
+                      "data-queryMap-q-value": map do %>
+            <i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i>
           <% end %>
-        <% end %>
+        </div>
+        <div class="cursor-pointer z-0">
+          <% if helpers.user_signed_in? && @user.id != helpers.current_user.id %>
+            <% if helpers.current_user.following?(@user) %>
+              <%= link_to user_follower_relationships_path(@user.id), data: { turbo_method: :delete } do %><button type="button" class="btn btn-outline btn-primary btn-xs">フォローを外す</button><% end %>
+            <% else %>
+              <%= link_to user_follower_relationships_path(@user.id), data: { turbo_method: :post } do %><button type="button" class="btn btn-outline btn-primary btn-xs">フォローする</button><% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="absolute inset-0 bg-opacity-0 flex justify-center items-center z-10 pointer-events-none">
+        <div class="link pointer-events-auto" onclick="user_profile_modal.showModal()"><%= @user.name %></div>
       </div>
     </div>
   </div>
