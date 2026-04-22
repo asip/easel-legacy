@@ -1,9 +1,9 @@
-<div id="frames">
-  <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2" data-controller="tagify">
-    <div class="card-body">
-      <div class="flex justify-start">
-        <%= link_to helpers.prev_url_for(path: edit_frame_path(@frame)), "data-turbo": true do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
-      </div>
+<div id="frames" class="flex justify-center">
+  <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2 mb-2 w-full sm:w-3/4" data-controller="tagify">
+    <div class="flex justify-start pl-4 pr-4 pt-2">
+      <%= link_to helpers.prev_url_for(path: edit_frame_path(@frame)), "data-turbo": true do %><i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i><% end %>
+    </div>
+    <div class="pl-4 pr-4 pb-4">
       <%= form_with model: @frame, local: true do |form| %>
         <%= form.hidden_field :file, value: form.object.cached_file_data %>
         <% if @frame.confirming %>
