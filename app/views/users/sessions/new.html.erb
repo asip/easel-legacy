@@ -7,9 +7,13 @@
     <div>
       <div class="flex justify-center gap-2 mb-2">
         <%= render GoogleLogin::Component.new %>
-        <%= link_to "ユーザー登録", signup_path, class: "btn btn-outline btn-primary" %>
+        <% if Settings.app.password_login %>
+          <%= link_to "ユーザー登録", signup_path, class: "btn btn-outline btn-primary" %>
+        <% end %>
       </div>
-      <%= render Form::Sessions::New::Component.new(resource:, resource_name:) %>
+      <% if Settings.app.password_login %>
+        <%= render Form::Sessions::New::Component.new(resource:, resource_name:) %>
+      <% end %>
     </div>
   </div>
 </div>
