@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   include ::ResourceRenderable
   include ::ErrorRenderable
   include Account::Authentication
-  include Cookies
+  include ::Cookies
   include Api::Session
   include Jwt::Refresh
 
