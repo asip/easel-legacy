@@ -17,7 +17,7 @@
     "@nanostores/router": "^1.0.0",
     "@regle/core": "^1.23.2",
     "@regle/rules": "^1.23.2",
-    "@vesperjs/vue": "0.3.1",
+    "@vesperjs/vue": "0.3.2",
     "@vueuse/integrations": "^14.2.1",
     "@yaireo/tagify": "^4.37.1",
     "bootstrap-icons": "^1.13.1",

@@ -1,6 +1,6 @@
 import { ref } from '@vue/reactivity'
 
-import { useMutationApi, useEntity, useExternalErrors, useAlert, useFlash } from '@vesperjs/vue'
+import { useMutationApi, useEntity, useExternalErrors, useApiError, useFlash } from '@vesperjs/vue'
 import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
 import type { Comment, CommentResource } from '~/types'
@@ -46,7 +46,7 @@ export const useComment = function () {
   const { externalErrors, clearExternalErrors, isSuccess } =
     useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { backendErrorInfo, setError, reload } = useAlert({
+  const { backendErrorInfo, setError, reload } = useApiError({
     flash,
     caller: { externalErrors, clearAccount },
   })

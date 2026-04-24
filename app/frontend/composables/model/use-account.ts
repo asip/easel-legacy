@@ -1,6 +1,6 @@
 import { storeToRefs } from 'pinia'
 
-import { useAlert, useFlash, useQueryApi } from '@vesperjs/vue'
+import { useApiError, useFlash, useQueryApi } from '@vesperjs/vue'
 import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
 import type { AccountResource } from '~/types'
@@ -14,7 +14,7 @@ export const useAccount = function () {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setError } = useAlert({ flash })
+  const { setError } = useApiError({ flash })
 
   const authenticate = async (): Promise<void> => {
     clearFlash()

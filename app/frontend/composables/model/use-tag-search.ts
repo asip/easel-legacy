@@ -1,13 +1,13 @@
 import { ref } from '@vue/reactivity'
 
-import { useAlert, useQueryApi, useFlash } from '@vesperjs/vue'
+import { useApiError, useQueryApi, useFlash } from '@vesperjs/vue'
 import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
 import type { TagsResource } from '~/types'
 
 export const useTagSearch = function () {
   const { flash, clearFlash } = useFlash()
-  const { setError } = useAlert({ flash })
+  const { setError } = useApiError({ flash })
 
   const tags = ref<string[]>([])
 
