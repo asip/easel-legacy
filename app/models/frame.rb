@@ -23,7 +23,6 @@ class Frame < ApplicationRecord
   include Contents::Uploader::Attachment(:file)
   include NoFlyList::TaggableRecord
   include ::Errors::Map
-  # include Errors
   include Page::Confirmable
   include ::Frame::Helper
 
