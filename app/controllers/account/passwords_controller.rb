@@ -17,7 +17,7 @@ class Account::PasswordsController < ApplicationController
       bypass_sign_in current_user
       redirect_to prev_url_for(path: edit_account_password_path), notice: "パスワードを更新しました。"
     else
-      render_errors(resource: current_user)
+      render_error_stream
     end
   end
 end

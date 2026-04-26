@@ -134,7 +134,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if saved
         redirect_to redirect_path
       else
-        render_errors(resource:)
+        render_error_stream
       end
     end
   end

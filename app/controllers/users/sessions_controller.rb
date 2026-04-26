@@ -80,6 +80,6 @@ class Users::SessionsController < Devise::SessionsController
   def login_failed
     success, user = User.validate_on_login(form: sign_in_params)
     self.resource = user unless success
-    render_login_errors(resource:)
+    render_error_stream
   end
 end

@@ -56,7 +56,7 @@ class FramesController < ApplicationController
     if mutation.success?
       redirect_to back_page.(frame)
     else
-      render_errors(resource: frame)
+      render_error_stream
     end
   end
 end
