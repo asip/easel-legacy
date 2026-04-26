@@ -2,5 +2,5 @@
   <%= render Form::Account::Passwords::Edit::Component.new %>
 <% end %>
 <%= turbo_stream.prepend "flash_message" do %>
-  <%= render Toast::Component.new(flash:, flashes: @flashes) %>
+  <%= render Toast::Component.new(flash:) %>
 <% end %>
