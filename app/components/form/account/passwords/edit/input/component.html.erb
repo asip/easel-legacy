@@ -7,6 +7,7 @@
         </td>
         <td>
           <%= @form.password_field :current_password, autofocus: true, autocomplete: "current-password", placeholder: "", class: "input" %>
+          <%= render Errors::Message::Component.new(model: @user, attr_name: :current_password) %>
         </td>
       </tr>
       <tr>
@@ -15,6 +16,7 @@
         </td>
         <td>
           <%= @form.password_field :password, placeholder: "", autocomplete: "new-password", class: "input" %>
+          <%= render Errors::Message::Component.new(model: @user, attr_name: :password) %>
         </td>
       </tr>
       <tr>
@@ -23,6 +25,7 @@
         </td>
         <td>
           <%= @form.password_field :password_confirmation, autocomplete: "new-password", placeholder: "", class: "input" %>
+          <%= render Errors::Message::Component.new(model: @user, attr_name: :password_confirmation) %>
         </td>
       </tr>
     </tbody>

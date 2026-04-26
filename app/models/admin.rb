@@ -17,7 +17,8 @@
 
 # Admin
 class Admin < ApplicationRecord
-  include Errors
+  include ::Errors::Map
+  # include Errors
   include ::Login
 
   # Include default devise modules. Others available are:

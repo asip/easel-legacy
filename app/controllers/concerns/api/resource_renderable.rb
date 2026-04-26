@@ -20,6 +20,6 @@ module Api::ResourceRenderable
   end
 
   def render_errors(reource:)
-    render json: Oj.dump({ errors: reource.errors.to_hash(false) }), status: :unprocessable_content
+    render json: Oj.dump({ errors: reource.error_map }), status: :unprocessable_content
   end
 end

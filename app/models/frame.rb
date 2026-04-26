@@ -22,8 +22,8 @@ class Frame < ApplicationRecord
   # has_one_attached :file
   include Contents::Uploader::Attachment(:file)
   include NoFlyList::TaggableRecord
-  include ::Errors::Sortable
-  include Errors
+  include ::Errors::Map
+  # include Errors
   include Page::Confirmable
   include ::Frame::Helper
 

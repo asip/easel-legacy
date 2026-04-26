@@ -10,6 +10,7 @@
             <td>
               <%= form.text_field :email, placeholder: "", autofocus: true, autocomplete: "email",
                                           class: "input" %>
+              <%= render Errors::Message::Component.new(model: @resource, attr_name: :email) %>
             </td>
           </tr>
           <tr>
@@ -19,6 +20,7 @@
             <td>
               <%= form.password_field :password, placeholder: "", autocomplete: "current-password",
                                                  class: "input" %>
+              <%= render Errors::Message::Component.new(model: @resource, attr_name: :password) %>
             </td>
           </tr>
         </tbody>
