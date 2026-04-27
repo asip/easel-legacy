@@ -11,7 +11,7 @@
                                       class: "file-input",
                                       "data-action": "change->preview#upload" %>
                                       <%#= @form.file_field :file, multiple: false, class: "file-input" %>
-          <%= render Errors::Message::Component.new(model: @frame, attr_name: :file) %>
+          <%= render Display::Messages::Component.new(model: @frame, attr_name: :file) %>
         </td>
       </tr>
       <tr>
@@ -25,7 +25,7 @@
         </td>
         <td>
           <%= @form.text_field :name, placeholder: "", class: "input" %>
-          <%= render Errors::Message::Component.new(model: @frame, attr_name: :name) %>
+          <%= render Display::Messages::Component.new(model: @frame, attr_name: :name) %>
         </td>
       </tr>
       <tr>
@@ -35,7 +35,7 @@
         <td>
           <%= text_field_tag "", "", placeholder: "", class: "input h-auto", autocomplete: "off", "data-tagify-target": "te" %>
           <%= @form.hidden_field :tag_list, id: "tag_list", "data-tagify-target": "tl", value: @frame.tag_list %>
-          <%= render Errors::Message::Component.new(model: @frame, attr_name: :tag_list) %>
+          <%= render Display::Messages::Component.new(model: @frame, attr_name: :tag_list) %>
         </td>
       </tr>
       <tr>
@@ -44,7 +44,7 @@
         </td>
         <td>
           <%= @form.text_field :creator_name, placeholder: "", class: "input" %>
-          <%= render Errors::Message::Component.new(model: @frame, attr_name: :creator_name) %>
+          <%= render Display::Messages::Component.new(model: @frame, attr_name: :creator_name) %>
         </td>
       </tr>
       <tr>
@@ -53,7 +53,7 @@
         </td>
         <td>
           <%= @form.datetime_local_field :shooted_at, class: "input" %>
-          <%= render Errors::Message::Component.new(model: @frame, attr_name: :shooted_at) %>
+          <%= render Display::Messages::Component.new(model: @frame, attr_name: :shooted_at) %>
         </td>
       </tr>
       <tr>
