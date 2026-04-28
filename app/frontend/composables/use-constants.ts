@@ -1,10 +1,12 @@
 import { useApiConstants } from '@vesperjs/vue'
 
+import { app } from '~/settings.json'
+
 export const useConstants = function () {
   const { baseURL } = useApiConstants()
 
   const setConstants = () => {
-    baseURL.value = '/api/v1'
+    baseURL.value = app.api.baseURL
   }
 
   return { setConstants }
