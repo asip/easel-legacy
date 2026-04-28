@@ -16,8 +16,8 @@ export type { UseAccountType, UseCommentType } from './model'
 
 export { useCommentRules } from './model/validation'
 
-export { useConstants } from './use-constants'
-export type { ConstantsType } from './use-constants'
+export { useSettings } from './use-settings'
+export type { SettingsType } from './use-settings'
 
 export { useCookieStore } from './use-cookie-store'
 

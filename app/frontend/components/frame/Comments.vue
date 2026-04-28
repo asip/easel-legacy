@@ -2,9 +2,11 @@
 import CommentList from './comment/List.vue'
 import CommentForm from './comment/Form.vue'
 
+import { app } from '~/settings.json'
+
 import { useLocale } from '@vesperjs/vue'
 
-import { useAccount, useComments, useRoute, useToast, useConstants } from '~/composables'
+import { useAccount, useComments, useRoute, useToast, useSettings } from '~/composables'
 
 /*
 const { viewData } = defineProps<{ viewData?: any }>()
@@ -13,12 +15,13 @@ globalThis.console.log(JSON.stringify(viewData))
 
 const { autodetect } = useLocale()
 const { setFlash } = useToast()
-const { setConstants } = useConstants()
+const { baseURL } = useSettings()
 const { authenticate, flash } = useAccount()
 const { getComments } = useComments()
 
 autodetect()
-setConstants()
+
+baseURL.value = app.api.baseURL
 
 await authenticate()
 setFlash(flash.value)
