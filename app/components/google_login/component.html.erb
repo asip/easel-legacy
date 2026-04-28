@@ -1,8 +1,8 @@
-<% if Settings.google.client_id.present? %>
+<% if Settings.app.google.client_id.present? %>
   <script src="https://accounts.google.com/gsi/client" defer></script>
   <div id="g_id_onload"
-    data-client_id="<%= Settings.google.client_id %>"
-    data-login_uri="<%= Settings.external.google.callback_url %>"
+    data-client_id="<%= Settings.app.google.client_id %>"
+    data-login_uri="<%= Settings.app.google.external.callback_url %>"
     data-prompt_parent_id="g_id_onload"
     data-authenticity_token="<%= form_authenticity_token %>"
     data-auto_prompt="false">

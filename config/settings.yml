@@ -1,7 +1,6 @@
 app:
   password_login: <%= ActiveRecord::Type::Boolean.new.cast(ENV.fetch("PASSWORD_LOGIN") { false }) %>
-google:
-  client_id: <%= ENV.fetch("GOOGLE_CLIENT_ID") { "" } %>
-external:
   google:
-    callback_url: /oauth/callback?provider=google
+    client_id: <%= ENV.fetch("GOOGLE_CLIENT_ID") { "" } %>
+    external:
+      callback_url: /oauth/callback?provider=google
