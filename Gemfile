@@ -38,7 +38,7 @@ gem "turbo-mount", "~> 0.4.4"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.24.0", require: false
+gem "bootsnap", "~> 1.24.1", require: false
 
 # vite integration
 gem "rails_vite", "~> 0.2.2"
