@@ -11,7 +11,6 @@ module Api::ResourceRenderable
   end
 
   def render_comment(comment:)
-    # logger.debug CommentResource.new(comment).serialize
     render json: CommentResource.new(comment).serializable_hash
   end
 
