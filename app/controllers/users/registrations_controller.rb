@@ -34,10 +34,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    self.resource_updated = update_resource(resource, account_update_params)
+    self.saved = update_resource(resource, account_update_params)
     yield resource if block_given?
     if resource.confirming.present?
-      if resource_updated
+      if saved
         update_success(prev_unconfirmed_email)
       end
     end
@@ -92,17 +92,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #   # set_minimum_password_length
   end
 
-  def respond_with(resource, _opts = {})
+  def respond_with(_resource, _opts = {})
     case action_name
     when "create"
       create_with
     when "update"
       update_with
-    else
-      self.create_or_update = false
     end
-
-    redirect_or_render(resource)
   end
 
   def update_resource(resource, params)
@@ -111,31 +107,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  attr_accessor :resource_updated
-
   attr_accessor :saved
-  attr_accessor :redirect_path
-  attr_accessor :create_or_update
 
   def create_with
     self.saved = resource.persisted?
-    self.redirect_path = prev_url_for(path: login_path) || root_path
-    self.create_or_update = true
+    redirect_or_render(redirect_path: prev_url_for(path: login_path) || root_path)
   end
 
   def update_with
-    self.saved = resource_updated
-    self.redirect_path = profile_path
-    self.create_or_update = true
+    redirect_or_render(redirect_path: profile_path)
   end
 
-  def redirect_or_render(resource)
-    if create_or_update
-      if saved
-        redirect_to redirect_path
-      else
-        render_error_stream
-      end
+  def redirect_or_render(redirect_path: nil)
+    if saved
+      redirect_to redirect_path
+    else
+      render_error_stream
     end
   end
 
