@@ -95,9 +95,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def respond_with(_resource, _opts = {})
     case action_name
     when "create"
-      create_with
+      self.saved = resource.persisted?
+      redirect_or_render(redirect_path: prev_url_for(path: login_path) || root_path)
     when "update"
-      update_with
+      redirect_or_render(redirect_path: profile_path)
     end
   end
 
@@ -108,15 +109,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   attr_accessor :saved
-
-  def create_with
-    self.saved = resource.persisted?
-    redirect_or_render(redirect_path: prev_url_for(path: login_path) || root_path)
-  end
-
-  def update_with
-    redirect_or_render(redirect_path: profile_path)
-  end
 
   def redirect_or_render(redirect_path: nil)
     if saved
