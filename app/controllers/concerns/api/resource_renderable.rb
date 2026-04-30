@@ -18,8 +18,4 @@ module Api::ResourceRenderable
   def render_comments(comments:)
     render json: CommentResource.new(comments).serialize
   end
-
-  def render_errors(reource:)
-    render json: Oj.dump({ errors: reource.error_map }), status: :unprocessable_content
-  end
 end

@@ -17,6 +17,12 @@ module Api::ErrorRenderable
     rescue_from Api::UnauthorizedError, with: ->(exception) { request.format.json? ? unauthorized(exception) : raise(exception) }
   end
 
+  protected
+
+  def render_errors(reource:)
+    render json: Oj.dump({ errors: reource.error_map }), status: :unprocessable_content
+  end
+
   private
 
   # Common helper methods for rendering error response (エラーレスポンスをレンダリングする共通のヘルパーメソッド
