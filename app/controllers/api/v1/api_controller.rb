@@ -7,6 +7,7 @@ class Api::V1::ApiController < ActionController::API
   include TimeZone::Detect
   include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
   include Api::ErrorRenderable
+  include Api::Renderable
   include Api::ResourceRenderable
   include Api::Account::Authentication
   include Api::Session
