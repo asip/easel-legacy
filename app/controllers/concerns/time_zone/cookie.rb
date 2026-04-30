@@ -8,7 +8,6 @@ module TimeZone::Cookie
 
   def time_zone
     # puts cookies.to_h
-    # puts cookies[:time_zone]
     cookies[:time_zone]
   end
 end

@@ -16,7 +16,6 @@ module Users::Registrations::Confirmable
       build_resource if action_name == "new"
       resource.confirming = false
     when "create"
-      # puts sign_up_params
       build_resource(sign_up_params)
     when "update"
       self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)

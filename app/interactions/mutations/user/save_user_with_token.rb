@@ -13,9 +13,6 @@ class Mutations::User::SaveUserWithToken
   def execute
     self.success = user.save(context: :with_validation)
     unless success
-      # puts @user.saved_change_to_email?
-      # user.update_token
-      # else
       errors.merge!(user.errors)
     end
   end
