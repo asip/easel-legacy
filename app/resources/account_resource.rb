@@ -2,8 +2,9 @@
 
 # Account Resource
 class AccountResource < UserResource
-  root_key :user
+  # typelize "string"
+  attribute :email, &:email
 
-  attributes :email
+  # typelize "boolean"
   attribute :social_login, &:social_login?
 end

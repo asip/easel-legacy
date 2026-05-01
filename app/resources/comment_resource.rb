@@ -14,13 +14,14 @@
 
 # Comment Resource
 class CommentResource < ApplicationResource
-  root_key :comment, :comments
   attributes :id, :user_id, :frame_id, :body
 
+  # typelize "string"
   attribute :user_name do |comment|
     comment.user.name
   end
 
+  # typelize "string"
   attribute :user_image_url do |comment|
     comment.user.image_url_for_view(:thumb)
   end

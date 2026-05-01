@@ -33,17 +33,19 @@
 
 # User Resource
 class UserResource < ApplicationResource
-  root_key :user
   attributes :id, :name
 
+  # typelize "string"
   attribute :image_thumb_url do |user|
     user.image_url_for_view(:thumb)
   end
 
+  # typelize "string"
   attribute :image_one_url do |user|
     user.image_url_for_view(:one)
   end
 
+  # typelize "string"
   attribute :image_three_url do |user|
     user.image_url_for_view(:three)
   end

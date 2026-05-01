@@ -7,14 +7,14 @@ module Api::ResourceRenderable
   protected
 
   def render_account(account:)
-    render_resource AccountResource.new(account).serializable_hash
+    render_resource AccountResource.new(account).serialize
   end
 
   def render_comment(comment:)
-    render_resource CommentResource.new(comment).serializable_hash
+    render_resource CommentResource.new(comment).serialize
   end
 
   def render_comments(comments:)
-    render_resource CommentResource.new(comments).serialize
+    render_resource CommentResource.new(comments).serialize(root_key: :comments)
   end
 end
