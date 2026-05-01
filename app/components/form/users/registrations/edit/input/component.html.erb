@@ -11,7 +11,7 @@
                                        class: "file-input",
                                        "data-action": "change->preview#upload" %>
                                        <%#= @form.file_field :image, multiple: false, class: "file-input" %>
-          <%= render Display::Messages::Component.new(model: @user, attr_name: :image) %>
+          <%= render Display::Messages::Component.new(model: @user, attr: :image) %>
         </td>
       </tr>
       <tr>
@@ -45,7 +45,7 @@
         </td>
         <td>
           <%= @form.text_field :name, autofocus: true, autocomplete: "username", placeholder: "", class: "input" %>
-          <%= render Display::Messages::Component.new(model: @user, attr_name: :name) %>
+          <%= render Display::Messages::Component.new(model: @user, attr: :name) %>
         </td>
       </tr>
       <tr>
@@ -54,7 +54,7 @@
         </td>
         <td>
           <%= @form.email_field :email, autocomplete: "email", placeholder: "", class: "input" %>
-          <%= render Display::Messages::Component.new(model: @user, attr_name: :email) %>
+          <%= render Display::Messages::Component.new(model: @user, attr: :email) %>
         </td>
       </tr>
       <% end %>
