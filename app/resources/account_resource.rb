@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Account Resource
-class AccountResource < UserResource
+class AccountResource < ApplicationResource
   root_key :user
 
   attributes :email
