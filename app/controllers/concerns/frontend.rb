@@ -8,7 +8,7 @@ module Frontend
     layout "frontend"
   end
 
-  def default_render(*args)
+  def default_render(*_args)
     respond_to do |format|
       format.html {
         render(inline: "", layout: "frontend")
