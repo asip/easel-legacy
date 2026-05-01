@@ -31,16 +31,16 @@ export const useComments = function () {
       setError(error)
     } else {
       const commentList: [CommentResource] | undefined = data?.comments
-      // console.log(comment_list);
+      // globalThis.console.log(commentList);
       comments.value.splice(0, comments.value.length)
       if (commentList) {
         for (const comment of commentList) {
-          // console.log(comment);
+          // globalThis.console.log(comment);
           comments.value.push(makeComment({ from: comment }))
         }
       }
     }
-    // console.log(comments);
+    // globalThis.console.log(comments.value);
   }
 
   return { comments, getComments, flash }
