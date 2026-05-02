@@ -3,5 +3,5 @@
 # Application Resource
 class ApplicationResource
   include Alba::Resource
-  # include Typelizer::DSL
+  helper Typelizer::DSL
 end

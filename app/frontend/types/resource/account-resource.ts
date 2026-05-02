@@ -1,3 +1,2 @@
-export interface AccountResource {
-  id: number
-}
+import { Account } from './serializers'
+export type AccountResource = Account

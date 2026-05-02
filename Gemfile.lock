@@ -498,6 +498,9 @@ GEM
     turbo-rails (2.0.23)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
+    typelizer (0.13.0)
+      benchmark
+      railties (>= 6.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.4)
@@ -575,6 +578,7 @@ DEPENDENCIES
   traceroute (~> 0.8.1)
   turbo-mount (~> 0.4.4)
   turbo-rails (~> 2.0.23)
+  typelizer (~> 0.13.0)
   tzinfo-data
   view_component (~> 4.8.0)
   web-console (~> 4.3.0)

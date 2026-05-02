@@ -12,6 +12,8 @@
     "paths": {
       "~": ["./app/frontend"],
       "~/*": ["./app/frontend/*"],
+      "@": ["./app/frontend"],
+      "@/*": ["./app/frontend/*"],
       "vanillajs-datepicker": ["./node_modules/vanillajs-datepicker"],
       "vanillajs-datepicker/*": ["./node_modules/vanillajs-datepicker/*"]
     }

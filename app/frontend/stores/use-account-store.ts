@@ -1,11 +1,11 @@
 import { ref } from '@vue/reactivity'
 import { defineStore } from 'pinia'
 
-import type { User } from '~/types'
+import type { Account } from '~/types'
 
 export const useAccountStore = defineStore('account', () => {
   const loggedIn = ref(false)
-  const account = ref<User>({
+  const account = ref<Account>({
     id: null,
   })
 
