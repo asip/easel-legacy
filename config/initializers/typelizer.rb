@@ -2,9 +2,20 @@
 Typelizer.dirs = [ Rails.root.join("app", "resources") ]
 
 Typelizer.configure do |config|
-  # config.associations_strategy = :active_record
+  # Strategy for handling serializer inheritance (:none, :inheritance)
+  # :none - lists all attributes of the serializer in the type
+  # :inheritance - extends the type from the parent serializer
   config.inheritance_strategy = :inheritance
-  config.writer do |c|
-    c.output_dir = "app/frontend/types/resource/serializers"
-  end
+
+  # Strategy for handling has_one and belongs_to associations nullability
+  # :database - uses the database column nullability
+  # :active_record - uses the required / optional association options
+  # config.associations_strategy = :active_record
+
+  # Import path for generated types in TypeScript files
+  # config.types_import_path = "@/types"
+  config.types_import_path = "~/types"
+
+  # Directory where TypeScript interfaces will be generated
+  config.output_dir = Rails.root.join("app/frontend/types/resource/serializers")
 end
