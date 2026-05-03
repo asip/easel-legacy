@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 #
-# ArrayType
+# ArrayType class
 #
 class ArrayType < ActiveModel::Type::Value
   def cast(value)
