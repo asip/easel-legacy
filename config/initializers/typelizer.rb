@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Directories to search for serializers
 Typelizer.dirs = [ Rails.root.join("app", "resources") ]
 

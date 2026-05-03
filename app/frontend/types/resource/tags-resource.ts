@@ -1,3 +1,3 @@
-export interface TagsResource {
-  tags: string[]
-}
+import { TagList } from './serializers'
+
+export type TagsResource = TagList
