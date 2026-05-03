@@ -19,8 +19,9 @@ module Api::ErrorRenderable
 
   protected
 
-  def render_errors(reource:)
-    render_resource Oj.dump({ errors: reource.error_map }), status: :unprocessable_content
+  def render_errors(resource:)
+    render_resource ErrorMapResource.new(ErrorMap.new(errors: resource.error_map)).serialize,
+                                         status: :unprocessable_content
   end
 
   private
