@@ -1,5 +1,7 @@
+# frozen_string_literal: true
 
-# AuthInfo Class
+#
+# TagList class
 #
 class TagList
   include ActiveModel::API

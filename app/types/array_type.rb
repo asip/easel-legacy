@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+#
+# ArrayType
+#
 class ArrayType < ActiveModel::Type::Value
   def cast(value)
     case value
