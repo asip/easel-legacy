@@ -19,6 +19,6 @@ module Api::ResourceRenderable
   end
 
   def render_tags(tags:)
-    render_resource(TagListResource.new(TagList.new(tags:)).serialize)
+    render_resource TagListResource.new(TagList.new(tags:)).serialize
   end
 end
