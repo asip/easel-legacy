@@ -19,5 +19,5 @@ Typelizer.configure do |config|
   config.types_import_path = "./"
 
   # Directory where TypeScript interfaces will be generated
-  config.output_dir = Rails.root.join("app/frontend/types/resource/serializers")
+  config.output_dir = Rails.root.join("app/frontend/types/serializers")
 end
