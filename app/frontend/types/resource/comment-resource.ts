@@ -1,2 +1,2 @@
-import { Comment } from './serializers'
+import { Comment } from '../serializers'
 export type CommentResource = Comment

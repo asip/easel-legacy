@@ -1,3 +1,3 @@
-import { TagList } from './serializers'
+import { TagList } from '../serializers'
 
 export type TagsResource = TagList
