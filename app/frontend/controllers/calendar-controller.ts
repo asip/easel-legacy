@@ -1,6 +1,6 @@
 import ApplicationController from './application-controller'
 
-import { Datepicker } from 'vanillajs-datepicker'
+import { Calendar } from 'vanilla-calendar-pro'
 
 import { useElement } from '@vesperjs/vue'
 import { useCalendar, useCookieStore } from '~/composables'
@@ -17,30 +17,47 @@ export default class CalendarController extends ApplicationController {
   declare readonly dateValue: string
   declare readonly originValue: string
 
-  calendar: Datepicker | null = null
+  calendar: Calendar | null = null
 
   connect(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
       const { date } = useCookieStore()
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
+      word.value = date
       const { initCalendar } = useCalendar({
         el: this.calTarget,
         word,
       })
-      word.value = date
       this.calendar = initCalendar()
     }
   }
 
-  clear(): void {
-    this.calendar?.destroy()
+  change(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
-      const { initCalendar } = useCalendar({
-        el: this.calTarget,
+      const { utcDate, utcToday } = useCalendar({
         word,
       })
-      this.calendar = initCalendar()
+
+      if (this.calendar) {
+        this.calendar.selectedDates = utcDate.value ? [utcDate.value] : []
+        if (utcToday.value?.getFullYear())
+          this.calendar.selectedYear = utcDate.value?.getFullYear() ?? utcToday.value.getFullYear()
+        this.calendar.selectedMonth = (utcDate.value?.getMonth() ?? utcToday.value?.getMonth()) as
+          | 0
+          | 1
+          | 2
+          | 3
+          | 4
+          | 5
+          | 6
+          | 7
+          | 8
+          | 9
+          | 10
+          | 11
+        this.calendar.init()
+      }
     }
   }
 

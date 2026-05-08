@@ -1,4 +1,5 @@
 @import url('glightbox/dist/css/glightbox.css');
 @import url('photoswipe/dist/photoswipe.css');
 @import url('@yaireo/tagify/dist/tagify.css');
-@import url('vanillajs-datepicker/dist/css/datepicker.min.css');
+@import url('./external/toastify.css');
+@import url('./external/calendar.css');
