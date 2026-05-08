@@ -66,10 +66,7 @@
     "vite": "^8.0.11",
     "vue-eslint-parser": "^10.4.0"
   },
-  "pnpm": {
-    "overrides": {
-      "eslint": "^10.3.0",
-      "typescript": "^6.0.3"
-    }
+  "peerDependencies": {
+    "typescript-eslint": "^8.59.2"
   }
 }
