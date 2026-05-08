@@ -62,7 +62,7 @@ gem "rails-i18n", "~> 8.1.0"
 gem "rambulance", "~> 3.3.0"
 
 # authentication
-gem "devise", "5.0.3"
+gem "devise", "5.0.4"
 gem "devise-i18n", "1.16.0"
 gem "omniauth-google-oauth2", "1.2.2"
 gem "jwt", "3.1.2"
