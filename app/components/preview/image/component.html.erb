@@ -1,9 +1,6 @@
-<% if @model.class == Frame && @model.file.present? %>
-  <%= image_tag(@model.file_proxy_url(:three), class: "mx-auto max-w-80 max-h-80 block",
-                                               "data-preview-target": "image") %>
-<% elsif @model.class == User && @model.image.present? %>
-  <%= image_tag(@model.image_proxy_url(:three), class: "mx-auto max-w-80 max-h-80 block",
-                                                "data-preview-target": "image") %>
+<% if @img_url.present? %>
+<%= image_tag(@img_url, class: "mx-auto max-w-80 max-h-80 block",
+                          "data-preview-target": "image") %>
 <% else %>
   <img data-preview-target="image" alt="" src="" class="mx-auto max-w-80 max-h-80 block">
 <% end %>
