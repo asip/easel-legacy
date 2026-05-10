@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <td colspan="2" data-preview-target="content">
-          <%= render ::Preview::Image::Component.new(model: @user) %>
+          <%= render Display::Image::Preview::Component.new(model: @user) %>
         </td>
       </tr>
       <% if @user.social_login? %>

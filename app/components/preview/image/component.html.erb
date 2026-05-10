@@ -1,5 +1,5 @@
-<% if @img_url.present? %>
-<%= image_tag(@img_url, class: "mx-auto max-w-80 max-h-80 block",
+<% if @url.present? %>
+  <%= image_tag(@url, class: "mx-auto max-w-80 max-h-80 block",
                           "data-preview-target": "image") %>
 <% else %>
   <img data-preview-target="image" alt="" src="" class="mx-auto max-w-80 max-h-80 block">
