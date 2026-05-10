@@ -10,10 +10,12 @@ module Display
         @photoswipe = photoswipe
         @small = small
 
-        @img_url, @link_url = set_urls(model:, original:)
+        @img_url, @link_url = get_urls(model:, original:)
       end
 
-      def set_urls(model:, original:)
+      private
+
+      def get_urls(model:, original:)
         if model.class == Frame && model.file.present?
           img_url = model.file_proxy_url(:three)
           link_url = original ? model.file_proxy_url(:original) : nil
@@ -22,7 +24,7 @@ module Display
           link_url = original ? model.image_url_for_view(:original) : nil
         end
 
-        return [img_url, link_url]
+        [ img_url, link_url ]
       end
     end
   end
