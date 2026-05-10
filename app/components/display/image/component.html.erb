@@ -1,38 +1,10 @@
-<% if @model.class == Frame && @model.file.present? %>
-  <% if @original %>
-    <% if @photoswipe %>
-      <%= render Lightbox::PhotoSwipe::Component.new(
-        img_url: @model.file_proxy_url(:three),
-        link_url: @model.file_proxy_url(:original)) %>
-    <% else %>
-      <%= render Lightbox::GLightbox::Component.new(
-        img_url: @model.file_proxy_url(:three),
-        link_url: @model.file_proxy_url(:original)) %>
-    <% end %>
-  <% else %>
-    <%= render Lightbox::GLightbox::Component.new(
-      img_url: @model.file_proxy_url(:three)) %>
-  <% end %>
-<% elsif @model.class == User && @model.image.present? %>
-  <% unless @small %>
-    <% if @original %>
-      <%= render Lightbox::GLightbox::Component.new(
-        img_url: @model.image_url_for_view(:three),
-        link_url: @model.image_url_for_view(:original)) %>
-    <% else %>
-      <%= render Lightbox::GLightbox::Component.new(
-        img_url: @model.image_url_for_view(:three)) %>
-    <% end %>
-  <% else %>
-    <% if @original %>
-      <%= render Lightbox::GLightbox::Component.new(
-        img_url: @model.image_url_for_view(:three),
-        link_url: @model.image_url_for_view(:original),
-        small: true) %>
-    <% else %>
-      <%= render Lightbox::GLightbox::Component.new(
-        img_url: @model.image_url_for_view(:three),
-        small: true) %>
-    <% end %>
-  <% end %>
+<% if @photoswipe %>
+  <%= render Lightbox::PhotoSwipe::Component.new(
+    img_url: @img_url,
+    link_url: @link_url) %>
+<% else %>
+  <%= render Lightbox::GLightbox::Component.new(
+    img_url: @img_url,
+    link_url: @link_url,
+    small: @small) %>
 <% end %>
