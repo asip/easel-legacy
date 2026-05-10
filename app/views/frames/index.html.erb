@@ -1,6 +1,6 @@
 <div id="frames">
   <%= render Frames::More::Prev::Component.new(pagy: @pagy) %>
-  <div id="list" class="grid grid-cols-1 sm:grid-cols-4 items-start lb mt-2">
+  <div id="list" class="grid grid-cols-1 sm:grid-cols-4 items-start mt-2 psw">
     <%= render Frames::More::List::Component.new(frames: @frames, from: "", pagy: @pagy) %>
   </div>
   <%= render Frames::More::Next::Component.new(pagy: @pagy) %>

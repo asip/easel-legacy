@@ -1,0 +1,8 @@
+<% if @link_url %>
+<div class="hidden" data-controller="pswp" data-pswp-selector-value="#image"></div>
+<div id="image">
+  <%= link_to image_tag(@img_url, class: ""), @link_url, class: "" %>
+</div>
+<% else %>
+  <%= image_tag(@img_url, class: "") %>
+<% end %>

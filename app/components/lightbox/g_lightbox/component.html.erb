@@ -1,0 +1,16 @@
+<% if @link_url.present? %>
+<div class="hidden" data-controller="lightbox" data-lightbox-selector-value=".lb"></div>
+<% end %>
+<% unless @small %>
+<% if @link_url.present? %>
+<%= link_to image_tag(@img_url, class: "mx-auto"), @link_url, class: "mx-auto lb" %>
+<% else %>
+<%= image_tag(@img_url, class: "") %>
+<% end %>
+<% else %>
+<% if @link_url.present? %>
+<%= link_to image_tag(@img_url, class: "mx-auto"), @link_url, class: "mx-auto w-25 h-25 object-contain lb" %>
+<% else %>
+<%= image_tag(@img_url, class: "mx-auto w-25 h-25 object-contain") %>
+<% end %>
+<% end %>

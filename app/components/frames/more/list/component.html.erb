@@ -1,4 +1,4 @@
-<div class="hidden" data-controller="pswp" data-pswp-selector-value=".lb" data-pswp-anchor-value="a.ps"></div>
+<div class="hidden" data-controller="pswp" data-pswp-selector-value=".psw" data-pswp-anchor-value="a.ps"></div>
 <% @frames.each do |frame| %>
   <%= render Frames::More::Item::Component.new(frame:, tag: @tag, from: @from, pagy: @pagy) %>
 <% end %>

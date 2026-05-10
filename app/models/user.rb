@@ -84,8 +84,8 @@ class User < ApplicationRecord
 
   def image_proxy_url(key)
     case key.to_s
-    # when "original"
-    #   image&.imgproxy_url
+    when "original"
+      image&.imgproxy_url
     when "thumb"
       image&.imgproxy_url(width: 50, height: 50, resizing_type: :fill)
     when "one"

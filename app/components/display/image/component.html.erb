@@ -1,31 +1,38 @@
 <% if @model.class == Frame && @model.file.present? %>
   <% if @original %>
     <% if @photoswipe %>
-      <div class="hidden" data-controller="pswp" data-pswp-selector-value="#image"></div>
-      <div id="image">
-        <%= link_to image_tag(@model.file_proxy_url(:three), class: ""), @model.file_proxy_url(:original), class: "" %>
-      </div>
+      <%= render Lightbox::PhotoSwipe::Component.new(
+        img_url: @model.file_proxy_url(:three),
+        link_url: @model.file_proxy_url(:original)) %>
     <% else %>
-      <div class="hidden" data-controller="lightbox" data-lightbox-selector-value=".lb"></div>
-      <%= link_to image_tag(@model.file_proxy_url(:three), class: ""), @model.file_proxy_url(:original), class: "lb" %>
+      <%= render Lightbox::GLightbox::Component.new(
+        img_url: @model.file_proxy_url(:three),
+        link_url: @model.file_proxy_url(:original)) %>
     <% end %>
   <% else %>
-    <%= image_tag(@model.file_proxy_url(:three), class: "") %>
+    <%= render Lightbox::GLightbox::Component.new(
+      img_url: @model.file_proxy_url(:three)) %>
   <% end %>
 <% elsif @model.class == User && @model.image.present? %>
   <% unless @small %>
     <% if @original %>
-      <%= link_to image_tag(@model.image_proxy_url(:three), class: "mx-auto"),
-                  @model.image_url_for_view, class: "mx-auto lb" %>
+      <%= render Lightbox::GLightbox::Component.new(
+        img_url: @model.image_url_for_view(:three),
+        link_url: @model.image_url_for_view(:original)) %>
     <% else %>
-      <%= image_tag(@model.image_proxy_url(:three), class: "mx-auto") %>
+      <%= render Lightbox::GLightbox::Component.new(
+        img_url: @model.image_url_for_view(:three)) %>
     <% end %>
   <% else %>
     <% if @original %>
-      <%= link_to image_tag(@model.image_url_for_view(:three), class: "mx-auto"),
-                  @model.image_url, class: "mx-auto lb w-25 h-25 object-contain" %>
+      <%= render Lightbox::GLightbox::Component.new(
+        img_url: @model.image_url_for_view(:three),
+        link_url: @model.image_url_for_view(:original),
+        small: true) %>
     <% else %>
-      <%= image_tag(@model.image_url_for_view(:three), class: "mx-auto w-25 h-25 object-contain") %>
+      <%= render Lightbox::GLightbox::Component.new(
+        img_url: @model.image_url_for_view(:three),
+        small: true) %>
     <% end %>
   <% end %>
 <% end %>
