@@ -33,8 +33,7 @@
           タグ
         </td>
         <td>
-          <%= text_field_tag "", "", placeholder: "", class: "input h-auto", autocomplete: "off", "data-tagify-target": "te" %>
-          <%= @form.hidden_field :tag_list, id: "tag_list", "data-tagify-target": "tl", value: @frame.tag_list %>
+          <%= render Form::TagEditor::Component.new(form: @form, tag_list: @frame.tag_list) %>
           <%= render Display::Messages::Component.new(model: @frame, attr: :tag_list) %>
         </td>
       </tr>
