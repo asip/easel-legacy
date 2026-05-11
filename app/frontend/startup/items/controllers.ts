@@ -4,7 +4,6 @@ import {
   ToastController,
   CalendarController,
   FrameSearchController,
-  FrameTagSearchController,
   QueryMapController,
   PreviewController,
   LightboxController,
@@ -18,9 +17,9 @@ const application: Application = Application.start()
 application.debug = false
 
 application.register('toast', ToastController)
+// frame search
 application.register('calendar', CalendarController)
 application.register('frameSearch', FrameSearchController)
-application.register('frameTagSearch', FrameTagSearchController)
 // query map
 application.register('queryMap', QueryMapController)
 // image preview

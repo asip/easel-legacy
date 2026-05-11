@@ -3,6 +3,7 @@ import ApplicationController from './application-controller'
 import { useCookieStore } from '~/composables'
 
 interface QueryItems {
+  q?: string
   ref?: string
   page?: string
 }
@@ -15,14 +16,16 @@ export default class QueryMapController extends ApplicationController {
   declare readonly qValue: string
 
   setQueryMap(ev: Event): void {
-    const { refItems, page } = useCookieStore()
+    const { criteria, refItems, page } = useCookieStore()
 
     ev.preventDefault()
 
     const map = JSON.parse(this.qValue) as QueryItems
 
-    refItems.value = map.ref ?? ''
+    if (map.q) criteria.value = map.q
+    refItems.value = map.ref ?? '{}'
     page.value = map.page ?? ''
+    // globalThis.console.log(criteria.value)
     // globalThis.console.log(refItems.value)
     // globalThis.console.log(page.value)
 

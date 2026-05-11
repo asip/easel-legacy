@@ -11,9 +11,9 @@ class Frames::PageTransition::TagMap
     tags = frame.plain_tags
     map = {}
     tags.each do |tag|
-      map[tag] = {
+      map[tag] = Oj.dump({
         q: Oj.dump({ tag_name: tag })
-      }
+      })
     end
     map
   end

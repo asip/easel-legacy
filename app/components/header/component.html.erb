@@ -3,7 +3,9 @@
   <div class="drawer-content flex flex-col w-100 pointer-events-auto">
     <div class="navbar bg-base-100 shadow rounded-full glass-02">
       <div class="navbar-start pl-5">
-        <%= link_to root_path, "data-controller": "frameTagSearch", "data-action": "click->frameTagSearch#setCriteria", "data-frameTagSearch-q-value": "{}" do %>
+        <%= link_to root_path, "data-controller": "queryMap",
+                               "data-action": "click->queryMap#setQueryMap",
+                               "data-queryMap-q-value": Oj.dump({ q: "{}" }) do %>
           <i class="bi bi-palette"></i> Easel Legacy
         <% end %>
       </div>
