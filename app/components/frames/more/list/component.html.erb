@@ -1,4 +1,2 @@
 <div class="hidden" data-controller="pswp" data-pswp-selector-value=".psw" data-pswp-anchor-value="a.ps"></div>
-<% @frames.each do |frame| %>
-  <%= render Frames::More::Item::Component.new(frame:, tag: @tag, from: @from, pagy: @pagy) %>
-<% end %>
+<%= render Frames::More::List::Collection::Component.with_collection(@frames, tag: @tag, from: @from, pagy: @pagy) %>
