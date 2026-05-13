@@ -10,7 +10,6 @@
                                        multiple: false,
                                        class: "file-input",
                                        "data-action": "change->preview#upload" %>
-                                       <%#= @form.file_field :image, multiple: false, class: "file-input" %>
           <%= render Display::Messages::Component.new(model: @user, attr: :image) %>
         </td>
       </tr>
