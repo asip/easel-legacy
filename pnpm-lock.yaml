@@ -33,8 +33,8 @@ importers:
         specifier: ^1.25.2
         version: 1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.11(typescript@6.0.3)))(vue@3.6.0-beta.11(typescript@6.0.3))
       '@vesperjs/vue':
-        specifier: 0.7.1
-        version: 0.7.1(@vue/reactivity@3.6.0-beta.11)(@vue/runtime-core@3.6.0-beta.11)(@vue/runtime-dom@3.6.0-beta.11)(typescript-eslint@8.59.3(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.11(typescript@6.0.3))
+        specifier: 0.7.2
+        version: 0.7.2(@vue/reactivity@3.6.0-beta.11)(@vue/runtime-core@3.6.0-beta.11)(@vue/runtime-dom@3.6.0-beta.11)(typescript-eslint@8.59.3(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.11(typescript@6.0.3))
       '@vue/reactivity':
         specifier: ^3.6.0-beta.11
         version: 3.6.0-beta.11
@@ -958,18 +958,18 @@ packages:
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
     deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
-  '@vesperjs/shared@0.7.1':
-    resolution: {integrity: sha512-bDJ2hKTCKwkk2PsdUon5V9VXZQjbA7KG9mzQyOnGzSe78zeaHUC0LmfcJxqwYgL4HxVjJl77AaaUKuVnEX8Pag==}
+  '@vesperjs/shared@0.7.2':
+    resolution: {integrity: sha512-O5hwIeV8BCatrKY3pWwi7eaTXwsSgatjtNotMW/hCCO0L8XaYuOp7/3oBASCX5wi9mXXiRPlIcrOH/vz51spZw==}
     peerDependencies:
       '@vue/reactivity': ^3.5.34 || ^3.6.0-beta.11
 
-  '@vesperjs/vue@0.7.1':
-    resolution: {integrity: sha512-Kv1SFMKF4CO48epoxtNnZ+gNNs/LicLwixM1vgTwVDlTtBM16FyqDoOAeIUp4Vj8WFj3yYxuukvUIofzIXKJyw==}
+  '@vesperjs/vue@0.7.2':
+    resolution: {integrity: sha512-r1VwZuy7pSZ+YcBBayKr0Osk4sTLsktsYvfhLQStwdAS8zyemHwcLS0tQt4GjSW3wleYWs9ex3Ro7fP9jYGQ+A==}
     peerDependencies:
       '@vue/reactivity': ^3.5.34 || ^3.6.0-beta.11
       '@vue/runtime-core': ^3.5.34 || ^3.6.0-beta.11
       '@vue/runtime-dom': ^3.5.34 || ^3.6.0-beta.11
-      typescript-eslint: ^8.59.2
+      typescript-eslint: ^8.59.3
       vue: ^3.5.34 || ^3.6.0-beta.11
 
   '@vitejs/plugin-vue@6.0.6':
@@ -3252,17 +3252,17 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vesperjs/shared@0.7.1(@vue/reactivity@3.6.0-beta.11)':
+  '@vesperjs/shared@0.7.2(@vue/reactivity@3.6.0-beta.11)':
     dependencies:
       '@formkit/tempo': 1.1.0
       '@vue/reactivity': 3.6.0-beta.11
 
-  '@vesperjs/vue@0.7.1(@vue/reactivity@3.6.0-beta.11)(@vue/runtime-core@3.6.0-beta.11)(@vue/runtime-dom@3.6.0-beta.11)(typescript-eslint@8.59.3(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.11(typescript@6.0.3))':
+  '@vesperjs/vue@0.7.2(@vue/reactivity@3.6.0-beta.11)(@vue/runtime-core@3.6.0-beta.11)(@vue/runtime-dom@3.6.0-beta.11)(typescript-eslint@8.59.3(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.11(typescript@6.0.3))':
     dependencies:
       '@formkit/tempo': 1.1.0
       '@nanostores/persistent': 1.3.4(nanostores@1.3.0)
       '@nanostores/router': 1.0.0(nanostores@1.3.0)
-      '@vesperjs/shared': 0.7.1(@vue/reactivity@3.6.0-beta.11)
+      '@vesperjs/shared': 0.7.2(@vue/reactivity@3.6.0-beta.11)
       '@vue/reactivity': 3.6.0-beta.11
       '@vue/runtime-core': 3.6.0-beta.11
       '@vue/runtime-dom': 3.6.0-beta.11
