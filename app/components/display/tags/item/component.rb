@@ -8,9 +8,8 @@ module Display
     module Item
       # Component class
       class Component < ViewComponent::Base
-        def initialize(tag:, map:, list: false, link: true)
+        def initialize(tag:, list: false, link: true)
           @tag = tag
-          @map = map
           @list = list
           @link = link
         end

@@ -1,5 +1,5 @@
 <% if @tag_map.size > 0 %>
   <% @tag_map.each do |tag, map| %>
-    <%= render Display::Tags::Item::Component.new(tag:, map:, list: @list, link: @link) %>
+    <%= render Display::Tags::Item::Link::Component.new(tag:, map:, list: @list, link: @link) %>
   <% end %>
 <% end %>

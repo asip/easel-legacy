@@ -6,12 +6,13 @@ module Display
   module Tags
     # item
     module Item
-      # tag
-      module Tag
+      # link
+      module Link
         # Component class
         class Component < ViewComponent::Base
-          def initialize(tag:, list: false, link: true)
+          def initialize(tag:, map:, list: false, link: true)
             @tag = tag
+            @map = map
             @list = list
             @link = link
           end
