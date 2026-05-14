@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+# display
+module Display
+  # tags
+  module Tags
+    # item
+    module Item
+      # tag
+      module Tag
+        # Component class
+        class Component < ViewComponent::Base
+          def initialize(tag:, list: false, link: true)
+            @tag = tag
+            @list = list
+            @link = link
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,27 +1,5 @@
 <% if @tag_map.size > 0 %>
-  <% if @list %>
-    <% @tag_map.each do |tag, map| %>
-      <%= link_to root_path, "data-turbo": true,
-                             "data-controller": "queryMap",
-                             "data-action": "click->queryMap#setQueryMap",
-                             "data-queryMap-q-value": map do %>
-        <div class="badge badge-sm badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div>
-      <% end %>
-    <% end %>
-  <% else %>
-    <% if @link %>
-      <% @tag_map.each do |tag, map| %>
-        <%= link_to root_path, "data-turbo": true,
-                               "data-controller": "queryMap",
-                               "data-action": "click->queryMap#setQueryMap",
-                               "data-queryMap-q-value": map do %>
-          <div class="badge badge-outline badge-accent hover:badge-primary rounded-full"><%= tag %></div>
-        <% end %>
-      <% end %>
-    <% else %>
-      <% @tag_map.each do |tag, map| %>
-        <div class="badge badge-outline badge-accent rounded-full"><%= tag %></div>
-      <% end %>
-    <% end %>
+  <% @tag_map.each do |tag, map| %>
+    <%= render Display::Tags::Item::Component.new(tag:, map:, list: @list, link: @link) %>
   <% end %>
 <% end %>

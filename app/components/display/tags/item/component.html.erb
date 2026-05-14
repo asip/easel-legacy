@@ -1,0 +1,10 @@
+<% if @list || @link %>
+  <%= link_to root_path, "data-turbo": true,
+                         "data-controller": "queryMap",
+                         "data-action": "click->queryMap#setQueryMap",
+                         "data-queryMap-q-value": @map do %>
+    <%= render Display::Tags::Item::Tag::Component.new(tag: @tag, list: @list, link: @link) %>
+  <% end %>
+<% else %>
+  <%= render Display::Tags::Item::Tag::Component.new(tag: @tag, list: @list, link: @link) %>
+<% end %>
