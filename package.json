@@ -18,8 +18,8 @@
     "@nanostores/router": "^1.0.0",
     "@regle/core": "^1.25.2",
     "@regle/rules": "^1.25.2",
-    "@vesperjs/vue": "0.8.0",
-    "@vue/reactivity": "^3.6.0-beta.11",
+    "@vesperjs/vue": "0.8.1",
+    "@vue/reactivity": "^3.6.0-beta.12",
     "@vueuse/integrations": "^14.3.0",
     "@yaireo/tagify": "^4.37.1",
     "bootstrap-icons": "^1.13.1",
@@ -36,7 +36,7 @@
     "universal-cookie": "^8.1.2",
     "valibot": "^1.4.0",
     "vanilla-calendar-pro": "^3.1.0",
-    "vue": "^3.6.0-beta.11",
+    "vue": "^3.6.0-beta.12",
     "vue-i18n": "^11.4.2"
   },
   "devDependencies": {
