@@ -3,7 +3,6 @@
 # TimeZone::Detect module
 module TimeZone::Detect
   extend ActiveSupport::Concern
-  include TimeZone::Cookie
 
   included do
     before_action :set_time_zone
@@ -12,6 +11,11 @@ module TimeZone::Detect
   protected
 
   def set_time_zone
-    Time.zone = time_zone
+    # puts cookies.to_h
+    Time.zone = cookies[:time_zone]
+  end
+
+  def time_zone
+    Time.zone
   end
 end
