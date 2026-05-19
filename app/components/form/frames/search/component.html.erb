@@ -1,49 +1,49 @@
 <div data-controller="calendar frameSearch">
-<div class="flex justify-center mb-2">
-  <div class="mx-auto">
-    <div data-calendar-target="cal"></div>
+  <div class="flex justify-center mb-2">
+    <div class="mx-auto">
+      <div data-calendar-target="cal"></div>
+    </div>
   </div>
-</div>
-<div class="flex justify-start">
-  <table class="table table-bordered table-rounded">
-    <tbody>
-      <tr>
-        <td colspan="2">
-          <div class="tooltip tooltip-top" data-tip="タグ or 名前 or 撮影/登録/更新日">
-            <%#= text_field_tag "word", "", placeholder: "", autocomplete: "off",
-                                            class: "input input-bordered w-60",
-                                            "data-calendar-target": "word",
-                                            "data-frameSearch-target": "word",
-                                            "data-action": "input->frameSearch#clearWordMessage calendar#change" %>
-            <input type="text" name="word" id="word" value="" placeholder="" autocomplete="off"
-                   class="input input-bordered w-60"
-                   data-calendar-target="word" data-frameSearch-target="word"
-                   data-action="input-&gt;frameSearch#clearWordMessage calendar#change">
-          </div>
-          <div data-frameSearch-target="wordMessage" class="text-red-500 text-xs"></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="w-[6em]">
-          <label for="tag_name">タグ：</label>
-        </td>
-        <td>
-          <%#= text_field_tag "tag_name", "", placeholder: "", autocomplete: "off",
-                                              class: "input input-bordered w-40",
-                                              "data-frameSearch-target": "tag",
-                                              "data-action": "input->frameSearch#clearTagMessage" %>
-          <input type="text" name="tag_name" id="tag_name" value="" placeholder="" autocomplete="off"
-                 class="input input-bordered w-40" data-frameSearch-target="tag"
-                 data-action="input-&gt;frameSearch#clearTagMessage">
-          <div data-frameSearch-target="tagMessage" class="text-red-500 text-xs"></div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<%= form_with url: root_path, local: true, method: :get, html: { data: { action: "submit->frameSearch#submit" } } do |form| %>
-  <div class="flex justify-start pt-2">
-    <%= form.submit "検索", class: "btn btn-outline btn-primary", name: nil %>
+  <div class="flex justify-start">
+    <table class="table table-bordered table-rounded">
+      <tbody>
+        <tr>
+          <td colspan="2">
+            <div class="tooltip tooltip-top" data-tip="タグ or 名前 or 撮影/登録/更新日">
+              <%#= text_field_tag "word", "", placeholder: "", autocomplete: "off",
+                                              class: "input input-bordered w-60",
+                                              "data-calendar-target": "word",
+                                              "data-frameSearch-target": "word",
+                                              "data-action": "input->frameSearch#clearWordMessage calendar#change" %>
+              <input type="text" name="word" id="word" value="" placeholder="" autocomplete="off"
+                     class="input input-bordered w-60"
+                     data-calendar-target="word" data-frameSearch-target="word"
+                     data-action="input-&gt;frameSearch#clearWordMessage calendar#change">
+            </div>
+            <div data-frameSearch-target="wordMessage" class="text-red-500 text-xs"></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="w-[6em]">
+            <label for="tag_name">タグ：</label>
+          </td>
+          <td>
+            <%#= text_field_tag "tag_name", "", placeholder: "", autocomplete: "off",
+                                                class: "input input-bordered w-40",
+                                                "data-frameSearch-target": "tag",
+                                                "data-action": "input->frameSearch#clearTagMessage" %>
+            <input type="text" name="tag_name" id="tag_name" value="" placeholder="" autocomplete="off"
+                   class="input input-bordered w-40" data-frameSearch-target="tag"
+                   data-action="input-&gt;frameSearch#clearTagMessage">
+            <div data-frameSearch-target="tagMessage" class="text-red-500 text-xs"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-<% end %>
+  <%= form_with url: root_path, local: true, method: :get, html: { data: { action: "submit->frameSearch#submit" } } do |form| %>
+    <div class="flex justify-start pt-2">
+      <%= form.submit "検索", class: "btn btn-outline btn-primary", name: nil %>
+    </div>
+  <% end %>
 </div>
