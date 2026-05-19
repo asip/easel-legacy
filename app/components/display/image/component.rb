@@ -19,7 +19,7 @@ module Display
         if model.class == Frame && model.file.present?
           img_url = model.file_proxy_url(:three)
           link_url = original ? model.file_proxy_url(:original) : nil
-        elsif model.class == User && model.image.present?
+        elsif model.class == User # && model.image.present?
           img_url = model.image_url_for_view(:three)
           link_url = original ? model.image_url_for_view(:original) : nil
         end
