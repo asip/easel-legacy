@@ -2,5 +2,5 @@
   <%= render Frames::More::List::Component.new(frames: @frames, from: "", pagy: @pagy) %>
 <% end %>
 <%= turbo_stream.replace "load-next" do %>
-  <%= render Frames::More::Next::Component.new(pagy: @pagy) %>
+  <%= render Frames::More::Button::Next::Component.new(pagy: @pagy) %>
 <% end %>
