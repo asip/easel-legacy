@@ -32,6 +32,6 @@
   </table>
 </div>
 <div class="flex justify-center gap-2 mt-2">
-  <%= @form.submit "更新", class: "btn btn-outline btn-primary" %>
-  <%= link_to "戻る", @back_to_path, class: "btn btn-outline btn-warning" %>
+  <%= render Form::Element::Button::Submit::Component.new(label: "更新") %>
+  <%= render Form::Element::Link::Back::Component.new(url: @back_to_path) %>
 </div>
