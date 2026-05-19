@@ -3,13 +3,13 @@
 <% end %>
 <% unless @small %>
   <% if @link_url.present? %>
-  <%= link_to image_tag(@img_url, class: "mx-auto"), @link_url, class: "mx-auto lb" %>
+  <%= link_to image_tag(@img_url, class: "mx-auto max-w-80 max-h-80"), @link_url, class: "lb" %>
   <% else %>
-  <%= image_tag(@img_url, class: "") %>
+  <%= image_tag(@img_url, class: "mx-auto max-w-80 max-h-80") %>
   <% end %>
 <% else %>
   <% if @link_url.present? %>
-  <%= link_to image_tag(@img_url, class: "mx-auto"), @link_url, class: "mx-auto w-25 h-25 object-contain lb" %>
+  <%= link_to image_tag(@img_url, class: "mx-auto w-25 h-25 object-contain"), @link_url, class: "lb" %>
   <% else %>
   <%= image_tag(@img_url, class: "mx-auto w-25 h-25 object-contain") %>
   <% end %>

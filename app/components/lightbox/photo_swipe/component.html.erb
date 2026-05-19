@@ -1,8 +1,8 @@
 <% if @link_url %>
   <div class="hidden" data-controller="pswp" data-pswp-selector-value="#image"></div>
   <div id="image">
-    <%= link_to image_tag(@img_url, class: ""), @link_url, class: "" %>
+    <%= link_to image_tag(@img_url, class: "mx-auto max-w-80 max-h-80"), @link_url %>
   </div>
 <% else %>
-  <%= image_tag(@img_url, class: "") %>
+  <%= image_tag(@img_url, class: "mx-auto max-w-80 max-h-80") %>
 <% end %>
