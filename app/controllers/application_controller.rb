@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   include TimeZone::Detect
   include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
   include PageTransition::Location
-  include ::Stream::Renderable
-  include ::Stream::ErrorRenderable
+  include Stream::Renderable
+  include Stream::ErrorRenderable
   include Account::Authentication
   include ::Cookies
   include Api::Session
