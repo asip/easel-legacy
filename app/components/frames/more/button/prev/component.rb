@@ -1,20 +1,8 @@
 # frozen_string_literal: true
 
-# frames
-module Frames
-  # more
-  module More
-    # button
-    module Button
-      # prev
-      module Prev
-        # Component class
-        class Component < ViewComponent::Base
-          def initialize(pagy:)
-            @pagy = pagy
-          end
-        end
-      end
-    end
+# Frames::More::Button::Prev::Component class
+class Frames::More::Button::Prev::Component < ViewComponent::Base
+  def initialize(pagy:)
+    @pagy = pagy
   end
 end

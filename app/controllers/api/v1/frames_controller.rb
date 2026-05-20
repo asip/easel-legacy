@@ -6,8 +6,6 @@ class Api::V1::FramesController < Api::V1::ApiController
   include Api::Frames::Variables
 
   def comments
-    # options = {}
-    # options[:include] = [:user]
     render_comments(comments: comment_list)
   end
 

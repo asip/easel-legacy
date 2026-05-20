@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
-# frames
-module Frames
-  # profile
-  module Profile
-    # Component class
-    class Component < ViewComponent::Base
-      def initialize(frame:)
-        @frame = frame
-      end
-    end
+# Frames::Profile::Component class
+class Frames::Profile::Component < ViewComponent::Base
+  def initialize(frame:)
+    @frame = frame
   end
 end

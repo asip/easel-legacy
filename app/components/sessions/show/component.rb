@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
-# sessions
-module Sessions
-  # show
-  module Show
-    # Component class
-    class Component < ViewComponent::Base
-      def initialize(user:)
-        @user = user
-      end
-    end
+# Sessions::Show::Component class
+class Sessions::Show::Component < ViewComponent::Base
+  def initialize(user:)
+    @user = user
   end
 end
