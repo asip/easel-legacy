@@ -6,7 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # devise :omniauthable, omniauth_providers: [:twitter]
 
   protect_from_forgery except: :callback
-  # skip_before_action :verify_authenticity_token, only: :google
+  # skip_before_action :verify_authenticity_token, only: :callback
 
   before_action :verify_g_csrf_token
 
