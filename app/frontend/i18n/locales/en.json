@@ -1,0 +1,27 @@
+{
+  "en": {
+    "misc": {
+      "page": "page"
+    },
+    "models": {
+      "comment": "comment"
+    },
+    "search": {
+      "tooltip": {
+        "word": "Tag or Name or YYYY/MM/DD"
+      }
+    },
+    "rules": {
+      "required": "Required.",
+      "schemaMessage": "Invalid type: Please enter as type {expected}, not type {received}.",
+      "maxLength": "are limited to {max} characters."
+    },
+    "backend": {
+      "error": {
+        "api": "An error has occurred.({message})",
+        "login": "Please log in.",
+        "not_found": "This {source} has been deleted."
+      }
+    }
+  }
+}

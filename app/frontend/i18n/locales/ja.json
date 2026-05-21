@@ -1,0 +1,27 @@
+{
+  "ja": {
+    "misc": {
+      "page": "ページ"
+    },
+    "models": {
+      "comment": "コメント"
+    },
+    "search": {
+      "tooltip": {
+        "word": "タグ or 名前 or YYYY/MM/DD"
+      }
+    },
+    "rules": {
+      "required": "必須です。",
+      "schemaMessage": "無効な型です：{received}型ではなく{expected}型で入力してください",
+      "maxLength": "{max}文字以内で入力してください"
+    },
+    "backend": {
+      "error": {
+        "api": "不具合が発生しました。({message})",
+        "login": "ログインしなおしてください。",
+        "not_found": "この{source}は削除されています。"
+      }
+    }
+  }
+}
