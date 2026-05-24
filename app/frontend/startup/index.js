@@ -1,7 +1,7 @@
 import './items/locale'
 import './items/i18n'
 import './items/time-zone'
-import './items/settings'
+import './items/config'
 import './items/turbo'
 import './items/controllers'
 import './items/components'

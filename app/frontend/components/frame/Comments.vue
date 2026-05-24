@@ -6,7 +6,7 @@ import { app } from '~/settings.json'
 
 import { useLocale } from '@vesperjs/vue'
 
-import { useAccount, useComments, useRoute, useToast, useSettings } from '~/composables'
+import { useAccount, useComments, useRoute, useToast, useConfig } from '~/composables'
 
 /*
 const { viewData } = defineProps<{ viewData?: any }>()
@@ -15,7 +15,7 @@ globalThis.console.log(JSON.stringify(viewData))
 
 const { autodetect } = useLocale()
 const { setFlash } = useToast()
-const { baseURL } = useSettings()
+const { baseURL } = useConfig()
 const { authenticate, flash } = useAccount()
 const { getComments } = useComments()
 
