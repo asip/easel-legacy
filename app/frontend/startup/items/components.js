@@ -1,14 +1,12 @@
 import { createApp, vaporInteropPlugin } from 'vue'
 import { RegleVuePlugin } from '@regle/core'
 import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import plugin from 'turbo-mount/vue'
 import { TurboMount } from 'turbo-mount'
 import { registerComponent } from 'turbo-mount/vue'
-import index from '../../components/index.vue'
+import index from '~/components/index.vue'
 
 const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
 
 plugin.mountComponent = (mountProps) => {
   const { el, Component, props } = mountProps
