@@ -1,9 +1,9 @@
 import { useTimeZone } from '@vesperjs/vue'
 
-import UniversalCookie from 'universal-cookie'
+import { useCookieStore } from '~/composables'
 
-const cookie = new UniversalCookie()
 const { timeZone } = useTimeZone()
+const { timeZone: clientTZ } = useCookieStore()
 
-if (timeZone.value.client !== cookie.get('time_zone'))
-  cookie.set('time_zone', timeZone.value.client)
+if (timeZone.value.client !== clientTZ.value)
+  clientTZ.value = timeZone.value.client

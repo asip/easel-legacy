@@ -6,7 +6,7 @@ import { useDate } from '@vesperjs/vue'
 import { Criteria, RefItems } from '~/types'
 
 export const useCookieStore = function () {
-  const cookies = useCookies(['access_token', 'q', 'ref', 'page'])
+  const cookies = useCookies(['access_token', 'q', 'ref', 'page', 'time_zone'])
 
   const criteria = computed<Criteria | undefined, string>({
     get() {
@@ -44,5 +44,14 @@ export const useCookieStore = function () {
     },
   })
 
-  return { criteria, date: date.value, accessToken, refItems, page }
+  const timeZone = computed<string, string>({
+    get() {
+      return cookies.get<string>('time_zone')
+    },
+    set(value: string | undefined) {
+      cookies.set('time_zone', value ?? '', { path: '/' })
+    },
+  })
+
+  return { criteria, date: date.value, accessToken, refItems, page, timeZone }
 }
