@@ -1,1 +1,1 @@
-// import '../startup/items/components'
+// import '~/startup/items/components'
