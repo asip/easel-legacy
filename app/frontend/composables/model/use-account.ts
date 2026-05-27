@@ -14,7 +14,7 @@ export const useAccount = function () {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setError } = useApiError({ flash })
+  const { backendErrorInfo, off } = useApiError(flash)
 
   const authenticate = async (): Promise<void> => {
     clearFlash()
@@ -30,7 +30,8 @@ export const useAccount = function () {
     >('/account')
 
     if (error) {
-      setError(error, { off: true })
+      off.value = true
+      backendErrorInfo.value = error
       clearAccount()
     } else {
       const accountAttrs = data

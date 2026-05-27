@@ -7,7 +7,7 @@ import type { TagsResource } from '~/types'
 
 export const useTagSearch = function () {
   const { flash, clearFlash } = useFlash()
-  const { setError } = useApiError({ flash })
+  const { backendErrorInfo } = useApiError(flash)
 
   const tags = ref<string[]>([])
 
@@ -23,7 +23,7 @@ export const useTagSearch = function () {
     clearFlash()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
       tags.value = []
     } else if (data) {
       const { tags: tagList } = data

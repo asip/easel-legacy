@@ -12,7 +12,7 @@ export const useComments = function () {
   // const { token } = useAccount()
   const { comments } = storeToRefs(useCommentsStore())
 
-  const { setError } = useApiError({ flash })
+  const { backendErrorInfo } = useApiError(flash)
 
   const makeComment = ({ from }: { from: CommentResource }): Comment => {
     return create({ from })
@@ -28,7 +28,7 @@ export const useComments = function () {
     >(`/frames/${frameId}/comments`)
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else {
       const commentList: [CommentResource] | undefined = data?.comments
       // globalThis.console.log(commentList);

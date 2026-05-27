@@ -44,10 +44,9 @@ export const useComment = function () {
   }
 
   const { externalErrors, clearExternalErrors, isSuccess } =
-    useExternalErrors<CommentErrorProperty>({ flash })
+    useExternalErrors<CommentErrorProperty>(flash)
 
-  const { backendErrorInfo, setError, reload } = useApiError({
-    flash,
+  const { backendErrorInfo, reload } = useApiError(flash, {
     caller: { externalErrors, clearAccount },
   })
 
@@ -87,9 +86,7 @@ export const useComment = function () {
 
     clearExternalErrors()
 
-    if (error) {
-      setError(error)
-    }
+    if (error) backendErrorInfo.value = error
   }
 
   const updateComment = async (): Promise<void> => {
@@ -118,7 +115,7 @@ export const useComment = function () {
     clearExternalErrors()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else {
       const commentAttrs: CommentResource | undefined = data
       setComment({ from: commentAttrs })
@@ -138,9 +135,7 @@ export const useComment = function () {
 
     clearExternalErrors()
 
-    if (error) {
-      setError(error)
-    }
+    if (error) backendErrorInfo.value = error
   }
 
   return {
