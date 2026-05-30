@@ -10,6 +10,8 @@ import { useAccountStore } from '~/stores'
 
 import { i18n } from '~/i18n'
 
+const { t } = i18n.global
+
 export const useComment = function () {
   const { flash, clearFlash } = useFlash()
   const { copy } = useEntity<Comment, CommentResource>()
@@ -53,12 +55,12 @@ export const useComment = function () {
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404) {
       if (backendErrorInfo.value.error?.source == 'Frame') {
-        flash.value.alert = i18n.global.t('backend.error.not_found', {
-          source: i18n.global.t('misc.page'),
+        flash.value.alert = t('backend.error.not_found', {
+          source: t('misc.page'),
         })
       } else if (backendErrorInfo.value.error?.source == 'Comment') {
-        flash.value.alert = i18n.global.t('backend.error.not_found', {
-          source: i18n.global.t('models.comment'),
+        flash.value.alert = t('backend.error.not_found', {
+          source: t('models.comment'),
         })
       }
     }

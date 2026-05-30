@@ -3,8 +3,6 @@ import { ref, computed } from '@vue/reactivity'
 
 import { useLocale } from '@vesperjs/vue'
 
-import { i18n } from '~/i18n'
-
 import { Criteria } from '~/types'
 import { useCookieStore } from '~/composables'
 
@@ -13,7 +11,7 @@ interface QueryItems {
 }
 
 export const useFrameSearch = function () {
-  const { autodetect } = useLocale()
+  const { locale, autodetect } = useLocale()
   const { criteria } = useCookieStore()
 
   autodetect()
@@ -46,7 +44,7 @@ export const useFrameSearch = function () {
   }
 
   const validate = () => {
-    const result = v.safeParse(schema, searchParams.value, { lang: i18n.global.locale.value })
+    const result = v.safeParse(schema, searchParams.value, { lang: locale.value })
     const errorMessages = result.issues ? v.flatten(result.issues).nested : {}
     const success = result.success
 
