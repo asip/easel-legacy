@@ -4,6 +4,8 @@ import { useLocale } from '@vesperjs/vue'
 
 import { i18n } from '~/i18n'
 
+const { t } = i18n.global
+
 const schemaMessage = () => {
   /*
   v.setSchemaMessage((issue) => `Invalid type: Please enter as type ${issue.expected ?? ''}, not type ${issue.received}`, 'en')
@@ -12,7 +14,7 @@ const schemaMessage = () => {
   const { locale } = useLocale()
   v.setSchemaMessage(
     (issue) =>
-      i18n.global.t('rules.schemaMessage', {
+      t('rules.schemaMessage', {
         received: issue.received,
         expected: issue.expected ?? '',
       }),

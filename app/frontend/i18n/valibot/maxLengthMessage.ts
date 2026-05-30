@@ -4,6 +4,8 @@ import { useLocale } from '@vesperjs/vue'
 
 import { i18n } from '~/i18n'
 
+const { t } = i18n.global
+
 const maxLengthMessage = () => {
   /*
   v.setSpecificMessage(v.maxLength, (issue) => `are limited to ${issue.requirement.toString()} characters.`, 'en')
@@ -12,7 +14,7 @@ const maxLengthMessage = () => {
   const { locale } = useLocale()
   v.setSpecificMessage(
     v.maxLength,
-    (issue) => i18n.global.t('rules.maxLength', { max: issue.requirement.toString() }),
+    (issue) => t('rules.maxLength', { max: issue.requirement.toString() }),
     locale.value,
   )
 }
