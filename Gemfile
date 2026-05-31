@@ -14,10 +14,10 @@ gem "propshaft", "~> 1.3.2"
 gem "pg", "~> 1.6.3"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 8.0.1"
+gem "puma", "~> 8.0.2"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", "~> 0.1.20", require: false
+gem "thruster", "~> 0.1.21", require: false
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.23"
@@ -38,18 +38,18 @@ gem "turbo-mount", "~> 0.4.4"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.24.4", require: false
+gem "bootsnap", "~> 1.24.5", require: false
 
 # vite integration
 gem "rails_vite", "~> 0.2.2"
 
 # view component
-gem "view_component", "~> 4.10.0"
+gem "view_component", "~> 4.11.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.222.0"
-gem "image_processing", "~> 1.14.0"
-gem "shrine", "~> 3.6.0"
+gem "aws-sdk-s3", "~> 1.224.0"
+gem "image_processing", "~> 2.0.1"
+gem "shrine", "~> 3.7.0"
 
 # gem "anyway_config", "2.8.0"
 # image (processing) proxy
@@ -73,15 +73,15 @@ gem "googleauth", "~> 1.16.2"
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.5.4"
+gem "pagy", "~> 43.5.5"
 
 # tags
 gem "no_fly_list", "0.7.4"
 
 # json
-gem "oj", "3.17.0"
+gem "oj", "3.17.1"
 gem "alba", "3.10.0"
-gem "typelizer", "~>0.13.0 "
+gem "typelizer", "~>0.13.1 "
 
 # Rack::Locale
 gem "rack-contrib", "2.5.0"
@@ -90,7 +90,7 @@ gem "rack-contrib", "2.5.0"
 gem "rack-cors", "~> 3.0.0"
 
 # soft delete
-gem "discard", "~> 1.4.0"
+gem "discard", "~> 2.0.0"
 
 # management console
 gem "rails_admin", "3.3.0"
@@ -107,7 +107,7 @@ end
 
 group :development do
   gem "brakeman", "~> 8.0.4", require: false
-  gem "bullet", "~> 8.1.1"
+  gem "bullet", "~> 8.1.2"
   gem "pg_query", "~> 6.2.2"
   gem "prosopite", "~> 2.2.0"
 
@@ -120,8 +120,8 @@ group :development do
   gem "annotaterb", "~> 4.22.0"
   gem "rails-erd", "~> 1.7.2"
   # Ruby style guide, linter, and formatter
-  gem "rubocop", "~> 1.86.1", require: false
-  gem "rubocop-rails", "~> 2.35.0", require: false
+  gem "rubocop", "~> 1.87.0", require: false
+  gem "rubocop-rails", "~> 2.35.3", require: false
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
   # Shopify/erb-lint
   gem "erb_lint", "~> 0.9.0", require: false
