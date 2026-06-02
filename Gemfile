@@ -93,7 +93,7 @@ gem "rack-cors", "~> 3.0.0"
 gem "discard", "~> 2.0.0"
 
 # management console
-gem "rails_admin", "3.3.0"
+gem "motor-admin", "0.5.0"
 
 gem "mutex_m", "~> 0.3.0"
 

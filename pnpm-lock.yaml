@@ -11,9 +11,6 @@ importers:
       '@formkit/tempo':
         specifier: ^1.1.0
         version: 1.1.0
-      '@fortawesome/fontawesome-free':
-        specifier: ^7.2.0
-        version: 7.2.0
       '@hotwired/stimulus':
         specifier: ^3.2.2
         version: 3.2.2
@@ -62,9 +59,6 @@ importers:
       pinia:
         specifier: 3.0.4
         version: 3.0.4(typescript@6.0.3)(vue@3.6.0-beta.13(typescript@6.0.3))
-      rails_admin:
-        specifier: 3.3.0
-        version: 3.3.0
       sanitize-html:
         specifier: ^2.17.4
         version: 2.17.4
@@ -188,10 +182,6 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/runtime@7.26.7':
-    resolution: {integrity: sha512-AOPI3D+a8dXnja+iwsUqGRjr1BbZIe771sXdapOtYI531gSqpi92vXivKcq2asu/DFpdl1ceFAKZyRzK2PCVcQ==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/types@7.29.0':
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
@@ -250,26 +240,11 @@ packages:
   '@formkit/tempo@1.1.0':
     resolution: {integrity: sha512-LF36zxNFvNO+U2uS2RX5h0SJZuL4z/JpDHbMOgumhv+re6k/Jpt9S9mZuEMLaLUtpDZlRZZE3UkIiwSS+Forig==}
 
-  '@fortawesome/fontawesome-free@6.7.2':
-    resolution: {integrity: sha512-JUOtgFW6k9u4Y+xeIaEiLr3+cjoUPiAuLXoyKOJSia6Duzb7pq+A76P9ZdPDoAoxHdHzq6gE9/jKBGXlZT8FbA==}
-    engines: {node: '>=6'}
-
-  '@fortawesome/fontawesome-free@7.2.0':
-    resolution: {integrity: sha512-3DguDv/oUE+7vjMeTSOjCSG+KeawgVQOHrKRnvUuqYh1mfArrh7s+s8hXW3e4RerBA1+Wh+hBqf8sJNpqNrBWg==}
-    engines: {node: '>=6'}
-
   '@hotwired/stimulus@3.2.2':
     resolution: {integrity: sha512-eGeIqNOQpXoPAIP7tC1+1Yc1yl1xnwYqg+3mzqxyrbE5pg5YFBZcA6YoTiByJB6DKAEsiWtl6tjTJS4IYtbB7A==}
 
-  '@hotwired/turbo-rails@7.3.0':
-    resolution: {integrity: sha512-fvhO64vp/a2UVQ3jue9WTc2JisMv9XilIC7ViZmXAREVwiQ2S4UC7Go8f9A1j4Xu7DBI6SbFdqILk5ImqVoqyA==}
-
   '@hotwired/turbo-rails@8.0.23':
     resolution: {integrity: sha512-iBILwda3qmQC7FYM70+4s6kEQ7Fx9dJ6+yGxjPyrz9a5JDx1+y7OAA5TA7GGVOZJoicMLrKGdFDNorl40X35lw==}
-
-  '@hotwired/turbo@7.3.0':
-    resolution: {integrity: sha512-Dcu+NaSvHLT7EjrDrkEmH4qET2ZJZ5IcCWmNXxNQTBwlnE5tBZfN6WxZ842n5cHV52DH/AKNirbPBtcEXDLW4g==}
-    engines: {node: '>= 14'}
 
   '@hotwired/turbo@8.0.23':
     resolution: {integrity: sha512-GZ7cijxEZ6Ig71u7rD6LHaRv/wcE/hNsc+nEfiWOkLNqUgLOwo5MNGWOy5ZV9ZUDSiQx1no7YxjTNnT4O6//cQ==}
@@ -638,17 +613,8 @@ packages:
     resolution: {integrity: sha512-tmmZ3lQxAe/k/+rNnXQRawJ4NjxO2hqiOLTHvWchtGZULp4RyFeh6aU4XdOYBFe2KE1oShQTv4AblOs2iOrNnQ==}
     engines: {node: '>= 10.0.0'}
 
-  '@popperjs/core@2.11.8':
-    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
-
-  '@rails/actioncable@7.2.301':
-    resolution: {integrity: sha512-tFLZ5tocUeUkyQeHjN5l/lL7Jnvy0eeQZlwyq4pe4Ggew+rGdiKYudG3mHMqfKHBzmC4nV31aRhnsSjrNmNBGQ==}
-
   '@rails/actioncable@8.1.300':
     resolution: {integrity: sha512-zOENQsq3NM2jyBY6Z2qtZa3V/R/6OEqA+LGKixQbBMl7kk/J3FXDRcszPe74LsHNgB01jCl/DXu/xA8sHt4I/g==}
-
-  '@rails/ujs@6.1.710':
-    resolution: {integrity: sha512-NUS8nUkYHGSn/EDg3oJCkpMweSKeFxA4ef6pcnW2fJEZ7RcoWdJa1rr9vamUoqzNR+Ctd8ezsgBMAjxUahVB1w==}
 
   '@regle/core@1.26.1':
     resolution: {integrity: sha512-hGOjAjb9IhjaVB1ET9zxaonWooj3sQr6hjTH+CT+Jg4YKoIyX13mBAvX2dlI01nCX3w9l6hr9YnSTVxL8cDkKA==}
@@ -1161,11 +1127,6 @@ packages:
   bootstrap-icons@1.13.1:
     resolution: {integrity: sha512-ijombt4v6bv5CLeXvRWKy7CuM3TRTuPEuGaGKvTV5cz65rQSY8RQ2JcHt6b90cBBAC7s8fsf2EkQDldzCoXUjw==}
 
-  bootstrap@5.3.8:
-    resolution: {integrity: sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg==}
-    peerDependencies:
-      '@popperjs/core': ^2.11.8
-
   brace-expansion@1.1.14:
     resolution: {integrity: sha512-MWPGfDxnyzKU7rNOW9SP/c50vi3xrmrua/+6hfPbCS2ABNWfx24vPidzvC7krjU/RTo235sV776ymlsMtGKj8g==}
 
@@ -1452,9 +1413,6 @@ packages:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
     engines: {node: '>=16'}
 
-  flatpickr@4.6.13:
-    resolution: {integrity: sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==}
-
   flatted@3.3.2:
     resolution: {integrity: sha512-AiwGJM8YcNOaobumgtng+6NHuOqC3A7MixFeDafM3X9cIUM+xUXoS5Vfgf+OihAYe20fxqNM9yPBXJzRtZ/4eA==}
 
@@ -1615,12 +1573,6 @@ packages:
   jiti@2.6.1:
     resolution: {integrity: sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==}
     hasBin: true
-
-  jquery-ui@1.13.3:
-    resolution: {integrity: sha512-D2YJfswSJRh/B8M/zCowDpNFfwsDmtfnMPwjJTyvl+CBqzpYwQ+gFYIbUUlzijy/Qvoy30H1YhoSui4MNYpRwA==}
-
-  jquery@3.7.1:
-    resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -1987,9 +1939,6 @@ packages:
     peerDependencies:
       vite: '>=5.0.0'
 
-  rails_admin@3.3.0:
-    resolution: {integrity: sha512-sgdLMdJDOQmkEWYXY0uqLYxi7eMdhCEU4ZuKpVKdSssMoOr9iqCX8/sOP4ErRiC8Iez5x1vXVOv0Iki4ZKCNug==}
-
   react-dom@19.0.0:
     resolution: {integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==}
     peerDependencies:
@@ -2011,9 +1960,6 @@ packages:
   readdirp@5.0.0:
     resolution: {integrity: sha512-9u/XQ1pvrQtYyMpZe7DXKv2p5CNvyVwzUB6uhLAnQwHMSgKMBR62lc7AHljaeteeHXn11XTAaLLUVZYVZyuRBQ==}
     engines: {node: '>= 20.19.0'}
-
-  regenerator-runtime@0.14.1:
-    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -2511,10 +2457,6 @@ snapshots:
     dependencies:
       '@babel/types': 7.29.0
 
-  '@babel/runtime@7.26.7':
-    dependencies:
-      regenerator-runtime: 0.14.1
-
   '@babel/types@7.29.0':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
@@ -2574,23 +2516,12 @@ snapshots:
 
   '@formkit/tempo@1.1.0': {}
 
-  '@fortawesome/fontawesome-free@6.7.2': {}
-
-  '@fortawesome/fontawesome-free@7.2.0': {}
-
   '@hotwired/stimulus@3.2.2': {}
-
-  '@hotwired/turbo-rails@7.3.0':
-    dependencies:
-      '@hotwired/turbo': 7.3.0
-      '@rails/actioncable': 7.2.301
 
   '@hotwired/turbo-rails@8.0.23':
     dependencies:
       '@hotwired/turbo': 8.0.23
       '@rails/actioncable': 8.1.300
-
-  '@hotwired/turbo@7.3.0': {}
 
   '@hotwired/turbo@8.0.23': {}
 
@@ -2973,13 +2904,7 @@ snapshots:
       '@parcel/watcher-win32-x64': 2.5.6
     optional: true
 
-  '@popperjs/core@2.11.8': {}
-
-  '@rails/actioncable@7.2.301': {}
-
   '@rails/actioncable@8.1.300': {}
-
-  '@rails/ujs@6.1.710': {}
 
   '@regle/core@1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.13(typescript@6.0.3)))(vue@3.6.0-beta.13(typescript@6.0.3))':
     dependencies:
@@ -3456,10 +3381,6 @@ snapshots:
 
   bootstrap-icons@1.13.1: {}
 
-  bootstrap@5.3.8(@popperjs/core@2.11.8):
-    dependencies:
-      '@popperjs/core': 2.11.8
-
   brace-expansion@1.1.14:
     dependencies:
       balanced-match: 1.0.2
@@ -3750,8 +3671,6 @@ snapshots:
       flatted: 3.3.2
       keyv: 4.5.4
 
-  flatpickr@4.6.13: {}
-
   flatted@3.3.2: {}
 
   from@0.1.7: {}
@@ -3889,12 +3808,6 @@ snapshots:
   isexe@2.0.0: {}
 
   jiti@2.6.1: {}
-
-  jquery-ui@1.13.3:
-    dependencies:
-      jquery: 3.7.1
-
-  jquery@3.7.1: {}
 
   js-tokens@4.0.0: {}
 
@@ -4238,18 +4151,6 @@ snapshots:
       picomatch: 4.0.4
       vite: 8.0.16(jiti@2.6.1)(sass-embedded@1.100.0)(sass@1.100.0)
 
-  rails_admin@3.3.0:
-    dependencies:
-      '@babel/runtime': 7.26.7
-      '@fortawesome/fontawesome-free': 6.7.2
-      '@hotwired/turbo-rails': 7.3.0
-      '@popperjs/core': 2.11.8
-      '@rails/ujs': 6.1.710
-      bootstrap: 5.3.8(@popperjs/core@2.11.8)
-      flatpickr: 4.6.13
-      jquery: 3.7.1
-      jquery-ui: 1.13.3
-
   react-dom@19.0.0(react@19.0.0):
     dependencies:
       react: 19.0.0
@@ -4277,8 +4178,6 @@ snapshots:
       util-deprecate: 1.0.2
 
   readdirp@5.0.0: {}
-
-  regenerator-runtime@0.14.1: {}
 
   require-directory@2.1.1: {}
 
