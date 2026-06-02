@@ -107,7 +107,7 @@ end
 
 group :development do
   gem "brakeman", "~> 8.0.4", require: false
-  gem "bullet", "~> 8.1.2"
+  gem "bullet", "~> 8.1.3"
   gem "pg_query", "~> 6.2.2"
   gem "prosopite", "~> 2.2.0"
 
