@@ -6,10 +6,9 @@
 
 This is legacy frontend and backend (old version) of [Easel](https://github.com/asip/easel).
 
-Rails8.1 + Devise(authentication) + Pagy(paging) +
-Shrine(upload) + No Fly List(tag) +
-RailsAdmin (management console) + Discard(soft delete) +
-Hotwire (Turbo + Stimulus3) + Vue.js 3 + Tailwind CSS v4 + daisyUI v5
+Rails8.1 + Devise(authentication) + Pagy(paging) + Shrine(upload) + No Fly List(tag) +
+Motor Admin Rails (management console) + Discard(soft delete) + Hotwire (Turbo + Stimulus3) +
+Vue.js 3 + Tailwind CSS v4 + daisyUI v5 etc
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
