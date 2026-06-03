@@ -9,5 +9,3 @@ export const useRoute = function () {
 
   return { params, query, path }
 }
-
-export type UseRouteType = ReturnType<typeof useRoute>
