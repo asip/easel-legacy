@@ -2,3 +2,5 @@ allowBuilds:
   '@parcel/watcher': false
 minimumReleaseAgeExclude:
   - eslint-plugin-vue@10.9.2
+  - '@vesperjs/shared@0.9.4'
+  - '@vesperjs/vue@0.9.4'
