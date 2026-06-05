@@ -48,7 +48,7 @@
     "@typescript-eslint/eslint-plugin": "^8.60.1",
     "@typescript-eslint/parser": "^8.60.1",
     "@vitejs/plugin-vue": "^6.0.7",
-    "@vue/eslint-config-typescript": "^14.7.0",
+    "@vue/eslint-config-typescript": "^14.8.0",
     "copyfiles": "^2.4.1",
     "daisyui": "^5.5.20",
     "eslint": "^10.4.1",

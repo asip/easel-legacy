@@ -44,11 +44,11 @@ gem "bootsnap", "~> 1.24.6", require: false
 gem "rails_vite", "~> 0.2.2"
 
 # view component
-gem "view_component", "~> 4.11.0"
+gem "view_component", "~> 4.12.0"
 
 # Shrine
 gem "aws-sdk-s3", "~> 1.225.0"
-gem "image_processing", "~> 2.0.1"
+gem "image_processing", "~> 2.0.2"
 gem "shrine", "~> 3.7.1"
 
 # gem "anyway_config", "2.8.0"
@@ -67,7 +67,7 @@ gem "devise-i18n", "1.16.0"
 gem "omniauth-google-oauth2", "1.2.2"
 gem "jwt", "3.2.0"
 
-gem "googleauth", "~> 1.16.2"
+gem "googleauth", "~> 1.17.0"
 
 # settings
 gem "config", "~> 5.6.1"
@@ -79,7 +79,7 @@ gem "pagy", "~> 43.5.5"
 gem "no_fly_list", "0.7.4"
 
 # json
-gem "oj", "3.17.1"
+gem "oj", "3.17.3"
 gem "alba", "3.10.0"
 gem "typelizer", "~>0.13.1 "
 
@@ -125,6 +125,7 @@ group :development do
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
   # Shopify/erb-lint
   gem "erb_lint", "~> 0.9.0", require: false
+  gem "ruby-lsp", "~> 0.26.9", require: false
 
   gem "reek", "~> 6.5.0", require: false
   gem "traceroute", "~> 0.8.1"

@@ -3,3 +3,4 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - '@vesperjs/shared@0.9.5'
   - '@vesperjs/vue@0.9.5'
+  - '@vue/eslint-config-typescript@14.8.0'
