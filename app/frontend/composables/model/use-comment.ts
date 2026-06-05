@@ -1,6 +1,6 @@
 import { ref } from '@vue/reactivity'
 
-import { useMutationApi, useEntity, useExternalErrors, useApiError, useFlash } from '@vesperjs/vue'
+import { useApi, useApiError, useEntity, useExternalErrors, useFlash } from '@vesperjs/vue'
 import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
 import type { Comment, CommentResource } from '~/types'
@@ -13,6 +13,8 @@ import { i18n } from '~/i18n'
 const { t } = i18n.global
 
 export const useComment = function () {
+  const { mutationApi } = useApi()
+
   const { flash, clearFlash } = useFlash()
   const { copy } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()
@@ -77,7 +79,7 @@ export const useComment = function () {
       },
     }
 
-    const { error } = await useMutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>(
+    const { error } = await mutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>(
       `/frames/${frameId}/comments`,
       {
         method: 'post',
@@ -102,7 +104,7 @@ export const useComment = function () {
       },
     }
 
-    const { data, error } = await useMutationApi<
+    const { data, error } = await mutationApi<
       CommentResource,
       ErrorsResource<ErrorMessages<string>>
     >(
@@ -127,7 +129,7 @@ export const useComment = function () {
   const deleteComment = async (comment: Comment): Promise<void> => {
     clearFlash()
 
-    const { error } = await useMutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>(
+    const { error } = await mutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>(
       `/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
       {
         method: 'delete',

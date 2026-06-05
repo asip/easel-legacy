@@ -1,12 +1,14 @@
 import { storeToRefs } from 'pinia'
 
-import { useApiError, useFlash, useQueryApi } from '@vesperjs/vue'
+import { useApi, useApiError, useFlash,  } from '@vesperjs/vue'
 import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
 import type { AccountResource } from '~/types'
 import { useAccountStore } from '~/stores'
 
 export const useAccount = function () {
+  const { queryApi } = useApi()
+
   const { loggedIn, account } = storeToRefs(useAccountStore())
   const { clearAccount } = useAccountStore()
 
@@ -24,7 +26,7 @@ export const useAccount = function () {
       return
     } */
 
-    const { data, error } = await useQueryApi<
+    const { data, error } = await queryApi<
       AccountResource,
       ErrorsResource<ErrorMessages<string>>
     >('/account')

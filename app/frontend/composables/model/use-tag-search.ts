@@ -1,18 +1,20 @@
 import { ref } from '@vue/reactivity'
 
-import { useApiError, useQueryApi, useFlash } from '@vesperjs/vue'
+import { useApi, useApiError, useFlash } from '@vesperjs/vue'
 import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
 import type { TagsResource } from '~/types'
 
 export const useTagSearch = function () {
+  const { queryApi } = useApi()
+  
   const { flash, clearFlash } = useFlash()
   const { backendErrorInfo } = useApiError(flash)
 
   const tags = ref<string[]>([])
 
   const searchTag = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
-    const { data, error } = await useQueryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(
+    const { data, error } = await queryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(
       '/tags/search',
       {
         query: { q: name },

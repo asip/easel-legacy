@@ -1,12 +1,14 @@
 import { storeToRefs } from 'pinia'
 
-import { useQueryApi, useEntity, useApiError, useFlash } from '@vesperjs/vue'
+import { useApi, useEntity, useApiError, useFlash } from '@vesperjs/vue'
 import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
 import type { Comment, CommentResource, CommentsResource } from '~/types'
 import { useCommentsStore } from '~/stores'
 
 export const useComments = function () {
+  const { queryApi } = useApi()
+  
   const { flash, clearFlash } = useFlash()
   const { create } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()
@@ -22,7 +24,7 @@ export const useComments = function () {
     clearFlash()
     // console.log(frameId)
 
-    const { data, error } = await useQueryApi<
+    const { data, error } = await queryApi<
       CommentsResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${frameId}/comments`)
