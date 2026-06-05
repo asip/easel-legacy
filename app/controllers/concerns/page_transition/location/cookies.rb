@@ -12,7 +12,7 @@ module PageTransition::Location::Cookies
   protected
 
   def prev_url_for(path:)
-    cookies["prev_url#{path.gsub("/", "_")}".to_sym]
+    cookies["prev_url#{path.gsub("/", "_")}".to_sym] || root_path
   end
 
   def prev_url
