@@ -121,7 +121,7 @@ group :development do
   gem "rack-mini-profiler", "~> 4.0.1"
 
   gem "annotaterb", "~> 4.22.0"
-  gem "rails-erd", "~> 1.7.2"
+  gem "rails-erd", "~> 2.0.0"
   # Ruby style guide, linter, and formatter
   gem "rubocop", "~> 1.87.0", require: false
   gem "rubocop-rails", "~> 2.35.3", require: false

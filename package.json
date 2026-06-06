@@ -34,7 +34,7 @@
     "valibot": "^1.4.1",
     "vanilla-calendar-pro": "^3.1.0",
     "vue": "^3.6.0-beta.14",
-    "vue-i18n": "^11.4.4"
+    "vue-i18n": "^11.4.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
