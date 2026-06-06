@@ -2,6 +2,7 @@
 
 # Application Controller
 class ApplicationController < ActionController::Base
+  include Device::Detect
   include Locale::Detect
   include TimeZone::Detect
   include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
@@ -9,6 +10,7 @@ class ApplicationController < ActionController::Base
   include Stream::Renderable
   include Stream::ErrorRenderable
   include Account::Authentication
+  include Device
   include ::Cookies
   include Api::Session
   include Jwt::Refresh

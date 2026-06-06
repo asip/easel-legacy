@@ -89,6 +89,9 @@ gem "rack-contrib", "2.5.0"
 # cors
 gem "rack-cors", "~> 3.0.0"
 
+# user agent
+gem "rack-user_agent", "~> 0.6.0"
+
 # soft delete
 gem "discard", "~> 2.0.0"
 

@@ -39,16 +39,26 @@
       <div class="flex justify-center gap-2">
         <%= link_to "変更", edit_frame_path(@frame), class: "btn btn-outline btn-primary", "data-turbo-prefetch": false %>
         <%# Button trigger modal %>
+        <% if helpers.popover? %>
+        <button type="button" class="btn btn-outline btn-secondary anchor-center-end" commandfor="delete_modal" command="toggle-popover">
+          削除
+        </button>
+        <% else %>
         <button type="button" class="btn btn-outline btn-secondary" onclick="delete_modal.showModal()">
           削除
         </button>
+        <% end %>
         <%= link_to "戻る", helpers.back_to_path, class: "btn btn-outline btn-warning" %>
       </div>
       <% end %>
     </div>
   </div>
   <% if helpers.user_signed_in? && @frame.user_id == helpers.current_user.id %>
+    <% if helpers.popover? %>
+    <%= render Popover::Frames::Delete::Component.new(path: frame_path(@frame)) %>
+    <% else %>
     <%= render Modal::Frames::Delete::Component.new(path: frame_path(@frame)) %>
+    <% end %>
   <% end %>
   <%= render Front::Component.new(path: "frame/Comments") %>
 </div>

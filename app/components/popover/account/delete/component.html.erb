@@ -1,0 +1,8 @@
+<div popover="auto" id="delete_modal" class="popover-left-center rounded-[10px] mr-1">
+  <div class="card shadow gap-2 p-1 rounded-[10px] border border-red-200">
+    <div>
+      退会してもよろしいですか？
+      <%= link_to "退会", @path, data: { turbo_method: :delete }, class: "btn btn-sm btn-outline btn-secondary" %>
+    </div>
+  </div>
+</div>

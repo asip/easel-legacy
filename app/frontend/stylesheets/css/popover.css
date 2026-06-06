@@ -1,0 +1,19 @@
+.anchor-left-center {
+  anchor-name: --anchor-left-center;
+}
+
+.popover-left-center {
+  position-anchor: --anchor-left-center;
+  position-area: inline-start;
+}
+
+.anchor-center-end {
+  anchor-name: --anchor-center-end;
+}
+
+.popover-center-end {
+  position-anchor: --anchor-center-end;
+  /* top: anchor(bottom); */
+  /* left: anchor(left); */
+  position-area: block-end;
+}

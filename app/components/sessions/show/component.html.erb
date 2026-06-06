@@ -17,9 +17,15 @@
           <% unless @user.social_login? %>
             <%= link_to account_password_path do %><i class="bi bi-lock text-accent hover:text-primary"></i><% end %>
           <% end %>
+          <% if helpers.popover? %>
+          <button class="anchor-left-center" commandfor="delete_modal" command="toggle-popover">
+            <i class="bi bi-x-circle text-accent hover:text-primary"></i>
+          </button>
+          <% else %>
           <a onclick="delete_modal.showModal()">
             <i class="bi bi-x-circle text-accent hover:text-primary"></i>
           </a>
+          <% end %>
         </div>
       </div>
       <div>
@@ -83,5 +89,9 @@
     </div>
   </div>
 
+  <% if helpers.popover? %>
+  <%= render Popover::Account::Delete::Component.new(path: delete_account_path) %>
+  <% else %>
   <%= render Modal::Account::Delete::Component.new(path: delete_account_path) %>
+  <% end %>
 </div>
