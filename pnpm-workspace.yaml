@@ -1,18 +1,4 @@
 allowBuilds:
   '@parcel/watcher': false
 minimumReleaseAgeExclude:
-  - '@vue/eslint-config-typescript@14.8.0'
-  - '@vesperjs/shared@0.9.6'
-  - '@vesperjs/vue@0.9.6'
-  - '@vue/compiler-core@3.6.0-beta.14'
-  - '@vue/compiler-dom@3.6.0-beta.14'
-  - '@vue/compiler-sfc@3.6.0-beta.14'
-  - '@vue/compiler-ssr@3.6.0-beta.14'
-  - '@vue/compiler-vapor@3.6.0-beta.14'
-  - '@vue/reactivity@3.6.0-beta.14'
-  - '@vue/runtime-core@3.6.0-beta.14'
-  - '@vue/runtime-dom@3.6.0-beta.14'
-  - '@vue/runtime-vapor@3.6.0-beta.14'
-  - '@vue/server-renderer@3.6.0-beta.14'
-  - '@vue/shared@3.6.0-beta.14'
-  - vue@3.6.0-beta.14
+  - daisyui@5.5.23
