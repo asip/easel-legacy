@@ -8,7 +8,7 @@ import { useCommentsStore } from '~/stores'
 
 export const useComments = function () {
   const { queryApi } = useApi()
-  
+
   const { flash, clearFlash } = useFlash()
   const { create } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()
@@ -24,10 +24,9 @@ export const useComments = function () {
     clearFlash()
     // console.log(frameId)
 
-    const { data, error } = await queryApi<
-      CommentsResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/frames/${frameId}/comments`)
+    const { data, error } = await queryApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>(
+      `/frames/${frameId}/comments`,
+    )
 
     if (error) {
       backendErrorInfo.value = error

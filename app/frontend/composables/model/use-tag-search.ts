@@ -7,7 +7,7 @@ import type { TagsResource } from '~/types'
 
 export const useTagSearch = function () {
   const { queryApi } = useApi()
-  
+
   const { flash, clearFlash } = useFlash()
   const { backendErrorInfo } = useApiError(flash)
 
