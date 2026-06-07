@@ -40,7 +40,7 @@
         <%= link_to "変更", edit_frame_path(@frame), class: "btn btn-outline btn-primary", "data-turbo-prefetch": false %>
         <%# Button trigger modal %>
         <% if helpers.popover? %>
-        <button type="button" class="btn btn-outline btn-secondary anchor-center-end" commandfor="delete_modal" command="toggle-popover">
+        <button type="button" class="btn btn-outline btn-secondary anchor-center-end" commandfor="delete_popover" command="toggle-popover">
           削除
         </button>
         <% else %>
