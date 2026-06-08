@@ -1,4 +1,5 @@
 allowBuilds:
   '@parcel/watcher': false
 minimumReleaseAgeExclude:
-  - daisyui@5.5.23
+  - '@vesperjs/shared@0.9.7'
+  - '@vesperjs/vue@0.9.7'

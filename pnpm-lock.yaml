@@ -30,8 +30,8 @@ importers:
         specifier: ^1.26.1
         version: 1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.14(typescript@6.0.3)))(vue@3.6.0-beta.14(typescript@6.0.3))
       '@vesperjs/vue':
-        specifier: 0.9.6
-        version: 0.9.6(@vue/devtools-api@7.7.9)(@vue/reactivity@3.6.0-beta.14)(@vue/runtime-core@3.6.0-beta.14)(@vue/runtime-dom@3.6.0-beta.14)(typescript-eslint@8.60.1(eslint@10.4.1(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.14(typescript@6.0.3))
+        specifier: 0.9.7
+        version: 0.9.7(@vue/devtools-api@7.7.9)(@vue/reactivity@3.6.0-beta.14)(@vue/runtime-core@3.6.0-beta.14)(@vue/runtime-dom@3.6.0-beta.14)(typescript-eslint@8.60.1(eslint@10.4.1(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.14(typescript@6.0.3))
       '@vue/reactivity':
         specifier: ^3.6.0-beta.12
         version: 3.6.0-beta.14
@@ -932,13 +932,13 @@ packages:
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
     deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
-  '@vesperjs/shared@0.9.6':
-    resolution: {integrity: sha512-XrFon7bokUNCsouT72ddzV6PEWdKU38nXklzX8rf9gU9WgIVGFI8jQIe64IJWMtxt6mD/BaJ8z8u6NYkGitLnw==}
+  '@vesperjs/shared@0.9.7':
+    resolution: {integrity: sha512-ApfqPCQMrldAY31+qRPWkD4zk4HEDnBdKus03JwAe8QvkDztTBm37gXXMO8cVlXZlfUW1L9WmpuaR2NutPwLag==}
     peerDependencies:
       '@vue/reactivity': ^3.5.35 || ^3.6.0-beta.14
 
-  '@vesperjs/vue@0.9.6':
-    resolution: {integrity: sha512-6oTbtSY50YbMlzGMwW8uhESuRIhIitr6/HCBDbvW738Dl+g54Tnv1jVvuaOjYZdKpOPO9yNN/qbBLsiXNaAqlQ==}
+  '@vesperjs/vue@0.9.7':
+    resolution: {integrity: sha512-Vzrpiu5a+uxe+NweRHjt42Kt5Y6qmmn1PwRgyGOyiwVOlnml7y8ez6q1byTr/U4XWAkAw7w3x5SisblKbP9y+g==}
     peerDependencies:
       '@vue/reactivity': ^3.5.35 || ^3.6.0-beta.14
       '@vue/runtime-core': ^3.5.35 || ^3.6.0-beta.14
@@ -1126,6 +1126,9 @@ packages:
 
   bootstrap-icons@1.13.1:
     resolution: {integrity: sha512-ijombt4v6bv5CLeXvRWKy7CuM3TRTuPEuGaGKvTV5cz65rQSY8RQ2JcHt6b90cBBAC7s8fsf2EkQDldzCoXUjw==}
+
+  bowser@2.14.1:
+    resolution: {integrity: sha512-tzPjzCxygAKWFOJP011oxFHs57HzIhOEracIgAePE4pqB3LikALKnSzUyU4MGs9/iCEUuHlAJTjTc5M+u7YEGg==}
 
   brace-expansion@1.1.14:
     resolution: {integrity: sha512-MWPGfDxnyzKU7rNOW9SP/c50vi3xrmrua/+6hfPbCS2ABNWfx24vPidzvC7krjU/RTo235sV776ymlsMtGKj8g==}
@@ -2289,8 +2292,8 @@ packages:
   ufo@1.6.4:
     resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
-  undici@8.3.0:
-    resolution: {integrity: sha512-TkUDgb6tl7KOGZ+7e8E3d2FYgUQgF6z5YypqjWmixVQSQERFcVrVg0ySADm2LVLRh5ljAaHTCR5Fmz3Q34rB7Q==}
+  undici@8.4.0:
+    resolution: {integrity: sha512-tDR4LgFBeV7YBWOFMlmbhtrnFVWuZ6HKbkG+88/csQdhK2tPlW78PnLI2VRjIQtTlslvgSZ4R43WBE+4g6rhng==}
     engines: {node: '>=22.19.0'}
 
   universal-cookie@8.1.2:
@@ -3180,25 +3183,26 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vesperjs/shared@0.9.6(@vue/reactivity@3.6.0-beta.14)':
+  '@vesperjs/shared@0.9.7(@vue/reactivity@3.6.0-beta.14)':
     dependencies:
       '@formkit/tempo': 1.1.0
       '@vue/reactivity': 3.6.0-beta.14
+      bowser: 2.14.1
 
-  '@vesperjs/vue@0.9.6(@vue/devtools-api@7.7.9)(@vue/reactivity@3.6.0-beta.14)(@vue/runtime-core@3.6.0-beta.14)(@vue/runtime-dom@3.6.0-beta.14)(typescript-eslint@8.60.1(eslint@10.4.1(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.14(typescript@6.0.3))':
+  '@vesperjs/vue@0.9.7(@vue/devtools-api@7.7.9)(@vue/reactivity@3.6.0-beta.14)(@vue/runtime-core@3.6.0-beta.14)(@vue/runtime-dom@3.6.0-beta.14)(typescript-eslint@8.60.1(eslint@10.4.1(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.14(typescript@6.0.3))':
     dependencies:
       '@formkit/tempo': 1.1.0
       '@nanostores/persistent': 1.3.4(nanostores@1.3.0)
       '@nanostores/router': 1.0.0(nanostores@1.3.0)
       '@nanostores/vue': 1.1.0(@vue/devtools-api@7.7.9)(nanostores@1.3.0)(vue@3.6.0-beta.14(typescript@6.0.3))
-      '@vesperjs/shared': 0.9.6(@vue/reactivity@3.6.0-beta.14)
+      '@vesperjs/shared': 0.9.7(@vue/reactivity@3.6.0-beta.14)
       '@vue/reactivity': 3.6.0-beta.14
       '@vue/runtime-core': 3.6.0-beta.14
       '@vue/runtime-dom': 3.6.0-beta.14
       nanostores: 1.3.0
       ofetch: 1.5.1
       typescript-eslint: 8.60.1(eslint@10.4.1(jiti@2.6.1))(typescript@6.0.3)
-      undici: 8.3.0
+      undici: 8.4.0
       vue: 3.6.0-beta.14(typescript@6.0.3)
       vue-i18n: 11.4.5(vue@3.6.0-beta.14(typescript@6.0.3))
     transitivePeerDependencies:
@@ -3380,6 +3384,8 @@ snapshots:
   boolbase@1.0.0: {}
 
   bootstrap-icons@1.13.1: {}
+
+  bowser@2.14.1: {}
 
   brace-expansion@1.1.14:
     dependencies:
@@ -4464,7 +4470,7 @@ snapshots:
 
   ufo@1.6.4: {}
 
-  undici@8.3.0: {}
+  undici@8.4.0: {}
 
   universal-cookie@8.1.2:
     dependencies:
