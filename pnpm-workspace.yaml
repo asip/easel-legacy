@@ -1,5 +1,6 @@
 allowBuilds:
   '@parcel/watcher': false
 minimumReleaseAgeExclude:
-  - '@vesperjs/shared@0.9.9'
-  - '@vesperjs/vue@0.9.9'
+  - '@vesperjs/shared@0.9.10'
+  - '@vesperjs/vue@0.9.10'
+  - undici@8.4.1
