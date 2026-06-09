@@ -41,7 +41,7 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", "~> 1.24.6", require: false
 
 # vite integration
-gem "rails_vite", "~> 0.2.2"
+gem "rails_vite", "~> 0.2.3"
 
 # view component
 gem "view_component", "~> 4.12.0"
@@ -73,7 +73,7 @@ gem "googleauth", "~> 1.17.0"
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.5.5"
+gem "pagy", "~> 43.5.6"
 
 # tags
 gem "no_fly_list", "0.7.4"
@@ -121,7 +121,7 @@ group :development do
   gem "rack-mini-profiler", "~> 4.0.1"
 
   gem "annotaterb", "~> 4.22.0"
-  gem "rails-erd", "~> 2.0.0"
+  gem "rails-erd", "~> 2.0.1"
   # Ruby style guide, linter, and formatter
   gem "rubocop", "~> 1.87.0", require: false
   gem "rubocop-rails", "~> 2.35.4", require: false
