@@ -8,22 +8,22 @@
                       "data-controller": "queryMap",
                       "data-action": "click->queryMap#setQueryMap",
                       "data-queryMap-q-value": map do %>
-            <i class="bi bi-arrow-left-circle text-accent hover:text-primary"></i>
+            <i class="icon-circle-chevron-left text-accent hover:text-primary"></i>
             <% end %>
             プロフィール
         </div>
         <div>
-          <%= link_to edit_profile_path do %><i class="bi bi-pencil-square text-accent hover:text-primary"></i><% end %>
+          <%= link_to edit_profile_path do %><i class="icon-square-pen text-accent hover:text-primary"></i><% end %>
           <% unless @user.social_login? %>
-            <%= link_to account_password_path do %><i class="bi bi-lock text-accent hover:text-primary"></i><% end %>
+            <%= link_to account_password_path do %><i class="icon-key-round text-accent hover:text-primary"></i><% end %>
           <% end %>
           <% if helpers.popover? %>
           <button class="anchor-left-center" commandfor="delete_popover" command="toggle-popover">
-            <i class="bi bi-x-circle text-accent hover:text-primary"></i>
+            <i class="icon-circle-x text-accent hover:text-primary"></i>
           </button>
           <% else %>
           <a onclick="delete_modal.showModal()">
-            <i class="bi bi-x-circle text-accent hover:text-primary"></i>
+            <i class="icon-circle-x text-accent hover:text-primary"></i>
           </a>
           <% end %>
         </div>
