@@ -1,7 +1,25 @@
 allowBuilds:
   '@parcel/watcher': false
 minimumReleaseAgeExclude:
-  - '@regle/core@1.27.2'
-  - '@regle/rules@1.27.2'
   - '@vesperjs/shared@0.9.11'
   - '@vesperjs/vue@0.9.11'
+  - '@tailwindcss/node@4.3.1'
+  - '@tailwindcss/oxide-android-arm64@4.3.1'
+  - '@tailwindcss/oxide-darwin-arm64@4.3.1'
+  - '@tailwindcss/oxide-darwin-x64@4.3.1'
+  - '@tailwindcss/oxide-freebsd-x64@4.3.1'
+  - '@tailwindcss/oxide-linux-arm-gnueabihf@4.3.1'
+  - '@tailwindcss/oxide-linux-arm64-gnu@4.3.1'
+  - '@tailwindcss/oxide-linux-arm64-musl@4.3.1'
+  - '@tailwindcss/oxide-linux-x64-gnu@4.3.1'
+  - '@tailwindcss/oxide-linux-x64-musl@4.3.1'
+  - '@tailwindcss/oxide-wasm32-wasi@4.3.1'
+  - '@tailwindcss/oxide-win32-arm64-msvc@4.3.1'
+  - '@tailwindcss/oxide-win32-x64-msvc@4.3.1'
+  - '@tailwindcss/oxide@4.3.1'
+  - '@tailwindcss/vite@4.3.1'
+  - eslint@10.5.0
+  - lucide-static@1.18.0
+  - tailwindcss@4.3.1
+fetchRetryMaxtimeout: 12000000
+fetchTimeout: 12000000
