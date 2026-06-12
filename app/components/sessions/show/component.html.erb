@@ -13,7 +13,7 @@
             プロフィール
         </div>
         <div>
-          <%= link_to edit_profile_path do %><i class="icon-square-pen text-accent hover:text-primary"></i><% end %>
+          <%= link_to edit_profile_path do %><i class="icon-pencil text-accent hover:text-primary"></i><% end %>
           <% unless @user.social_login? %>
             <%= link_to account_password_path do %><i class="icon-key-round text-accent hover:text-primary"></i><% end %>
           <% end %>
