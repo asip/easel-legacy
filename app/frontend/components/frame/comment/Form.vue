@@ -15,8 +15,7 @@ const { setFlash } = useToast()
 // console.log('loggedIn:', loggedIn.value)
 
 const { loggedIn } = useAccount()
-const { comment, externalErrors, isSuccess, flash, createComment, set404Alert, reload } =
-  useComment()
+const { comment, externalErrors, success, flash, createComment, set404Alert, reload } = useComment()
 const { getComments } = useComments()
 
 const { commentRules } = useCommentRules()
@@ -31,7 +30,7 @@ const onPostClick = async (): Promise<void> => {
     await createComment(frameId)
     set404Alert()
     setFlash(flash.value)
-    if (isSuccess()) {
+    if (success) {
       comment.value.body = ''
       r$.$touch()
       r$.$reset()

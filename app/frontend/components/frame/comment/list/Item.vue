@@ -28,7 +28,7 @@ const {
   backendErrorInfo,
   updateComment,
   deleteComment,
-  isSuccess,
+  success,
   set404Alert,
   reload,
   setComment,
@@ -67,7 +67,7 @@ const onUpdateClick = async (): Promise<void> => {
     await updateComment()
     set404Alert()
     setFlash(flash.value)
-    if (isSuccess()) {
+    if (success) {
       r$.$touch()
       r$.$reset()
       setComment({ to: commentModel.value })
@@ -84,7 +84,7 @@ const onDeleteClick = async (): Promise<void> => {
   }
   set404Alert()
   setFlash(flash.value)
-  if (isSuccess()) {
+  if (success) {
     await getComments(`${commentModel.value?.frame_id}`)
   } else {
     await reload401404()
