@@ -1,6 +1,6 @@
 import { useTimeZone } from '@vesperjs/vue'
 
-import { useCookieStore } from '~/composables'
+import { useCookieStore } from '@/composables'
 
 const { timeZone } = useTimeZone()
 const { timeZone: clientTZ } = useCookieStore()

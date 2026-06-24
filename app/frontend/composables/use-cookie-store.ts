@@ -3,7 +3,7 @@ import { useCookies } from '@vueuse/integrations/useCookies'
 
 import { useDate } from '@vesperjs/vue'
 
-import { Criteria, RefItems } from '~/types'
+import { Criteria, RefItems } from '@/types'
 
 export const useCookieStore = function () {
   const cookies = useCookies(['access_token', 'q', 'ref', 'page', 'time_zone'])

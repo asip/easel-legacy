@@ -2,7 +2,7 @@
 import sanitizeHtml from 'sanitize-html'
 import { computed, ref } from 'vue'
 
-import type { Comment } from '~/types'
+import type { Comment } from '@/types'
 import {
   useAccount,
   useComment,
@@ -11,7 +11,7 @@ import {
   useI18nRegle,
   useCookieStore,
   useToast,
-} from '~/composables'
+} from '@/composables'
 
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'

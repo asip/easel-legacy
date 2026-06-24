@@ -6,7 +6,7 @@ import {
   useCommentRules,
   useI18nRegle,
   useToast,
-} from '~/composables'
+} from '@/composables'
 
 const { frameId } = defineProps<{ frameId: string }>()
 

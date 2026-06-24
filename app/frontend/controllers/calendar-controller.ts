@@ -3,7 +3,7 @@ import ApplicationController from './application-controller'
 import { Calendar } from 'vanilla-calendar-pro'
 
 import { useElement } from '@vesperjs/vue'
-import { useCalendar, useCookieStore } from '~/composables'
+import { useCalendar, useCookieStore } from '@/composables'
 
 export default class CalendarController extends ApplicationController {
   static targets = ['cal', 'word']

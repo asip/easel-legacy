@@ -3,7 +3,7 @@ import { ref } from '@vue/reactivity'
 import { useApi, useApiError, useFlash } from '@vesperjs/vue'
 import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
 
-import type { TagsResource } from '~/types'
+import type { TagsResource } from '@/types'
 
 export const useTagSearch = function () {
   const { queryApi } = useApi()

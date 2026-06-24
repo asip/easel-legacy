@@ -2,7 +2,7 @@ import * as v from 'valibot'
 
 import { useLocale } from '@vesperjs/vue'
 
-import { i18n } from '~/i18n'
+import { i18n } from '@/i18n'
 
 const { t } = i18n.global
 

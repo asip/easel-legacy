@@ -1,11 +1,11 @@
 <script lang="ts" setup vapor>
 import Item from './list/Item.vue'
 
-import { useComments } from '~/composables'
+import { useComments } from '@/composables'
 
 // const { frameId } = defineProps<{ frameId: string }>()
 
-const { comments /* getComments */ } = useComments()
+const { comments /* , getComments */ } = useComments()
 
 // await getComments(frameId)
 </script>

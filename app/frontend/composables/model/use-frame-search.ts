@@ -3,8 +3,8 @@ import { ref, computed } from '@vue/reactivity'
 
 import { useLocale } from '@vesperjs/vue'
 
-import { Criteria } from '~/types'
-import { useCookieStore } from '~/composables'
+import { Criteria } from '@/types'
+import { useCookieStore } from '@/composables'
 
 interface QueryItems {
   q?: string

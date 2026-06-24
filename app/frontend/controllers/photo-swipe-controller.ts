@@ -2,7 +2,7 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox'
 
 import ApplicationController from './application-controller'
 
-import { usePhotoSwipe } from '~/composables'
+import { usePhotoSwipe } from '@/composables'
 
 export default class PhotoSwipeController extends ApplicationController {
   static values = {

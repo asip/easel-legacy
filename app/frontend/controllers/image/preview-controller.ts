@@ -1,6 +1,6 @@
-import ApplicationController from '~/controllers/application-controller'
+import ApplicationController from '@/controllers/application-controller'
 
-import { useImagePreview, usePreviewUrl } from '~/composables'
+import { useImagePreview, usePreviewUrl } from '@/composables'
 
 export default class PreviewController extends ApplicationController {
   static targets = ['content', 'image']

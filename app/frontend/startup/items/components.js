@@ -4,7 +4,7 @@ import { createPinia } from 'pinia'
 import plugin from 'turbo-mount/vue'
 import { TurboMount } from 'turbo-mount'
 import { registerComponent } from 'turbo-mount/vue'
-import index from '~/components/index.vue'
+import index from '@/components/index.vue'
 
 const pinia = createPinia()
 

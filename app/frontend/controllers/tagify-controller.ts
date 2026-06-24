@@ -2,7 +2,7 @@ import Tagify from '@yaireo/tagify'
 
 import ApplicationController from './application-controller'
 
-import { useTagSearch, useTagEditor, useTagList } from '~/composables'
+import { useTagSearch, useTagEditor, useTagList } from '@/composables'
 
 export default class TagifyController extends ApplicationController {
   static targets = ['te', 'tl']

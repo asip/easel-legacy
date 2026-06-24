@@ -1,6 +1,6 @@
 import ApplicationController from './application-controller'
 
-import { useCookieStore } from '~/composables'
+import { useCookieStore } from '@/composables'
 
 interface QueryItems {
   q?: string

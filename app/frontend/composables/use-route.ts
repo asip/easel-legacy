@@ -1,6 +1,6 @@
 import { useNanoRoute } from '@vesperjs/vue'
 
-import { $router } from '~/stores'
+import { $router } from '@/stores'
 
 export const useRoute = function () {
   const { params, query, path } = useNanoRoute($router)

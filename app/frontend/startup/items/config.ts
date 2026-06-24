@@ -1,6 +1,6 @@
-import { app } from '~/settings.json'
+import { app } from '@/settings.json'
 
-import { useConfig } from '~/composables'
+import { useConfig } from '@/composables'
 
 const { baseURL } = useConfig()
 
