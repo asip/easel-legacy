@@ -3,3 +3,4 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - daisyui@5.6.3
   - eslint@10.6.0
+  - nanostores@1.4.0
