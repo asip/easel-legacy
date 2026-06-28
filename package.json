@@ -20,7 +20,7 @@
     "@vesperjs/vue": "0.9.12",
     "@vue/reactivity": "^3.6.0-beta.17",
     "@vueuse/integrations": "^14.3.0",
-    "@yaireo/tagify": "^4.37.1",
+    "@yaireo/tagify": "^4.38.0",
     "glightbox": "^3.3.1",
     "lucide-static": "^1.21.0",
     "nanostores": "^1.4.0",
@@ -31,7 +31,7 @@
     "toastify-js": "^1.12.0",
     "turbo-mount": "^0.4.4",
     "universal-cookie": "^8.1.2",
-    "valibot": "^1.4.1",
+    "valibot": "^1.4.2",
     "vanilla-calendar-pro": "^3.1.0",
     "vue": "^3.6.0-beta.17",
     "vue-i18n": "^11.4.6"
