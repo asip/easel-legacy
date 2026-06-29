@@ -3,3 +3,5 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - valibot@1.4.2
   - tsc-watch@7.2.1
+  - '@vesperjs/shared@0.9.13'
+  - '@vesperjs/vue@0.9.13'
