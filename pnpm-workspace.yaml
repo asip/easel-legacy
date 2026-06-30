@@ -1,7 +1,6 @@
 allowBuilds:
   '@parcel/watcher': false
+fetchRetryMaxtimeout: 12000000
+fetchTimeout: 12000000
 minimumReleaseAgeExclude:
-  - valibot@1.4.2
-  - tsc-watch@7.2.1
-  - '@vesperjs/shared@0.9.13'
-  - '@vesperjs/vue@0.9.13'
+  - vite@8.1.2
