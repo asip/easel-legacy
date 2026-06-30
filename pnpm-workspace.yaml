@@ -1,6 +1,4 @@
 allowBuilds:
   '@parcel/watcher': false
-fetchRetryMaxtimeout: 12000000
-fetchTimeout: 12000000
 minimumReleaseAgeExclude:
   - vite@8.1.2
