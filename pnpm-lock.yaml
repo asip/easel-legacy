@@ -24,11 +24,11 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(nanostores@1.4.0)
       '@regle/core':
-        specifier: ^1.28.2
-        version: 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
+        specifier: ^1.28.3
+        version: 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@regle/rules':
-        specifier: ^1.28.2
-        version: 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
+        specifier: ^1.28.3
+        version: 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@vesperjs/vue':
         specifier: 0.9.13
         version: 0.9.13(@vue/devtools-api@7.7.9)(@vue/reactivity@3.6.0-beta.17)(@vue/runtime-core@3.6.0-beta.17)(@vue/runtime-dom@3.6.0-beta.17)(typescript-eslint@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))
@@ -45,8 +45,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       lucide-static:
-        specifier: ^1.22.0
-        version: 1.22.0
+        specifier: ^1.23.0
+        version: 1.23.0
       nanostores:
         specifier: ^1.4.0
         version: 1.4.0
@@ -101,7 +101,7 @@ importers:
         version: 4.18.0
       '@tailwindcss/vite':
         specifier: ^4.3.2
-        version: 4.3.2(vite@8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))
+        version: 4.3.2(vite@8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))
       '@types/sanitize-html':
         specifier: ^2.16.1
         version: 2.16.1
@@ -119,13 +119,13 @@ importers:
         version: 8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3)
       '@vitejs/plugin-vue':
         specifier: ^6.0.7
-        version: 6.0.7(vite@8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))(vue@3.6.0-beta.17(typescript@6.0.3))
+        version: 6.0.7(vite@8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@vue/eslint-config-typescript':
         specifier: ^14.9.0
         version: 14.9.0(eslint-plugin-vue@10.9.2(@typescript-eslint/parser@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.6.0(jiti@2.7.0))(vue-eslint-parser@10.4.1(eslint@10.6.0(jiti@2.7.0))))(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3)
       daisyui:
-        specifier: ^5.6.6
-        version: 5.6.6
+        specifier: ^5.6.10
+        version: 5.6.10
       eslint:
         specifier: ^10.6.0
         version: 10.6.0(jiti@2.7.0)
@@ -140,7 +140,7 @@ importers:
         version: 0.57.0
       rails-vite-plugin:
         specifier: ^0.2.5
-        version: 0.2.5(vite@8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))
+        version: 0.2.5(vite@8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))
       sass-embedded:
         specifier: ^1.100.0
         version: 1.100.0
@@ -154,8 +154,8 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
       vite:
-        specifier: ^8.1.2
-        version: 8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
+        specifier: ^8.1.3
+        version: 8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
       vue-eslint-parser:
         specifier: ^10.4.1
         version: 10.4.1(eslint@10.6.0(jiti@2.7.0))
@@ -613,8 +613,8 @@ packages:
   '@rails/actioncable@8.1.300':
     resolution: {integrity: sha512-zOENQsq3NM2jyBY6Z2qtZa3V/R/6OEqA+LGKixQbBMl7kk/J3FXDRcszPe74LsHNgB01jCl/DXu/xA8sHt4I/g==}
 
-  '@regle/core@1.28.2':
-    resolution: {integrity: sha512-1BecVMrOpNXUj2CWrAD+Xs1XbucVc6d73k5MKhdbKD2sYVaM5U10lXCNU7xxHZAoZpt6MzrZxW1c7PErhiubkQ==}
+  '@regle/core@1.28.3':
+    resolution: {integrity: sha512-IMonbgBt+pkh08YmtPM21V1roMa7yipQ67/dh2Yz12QHK2z02aXZxIwmOINrFADONyv3ZH7FRo6GLvClUmVweQ==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: '>=3.3.0'
@@ -622,8 +622,8 @@ packages:
       pinia:
         optional: true
 
-  '@regle/rules@1.28.2':
-    resolution: {integrity: sha512-ak8uZPooEtKex/WoU5UiDHGFpV6iWKStYXuXiz9HU3Mv6cijp5PTNugGzGLV7/S1n7OVdn/aizI1xD0eQrX1CA==}
+  '@regle/rules@1.28.3':
+    resolution: {integrity: sha512-v4bimpCcNTN8Df3PT0/RL6DtfetcdhJZLdJufxa/ZyXIBPehhuG81hfRBY+le/TLDitCmWaR1kQ6gJvD3cmOdQ==}
 
   '@rolldown/binding-android-arm64@1.1.3':
     resolution: {integrity: sha512-DT6Z3PhvioeHMvxo+xHc3KtqggrI7CCTXCmC2h/5zUlp5jVitv7XEy+9q5/7v8IolhlioawpMo8Kg0EEBy7J0g==}
@@ -1171,8 +1171,8 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  daisyui@5.6.6:
-    resolution: {integrity: sha512-UFiuIZYucF7ylrnY3PT1SqwaEbVB10mqTZRyeRchZk0bud+HihYLLhXdxGDVmR/ftrM9G9YVr9FFPRVVIZJ5hA==}
+  daisyui@5.6.10:
+    resolution: {integrity: sha512-vk2E+iIETWGd/jUAC0Bu6OLU4HJSSj7Q2vvsZGiJN/+vt1RK3/UEiLYC9GTldQdD3yQkjNzWb8AYYpmTenQzJg==}
 
   dayjs@1.11.20:
     resolution: {integrity: sha512-YbwwqR/uYpeoP4pu043q+LTDLFBLApUP6VxRihdfNTqu4ubqMlGDLd6ErXhEgsyvY0K6nCs7nggYumAN+9uEuQ==}
@@ -1637,8 +1637,8 @@ packages:
     resolution: {integrity: sha512-NxVFwLAnrd9i7KUBxC4DrUhmgjzOs+1Qm50D3oF1/oL+r1NpZ4gA7xvG0/zJ8evR7zIKn4vLf7qTNduWFtCrRw==}
     engines: {node: 20 || >=22}
 
-  lucide-static@1.22.0:
-    resolution: {integrity: sha512-xJ1V0cJLZtgnyoD7Cqvj8B48se3JI/YcC2XyNQ9sVoK7eb74JdYL9rHuWJiPGYo6dcj8K/Yrx74XrjJAA3t/Dw==}
+  lucide-static@1.23.0:
+    resolution: {integrity: sha512-V4tqLEHfvsptGaAZMD8sFJKeGsz2nTAU0+ctxTX3afao/5bs+mhrvvGDmvQmyI7YhQwpIFodZmnkPTMYyGzH4Q==}
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
@@ -2210,8 +2210,8 @@ packages:
   varint@6.0.0:
     resolution: {integrity: sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg==}
 
-  vite@8.1.2:
-    resolution: {integrity: sha512-6YYPbRXTxx6bRXmOn7XdnQAy5DQNHhDgtjhDHI13oe4pY93kkcdGJWxpGwOm++/Wh0QpQhDrpIoVMrmrsI5AGQ==}
+  vite@8.1.3:
+    resolution: {integrity: sha512-Ds+gBRbj0lwRO2Y5hwnUBdxSwlAve9LeRyU4sNnAr0ewW0gWF0n5bgXgUzbgZ49MV9BVUAQUFYVcDUcilUExMA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -2769,7 +2769,7 @@ snapshots:
 
   '@rails/actioncable@8.1.300': {}
 
-  '@regle/core@1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))':
+  '@regle/core@1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))':
     dependencies:
       '@standard-schema/spec': 1.1.0
       '@vue/devtools-api': 7.7.9
@@ -2778,9 +2778,9 @@ snapshots:
     optionalDependencies:
       pinia: 3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3))
 
-  '@regle/rules@1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))':
+  '@regle/rules@1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))':
     dependencies:
-      '@regle/core': 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
+      '@regle/core': 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
       type-fest: 5.7.0
     transitivePeerDependencies:
       - pinia
@@ -2900,12 +2900,12 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.3.2
       '@tailwindcss/oxide-win32-x64-msvc': 4.3.2
 
-  '@tailwindcss/vite@4.3.2(vite@8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))':
+  '@tailwindcss/vite@4.3.2(vite@8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))':
     dependencies:
       '@tailwindcss/node': 4.3.2
       '@tailwindcss/oxide': 4.3.2
       tailwindcss: 4.3.2
-      vite: 8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
+      vite: 8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
 
   '@tybys/wasm-util@0.10.3':
     dependencies:
@@ -3068,10 +3068,10 @@ snapshots:
       - '@nanostores/logger'
       - '@vue/devtools-api'
 
-  '@vitejs/plugin-vue@6.0.7(vite@8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))(vue@3.6.0-beta.17(typescript@6.0.3))':
+  '@vitejs/plugin-vue@6.0.7(vite@8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))(vue@3.6.0-beta.17(typescript@6.0.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
+      vite: 8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
       vue: 3.6.0-beta.17(typescript@6.0.3)
 
   '@vue/compiler-core@3.6.0-beta.17':
@@ -3284,7 +3284,7 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  daisyui@5.6.6: {}
+  daisyui@5.6.10: {}
 
   dayjs@1.11.20: {}
 
@@ -3708,7 +3708,7 @@ snapshots:
 
   lru-cache@11.3.5: {}
 
-  lucide-static@1.22.0: {}
+  lucide-static@1.23.0: {}
 
   magic-string@0.30.21:
     dependencies:
@@ -3923,10 +3923,10 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  rails-vite-plugin@0.2.5(vite@8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)):
+  rails-vite-plugin@0.2.5(vite@8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)):
     dependencies:
       picomatch: 4.0.4
-      vite: 8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
+      vite: 8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
 
   react-dom@19.0.0(react@19.0.0):
     dependencies:
@@ -4229,7 +4229,7 @@ snapshots:
 
   varint@6.0.0: {}
 
-  vite@8.1.2(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0):
+  vite@8.1.3(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
