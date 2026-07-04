@@ -6,17 +6,17 @@ import type { Flash } from '@vesperjs/vue'
 const Toastify = (await import('toastify-js')).default
 
 export const useToast = function () {
-  const toast = computed<undefined, Flash>({
-    get () {
+  const toast = computed<undefined, Flash | Record<string, string[]>>({
+    get() {
       return undefined
     },
-    set (value: Flash | Record<string, string[]>) {
-      if( 'notice' in value || 'alert' in value) {
+    set(value: Flash | Record<string, string[]>) {
+      if ('notice' in value || 'alert' in value) {
         setFlash(value)
       } else {
         setMessages(value as Record<string, string[]>)
       }
-    }
+    },
   })
 
   const setFlash = (flash: Flash): void => {
