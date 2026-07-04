@@ -14,7 +14,7 @@ globalThis.console.log(JSON.stringify(viewData))
 */
 
 const { autodetect } = useLocale()
-const { setFlash } = useToast()
+const { toast } = useToast()
 const { baseURL } = useConfig()
 const { authenticate, flash } = useAccount()
 const { getComments } = useComments()
@@ -24,7 +24,7 @@ autodetect()
 baseURL.value = app.api.baseURL
 
 await authenticate()
-setFlash(flash.value)
+toast.value = flash.value
 
 const route = useRoute()
 const id: string = (route.params as { id?: string })?.id ?? ''
