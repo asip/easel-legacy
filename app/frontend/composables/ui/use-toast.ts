@@ -11,6 +11,8 @@ export const useToast = function () {
       return undefined
     },
     set(value: Flash | Record<string, string[]>) {
+      if (Object.keys(value).length === 0) return
+
       if ('notice' in value || 'alert' in value) {
         setFlash(value)
       } else {
