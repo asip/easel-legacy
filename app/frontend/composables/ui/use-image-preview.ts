@@ -1,4 +1,4 @@
-import { Ref } from '@vue/reactivity'
+import { computed, type Ref } from '@vue/reactivity'
 
 interface ImagePreviewOptions {
   file: File | null
@@ -6,7 +6,20 @@ interface ImagePreviewOptions {
 }
 
 export const useImagePreview = function ({ file, previewUrl }: ImagePreviewOptions) {
-  const setPreview = (): void => {
+  const preview = computed<string | null, File | null>({
+    get() {
+      return previewUrl.value
+    },
+    set(value: File | null) {
+      if (value?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
+        setPreview(value)
+      } else {
+        previewUrl.value = null
+      }
+    },
+  })
+
+  const setPreview = (value: File | null): void => {
     // Create a FileReader object.
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
@@ -21,16 +34,8 @@ export const useImagePreview = function ({ file, previewUrl }: ImagePreviewOptio
     }
     // Retrieves the Data URI scheme string.
     // (DataURI Scheme文字列を取得します)
-    if (file) reader.readAsDataURL(file)
+    if (value) reader.readAsDataURL(value)
   }
 
-  const previewImage = (): void => {
-    if (file?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
-      setPreview()
-    } else {
-      previewUrl.value = null
-    }
-  }
-
-  previewImage()
+  preview.value = file
 }
