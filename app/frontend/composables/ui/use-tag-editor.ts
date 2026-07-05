@@ -1,4 +1,4 @@
-import { Ref } from '@vue/reactivity'
+import { computed, type Ref } from '@vue/reactivity'
 import Tagify from '@yaireo/tagify'
 
 interface TagSearchType {
@@ -16,6 +16,26 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
 
+  const tags = computed<Tagify.TagData[] | undefined, string[] | undefined>({
+    get() {
+      return tagEditor?.value
+    },
+    set(value: string[] | undefined) {
+      tagEditor?.removeAllTags()
+      if (value) tagEditor?.addTags(value)
+    },
+  })
+
+  const autocomplete = computed<string[] | Tagify.TagData[], string>({
+    get() {
+      return tagEditor?.whitelist ?? []
+    },
+    set(value: string) {
+      if (tagEditor) tagEditor.whitelist = tagSearch?.tags.value ?? []
+      tagEditor?.loading(false).dropdown.show(value)
+    },
+  })
+
   const initTagEditor = (): Tagify => {
     tagEditor = new Tagify(el, {
       maxTags: 5,
@@ -28,15 +48,11 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
       },
     })
 
-    setTags()
+    tags.value = tagList.value
+
     setEventCallbacks()
 
     return tagEditor
-  }
-
-  const setTags = (): void => {
-    tagEditor?.removeAllTags()
-    if (tagList.value) tagEditor?.addTags(tagList.value)
   }
 
   const setEventCallbacks = (): void => {
@@ -44,10 +60,12 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
       onInput(ev)
     })
     tagEditor?.on('add', () => {
-      saveTagList()
+      globalThis.console.log(tags.value)
+      tagList.value = tags.value?.map(v => v.value)
     })
     tagEditor?.on('remove', () => {
-      saveTagList()
+      globalThis.console.log(tags.value)
+      tagList.value = tags.value?.map(v => v.value)
     })
   }
 
@@ -61,17 +79,8 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
 
     void (async () => {
       await tagSearch?.searchTag(value, { signal: controller.signal })
-      setAutocomplete(value)
+      autocomplete.value = value
     })()
-  }
-
-  const setAutocomplete = (value: string): void => {
-    if (tagEditor) tagEditor.whitelist = tagSearch?.tags.value ?? []
-    tagEditor?.loading(false).dropdown.show(value)
-  }
-
-  const saveTagList = (): void => {
-    tagList.value = tagEditor?.value.map((v) => v.value)
   }
 
   return { initTagEditor }
