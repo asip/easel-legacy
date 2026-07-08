@@ -17,7 +17,9 @@ export const usePhotoSwipe = function ({ selector, anchor }: { selector: string;
     }
   }
 
-  const initPhotoSwipe = () => {
+  const initPhotoSwipe = async () => {
+    await assignSize()
+
     const lightbox = new PhotoSwipeLightbox({
       gallery: selector,
       children: anchor ? anchor : 'a',
@@ -37,5 +39,5 @@ export const usePhotoSwipe = function ({ selector, anchor }: { selector: string;
     return img
   }
 
-  return { initPhotoSwipe, assignSize }
+  return { initPhotoSwipe }
 }
