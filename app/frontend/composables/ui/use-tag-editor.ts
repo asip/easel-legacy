@@ -60,10 +60,10 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
       onInput(ev)
     })
     tagEditor?.on('add', () => {
-      tagList.value = tags.value?.map(v => v.value)
+      tagList.value = tags.value?.map((v) => v.value)
     })
     tagEditor?.on('remove', () => {
-      tagList.value = tags.value?.map(v => v.value)
+      tagList.value = tags.value?.map((v) => v.value)
     })
   }
 
