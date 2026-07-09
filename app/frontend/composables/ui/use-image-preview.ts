@@ -1,11 +1,10 @@
 import { computed, type Ref } from '@vue/reactivity'
 
 interface ImagePreviewOptions {
-  file: File | null
   previewUrl: Ref<string | null>
 }
 
-export const useImagePreview = function ({ file, previewUrl }: ImagePreviewOptions) {
+export const useImagePreview = function ({ previewUrl }: ImagePreviewOptions) {
   const preview = computed<string | null, File | null>({
     get() {
       return previewUrl.value
@@ -37,5 +36,5 @@ export const useImagePreview = function ({ file, previewUrl }: ImagePreviewOptio
     if (value) reader.readAsDataURL(value)
   }
 
-  preview.value = file
+  return { preview }
 }

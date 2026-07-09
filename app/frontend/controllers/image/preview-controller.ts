@@ -13,13 +13,16 @@ export default class PreviewController extends ApplicationController {
   declare readonly hasImageTarget: boolean
 
   upload(evt: Event): void {
-    // Retrieve the uploaded data and assign it to the file variable.
-    // (アップロードされたデータを取得して変数fileに代入します)
-    const file: File | null = (evt.target as HTMLInputElement).files?.item(0) ?? null
     const { previewUrl } = usePreviewUrl({
       imageEl: this.imageTarget,
       contentEl: this.contentTarget,
     })
-    useImagePreview({ file, previewUrl })
+    const { preview } = useImagePreview({ previewUrl })
+
+    // Retrieve the uploaded data and assign it to the file variable.
+    // (アップロードされたデータを取得して変数fileに代入します)
+    const file: File | null = (evt.target as HTMLInputElement).files?.item(0) ?? null
+
+    preview.value = file
   }
 }
