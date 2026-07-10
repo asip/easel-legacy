@@ -1,6 +1,8 @@
 import { computed, type Ref } from '@vue/reactivity'
 import Tagify from '@yaireo/tagify'
 
+import { useTagList } from '@/composables'
+
 interface TagSearchType {
   searchTag: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
   tags: Ref<string[]>
@@ -8,13 +10,15 @@ interface TagSearchType {
 
 interface TagEditorOptions {
   el: HTMLInputElement | HTMLTextAreaElement
-  tagList: Ref<string[] | undefined>
+  elTL: HTMLInputElement
   tagSearch?: TagSearchType
 }
 
-export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptions) {
+export const useTagEditor = function ({ el, elTL, tagSearch }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
+
+  const { tagList } = useTagList(elTL)
 
   const tags = computed<Tagify.TagData[] | undefined, string[] | undefined>({
     get() {
