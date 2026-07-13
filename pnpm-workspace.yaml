@@ -3,3 +3,4 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - '@vesperjs/shared@0.9.14'
   - '@vesperjs/vue@0.9.14'
+  - daisyui@5.6.18
