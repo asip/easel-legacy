@@ -1,7 +1,7 @@
 import { storeToRefs } from 'pinia'
 
 import { useApi, useApiError, useFlash } from '@vesperjs/vue'
-import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
+import type { BackendErrorsResource } from '@vesperjs/vue'
 
 import type { AccountResource } from '@/types'
 import { useAccountStore } from '@/stores'
@@ -26,9 +26,7 @@ export const useAccount = function () {
       return
     } */
 
-    const { data, error } = await queryApi<AccountResource, ErrorsResource<ErrorMessages<string>>>(
-      '/account',
-    )
+    const { data, error } = await queryApi<AccountResource, BackendErrorsResource>('/account')
 
     if (error) {
       off.value = true

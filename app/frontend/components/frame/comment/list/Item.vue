@@ -2,6 +2,8 @@
 import sanitizeHtml from 'sanitize-html'
 import { computed, ref } from 'vue'
 
+import type { BackendErrorResource } from '@vesperjs/vue'
+
 import type { Comment } from '@/types'
 import {
   useAccount,
@@ -94,12 +96,13 @@ const onDeleteClick = async (): Promise<void> => {
 const reload401404 = async (): Promise<void> => {
   if (
     backendErrorInfo.value.status == 401 ||
-    (backendErrorInfo.value.status == 404 && backendErrorInfo.value.error?.source == 'Frame')
+    (backendErrorInfo.value.status == 404 &&
+      (backendErrorInfo.value.error as BackendErrorResource).source == 'Frame')
   ) {
     reload()
   } else if (
     backendErrorInfo.value.status == 404 &&
-    backendErrorInfo.value.error?.source == 'Comment'
+    (backendErrorInfo.value.error as BackendErrorResource).source == 'Comment'
   ) {
     await getComments(`${commentModel.value?.frame_id}`)
   }

@@ -30,8 +30,8 @@ importers:
         specifier: ^1.28.3
         version: 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@vesperjs/vue':
-        specifier: 0.9.13
-        version: 0.9.13(@vue/devtools-api@7.7.9)(@vue/reactivity@3.6.0-beta.17)(@vue/runtime-core@3.6.0-beta.17)(@vue/runtime-dom@3.6.0-beta.17)(typescript-eslint@8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))
+        specifier: 0.9.14
+        version: 0.9.14(@vue/devtools-api@7.7.9)(@vue/reactivity@3.6.0-beta.17)(@vue/runtime-core@3.6.0-beta.17)(@vue/runtime-dom@3.6.0-beta.17)(typescript-eslint@8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@vue/reactivity':
         specifier: ^3.6.0-beta.17
         version: 3.6.0-beta.17
@@ -55,7 +55,7 @@ importers:
         version: 5.4.4
       photoswipe-fullscreen:
         specifier: git+https://codeberg.org/askaaron/photoswipe-fullscreen
-        version: git+https://codeberg.org/askaaron/photoswipe-fullscreen#a5b91778544c14db83220bbfcccf1d699cee9c45
+        version: git+https://codeberg.org/askaaron/photoswipe-fullscreen#1054c3d6219fe491212dbf6334cd175efbedfda6
       pinia:
         specifier: 3.0.4
         version: 3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3))
@@ -929,18 +929,18 @@ packages:
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
     deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
-  '@vesperjs/shared@0.9.13':
-    resolution: {integrity: sha512-t5o5I68ssXZ7m+1X8HmaZ6JMikKkAIdCR5Z94oCeaV5m82nlT3NQt8aWRP84fgvq+/zA9/WmqcAAcNEda9e3JQ==}
+  '@vesperjs/shared@0.9.14':
+    resolution: {integrity: sha512-8MJpCJc4UrQ6GFNNdEYN4fQ6Esgqp5rtIiwqhAhdZoFooBMMKPIcVxpcAwxJ72OpXDmy81Dy5HALd0Vey/I5tQ==}
     peerDependencies:
       '@vue/reactivity': ^3.5.39 || ^3.6.0-beta.17
 
-  '@vesperjs/vue@0.9.13':
-    resolution: {integrity: sha512-5fTHayxPft/ly7xZfh8al8XbABh/np+4ohlPGw5w8CmaQ8myVJhWAjBcdkrSHtNynIDOB6uj3YKpwyPbpd3x3w==}
+  '@vesperjs/vue@0.9.14':
+    resolution: {integrity: sha512-6cp/ct2ktUv0O0xFiYwYxqmwcZlNDDT9LrQkEiyt1Mzl54AyeuB0aZtkrJYA95di0r44ciM0UeyBs2oz3pD3uA==}
     peerDependencies:
       '@vue/reactivity': ^3.5.39 || ^3.6.0-beta.17
       '@vue/runtime-core': ^3.5.39 || ^3.6.0-beta.17
       '@vue/runtime-dom': ^3.5.39 || ^3.6.0-beta.17
-      typescript-eslint: ^8.62.0
+      typescript-eslint: ^8.63.0
       vue: ^3.5.39 || ^3.6.0-beta.17
 
   '@vitejs/plugin-vue@6.0.7':
@@ -1810,8 +1810,8 @@ packages:
   perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
 
-  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#a5b91778544c14db83220bbfcccf1d699cee9c45:
-    resolution: {commit: a5b91778544c14db83220bbfcccf1d699cee9c45, repo: https://codeberg.org/askaaron/photoswipe-fullscreen, type: git}
+  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#1054c3d6219fe491212dbf6334cd175efbedfda6:
+    resolution: {commit: 1054c3d6219fe491212dbf6334cd175efbedfda6, repo: https://codeberg.org/askaaron/photoswipe-fullscreen, type: git}
     version: 1.0.5
 
   photoswipe@5.4.4:
@@ -2200,8 +2200,8 @@ packages:
   ufo@1.6.4:
     resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
-  undici@8.5.0:
-    resolution: {integrity: sha512-xamtWoB1EshgjpmlXd7GGm2VfdDtw1+rD8uhry8pSNW3If6S8E0m2T2+orSKeZXEn/aPJMviCpDBA65WJt8zhg==}
+  undici@8.7.0:
+    resolution: {integrity: sha512-N7iQtfyLhIMOFgQubvmLV26svHpO0bqKnAiWotTQCVKCmWrcGbBotPuW1x+xwYZ2VHdSTVUfPQQnlEt1/LouTQ==}
     engines: {node: '>=22.19.0'}
 
   universal-cookie@8.1.2:
@@ -3064,25 +3064,25 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vesperjs/shared@0.9.13(@vue/reactivity@3.6.0-beta.17)':
+  '@vesperjs/shared@0.9.14(@vue/reactivity@3.6.0-beta.17)':
     dependencies:
       '@formkit/tempo': 1.1.0
       '@vue/reactivity': 3.6.0-beta.17
 
-  '@vesperjs/vue@0.9.13(@vue/devtools-api@7.7.9)(@vue/reactivity@3.6.0-beta.17)(@vue/runtime-core@3.6.0-beta.17)(@vue/runtime-dom@3.6.0-beta.17)(typescript-eslint@8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))':
+  '@vesperjs/vue@0.9.14(@vue/devtools-api@7.7.9)(@vue/reactivity@3.6.0-beta.17)(@vue/runtime-core@3.6.0-beta.17)(@vue/runtime-dom@3.6.0-beta.17)(typescript-eslint@8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))':
     dependencies:
       '@formkit/tempo': 1.1.0
       '@nanostores/persistent': 1.3.4(nanostores@1.4.0)
       '@nanostores/router': 1.1.0(nanostores@1.4.0)
       '@nanostores/vue': 1.1.0(@vue/devtools-api@7.7.9)(nanostores@1.4.0)(vue@3.6.0-beta.17(typescript@6.0.3))
-      '@vesperjs/shared': 0.9.13(@vue/reactivity@3.6.0-beta.17)
+      '@vesperjs/shared': 0.9.14(@vue/reactivity@3.6.0-beta.17)
       '@vue/reactivity': 3.6.0-beta.17
       '@vue/runtime-core': 3.6.0-beta.17
       '@vue/runtime-dom': 3.6.0-beta.17
       nanostores: 1.4.0
       ofetch: 1.5.1
       typescript-eslint: 8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)
-      undici: 8.5.0
+      undici: 8.7.0
       vue: 3.6.0-beta.17(typescript@6.0.3)
       vue-i18n: 11.4.6(vue@3.6.0-beta.17(typescript@6.0.3))
     transitivePeerDependencies:
@@ -3925,7 +3925,7 @@ snapshots:
 
   perfect-debounce@1.0.0: {}
 
-  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#a5b91778544c14db83220bbfcccf1d699cee9c45: {}
+  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#1054c3d6219fe491212dbf6334cd175efbedfda6: {}
 
   photoswipe@5.4.4: {}
 
@@ -4253,7 +4253,7 @@ snapshots:
 
   ufo@1.6.4: {}
 
-  undici@8.5.0: {}
+  undici@8.7.0: {}
 
   universal-cookie@8.1.2:
     dependencies:

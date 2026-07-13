@@ -1,7 +1,7 @@
 import { ref } from '@vue/reactivity'
 
 import { useApi, useApiError, useEntity, useExternalErrors, useFlash } from '@vesperjs/vue'
-import type { ErrorsResource, ErrorMessages } from '@vesperjs/vue'
+import type { BackendErrorResource, BackendErrorsResource } from '@vesperjs/vue'
 
 import type { Comment, CommentResource } from '@/types'
 import type { CommentErrorProperty } from '@/types'
@@ -56,11 +56,11 @@ export const useComment = function () {
 
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404) {
-      if (backendErrorInfo.value.error?.source == 'Frame') {
+      if ((backendErrorInfo.value.error as BackendErrorResource).source == 'Frame') {
         flash.value.alert = t('backend.error.not_found', {
           source: t('misc.page'),
         })
-      } else if (backendErrorInfo.value.error?.source == 'Comment') {
+      } else if ((backendErrorInfo.value.error as BackendErrorResource).source == 'Comment') {
         flash.value.alert = t('backend.error.not_found', {
           source: t('models.comment'),
         })
@@ -79,7 +79,7 @@ export const useComment = function () {
       },
     }
 
-    const { error } = await mutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>(
+    const { error } = await mutationApi<CommentResource, BackendErrorsResource>(
       `/frames/${frameId}/comments`,
       {
         method: 'post',
@@ -104,10 +104,7 @@ export const useComment = function () {
       },
     }
 
-    const { data, error } = await mutationApi<
-      CommentResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(
+    const { data, error } = await mutationApi<CommentResource, BackendErrorsResource>(
       `/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
       {
         method: 'put',
@@ -129,7 +126,7 @@ export const useComment = function () {
   const deleteComment = async (comment: Comment): Promise<void> => {
     clearFlash()
 
-    const { error } = await mutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>(
+    const { error } = await mutationApi<CommentResource, BackendErrorsResource>(
       `/frames/${comment.frame_id?.toString() ?? ''}/comments/${comment.id?.toString(10) ?? ''}`,
       {
         method: 'delete',
