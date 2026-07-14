@@ -1,8 +1,6 @@
 allowBuilds:
   '@parcel/watcher': false
 minimumReleaseAgeExclude:
-  - '@vesperjs/shared@0.9.14'
-  - '@vesperjs/vue@0.9.14'
   - '@typescript-eslint/eslint-plugin@8.64.0'
   - '@typescript-eslint/parser@8.64.0'
   - '@typescript-eslint/project-service@8.64.0'
