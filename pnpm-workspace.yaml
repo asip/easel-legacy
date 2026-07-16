@@ -1,4 +1,2 @@
 allowBuilds:
   '@parcel/watcher': false
-minimumReleaseAgeExclude:
-  - pinia@4.0.1
