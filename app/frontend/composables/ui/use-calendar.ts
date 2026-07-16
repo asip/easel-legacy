@@ -5,27 +5,57 @@ import { computed, Ref } from '@vue/reactivity'
 import { useDate } from '@vesperjs/vue'
 
 export const useCalendar = function ({ el, word }: { el?: HTMLElement; word: Ref<string> }) {
-  const date = computed<string>(() => {
-    const { isValidDate } = useDate()
+  let calendar: Calendar | null = null
 
-    return isValidDate(word.value) ? word.value : ''
+  const date = computed<string>({
+    get() {
+      return utcDate.value ? format(utcDate.value, 'YYYY/MM/DD') : ''
+    },
+    set(value: string) {
+      const { isValidDate } = useDate()
+
+      const date_ = isValidDate(value) ? value : ''
+
+      utcDate.value = date_
+        ? tzDate(format(parse(date_, 'YYYY/MM/DD'), 'YYYY-MM-DD HH:mm:ss'), 'utc')
+        : null
+    },
   })
 
   // UTC Date (UTC日付)
-  const utcDate = computed<Date | null>(() =>
-    date.value
-      ? tzDate(format(parse(date.value, 'YYYY/MM/DD'), 'YYYY-MM-DD HH:mm:ss'), 'utc')
-      : null,
-  )
+  const utcDate = computed<Date | null>({
+    get() {
+      return calendar?.selectedDates.at(0) as Date | null
+    },
+    set(value: Date | null) {
+      if (calendar) {
+        calendar.selectedYear = value?.getFullYear() ?? utcToday.value.getFullYear()
+        calendar.selectedMonth = (value?.getMonth() ?? utcToday.value.getMonth()) as
+          | 0
+          | 1
+          | 2
+          | 3
+          | 4
+          | 5
+          | 6
+          | 7
+          | 8
+          | 9
+          | 10
+          | 11
+        calendar.selectedDates = value ? [value] : []
+      }
+    },
+  })
 
-  const utcToday = computed<Date | null>(() => tzDate(new Date(), 'utc'))
+  const utcToday = computed<Date>(() => tzDate(new Date(), 'utc'))
 
   const initCalendar = (): Calendar | null => {
     // globalThis.console.log(utcDate.value)
 
     if (!el) return null
 
-    let calendar = new Calendar(el, {
+    calendar = new Calendar(el, {
       locale: 'ja',
       onClickDate(self) {
         // globalthis.console.log(`selected:${self.context.selectedDates[0]}`)
@@ -34,27 +64,10 @@ export const useCalendar = function ({ el, word }: { el?: HTMLElement; word: Ref
         word.value = value ? format(value, 'YYYY/MM/DD') : ''
       },
     })
-    if (utcDate.value?.getFullYear()) calendar.selectedYear = utcDate.value.getFullYear()
-    if (utcDate.value?.getMonth())
-      calendar.selectedMonth = utcDate.value.getMonth() as
-        | 0
-        | 1
-        | 2
-        | 3
-        | 4
-        | 5
-        | 6
-        | 7
-        | 8
-        | 9
-        | 10
-        | 11
-
-    calendar.selectedDates = utcDate.value ? [utcDate.value] : []
     // globalthis.console.log(calendar.selectedDates[0])
-    calendar.init()
+    date.value = word.value
     return calendar
   }
 
-  return { initCalendar, utcDate, utcToday }
+  return { initCalendar }
 }

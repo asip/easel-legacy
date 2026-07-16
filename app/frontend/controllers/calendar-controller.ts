@@ -21,42 +21,29 @@ export default class CalendarController extends ApplicationController {
 
   connect(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
-      const { date } = useCookieStore()
+      const { date: dateCookie } = useCookieStore()
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
-      word.value = date
+      word.value = dateCookie
       const { initCalendar } = useCalendar({
         el: this.calTarget,
         word,
       })
       this.calendar = initCalendar()
+      this.calendar?.init()
     }
   }
 
   change(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
-      const { utcDate, utcToday } = useCalendar({
+      const { initCalendar } = useCalendar({
+        el: this.calTarget,
         word,
       })
 
       if (this.calendar) {
-        this.calendar.selectedDates = utcDate.value ? [utcDate.value] : []
-        if (utcToday.value?.getFullYear())
-          this.calendar.selectedYear = utcDate.value?.getFullYear() ?? utcToday.value.getFullYear()
-        this.calendar.selectedMonth = (utcDate.value?.getMonth() ?? utcToday.value?.getMonth()) as
-          | 0
-          | 1
-          | 2
-          | 3
-          | 4
-          | 5
-          | 6
-          | 7
-          | 8
-          | 9
-          | 10
-          | 11
-        this.calendar.init()
+        this.calendar = initCalendar()
+        this.calendar?.init()
       }
     }
   }
