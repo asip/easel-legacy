@@ -1,2 +1,4 @@
 allowBuilds:
   '@parcel/watcher': false
+overrides:
+  vue: ^3.6.0-beta.17
