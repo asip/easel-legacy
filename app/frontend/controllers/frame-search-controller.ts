@@ -20,25 +20,26 @@ export default class FrameSearchController extends ApplicationController {
 
   connect(): void {
     if (this.hasWordTarget && this.hasTagTarget) {
-      const { searchParams, init } = useFrameSearch()
+      const { params, criteria } = useFrameSearch()
       const { value: wordValue } = useElement(this.wordTarget, { property: 'value' })
       const { value: tagValue } = useElement(this.tagTarget, { property: 'value' })
 
-      init()
-      wordValue.value = searchParams.value.word
-      tagValue.value = searchParams.value.tag_name
+      params.value.word = criteria.value?.word ?? ''
+      params.value.tag_name = criteria.value?.tag_name ?? ''
+      wordValue.value = params.value.word
+      tagValue.value = params.value.tag_name
     }
   }
 
   submit(ev: Event): void {
-    const { errors, searchParams, search } = useFrameSearch()
+    const { errors, params, search } = useFrameSearch()
     const { value: wordValue } = useElement(this.wordTarget, { property: 'value' })
     const { value: tagValue } = useElement(this.tagTarget, { property: 'value' })
     const { innerHTML: wordMessage } = useElement(this.wordMessageTarget, { property: 'innerHTML' })
     const { innerHTML: tagMessage } = useElement(this.tagMessageTarget, { property: 'innerHTML' })
 
-    searchParams.value.word = wordValue.value
-    searchParams.value.tag_name = tagValue.value
+    params.value.word = wordValue.value
+    params.value.tag_name = tagValue.value
     search(ev)
     wordMessage.value = errors.word
     tagMessage.value = errors.tag_name

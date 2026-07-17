@@ -21,15 +21,15 @@ export const useFrameSearch = function () {
     tag_name: v.pipe(v.string(), v.maxLength(10)),
   })
 
-  const searchParams = ref<Criteria>({})
+  const params = ref<Criteria>({})
 
   const queryMap = computed<{ q?: string }>(() => {
     const query: QueryItems = {}
     const qItems: Criteria = {}
 
-    if (searchParams.value.word) qItems.word = searchParams.value.word
-    if (searchParams.value.tag_name) {
-      qItems.tag_name = searchParams.value.tag_name
+    if (params.value.word) qItems.word = params.value.word
+    if (params.value.tag_name) {
+      qItems.tag_name = params.value.tag_name
     }
     query.q = JSON.stringify(qItems)
 
@@ -38,13 +38,8 @@ export const useFrameSearch = function () {
 
   const errors = ref<Criteria>({ word: '', tag_name: '' })
 
-  const init = () => {
-    searchParams.value.word = criteria.value?.word ?? ''
-    searchParams.value.tag_name = criteria.value?.tag_name ?? ''
-  }
-
   const validate = () => {
-    const result = v.safeParse(schema, searchParams.value, { lang: locale.value })
+    const result = v.safeParse(schema, params.value, { lang: locale.value })
     const errorMessages = result.issues ? v.flatten(result.issues).nested : {}
     const success = result.success
 
@@ -74,9 +69,9 @@ export const useFrameSearch = function () {
   }
 
   return {
-    searchParams,
+    params,
+    criteria,
     errors: errors.value,
-    init,
     search,
   }
 }
