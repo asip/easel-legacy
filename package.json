@@ -22,7 +22,7 @@
     "@vueuse/integrations": "^14.3.0",
     "@yaireo/tagify": "^4.38.0",
     "glightbox": "^3.3.1",
-    "lucide-static": "^1.24.0",
+    "lucide-static": "^1.25.0",
     "nanostores": "^1.4.0",
     "photoswipe": "5.4.4",
     "photoswipe-fullscreen": "git+https://codeberg.org/askaaron/photoswipe-fullscreen",
