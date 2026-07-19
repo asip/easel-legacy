@@ -2,8 +2,6 @@ allowBuilds:
   '@parcel/watcher': false
 overrides:
   vue: ^3.6.0-rc.1
-fetchRetryMaxtimeout: 12000000
-fetchTimeout: 12000000
 minimumReleaseAgeExclude:
   - '@vesperjs/shared@0.9.15'
   - '@vesperjs/vue@0.9.15'
