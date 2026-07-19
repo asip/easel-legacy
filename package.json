@@ -17,8 +17,8 @@
     "@nanostores/router": "^1.1.0",
     "@regle/core": "^1.28.3",
     "@regle/rules": "^1.28.3",
-    "@vesperjs/vue": "0.9.14",
-    "@vue/reactivity": "^3.6.0-beta.17",
+    "@vesperjs/vue": "0.9.15",
+    "@vue/reactivity": "^3.6.0-rc.1",
     "@vueuse/integrations": "^14.3.0",
     "@yaireo/tagify": "^4.38.0",
     "glightbox": "^3.3.1",
@@ -33,7 +33,7 @@
     "universal-cookie": "^8.1.2",
     "valibot": "^1.4.2",
     "vanilla-calendar-pro": "^3.1.0",
-    "vue": "^3.6.0-beta.17",
+    "vue": "^3.6.0-rc.1",
     "vue-i18n": "^11.4.6"
   },
   "devDependencies": {
@@ -64,6 +64,6 @@
   },
   "peerDependencies": {
     "typescript-eslint": "^8.64.0",
-    "vue": "^3.6.0-beta.17"
+    "vue": "^3.6.0-rc.1"
   }
 }
