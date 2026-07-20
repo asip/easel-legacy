@@ -56,9 +56,6 @@ importers:
       photoswipe:
         specifier: 5.4.4
         version: 5.4.4
-      photoswipe-fullscreen:
-        specifier: git+https://codeberg.org/askaaron/photoswipe-fullscreen
-        version: git+https://codeberg.org/askaaron/photoswipe-fullscreen#1054c3d6219fe491212dbf6334cd175efbedfda6
       pinia:
         specifier: 4.0.2
         version: 4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.1(typescript@6.0.3))
@@ -1825,10 +1822,6 @@ packages:
 
   perfect-debounce@2.1.0:
     resolution: {integrity: sha512-LjgdTytVFXeUgtHZr9WYViYSM/g8MkcTPYDlPa3cDqMirHjKiSZPYd6DoL7pK8AJQr+uWkQvCjHNdiMqsrJs+g==}
-
-  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#1054c3d6219fe491212dbf6334cd175efbedfda6:
-    resolution: {commit: 1054c3d6219fe491212dbf6334cd175efbedfda6, repo: https://codeberg.org/askaaron/photoswipe-fullscreen, type: git}
-    version: 1.0.5
 
   photoswipe@5.4.4:
     resolution: {integrity: sha512-WNFHoKrkZNnvFFhbHL93WDkW3ifwVOXSW3w1UuZZelSmgXpIGiZSNlZJq37rR8YejqME2rHs9EhH9ZvlvFH2NA==}
@@ -3962,8 +3955,6 @@ snapshots:
   perfect-debounce@1.0.0: {}
 
   perfect-debounce@2.1.0: {}
-
-  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#1054c3d6219fe491212dbf6334cd175efbedfda6: {}
 
   photoswipe@5.4.4: {}
 
