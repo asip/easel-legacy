@@ -5,7 +5,7 @@ import { useComments } from '@/composables'
 
 const { frameId } = defineProps<{ frameId: string }>()
 
-const { comments , getComments } = useComments()
+const { comments, getComments } = useComments()
 
 await getComments(frameId)
 </script>
