@@ -6,7 +6,7 @@ import { app } from '@/settings.json'
 
 import { useLocale } from '@vesperjs/vue'
 
-import { useAccount, useComments, useRoute, useToast, useConfig } from '@/composables'
+import { useAccount, /* useComments , */ useRoute, useToast, useConfig } from '@/composables'
 
 /*
 const { viewData } = defineProps<{ viewData?: any }>()
@@ -17,7 +17,7 @@ const { autodetect } = useLocale()
 const { toast } = useToast()
 const { baseURL } = useConfig()
 const { authenticate, flash } = useAccount()
-const { getComments } = useComments()
+// const { getComments } = useComments()
 
 autodetect()
 
@@ -29,13 +29,13 @@ toast.value = flash.value
 const route = useRoute()
 const id: string = (route.params as { id?: string })?.id ?? ''
 
-await getComments(id)
+// await getComments(id)
 </script>
 
 <template>
   <div>
-    <CommentList />
-    <!-- CommentList :frame-id="id" / -->
+    <!-- CommentList / -->
+    <CommentList :frame-id="id" />
     <CommentForm :frame-id="id" />
   </div>
 </template>

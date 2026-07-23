@@ -3,11 +3,11 @@ import Item from './list/Item.vue'
 
 import { useComments } from '@/composables'
 
-// const { frameId } = defineProps<{ frameId: string }>()
+const { frameId } = defineProps<{ frameId: string }>()
 
-const { comments /* , getComments */ } = useComments()
+const { comments , getComments } = useComments()
 
-// await getComments(frameId)
+await getComments(frameId)
 </script>
 
 <template>
