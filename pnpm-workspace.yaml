@@ -2,7 +2,3 @@ allowBuilds:
   '@parcel/watcher': false
 overrides:
   vue: ^3.6.0-rc.2
-minimumReleaseAgeExclude:
-  - '@vesperjs/shared@0.9.16'
-  - '@vesperjs/vue@0.9.16'
-  - lucide-static@1.26.0
