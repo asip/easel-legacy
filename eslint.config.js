@@ -14,7 +14,7 @@ export default [
   {
     languageOptions: {
       globals: {
-        es2022: true,
+        es2025: true,
       },
     },
     rules: {}, // Set common rules. (共通のルールを設定)
@@ -22,14 +22,14 @@ export default [
   {
     files: ['**/*.js'],
     languageOptions: {
-      ecmaVersion: 2022,
+      ecmaVersion: 2025,
       sourceType: 'module',
     },
   },
   {
     files: ['**/*.ts'],
     languageOptions: {
-      ecmaVersion: 2022,
+      ecmaVersion: 2025,
       sourceType: 'module',
       parser: typescriptESLintParser,
       parserOptions: {
@@ -54,7 +54,7 @@ export default [
       globals: {
         'vue/setup-compiler-macros': true,
       },
-      ecmaVersion: 2022,
+      ecmaVersion: 2025,
       sourceType: 'module',
       parser: vueESLintParser,
       parserOptions: {

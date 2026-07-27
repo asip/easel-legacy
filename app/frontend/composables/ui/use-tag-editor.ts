@@ -57,7 +57,9 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
 
   const setEventCallbacks = (): void => {
     tagEditor?.on('input', (ev) => {
-      onInput(ev)
+      void (async () => {
+        await onInput(ev)
+      })()
     })
     tagEditor?.on('add', () => {
       tagList.value = tags.value?.map((v) => v.value)
@@ -67,7 +69,7 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
     })
   }
 
-  const onInput = (ev: CustomEvent): void => {
+  const onInput = async (ev: CustomEvent): Promise<void> => {
     // eslint-disable-next-line
     const value = ev.detail.value as string
     if (tagEditor) tagEditor.whitelist = []
@@ -75,10 +77,8 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
     controller?.abort()
     controller = new AbortController()
 
-    void (async () => {
-      await tagSearch?.searchTag(value, { signal: controller.signal })
-      autocomplete.value = value
-    })()
+    await tagSearch?.searchTag(value, { signal: controller.signal })
+    autocomplete.value = value
   }
 
   return { initTagEditor }
