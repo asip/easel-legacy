@@ -28,7 +28,7 @@ export default class TagifyController extends ApplicationController {
   disconnect(): void {
     if (this.tagEditor) {
       this.tagEditor.destroy()
-      this.removeElementsByClassName('tagify')
+      this.removeElements('.tagify')
     }
   }
 }

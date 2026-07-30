@@ -31,7 +31,7 @@ export default class PhotoSwipeController extends ApplicationController {
   disconnect(): void {
     if (this.lightbox) {
       this.lightbox.destroy()
-      this.removeElementsByClassName('pswp')
+      this.removeElements('.pswp')
     }
   }
 }
