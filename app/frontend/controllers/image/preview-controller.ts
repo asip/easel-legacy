@@ -3,19 +3,18 @@ import ApplicationController from '@/controllers/application-controller'
 import { useImagePreview, usePreviewUrl } from '@/composables'
 
 export default class PreviewController extends ApplicationController {
-  static targets = ['content', 'image']
+  static targets = ['preview', 'image']
 
-  declare readonly contentTarget: HTMLElement
+  declare readonly previewTarget: HTMLElement
   declare readonly imageTarget: HTMLImageElement
 
-  declare readonly hasUploadTarget: boolean
-  declare readonly hasContentTarget: boolean
+  declare readonly hasPreviewTarget: boolean
   declare readonly hasImageTarget: boolean
 
   upload(evt: Event): void {
     const { previewUrl } = usePreviewUrl({
       imageEl: this.imageTarget,
-      contentEl: this.contentTarget,
+      previewEl: this.previewTarget,
     })
     const { preview } = useImagePreview({ previewUrl })
 

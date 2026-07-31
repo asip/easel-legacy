@@ -4,10 +4,10 @@ import { useElement } from '@vesperjs/vue'
 
 interface PreviewUrlOptions {
   imageEl: HTMLImageElement | null
-  contentEl: HTMLElement | null
+  previewEl: HTMLElement | null
 }
 
-export const usePreviewUrl = function ({ imageEl, contentEl }: PreviewUrlOptions) {
+export const usePreviewUrl = function ({ imageEl, previewEl }: PreviewUrlOptions) {
   const { src } = useElement<HTMLImageElement>(imageEl, { property: 'src' })
 
   const previewUrl = computed<string | null>({
@@ -28,14 +28,14 @@ export const usePreviewUrl = function ({ imageEl, contentEl }: PreviewUrlOptions
   const showPreview = (): void => {
     // If there is no preview image, it will be displayed.
     // (プレビュー画像がなければ表示します)
-    if (contentEl && contentEl.classList.contains('hidden')) {
-      contentEl.classList.remove('hidden')
+    if (previewEl && previewEl.classList.contains('hidden')) {
+      previewEl.classList.remove('hidden')
     }
   }
 
   const hidePreview = (): void => {
-    if (contentEl && contentEl.classList.contains('block')) {
-      contentEl.classList.add('hidden')
+    if (previewEl && !previewEl.classList.contains('hidden')) {
+      previewEl.classList.add('hidden')
     }
   }
 
