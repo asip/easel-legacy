@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.3"
+gem "rails", "~> 8.1.3.1"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.3.2"
@@ -17,7 +17,7 @@ gem "pg", "~> 1.6.3"
 gem "puma", "~> 8.0.2"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", "~> 0.1.22", require: false
+gem "thruster", "~> 0.1.23", require: false
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0.23"
@@ -47,7 +47,8 @@ gem "rails_vite", "~> 0.2.3"
 gem "view_component", "~> 4.12.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.227.0"
+gem "aws-sdk-s3", "~> 1.228.2"
+gem "ruby-vips", "~> 2.3.0"
 gem "image_processing", "~> 2.0.2"
 gem "shrine", "~> 3.9.0"
 
@@ -67,20 +68,20 @@ gem "devise-i18n", "1.16.0"
 gem "omniauth-google-oauth2", "1.2.2"
 gem "jwt", "3.2.0"
 
-gem "googleauth", "~> 1.17.1"
+gem "googleauth", "~> 1.17.3"
 
 # settings
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.6.0"
+gem "pagy", "~> 43.6.1"
 
 # tags
 gem "no_fly_list", "0.7.4"
 
 # json
-gem "oj", "3.17.3"
-gem "alba", "3.10.0"
+gem "oj", "3.17.4"
+gem "alba", "3.11.0"
 gem "typelizer", "~>0.13.1 "
 
 # Rack::Locale
@@ -120,7 +121,7 @@ group :development do
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem "rack-mini-profiler", "~> 4.0.1"
 
-  gem "annotaterb", "~> 4.23.0"
+  gem "annotaterb", "~> 4.24.0"
   gem "rails-erd", "~> 2.1.0"
   # Ruby style guide, linter, and formatter
   gem "rubocop", "~> 1.88.2", require: false
