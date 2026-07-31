@@ -32,7 +32,7 @@ export default class FrameSearchController extends ApplicationController {
   }
 
   submit(ev: Event): void {
-    const { errors, params, search } = useFrameSearch()
+    const { errors, params, submit } = useFrameSearch()
     const { value: wordValue } = useElement(this.wordTarget, { property: 'value' })
     const { value: tagValue } = useElement(this.tagTarget, { property: 'value' })
     const { innerHTML: wordMessage } = useElement(this.wordMessageTarget, { property: 'innerHTML' })
@@ -40,9 +40,9 @@ export default class FrameSearchController extends ApplicationController {
 
     params.value.word = wordValue.value
     params.value.tag_name = tagValue.value
-    search(ev)
-    wordMessage.value = errors.word
-    tagMessage.value = errors.tag_name
+    submit(ev)
+    wordMessage.value = errors.value?.word?.at(0) ?? ''
+    tagMessage.value = errors.value?.tag_name?.at(0) ?? ''
   }
 
   clearWordMessage(): void {

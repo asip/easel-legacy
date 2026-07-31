@@ -22,3 +22,5 @@ export type { ConfigType } from './use-config'
 export { useCookieStore } from './use-cookie-store'
 
 export { useRoute } from './use-route'
+
+export { useValibot } from './use-valibot'
