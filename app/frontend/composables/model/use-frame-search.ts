@@ -1,19 +1,21 @@
 import * as v from 'valibot'
 import { ref, computed } from '@vue/reactivity'
+import { useRegleSchema } from '@regle/schemas'
 
 import { useLocale } from '@vesperjs/vue'
 
 import { Criteria } from '@/types'
-import { useCookieStore, useValibot } from '@/composables'
+import { useCookieStore } from '@/composables'
 
 interface QueryItems {
   q?: string
 }
 
 export const useFrameSearch = function () {
-  const { autodetect } = useLocale()
+  const { autodetect, locale } = useLocale()
   const { criteria } = useCookieStore()
 
+  v.setGlobalConfig({ lang: locale.value })
   autodetect()
 
   const params = ref<Criteria>({})
@@ -34,10 +36,11 @@ export const useFrameSearch = function () {
     tag_name: v.pipe(v.string(), v.maxLength(10)),
   })
 
-  const { validate, errors } = useValibot(params.value, schema)
+  const { r$ } = useRegleSchema(params.value, schema)
 
-  const submit = (ev: Event): void => {
-    const { valid } = validate()
+  const submit = async (ev: Event): Promise<void> => {
+    r$.$touch()
+    const { valid } = await r$.$validate()
 
     if (valid) {
       if (queryMap.value.q) {
@@ -54,7 +57,7 @@ export const useFrameSearch = function () {
   return {
     params,
     criteria,
-    errors,
+    r$,
     submit,
   }
 }

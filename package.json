@@ -17,6 +17,7 @@
     "@nanostores/router": "^1.1.0",
     "@regle/core": "^1.28.5",
     "@regle/rules": "^1.28.5",
+    "@regle/schemas": "^1.28.5",
     "@vesperjs/vue": "0.9.16",
     "@vue/reactivity": "^3.6.0-rc.2",
     "@vueuse/integrations": "^14.4.0",

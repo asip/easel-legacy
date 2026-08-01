@@ -32,6 +32,9 @@ importers:
       '@regle/rules':
         specifier: ^1.28.5
         version: 1.28.5(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
+      '@regle/schemas':
+        specifier: ^1.28.5
+        version: 1.28.5(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.2(typescript@6.0.3))
       '@vesperjs/vue':
         specifier: 0.9.16
         version: 0.9.16(@vue/devtools-api@8.1.5)(@vue/reactivity@3.6.0-rc.2)(@vue/runtime-core@3.6.0-rc.2)(@vue/runtime-dom@3.6.0-rc.2)(vue@3.6.0-rc.2(typescript@6.0.3))
@@ -625,6 +628,20 @@ packages:
 
   '@regle/rules@1.28.5':
     resolution: {integrity: sha512-Dv5BtSMbUpIy2W8rU0GJxncDeYNS+Ng8dRRb2DEA5kCA2/zd0QrfEb4SEHcLjpkTlW2RvPEz2q2XtO74f1I6mg==}
+
+  '@regle/schemas@1.28.5':
+    resolution: {integrity: sha512-VpDCKDyjHWBaUZvWw/LSNzjTU/Q+rj3lwDjrihARz7saqRynQ7fsNc0bPM3Pkq8M9Vu7bU0BNLbhiMStoKI+QA==}
+    peerDependencies:
+      arktype: ^2.1.0
+      valibot: ^1.0.0
+      zod: ^3.24.0 || ^4.0.0
+    peerDependenciesMeta:
+      arktype:
+        optional: true
+      valibot:
+        optional: true
+      zod:
+        optional: true
 
   '@rolldown/binding-android-arm64@1.2.1':
     resolution: {integrity: sha512-02hOeOSryYxVrOIphmLAsqnCJWxwlzFk+pEt/N/i6OgT3lShHO7xGCU5cpgchRDHboAEbSjzgGh+O/u1GswQmA==}
@@ -2890,6 +2907,18 @@ snapshots:
     dependencies:
       '@regle/core': 1.28.5(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
       type-fest: 5.7.0
+    transitivePeerDependencies:
+      - pinia
+      - vue
+
+  '@regle/schemas@1.28.5(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.2(typescript@6.0.3))':
+    dependencies:
+      '@regle/core': 1.28.5(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
+      '@regle/rules': 1.28.5(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
+      '@standard-schema/spec': 1.1.0
+      type-fest: 5.7.0
+    optionalDependencies:
+      valibot: 1.4.2(typescript@6.0.3)
     transitivePeerDependencies:
       - pinia
       - vue
