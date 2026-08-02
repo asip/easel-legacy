@@ -1,6 +1,6 @@
 allowBuilds:
   '@parcel/watcher': false
 minimumReleaseAgeExclude:
-  - daisyui@5.7.11
+  - daisyui@5.7.13
 overrides:
   vue: ^3.6.0-rc.2
