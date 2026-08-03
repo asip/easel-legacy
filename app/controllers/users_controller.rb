@@ -12,12 +12,12 @@ class UsersController < ApplicationController
 
   def show
     @user = Queries::User::FindUser.run(user_id:)
-    @pagy, @frames = list_frames(user_id:, page:)
+    @pagy, @frames = list_frames(user_id:, page: cookie_query_map.page)
   end
 
   def index
-    self.page = page_number
-    @pagy, @frames = list_frames(user_id:, page:)
+    self.cookie_query_map.page = page_number
+    @pagy, @frames = list_frames(user_id:, page: cookie_query_map.page)
   end
 
   # followees list (フォロイー一覧)

@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
   include More
 
   def show
-    self.page = page_number
-    @pagy, @frames = list_frames(user: current_user, page:)
+    self.cookie_query_map.page = page_number
+    @pagy, @frames = list_frames(user: current_user, page: cookie_query_map.page)
   end
 
   def index

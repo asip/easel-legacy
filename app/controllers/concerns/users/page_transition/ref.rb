@@ -11,6 +11,6 @@ module Users::PageTransition::Ref
   end
 
   def ref_items_for_next
-    @ref_items_for_next ||= RefItems.build(ref_items: JsonUtil.to_hash(ref))
+    @ref_items_for_next ||= RefItems.build(ref_items: JsonUtil.to_hash(query_map.ref))
   end
 end

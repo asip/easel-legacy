@@ -6,20 +6,7 @@ module PageTransition::Query::Cookies
 
   protected
 
-  def ref
-    items = cookies[:ref]
-    items.present? ? items : nil
-  end
-
-  def ref_items
-    @ref_items ||= JsonUtil.to_hash(ref)
-  end
-
-  def page
-    cookies[:page]
-  end
-
-  def page=(page)
-    cookies[:page] = page
+  def cookie_query_map
+    @query_map ||= PageTransition::Cookies::QueryMap.build(cookies)
   end
 end

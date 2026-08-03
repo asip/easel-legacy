@@ -13,8 +13,8 @@ class FramesController < ApplicationController
   include More
 
   def index
-    self.page = page_number
-    @pagy, @frames = list_frames(user: current_user, form:, page:)
+    self.cookie_query_map.page = page_number
+    @pagy, @frames = list_frames(user: current_user, form:, page: cookie_query_map.page)
   end
 
   def show

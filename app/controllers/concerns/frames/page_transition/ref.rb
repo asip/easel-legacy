@@ -14,13 +14,12 @@ module Frames::PageTransition::Ref
 
   def back_to_path
     @back_to_path ||= BackToPath.build(
-      ref_items: JsonUtil.to_hash(ref),
-      root_path: root_path(query_map_for_search),
-      prev_url:, page:, action_name:
+      query_map: cookie_query_map, root_path: root_path(query_map_for_search),
+      prev_url:, action_name:
     )
   end
 
   def ref_items_for_next
-    @ref_items_for_next ||= RefItems.build(ref_items: JsonUtil.to_hash(ref))
+    @ref_items_for_next ||= RefItems.build(ref_items: JsonUtil.to_hash(query_map.ref))
   end
 end
