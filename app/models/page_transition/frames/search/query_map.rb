@@ -1,5 +1,5 @@
-# Frames::PageTransition::Search::QueryMap class
-class Frames::PageTransition::Search::QueryMap
+# PageTransition::Frames::Search::QueryMap class
+class PageTransition::Frames::Search::QueryMap
   def self.build(ref_items:)
     query_map = self.new(ref_items:)
     query_map.build_query

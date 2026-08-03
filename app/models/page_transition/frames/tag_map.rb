@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Frames::PageTransition::TagMap class
-class Frames::PageTransition::TagMap
+# PageTransition::Frames::TagMap class
+class PageTransition::Frames::TagMap
   def self.build(frame:)
     tag_map = self.new(frame:)
     tag_map.build_map

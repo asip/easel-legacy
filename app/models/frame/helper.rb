@@ -6,11 +6,11 @@ module Frame::Helper
 
   class_methods do
     def tag_map(frame:)
-      Frames::PageTransition::TagMap.build(frame:)
+      ::PageTransition::Frames::TagMap.build(frame:)
     end
 
     def paging_query_map(page:)
-      Frames::PageTransition::List::QueryMap.build(page:)
+      ::PageTransition::Frames::List::QueryMap.build(page:)
     end
   end
 end

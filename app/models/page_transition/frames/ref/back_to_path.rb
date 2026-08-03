@@ -1,5 +1,5 @@
-# Frames::PageTransition::Ref::BackToPath class
-class Frames::PageTransition::Ref::BackToPath
+# PageTransition::Frames::Ref::BackToPath class
+class PageTransition::Frames::Ref::BackToPath
   def self.build(query_map:, root_path:, prev_url:, action_name:)
     back_to_path = self.new(query_map:, root_path:, prev_url:, action_name:)
     back_to_path.build_path

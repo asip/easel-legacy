@@ -1,5 +1,5 @@
-# Users::PageTransition::Ref::RefItems class
-class Users::PageTransition::Ref::RefItems
+# PageTransition::Users::Ref::RefItems class
+class PageTransition::Users::Ref::RefItems
   def self.build(ref_items:)
     items = self.new(ref_items:)
     items.build_items

@@ -1,5 +1,5 @@
-# Frames::PageTransition::List::QueryMap class
-class Frames::PageTransition::List::QueryMap
+# PageTransition::Frames::List::QueryMap class
+class PageTransition::Frames::List::QueryMap
   def self.build(page:)
     query_map = self.new(page:)
     query_map.build_query
