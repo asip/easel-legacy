@@ -15,7 +15,7 @@ module Frames::PageTransition::Ref
   def back_to_path
     @back_to_path ||= BackToPath.build(
       query_map: cookie_query_map, root_path: root_path(query_map_for_search),
-      prev_url:, action_name:
+      prev_url: location.prev_url, action_name:
     )
   end
 

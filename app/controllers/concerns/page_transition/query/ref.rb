@@ -22,6 +22,6 @@ module PageTransition::Query::Ref
   end
 
   def back_to_path
-    @back_to_path ||= prev_url
+    @back_to_path ||= location.prev_url
   end
 end

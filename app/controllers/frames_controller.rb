@@ -37,12 +37,12 @@ class FramesController < ApplicationController
   end
 
   def update
-    save(back_page: ->(frame) { prev_url_for(path: edit_frame_path(frame)) })
+    save(back_page: ->(frame) { location.prev_url_for(path: edit_frame_path(frame)) })
   end
 
   def destroy
     mutation = Mutations::Frame::DeleteFrame.run(user: current_user, frame_id:)
-    redirect_to prev_url_for(path: frame_path(mutation.frame)), status: :see_other
+    redirect_to location.prev_url_for(path: frame_path(mutation.frame)), status: :see_other
   end
 
   private

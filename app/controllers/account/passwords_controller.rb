@@ -15,7 +15,7 @@ class Account::PasswordsController < ApplicationController
   def update
     if current_user.update_with_password(form_params)
       bypass_sign_in current_user
-      redirect_to prev_url_for(path: edit_account_password_path), notice: "パスワードを更新しました。"
+      redirect_to location.prev_url_for(path: edit_account_password_path), notice: "パスワードを更新しました。"
     else
       render_error_stream
     end

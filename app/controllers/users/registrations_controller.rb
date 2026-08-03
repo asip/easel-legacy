@@ -96,7 +96,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     case action_name
     when "create"
       self.saved = resource.persisted?
-      redirect_or_render(redirect_path: prev_url_for(path: login_path) || root_path)
+      redirect_or_render(redirect_path: location.prev_url_for(path: login_path) || root_path)
     when "update"
       redirect_or_render(redirect_path: profile_path)
     end
