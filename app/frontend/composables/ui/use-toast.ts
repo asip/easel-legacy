@@ -1,16 +1,19 @@
 // import Toastify from 'toastify-js'
-import { computed } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
 
 import type { Flash } from '@vesperjs/vue'
 
 const Toastify = (await import('toastify-js')).default
 
 export const useToast = function () {
-  const toast = computed<undefined, Flash | Record<string, string[]>>({
+  const messages = ref<Flash | Record<string, string[]>>()
+
+  const toast = computed<Flash | Record<string, string[]> | undefined>({
     get() {
-      return undefined
+      return messages.value
     },
     set(value: Flash | Record<string, string[]>) {
+      messages.value = value
       if (Object.keys(value).length === 0) return
 
       if ('notice' in value || 'alert' in value) {
