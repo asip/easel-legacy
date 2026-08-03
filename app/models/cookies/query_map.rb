@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# PageTransition::Cookies::QueryMap class
-class PageTransition::Cookies::QueryMap
+# Cookies::QueryMap class
+class Cookies::QueryMap
   def initialize(cookies)
     @cookies = cookies
   end

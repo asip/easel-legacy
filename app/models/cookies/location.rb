@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# PageTransition::Cookies::Location class
-class PageTransition::Cookies::Location
+# Cookies::Location class
+class Cookies::Location
   def initialize(request, cookies)
     @request = request
     @cookies = cookies

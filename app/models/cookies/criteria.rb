@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Frames::Cookies::Criteria class
-class Frames::Cookies::Criteria
+# Cookies::Criteria class
+class Cookies::Criteria
   def initialize(cookies)
     @cookies = cookies
   end

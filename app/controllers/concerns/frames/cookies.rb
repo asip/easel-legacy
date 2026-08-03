@@ -7,6 +7,6 @@ module Frames::Cookies
   protected
 
   def criteria
-    @criteria ||= Frames::Cookies::Criteria.from(cookies)
+    @criteria ||= ::Cookies::Criteria.from(cookies)
   end
 end

@@ -11,6 +11,6 @@ module PageTransition::Location::Cookies
   protected
 
   def location
-    @location ||= PageTransition::Cookies::Location.from(request, cookies)
+    @location ||= ::Cookies::Location.from(request, cookies)
   end
 end
