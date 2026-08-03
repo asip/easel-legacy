@@ -17,7 +17,7 @@
           <% unless @user.social_login? %>
             <%= link_to account_password_path do %><i class="icon-key-round text-accent hover:text-primary"></i><% end %>
           <% end %>
-          <% if helpers.popover? %>
+          <% if helpers.device.popover? %>
           <button class="anchor-left-center" commandfor="delete_popover" command="toggle-popover">
             <i class="icon-circle-x text-accent hover:text-primary"></i>
           </button>
@@ -89,7 +89,7 @@
     </div>
   </div>
 
-  <% if helpers.popover? %>
+  <% if helpers.device.popover? %>
   <%= render Popover::Account::Delete::Component.new(path: delete_account_path) %>
   <% else %>
   <%= render Modal::Account::Delete::Component.new(path: delete_account_path) %>
