@@ -1,8 +1,8 @@
 # Frames::PageTransition::Ref::RefItems class
 class Frames::PageTransition::Ref::RefItems
   def self.build(ref_items:)
-    query_map = self.new(ref_items:)
-    query_map.build_items
+    items = self.new(ref_items:)
+    items.build_items
   end
 
   def build_items
