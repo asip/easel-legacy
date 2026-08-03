@@ -20,6 +20,6 @@ module Frames::PageTransition::Ref
   end
 
   def ref_items_for_next
-    @ref_items_for_next ||= RefItems.build(ref_items: JsonUtil.to_hash(query_map.ref))
+    @ref_items_for_next ||= RefItems.build(ref_items: JsonUtil.to_hash(cookie_query_map.ref))
   end
 end
