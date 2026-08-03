@@ -7,7 +7,6 @@ module Frames::Cookies
   protected
 
   def criteria
-    criteria = cookies[:q]
-    criteria.present? ? criteria : "{}"
+    @criteria ||= Frames::Cookies::Criteria.build(cookies)
   end
 end
