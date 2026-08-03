@@ -23,7 +23,7 @@ class PageTransition::Cookies::QueryMap
     @cookies[:page] = page
   end
 
-  def self.build(cookies)
+  def self.from(cookies)
     self.new(cookies)
   end
 end

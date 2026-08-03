@@ -7,6 +7,6 @@ module PageTransition::Query::Cookies
   protected
 
   def cookie_query_map
-    @query_map ||= PageTransition::Cookies::QueryMap.build(cookies)
+    @cookie_query_map ||= PageTransition::Cookies::QueryMap.from(cookies)
   end
 end

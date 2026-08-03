@@ -11,7 +11,7 @@ class Frames::Cookies::Criteria
     criteria.present? ? criteria : "{}"
   end
 
-  def self.build(cookies)
+  def self.from(cookies)
     self.new(cookies).criteria
   end
 end

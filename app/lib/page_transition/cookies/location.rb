@@ -19,7 +19,7 @@ class PageTransition::Cookies::Location
     @cookies["prev_url#{@request.path.gsub("/", "_")}".to_sym] = { value: prev_url, expires: 1.day.from_now, http_only: true }
   end
 
-  def self.build(request, cookies)
+  def self.from(request, cookies)
     self.new(request, cookies)
   end
 end
