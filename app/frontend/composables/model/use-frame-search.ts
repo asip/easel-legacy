@@ -6,6 +6,7 @@ import { useLocale } from '@vesperjs/vue'
 
 import { Criteria } from '@/types'
 import { useCookieStore } from '@/composables'
+import { useFrameSearchSchema } from './validation'
 
 interface QueryItems {
   q?: string
@@ -14,6 +15,7 @@ interface QueryItems {
 export const useFrameSearch = function () {
   const { autodetect, locale } = useLocale()
   const { criteria } = useCookieStore()
+  const { frameSearchSchema } = useFrameSearchSchema()
 
   v.setGlobalConfig({ lang: locale.value })
   autodetect()
@@ -31,12 +33,7 @@ export const useFrameSearch = function () {
     return query
   })
 
-  const schema = v.object({
-    word: v.pipe(v.string(), v.maxLength(40)),
-    tag_name: v.pipe(v.string(), v.maxLength(10)),
-  })
-
-  const { r$ } = useRegleSchema(params.value, schema)
+  const { r$ } = useRegleSchema(params.value, frameSearchSchema)
 
   const submit = async (ev: Event): Promise<void> => {
     r$.$touch()
