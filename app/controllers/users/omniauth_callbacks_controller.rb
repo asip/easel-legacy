@@ -76,8 +76,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     set_flash_message(:notice, :success, kind: provider.to_s.capitalize) if is_navigational_format?
 
     # user.token = user.create_token
-    # self.access_token = user.token
-    self.access_token = user.create_token
+    # self.account.access_token = user.token
+    self.account.access_token = user.create_token
   end
 
   def login_failed

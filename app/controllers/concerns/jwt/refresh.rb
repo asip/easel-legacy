@@ -11,6 +11,6 @@ module Jwt::Refresh
   protected
 
   def refresh_token
-    self.access_token = current_user.create_token if user_signed_in?
+    self.account.access_token = current_user.create_token if user_signed_in?
   end
 end

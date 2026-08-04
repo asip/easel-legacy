@@ -7,11 +7,7 @@ module Api::Session
 
   protected
 
-  def access_token
-    session[:access_token]
-  end
-
-  def access_token=(token)
-    session[:access_token] = token
+  def account
+    @account = Session::Account.from(session)
   end
 end

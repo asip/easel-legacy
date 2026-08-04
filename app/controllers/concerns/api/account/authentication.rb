@@ -36,7 +36,7 @@ module Api::Account::Authentication
     #  raise Api::UnauthorizedError.new("Authorizationヘッダーからトークンが見つかりません。")
     # end
 
-    token = access_token
+    token = account.access_token
     # puts "token:#{token}"
 
     # An error occurs if the token is empty.

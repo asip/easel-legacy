@@ -21,8 +21,8 @@ class Users::SessionsController < Devise::SessionsController
       # yield resource if block_given?
 
       # resource.token = resource.create_token
-      # self.access_token = resource.token
-      self.access_token = resource.create_token
+      # self.account.access_token = resource.token
+      self.account.access_token = resource.create_token
     end
 
     respond_with resource
