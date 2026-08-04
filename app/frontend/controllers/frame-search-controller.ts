@@ -20,26 +20,26 @@ export default class FrameSearchController extends ApplicationController {
 
   connect(): void {
     if (this.hasWordTarget && this.hasTagTarget) {
-      const { params, criteria } = useFrameSearch()
+      const { form, criteria } = useFrameSearch()
       const { value: wordValue } = useElement(this.wordTarget, { property: 'value' })
       const { value: tagValue } = useElement(this.tagTarget, { property: 'value' })
 
-      params.value.word = criteria.value?.word ?? ''
-      params.value.tag_name = criteria.value?.tag_name ?? ''
-      wordValue.value = params.value.word
-      tagValue.value = params.value.tag_name
+      form.value.word = criteria.value?.word ?? ''
+      form.value.tag_name = criteria.value?.tag_name ?? ''
+      wordValue.value = form.value.word
+      tagValue.value = form.value.tag_name
     }
   }
 
   submit(ev: Event): void {
-    const { params, submit, r$ } = useFrameSearch()
+    const { form, submit, r$ } = useFrameSearch()
     const { value: wordValue } = useElement(this.wordTarget, { property: 'value' })
     const { value: tagValue } = useElement(this.tagTarget, { property: 'value' })
     const { innerHTML: wordMessage } = useElement(this.wordMessageTarget, { property: 'innerHTML' })
     const { innerHTML: tagMessage } = useElement(this.tagMessageTarget, { property: 'innerHTML' })
 
-    params.value.word = wordValue.value
-    params.value.tag_name = tagValue.value
+    form.value.word = wordValue.value
+    form.value.tag_name = tagValue.value
     void (async () => {
       await submit(ev)
       wordMessage.value = r$.$errors.word.at(0) ?? ''

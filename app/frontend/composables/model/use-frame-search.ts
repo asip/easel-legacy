@@ -17,23 +17,23 @@ export const useFrameSearch = function () {
   const { criteria } = useCookieStore()
   const { frameSearchSchema } = useFrameSearchSchema()
 
-  v.setGlobalConfig({ lang: locale.value })
   autodetect()
 
-  const params = ref<Criteria>({})
+  const form = ref<Criteria>({})
 
   const queryMap = computed<QueryItems>(() => {
     const query: QueryItems = {}
     const qItems: Criteria = {}
 
-    if (params.value.word) qItems.word = params.value.word
-    if (params.value.tag_name) qItems.tag_name = params.value.tag_name
+    if (form.value.word) qItems.word = form.value.word
+    if (form.value.tag_name) qItems.tag_name = form.value.tag_name
     query.q = JSON.stringify(qItems)
 
     return query
   })
 
-  const { r$ } = useRegleSchema(params.value, frameSearchSchema)
+  v.setGlobalConfig({ lang: locale.value })
+  const { r$ } = useRegleSchema(form.value, frameSearchSchema)
 
   const submit = async (ev: Event): Promise<void> => {
     r$.$touch()
@@ -52,7 +52,7 @@ export const useFrameSearch = function () {
   }
 
   return {
-    params,
+    form,
     criteria,
     r$,
     submit,
