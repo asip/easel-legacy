@@ -104,7 +104,7 @@ export const useComment = function () {
       },
     }
 
-    const { data, error } = await mutationApi<CommentResource, BackendErrorsResource>(
+    const { data: commentAttrs, error } = await mutationApi<CommentResource, BackendErrorsResource>(
       `/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
       {
         method: 'put',
@@ -117,8 +117,7 @@ export const useComment = function () {
 
     if (error) {
       backendErrorInfo.value = error
-    } else {
-      const commentAttrs: CommentResource | undefined = data
+    } else if (commentAttrs) {
       setComment({ from: commentAttrs })
     }
   }

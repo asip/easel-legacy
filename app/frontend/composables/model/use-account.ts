@@ -26,17 +26,16 @@ export const useAccount = function () {
       return
     } */
 
-    const { data, error } = await queryApi<AccountResource, BackendErrorsResource>('/account')
+    const { data: accountAttrs, error } = await queryApi<AccountResource, BackendErrorsResource>(
+      '/account',
+    )
 
     if (error) {
       off.value = true
       backendErrorInfo.value = error
       clearAccount()
-    } else {
-      const accountAttrs = data
-      if (accountAttrs) {
-        account.value.id = accountAttrs.id
-      }
+    } else if (accountAttrs) {
+      account.value.id = accountAttrs.id
       loggedIn.value = true
     }
   }
