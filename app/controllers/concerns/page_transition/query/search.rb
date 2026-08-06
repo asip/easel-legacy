@@ -7,12 +7,4 @@ module PageTransition::Query::Search
   included do
     helper_method :query_map_for_search
   end
-
-  protected
-
-  def query_map_for_search
-    @query_map_for_search ||= route_params.filter do |key, value|
-      query_list.include?(key.to_sym) if value.present?
-    end
-  end
 end
