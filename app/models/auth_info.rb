@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 #
-# AuthInfo Class
+# AuthInfo class
 #
 class AuthInfo
   include ActiveModel::API

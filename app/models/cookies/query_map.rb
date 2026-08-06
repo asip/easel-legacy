@@ -4,22 +4,40 @@
 class Cookies::QueryMap
   def initialize(cookies)
     @cookies = cookies
+    @model = ::QueryMap.new(ref: cookie_ref, page: cookie_page)
   end
 
-  def ref
+  def cookie_ref
     items = @cookies[:ref]
     items.present? ? items : nil
   end
 
-  def ref_items
-    @ref_items ||= JsonUtil.to_hash(ref)
-  end
+  private :cookie_ref
 
-  def page
+  def cookie_page
     @cookies[:page]
   end
 
+  private :cookie_page
+
+  def model
+    @model
+  end
+
+  def ref
+    @model.ref
+  end
+
+  def ref_items
+    @model.ref_items
+  end
+
+  def page
+    @model.page
+  end
+
   def page=(page)
+    @model.page = page
     @cookies[:page] = page
   end
 

@@ -2,7 +2,7 @@
 
 # api
 module Api
-  # Pagination Class
+  # Pagination class
   class Pagination
     def self.resources_with_pagination(pagy)
       {
