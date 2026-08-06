@@ -5,12 +5,12 @@ module PageTransition::Location::Store
   extend ActiveSupport::Concern
 
   def store_location
-    self.location.prev_url = from || fallback if saved_page?
+    self.location.prev_url = from || fallback if saved_pages?
   end
 
   protected
 
-  def saved_page?
+  def saved_pages?
     false
   end
 

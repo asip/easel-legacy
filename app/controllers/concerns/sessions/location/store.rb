@@ -13,7 +13,7 @@ module Sessions::Location::Store
 
   def store_location
     if PageTransition.saved_paths_after_login?(from)
-      self.location.prev_url = if saved_page?
+      self.location.prev_url = if saved_pages?
         from || fallback
       else
         fallback
@@ -23,7 +23,7 @@ module Sessions::Location::Store
 
   private
 
-  def saved_page?
+  def saved_pages?
     !from&.include?("/frames") || !from&.include?("profile")
   end
 end
