@@ -11,8 +11,7 @@ class QueryMap
   attribute :ref, :string
   attribute :page, :string
 
-  def initialize(ref:, page:)
-    attributes = { ref:, page: }
+  def initialize(attributes)
     super(attributes)
   end
 
