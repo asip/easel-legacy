@@ -101,7 +101,7 @@ importers:
         version: 4.18.0(supports-color@8.1.1)
       '@tailwindcss/vite':
         specifier: ^4.3.3
-        version: 4.3.3(vite@8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))
+        version: 4.3.3(vite@8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))
       '@types/sanitize-html':
         specifier: ^2.16.1
         version: 2.16.1
@@ -119,7 +119,7 @@ importers:
         version: 8.66.0(eslint@10.8.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
       '@vitejs/plugin-vue':
         specifier: ^6.0.8
-        version: 6.0.8(vite@8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))(vue@3.6.0-rc.2(typescript@6.0.3))
+        version: 6.0.8(vite@8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))(vue@3.6.0-rc.2(typescript@6.0.3))
       '@vue/eslint-config-typescript':
         specifier: ^14.9.0
         version: 14.9.0(eslint-plugin-vue@10.10.0(@typescript-eslint/parser@8.66.0(eslint@10.8.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.8.0(jiti@2.7.0)(supports-color@8.1.1))(vue-eslint-parser@10.4.1(eslint@10.8.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)))(eslint@10.8.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
@@ -140,7 +140,7 @@ importers:
         version: 0.62.0
       rails-vite-plugin:
         specifier: ^0.2.5
-        version: 0.2.5(vite@8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))
+        version: 0.2.5(vite@8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))
       sass-embedded:
         specifier: ^1.100.0
         version: 1.100.0
@@ -157,8 +157,8 @@ importers:
         specifier: ^8.66.0
         version: 8.66.0(eslint@10.8.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
       vite:
-        specifier: ^8.2.0
-        version: 8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
+        specifier: ^8.2.1
+        version: 8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
       vue-eslint-parser:
         specifier: ^10.4.1
         version: 10.4.1(eslint@10.8.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)
@@ -2335,8 +2335,8 @@ packages:
   varint@6.0.0:
     resolution: {integrity: sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg==}
 
-  vite@8.2.0:
-    resolution: {integrity: sha512-pn+CFpM0lwDeKwmOq1ZaBK/9sjorZcgqxki6MbY/jPEVd9vichIlmlD4HmQ5wdP5EgqQCFRaACBxMC7uEGc6lQ==}
+  vite@8.2.1:
+    resolution: {integrity: sha512-EU/eS7BH3XROHh2YnBefjM6DBKA6ZeMZEYQbj7NLWg5wHYlhB8B/Mayd5XsgWq+NFYccDOTemRpdETWR6Ka/lw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -3037,12 +3037,12 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.3.3
       '@tailwindcss/oxide-win32-x64-msvc': 4.3.3
 
-  '@tailwindcss/vite@4.3.3(vite@8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))':
+  '@tailwindcss/vite@4.3.3(vite@8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))':
     dependencies:
       '@tailwindcss/node': 4.3.3
       '@tailwindcss/oxide': 4.3.3
       tailwindcss: 4.3.3
-      vite: 8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
+      vite: 8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
 
   '@tybys/wasm-util@0.10.3':
     dependencies:
@@ -3204,10 +3204,10 @@ snapshots:
       - '@nanostores/logger'
       - '@vue/devtools-api'
 
-  '@vitejs/plugin-vue@6.0.8(vite@8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))(vue@3.6.0-rc.2(typescript@6.0.3))':
+  '@vitejs/plugin-vue@6.0.8(vite@8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0))(vue@3.6.0-rc.2(typescript@6.0.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
+      vite: 8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
       vue: 3.6.0-rc.2(typescript@6.0.3)
 
   '@vue/compiler-core@3.6.0-rc.2':
@@ -4156,10 +4156,10 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  rails-vite-plugin@0.2.5(vite@8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)):
+  rails-vite-plugin@0.2.5(vite@8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)):
     dependencies:
       picomatch: 4.0.5
-      vite: 8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
+      vite: 8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)
 
   react-dom@19.0.0(react@19.0.0):
     dependencies:
@@ -4462,7 +4462,7 @@ snapshots:
 
   varint@6.0.0: {}
 
-  vite@8.2.0(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0):
+  vite@8.2.1(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
