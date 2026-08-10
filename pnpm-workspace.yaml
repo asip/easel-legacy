@@ -1,4 +1,6 @@
 allowBuilds:
   '@parcel/watcher': false
+minimumReleaseAgeExclude:
+  - lucide-static@1.31.0
 overrides:
   vue: ^3.6.0-rc.2
