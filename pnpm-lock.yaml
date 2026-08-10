@@ -2304,8 +2304,8 @@ packages:
   ufo@1.6.4:
     resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
-  undici@8.7.0:
-    resolution: {integrity: sha512-N7iQtfyLhIMOFgQubvmLV26svHpO0bqKnAiWotTQCVKCmWrcGbBotPuW1x+xwYZ2VHdSTVUfPQQnlEt1/LouTQ==}
+  undici@8.10.0:
+    resolution: {integrity: sha512-HvltHd7avK13QIw/oLe4qoOLyoVSoafqJ2jYOrtMRBkbYT31eiBQ8O0ehRKZiEZCMEyLFQNIADpgCWC5fALvYQ==}
     engines: {node: '>=22.19.0'}
 
   universal-cookie@8.1.2:
@@ -3197,7 +3197,7 @@ snapshots:
       '@vue/runtime-dom': 3.6.0-rc.2
       nanostores: 1.4.2
       ofetch: 1.5.1
-      undici: 8.7.0
+      undici: 8.10.0
       vue: 3.6.0-rc.2(typescript@6.0.3)
       vue-i18n: 11.4.8(vue@3.6.0-rc.2(typescript@6.0.3))
     transitivePeerDependencies:
@@ -4440,7 +4440,7 @@ snapshots:
 
   ufo@1.6.4: {}
 
-  undici@8.7.0: {}
+  undici@8.10.0: {}
 
   universal-cookie@8.1.2:
     dependencies:
