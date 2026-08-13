@@ -8,6 +8,12 @@ import { Criteria } from '@/types'
 import { useCookieStore } from '@/composables'
 import { useFrameSearchSchema } from './validation'
 
+/*
+interface QueryItems {
+  q?: string
+}
+*/
+
 export const useFrameSearch = function () {
   const { autodetect, locale } = useLocale()
   const { criteria } = useCookieStore()
@@ -24,6 +30,14 @@ export const useFrameSearch = function () {
     if (form.value.tag_name) items.tag_name = form.value.tag_name
     return items
   })
+
+  /*
+  const queryMap = computed<QueryItems>(() => {
+    const query: QueryItems = {}
+    query.q = JSON.stringify(qItems)
+    return query
+  })
+  */
 
   v.setGlobalConfig({ lang: locale.value })
   const { r$ } = useRegleSchema(form.value, frameSearchSchema)
