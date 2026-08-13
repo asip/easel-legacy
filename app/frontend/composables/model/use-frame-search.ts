@@ -8,10 +8,6 @@ import { Criteria } from '@/types'
 import { useCookieStore } from '@/composables'
 import { useFrameSearchSchema } from './validation'
 
-interface QueryItems {
-  q?: string
-}
-
 export const useFrameSearch = function () {
   const { autodetect, locale } = useLocale()
   const { criteria } = useCookieStore()
@@ -21,15 +17,12 @@ export const useFrameSearch = function () {
 
   const form = ref<Criteria>({})
 
-  const queryMap = computed<QueryItems>(() => {
-    const query: QueryItems = {}
-    const qItems: Criteria = {}
+  const qItems = computed<Criteria>(() => {
+    const items: Criteria = {}
 
-    if (form.value.word) qItems.word = form.value.word
-    if (form.value.tag_name) qItems.tag_name = form.value.tag_name
-    query.q = JSON.stringify(qItems)
-
-    return query
+    if (form.value.word) items.word = form.value.word
+    if (form.value.tag_name) items.tag_name = form.value.tag_name
+    return items
   })
 
   v.setGlobalConfig({ lang: locale.value })
@@ -40,12 +33,10 @@ export const useFrameSearch = function () {
     const { valid } = await r$.$validate()
 
     if (valid) {
-      if (queryMap.value.q) {
-        criteria.value = queryMap.value.q
+      criteria.value = JSON.stringify(qItems.value)
 
-        const el = ev.target as HTMLFormElement
-        el.requestSubmit()
-      }
+      const el = ev.target as HTMLFormElement
+      el.requestSubmit()
     } else {
       ev.preventDefault()
     }
