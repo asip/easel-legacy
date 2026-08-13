@@ -4,15 +4,9 @@ import { useRegleSchema } from '@regle/schemas'
 
 import { useLocale } from '@vesperjs/vue'
 
-import { Criteria } from '@/types'
+import { Criteria /* , QueryItems */ } from '@/types'
 import { useCookieStore } from '@/composables'
 import { useFrameSearchSchema } from './validation'
-
-/*
-interface QueryItems {
-  q?: string
-}
-*/
 
 export const useFrameSearch = function () {
   const { autodetect, locale } = useLocale()
