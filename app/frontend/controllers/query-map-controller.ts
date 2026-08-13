@@ -2,11 +2,7 @@ import ApplicationController from './application-controller'
 
 import { useCookieStore } from '@/composables'
 
-interface QueryItems {
-  q?: string
-  ref?: string
-  page?: string
-}
+import { QueryItems } from '@/types'
 
 export default class QueryMapController extends ApplicationController {
   static values = {
