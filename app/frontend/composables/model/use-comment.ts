@@ -71,9 +71,9 @@ export const useComment = function () {
   const createComment = async (frameId: string): Promise<void> => {
     clearFlash()
 
-    // const params = new FormData()
-    // params.append('comment[body]', comment.value.body)
-    const params = {
+    // const form = new FormData()
+    // form.append('comment[body]', comment.value.body)
+    const form = {
       comment: {
         body: comment.value.body,
       },
@@ -83,7 +83,7 @@ export const useComment = function () {
       `/frames/${frameId}/comments`,
       {
         method: 'post',
-        body: params,
+        body: form,
         // token: token.value
       },
     )
@@ -96,9 +96,9 @@ export const useComment = function () {
   const updateComment = async (): Promise<void> => {
     clearFlash()
 
-    // const params = new FormData()
-    // params.append('comment[body]', comment.value.body)
-    const params = {
+    // const form = new FormData()
+    // form.append('comment[body]', comment.value.body)
+    const form = {
       comment: {
         body: comment.value.body,
       },
@@ -108,7 +108,7 @@ export const useComment = function () {
       `/frames/${comment.value.frame_id?.toString() ?? ''}/comments/${comment.value.id?.toString() ?? ''}`,
       {
         method: 'put',
-        body: params,
+        body: form,
         // token: token.value
       },
     )
