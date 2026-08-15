@@ -5,6 +5,8 @@ import { computed, Ref } from '@vue/reactivity'
 import { useDate } from '@vesperjs/vue'
 
 export const useCalendar = function ({ el, word }: { el?: HTMLElement; word: Ref<string> }) {
+  const { isValidDate } = useDate()
+
   let calendar: Calendar | null = null
 
   const date = computed<string>({
@@ -12,8 +14,6 @@ export const useCalendar = function ({ el, word }: { el?: HTMLElement; word: Ref
       return utcDate.value ? format(utcDate.value, 'YYYY/MM/DD') : ''
     },
     set(value: string) {
-      const { isValidDate } = useDate()
-
       const date_ = isValidDate(value) ? value : ''
 
       utcDate.value = date_
@@ -58,8 +58,8 @@ export const useCalendar = function ({ el, word }: { el?: HTMLElement; word: Ref
     calendar = new Calendar(el, {
       locale: 'ja',
       onClickDate(self) {
-        // globalthis.console.log(`selected:${self.context.selectedDates[0]}`)
-        // globalthis.console.log(`today:${self.context.dateToday}`)
+        // globalThis.console.log(`selected:${self.context.selectedDates[0]}`)
+        // globalThis.console.log(`today:${self.context.dateToday}`)
         const value = (self.context.selectedDates[0] ?? '') as string
         word.value = value ? format(value, 'YYYY/MM/DD') : ''
       },
