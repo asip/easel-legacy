@@ -45,7 +45,9 @@ const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-refItems.value.from = 'frame'
+const refMap = refItems.value
+refMap.from = 'frame'
+refItems.value = refMap
 
 const sanitizedCommentBody = computed<string>(() =>
   sanitizeHtml(commentModel.value?.body ?? '').replace(/\n/g, '<br>'),

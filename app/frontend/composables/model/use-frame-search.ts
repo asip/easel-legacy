@@ -41,7 +41,7 @@ export const useFrameSearch = function () {
     const { valid } = await r$.$validate()
 
     if (valid) {
-      criteria.value = JSON.stringify(qItems.value)
+      criteria.value = qItems.value
 
       const el = ev.target as HTMLFormElement
       el.requestSubmit()
