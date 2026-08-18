@@ -45,13 +45,15 @@ const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-const refItems_ = refItems.value
-refItems_.from = 'frame'
-refItems.value = refItems_
-
 const sanitizedCommentBody = computed<string>(() =>
   sanitizeHtml(commentModel.value?.body ?? '').replace(/\n/g, '<br>'),
 )
+
+const onNameClick = (): void => {
+  const refItems_ = refItems.value
+  refItems_.from = 'frame'
+  refItems.value = refItems_
+}
 
 const onEditClick = (): void => {
   edit.value = true
@@ -122,6 +124,7 @@ const reload401404 = async (): Promise<void> => {
           <a
             :href="`/users/${commentModel?.user_id}`"
             class="badge badge-outline badge-accent hover:badge-primary rounded-full"
+            @click="onNameClick"
           >
             {{ commentModel?.user_name }}
           </a>
