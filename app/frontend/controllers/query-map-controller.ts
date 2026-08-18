@@ -25,6 +25,6 @@ export default class QueryMapController extends ApplicationController {
     // globalThis.console.log(refItems.value)
     // globalThis.console.log(page.value)
 
-    globalThis.window.location.href = (this.element as HTMLLinkElement).href
+    globalThis.location.href = (this.element as HTMLLinkElement).href
   }
 }
