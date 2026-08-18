@@ -24,7 +24,7 @@
     "@yaireo/tagify": "^4.38.0",
     "glightbox": "^3.3.1",
     "lucide-static": "^1.31.0",
-    "nanostores": "^1.5.0",
+    "nanostores": "^1.5.1",
     "photoswipe": "5.4.4",
     "pinia": "4.0.3",
     "sanitize-html": "^2.17.7",
