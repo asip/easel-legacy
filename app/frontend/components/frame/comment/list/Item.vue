@@ -50,9 +50,7 @@ const sanitizedCommentBody = computed<string>(() =>
 )
 
 const onNameClick = (): void => {
-  const refItems_ = refItems.value
-  refItems_.from = 'frame'
-  refItems.value = refItems_
+  refItems.value.from = 'frame'
 }
 
 const onEditClick = (): void => {

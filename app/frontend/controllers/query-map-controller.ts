@@ -17,6 +17,7 @@ export default class QueryMapController extends ApplicationController {
     ev.preventDefault()
 
     const map = JSON.parse(this.qValue) as QueryItems
+    // globalThis.console.log(map)
 
     if (map.q) criteria.value = map.q
     refItems.value = map.ref ?? '{}'
