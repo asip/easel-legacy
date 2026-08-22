@@ -24,7 +24,7 @@
     "@yaireo/tagify": "^4.38.0",
     "glightbox": "^3.3.1",
     "lucide-static": "^1.31.0",
-    "nanostores": "^1.5.1",
+    "nanostores": "^1.5.2",
     "photoswipe": "5.4.4",
     "pinia": "4.0.3",
     "sanitize-html": "^2.17.7",
@@ -48,7 +48,7 @@
     "@typescript-eslint/parser": "^8.67.0",
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/eslint-config-typescript": "^14.9.0",
-    "daisyui": "^5.7.17",
+    "daisyui": "^5.7.20",
     "eslint": "^10.8.1",
     "eslint-plugin-vue": "^10.10.0",
     "markuplint": "^4.18.3",
@@ -63,6 +63,6 @@
     "vue-eslint-parser": "^10.4.1"
   },
   "peerDependencies": {
-    "vue": "^3.6.0-rc.4"
+    "vue": "^3.6.0-rc.5"
   }
 }
