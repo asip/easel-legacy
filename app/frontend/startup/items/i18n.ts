@@ -1,3 +1,3 @@
-import { valibotMessages } from '@/i18n/valibot'
+import { useValibotI18n } from '@/composables'
 
-valibotMessages()
+useValibotI18n()

@@ -1,4 +1,5 @@
 export { useI18nRegle } from './use-i18n-regle'
+export { useValibotI18n } from './use-valibot-i18n'
 
 export {
   useElements,
