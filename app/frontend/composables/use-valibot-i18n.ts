@@ -7,12 +7,13 @@ import { i18n } from '@/i18n'
 const { t } = i18n.global
 
 const useValibotI18n = function () {
+  const { locale } = useLocale()
+
   const schemaMessage = () => {
     /*
     v.setSchemaMessage((issue) => `Invalid type: Please enter as type ${issue.expected ?? ''}, not type ${issue.received}`, 'en')
     v.setSchemaMessage((issue) => `無効な型です：${issue.received}型ではなく${issue.expected ?? ''}型で入力してください`, 'ja')
     */
-    const { locale } = useLocale()
     v.setSchemaMessage(
       (issue) =>
         t('rules.schemaMessage', {
@@ -28,7 +29,6 @@ const useValibotI18n = function () {
     v.setSpecificMessage(v.maxLength, (issue) => `are limited to ${issue.requirement.toString()} characters.`, 'en')
     v.setSpecificMessage(v.maxLength, (issue) => `${issue.requirement.toString()}文字以内で入力してください`, 'ja')
     */
-    const { locale } = useLocale()
     v.setSpecificMessage(
       v.maxLength,
       (issue) => t('rules.maxLength', { max: issue.requirement.toString() }),
