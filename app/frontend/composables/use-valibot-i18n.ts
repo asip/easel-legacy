@@ -36,9 +36,13 @@ const useValibotI18n = function () {
     )
   }
 
+  const specificMessage = () => {
+    maxLength()
+  }
+
   const initValibotI18n = () => {
     schemaMessage()
-    maxLength()
+    specificMessage()
   }
 
   initValibotI18n()
