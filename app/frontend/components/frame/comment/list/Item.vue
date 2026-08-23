@@ -45,7 +45,7 @@ const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-const sanitizedCommentBody = computed<string>(() =>
+const commentBody = computed<string>(() =>
   sanitizeHtml(commentModel.value?.body ?? '').replace(/\n/g, '<br>'),
 )
 
@@ -144,7 +144,7 @@ const reload401404 = async (): Promise<void> => {
           <tbody>
             <tr>
               <td class="wrap-break-word">
-                <span v-html="sanitizedCommentBody" />
+                <span v-html="commentBody" />
               </td>
             </tr>
           </tbody>
