@@ -1,4 +1,3 @@
-import * as v from 'valibot'
 import { ref, computed } from '@vue/reactivity'
 import { useRegleSchema } from '@regle/schemas'
 
@@ -9,7 +8,7 @@ import { useCookieStore } from '@/composables'
 import { useFrameSearchSchema } from './validation'
 
 export const useFrameSearch = function () {
-  const { autodetect, locale } = useLocale()
+  const { autodetect } = useLocale()
   const { criteria } = useCookieStore()
   const { frameSearchSchema } = useFrameSearchSchema()
 
@@ -33,7 +32,6 @@ export const useFrameSearch = function () {
   })
   */
 
-  v.setGlobalConfig({ lang: locale.value })
   const { r$ } = useRegleSchema(form.value, frameSearchSchema)
 
   const submit = async (ev: Event): Promise<void> => {

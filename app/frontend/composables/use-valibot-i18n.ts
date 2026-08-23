@@ -40,9 +40,14 @@ const useValibotI18n = function () {
     maxLength()
   }
 
+  const globalConfig = () => {
+    v.setGlobalConfig({ lang: locale.value })
+  }
+
   const initValibotI18n = () => {
     schemaMessage()
     specificMessage()
+    globalConfig()
   }
 
   initValibotI18n()
