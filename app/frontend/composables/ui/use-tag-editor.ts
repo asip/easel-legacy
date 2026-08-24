@@ -50,12 +50,12 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
 
     tags.value = tagList.value
 
-    setEventCallbacks()
+    eventCallbacks()
 
     return tagEditor
   }
 
-  const setEventCallbacks = (): void => {
+  const eventCallbacks = (): void => {
     tagEditor?.on('input', (ev) => {
       void (async () => {
         await onInput(ev)
