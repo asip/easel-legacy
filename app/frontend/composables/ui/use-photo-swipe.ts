@@ -4,10 +4,12 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox'
 
 export const usePhotoSwipe = function ({
   selector,
-  anchor,
+  anchor = 'a',
+  zoomLevel = 'fit',
 }: {
   selector: string
   anchor?: string
+  zoomLevel?: 'fit' | 'fill' | number
 }) {
   const assignSize = async (): Promise<void> => {
     const galleryAnchors = globalThis.document.querySelectorAll(
@@ -28,8 +30,8 @@ export const usePhotoSwipe = function ({
 
     const lightbox = new PhotoSwipeLightbox({
       gallery: selector,
-      children: anchor ? anchor : 'a',
-      initialZoomLevel: 'fit',
+      children: anchor,
+      initialZoomLevel: zoomLevel,
       pswpModule: () => import('photoswipe'),
     })
     // new PhotoSwipeFullscreen(lightbox) // eslint-disable-line
