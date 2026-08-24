@@ -10,6 +10,8 @@ export const useCookieStore = function () {
   const { isValidDate } = useDate()
   const cookies = useCookies(['access_token', 'q', 'ref', 'page', 'time_zone'])
 
+  const accessToken = computed<string>(() => cookies.get<string>('access_token'))
+
   const criteriaRef = ref<Criteria>()
 
   const criteria = computed<Criteria | undefined, Criteria | string | undefined>({
@@ -23,21 +25,27 @@ export const useCookieStore = function () {
         cookies.set('q', value, { path: '/' })
       } else {
         criteriaRef.value = value
-        cookies.set('q', JSON.stringify(value ?? {}), { path: '/' })
+        cookies.set('q', JSON.stringify(qItems.value), { path: '/' })
       }
     },
   })
 
+  const qItems = computed<Criteria>(() => {
+    const items: Criteria = {}
+
+    if (criteriaRef.value?.word) items.word = criteriaRef.value.word
+    if (criteriaRef.value?.tag_name) items.tag_name = criteriaRef.value.tag_name
+    return items
+  })
+
   watch(criteriaRef, () => {
-    criteria.value = criteriaRef.value
+    criteria.value = qItems.value
   })
 
   const date = computed<string | null>(() => {
     const value = criteria.value?.word ?? ''
     return isValidDate(value) ? value : null
   })
-
-  const accessToken = computed<string>(() => cookies.get<string>('access_token'))
 
   const refItemsRef = ref<RefItems>()
 
@@ -79,5 +87,5 @@ export const useCookieStore = function () {
     },
   })
 
-  return { criteria, date: date.value, accessToken, refItems, page, timeZone }
+  return { accessToken, criteria, date: date.value, refItems, page, timeZone }
 }

@@ -1,4 +1,4 @@
-import { ref, computed } from '@vue/reactivity'
+import { ref } from '@vue/reactivity'
 import { useRegleSchema } from '@regle/schemas'
 
 import { useLocale } from '@vesperjs/vue'
@@ -16,14 +16,6 @@ export const useFrameSearch = function () {
 
   const form = ref<Criteria>({})
 
-  const qItems = computed<Criteria>(() => {
-    const items: Criteria = {}
-
-    if (form.value.word) items.word = form.value.word
-    if (form.value.tag_name) items.tag_name = form.value.tag_name
-    return items
-  })
-
   /*
   const queryMap = computed<QueryItems>(() => {
     const query: QueryItems = {}
@@ -39,7 +31,7 @@ export const useFrameSearch = function () {
     const { valid } = await r$.$validate()
 
     if (valid) {
-      criteria.value = qItems.value
+      criteria.value = form.value
 
       const el = ev.target as HTMLFormElement
       el.requestSubmit()
