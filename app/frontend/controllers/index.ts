@@ -6,7 +6,7 @@ import QueryMapController from './query-map-controller'
 // image preview
 import PreviewController from './image/preview-controller'
 // frame
-import LightboxController from './lightbox-controller'
+import GLightboxController from './g-lightbox-controller'
 import PhotoSwipeController from './photo-swipe-controller'
 import TagifyController from './tagify-controller'
 
@@ -16,7 +16,7 @@ export {
   FrameSearchController,
   QueryMapController,
   PreviewController,
-  LightboxController,
+  GLightboxController,
   PhotoSwipeController,
   TagifyController,
 }

@@ -6,7 +6,7 @@ import {
   FrameSearchController,
   QueryMapController,
   PreviewController,
-  LightboxController,
+  GLightboxController,
   PhotoSwipeController,
   TagifyController,
 } from '@/controllers/index'
@@ -25,7 +25,7 @@ application.register('queryMap', QueryMapController)
 // image preview
 application.register('preview', PreviewController)
 // frame
-application.register('lightbox', LightboxController)
+application.register('glbx', GLightboxController)
 application.register('pswp', PhotoSwipeController)
 application.register('tagify', TagifyController)
 

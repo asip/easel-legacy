@@ -2,7 +2,7 @@ import GLightbox from 'glightbox'
 
 import ApplicationController from './application-controller'
 
-export default class LightboxController extends ApplicationController {
+export default class GLightboxController extends ApplicationController {
   static values = {
     selector: String,
   }
