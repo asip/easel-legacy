@@ -14,9 +14,6 @@ export default class CalendarController extends ApplicationController {
   declare readonly wordTarget: HTMLInputElement
   declare readonly hasWordTarget: boolean
 
-  declare readonly dateValue: string
-  declare readonly originValue: string
-
   calendar: Calendar | null = null
 
   connect(): void {
