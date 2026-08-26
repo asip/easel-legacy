@@ -4,26 +4,32 @@ import { computed, Ref } from '@vue/reactivity'
 
 import { useDate } from '@vesperjs/vue'
 
-export const useCalendar = function ({ el, word }: { el?: HTMLElement; word: Ref<string> }) {
+export const useCalendar = function ({ el, date }: { el?: HTMLElement; date: Ref<string> }) {
   const { isValidDate } = useDate()
 
   let calendar: Calendar | null = null
 
-  const date = computed<string>({
+  const selectedDateStr = computed<string>({
     get() {
-      return utcDate.value ? format(utcDate.value, 'YYYY/MM/DD') : ''
+      return selectedDate.value ? format(selectedDate.value, 'YYYY/MM/DD') : ''
     },
     set(value: string) {
       const date_ = isValidDate(value) ? value : ''
+      selectedDate.value = date_ ? parse(date_, 'YYYY/MM/DD') : null
+    },
+  })
 
-      utcDate.value = date_
-        ? tzDate(format(parse(date_, 'YYYY/MM/DD'), 'YYYY-MM-DD HH:mm:ss'), 'utc')
-        : null
+  const selectedDate = computed<Date | null>({
+    get() {
+      return selectedDateUTC.value ? parse(format(selectedDateUTC.value, 'YYYY/MM/DD')) : null
+    },
+    set(value: Date | null) {
+      selectedDateUTC.value = value ? tzDate(format(value, 'YYYY-MM-DD HH:mm:ss'), 'utc') : null
     },
   })
 
   // UTC Date (UTC日付)
-  const utcDate = computed<Date | null>({
+  const selectedDateUTC = computed<Date | null>({
     get() {
       return calendar?.selectedDates.at(0) as Date | null
     },
@@ -61,11 +67,11 @@ export const useCalendar = function ({ el, word }: { el?: HTMLElement; word: Ref
         // globalThis.console.log(`selected:${self.context.selectedDates[0]}`)
         // globalThis.console.log(`today:${self.context.dateToday}`)
         const value = (self.context.selectedDates[0] ?? '') as string
-        word.value = value ? format(value, 'YYYY/MM/DD') : ''
+        date.value = value ? format(value, 'YYYY/MM/DD') : ''
       },
     })
     // globalthis.console.log(calendar.selectedDates[0])
-    date.value = word.value
+    selectedDateStr.value = date.value
     return calendar
   }
 

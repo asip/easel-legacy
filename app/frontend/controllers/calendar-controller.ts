@@ -23,7 +23,7 @@ export default class CalendarController extends ApplicationController {
       word.value = dateCookie
       const { initCalendar } = useCalendar({
         el: this.calTarget,
-        word,
+        date: word,
       })
       this.calendar = initCalendar()
       this.calendar?.init()
@@ -37,7 +37,7 @@ export default class CalendarController extends ApplicationController {
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
       const { initCalendar } = useCalendar({
         el: this.calTarget,
-        word,
+        date: word,
       })
 
       if (isValidDate(word.value) && this.calendar) {
