@@ -1,20 +1,26 @@
 import { Calendar } from 'vanilla-calendar-pro'
 import { format, parse, tzDate } from '@formkit/tempo'
-import { computed, Ref } from '@vue/reactivity'
+import { computed, type Ref } from '@vue/reactivity'
 
 import { useDate } from '@vesperjs/vue'
 
-export const useCalendar = function ({ el, date }: { el?: HTMLElement; date: Ref<string> }) {
+export const useCalendar = function ({
+  el,
+  date,
+}: {
+  el?: HTMLElement | null
+  date: Ref<string | undefined>
+}) {
   const { isValidDate } = useDate()
 
   let calendar: Calendar | null = null
 
-  const selectedDateStr = computed<string>({
+  const selectedDateStr = computed<string | undefined>({
     get() {
       return selectedDate.value ? format(selectedDate.value, 'YYYY/MM/DD') : ''
     },
-    set(value: string) {
-      const date_ = isValidDate(value) ? value : ''
+    set(value: string | undefined) {
+      const date_ = value && isValidDate(value) ? value : ''
       selectedDate.value = date_ ? parse(date_, 'YYYY/MM/DD') : null
     },
   })
