@@ -2,7 +2,7 @@ import ApplicationController from './application-controller'
 
 import { Calendar } from 'vanilla-calendar-pro'
 
-import { useElement, useDate } from '@vesperjs/vue'
+import { useElement /*, useDate */ } from '@vesperjs/vue'
 import { useCalendar, useCookieStore } from '@/composables'
 
 export default class CalendarController extends ApplicationController {
@@ -30,6 +30,7 @@ export default class CalendarController extends ApplicationController {
     }
   }
 
+  /*
   change(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
       const { isValidDate } = useDate()
@@ -46,6 +47,7 @@ export default class CalendarController extends ApplicationController {
       }
     }
   }
+  */
 
   disconnect(): void {
     this.calendar?.destroy()
