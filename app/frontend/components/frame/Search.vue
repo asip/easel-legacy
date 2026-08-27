@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { format, parse } from '@formkit/tempo'
-import { useDate } from '@vesperjs/vue'
+import { useDate, useLocale } from '@vesperjs/vue'
 
 import Calendar from './Calendar.vue'
 
 import { useFrameSearch } from '@/composables'
 
 const { isValidDate } = useDate()
+const { locale } = useLocale()
 
 const { form, criteria, r$, submit } = useFrameSearch()
 
@@ -40,7 +41,7 @@ const onFormSubmit = async (ev: SubmitEvent) => {
   <div>
     <div class="flex justify-center mb-2">
       <div class="mx-auto">
-        <Calendar v-model="wordDate" />
+        <Calendar v-model="wordDate" :locale="locale" />
       </div>
     </div>
     <div class="flex justify-start">

@@ -4,7 +4,7 @@ import { Calendar } from 'vanilla-calendar-pro'
 
 import { computed } from 'vue'
 import { format, parse } from '@formkit/tempo'
-import { useDate, useElement } from '@vesperjs/vue'
+import { useDate, useElement, useLocale } from '@vesperjs/vue'
 
 import { useCalendar, useCookieStore } from '@/composables'
 
@@ -22,6 +22,7 @@ export default class CalendarController extends ApplicationController {
   connect(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
       const { isValidDate } = useDate()
+      const { locale } = useLocale()
       const { date: dateCookie } = useCookieStore()
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
 
@@ -39,6 +40,7 @@ export default class CalendarController extends ApplicationController {
       const { initCalendar } = useCalendar({
         el: this.calTarget,
         date: wordDate,
+        locale: locale.value,
       })
       this.calendar = initCalendar()
     }
