@@ -61,14 +61,9 @@ export default class CalendarController extends ApplicationController {
         },
       })
 
-      const { setCalendar, selectedDate } = useCalendar({
-        date: wordDate,
-      })
+      const { selectedDate } = useCalendar({ calendar: this.calendar })
 
-      if (this.calendar) {
-        setCalendar(this.calendar)
-        selectedDate.value = wordDate.value
-      }
+      selectedDate.value = wordDate.value
     }
   }
 

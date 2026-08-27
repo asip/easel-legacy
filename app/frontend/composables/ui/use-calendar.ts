@@ -2,17 +2,14 @@ import { format, parse, tzDate } from '@formkit/tempo'
 import { computed, watch, type Ref } from '@vue/reactivity'
 import { Calendar, Locale } from 'vanilla-calendar-pro'
 
-export const useCalendar = function ({
-  el,
-  date,
-  locale = 'ja',
-}: {
+interface CalendarOptions {
   el?: HTMLElement | null
-  date: Ref<Date | null | undefined>
+  date?: Ref<Date | null | undefined>
   locale?: Locale
-}) {
-  let calendar: Calendar | null = null
+  calendar?: Calendar | null
+}
 
+export const useCalendar = function ({ el, date, locale = 'ja', calendar }: CalendarOptions) {
   const selectedDate = computed<Date | null | undefined>({
     get() {
       return selectedDateUTC.value ? parse(format(selectedDateUTC.value, 'YYYY/MM/DD')) : null
@@ -64,25 +61,23 @@ export const useCalendar = function ({
         // globalThis.console.log(`selected:${self.context.selectedDates[0]}`)
         // globalThis.console.log(`today:${self.context.dateToday}`)
         const value = (self.context.selectedDates[0] ?? '') as string
-        date.value = value ? parse(format(value, 'YYYY/MM/DD'), 'YYYY/MM/DD') : null
+        if (date) date.value = value ? parse(format(value, 'YYYY/MM/DD'), 'YYYY/MM/DD') : null
       },
     })
 
     // globalthis.console.log(calendar.selectedDates[0])
-    selectedDate.value = date.value
+    if (date) selectedDate.value = date.value
 
     calendar.init()
 
     return calendar
   }
 
-  const setCalendar = (cal: Calendar) => {
-    calendar = cal
+  if (date) {
+    watch(date, () => {
+      selectedDate.value = date.value
+    })
   }
 
-  watch(date, () => {
-    selectedDate.value = date.value
-  })
-
-  return { initCalendar, setCalendar, selectedDate }
+  return { initCalendar, selectedDate }
 }
