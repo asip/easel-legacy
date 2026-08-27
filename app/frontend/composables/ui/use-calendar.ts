@@ -56,6 +56,9 @@ export const useCalendar = function ({
           | 10
           | 11
         calendar.selectedDates = value ? [value] : []
+        if (calendar.context.isInit) {
+          calendar.update()
+        }
       }
     },
   })
@@ -85,14 +88,9 @@ export const useCalendar = function ({
     calendar = cal
   }
 
-  const update = () => {
-    selectedDateStr.value = date.value
-    calendar?.update()
-  }
-
   watch(date, () => {
-    update()
+    selectedDateStr.value = date.value
   })
 
-  return { initCalendar, setCalendar, update }
+  return { initCalendar, setCalendar, selectedDateStr }
 }

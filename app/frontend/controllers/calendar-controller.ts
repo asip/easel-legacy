@@ -33,13 +33,13 @@ export default class CalendarController extends ApplicationController {
   change(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
-      const { setCalendar, update } = useCalendar({
+      const { setCalendar, selectedDateStr } = useCalendar({
         date: word,
       })
 
       if (this.calendar) {
         setCalendar(this.calendar)
-        update()
+        selectedDateStr.value = word.value
       }
     }
   }
