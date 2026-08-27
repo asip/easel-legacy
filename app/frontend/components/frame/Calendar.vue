@@ -3,7 +3,7 @@ import { onMounted, useTemplateRef } from 'vue'
 
 import { useCalendar } from '@/composables'
 
-const date = defineModel<string>()
+const date = defineModel<Date | null>()
 
 const calendarRef = useTemplateRef('calendarRef')
 

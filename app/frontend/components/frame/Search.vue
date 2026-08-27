@@ -1,14 +1,28 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { format, parse } from '@formkit/tempo'
+import { useDate } from '@vesperjs/vue'
 
 import Calendar from './Calendar.vue'
 
 import { useFrameSearch } from '@/composables'
 
+const { isValidDate } = useDate()
+
 const { form, criteria, r$, submit } = useFrameSearch()
 
 const tagMessage = ref<string>()
 const wordMessage = ref<string>()
+
+const wordDate = computed<Date | null | undefined>({
+  get() {
+    const date_ = form.value.word && isValidDate(form.value.word) ? form.value.word : null
+    return date_ ? parse(date_, 'YYYY/MM/DD') : null
+  },
+  set(value: Date | null | undefined) {
+    form.value.word = value ? format(value, 'YYYY/MM/DD') : ''
+  },
+})
 
 form.value.word = criteria.value?.word ?? ''
 form.value.tag_name = criteria.value?.tag_name ?? ''
@@ -26,7 +40,7 @@ const onFormSubmit = async (ev: SubmitEvent) => {
   <div>
     <div class="flex justify-center mb-2">
       <div class="mx-auto">
-        <Calendar v-model="form.word" />
+        <Calendar v-model="wordDate" />
       </div>
     </div>
     <div class="flex justify-start">

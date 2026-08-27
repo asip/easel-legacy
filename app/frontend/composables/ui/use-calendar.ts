@@ -1,31 +1,17 @@
-import { Calendar } from 'vanilla-calendar-pro'
 import { format, parse, tzDate } from '@formkit/tempo'
 import { computed, watch, type Ref } from '@vue/reactivity'
-
-import { useDate } from '@vesperjs/vue'
+import { Calendar } from 'vanilla-calendar-pro'
 
 export const useCalendar = function ({
   el,
   date,
 }: {
   el?: HTMLElement | null
-  date: Ref<string | undefined>
+  date: Ref<Date | null | undefined>
 }) {
-  const { isValidDate } = useDate()
-
   let calendar: Calendar | null = null
 
-  const selectedDateStr = computed<string | undefined>({
-    get() {
-      return selectedDate.value ? format(selectedDate.value, 'YYYY/MM/DD') : ''
-    },
-    set(value: string | undefined) {
-      const date_ = value && isValidDate(value) ? value : ''
-      selectedDate.value = date_ ? parse(date_, 'YYYY/MM/DD') : null
-    },
-  })
-
-  const selectedDate = computed<Date | null>({
+  const selectedDate = computed<Date | null | undefined>({
     get() {
       return selectedDateUTC.value ? parse(format(selectedDateUTC.value, 'YYYY/MM/DD')) : null
     },
@@ -76,12 +62,12 @@ export const useCalendar = function ({
         // globalThis.console.log(`selected:${self.context.selectedDates[0]}`)
         // globalThis.console.log(`today:${self.context.dateToday}`)
         const value = (self.context.selectedDates[0] ?? '') as string
-        date.value = value ? format(value, 'YYYY/MM/DD') : ''
+        date.value = value ? parse(format(value, 'YYYY/MM/DD'), 'YYYY/MM/DD') : null
       },
     })
 
     // globalthis.console.log(calendar.selectedDates[0])
-    selectedDateStr.value = date.value
+    selectedDate.value = date.value
 
     calendar.init()
 
@@ -93,8 +79,8 @@ export const useCalendar = function ({
   }
 
   watch(date, () => {
-    selectedDateStr.value = date.value
+    selectedDate.value = date.value
   })
 
-  return { initCalendar, setCalendar, selectedDateStr }
+  return { initCalendar, setCalendar, selectedDate }
 }
