@@ -1,6 +1,6 @@
 import { Calendar } from 'vanilla-calendar-pro'
 import { format, parse, tzDate } from '@formkit/tempo'
-import { computed, type Ref } from '@vue/reactivity'
+import { computed, watch, type Ref } from '@vue/reactivity'
 
 import { useDate } from '@vesperjs/vue'
 
@@ -80,6 +80,11 @@ export const useCalendar = function ({
     selectedDateStr.value = date.value
     return calendar
   }
+
+  watch(date, () => {
+    selectedDateStr.value = date.value
+    calendar?.update()
+  })
 
   return { initCalendar }
 }
