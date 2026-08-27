@@ -81,10 +81,18 @@ export const useCalendar = function ({
     return calendar
   }
 
-  watch(date, () => {
+  const setCalendar = (cal: Calendar) => {
+    calendar = cal
+  }
+
+  const update = () => {
     selectedDateStr.value = date.value
     calendar?.update()
+  }
+
+  watch(date, () => {
+    update()
   })
 
-  return { initCalendar }
+  return { initCalendar, setCalendar, update }
 }
