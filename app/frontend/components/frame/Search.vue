@@ -14,7 +14,7 @@ form.value.word = criteria.value?.word ?? ''
 form.value.tag_name = criteria.value?.tag_name ?? ''
 
 // eslint-disable-next-line no-undef
-const handleSubmit = async (ev: SubmitEvent) => {
+const onFormSubmit = async (ev: SubmitEvent) => {
   globalThis.console.log('test')
   await submit(ev)
   wordMessage.value = r$.$errors.word.at(0) ?? ''
@@ -66,7 +66,7 @@ const handleSubmit = async (ev: SubmitEvent) => {
         </tbody>
       </table>
     </div>
-    <form action="/" method="get" @submit="handleSubmit($event)">
+    <form action="/" method="get" @submit="onFormSubmit($event)">
       <div class="flex justify-start pt-2">
         <button type="submit" class="btn btn-outline btn-primary">検索</button>
       </div>
