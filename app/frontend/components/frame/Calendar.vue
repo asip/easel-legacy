@@ -9,8 +9,7 @@ const calendarRef = useTemplateRef('calendarRef')
 
 onMounted(() => {
   const { initCalendar } = useCalendar({ el: calendarRef.value, date })
-  let calendar = initCalendar()
-  calendar?.init()
+  initCalendar()
 })
 </script>
 

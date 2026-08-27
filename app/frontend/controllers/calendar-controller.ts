@@ -26,7 +26,6 @@ export default class CalendarController extends ApplicationController {
         date: word,
       })
       this.calendar = initCalendar()
-      this.calendar?.init()
     }
   }
 

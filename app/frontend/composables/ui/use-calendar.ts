@@ -79,8 +79,12 @@ export const useCalendar = function ({
         date.value = value ? format(value, 'YYYY/MM/DD') : ''
       },
     })
+
     // globalthis.console.log(calendar.selectedDates[0])
     selectedDateStr.value = date.value
+
+    calendar.init()
+
     return calendar
   }
 
