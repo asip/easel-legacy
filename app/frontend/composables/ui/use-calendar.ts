@@ -3,7 +3,7 @@ import { computed, watch, type Ref } from '@vue/reactivity'
 import { Calendar, Locale } from 'vanilla-calendar-pro'
 
 interface CalendarOptions {
-  el?: HTMLElement | null
+  el?: Ref<HTMLElement | null>
   date?: Ref<Date | null | undefined>
   locale?: Locale
   calendar?: Calendar | null
@@ -53,9 +53,9 @@ export const useCalendar = function ({ el, date, locale = 'ja', calendar }: Cale
   const initCalendar = (): Calendar | null => {
     // globalThis.console.log(utcDate.value)
 
-    if (!el) return null
+    if (!el?.value) return null
 
-    calendar = new Calendar(el, {
+    calendar = new Calendar(el.value, {
       locale: locale,
       onClickDate(self) {
         // globalThis.console.log(`selected:${self.context.selectedDates[0]}`)
@@ -73,11 +73,15 @@ export const useCalendar = function ({ el, date, locale = 'ja', calendar }: Cale
     return calendar
   }
 
+  const closeCalendar = () => {
+    calendar?.destroy()
+  }
+
   if (date) {
     watch(date, () => {
       selectedDate.value = date.value
     })
   }
 
-  return { initCalendar, selectedDate }
+  return { selectedDate, initCalendar, closeCalendar }
 }

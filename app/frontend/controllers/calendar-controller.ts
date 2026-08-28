@@ -2,7 +2,7 @@ import ApplicationController from './application-controller'
 
 import { Calendar } from 'vanilla-calendar-pro'
 
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { format, parse } from '@formkit/tempo'
 import { useDate, useElement, useLocale } from '@vesperjs/vue'
 
@@ -38,7 +38,7 @@ export default class CalendarController extends ApplicationController {
 
       word.value = dateCookie
       const { initCalendar } = useCalendar({
-        el: this.calTarget,
+        el: ref(this.calTarget),
         date: wordDate,
         locale: locale.value,
       })
