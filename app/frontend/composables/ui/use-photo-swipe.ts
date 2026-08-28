@@ -12,11 +12,11 @@ export const usePhotoSwipe = function ({
   zoomLevel?: 'fit' | 'fill' | number
 }) {
   const assignSize = async (): Promise<void> => {
-    const galleryAnchors = globalThis.document.querySelectorAll(
+    const anchors = globalThis.document.querySelectorAll(
       `${selector} ${anchor ? anchor : 'a'}`,
     )
 
-    for (const el of galleryAnchors) {
+    for (const el of anchors) {
       const img: HTMLImageElement = await loadImage((el as HTMLLinkElement).href)
 
       el.setAttribute('data-pswp-width', img.naturalWidth.toString())
