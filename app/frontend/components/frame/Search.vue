@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { format, parse } from '@formkit/tempo'
 import { useDate, useLocale } from '@vesperjs/vue'
 
@@ -11,9 +11,6 @@ const { isValidDate } = useDate()
 const { locale } = useLocale()
 
 const { form, criteria, r$, submit } = useFrameSearch()
-
-const tagMessage = ref<string>()
-const wordMessage = ref<string>()
 
 const wordDate = computed<Date | null | undefined>({
   get() {
@@ -32,8 +29,6 @@ form.value.tag_name = criteria.value?.tag_name ?? ''
 const onFormSubmit = async (ev: SubmitEvent) => {
   globalThis.console.log('test')
   await submit(ev)
-  wordMessage.value = r$.$errors.word.at(0) ?? ''
-  tagMessage.value = r$.$errors.tag_name.at(0) ?? ''
 }
 </script>
 
@@ -59,7 +54,7 @@ const onFormSubmit = async (ev: SubmitEvent) => {
                   class="input input-bordered w-60"
                 />
               </div>
-              <div class="text-red-500 text-xs">{{ wordMessage }}</div>
+              <div class="text-red-500 text-xs">{{ r$.$errors.word.at(0) ?? '' }}</div>
             </td>
           </tr>
           <tr>
@@ -75,7 +70,7 @@ const onFormSubmit = async (ev: SubmitEvent) => {
                 autocomplete="off"
                 class="input input-bordered w-40"
               />
-              <div class="text-red-500 text-xs">{{ tagMessage }}</div>
+              <div class="text-red-500 text-xs">{{ r$.$errors.tag_name.at(0) ?? '' }}</div>
             </td>
           </tr>
         </tbody>
