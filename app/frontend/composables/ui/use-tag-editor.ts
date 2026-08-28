@@ -8,25 +8,14 @@ interface TagSearchType {
 
 interface TagEditorOptions {
   el: HTMLInputElement | HTMLTextAreaElement
+  settings: Tagify.TagifySettings
   tagList: Ref<string[] | undefined>
   tagSearch?: TagSearchType
-  settings?: Tagify.TagifySettings
 }
 
-export const useTagEditor = function ({ el, tagList, tagSearch, settings }: TagEditorOptions) {
+export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
-
-  const options = settings ?? {
-    maxTags: 5,
-    dropdown: {
-      classname: 'color-blue',
-      enabled: 0,
-      maxItems: 30,
-      closeOnSelect: false,
-      highlightFirst: true,
-    },
-  }
 
   const tags = computed<Tagify.TagData[] | undefined, string[] | undefined>({
     get() {
@@ -49,7 +38,7 @@ export const useTagEditor = function ({ el, tagList, tagSearch, settings }: TagE
   })
 
   const initTagEditor = (): Tagify => {
-    tagEditor = new Tagify(el, options)
+    tagEditor = new Tagify(el, settings)
 
     tags.value = tagList.value
 

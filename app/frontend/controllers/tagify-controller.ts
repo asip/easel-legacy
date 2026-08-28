@@ -19,7 +19,19 @@ export default class TagifyController extends ApplicationController {
     if (this.hasTeTarget && this.hasTlTarget) {
       const tagSearch = useTagSearch()
       const { tagList } = useTagList(this.tlTarget)
-      const { initTagEditor } = useTagEditor({ el: this.teTarget, tagList, tagSearch })
+
+      const settings = {
+        maxTags: 5,
+        dropdown: {
+          classname: 'color-blue',
+          enabled: 0,
+          maxItems: 30,
+          closeOnSelect: false,
+          highlightFirst: true,
+        },
+      }
+
+      const { initTagEditor } = useTagEditor({ el: this.teTarget, settings, tagList, tagSearch })
 
       this.tagEditor = initTagEditor()
     }
