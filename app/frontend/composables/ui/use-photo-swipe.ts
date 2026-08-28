@@ -12,9 +12,7 @@ export const usePhotoSwipe = function ({
   zoomLevel?: 'fit' | 'fill' | number
 }) {
   const assignSize = async (): Promise<void> => {
-    const anchors = globalThis.document.querySelectorAll(
-      `${selector} ${anchor ? anchor : 'a'}`,
-    )
+    const anchors = globalThis.document.querySelectorAll(`${selector} ${anchor ? anchor : 'a'}`)
 
     for (const el of anchors) {
       const img: HTMLImageElement = await loadImage((el as HTMLLinkElement).href)
