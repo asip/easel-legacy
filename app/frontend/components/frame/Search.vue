@@ -1,26 +1,25 @@
 <script lang="ts" setup vapor>
 import { computed } from 'vue'
-import { format, parse } from '@formkit/tempo'
-import { useDate, useLocale } from '@vesperjs/vue'
+import { useLocale } from '@vesperjs/vue'
 
 import Calendar from './Calendar.vue'
 
-import { useFrameSearch } from '@/composables'
+import { useDate, useFrameSearch } from '@/composables'
 
-const { isValidDate } = useDate()
 const { locale } = useLocale()
 
 const { form, criteria, r$, submit } = useFrameSearch()
 
-const wordDate = computed<Date | null | undefined>({
+const word = computed<string>({
   get() {
-    const date_ = form.value.word && isValidDate(form.value.word) ? form.value.word : null
-    return date_ ? parse(date_, 'YYYY/MM/DD') : null
+    return form.value.word ?? ''
   },
-  set(value: Date | null | undefined) {
-    form.value.word = value ? format(value, 'YYYY/MM/DD') : ''
+  set(value: string) {
+    form.value.word = value
   },
 })
+
+const { date: wordDate } = useDate(word)
 
 form.value.word = criteria.value?.word ?? ''
 form.value.tag_name = criteria.value?.tag_name ?? ''
