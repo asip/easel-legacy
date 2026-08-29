@@ -1,6 +1,7 @@
 export { useAccount } from './use-account'
 export { useComment } from './use-comment'
 export { useComments } from './use-comments'
+export { useDate } from './use-date'
 export { useFrameSearch } from './use-frame-search'
 export { useTagSearch } from './use-tag-search'
 
