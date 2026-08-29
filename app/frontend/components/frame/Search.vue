@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" setup vapor>
 import { computed } from 'vue'
 import { format, parse } from '@formkit/tempo'
 import { useDate, useLocale } from '@vesperjs/vue'
