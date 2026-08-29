@@ -25,9 +25,7 @@ const wordDate = computed<Date | null | undefined>({
 form.value.word = criteria.value?.word ?? ''
 form.value.tag_name = criteria.value?.tag_name ?? ''
 
-// eslint-disable-next-line no-undef
-const onFormSubmit = async (ev: SubmitEvent) => {
-  globalThis.console.log('test')
+const onFormSubmit = async (ev: globalThis.SubmitEvent) => {
   await submit(ev)
 }
 </script>
