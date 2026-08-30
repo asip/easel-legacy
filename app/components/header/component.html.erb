@@ -5,7 +5,7 @@
       <div class="navbar-start pl-5">
         <%= link_to root_path, "data-controller": "queryMap",
                                "data-action": "click->queryMap#setQueryMap",
-                               "data-queryMap-q-value": Oj.dump({ q: "{}" }) do %>
+                               "data-queryMap-q-value": JsonUtil.stringify({ q: "{}" }) do %>
           <i class="icon-palette"></i> Easel Legacy
         <% end %>
       </div>

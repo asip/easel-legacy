@@ -1,3 +1,3 @@
 <turbo-frame data-turbo="false">
-  <%= helpers.turbo_mount("index", props: { path: @path, "view-data" => Oj.dump(@view_data) }) %>
+  <%= helpers.turbo_mount("index", props: { path: @path, "view-data" => JsonUtil.stringify(@view_data) }) %>
 </turbo-frame>

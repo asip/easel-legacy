@@ -3,7 +3,7 @@
     <div class="card-body divide-y divide-gray-200">
       <div class="flex justify-between pb-1">
         <div>
-          <% map = Oj.dump(helpers.query_map) %>
+          <% map = JsonUtil.stringify(helpers.query_map) %>
           <%= link_to helpers.back_to_path, class: "mr-1",
                       "data-controller": "queryMap",
                       "data-action": "click->queryMap#setQueryMap",

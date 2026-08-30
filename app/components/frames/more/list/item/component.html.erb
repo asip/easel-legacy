@@ -19,7 +19,7 @@
     <% end %>
     <div class="flex justify-center">
       <div class="mx-auto">
-        <% map = Oj.dump(helpers.query_map_for_frame(from: @from, page: @pagy.page)) %>
+        <% map = JsonUtil.stringify(helpers.query_map_for_frame(from: @from, page: @pagy.page)) %>
         <%= link_to @frame.name, frame_path(@frame),
                     class: "link link-hover",
                     "data-turbo": true,

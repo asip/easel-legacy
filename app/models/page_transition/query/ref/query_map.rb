@@ -9,7 +9,7 @@ class PageTransition::Query::Ref::QueryMap
 
   def build_query
     query = {}
-    query[:ref] = Oj.dump(ref_items) if ref_items.present?
+    query[:ref] = JsonUtil.stringify(ref_items) if ref_items.present?
     query
   end
 

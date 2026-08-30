@@ -10,7 +10,7 @@ class PageTransition::Frames::Search::QueryMap
     from = ref_items[:from]
     page = ref_items[:page]
     query[:page] = page if from.blank? && page.present?
-    query[:ref] = Oj.dump(ref_items) if from.present?
+    query[:ref] = JsonUtil.stringify(ref_items) if from.present?
     query
   end
 

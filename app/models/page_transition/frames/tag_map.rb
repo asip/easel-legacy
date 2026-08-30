@@ -11,8 +11,8 @@ class PageTransition::Frames::TagMap
     tags = frame.plain_tags
     map = {}
     tags.each do |tag|
-      map[tag] = Oj.dump({
-        q: Oj.dump({ tag_name: tag })
+      map[tag] = JsonUtil.stringify({
+        q: JsonUtil.stringify({ tag_name: tag })
       })
     end
     map
