@@ -16,7 +16,7 @@ class QueryMap
   end
 
   def ref_items
-    @ref_items ||= JsonUtil.to_hash(ref)
+    @ref_items ||= JsonUtil.parse(ref)
   end
 
   def to_h

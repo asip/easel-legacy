@@ -6,7 +6,7 @@ class PageTransition::Frames::Ref::BackToPath
   end
 
   def build_path
-    ref_items = JsonUtil.to_hash(query_map.ref)
+    ref_items = JsonUtil.parse(query_map.ref)
     from = ref_items[:from]
     if ![ "new", "edit" ].include?(action_name) && from.blank?
       root_path

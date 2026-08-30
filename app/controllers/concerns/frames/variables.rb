@@ -26,7 +26,7 @@ module Frames::Variables
   end
 
   def q_items
-    JsonUtil.to_hash(criteria)
+    JsonUtil.parse(criteria)
   end
 
   def form
