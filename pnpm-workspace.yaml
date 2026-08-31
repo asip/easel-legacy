@@ -1,4 +1,18 @@
 allowBuilds:
   '@parcel/watcher': false
+minimumReleaseAgeExclude:
+  - '@typescript-eslint/eslint-plugin@8.69.0'
+  - '@typescript-eslint/parser@8.69.0'
+  - '@typescript-eslint/project-service@8.69.0'
+  - '@typescript-eslint/scope-manager@8.69.0'
+  - '@typescript-eslint/tsconfig-utils@8.69.0'
+  - '@typescript-eslint/type-utils@8.69.0'
+  - '@typescript-eslint/types@8.69.0'
+  - '@typescript-eslint/typescript-estree@8.69.0'
+  - '@typescript-eslint/utils@8.69.0'
+  - '@typescript-eslint/visitor-keys@8.69.0'
+  - daisyui@5.7.23
+  - typescript-eslint@8.69.0
+  - lucide-static@1.38.0
 overrides:
-  vue: ^3.6.0-rc.5
+  vue: ^3.6.0-rc.6
