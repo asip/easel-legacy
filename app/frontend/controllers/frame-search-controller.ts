@@ -31,7 +31,7 @@ export default class FrameSearchController extends ApplicationController {
     }
   }
 
-  async submit(ev: Event): Promise<void> {
+  async submit(ev: SubmitEvent): Promise<void> {
     const { form, submit, r$ } = useFrameSearch()
     const { value: wordValue } = useElement(this.wordTarget, { property: 'value' })
     const { value: tagValue } = useElement(this.tagTarget, { property: 'value' })

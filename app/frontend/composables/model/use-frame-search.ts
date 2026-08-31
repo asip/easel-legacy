@@ -4,13 +4,14 @@ import { useRegleSchema } from '@regle/schemas'
 import { useLocale } from '@vesperjs/vue'
 
 import { Criteria /* , QueryItems */ } from '@/types'
-import { useCookieStore } from '@/composables'
+import { useCookieStore, useFormAction } from '@/composables'
 import { useFrameSearchSchema } from './validation'
 
 export const useFrameSearch = function () {
   const { autodetect } = useLocale()
   const { criteria } = useCookieStore()
   const { frameSearchSchema } = useFrameSearchSchema()
+  const { submit: submitForm } = useFormAction()
 
   autodetect()
 
@@ -33,17 +34,15 @@ export const useFrameSearch = function () {
 
   const { r$ } = useRegleSchema(form.value, frameSearchSchema)
 
-  const submit = async (ev: Event): Promise<void> => {
+  const submit = async (ev: SubmitEvent): Promise<void> => {
+    ev.preventDefault()
     r$.$touch()
     const { valid } = await r$.$validate()
 
     if (valid) {
       criteria.value = qItems.value
 
-      const el = ev.target as HTMLFormElement
-      el.requestSubmit()
-    } else {
-      ev.preventDefault()
+      submitForm(ev)
     }
   }
 
