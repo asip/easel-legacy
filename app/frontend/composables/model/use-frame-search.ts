@@ -35,7 +35,6 @@ export const useFrameSearch = function () {
   const { r$ } = useRegleSchema(form.value, frameSearchSchema)
 
   const submit = async (ev: SubmitEvent): Promise<void> => {
-    ev.preventDefault()
     r$.$touch()
     const { valid } = await r$.$validate()
 

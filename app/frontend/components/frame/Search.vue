@@ -73,7 +73,7 @@ const onFormSubmit = async (ev: globalThis.SubmitEvent) => {
         </tbody>
       </table>
     </div>
-    <form action="/" method="get" @submit="onFormSubmit($event)">
+    <form action="/" method="get" @submit.prevent="onFormSubmit($event)">
       <div class="flex justify-start pt-2">
         <button type="submit" class="btn btn-outline btn-primary">検索</button>
       </div>
