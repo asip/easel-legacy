@@ -1,13 +1,14 @@
 import { computed, ref } from '@vue/reactivity'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
-import { useDate } from '@vesperjs/vue'
+import { useDate as useDateUtil } from '@vesperjs/vue'
 
 import { Criteria, RefItems } from '@/types'
 import { watch } from 'vue'
 
 export const useCookieStore = function () {
-  const { isValidDate } = useDate()
+  const { isValidDate } = useDateUtil()
+
   const cookies = useCookies(['access_token', 'q', 'ref', 'page', 'time_zone'])
 
   const accessToken = computed<string>(() => cookies.get<string>('access_token'))
