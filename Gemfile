@@ -49,7 +49,7 @@ gem "view_component", "~> 4.15.0"
 # Shrine
 gem "aws-sdk-s3", "~> 1.229.0"
 gem "ruby-vips", "~> 2.3.0"
-gem "image_processing", "~> 2.0.3"
+gem "image_processing", "~> 2.1.0"
 gem "shrine", "~> 3.9.0"
 
 # gem "anyway_config", "2.8.0"
@@ -65,7 +65,7 @@ gem "rambulance", "~> 3.3.0"
 # authentication
 gem "devise", "5.0.4"
 gem "devise-i18n", "1.16.0"
-gem "omniauth-google-oauth2", "1.2.2"
+gem "omniauth-google-oauth2", "1.2.3"
 gem "jwt", "3.2.0"
 
 gem "googleauth", "~> 1.17.4"
