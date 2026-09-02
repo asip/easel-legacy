@@ -3,6 +3,7 @@ export { useComment } from './use-comment'
 export { useComments } from './use-comments'
 export { useDate } from './use-date'
 export { useFrameSearch } from './use-frame-search'
+export { useTagList } from './use-tag-list'
 export { useTagSearch } from './use-tag-search'
 
 export type { UseAccountType } from './use-account'

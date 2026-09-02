@@ -2,6 +2,8 @@ import Tagify from '@yaireo/tagify'
 
 import ApplicationController from './application-controller'
 
+import { useElement } from '@vesperjs/vue'
+
 import { useTagSearch, useTagList, useTagEditor } from '@/composables'
 
 export default class TagifyController extends ApplicationController {
@@ -18,7 +20,9 @@ export default class TagifyController extends ApplicationController {
   connect(): void {
     if (this.hasTeTarget && this.hasTlTarget) {
       const tagSearch = useTagSearch()
-      const { tagList } = useTagList(this.tlTarget)
+
+      const { value: tags } = useElement(this.tlTarget, { property: 'value' })
+      const { tagList } = useTagList(tags)
 
       const settings = {
         maxTags: 5,
