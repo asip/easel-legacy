@@ -6,7 +6,6 @@
 class QueryMap
   include ActiveModel::API
   include ActiveModel::Attributes
-  include Google
 
   attribute :ref, :string
   attribute :page, :string
