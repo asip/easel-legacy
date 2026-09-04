@@ -38,7 +38,7 @@ gem "turbo-mount", "~> 0.4.4"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.25.0", require: false
+gem "bootsnap", "~> 1.26.0", require: false
 
 # vite integration
 gem "rails_vite", "~> 0.2.3"
@@ -112,7 +112,7 @@ end
 group :development do
   gem "brakeman", "~> 8.0.6", require: false
   gem "bullet", "~> 8.2.0"
-  gem "pg_query", "~> 6.2.2"
+  gem "pg_query", "~> 6.2.3"
   gem "prosopite", "~> 2.2.0"
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
