@@ -2,10 +2,10 @@
 class PageTransition::Query::List::QueryMap
   def self.build(from:, page:, ref_items:)
     query_map = self.new(from:, page:, ref_items:)
-    query_map.build_query
+    query_map.build
   end
 
-  def build_query
+  def build
     query = {}
     if page.present? && page != 1
       case from

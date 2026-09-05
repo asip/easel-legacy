@@ -4,10 +4,10 @@
 class Cookies::QueryMap
   def initialize(cookies)
     @cookies = cookies
-    @model = ::QueryMap.new(build_query)
+    @model = ::QueryMap.new(build)
   end
 
-  def build_query
+  def build
     query = {}
     query[:ref] = cookie_ref if cookie_ref.present?
     query[:page] = cookie_page if cookie_page.present? && cookie_page != "1"

@@ -4,10 +4,10 @@
 class PageTransition::Query::Ref::QueryMap
   def self.build(ref_items:)
     query_map = self.new(ref_items:)
-    query_map.build_query
+    query_map.build
   end
 
-  def build_query
+  def build
     query = {}
     query[:ref] = JsonUtil.stringify(ref_items) if ref_items.present?
     query

@@ -2,10 +2,10 @@
 class PageTransition::Frames::Search::QueryMap
   def self.build(ref_items:)
     query_map = self.new(ref_items:)
-    query_map.build_query
+    query_map.build
   end
 
-  def build_query
+  def build
     query = {}
     from = ref_items[:from]
     page = ref_items[:page]

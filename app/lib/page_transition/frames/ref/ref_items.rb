@@ -2,10 +2,10 @@
 class PageTransition::Frames::Ref::RefItems
   def self.build(ref_items:)
     items = self.new(ref_items:)
-    items.build_items
+    items.build
   end
 
-  def build_items
+  def build
     from = ref_items&.fetch(:from, nil)
     if ref_items.blank? || (from.blank?)
       ref_items[:from] = "frame"

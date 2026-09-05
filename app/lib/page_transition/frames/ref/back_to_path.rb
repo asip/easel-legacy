@@ -2,10 +2,10 @@
 class PageTransition::Frames::Ref::BackToPath
   def self.build(query_map:, root_path:, prev_url:, action_name:)
     back_to_path = self.new(query_map:, root_path:, prev_url:, action_name:)
-    back_to_path.build_path
+    back_to_path.build
   end
 
-  def build_path
+  def build
     ref_items = JsonUtil.parse(query_map.ref)
     from = ref_items[:from]
     if ![ "new", "edit" ].include?(action_name) && from.blank?

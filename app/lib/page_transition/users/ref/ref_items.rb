@@ -2,10 +2,10 @@
 class PageTransition::Users::Ref::RefItems
   def self.build(ref_items:)
     items = self.new(ref_items:)
-    items.build_items
+    items.build
   end
 
-  def build_items
+  def build
     ref_items.delete(:from)
     ref_items
   end

@@ -4,10 +4,10 @@
 class PageTransition::Frames::TagMap
   def self.build(frame:)
     tag_map = self.new(frame:)
-    tag_map.build_map
+    tag_map.build
   end
 
-  def build_map
+  def build
     tags = frame.plain_tags
     map = {}
     tags.each do |tag|
