@@ -19,7 +19,7 @@
     <% end %>
     <div class="flex justify-center">
       <div class="mx-auto">
-        <% map = JsonUtil.stringify(helpers.frame_query_map(from: @from, page: @pagy.page)) %>
+        <% map = JsonUtil.stringify(@query_map) %>
         <%= link_to @frame.name, frame_path(@frame),
                     class: "link link-hover",
                     "data-turbo": true,

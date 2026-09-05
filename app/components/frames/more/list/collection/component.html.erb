@@ -1,1 +1,3 @@
-<%= render Frames::More::List::Item::Component.new(frame: @frame, tag: @tag, from: @from, pagy: @pagy) %>
+<%= render Frames::More::List::Item::Component.new(
+  frame: @frame, tag: @tag, query_map: helpers.frame_query_map(from: @from, page: @pagy.page)
+  ) %>

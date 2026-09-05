@@ -2,10 +2,9 @@
 
 # Frames::More::List::Item::Component class
 class Frames::More::List::Item::Component < ViewComponent::Base
-  def initialize(frame:, tag: true, from:, pagy:)
+  def initialize(frame:, tag: true, query_map: {})
     @frame = frame
     @tag = tag
-    @from = from
-    @pagy = pagy
+    @query_map = query_map
   end
 end
