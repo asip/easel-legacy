@@ -5,6 +5,6 @@ module PageTransition::Query::Search
   extend ActiveSupport::Concern
 
   included do
-    helper_method :query_map_for_search
+    helper_method :search_query_map
   end
 end

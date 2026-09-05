@@ -7,7 +7,7 @@ module Users::PageTransition::List
 
   protected
 
-  def ref_items_for_frame
-    @ref_items_for_frame ||= { from: "user_profile" }
+  def ref_items
+    @ref_items ||= { from: "user_profile" }
   end
 end

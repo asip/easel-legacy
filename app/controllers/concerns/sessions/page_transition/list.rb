@@ -7,7 +7,7 @@ module Sessions::PageTransition::List
 
   protected
 
-  def ref_items_for_frame
-    @ref_items_for_frame ||= { from: "profile" }
+  def ref_items
+    @ref_items ||= { from: "profile" }
   end
 end

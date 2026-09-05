@@ -19,6 +19,6 @@ module Frames::Location::Store
   end
 
   def fallback
-    root_path(query_map_for_search)
+    root_path(search_query_map)
   end
 end
