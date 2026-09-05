@@ -11,10 +11,6 @@ module PageTransition::Query::List
   protected
 
   def frame_query_map(from:, page:)
-    QueryMap.build(from:, page:, ref_items:)
-  end
-
-  def ref_items
-    @ref_items ||= {}
+    QueryMap.build(from:, page:)
   end
 end
