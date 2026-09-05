@@ -22,7 +22,7 @@
     "@vueuse/integrations": "^14.4.0",
     "@yaireo/tagify": "^4.38.0",
     "glightbox": "^3.3.1",
-    "lucide-static": "^1.39.0",
+    "lucide-static": "^1.41.0",
     "nanostores": "^1.5.3",
     "photoswipe": "5.4.4",
     "pinia": "4.0.3",
@@ -31,7 +31,7 @@
     "turbo-mount": "^0.4.4",
     "universal-cookie": "^8.1.2",
     "valibot": "^1.4.2",
-    "vanilla-calendar-pro": "^3.3.1",
+    "vanilla-calendar-pro": "^3.3.2",
     "vue-i18n": "^11.4.10"
   },
   "devDependencies": {
