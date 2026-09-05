@@ -3,7 +3,7 @@ import {
   useAccount,
   useComment,
   useComments,
-  useCommentRules,
+  useCommentSchemas,
   useI18nRegle,
   useToast,
 } from '@/composables'
@@ -18,9 +18,9 @@ const { loggedIn } = useAccount()
 const { comment, externalErrors, success, flash, createComment, set404Alert, reload } = useComment()
 const { getComments } = useComments()
 
-const { commentRules } = useCommentRules()
+const { commentSchema } = useCommentSchemas()
 
-const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
+const { r$ } = useI18nRegle(comment, commentSchema, { externalErrors })
 
 const onPostClick = async (): Promise<void> => {
   r$.$touch()

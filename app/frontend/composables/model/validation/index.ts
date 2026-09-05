@@ -1,2 +1,2 @@
-export { useCommentRules } from './use-comment-rules'
+export { useCommentSchemas } from './use-comment-schemas'
 export { useFrameSearchSchema } from './use-frame-search-schema'

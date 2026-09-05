@@ -22,7 +22,7 @@ export {
 } from './model'
 export type { UseAccountType, UseCommentType } from './model'
 
-export { useCommentRules, useFrameSearchSchema } from './model/validation'
+export { useCommentSchemas, useFrameSearchSchema } from './model/validation'
 
 export { useConfig } from './use-config'
 export type { ConfigType } from './use-config'

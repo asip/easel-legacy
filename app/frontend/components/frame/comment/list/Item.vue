@@ -9,7 +9,7 @@ import {
   useAccount,
   useComment,
   useComments,
-  useCommentRules,
+  useCommentSchemas,
   useI18nRegle,
   useCookieStore,
   useToast,
@@ -37,9 +37,9 @@ const {
 } = useComment()
 const { getComments } = useComments()
 
-const { commentRules } = useCommentRules()
+const { commentSchema } = useCommentSchemas()
 
-const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
+const { r$ } = useI18nRegle(comment, commentSchema, { externalErrors })
 
 const edit = ref<boolean>(false)
 
