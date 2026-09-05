@@ -14,7 +14,7 @@ class Cookies::QueryMap
     query
   end
 
-  private :build_query
+  private :build
 
   def cookie_ref
     items = @cookies[:ref]
