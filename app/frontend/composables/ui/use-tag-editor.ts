@@ -22,7 +22,7 @@ export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagE
       return tagEditor?.value
     },
     set(value: string[] | undefined) {
-      if (value) tagEditor?.loadOriginalValues(value)
+      tagEditor?.loadOriginalValues(value ?? [])
     },
   })
 
