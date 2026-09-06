@@ -27,12 +27,13 @@ export default class CalendarController extends ApplicationController {
 
       word.value = dateCookie
 
-      const { initCalendar } = useCalendar({
+      const { selectedDate, initCalendar } = useCalendar({
         el: ref(this.calTarget),
         date: wordDate,
         locale: locale.value,
       })
       this.calendar = initCalendar()
+      selectedDate.value = wordDate.value
     }
   }
 

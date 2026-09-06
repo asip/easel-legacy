@@ -65,9 +65,6 @@ export const useCalendar = function ({ el, date, locale = 'ja', calendar }: Cale
       },
     })
 
-    // globalthis.console.log(calendar.selectedDates[0])
-    if (date) selectedDate.value = date.value
-
     calendar.init()
 
     return calendar

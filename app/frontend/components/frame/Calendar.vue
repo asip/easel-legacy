@@ -9,10 +9,11 @@ const { locale = 'ja' } = defineProps<{ locale?: Locale }>()
 
 const calendarRef = useTemplateRef('calendarRef')
 
-const { initCalendar, closeCalendar } = useCalendar({ el: calendarRef, date, locale })
+const { selectedDate, initCalendar, closeCalendar } = useCalendar({ el: calendarRef, date, locale })
 
 onMounted(() => {
   initCalendar()
+  selectedDate.value = date.value
 })
 
 onUnmounted(() => {
