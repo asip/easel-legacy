@@ -1,4 +1,4 @@
-import { computed, watch, type Ref } from '@vue/reactivity'
+import { computed, type Ref } from '@vue/reactivity'
 import Tagify from '@yaireo/tagify'
 
 interface TagSearchType {
@@ -34,10 +34,6 @@ export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagE
       if (tagEditor) tagEditor.whitelist = tagSearch?.tags.value ?? []
       tagEditor?.loading(false).dropdown.show(value)
     },
-  })
-
-  watch(tagList, () => {
-    tags.value = tagList.value
   })
 
   const initTagEditor = (): Tagify => {
