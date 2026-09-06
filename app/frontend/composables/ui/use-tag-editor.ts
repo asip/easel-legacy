@@ -1,4 +1,4 @@
-import { computed, type Ref } from '@vue/reactivity'
+import { computed, watch, type Ref } from '@vue/reactivity'
 import Tagify from '@yaireo/tagify'
 
 interface TagSearchType {
@@ -36,10 +36,12 @@ export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagE
     },
   })
 
+  watch(tagList, () => {
+    tags.value = tagList.value
+  })
+
   const initTagEditor = (): Tagify => {
     tagEditor = new Tagify(el, settings)
-
-    tags.value = tagList.value
 
     eventCallbacks()
 
@@ -72,5 +74,5 @@ export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagE
     autocomplete.value = value
   }
 
-  return { initTagEditor }
+  return { tags, initTagEditor }
 }

@@ -21,8 +21,8 @@ export default class TagifyController extends ApplicationController {
     if (this.hasTeTarget && this.hasTlTarget) {
       const tagSearch = useTagSearch()
 
-      const { value: tags } = useElement(this.tlTarget, { property: 'value' })
-      const { tagList } = useTagList(tags)
+      const { value: tl } = useElement(this.tlTarget, { property: 'value' })
+      const { tagList } = useTagList(tl)
 
       const settings = {
         maxTags: 5,
@@ -35,9 +35,15 @@ export default class TagifyController extends ApplicationController {
         },
       }
 
-      const { initTagEditor } = useTagEditor({ el: this.teTarget, settings, tagList, tagSearch })
+      const { initTagEditor, tags } = useTagEditor({
+        el: this.teTarget,
+        settings,
+        tagList,
+        tagSearch,
+      })
 
       this.tagEditor = initTagEditor()
+      tags.value = tagList.value
     }
   }
 
