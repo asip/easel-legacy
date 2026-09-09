@@ -1,10 +1,10 @@
 import { computed, ref } from '@vue/reactivity'
 import { useRegleSchema } from '@regle/schemas'
 
-import { useLocale } from '@vesperjs/vue'
+import { useLocale, useFormAction } from '@vesperjs/vue'
 
 import { Criteria /* , QueryItems */ } from '@/types'
-import { useCookieStore, useFormAction } from '@/composables'
+import { useCookieStore } from '@/composables'
 import { useFrameSearchSchema } from './validation'
 
 export const useFrameSearch = function () {

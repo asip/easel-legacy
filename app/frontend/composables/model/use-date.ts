@@ -1,6 +1,6 @@
 import { computed, type Ref } from '@vue/reactivity'
 import { format, parse } from '@formkit/tempo'
-import { useDate as useDateUtil } from '@vesperjs/vue'
+import { useDateUtil } from '@vesperjs/vue'
 
 export const useDate = function (str: Ref<string>) {
   const { isValidDate } = useDateUtil()

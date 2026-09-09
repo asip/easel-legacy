@@ -1,7 +1,7 @@
 import { computed, ref } from '@vue/reactivity'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
-import { useDate as useDateUtil } from '@vesperjs/vue'
+import { useDateUtil } from '@vesperjs/vue'
 
 import { Criteria, RefItems } from '@/types'
 import { watch } from 'vue'
