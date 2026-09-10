@@ -34,7 +34,7 @@ importers:
         version: 1.29.1(pinia@4.0.3(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.7(typescript@6.0.3)))(vue@3.6.0-rc.7(typescript@6.0.3))
       '@regle/schemas':
         specifier: ^1.29.1
-        version: 1.29.1(pinia@4.0.3(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.7(typescript@6.0.3)))(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.7(typescript@6.0.3))
+        version: 1.29.1(pinia@4.0.3(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.7(typescript@6.0.3)))(valibot@1.5.0(typescript@6.0.3))(vue@3.6.0-rc.7(typescript@6.0.3))
       '@vesperjs/vue':
         specifier: 0.10.0
         version: 0.10.0(@vue/devtools-api@8.2.1)(@vue/reactivity@3.6.0-rc.7)(@vue/runtime-core@3.6.0-rc.7)(@vue/runtime-dom@3.6.0-rc.7)(vue@3.6.0-rc.7(typescript@6.0.3))
@@ -75,8 +75,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       valibot:
-        specifier: ^1.4.2
-        version: 1.4.2(typescript@6.0.3)
+        specifier: ^1.5.0
+        version: 1.5.0(typescript@6.0.3)
       vanilla-calendar-pro:
         specifier: ^3.3.2
         version: 3.3.2
@@ -2293,8 +2293,8 @@ packages:
     resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
     hasBin: true
 
-  valibot@1.4.2:
-    resolution: {integrity: sha512-gjdCvJ6d3RyHAneqxMYMW9QMCwYMb3jpOO0IyHZV1bnRHFBHrX3VkIILt5XYR0WhwHiH7Mty8ovuPZ/O3gamrg==}
+  valibot@1.5.0:
+    resolution: {integrity: sha512-nil6AkP2TChWL43Z5uJ6GTxX01CUA+g8LWUM+N/rB9NBbkUMaUsi9PUNzlUPgoKASgmx9f7eGOYpJ04/fSa6FQ==}
     peerDependencies:
       typescript: '>=5'
     peerDependenciesMeta:
@@ -2880,14 +2880,14 @@ snapshots:
       - pinia
       - vue
 
-  '@regle/schemas@1.29.1(pinia@4.0.3(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.7(typescript@6.0.3)))(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.7(typescript@6.0.3))':
+  '@regle/schemas@1.29.1(pinia@4.0.3(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.7(typescript@6.0.3)))(valibot@1.5.0(typescript@6.0.3))(vue@3.6.0-rc.7(typescript@6.0.3))':
     dependencies:
       '@regle/core': 1.29.1(pinia@4.0.3(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.7(typescript@6.0.3)))(vue@3.6.0-rc.7(typescript@6.0.3))
       '@regle/rules': 1.29.1(pinia@4.0.3(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.7(typescript@6.0.3)))(vue@3.6.0-rc.7(typescript@6.0.3))
       '@standard-schema/spec': 1.1.0
       type-fest: 5.8.0
     optionalDependencies:
-      valibot: 1.4.2(typescript@6.0.3)
+      valibot: 1.5.0(typescript@6.0.3)
     transitivePeerDependencies:
       - pinia
       - vue
@@ -4394,7 +4394,7 @@ snapshots:
 
   uuid@13.0.0: {}
 
-  valibot@1.4.2(typescript@6.0.3):
+  valibot@1.5.0(typescript@6.0.3):
     optionalDependencies:
       typescript: 6.0.3
 
