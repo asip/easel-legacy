@@ -51,7 +51,7 @@ const onFormSubmit = async (ev: globalThis.SubmitEvent) => {
                   class="input input-bordered w-60"
                 />
               </div>
-              <div class="text-red-500 text-xs">{{ r$.$errors.word.at(0) ?? '' }}</div>
+              <div class="text-red-500 text-xs mt-0.5">{{ r$.$errors.word.at(0) ?? '' }}</div>
             </td>
           </tr>
           <tr>
@@ -67,7 +67,7 @@ const onFormSubmit = async (ev: globalThis.SubmitEvent) => {
                 autocomplete="off"
                 class="input input-bordered w-40"
               />
-              <div class="text-red-500 text-xs">{{ r$.$errors.tag_name.at(0) ?? '' }}</div>
+              <div class="text-red-500 text-xs mt-0.5">{{ r$.$errors.tag_name.at(0) ?? '' }}</div>
             </td>
           </tr>
         </tbody>
