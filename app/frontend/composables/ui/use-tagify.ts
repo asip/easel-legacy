@@ -1,19 +1,21 @@
 import { computed, type Ref } from '@vue/reactivity'
 import Tagify from '@yaireo/tagify'
 
-interface TagSearchType {
-  searchTag: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
+interface AutocompleteTagsType {
   tags: Ref<string[]>
+  filterBy: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
 }
 
-interface TagEditorOptions {
-  el: HTMLInputElement | HTMLTextAreaElement
+interface TagifyOptions {
   settings: Tagify.TagifySettings
   tagList: Ref<string[] | undefined>
-  tagSearch?: TagSearchType
+  autocompleteTags?: AutocompleteTagsType
 }
 
-export const useTagify = function ({ el, settings, tagList, tagSearch }: TagEditorOptions) {
+export const useTagify = function (
+  el: HTMLInputElement | HTMLTextAreaElement,
+  { settings, tagList, autocompleteTags }: TagifyOptions,
+) {
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
 
@@ -31,12 +33,12 @@ export const useTagify = function ({ el, settings, tagList, tagSearch }: TagEdit
       return tagEditor?.whitelist ?? []
     },
     set(value: string) {
-      if (tagEditor) tagEditor.whitelist = tagSearch?.tags.value ?? []
+      if (tagEditor) tagEditor.whitelist = autocompleteTags?.tags.value ?? []
       tagEditor?.loading(false).dropdown.show(value)
     },
   })
 
-  const initTagEditor = (): Tagify => {
+  const initTagify = (): Tagify => {
     tagEditor = new Tagify(el, settings)
 
     eventCallbacks()
@@ -66,9 +68,9 @@ export const useTagify = function ({ el, settings, tagList, tagSearch }: TagEdit
     controller?.abort()
     controller = new AbortController()
 
-    await tagSearch?.searchTag(value, { signal: controller.signal })
+    await autocompleteTags?.filterBy(value, { signal: controller.signal })
     autocomplete.value = value
   }
 
-  return { tags, initTagEditor }
+  return { tags, initTagify }
 }

@@ -13,7 +13,7 @@ export const useTagSearch = function () {
 
   const tags = ref<string[]>([])
 
-  const searchTag = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
+  const filterBy = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
     const { data, error } = await queryApi<TagsResource, BackendErrorsResource>('/tags/search', {
       query: { q: name },
       signal,
@@ -31,5 +31,5 @@ export const useTagSearch = function () {
     }
   }
 
-  return { searchTag, tags }
+  return { tags, filterBy }
 }
