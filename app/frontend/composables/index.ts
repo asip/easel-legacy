@@ -7,8 +7,8 @@ export {
   useCalendar,
   useImagePreview,
   usePhotoSwipe,
-  useTagEditor,
-  useToast,
+  useTagify,
+  useToastify,
 } from './ui'
 
 export {

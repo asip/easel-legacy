@@ -5,7 +5,7 @@ import type { Flash } from '@vesperjs/vue'
 
 const Toastify = (await import('toastify-js')).default
 
-export const useToast = function () {
+export const useToastify = function () {
   const messages = ref<Flash | Record<string, string[]>>()
 
   const toast = computed<Flash | Record<string, string[]> | undefined>({

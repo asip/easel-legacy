@@ -13,7 +13,7 @@ interface TagEditorOptions {
   tagSearch?: TagSearchType
 }
 
-export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagEditorOptions) {
+export const useTagify = function ({ el, settings, tagList, tagSearch }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
 

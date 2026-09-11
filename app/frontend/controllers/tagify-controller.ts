@@ -4,7 +4,7 @@ import ApplicationController from './application-controller'
 
 import { useElement } from '@vesperjs/vue'
 
-import { useTagSearch, useTagList, useTagEditor } from '@/composables'
+import { useTagSearch, useTagList, useTagify } from '@/composables'
 
 export default class TagifyController extends ApplicationController {
   static targets = ['te', 'tl']
@@ -35,7 +35,7 @@ export default class TagifyController extends ApplicationController {
         },
       }
 
-      const { initTagEditor, tags } = useTagEditor({
+      const { initTagEditor, tags } = useTagify({
         el: this.teTarget,
         settings,
         tagList,

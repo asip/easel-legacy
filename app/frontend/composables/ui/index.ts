@@ -1,7 +1,7 @@
 export { useElements, usePreviewUrl } from './dom'
 
-export { useToast } from './use-toast'
+export { useToastify } from './use-toastify'
 export { usePhotoSwipe } from './use-photo-swipe'
-export { useTagEditor } from './use-tag-editor'
+export { useTagify } from './use-tagify'
 export { useCalendar } from './use-calendar'
 export { useImagePreview } from './use-image-preview'

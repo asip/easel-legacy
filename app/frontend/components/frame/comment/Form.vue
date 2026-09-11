@@ -5,12 +5,12 @@ import {
   useComments,
   useCommentSchemas,
   useI18nRegle,
-  useToast,
+  useToastify,
 } from '@/composables'
 
 const { frameId } = defineProps<{ frameId: string }>()
 
-const { toast } = useToast()
+const { toast } = useToastify()
 
 // console.log('loggedIn:', loggedIn.value)
 

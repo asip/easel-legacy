@@ -1,7 +1,7 @@
 // import Toastify from 'toastify-js'
 import ApplicationController from './application-controller'
 
-import { useToast } from '@/composables'
+import { useToastify } from '@/composables'
 
 export default class ToastController extends ApplicationController {
   static values = {
@@ -11,7 +11,7 @@ export default class ToastController extends ApplicationController {
   declare readonly flashesValue: string
 
   connect(): void {
-    const { toast } = useToast()
+    const { toast } = useToastify()
 
     const flashes = this.flashesValue
       ? (JSON.parse(this.flashesValue) as Record<string, string[]>)
