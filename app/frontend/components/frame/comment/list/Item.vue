@@ -12,13 +12,13 @@ import {
   useCommentSchemas,
   useI18nRegle,
   useCookieStore,
-  useToastify,
+  useToast,
 } from '@/composables'
 
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'
 
-const { toast } = useToastify()
+const { toast } = useToast()
 
 const { refItems } = useCookieStore()
 

@@ -8,7 +8,7 @@ export {
   useImagePreview,
   usePhotoSwipe,
   useTagify,
-  useToastify,
+  useToast,
 } from './ui'
 
 export {
