@@ -1,3 +1,3 @@
-import ToastController from '../toast-controller'
+import ToastifyController from '../toastify-controller'
 
-export { ToastController }
+export { ToastifyController }

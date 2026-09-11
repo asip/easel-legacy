@@ -1,7 +1,7 @@
 import { Application } from '@hotwired/stimulus'
 
 import {
-  ToastController,
+  ToastifyController,
   CalendarController,
   FrameSearchController,
   QueryMapController,
@@ -16,7 +16,7 @@ const application: Application = Application.start()
 // Configure Stimulus development experience
 application.debug = false
 
-application.register('toast', ToastController)
+application.register('toast', ToastifyController)
 // frame search
 application.register('calendar', CalendarController)
 application.register('frameSearch', FrameSearchController)

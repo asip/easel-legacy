@@ -3,7 +3,7 @@ import ApplicationController from './application-controller'
 
 import { useToastify } from '@/composables'
 
-export default class ToastController extends ApplicationController {
+export default class ToastifyController extends ApplicationController {
   static values = {
     flashes: String,
   }

@@ -1,4 +1,4 @@
-import ToastController from './toast-controller'
+import ToastifyController from './toastify-controller'
 import CalendarController from './calendar-controller'
 import FrameSearchController from './frame-search-controller'
 // query map
@@ -11,7 +11,7 @@ import PhotoSwipeController from './photo-swipe-controller'
 import TagifyController from './tagify-controller'
 
 export {
-  ToastController,
+  ToastifyController,
   CalendarController,
   FrameSearchController,
   QueryMapController,
