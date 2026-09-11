@@ -6,7 +6,7 @@ class Api::V1::FramesController < Api::V1::ApiController
   include Api::Frames::Variables
 
   def comments
-    render_comments(comments: comment_list)
+    render_comments(comment_list)
   end
 
   private

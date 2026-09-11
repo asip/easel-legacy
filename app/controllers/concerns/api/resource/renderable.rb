@@ -6,19 +6,19 @@ module Api::Resource::Renderable
 
   protected
 
-  def render_account(account:)
+  def render_account(account)
     render_resource AccountResource.new(account).serialize
   end
 
-  def render_comment(comment:)
+  def render_comment(comment)
     render_resource CommentResource.new(comment).serialize
   end
 
-  def render_comments(comments:)
+  def render_comments(comments)
     render_resource CommentResource.new(comments).serialize(root_key: :comments)
   end
 
-  def render_tags(tags:)
+  def render_tags(tags)
     render_resource TagListResource.new(TagList.new(tags:)).serialize
   end
 end

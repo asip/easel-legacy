@@ -4,6 +4,6 @@
 class Api::V1::AccountController < Api::V1::ApiController
   def show
     # response.set_header("Authorization", "Bearer #{current_user.token}")
-    render_account(account: current_user)
+    render_account(current_user)
   end
 end

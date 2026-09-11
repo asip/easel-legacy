@@ -6,7 +6,7 @@ class Api::V1::TagsController < Api::V1::ApiController
   include Api::Tags::Variables
 
   def search
-    render_tags(tags:)
+    render_tags(tags)
   end
 
   private
