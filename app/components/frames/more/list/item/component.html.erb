@@ -23,9 +23,9 @@
         <%= link_to @frame.name, frame_path(@frame),
                     class: "link link-hover",
                     "data-turbo": true,
-                    "data-controller": "queryMap",
-                    "data-action": "click->queryMap#setQueryMap",
-                    "data-queryMap-q-value": map %>
+                    "data-controller": "query",
+                    "data-action": "click->query#setQueryMap",
+                    "data-query-q-value": map %>
       </div>
     </div>
   </div>

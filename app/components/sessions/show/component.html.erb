@@ -5,9 +5,9 @@
         <div>
           <% map = JsonUtil.stringify(helpers.query_map) %>
           <%= link_to helpers.back_to_path, class: "mr-1",
-                      "data-controller": "queryMap",
-                      "data-action": "click->queryMap#setQueryMap",
-                      "data-queryMap-q-value": map do %>
+                      "data-controller": "query",
+                      "data-action": "click->query#setQueryMap",
+                      "data-query-q-value": map do %>
             <i class="icon-circle-chevron-left text-accent hover:text-primary"></i>
             <% end %>
             プロフィール

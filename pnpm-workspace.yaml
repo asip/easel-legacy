@@ -1,7 +1,4 @@
 allowBuilds:
   '@parcel/watcher': false
-minimumReleaseAgeExclude:
-  - daisyui@5.7.37
-  - lucide-static@1.45.0
 overrides:
   vue: ^3.6.0-rc.8

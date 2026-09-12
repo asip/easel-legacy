@@ -19,9 +19,9 @@ application.debug = false
 application.register('toast', ToastifyController)
 // frame search
 application.register('calendar', CalendarController)
-application.register('frameSearch', FrameSearchController)
+application.register('frame-search', FrameSearchController)
 // query map
-application.register('queryMap', QueryMapController)
+application.register('query', QueryMapController)
 // image preview
 application.register('preview', PreviewController)
 // frame

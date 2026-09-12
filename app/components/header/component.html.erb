@@ -3,9 +3,9 @@
   <div class="drawer-content flex flex-col w-100 pointer-events-auto">
     <div class="navbar bg-base-100 shadow rounded-full glass-02">
       <div class="navbar-start pl-5">
-        <%= link_to root_path, "data-controller": "queryMap",
-                               "data-action": "click->queryMap#setQueryMap",
-                               "data-queryMap-q-value": JsonUtil.stringify({ q: "{}" }) do %>
+        <%= link_to root_path, "data-controller": "query",
+                               "data-action": "click->query#setQueryMap",
+                               "data-query-q-value": JsonUtil.stringify({ q: "{}" }) do %>
           <i class="icon-palette"></i> Easel Legacy
         <% end %>
       </div>
@@ -31,14 +31,14 @@
         <% end %>
       </div>
       <div class="navbar-end flex gap-2 pr-5">
-        <label for="search-sidebar" aria-label="open sidebar" class="btn btn-outline btn-primary">
+        <label for="search-sidebar" class="btn btn-outline btn-primary">
           <i class="icon-search"></i>
         </label>
       </div>
     </div>
   </div>
   <div class="drawer-side">
-    <label for="search-sidebar" aria-label="close sidebar" class="drawer-overlay"></label>
+    <label for="search-sidebar" class="drawer-overlay"></label>
     <div class="mt-17.5">
       <%= render Drawer::SearchBar::Component.new %>
     </div>

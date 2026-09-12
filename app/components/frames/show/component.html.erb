@@ -9,9 +9,9 @@
           <% map = JsonUtil.stringify(helpers.query_map) %>
           <%= link_to user_path(@frame.user),
                       class: "link link-hover",
-                      "data-controller": "queryMap",
-                      "data-action": "click->queryMap#setQueryMap",
-                      "data-queryMap-q-value": map do %>
+                      "data-controller": "query",
+                      "data-action": "click->query#setQueryMap",
+                      "data-query-q-value": map do %>
             <%= @frame.user.name %>
           <% end %>
         </div>
