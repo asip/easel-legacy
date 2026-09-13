@@ -9,6 +9,7 @@ export {
   usePhotoSwipe,
   useTagify,
   useToast,
+  useModal,
 } from './ui'
 
 export {

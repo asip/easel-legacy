@@ -1,15 +1,16 @@
 import ApplicationController from './application-controller'
 
+import { useModal } from '@/composables'
+
 export default class ModalController extends ApplicationController {
   static values = {
     selector: String,
   }
-
   declare readonly selectorValue: string
 
   open(): void {
-    const el: HTMLDialogElement | null = globalThis.document.querySelector(this.selectorValue)
+    const { openModal } = useModal()
 
-    el?.showModal()
+    openModal(this.selectorValue)
   }
 }
