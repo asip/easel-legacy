@@ -17,7 +17,8 @@
         </div>
       </div>
       <div class="absolute inset-0 bg-opacity-0 flex justify-center items-center z-10 pointer-events-none">
-        <a class="flex justify-center hover:text-primary link pt-1 pb-1 pointer-events-auto" onclick="frame_profile_modal.showModal()">
+        <a class="flex justify-center hover:text-primary link pt-1 pb-1 pointer-events-auto"
+           data-controller="modal" data-action="click->modal#open" data-modal-selector-value="#frame_profile_modal">
           <%= @frame.name %>
         </a>
       </div>
@@ -44,7 +45,8 @@
           削除
         </button>
         <% else %>
-        <button type="button" class="btn btn-outline btn-secondary" onclick="delete_modal.showModal()">
+        <button type="button" class="btn btn-outline btn-secondary"
+                data-controller="modal" data-action="click->modal#open" data-modal-selector-value="#delete_modal">
           削除
         </button>
         <% end %>

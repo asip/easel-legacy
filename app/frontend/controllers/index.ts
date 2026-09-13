@@ -10,6 +10,8 @@ import GLightboxController from './g-lightbox-controller'
 import PhotoSwipeController from './photo-swipe-controller'
 import TagifyController from './tagify-controller'
 
+import ModalController from './modal-controller'
+
 export {
   ToastifyController,
   CalendarController,
@@ -19,4 +21,5 @@ export {
   GLightboxController,
   PhotoSwipeController,
   TagifyController,
+  ModalController,
 }

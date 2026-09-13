@@ -23,7 +23,10 @@
         </div>
       </div>
       <div class="absolute inset-0 bg-opacity-0 flex justify-center items-center z-10 pointer-events-none">
-        <div class="link pointer-events-auto" onclick="user_profile_modal.showModal()"><%= @user.name %></div>
+        <div class="link pointer-events-auto"
+             data-controller="modal" data-action="click->modal#open" data-modal-selector-value="#user_profile_modal">
+          <%= @user.name %>
+        </div>
       </div>
     </div>
   </div>

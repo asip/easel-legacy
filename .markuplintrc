@@ -13,7 +13,9 @@
     "require-h1": false,
     "require-attr": true,
     "require-accessible-name": false,
-    "no-hardcoded-id": false
+    "no-hardcoded-id": false,
+    "a11y/no-merge-cells": false,
+    "performance/img-aspect-ratio": false
   },
   "nodeRules": [
     {

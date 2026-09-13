@@ -9,6 +9,7 @@ import {
   GLightboxController,
   PhotoSwipeController,
   TagifyController,
+  ModalController,
 } from '@/controllers/index'
 
 const application: Application = Application.start()
@@ -28,5 +29,7 @@ application.register('preview', PreviewController)
 application.register('glbx', GLightboxController)
 application.register('pswp', PhotoSwipeController)
 application.register('tagify', TagifyController)
+
+application.register('modal', ModalController)
 
 export { application }

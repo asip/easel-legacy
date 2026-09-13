@@ -22,7 +22,7 @@
             <i class="icon-circle-x text-accent hover:text-primary"></i>
           </button>
           <% else %>
-          <a onclick="delete_modal.showModal()">
+          <a data-controller="modal" data-action="click->modal#open" data-modal-selector-value="#delete_modal">
             <i class="icon-circle-x text-accent hover:text-primary"></i>
           </a>
           <% end %>
