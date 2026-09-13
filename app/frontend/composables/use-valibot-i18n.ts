@@ -1,8 +1,8 @@
 import * as v from 'valibot'
 
-import { i18n } from '@/i18n'
+import { useI18n } from '@/composables'
 
-const { t, locale } = i18n.global
+const { t, locale } = useI18n()
 
 export const useValibotI18n = function () {
   const schemaMessage = () => {

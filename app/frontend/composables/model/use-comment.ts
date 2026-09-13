@@ -8,9 +8,9 @@ import type { CommentErrorProperty } from '@/types'
 
 import { useAccountStore } from '@/stores'
 
-import { i18n } from '@/i18n'
+import { useI18n } from '@/composables'
 
-const { t } = i18n.global
+const { t } = useI18n()
 
 export const useComment = function () {
   const { mutationApi } = useApi()
