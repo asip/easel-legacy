@@ -30,7 +30,7 @@ const onPostClick = async (): Promise<void> => {
     await createComment(frameId)
     set404Alert()
     toast.value = flash.value
-    if (success) {
+    if (success.value) {
       comment.value.body = ''
       r$.$touch()
       r$.$reset()

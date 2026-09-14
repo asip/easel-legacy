@@ -71,7 +71,7 @@ const onUpdateClick = async (): Promise<void> => {
     await updateComment()
     set404Alert()
     toast.value = flash.value
-    if (success) {
+    if (success.value) {
       r$.$touch()
       r$.$reset()
       setComment({ to: commentModel.value })
@@ -88,7 +88,7 @@ const onDeleteClick = async (): Promise<void> => {
   }
   set404Alert()
   toast.value = flash.value
-  if (success) {
+  if (success.value) {
     await getComments(`${commentModel.value?.frame_id}`)
   } else {
     await reload401404()
