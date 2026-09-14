@@ -1,4 +1,4 @@
-import { useI18n } from '@/composables'
+import { useI18n } from 'vue-i18n'
 
 import { defineRegleConfig } from '@regle/core'
 import { required, withMessage } from '@regle/rules'

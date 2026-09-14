@@ -1,4 +1,5 @@
 import { ref } from '@vue/reactivity'
+import { useI18n } from 'vue-i18n'
 
 import { useApi, useApiError, useEntity, useExternalErrors, useFlash } from '@vesperjs/vue'
 import type { BackendErrorResource, BackendErrorsResource } from '@vesperjs/vue'
@@ -8,11 +9,8 @@ import type { CommentErrorProperty } from '@/types'
 
 import { useAccountStore } from '@/stores'
 
-import { useI18n } from '@/composables'
-
-const { t } = useI18n()
-
 export const useComment = function () {
+  const { t } = useI18n()
   const { mutationApi } = useApi()
 
   const { flash, clearFlash } = useFlash()

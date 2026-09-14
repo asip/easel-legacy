@@ -4,6 +4,8 @@ import { createPinia } from 'pinia'
 import plugin from 'turbo-mount/vue'
 import { TurboMount } from 'turbo-mount'
 import { registerComponent } from 'turbo-mount/vue'
+import { i18n } from '@vesperjs/vue'
+
 import index from '@/components/index.vue'
 
 const pinia = createPinia()
@@ -11,7 +13,7 @@ const pinia = createPinia()
 plugin.mountComponent = (mountProps) => {
   const { el, Component, props } = mountProps
   const app = createApp(Component, props)
-  app.use(RegleVuePlugin).use(pinia).use(vaporInteropPlugin).mount(el)
+  app.use(RegleVuePlugin).use(pinia).use(vaporInteropPlugin).use(i18n).mount(el)
   return () => {
     app.unmount()
   }
