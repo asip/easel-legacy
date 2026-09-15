@@ -11,7 +11,7 @@ export const useCookieStore = function () {
 
   const cookies = useCookies(['access_token', 'q', 'ref', 'page', 'time_zone'])
 
-  const accessToken = computed<string>(() => cookies.get<string>('access_token'))
+  // const accessToken = computed<string>(() => cookies.get<string>('access_token'))
 
   const criteriaRef = ref<Criteria>()
 
@@ -80,5 +80,5 @@ export const useCookieStore = function () {
     },
   })
 
-  return { accessToken, criteria, date, refItems, page, timeZone }
+  return { /* accessToken, */ criteria, date, refItems, page, timeZone }
 }
