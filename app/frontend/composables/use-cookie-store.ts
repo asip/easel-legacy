@@ -80,5 +80,5 @@ export const useCookieStore = function () {
     },
   })
 
-  return { accessToken, criteria, date: date.value, refItems, page, timeZone }
+  return { accessToken, criteria, date, refItems, page, timeZone }
 }

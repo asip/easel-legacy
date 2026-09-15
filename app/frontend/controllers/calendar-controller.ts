@@ -25,7 +25,7 @@ export default class CalendarController extends ApplicationController {
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
       const { date: wordDate } = useDate(word)
 
-      word.value = dateCookie
+      word.value = dateCookie.value
 
       const { selectedDate, initCalendar } = useCalendar({
         el: ref(this.calTarget),
