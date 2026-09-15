@@ -16,7 +16,7 @@
     "no-hardcoded-id": false,
     "a11y/no-merge-cells": false,
     "performance/img-aspect-ratio": false,
-    "no-event-handler-attr": false
+    "security/no-event-handler-attr": false
   },
   "nodeRules": [
     {
