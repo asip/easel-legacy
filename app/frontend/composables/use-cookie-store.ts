@@ -35,9 +35,12 @@ export const useCookieStore = function () {
     criteria.value = criteriaRef.value
   })
 
+  const word = computed<string>(() => {
+    return criteria.value?.word ?? ''
+  })
+
   const date = computed<string | null>(() => {
-    const value = criteria.value?.word ?? ''
-    return isValidDate(value) ? value : null
+    return isValidDate(word.value) ? word.value : null
   })
 
   const refItemsRef = ref<RefItems>()
