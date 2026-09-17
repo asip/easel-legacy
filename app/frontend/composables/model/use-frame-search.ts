@@ -25,7 +25,7 @@ export const useFrameSearch = function () {
   })
 
   /*
-  const queryMap = computed<QueryItems>(() => {
+  const query = computed<QueryItems>(() => {
     const query: QueryItems = {}
     query.q = JSON.stringify(qItems)
     return query
