@@ -26,7 +26,7 @@ export const useCookieStore = function () {
         cookies.set('q', value, { path: '/' })
       } else {
         criteriaRef.value = value
-        cookies.set('q', JSON.stringify(value), { path: '/' })
+        cookies.set('q', value ?? {}, { path: '/' })
       }
     },
   })
@@ -56,7 +56,7 @@ export const useCookieStore = function () {
         cookies.set('ref', value, { path: '/' })
       } else {
         refItemsRef.value = value
-        cookies.set('ref', value ? value : '{}', { path: '/' })
+        cookies.set('ref', value ?? {}, { path: '/' })
       }
     },
   })
