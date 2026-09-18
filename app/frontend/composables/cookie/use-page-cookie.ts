@@ -1,14 +1,14 @@
 import { computed } from '@vue/reactivity'
 
-import { CookieAccessor } from '@/composables/use-cookie-store'
+import { CookieRef } from '@/types'
 
-export const usePageCookie = function (cookie: CookieAccessor) {
+export const usePageCookie = function (cookie: CookieRef) {
   const page = computed<string, string>({
     get() {
-      return cookie.get()
+      return cookie.value
     },
     set(value: string | undefined) {
-      cookie.set(value ?? '')
+      cookie.value = value ?? ''
     },
   })
 
