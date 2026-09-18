@@ -1,87 +1,43 @@
-import { computed, ref } from '@vue/reactivity'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
-import { useDateUtil } from '@vesperjs/vue'
-
 import { Criteria, RefItems } from '@/types'
-import { watch } from 'vue'
+import { useCriteriaCookie, useRefCookie, usePageCookie, useTimeZoneCookie } from './cookie'
+
+export interface CookieAccessor<T = string> {
+  get: () => T
+  set: (value: T | string) => void
+}
 
 export const useCookieStore = function () {
-  const { isValidDate } = useDateUtil()
-
   const cookies = useCookies(['access_token', 'q', 'ref', 'page', 'time_zone'])
 
   // const accessToken = computed<string>(() => cookies.get<string>('access_token'))
 
-  const criteriaRef = ref<Criteria>()
+  const useCookie = function <T = string>(attr: string) {
+    const get = (): T => cookies.get<T>(attr)
 
-  const criteria = computed<Criteria | undefined, Criteria | string | undefined>({
-    get() {
-      criteriaRef.value = cookies.get<Criteria>('q')
-      return criteriaRef.value
-    },
-    set(value: Criteria | string | undefined) {
-      if (typeof value == 'string') {
-        criteriaRef.value = JSON.parse(value) as Criteria
-        cookies.set('q', value, { path: '/' })
-      } else {
-        criteriaRef.value = value
-        cookies.set('q', value ?? {}, { path: '/' })
-      }
-    },
-  })
+    const set = (value: T | string) => {
+      cookies.set(attr, value, { path: '/' })
+    }
 
-  watch(criteriaRef, () => {
-    criteria.value = criteriaRef.value
-  })
+    return { get, set }
+  }
 
-  const word = computed<string>(() => {
-    return criteria.value?.word ?? ''
-  })
+  const criteriaCookie = useCookie<Criteria>('q')
 
-  const date = computed<string | null>(() => {
-    return isValidDate(word.value) ? word.value : null
-  })
+  const { criteria, date } = useCriteriaCookie(criteriaCookie)
 
-  const refItemsRef = ref<RefItems>()
+  const refCookie = useCookie<RefItems>('ref_items')
 
-  const refItems = computed<RefItems, RefItems | string | undefined>({
-    get() {
-      refItemsRef.value = cookies.get<RefItems>('ref')
-      return refItemsRef.value
-    },
-    set(value: RefItems | string | undefined) {
-      if (typeof value == 'string') {
-        refItemsRef.value = JSON.parse(value) as RefItems
-        cookies.set('ref', value, { path: '/' })
-      } else {
-        refItemsRef.value = value
-        cookies.set('ref', value ?? {}, { path: '/' })
-      }
-    },
-  })
+  const { refItems } = useRefCookie(refCookie)
 
-  watch(refItemsRef, () => {
-    refItems.value = refItemsRef.value
-  })
+  const pageCookie = useCookie('page')
 
-  const page = computed<string, string>({
-    get() {
-      return cookies.get<string>('page')
-    },
-    set(value: string | undefined) {
-      cookies.set('page', value ?? '', { path: '/' })
-    },
-  })
+  const { page } = usePageCookie(pageCookie)
 
-  const timeZone = computed<string, string>({
-    get() {
-      return cookies.get<string>('time_zone')
-    },
-    set(value: string | undefined) {
-      cookies.set('time_zone', value ?? '', { path: '/' })
-    },
-  })
+  const timeZoneCookie = useCookie('time_zone')
+
+  const { timeZone } = useTimeZoneCookie(timeZoneCookie)
 
   return { /* accessToken, */ criteria, date, refItems, page, timeZone }
 }

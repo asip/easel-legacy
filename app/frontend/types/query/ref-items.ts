@@ -1,4 +1,4 @@
 export interface RefItems {
-  from: string
+  from?: string
   page?: string
 }
