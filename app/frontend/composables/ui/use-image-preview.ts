@@ -1,19 +1,15 @@
 import { computed, type Ref } from '@vue/reactivity'
 
-interface ImagePreviewOptions {
-  previewUrl: Ref<string | null>
-}
-
-export const useImagePreview = function ({ previewUrl }: ImagePreviewOptions) {
+export const useImagePreview = function (url: Ref<string | null>) {
   const preview = computed<string | null, File | null>({
     get() {
-      return previewUrl.value
+      return url.value
     },
     set(value: File | null) {
       if (value?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
         setPreview(value)
       } else {
-        previewUrl.value = null
+        url.value = null
       }
     },
   })
@@ -29,7 +25,7 @@ export const useImagePreview = function ({ previewUrl }: ImagePreviewOptions) {
       // (読み込んだファイルの内容を取得して変数imageに代入します)
       const image: string | ArrayBuffer | null = this.result
       // console.log(content.classList);
-      previewUrl.value = image ? (image as string) : null
+      url.value = image ? (image as string) : null
     }
     // Retrieves the Data URI scheme string.
     // (DataURI Scheme文字列を取得します)

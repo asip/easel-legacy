@@ -16,7 +16,7 @@ export default class PreviewController extends ApplicationController {
       imageEl: this.imageTarget,
       previewEl: this.previewTarget,
     })
-    const { preview } = useImagePreview({ previewUrl })
+    const { preview } = useImagePreview(previewUrl)
 
     // Retrieve the uploaded data and assign it to the file variable.
     // (アップロードされたデータを取得して変数fileに代入します)
