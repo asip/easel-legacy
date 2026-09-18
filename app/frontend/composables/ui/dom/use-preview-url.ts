@@ -39,5 +39,5 @@ export const usePreviewUrl = function ({ imageEl, previewEl }: PreviewUrlOptions
     }
   }
 
-  return { previewUrl }
+  return previewUrl
 }

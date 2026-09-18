@@ -12,7 +12,7 @@ export default class PreviewController extends ApplicationController {
   declare readonly hasImageTarget: boolean
 
   upload(evt: Event): void {
-    const { previewUrl } = usePreviewUrl({
+    const previewUrl = usePreviewUrl({
       imageEl: this.imageTarget,
       previewEl: this.previewTarget,
     })
