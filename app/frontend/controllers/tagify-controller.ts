@@ -22,7 +22,7 @@ export default class TagifyController extends ApplicationController {
       const tagSearch = useTagSearch()
 
       const { value: tl } = useElement(this.tlTarget, { property: 'value' })
-      const { tagList } = useTagList(tl)
+      const tagList = useTagList(tl)
 
       const settings = {
         maxTags: 5,

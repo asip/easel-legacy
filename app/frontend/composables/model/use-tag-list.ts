@@ -10,5 +10,5 @@ export const useTagList = function (str: Ref<string>) {
     },
   })
 
-  return { tagList }
+  return tagList
 }
