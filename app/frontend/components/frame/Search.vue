@@ -19,7 +19,7 @@ const word = computed<string>({
   },
 })
 
-const { date: wordDate } = useDate(word)
+const wordDate = useDate(word)
 
 form.value.word = criteria.value?.word ?? ''
 form.value.tag_name = criteria.value?.tag_name ?? ''

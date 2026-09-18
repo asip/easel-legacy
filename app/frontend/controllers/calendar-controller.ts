@@ -23,7 +23,7 @@ export default class CalendarController extends ApplicationController {
       const { locale } = useLocale()
       const { date: dateCookie } = useCookieStore()
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
-      const { date: wordDate } = useDate(word)
+      const wordDate = useDate(word)
 
       word.value = dateCookie.value
 
@@ -40,7 +40,7 @@ export default class CalendarController extends ApplicationController {
   change(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
-      const { date: wordDate } = useDate(word)
+      const wordDate = useDate(word)
 
       const { selectedDate } = useCalendar({ calendar: this.calendar })
 

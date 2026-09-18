@@ -15,5 +15,5 @@ export const useDate = function (str: Ref<string>) {
     },
   })
 
-  return { date }
+  return date
 }
