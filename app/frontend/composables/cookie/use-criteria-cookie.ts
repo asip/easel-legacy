@@ -6,7 +6,7 @@ import { Criteria, CookieRef } from '@/types'
 
 export const useCriteriaCookie = function (cookie: CookieRef<Criteria>) {
   const { isValidDate } = useDateUtil()
-  const { value: criteria } = useCookieValue(cookie, { deep: true })
+  const criteria = useCookieValue(cookie, { deep: true })
 
   const word = computed<string>(() => {
     return criteria.value?.word ?? ''

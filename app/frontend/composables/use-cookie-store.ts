@@ -2,7 +2,7 @@ import { computed } from '@vue/reactivity'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
 import { Criteria, RefItems, CookieRef } from '@/types'
-import { useCriteriaCookie, useRefCookie, usePageCookie, useTimeZoneCookie } from './cookie'
+import { useCriteriaCookie, useCookieValue } from './cookie'
 
 export const useCookieStore = function () {
   const cookies = useCookies(['access_token', 'q', 'ref', 'page', 'time_zone'])
@@ -28,9 +28,9 @@ export const useCookieStore = function () {
   const timeZoneCookie = useCookie('time_zone')
 
   const { criteria, date } = useCriteriaCookie(criteriaCookie)
-  const { refItems } = useRefCookie(refCookie)
-  const { page } = usePageCookie(pageCookie)
-  const { timeZone } = useTimeZoneCookie(timeZoneCookie)
+  const refItems = useCookieValue(refCookie, { deep: true })
+  const page = useCookieValue(pageCookie)
+  const timeZone = useCookieValue(timeZoneCookie)
 
   return { /* accessToken, */ criteria, date, refItems, page, timeZone }
 }

@@ -1,4 +1,4 @@
-import { computed, ref, watch } from '@vue/reactivity'
+import { computed, ref, watch, WritableComputedRef } from '@vue/reactivity'
 
 import { CookieRef } from '@/types'
 
@@ -8,7 +8,7 @@ export const useCookieValue = function <T = string>(
 ) {
   const deep = options?.deep ?? false
 
-  let value = ref<T>()
+  let value: WritableComputedRef<T | undefined, T | string | undefined> | undefined
 
   if (deep) {
     const valueRef = ref<T>()
@@ -32,7 +32,7 @@ export const useCookieValue = function <T = string>(
     })
 
     watch(valueRef, () => {
-      value.value = valueRef.value
+      if (value) value.value = valueRef.value
     })
   } else {
     value = computed<T | undefined, T | string | undefined>({
@@ -51,5 +51,5 @@ export const useCookieValue = function <T = string>(
     })
   }
 
-  return { value }
+  return value
 }
