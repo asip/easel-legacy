@@ -25,11 +25,13 @@ export type { UseAccountType, UseCommentType } from './model'
 
 export { useCommentSchemas, useFrameSearchSchema } from './model/validation'
 
-export { useCriteriaCookie, useCookieValue } from './cookie'
+export { useCriteriaCookie } from './cookie'
 
 export { useConfig } from './use-config'
 export type { ConfigType } from './use-config'
 
+export { useCookie } from './use-cookie'
+export { useCookieValue } from './use-cookie-value'
 export { useCookieStore } from './use-cookie-store'
 
 export { useRoute } from './use-route'
