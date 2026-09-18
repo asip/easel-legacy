@@ -1,16 +1,8 @@
-import { computed } from '@vue/reactivity'
-
 import { CookieRef } from '@/types'
+import { useCookieValue } from './use-cookie-value'
 
 export const useTimeZoneCookie = function (cookie: CookieRef) {
-  const timeZone = computed<string, string>({
-    get() {
-      return cookie.value
-    },
-    set(value: string | undefined) {
-      cookie.value = value ?? ''
-    },
-  })
+  const { value: timeZone } = useCookieValue(cookie)
 
   return { timeZone }
 }
