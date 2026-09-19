@@ -1,13 +1,12 @@
-import { useI18n } from 'vue-i18n'
+import { useI18nGlobal } from '@vesperjs/vue'
 
 import { defineRegleConfig } from '@regle/core'
-import { required, withMessage } from '@regle/rules'
+import * as r from '@regle/rules'
+
+const { t } = useI18nGlobal()
 
 export const { useRegle: useI18nRegle } = defineRegleConfig({
-  rules: () => {
-    const { t } = useI18n()
-    return {
-      required: withMessage(required, () => t('rules.required')),
-    }
-  },
+  rules: () => ({
+    required: r.withMessage(r.required, () => t('rules.required')),
+  }),
 })
