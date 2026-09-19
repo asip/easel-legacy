@@ -1,0 +1,6 @@
+import * as r from '@regle/rules'
+import { useI18nGlobal } from '@vesperjs/vue'
+
+const { t } = useI18nGlobal()
+
+export const required = r.withMessage(r.required, () => t('rules.required'))
