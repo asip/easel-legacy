@@ -4,9 +4,9 @@ import { useDateUtil } from '@vesperjs/vue'
 import { useCookieValue } from '@/composables'
 import { Criteria, CookieRef } from '@/types'
 
-export const useCriteriaCookie = function (cookie: CookieRef<Criteria>) {
+export const useCriteriaCookie = function (cookie: CookieRef) {
   const { isValidDate } = useDateUtil()
-  const criteria = useCookieValue(cookie, { deep: true })
+  const criteria = useCookieValue<Criteria>(cookie, { deep: true })
 
   const word = computed<string>(() => {
     return criteria.value?.word ?? ''
