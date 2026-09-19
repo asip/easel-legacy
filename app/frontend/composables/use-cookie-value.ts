@@ -3,30 +3,30 @@ import { computed, ref, watch, WritableComputedRef } from '@vue/reactivity'
 import { CookieRef } from '@/types'
 
 export const useCookieValue = function <T = string>(
-  cookie: CookieRef<T>,
+  cookie: CookieRef,
   options?: { deep: boolean },
 ) {
   const deep = options?.deep ?? false
 
-  let value: WritableComputedRef<T | undefined, T | string | undefined> | undefined
+  let value: WritableComputedRef<T | null | undefined, T | string | null | undefined> | undefined
 
   if (deep) {
-    const valueRef = ref<T>()
+    const valueRef = ref<T | null>()
 
-    value = computed<T | undefined, T | string | undefined>({
+    value = computed<T | null | undefined, T | string | null | undefined>({
       get() {
-        valueRef.value = cookie.value ? cookie.value : undefined
+        valueRef.value = cookie.value ? (JSON.parse(cookie.value) as T) : null
         return valueRef.value
       },
       set(value: T | string | undefined) {
         value = value ?? ''
 
         if (typeof value == 'string') {
-          valueRef.value = JSON.parse(value) as T
+          valueRef.value = value ? (JSON.parse(value) as T) : null
           cookie.value = value
         } else {
           valueRef.value = value
-          cookie.value = value
+          cookie.value = JSON.stringify(value)
         }
       },
     })
@@ -35,17 +35,17 @@ export const useCookieValue = function <T = string>(
       if (value) value.value = valueRef.value
     })
   } else {
-    value = computed<T | undefined, T | string | undefined>({
+    value = computed<T | null | undefined, T | string | null | undefined>({
       get() {
-        return cookie.value ? cookie.value : undefined
+        return cookie.value ? (JSON.parse(cookie.value) as T) : null
       },
-      set(value: T | string | undefined) {
+      set(value: T | string | null | undefined) {
         value = value ?? ''
 
         if (typeof value == 'string') {
           cookie.value = value
         } else {
-          cookie.value = value
+          cookie.value = JSON.stringify(value)
         }
       },
     })
