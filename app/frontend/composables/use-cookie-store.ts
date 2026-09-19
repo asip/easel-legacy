@@ -1,5 +1,5 @@
 import type { RefItems } from '@/types'
-import { useCookie, useCookieValue, useCriteriaCookie } from '.'
+import { useCookie, useCookieValue, useCookieValueObject, useCriteriaCookie } from '.'
 
 export const useCookieStore = function () {
   const criteriaCookie = useCookie('q', { path: '/' })
@@ -8,7 +8,7 @@ export const useCookieStore = function () {
   const timeZoneCookie = useCookie('time_zone', { path: '/' })
 
   const { criteria, date } = useCriteriaCookie(criteriaCookie)
-  const refItems = useCookieValue<RefItems>(refCookie, { deep: true })
+  const refItems = useCookieValueObject<RefItems>(refCookie, { deep: true })
   const page = useCookieValue(pageCookie)
   const timeZone = useCookieValue(timeZoneCookie)
 

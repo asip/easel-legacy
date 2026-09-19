@@ -32,6 +32,7 @@ export type { ConfigType } from './use-config'
 
 export { useCookie } from './use-cookie'
 export { useCookieValue } from './use-cookie-value'
+export { useCookieValueObject } from './use-cookie-value-object'
 export { useCookieStore } from './use-cookie-store'
 
 export { useRoute } from './use-route'
