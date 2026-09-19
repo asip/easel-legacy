@@ -1,4 +1,4 @@
-import { RefItems } from '@/types'
+import type { RefItems } from '@/types'
 import { useCookie, useCookieValue, useCriteriaCookie } from '.'
 
 export const useCookieStore = function () {

@@ -2,7 +2,7 @@ import { computed } from '@vue/reactivity'
 import { useDateUtil } from '@vesperjs/vue'
 
 import { useCookieValue } from '@/composables'
-import { Criteria, CookieRef } from '@/types'
+import type { Criteria, CookieRef } from '@/types'
 
 export const useCriteriaCookie = function (cookie: CookieRef) {
   const { isValidDate } = useDateUtil()

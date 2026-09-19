@@ -1,5 +1,5 @@
 import { computed } from '@vue/reactivity'
-import { CookieSetOptions } from 'universal-cookie'
+import type { CookieSetOptions } from 'universal-cookie'
 import { useCookies } from '@vueuse/integrations/useCookies'
 
 import { CookieRef } from '@/types'

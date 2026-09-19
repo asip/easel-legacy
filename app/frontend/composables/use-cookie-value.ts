@@ -1,4 +1,4 @@
-import { computed, ref, watch, WritableComputedRef } from '@vue/reactivity'
+import { computed, ref, watch, type WritableComputedRef } from '@vue/reactivity'
 
 import { CookieRef } from '@/types'
 
