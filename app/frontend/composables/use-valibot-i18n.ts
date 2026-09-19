@@ -8,11 +8,13 @@ export const useValibotI18n = function (options: v.GlobalConfig) {
     maxLength()
   }
 
+  /*
   let customActions: () => void = () => undefined
 
   const setup = (func: () => void): void => {
     customActions = func
   }
+  */
 
   const globalConfig = () => {
     v.setGlobalConfig(options)
@@ -21,9 +23,9 @@ export const useValibotI18n = function (options: v.GlobalConfig) {
   const initValibotI18n = () => {
     schemaMessage()
     defaultActions()
-    customActions()
+    // customActions()
     globalConfig()
   }
 
-  return { initValibotI18n, setup }
+  return { initValibotI18n /* , setup */ }
 }
