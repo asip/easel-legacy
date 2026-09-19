@@ -1,0 +1,1 @@
+export { schemaMessage } from './schemaMessage'

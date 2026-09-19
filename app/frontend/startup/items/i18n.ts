@@ -2,4 +2,6 @@ import '@/i18n'
 
 import { useValibotI18n } from '@/composables'
 
-useValibotI18n()
+const { initValibotI18n } = useValibotI18n()
+
+initValibotI18n()

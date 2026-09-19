@@ -2,38 +2,18 @@ import * as v from 'valibot'
 
 import { useI18nGlobal } from '@vesperjs/vue'
 
-const { t, locale } = useI18nGlobal()
+import { schemaMessage } from '@/i18n/valibot'
+import { maxLength } from '@/i18n/valibot/actions'
+
+const { locale } = useI18nGlobal()
 
 export const useValibotI18n = function () {
-  const schemaMessage = () => {
-    /*
-    v.setSchemaMessage((issue) => `Invalid type: Please enter as type ${issue.expected ?? ''}, not type ${issue.received}`, 'en')
-    v.setSchemaMessage((issue) => `無効な型です：${issue.received}型ではなく${issue.expected ?? ''}型で入力してください`, 'ja')
-    */
-    v.setSchemaMessage(
-      (issue) =>
-        t('rules.schemaMessage', {
-          received: issue.received,
-          expected: issue.expected ?? '',
-        }),
-      locale.value,
-    )
-  }
-
-  const maxLength = () => {
-    /*
-    v.setSpecificMessage(v.maxLength, (issue) => `are limited to ${issue.requirement.toString()} characters.`, 'en')
-    v.setSpecificMessage(v.maxLength, (issue) => `${issue.requirement.toString()}文字以内で入力してください`, 'ja')
-    */
-    v.setSpecificMessage(
-      v.maxLength,
-      (issue) => t('rules.maxLength', { max: issue.requirement.toString() }),
-      locale.value,
-    )
-  }
-
-  const specificMessage = () => {
+  let i18nActions: () => void = () => {
     maxLength()
+  }
+
+  const setI18nActions = (func: () => void): void => {
+    i18nActions = func
   }
 
   const globalConfig = () => {
@@ -42,9 +22,9 @@ export const useValibotI18n = function () {
 
   const initValibotI18n = () => {
     schemaMessage()
-    specificMessage()
+    i18nActions()
     globalConfig()
   }
 
-  initValibotI18n()
+  return { initValibotI18n, setI18nActions }
 }
