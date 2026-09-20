@@ -2,7 +2,10 @@ import { computed, ref, watch, type WritableComputedRef } from '@vue/reactivity'
 
 import { CookieRef } from '@/types'
 
-export const useCookieValueObject = function <T>(cookie: CookieRef, options?: { deep: boolean }) {
+export const useCookieValueObject = function <T extends object>(
+  cookie: CookieRef,
+  options?: { deep: boolean },
+) {
   const deep = options?.deep ?? false
 
   let value: WritableComputedRef<T | null | undefined, T | string | null | undefined> | undefined
@@ -21,7 +24,7 @@ export const useCookieValueObject = function <T>(cookie: CookieRef, options?: { 
           cookie.value = value
         } else {
           valueRef.value = value
-          cookie.value = JSON.stringify(value)
+          cookie.value = JSON.stringify(value ?? {})
         }
       },
     })
@@ -35,12 +38,10 @@ export const useCookieValueObject = function <T>(cookie: CookieRef, options?: { 
         return cookie.value ? (JSON.parse(cookie.value) as T) : null
       },
       set(value: T | string | null | undefined) {
-        value = value ?? ''
-
         if (typeof value == 'string') {
           cookie.value = value
         } else {
-          cookie.value = JSON.stringify(value)
+          cookie.value = JSON.stringify(value ?? {})
         }
       },
     })
