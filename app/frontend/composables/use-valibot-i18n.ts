@@ -1,20 +1,13 @@
 import * as v from 'valibot'
 
 import { schemaMessage } from '@/i18n/valibot'
-import { maxLength } from '@/i18n/valibot/actions'
 
 export const useValibotI18n = function (options: v.GlobalConfig) {
-  const defaultActions = () => {
-    maxLength()
-  }
-
-  /*
-  let customActions: () => void = () => undefined
+  let i18nActions: () => void = () => undefined
 
   const setup = (func: () => void): void => {
-    customActions = func
+    i18nActions = func
   }
-  */
 
   const globalConfig = () => {
     v.setGlobalConfig(options)
@@ -22,10 +15,9 @@ export const useValibotI18n = function (options: v.GlobalConfig) {
 
   const initValibotI18n = () => {
     schemaMessage()
-    defaultActions()
-    // customActions()
+    i18nActions()
     globalConfig()
   }
 
-  return { initValibotI18n /* , setup */ }
+  return { initValibotI18n, setup }
 }
