@@ -11,10 +11,16 @@
         "word": "Tag or Name or YYYY/MM/DD"
       }
     },
-    "rules": {
-      "required": "Required.",
-      "schemaMessage": "Invalid type: Please enter as type {expected}, not type {received}.",
-      "maxLength": "are limited to {max} characters."
+    "regle": {
+      "rules": {
+        "required": "Required."
+      }
+    },
+    "valibot": {
+      "actions": {
+        "maxLength": "are limited to {max} characters."
+      },
+      "schemaMessage": "Invalid type: Please enter as type {expected}, not type {received}."
     },
     "backend": {
       "error": {

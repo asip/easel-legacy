@@ -7,7 +7,7 @@ const { t, locale } = useI18nGlobal()
 export const schemaMessage = () => {
   v.setSchemaMessage(
     (issue) =>
-      t('rules.schemaMessage', {
+      t('valibot.schemaMessage', {
         received: issue.received,
         expected: issue.expected ?? '',
       }),

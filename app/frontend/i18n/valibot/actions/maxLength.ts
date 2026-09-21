@@ -7,7 +7,7 @@ const { t, locale } = useI18nGlobal()
 export const maxLength = () => {
   v.setSpecificMessage(
     v.maxLength,
-    (issue) => t('rules.maxLength', { max: issue.requirement.toString() }),
+    (issue) => t('valibot.actions.maxLength', { max: issue.requirement.toString() }),
     locale.value,
   )
 }
