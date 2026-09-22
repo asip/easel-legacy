@@ -8,32 +8,34 @@ export const useCookieValueObject = function <T extends object>(
 ) {
   const deep = options?.deep ?? false
 
-  let value: WritableComputedRef<T | null | undefined, T | string | null | undefined> | undefined
+  let cookieValue:
+    | WritableComputedRef<T | null | undefined, T | string | null | undefined>
+    | undefined
 
   if (deep) {
-    const valueRef = ref<T | null>()
+    const coieValueRef = ref<T | null>()
 
-    value = computed<T | null | undefined, T | string | null | undefined>({
+    cookieValue = computed<T | null | undefined, T | string | null | undefined>({
       get() {
-        valueRef.value = cookie.value ? (JSON.parse(cookie.value) as T) : null
-        return valueRef.value
+        coieValueRef.value = cookie.value ? (JSON.parse(cookie.value) as T) : null
+        return coieValueRef.value
       },
       set(value: T | string | null | undefined) {
         if (typeof value == 'string') {
-          valueRef.value = value ? (JSON.parse(value) as T) : null
+          coieValueRef.value = value ? (JSON.parse(value) as T) : null
           cookie.value = value
         } else {
-          valueRef.value = value
+          coieValueRef.value = value
           cookie.value = JSON.stringify(value ?? {})
         }
       },
     })
 
-    watch(valueRef, () => {
-      if (value) value.value = valueRef.value
+    watch(coieValueRef, () => {
+      if (cookieValue) cookieValue.value = coieValueRef.value
     })
   } else {
-    value = computed<T | null | undefined, T | string | null | undefined>({
+    cookieValue = computed<T | null | undefined, T | string | null | undefined>({
       get() {
         return cookie.value ? (JSON.parse(cookie.value) as T) : null
       },
@@ -47,5 +49,5 @@ export const useCookieValueObject = function <T extends object>(
     })
   }
 
-  return value
+  return cookieValue
 }
