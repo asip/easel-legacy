@@ -1,5 +1,5 @@
-import './items/locale'
 import './items/i18n'
+import './items/locale'
 import './items/time-zone'
 import './items/config'
 import './items/turbo'
