@@ -1,5 +1,5 @@
 import '@/i18n'
 
-import { useValibot } from '@/composables'
+import { useValibotConfig } from '@/composables'
 
-useValibot()
+useValibotConfig()
