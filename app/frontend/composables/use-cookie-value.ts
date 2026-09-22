@@ -5,27 +5,29 @@ import { CookieRef } from '@/types'
 export const useCookieValue = function (cookie: CookieRef, options?: { deep: boolean }) {
   const deep = options?.deep ?? false
 
-  let value: WritableComputedRef<string | null | undefined, string | null | undefined> | undefined
+  let cookieValue:
+    | WritableComputedRef<string | null | undefined, string | null | undefined>
+    | undefined
 
   if (deep) {
-    const valueRef = ref<string | null>()
+    const cookieValueRef = ref<string | null>()
 
-    value = computed<string | null | undefined, string | null | undefined>({
+    cookieValue = computed<string | null | undefined, string | null | undefined>({
       get() {
-        valueRef.value = cookie.value ? cookie.value : null
-        return valueRef.value
+        cookieValueRef.value = cookie.value ? cookie.value : null
+        return cookieValueRef.value
       },
       set(value: string | null | undefined) {
-        valueRef.value = value ?? ''
-        cookie.value = valueRef.value
+        cookieValueRef.value = value ?? ''
+        cookie.value = cookieValueRef.value
       },
     })
 
-    watch(valueRef, () => {
-      if (value) value.value = valueRef.value
+    watch(cookieValueRef, () => {
+      if (cookieValue) cookieValue.value = cookieValueRef.value
     })
   } else {
-    value = computed<string | null | undefined, string | null | undefined>({
+    cookieValue = computed<string | null | undefined, string | null | undefined>({
       get() {
         return cookie.value ? cookie.value : null
       },
@@ -35,5 +37,5 @@ export const useCookieValue = function (cookie: CookieRef, options?: { deep: boo
     })
   }
 
-  return value
+  return cookieValue
 }
