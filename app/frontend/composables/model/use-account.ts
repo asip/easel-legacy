@@ -12,7 +12,7 @@ export const useAccount = function () {
   const { loggedIn, account } = storeToRefs(useAccountStore())
   const { clearAccount } = useAccountStore()
 
-  // const { accessToken } = useCookieStore()
+  // const { accessToken } = useTokenCookie()
 
   const { flash, clearFlash } = useFlash()
 

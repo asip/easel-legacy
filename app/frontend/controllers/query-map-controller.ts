@@ -1,6 +1,6 @@
 import ApplicationController from './application-controller'
 
-import { useCookieStore } from '@/composables'
+import { useCriteriaCookie, useRefCookie, usePageCookie } from '@/composables'
 
 import { QueryItems } from '@/types'
 
@@ -12,7 +12,9 @@ export default class QueryMapController extends ApplicationController {
   declare readonly qValue: string
 
   setQueryMap(ev: Event): void {
-    const { criteria, refItems, page } = useCookieStore()
+    const { criteria } = useCriteriaCookie()
+    const { refItems } = useRefCookie()
+    const { page } = usePageCookie()
 
     ev.preventDefault()
 

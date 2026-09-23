@@ -1,8 +1,8 @@
 import { useTimeZone } from '@vesperjs/vue'
 
-import { useCookieStore } from '@/composables'
+import { useTimeZoneCookie } from '@/composables'
 
 const { timeZone } = useTimeZone()
-const { timeZone: clientTZ } = useCookieStore()
+const { timeZone: clientTZ } = useTimeZoneCookie()
 
 if (timeZone.value.client !== clientTZ.value) clientTZ.value = timeZone.value.client

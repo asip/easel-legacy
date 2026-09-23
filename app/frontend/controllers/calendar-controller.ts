@@ -5,7 +5,7 @@ import { Calendar } from 'vanilla-calendar-pro'
 import { ref } from 'vue'
 import { useElement, useLocale } from '@vesperjs/vue'
 
-import { useCalendar, useDate, useCookieStore } from '@/composables'
+import { useCalendar, useDate, useCriteriaCookie } from '@/composables'
 
 export default class CalendarController extends ApplicationController {
   static targets = ['cal', 'word']
@@ -21,7 +21,7 @@ export default class CalendarController extends ApplicationController {
   connect(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
       const { locale } = useLocale()
-      const { date: dateCookie } = useCookieStore()
+      const { date: dateCookie } = useCriteriaCookie()
       const { value: word } = useElement(this.wordTarget, { property: 'value' })
       const wordDate = useDate(word)
 

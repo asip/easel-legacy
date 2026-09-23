@@ -11,7 +11,7 @@ import {
   useComments,
   useCommentSchemas,
   useRegleI18n,
-  useCookieStore,
+  useRefCookie,
   useToast,
 } from '@/composables'
 
@@ -20,7 +20,7 @@ import {
 
 const { toast } = useToast()
 
-const { refItems } = useCookieStore()
+const { refItems } = useRefCookie()
 
 const { loggedIn, account } = useAccount()
 const {

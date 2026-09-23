@@ -4,12 +4,12 @@ import { useRegleSchema } from '@regle/schemas'
 import { useLocale, useFormAction } from '@vesperjs/vue'
 
 import { Criteria /* , QueryItems */ } from '@/types'
-import { useCookieStore } from '@/composables'
+import { useCriteriaCookie } from '@/composables'
 import { useFrameSearchSchema } from './validation'
 
 export const useFrameSearch = function () {
   const { autodetect } = useLocale()
-  const { criteria } = useCookieStore()
+  const { criteria } = useCriteriaCookie()
   const { frameSearchSchema } = useFrameSearchSchema()
   const { submit: submitForm } = useFormAction()
 
