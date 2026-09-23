@@ -1,4 +1,4 @@
-export { useRegleI18n } from './use-i18n-regle'
+export { useRegleI18n } from './use-regle-i18n'
 export { useValibotI18n } from './use-valibot-i18n'
 export { useValibotConfig } from './use-valibot-config'
 
