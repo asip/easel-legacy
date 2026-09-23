@@ -10,7 +10,7 @@ import {
   useComment,
   useComments,
   useCommentSchemas,
-  useI18nRegle,
+  useRegleI18n,
   useCookieStore,
   useToast,
 } from '@/composables'
@@ -39,7 +39,7 @@ const { getComments } = useComments()
 
 const { commentSchema } = useCommentSchemas()
 
-const { r$ } = useI18nRegle(comment, commentSchema, { externalErrors })
+const { r$ } = useRegleI18n(comment, commentSchema, { externalErrors })
 
 const edit = ref<boolean>(false)
 

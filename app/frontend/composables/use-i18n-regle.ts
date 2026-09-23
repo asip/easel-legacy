@@ -2,7 +2,7 @@ import { defineRegleConfig } from '@regle/core'
 
 import { required } from '@/i18n/regle/rules'
 
-export const { useRegle: useI18nRegle } = defineRegleConfig({
+export const { useRegle: useRegleI18n } = defineRegleConfig({
   rules: () => ({
     required: required(),
   }),
