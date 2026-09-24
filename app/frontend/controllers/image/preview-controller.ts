@@ -13,8 +13,8 @@ export default class PreviewController extends ApplicationController {
 
   upload(evt: Event): void {
     const previewUrl = usePreviewUrl({
-      imageEl: this.imageTarget,
-      previewEl: this.previewTarget,
+      image: this.imageTarget,
+      preview: this.previewTarget,
     })
     const { preview } = useImagePreview(previewUrl)
 

@@ -3,12 +3,12 @@ import { computed } from '@vue/reactivity'
 import { useElement } from '@vesperjs/vue'
 
 interface PreviewUrlOptions {
-  imageEl: HTMLImageElement | null
-  previewEl: HTMLElement | null
+  image: HTMLImageElement | null
+  preview: HTMLElement | null
 }
 
-export const usePreviewUrl = function ({ imageEl, previewEl }: PreviewUrlOptions) {
-  const { src } = useElement<HTMLImageElement>(imageEl, { property: 'src' })
+export const usePreviewUrl = function ({ image, preview }: PreviewUrlOptions) {
+  const { src } = useElement<HTMLImageElement>(image, { property: 'src' })
 
   const previewUrl = computed<string | null>({
     get() {
@@ -28,14 +28,14 @@ export const usePreviewUrl = function ({ imageEl, previewEl }: PreviewUrlOptions
   const showPreview = (): void => {
     // If there is no preview image, it will be displayed.
     // (プレビュー画像がなければ表示します)
-    if (previewEl && previewEl.classList.contains('hidden')) {
-      previewEl.classList.remove('hidden')
+    if (preview && preview.classList.contains('hidden')) {
+      preview.classList.remove('hidden')
     }
   }
 
   const hidePreview = (): void => {
-    if (previewEl && !previewEl.classList.contains('hidden')) {
-      previewEl.classList.add('hidden')
+    if (preview && !preview.classList.contains('hidden')) {
+      preview.classList.add('hidden')
     }
   }
 
