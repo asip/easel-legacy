@@ -1,5 +1,4 @@
 <script lang="ts" setup vapor>
-import { computed } from 'vue'
 import { useLocale } from '@vesperjs/vue'
 
 import Calendar from './Calendar.vue'
@@ -8,16 +7,7 @@ import { useDate, useFrameSearch } from '@/composables'
 
 const { locale } = useLocale()
 
-const { form, criteria, r$, submit } = useFrameSearch()
-
-const word = computed<string>({
-  get() {
-    return form.value.word ?? ''
-  },
-  set(value: string) {
-    form.value.word = value
-  },
-})
+const { form, word, criteria, r$, submit } = useFrameSearch()
 
 const wordDate = useDate(word)
 

@@ -17,6 +17,15 @@ export const useFrameSearch = function () {
 
   const form = ref<Criteria>({})
 
+  const word = computed<string>({
+    get() {
+      return form.value.word ?? ''
+    },
+    set(value: string) {
+      form.value.word = value
+    },
+  })
+
   const qItems = computed<Criteria>(() => {
     const items: Criteria = {}
     if (form.value.word) items.word = form.value.word
@@ -47,6 +56,7 @@ export const useFrameSearch = function () {
 
   return {
     form,
+    word,
     criteria,
     r$,
     submit,
