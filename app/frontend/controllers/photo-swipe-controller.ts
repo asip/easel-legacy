@@ -17,8 +17,7 @@ export default class PhotoSwipeController extends ApplicationController {
 
   connect(): void {
     if (this.selectorValue) {
-      const { initPhotoSwipe } = usePhotoSwipe({
-        selector: this.selectorValue,
+      const { initPhotoSwipe } = usePhotoSwipe(this.selectorValue, {
         anchor: this.anchorValue,
       })
 
