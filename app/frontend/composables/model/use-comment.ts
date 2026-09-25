@@ -7,7 +7,7 @@ import type { BackendErrorResource, BackendErrorsResource } from '@vesperjs/vue'
 import type { Comment, CommentResource } from '@/types'
 import type { CommentErrorProperty } from '@/types'
 
-import { useAccountStore } from '@/stores'
+import { useAccount } from '@/composables'
 
 export const useComment = function () {
   const { t } = useI18n()
@@ -16,7 +16,7 @@ export const useComment = function () {
   const { flash, clearFlash } = useFlash()
   const { copy } = useEntity<Comment, CommentResource>()
   // const { token } = useAccount()
-  const { clearAccount } = useAccountStore()
+  const { clearAccount } = useAccount()
 
   const comment = ref<Comment>({
     id: undefined,
