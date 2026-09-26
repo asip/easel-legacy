@@ -2,9 +2,8 @@ import * as v from 'valibot'
 
 import { useI18nGlobal } from '@vesperjs/vue'
 
-const { t, locale } = useI18nGlobal()
-
 export const schemaMessage = () => {
+  const { t, locale } = useI18nGlobal()
   v.setSchemaMessage(
     (issue) =>
       t('valibot.schemaMessage', {
