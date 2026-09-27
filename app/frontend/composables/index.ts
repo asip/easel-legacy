@@ -5,7 +5,7 @@ export { useValibotConfig } from './use-valibot-config'
 export {
   useElements,
   usePreviewUrl,
-  useCalendar,
+  useVanillaCalendarPro,
   useImagePreview,
   usePhotoSwipe,
   useTagify,
