@@ -14,12 +14,12 @@ export const useCookieValue = function (cookie: CookieRef, options?: { deep: boo
 
     cookieValue = computed<string | null | undefined, string | null | undefined>({
       get() {
-        cookieValueRef.value = cookie.value ? cookie.value : null
+        cookieValueRef.value = cookie.value
         return cookieValueRef.value
       },
       set(value: string | null | undefined) {
-        cookieValueRef.value = value ?? ''
-        cookie.value = cookieValueRef.value
+        cookieValueRef.value = value
+        cookie.value = value
       },
     })
 
@@ -29,10 +29,10 @@ export const useCookieValue = function (cookie: CookieRef, options?: { deep: boo
   } else {
     cookieValue = computed<string | null | undefined, string | null | undefined>({
       get() {
-        return cookie.value ? cookie.value : null
+        return cookie.value
       },
       set(value: string | null | undefined) {
-        cookie.value = value ?? ''
+        cookie.value = value
       },
     })
   }

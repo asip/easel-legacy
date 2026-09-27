@@ -4,18 +4,19 @@ import { useCookies } from '@vueuse/integrations/useCookies'
 
 import { CookieRef } from '@/types'
 
-export const useCookie = function <T = string>(
-  name: string,
-  options?: CookieSetOptions,
-): CookieRef<T> {
+export const useCookie = function (name: string, options?: CookieSetOptions): CookieRef {
   const cookies = useCookies([name])
 
-  const cookie: CookieRef<T> = computed<T, T | string>({
+  const cookie: CookieRef = computed<string, string | null | undefined>({
     get() {
-      return cookies.get<T>(name)
+      return cookies.get<string>(name)
     },
-    set(value: T | string) {
-      cookies.set(name, value, options)
+    set(value: string | null | undefined) {
+      if (value) {
+        cookies.set(name, value, options)
+      } else {
+        cookies.remove(name, options)
+      }
     },
   })
 
