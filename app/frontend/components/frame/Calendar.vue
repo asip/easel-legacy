@@ -9,19 +9,19 @@ const { locale = 'ja' } = defineProps<{ locale?: Locale }>()
 
 const calendarRef = useTemplateRef('calendarRef')
 
-const { selectedDate, initCalendar, closeCalendar } = useVanillaCalendarPro({
+const { selectedDate, init, close } = useVanillaCalendarPro({
   el: calendarRef,
   date,
   locale,
 })
 
 onMounted(() => {
-  initCalendar()
+  init()
   selectedDate.value = date.value
 })
 
 onUnmounted(() => {
-  closeCalendar()
+  close()
 })
 </script>
 

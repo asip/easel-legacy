@@ -13,11 +13,11 @@ export const useValibotI18n = function (options: v.GlobalConfig) {
     v.setGlobalConfig(options)
   }
 
-  const initValibotI18n = () => {
+  const init = () => {
     schemaMessage()
     i18nActions()
     globalConfig()
   }
 
-  return { initValibotI18n, setup }
+  return { init, setup }
 }

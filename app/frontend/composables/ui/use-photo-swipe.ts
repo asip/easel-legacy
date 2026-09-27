@@ -24,7 +24,7 @@ export const usePhotoSwipe = function (
     }
   }
 
-  const initPhotoSwipe = async () => {
+  const init = async () => {
     await assignSize()
 
     const lightbox = new PhotoSwipeLightbox({
@@ -46,5 +46,5 @@ export const usePhotoSwipe = function (
     return img
   }
 
-  return { initPhotoSwipe }
+  return { init }
 }

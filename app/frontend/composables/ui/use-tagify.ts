@@ -38,7 +38,7 @@ export const useTagify = function (
     },
   })
 
-  const initTagify = (): Tagify => {
+  const init = (): Tagify => {
     tagEditor = new Tagify(el, settings)
 
     eventCallbacks()
@@ -72,5 +72,5 @@ export const useTagify = function (
     autocomplete.value = value
   }
 
-  return { tags, initTagify }
+  return { tags, init }
 }

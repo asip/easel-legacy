@@ -55,7 +55,7 @@ export const useVanillaCalendarPro = function ({
 
   const utcToday = computed<Date>(() => tzDate(new Date(), 'utc'))
 
-  const initCalendar = (): Calendar | null => {
+  const init = (): Calendar | null => {
     // globalThis.console.log(utcDate.value)
 
     if (!el?.value) return null
@@ -75,7 +75,7 @@ export const useVanillaCalendarPro = function ({
     return calendar
   }
 
-  const closeCalendar = () => {
+  const close = () => {
     calendar?.destroy()
   }
 
@@ -85,5 +85,5 @@ export const useVanillaCalendarPro = function ({
     })
   }
 
-  return { selectedDate, initCalendar, closeCalendar }
+  return { selectedDate, init, close }
 }

@@ -5,11 +5,11 @@ import { maxLength } from '@/i18n/valibot/actions'
 
 export const useValibotConfig = () => {
   const { locale } = useI18nGlobal()
-  const { initValibotI18n, setup } = useValibotI18n({ lang: locale.value })
+  const { init, setup } = useValibotI18n({ lang: locale.value })
 
   setup(() => {
     maxLength()
   })
 
-  initValibotI18n()
+  init()
 }
