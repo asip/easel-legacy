@@ -1,4 +1,4 @@
-import { format, parse, tzDate } from '@formkit/tempo'
+import { format, parse, tzDate, type Format } from '@formkit/tempo'
 import { computed, watch, type Ref } from '@vue/reactivity'
 import { Calendar, type Options } from 'vanilla-calendar-pro'
 
@@ -6,7 +6,7 @@ interface VanillaCalendarProOptions {
   el?: Ref<HTMLElement | null>
   date?: Ref<Date | null | undefined>
   calendar?: Calendar | null
-  options?: Options
+  options?: Options & { fmtDate?: Format }
 }
 
 export const useVanillaCalendarPro = function ({
@@ -15,9 +15,11 @@ export const useVanillaCalendarPro = function ({
   calendar,
   options,
 }: VanillaCalendarProOptions) {
+  const fmtDate = options?.fmtDate ?? 'YYYY/MM/DD'
+
   const selectedDate = computed<Date | null | undefined>({
     get() {
-      return selectedDateUTC.value ? parse(format(selectedDateUTC.value, 'YYYY/MM/DD')) : null
+      return selectedDateUTC.value ? parse(format(selectedDateUTC.value, fmtDate)) : null
     },
     set(value: Date | null) {
       selectedDateUTC.value = value ? tzDate(format(value, 'YYYY-MM-DD HH:mm:ss'), 'utc') : null
@@ -66,7 +68,7 @@ export const useVanillaCalendarPro = function ({
         // globalThis.console.log(`selected:${self.context.selectedDates[0]}`)
         // globalThis.console.log(`today:${self.context.dateToday}`)
         const value = (self.context.selectedDates[0] ?? '') as string
-        if (date) date.value = value ? parse(format(value, 'YYYY/MM/DD'), 'YYYY/MM/DD') : null
+        if (date) date.value = value ? parse(format(value, fmtDate), fmtDate) : null
       },
     })
 
