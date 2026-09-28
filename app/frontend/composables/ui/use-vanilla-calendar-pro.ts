@@ -1,19 +1,19 @@
 import { format, parse, tzDate } from '@formkit/tempo'
 import { computed, watch, type Ref } from '@vue/reactivity'
-import { Calendar, Locale } from 'vanilla-calendar-pro'
+import { Calendar, type Options } from 'vanilla-calendar-pro'
 
 interface VanillaCalendarProOptions {
   el?: Ref<HTMLElement | null>
   date?: Ref<Date | null | undefined>
   calendar?: Calendar | null
-  locale?: Locale
+  options?: Options
 }
 
 export const useVanillaCalendarPro = function ({
   el,
   date,
   calendar,
-  locale = 'ja',
+  options,
 }: VanillaCalendarProOptions) {
   const selectedDate = computed<Date | null | undefined>({
     get() {
@@ -61,7 +61,7 @@ export const useVanillaCalendarPro = function ({
     if (!el?.value) return null
 
     calendar = new Calendar(el.value, {
-      locale: locale,
+      ...options,
       onClickDate(self) {
         // globalThis.console.log(`selected:${self.context.selectedDates[0]}`)
         // globalThis.console.log(`today:${self.context.dateToday}`)

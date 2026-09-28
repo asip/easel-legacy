@@ -1,18 +1,18 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted, useTemplateRef } from 'vue'
-import { type Locale } from 'vanilla-calendar-pro'
+import { type Options } from 'vanilla-calendar-pro'
 
 import { useVanillaCalendarPro } from '@/composables'
 
 const date = defineModel<Date | null>()
-const { locale = 'ja' } = defineProps<{ locale?: Locale }>()
+const { options } = defineProps<{ options?: Options }>()
 
 const calendarRef = useTemplateRef('calendarRef')
 
 const { selectedDate, init, close } = useVanillaCalendarPro({
   el: calendarRef,
   date,
-  locale,
+  options,
 })
 
 onMounted(() => {

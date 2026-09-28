@@ -30,7 +30,7 @@ export default class CalendarController extends ApplicationController {
       const { selectedDate, init } = useVanillaCalendarPro({
         el: ref(this.calTarget),
         date: wordDate,
-        locale: locale.value,
+        options: { locale: locale.value },
       })
       this.calendar = init()
       selectedDate.value = wordDate.value
