@@ -3,12 +3,10 @@ import { computed, ref } from '@vue/reactivity'
 
 import type { Flash } from '@vesperjs/vue'
 
+import type StartToastifyInstance from 'toastify-js'
 const Toastify = (await import('toastify-js')).default
 
-export const useToastify = function (options?: {
-  duration?: number
-  style?: Record<string, string>
-}) {
+export const useToastify = function (options?: StartToastifyInstance.Options) {
   const messages = ref<Flash | Record<string, string[]>>()
 
   const toast = computed<Flash | Record<string, string[]> | undefined>({
@@ -30,7 +28,7 @@ export const useToastify = function (options?: {
   const setFlash = (flash: Flash): void => {
     for (const message of Object.values(flash) as string[]) {
       if (message !== '') {
-        Toastify({ text: message, ...options }).showToast()
+        Toastify({ ...options, text: message }).showToast()
       }
     }
   }
