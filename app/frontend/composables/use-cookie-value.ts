@@ -5,9 +5,7 @@ import { CookieRef } from '@/types'
 export const useCookieValue = function (cookie: CookieRef, options?: { deep: boolean }) {
   const deep = options?.deep ?? false
 
-  let cookieValue:
-    | WritableComputedRef<string | null | undefined, string | null | undefined>
-    | undefined
+  let cookieValue: WritableComputedRef<string | null | undefined> | undefined
 
   if (deep) {
     const cookieValueRef = ref<string | null>()
