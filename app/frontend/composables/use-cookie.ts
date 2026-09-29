@@ -1,21 +1,45 @@
-import { computed } from '@vue/reactivity'
-import type { CookieSetOptions } from 'universal-cookie'
-import { useCookies } from '@vueuse/integrations/useCookies'
+import { computed, ref } from '@vue/reactivity'
 
 import { CookieRef } from '@/types'
 
-export const useCookie = function (name: string, options?: CookieSetOptions): CookieRef {
-  const cookies = useCookies([name])
+interface CookieOptions {
+  domain?: string | null
+  expires?: DOMHighResTimeStamp | null
+  partitioned?: boolean
+  path?: string
+  sameSite?: CookieSameSite
+}
 
-  const cookie: CookieRef = computed<string, string | null | undefined>({
+export const useCookie = function (name: string, options?: CookieOptions): CookieRef {
+  const cookie: CookieRef = computed<string | null | undefined>({
     get() {
-      return cookies.get<string>(name)
+      const cookieValue = ref<CookieListItem | null>()
+      try {
+        void (async () => {
+          cookieValue.value = await globalThis.cookieStore.get(name)
+        })()
+      } catch {
+        cookieValue.value = undefined
+      }
+      return cookieValue.value?.value
     },
     set(value: string | null | undefined) {
       if (value) {
-        cookies.set(name, value, options)
+        try {
+          void (async () => {
+            await globalThis.cookieStore.set({ name, value, ...options })
+          })()
+        } catch {
+          /* empty */
+        }
       } else {
-        cookies.remove(name, options)
+        try {
+          void (async () => {
+            await globalThis.cookieStore.delete(name)
+          })()
+        } catch {
+          /* empty */
+        }
       }
     },
   })
