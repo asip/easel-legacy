@@ -13,15 +13,15 @@ interface CookieOptions {
 export const useCookie = function (name: string, options?: CookieOptions): CookieRef {
   const cookie: CookieRef = computed<string | null | undefined>({
     get() {
-      const cookieValue = ref<CookieListItem | null>()
+      const itemRef = ref<CookieListItem | null>()
       try {
         void (async () => {
-          cookieValue.value = await globalThis.cookieStore.get(name)
+          itemRef.value = await globalThis.cookieStore.get(name)
         })()
       } catch {
-        cookieValue.value = undefined
+        itemRef.value = undefined
       }
-      return cookieValue.value?.value
+      return itemRef.value?.value
     },
     set(value: string | null | undefined) {
       if (value) {
