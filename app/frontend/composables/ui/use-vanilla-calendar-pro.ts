@@ -16,6 +16,7 @@ export const useVanillaCalendarPro = function ({
   options,
 }: VanillaCalendarProOptions) {
   const fmtDate = options?.fmtDate ?? 'YYYY/MM/DD'
+  if (options?.fmtDate) delete options.fmtDate
 
   const selectedDate = computed<Date | null | undefined>({
     get() {
