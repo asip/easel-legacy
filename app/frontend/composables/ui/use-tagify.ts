@@ -6,16 +6,18 @@ interface AutocompleteTagsType {
   filterBy: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
 }
 
-interface TagifyOptions {
-  settings: Tagify.TagifySettings
-  tagList: Ref<string[] | undefined>
+type TagifyOptions = Tagify.TagifySettings & {
   autocompleteTags?: AutocompleteTagsType
 }
 
 export const useTagify = function (
   el: HTMLInputElement | HTMLTextAreaElement,
-  { settings, tagList, autocompleteTags }: TagifyOptions,
+  tagList: Ref<string[] | undefined>,
+  options: TagifyOptions,
 ) {
+  const autocompleteTags = options.autocompleteTags
+  if (options.autocompleteTags) delete options.autocompleteTags
+
   let tagEditor: Tagify | null = null
   let controller: AbortController | null = null
 
@@ -39,7 +41,7 @@ export const useTagify = function (
   })
 
   const init = (): Tagify => {
-    tagEditor = new Tagify(el, settings)
+    tagEditor = new Tagify(el, options)
 
     eventCallbacks()
 
