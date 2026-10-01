@@ -7,7 +7,7 @@ import type { Criteria } from '@/types'
 export const useCriteriaCookie = function () {
   const { isValidDate } = useDateUtil()
 
-  const criteriaCookie = useCookie('q', { path: '/' })
+  const criteriaCookie = useCookie('c', { path: '/' })
   const criteria = useCookieValueObject<Criteria>(criteriaCookie, { deep: true })
 
   const word = computed<string>(() => {

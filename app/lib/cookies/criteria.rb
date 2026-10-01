@@ -7,7 +7,7 @@ class Cookies::Criteria
   end
 
   def criteria
-    criteria = @cookies[:q]
+    criteria = @cookies[:c]
     criteria.present? ? criteria : "{}"
   end
 
