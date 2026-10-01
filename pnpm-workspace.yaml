@@ -1,7 +1,19 @@
 allowBuilds:
   '@parcel/watcher': false
 minimumReleaseAgeExclude:
-  - '@vesperjs/shared@0.11.0'
-  - '@vesperjs/vue@0.11.0'
+  - launder@1.7.2
+  - sanitize-html@2.18.0
+  - '@vue/compiler-core@3.6.0-rc.10'
+  - '@vue/compiler-dom@3.6.0-rc.10'
+  - '@vue/compiler-sfc@3.6.0-rc.10'
+  - '@vue/compiler-ssr@3.6.0-rc.10'
+  - '@vue/compiler-vapor@3.6.0-rc.10'
+  - '@vue/reactivity@3.6.0-rc.10'
+  - '@vue/runtime-core@3.6.0-rc.10'
+  - '@vue/runtime-dom@3.6.0-rc.10'
+  - '@vue/runtime-vapor@3.6.0-rc.10'
+  - '@vue/server-renderer@3.6.0-rc.10'
+  - '@vue/shared@3.6.0-rc.10'
+  - vue@3.6.0-rc.10
 overrides:
-  vue: ^3.6.0-rc.8
+  vue: ^3.6.0-rc.10
