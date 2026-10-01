@@ -23,7 +23,7 @@ export default class QueryMapController extends ApplicationController {
 
     if (map.q) criteria.value = map.q
     refItems.value = map.ref ?? '{}'
-    if (map.page) page.value = map.page
+    page.value = map.page ?? '1'
     // globalThis.console.log(criteria.value)
     // globalThis.console.log(refItems.value)
     // globalThis.console.log(page.value)
