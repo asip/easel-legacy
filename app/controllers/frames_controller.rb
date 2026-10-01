@@ -13,7 +13,7 @@ class FramesController < ApplicationController
   include More
 
   def index
-    self.cookie_query_map.page = page_number
+    self.cookie_query_map.page = page_number if page_number.present?
     @pagy, @frames = list_frames(user: current_user, form:, page: cookie_query_map.page)
   end
 
