@@ -1,6 +1,6 @@
 import { computed, ref, watch, type WritableComputedRef } from '@vue/reactivity'
 
-import { CookieRef } from '@/types'
+import type { CookieRef } from '@vesperjs/vue'
 
 export const useCookieValue = function (cookie: CookieRef, options?: { deep: boolean }) {
   const deep = options?.deep ?? false

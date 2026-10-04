@@ -1,7 +1,7 @@
 import { computed } from '@vue/reactivity'
-import { useDateUtil } from '@vesperjs/vue'
+import { useCookie, useDateUtil } from '@vesperjs/vue'
 
-import { useCookie, useCookieValueObject } from '@/composables'
+import { useCookieValueObject } from '@/composables'
 import type { Criteria } from '@/types'
 
 export const useCriteriaCookie = function () {

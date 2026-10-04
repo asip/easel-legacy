@@ -31,7 +31,6 @@ export { useCriteriaCookie, useRefCookie, usePageCookie, useTimeZoneCookie } fro
 export { useConfig } from './use-config'
 export type { ConfigType } from './use-config'
 
-export { useCookie } from './use-cookie'
 export { useCookieValue } from './use-cookie-value'
 export { useCookieValueObject } from './use-cookie-value-object'
 

@@ -1,6 +1,6 @@
 import { computed, ref, watch, type WritableComputedRef } from '@vue/reactivity'
 
-import { CookieRef } from '@/types'
+import type { CookieRef } from '@vesperjs/vue'
 
 export const useCookieValueObject = function <T extends object>(
   cookie: CookieRef,

@@ -1,4 +1,6 @@
-import { useCookie, useCookieValueObject } from '@/composables'
+import { useCookie } from '@vesperjs/vue'
+
+import { useCookieValueObject } from '@/composables'
 import type { RefItems } from '@/types'
 
 export const useRefCookie = function () {
