@@ -26,7 +26,7 @@ export const useCookieValueObject = function <T extends object>(
           cookie.value = value
         } else {
           cookieValueRef.value = value
-          cookie.value = JSON.stringify(value ?? {})
+          cookie.value = value ? JSON.stringify(value) : null
         }
       },
     })
@@ -43,7 +43,7 @@ export const useCookieValueObject = function <T extends object>(
         if (typeof value == 'string') {
           cookie.value = value
         } else {
-          cookie.value = JSON.stringify(value ?? {})
+          cookie.value = value ? JSON.stringify(value) : null
         }
       },
     })
