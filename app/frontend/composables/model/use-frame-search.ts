@@ -50,7 +50,7 @@ export const useFrameSearch = function () {
 
     if (valid) {
       criteria.value = qItems.value
-      page.value = '1'
+      page.value = null
 
       submitForm(ev)
     }

@@ -18,7 +18,7 @@
     "@regle/core": "^1.29.4",
     "@regle/rules": "^1.29.4",
     "@regle/schemas": "^1.29.4",
-    "@vesperjs/vue": "0.12.0",
+    "@vesperjs/vue": "0.12.1",
     "@yaireo/tagify": "^4.39.0",
     "glightbox": "^3.3.1",
     "js-cookie": "^3.0.8",
