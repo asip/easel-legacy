@@ -4,12 +4,13 @@ import { useRegleSchema } from '@regle/schemas'
 import { useLocale, useFormAction } from '@vesperjs/vue'
 
 import { Criteria /* , QueryItems */ } from '@/types'
-import { useCriteriaCookie } from '@/composables'
+import { useCriteriaCookie, usePageCookie } from '@/composables'
 import { useFrameSearchSchema } from './validation'
 
 export const useFrameSearch = function () {
   const { autodetect } = useLocale()
   const { criteria } = useCriteriaCookie()
+  const { page } = usePageCookie()
   const { frameSearchSchema } = useFrameSearchSchema()
   const { submit: submitForm } = useFormAction()
 
@@ -49,6 +50,7 @@ export const useFrameSearch = function () {
 
     if (valid) {
       criteria.value = qItems.value
+      page.value = '1'
 
       submitForm(ev)
     }
