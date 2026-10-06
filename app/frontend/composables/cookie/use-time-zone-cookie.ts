@@ -1,10 +1,7 @@
-import { useCookie } from '@vesperjs/vue'
-
 import { useCookieValue } from '@/composables'
 
 export const useTimeZoneCookie = function () {
-  const timeZoneCookie = useCookie('time_zone', { path: '/' })
-  const timeZone = useCookieValue(timeZoneCookie)
+  const timeZone = useCookieValue('time_zone', { path: '/' })
 
   return { timeZone }
 }

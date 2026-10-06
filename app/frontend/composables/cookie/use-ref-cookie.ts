@@ -1,11 +1,8 @@
-import { useCookie } from '@vesperjs/vue'
-
 import { useCookieValueObject } from '@/composables'
 import type { RefItems } from '@/types'
 
 export const useRefCookie = function () {
-  const refCookie = useCookie('ref', { path: '/' })
-  const refItems = useCookieValueObject<RefItems>(refCookie, { deep: true })
+  const refItems = useCookieValueObject<RefItems>('ref', { path: '/', watch: true })
 
   return { refItems }
 }

@@ -1,5 +1,5 @@
 import { computed } from '@vue/reactivity'
-import { useCookie, useDateUtil } from '@vesperjs/vue'
+import { useDateUtil } from '@vesperjs/vue'
 
 import { useCookieValueObject } from '@/composables'
 import type { Criteria } from '@/types'
@@ -7,8 +7,7 @@ import type { Criteria } from '@/types'
 export const useCriteriaCookie = function () {
   const { isValidDate } = useDateUtil()
 
-  const criteriaCookie = useCookie('c', { path: '/' })
-  const criteria = useCookieValueObject<Criteria>(criteriaCookie, { deep: true })
+  const criteria = useCookieValueObject<Criteria>('c', { path: '/', watch: true })
 
   const word = computed<string>(() => {
     return criteria.value?.word ?? ''
