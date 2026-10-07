@@ -50,7 +50,7 @@ const commentBody = computed<string>(() =>
 )
 
 const onNameClick = (): void => {
-  if (refItems.value) refItems.value.from = 'frame'
+  refItems.value = { from: 'frame' }
 }
 
 const onEditClick = (): void => {
