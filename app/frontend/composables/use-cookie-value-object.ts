@@ -1,6 +1,4 @@
-import { useCookie } from '@vesperjs/vue'
-
-import type { CookieAttributes } from '@/types'
+import { useCookie, type CookieAttributes } from '@vesperjs/vue'
 
 import { useCookieVO } from './cookie/value'
 
