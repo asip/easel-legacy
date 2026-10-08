@@ -23,7 +23,7 @@ const onFormSubmit = async (ev: globalThis.SubmitEvent) => {
   <div>
     <div class="flex justify-center mb-2">
       <div class="mx-auto">
-        <Calendar v-model="wordDate" :options="{ locale }" />
+        <Calendar v-model="wordDate" :options="{ locale: locale.value }" />
       </div>
     </div>
     <div class="flex justify-start">
