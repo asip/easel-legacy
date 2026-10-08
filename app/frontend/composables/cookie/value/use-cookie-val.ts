@@ -1,39 +1,16 @@
-import { computed, ref, watch, type WritableComputedRef } from '@vue/reactivity'
+import { computed } from '@vue/reactivity'
 
 import type { CookieRef } from '@vesperjs/vue'
 
-export const useCookieVal = function (cookie: CookieRef, options?: { watch: boolean }) {
-  const watchOption = options?.watch ?? false
-
-  let cookieValue: WritableComputedRef<string | null | undefined> | undefined
-
-  if (watchOption) {
-    const cookieValueRef = ref<string | null>()
-
-    cookieValue = computed<string | null | undefined, string | null | undefined>({
-      get() {
-        cookieValueRef.value = cookie.value
-        return cookieValueRef.value
-      },
-      set(value: string | null | undefined) {
-        cookieValueRef.value = value
-        cookie.value = value
-      },
-    })
-
-    watch(cookieValueRef, () => {
-      if (cookieValue) cookieValue.value = cookieValueRef.value
-    })
-  } else {
-    cookieValue = computed<string | null | undefined, string | null | undefined>({
-      get() {
-        return cookie.value
-      },
-      set(value: string | null | undefined) {
-        cookie.value = value
-      },
-    })
-  }
+export const useCookieVal = function (cookie: CookieRef) {
+  const cookieValue = computed<string | null | undefined>({
+    get() {
+      return cookie.value
+    },
+    set(value: string | null | undefined) {
+      cookie.value = value
+    },
+  })
 
   return cookieValue
 }
