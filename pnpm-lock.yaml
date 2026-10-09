@@ -47,9 +47,6 @@ importers:
       glightbox:
         specifier: ^3.3.1
         version: 3.3.1
-      js-cookie:
-        specifier: ^3.0.8
-        version: 3.0.8
       lucide-static:
         specifier: ^1.52.0
         version: 1.52.0
@@ -99,9 +96,6 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.3.3(jiti@2.7.0)(sass-embedded@1.105.1)(sass@1.105.1))
-      '@types/js-cookie':
-        specifier: ^3.0.6
-        version: 3.0.6
       '@types/sanitize-html':
         specifier: ^2.16.2
         version: 2.16.2
@@ -895,9 +889,6 @@ packages:
 
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
-
-  '@types/js-cookie@3.0.6':
-    resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -3129,8 +3120,6 @@ snapshots:
   '@types/esrecurse@4.3.1': {}
 
   '@types/estree@1.0.8': {}
-
-  '@types/js-cookie@3.0.6': {}
 
   '@types/json-schema@7.0.15': {}
 
