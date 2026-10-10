@@ -18,8 +18,8 @@ export default class PreviewController extends ApplicationController {
     })
     const { preview } = useImagePreview(previewUrl)
 
-    // Retrieve the uploaded data and assign it to the file variable.
-    // (アップロードされたデータを取得して変数fileに代入します)
+    // Retrieve the selected data and assign it to the file variable.
+    // (選択されたデータを取得して変数fileに代入します)
     const file: File | null = (evt.target as HTMLInputElement).files?.item(0) ?? null
 
     preview.value = file

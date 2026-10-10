@@ -1,4 +1,4 @@
-import { computed } from '@vue/reactivity'
+import { customRef } from '@vue/reactivity'
 
 import { useElement } from '@vesperjs/vue'
 
@@ -10,19 +10,21 @@ interface PreviewUrlOptions {
 export const usePreviewUrl = function ({ image, preview }: PreviewUrlOptions) {
   const { src } = useElement<HTMLImageElement>(image, { property: 'src' })
 
-  const previewUrl = computed<string | null>({
-    get() {
-      return src.value
-    },
-    set(value: string | null) {
-      if (value) {
-        showPreview()
-      } else {
-        hidePreview()
-      }
+  const previewUrl = customRef<string | null>(() => {
+    return {
+      get() {
+        return src.value
+      },
+      set(value: string | null) {
+        if (value) {
+          showPreview()
+        } else {
+          hidePreview()
+        }
 
-      src.value = value
-    },
+        src.value = value
+      },
+    }
   })
 
   const showPreview = (): void => {

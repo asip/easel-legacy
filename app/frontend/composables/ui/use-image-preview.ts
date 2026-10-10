@@ -1,17 +1,19 @@
-import { computed, type Ref } from '@vue/reactivity'
+import { customRef, type Ref } from '@vue/reactivity'
 
 export const useImagePreview = function (url: Ref<string | null>) {
-  const preview = computed<string | null, File | null>({
-    get() {
-      return url.value
-    },
-    set(value: File | null) {
-      if (value?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
-        setPreview(value)
-      } else {
-        url.value = null
-      }
-    },
+  const preview = customRef<string | null, File | null>(() => {
+    return {
+      get() {
+        return url.value
+      },
+      set(value: File | null) {
+        if (value?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
+          setPreview(value)
+        } else {
+          url.value = null
+        }
+      },
+    }
   })
 
   const setPreview = (value: File | null): void => {
