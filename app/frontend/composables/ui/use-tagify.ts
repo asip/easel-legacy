@@ -1,4 +1,4 @@
-import { computed, type Ref } from '@vue/reactivity'
+import { customRef, type Ref } from '@vue/reactivity'
 import Tagify from '@yaireo/tagify'
 
 interface AutocompleteTagsType {
@@ -18,46 +18,50 @@ export const useTagify = function (
   const autocompleteTags = options.autocompleteTags
   if (options.autocompleteTags) delete options.autocompleteTags
 
-  let tagEditor: Tagify | null = null
+  let tagify: Tagify | null = null
   let controller: AbortController | null = null
 
-  const tags = computed<Tagify.TagData[] | undefined, string[] | undefined>({
-    get() {
-      return tagEditor?.value
-    },
-    set(value: string[] | undefined) {
-      tagEditor?.loadOriginalValues(value ?? [])
-    },
+  const tags = customRef<Tagify.TagData[] | undefined, string[] | undefined>(() => {
+    return {
+      get() {
+        return tagify?.value
+      },
+      set(value: string[] | undefined) {
+        tagify?.loadOriginalValues(value ?? [])
+      },
+    }
   })
 
-  const autocomplete = computed<string[] | Tagify.TagData[], string>({
-    get() {
-      return tagEditor?.whitelist ?? []
-    },
-    set(value: string) {
-      if (tagEditor) tagEditor.whitelist = autocompleteTags?.tags.value ?? []
-      tagEditor?.loading(false).dropdown.show(value)
-    },
+  const autocomplete = customRef<string[] | Tagify.TagData[], string>(() => {
+    return {
+      get() {
+        return tagify?.whitelist ?? []
+      },
+      set(value: string) {
+        if (tagify) tagify.whitelist = autocompleteTags?.tags.value ?? []
+        tagify?.loading(false).dropdown.show(value)
+      },
+    }
   })
 
   const init = (): Tagify => {
-    tagEditor = new Tagify(el, options)
+    tagify = new Tagify(el, options)
 
     eventCallbacks()
 
-    return tagEditor
+    return tagify
   }
 
   const eventCallbacks = (): void => {
-    tagEditor?.on('input', (ev) => {
+    tagify?.on('input', (ev) => {
       void (async () => {
         await onInput(ev)
       })()
     })
-    tagEditor?.on('add', () => {
+    tagify?.on('add', () => {
       tagList.value = tags.value?.map((v) => v.value)
     })
-    tagEditor?.on('remove', () => {
+    tagify?.on('remove', () => {
       tagList.value = tags.value?.map((v) => v.value)
     })
   }
@@ -65,7 +69,7 @@ export const useTagify = function (
   const onInput = async (ev: CustomEvent): Promise<void> => {
     // eslint-disable-next-line
     const value = ev.detail.value as string
-    if (tagEditor) tagEditor.whitelist = []
+    if (tagify) tagify.whitelist = []
 
     controller?.abort()
     controller = new AbortController()
