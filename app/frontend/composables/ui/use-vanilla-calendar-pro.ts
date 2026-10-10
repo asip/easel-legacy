@@ -1,5 +1,5 @@
 import { format, parse, tzDate, type Format } from '@formkit/tempo'
-import { computed, watch, type Ref } from '@vue/reactivity'
+import { computed, customRef, watch, type Ref } from '@vue/reactivity'
 import { Calendar, type Options } from 'vanilla-calendar-pro'
 
 interface VanillaCalendarProOptions {
@@ -28,32 +28,34 @@ export const useVanillaCalendarPro = function ({
   })
 
   // UTC Date (UTC日付)
-  const selectedDateUTC = computed<Date | null>({
-    get() {
-      return calendar?.selectedDates.at(0) as Date | null
-    },
-    set(value: Date | null) {
-      if (calendar) {
-        calendar.selectedYear = value?.getFullYear() ?? utcToday.value.getFullYear()
-        calendar.selectedMonth = (value?.getMonth() ?? utcToday.value.getMonth()) as
-          | 0
-          | 1
-          | 2
-          | 3
-          | 4
-          | 5
-          | 6
-          | 7
-          | 8
-          | 9
-          | 10
-          | 11
-        calendar.selectedDates = value ? [value] : []
-        if (calendar.context.isInit) {
-          calendar.update()
+  const selectedDateUTC = customRef<Date | null>(() => {
+    return {
+      get() {
+        return calendar?.selectedDates.at(0) as Date | null
+      },
+      set(value: Date | null) {
+        if (calendar) {
+          calendar.selectedYear = value?.getFullYear() ?? utcToday.value.getFullYear()
+          calendar.selectedMonth = (value?.getMonth() ?? utcToday.value.getMonth()) as
+            | 0
+            | 1
+            | 2
+            | 3
+            | 4
+            | 5
+            | 6
+            | 7
+            | 8
+            | 9
+            | 10
+            | 11
+          calendar.selectedDates = value ? [value] : []
+          if (calendar.context.isInit) {
+            calendar.update()
+          }
         }
-      }
-    },
+      },
+    }
   })
 
   const utcToday = computed<Date>(() => tzDate(new Date(), 'utc'))
