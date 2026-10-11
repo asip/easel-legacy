@@ -50,7 +50,7 @@ gem "view_component", "~> 4.15.0"
 gem "aws-sdk-s3", "~> 1.233.2"
 gem "ruby-vips", "~> 2.3.0"
 gem "image_processing", "~> 2.2.0"
-gem "shrine", "~> 3.10.0"
+gem "shrine", "~> 3.10.1"
 
 # gem "anyway_config", "2.8.0"
 # image (processing) proxy
@@ -111,7 +111,7 @@ end
 
 group :development do
   gem "brakeman", "~> 8.1.0", require: false
-  gem "bullet", "~> 8.2.0"
+  gem "bullet", "~> 8.3.0"
   gem "pg_query", "~> 6.2.5"
   gem "prosopite", "~> 2.2.0"
 
@@ -124,7 +124,7 @@ group :development do
   gem "annotaterb", "~> 4.25.0"
   gem "rails-erd", "~> 2.2.0"
   # Ruby style guide, linter, and formatter
-  gem "rubocop", "~> 1.91.0", require: false
+  gem "rubocop", "~> 1.92.0", require: false
   gem "rubocop-rails", "~> 2.38.0", require: false
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
   # Shopify/erb-lint
