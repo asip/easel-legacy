@@ -1,4 +1,6 @@
 allowBuilds:
   '@parcel/watcher': false
+minimumReleaseAgeExclude:
+  - rails-vite-plugin@0.3.0
 overrides:
   vue: ^3.6.0-rc.11
