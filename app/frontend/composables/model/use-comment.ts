@@ -48,9 +48,7 @@ export const useComment = function () {
   const { externalErrors, clearExternalErrors, success } =
     useExternalErrors<CommentErrorProperty>(flash)
 
-  const { backendErrorInfo, reload } = useApiError(flash, {
-    caller: { externalErrors, clearAccount },
-  })
+  const { backendErrorInfo, reload } = useApiError(flash, { externalErrors, clearAccount })
 
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404) {
