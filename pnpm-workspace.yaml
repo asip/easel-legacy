@@ -1,7 +1,6 @@
 allowBuilds:
   '@parcel/watcher': false
 minimumReleaseAgeExclude:
-  - rails-vite-plugin@0.3.0
   - '@vesperjs/shared@0.14.0'
   - '@vesperjs/vue@0.14.0'
 overrides:
