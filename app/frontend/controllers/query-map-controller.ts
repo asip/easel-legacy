@@ -21,8 +21,8 @@ export default class QueryMapController extends ApplicationController {
     const map = JSON.parse(this.qValue) as QueryItems
     // globalThis.console.log(map)
 
-    criteria.value = map.q ?? null
-    refItems.value = map.ref ?? null
+    criteria.value = map.q ? map.q : null
+    refItems.value = map.ref ? map.ref : null
     page.value = map.page ?? null
     // globalThis.console.log(criteria.value)
     // globalThis.console.log(refItems.value)

@@ -1,7 +1,7 @@
 allowBuilds:
   '@parcel/watcher': false
 minimumReleaseAgeExclude:
-  - '@vesperjs/shared@0.14.0'
-  - '@vesperjs/vue@0.14.0'
+  - '@vesperjs/shared@0.15.0'
+  - '@vesperjs/vue@0.15.0'
 overrides:
   vue: ^3.6.0-rc.11

@@ -2,7 +2,7 @@ import { computed, type Ref } from '@vue/reactivity'
 import { format, parse } from '@formkit/tempo'
 import { useDateUtil } from '@vesperjs/vue'
 
-export const useDate = function (str: Ref<string>) {
+export const useDate = function (str: Ref<string | null | undefined>) {
   const { isValidDate } = useDateUtil()
 
   const date = computed<Date | null | undefined>({

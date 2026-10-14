@@ -1,6 +1,6 @@
 import { computed, Ref } from '@vue/reactivity'
 
-export const useTagList = function (str: Ref<string>) {
+export const useTagList = function (str: Ref<string | null | undefined>) {
   const tagList = computed<string[] | undefined>({
     get() {
       return str.value ? str.value.split(',') : []

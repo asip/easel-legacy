@@ -32,5 +32,3 @@ export { useConfig } from './use-config'
 export type { ConfigType } from './use-config'
 
 export { useRoute } from './use-route'
-
-export { useCookieValueObject } from './use-cookie-value-object'

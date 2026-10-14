@@ -40,8 +40,8 @@ export default class FrameSearchController extends ApplicationController {
     const { innerHTML: wordMessage } = useElement(this.wordMessageTarget, { property: 'innerHTML' })
     const { innerHTML: tagMessage } = useElement(this.tagMessageTarget, { property: 'innerHTML' })
 
-    form.value.word = wordValue.value
-    form.value.tag_name = tagValue.value
+    form.value.word = wordValue.value ?? ''
+    form.value.tag_name = tagValue.value ?? ''
 
     await submit(ev)
     wordMessage.value = r$.$errors.word.at(0) ?? ''
