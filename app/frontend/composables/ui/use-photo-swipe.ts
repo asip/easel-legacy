@@ -7,7 +7,7 @@ export const usePhotoSwipe = function (
   selector: string,
   options?: Partial<PreparedPhotoSwipeOptions> & { anchor?: string },
 ) {
-  const anchor = options?.anchor ?? 'a'
+  const anchor = options?.anchor ? options.anchor : 'a'
   if (options?.anchor) delete options.anchor
   const initialZoomLevel = options?.initialZoomLevel ?? 'fit'
 
