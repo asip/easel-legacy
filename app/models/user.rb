@@ -25,7 +25,7 @@
 class User < ApplicationRecord
   include Discard::Model
   include Profile::Image::Uploader::Attachment(:image)
-  include ::Errors::Map
+  include Vesper::Models::Errors::Map
   include Jwt::Token
   include Page::Confirmable
   include ::Login

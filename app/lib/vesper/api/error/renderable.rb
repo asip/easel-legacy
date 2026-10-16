@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Api::Error::Renderable module
-module Api::Error::Renderable
+# Vesper::Api::Error::Renderable module
+module Vesper::Api::Error::Renderable
   extend ActiveSupport::Concern
 
   included do
@@ -14,13 +14,13 @@ module Api::Error::Renderable
     rescue_from ActiveRecord::RecordInvalid, with: ->(exception) { request.format.json? ? on_unprocessable_content(exception) : raise(exception) }
 
     # UnauthorizedError
-    rescue_from Api::UnauthorizedError, with: ->(exception) { request.format.json? ? on_unauthorized(exception) : raise(exception) }
+    rescue_from Vesper::Api::UnauthorizedError, with: ->(exception) { request.format.json? ? on_unauthorized(exception) : raise(exception) }
   end
 
   protected
 
   def render_errors(resource)
-    render_resource ErrorMessagesResource.new(ErrorMessages.new(errors: resource.error_map)).serialize,
+    render_resource Vesper::Resources::ErrorMessagesResource.new(Vesper::Models::ErrorMessages.new(errors: resource.error_map)).serialize,
                     status: :unprocessable_content
   end
 
@@ -79,7 +79,7 @@ module Api::Error::Renderable
 
     # puts error
 
-    render_resource ErrorMapResource.new(ErrorMap.new(error)).serialize,
+    render_resource Vesper::Resources::ErrorMapResource.new(Vesper::Models::ErrorMap.new(error)).serialize,
                     status:
   end
 end

@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 # Application Controller
-class ApplicationController < ActionController::Base
+class ApplicationController < Vesper::AppController
   include Device::Detect
   include Locale::Detect
   include TimeZone::Detect
   include NPlusOne::Query::Detection unless Rails.env.production? || Rails.env.test?
   include PageTransition::Location
-  include Stream::Renderable
   include Account::Authentication
   include Device
   include ::Cookies

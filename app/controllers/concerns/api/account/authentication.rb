@@ -42,7 +42,7 @@ module Api::Account::Authentication
     # An error occurs if the token is empty.
     # (トークンが空の場合はエラー)
     unless token.present?
-      raise Api::UnauthorizedError.new("Cookieからトークンが見つかりません。")
+      raise Vesper::Api::UnauthorizedError.new("Cookieからトークンが見つかりません。")
     end
 
     begin
@@ -53,21 +53,21 @@ module Api::Account::Authentication
     rescue ActiveRecord::RecordNotFound
       # If the user ID in the token does not correspond to an existing user
       # (トークン内のユーザーIDが既存のユーザーに対応しない場合)
-      raise Api::UnauthorizedError.new("提供されたトークンに対応するユーザーが見つかりません。")
+      raise Vesper::Api::UnauthorizedError.new("提供されたトークンに対応するユーザーが見つかりません。")
     rescue JWT::ExpiredSignature
       # If the token's 'exp' (expiration) claim indicates that it has expired
       # (トークンの 'exp' (有効期限) クレームが期限切れを示している場合)
-      raise Api::UnauthorizedError.new("認証トークンの有効期限が切れています。")
+      raise Vesper::Api::UnauthorizedError.new("認証トークンの有効期限が切れています。")
     rescue JWT::DecodeError => error
       # General JWT decoding failure (e.g., invalid signature, malformed token structure)
       # (一般的なJWTデコード失敗 (例: 無効な署名、不正なトークン構造))
       Api::Account::Authentication.error_log("JWT Decode Error: #{error.message}")
-      raise Api::UnauthorizedError.new("認証トークンが無効です。")
+      raise Vesper::Api::UnauthorizedError.new("認証トークンが無効です。")
     rescue => exception
       # Catch other unexpected errors during the authentication process.
       # (認証プロセス中のその他の予期せぬエラーを捕捉)
       Api::Account::Authentication.error_log("JWT処理中に予期せぬ認証エラーが発生しました: #{exception.message}")
-      raise Api::UnauthorizedError.new("認証中に予期せぬエラーが発生しました。")
+      raise Vesper::Api::UnauthorizedError.new("認証中に予期せぬエラーが発生しました。")
     end
   end
 
