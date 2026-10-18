@@ -5,7 +5,7 @@ import { useCookie } from '@vesperjs/vue'
 import type { Criteria } from '@/types'
 
 export const useCriteriaCookie = function () {
-  const { isValidDate } = useDateUtil()
+  const { isDate } = useDateUtil()
 
   const criteria = useCookie<Criteria>('c', { path: '/', watch: true })
 
@@ -14,7 +14,7 @@ export const useCriteriaCookie = function () {
   })
 
   const date = computed<string | null>(() => {
-    return isValidDate(word.value) ? word.value : null
+    return isDate(word.value) ? word.value : null
   })
 
   return { criteria, date }
