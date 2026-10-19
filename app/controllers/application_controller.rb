@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Application Controller
-class ApplicationController < Vesper::AppController
+class ApplicationController < Vesper::Controller
   include Device::Detect
   include Locale::Detect
   include TimeZone::Detect

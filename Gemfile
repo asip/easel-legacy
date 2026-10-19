@@ -82,7 +82,7 @@ gem "no_fly_list", "0.7.4"
 # json
 gem "oj", "3.17.7"
 gem "alba", "4.0.1"
-gem "typelizer", "~>0.14.0 "
+gem "typelizer", "~> 0.14.0"
 
 # Rack::Locale
 gem "rack-contrib", "2.5.0"
@@ -102,6 +102,8 @@ gem "motor-admin", "0.5.0"
 gem "mutex_m", "~> 0.3.0"
 
 gem "cgi", "~> 0.5.2"
+
+gem "vesper-rails", "~> 0.1.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
