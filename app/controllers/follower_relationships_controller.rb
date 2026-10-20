@@ -7,12 +7,12 @@ class FollowerRelationshipsController < ApplicationController
   # follow (フォローするとき)
   def create
     current_user.follow(user_id)
-    redirect_to request.referer, status: :see_other
+    reload
   end
 
   # unfollow (フォロー外すとき)
   def destroy
     current_user.unfollow(user_id)
-    redirect_to request.referer, status: :see_other
+    reload
   end
 end
