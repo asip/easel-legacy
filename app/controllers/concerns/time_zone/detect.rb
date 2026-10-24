@@ -12,7 +12,7 @@ module TimeZone::Detect
 
   def set_time_zone
     # puts cookies.to_h
-    Time.zone = cookies[:time_zone]
+    Time.zone = cookies[:tz]
   end
 
   def time_zone
