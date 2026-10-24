@@ -36,19 +36,19 @@ class Cookies::QueryMap
     @model.ref
   end
 
-  def ref=(ref)
-    @model.ref = ref
-    @cookies[:ref] = ref
-  end
+  # def ref=(ref)
+  #  @model.ref = ref
+  #  @cookies[:ref] = ref
+  # end
 
   def ref_items
     @model.ref_items
   end
 
-  def ref_items=(ref_items)
-    @model.ref_items = ref_items
-    self.ref = @model.ref
-  end
+  # def ref_items=(ref_items)
+  #  @model.ref_items = ref_items
+  #  self.ref = @model.ref
+  # end
 
   def page
     @model.page
