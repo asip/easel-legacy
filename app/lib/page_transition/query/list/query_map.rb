@@ -8,10 +8,11 @@ class PageTransition::Query::List::QueryMap
       when "user_profile", "profile"
         query.page = page
       else
-        ref_items[:page] = page
+        ref_items.page = page
       end
     end
-    query.ref = JsonUtil.stringify(ref_items) if ref_items.present?
+    items = ref_items.to_h
+    query.ref = JsonUtil.stringify(items) if items.present?
     query.to_h
   end
 end
