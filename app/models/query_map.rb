@@ -23,6 +23,6 @@ class QueryMap
   end
 
   def to_h
-    attributes.with_indifferent_access
+    attributes.with_indifferent_access.compact
   end
 end
