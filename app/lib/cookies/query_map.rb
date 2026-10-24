@@ -55,7 +55,7 @@ class Cookies::QueryMap
 
   def page=(page)
     self.model.page = page
-    self.cookies[:page] = page
+    @cookies[:page] = page
   end
 
   def self.from(cookies)
