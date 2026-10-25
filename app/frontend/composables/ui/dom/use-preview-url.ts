@@ -10,12 +10,12 @@ interface PreviewUrlOptions {
 export const usePreviewUrl = function ({ image, preview }: PreviewUrlOptions) {
   const { src } = useElement<HTMLImageElement>(image, { property: 'src' })
 
-  const previewUrl = customRef<string | null>(() => {
+  const previewUrl = customRef<string | null | undefined>(() => {
     return {
       get() {
         return src.value
       },
-      set(value: string | null) {
+      set(value: string | null | undefined) {
         if (value) {
           showPreview()
         } else {
