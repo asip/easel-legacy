@@ -1,7 +1,7 @@
 import { customRef, type Ref } from '@vue/reactivity'
 
 export const useImagePreview = function (url: Ref<string | null | undefined>) {
-  const preview = customRef<string | null | undefined, File | null>(() => {
+  const preview = customRef<string | null | undefined, File | null | undefined>(() => {
     return {
       get() {
         return url.value
