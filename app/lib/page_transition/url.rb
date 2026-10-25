@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# PageTransition::PrevUrl class
-class PageTransition::PrevUrl
+# PageTransition::Url class
+class PageTransition::Url
   def self.upsert_page_query(url:, page:)
     if page.present?
       change_with_page(page:, url:)
