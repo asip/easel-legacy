@@ -57,7 +57,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_and_out_path
-    PageTransition.redirect_url(from: request.referer)
+    PageTransition::Path.redirect(from: request.referer)
   end
 
   private

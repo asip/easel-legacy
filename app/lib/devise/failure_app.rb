@@ -14,7 +14,7 @@ module Devise
           flash[:alert] = i18n_message
         end
       end
-      redirect_to PageTransition.redirect_url(from: request.referer)
+      redirect_to PageTransition::Path.redirect(from: request.referer)
     end
   end
 end

@@ -12,7 +12,7 @@ module Sessions::Location::Store
   protected
 
   def store_location
-    if PageTransition.saved_paths_after_login?(from)
+    if PageTransition::Path.saved_after_login?(from)
       self.location.prev_url = if saved_pages?
         from || fallback
       else
