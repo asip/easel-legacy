@@ -6,7 +6,7 @@ interface VanillaCalendarProOptions {
   el?: Ref<HTMLElement | null>
   date?: Ref<Date | null | undefined>
   calendar?: Calendar | null
-  options?: Options & { fmtDate?: Format }
+  options?: Options & { fmt?: Format }
 }
 
 export const useVanillaCalendarPro = function ({
@@ -15,12 +15,12 @@ export const useVanillaCalendarPro = function ({
   calendar,
   options,
 }: VanillaCalendarProOptions) {
-  const fmtDate = options?.fmtDate ?? 'YYYY/MM/DD'
-  if (options?.fmtDate) delete options.fmtDate
+  const fmt = options?.fmt ?? 'YYYY/MM/DD'
+  if (options?.fmt) delete options.fmt
 
   const selectedDate = computed<Date | null | undefined>({
     get() {
-      return selectedDateUTC.value ? parse(format(selectedDateUTC.value, fmtDate)) : null
+      return selectedDateUTC.value ? parse(format(selectedDateUTC.value, fmt)) : null
     },
     set(value: Date | null) {
       selectedDateUTC.value = value ? tzDate(format(value, 'YYYY-MM-DD HH:mm:ss'), 'utc') : null
@@ -71,7 +71,7 @@ export const useVanillaCalendarPro = function ({
         // globalThis.console.log(`selected:${self.context.selectedDates[0]}`)
         // globalThis.console.log(`today:${self.context.dateToday}`)
         const value = (self.context.selectedDates[0] ?? '') as string
-        if (date) date.value = value ? parse(format(value, fmtDate), fmtDate) : null
+        if (date) date.value = value ? parse(format(value, fmt), fmt) : null
       },
     })
 
