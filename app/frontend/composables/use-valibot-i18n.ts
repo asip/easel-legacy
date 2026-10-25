@@ -3,10 +3,10 @@ import * as v from 'valibot'
 import { schemaMessage } from '@/i18n/valibot'
 
 export const useValibotI18n = function (options: v.GlobalConfig) {
-  let i18nActions: () => void = () => undefined
+  let actions: () => void = () => undefined
 
   const setup = (func: () => void): void => {
-    i18nActions = func
+    actions = func
   }
 
   const globalConfig = () => {
@@ -15,7 +15,7 @@ export const useValibotI18n = function (options: v.GlobalConfig) {
 
   const init = () => {
     schemaMessage()
-    i18nActions()
+    actions()
     globalConfig()
   }
 
