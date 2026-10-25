@@ -12,8 +12,8 @@ module Users::Location::Store
   private
 
   def saved_pages?
-    !from&.include?("/users") && PageTransition::Path.saved_before_login?(from) &&
-    PageTransition::Path.saved_after_login?(from) &&
+    !from&.include?("/users") && PageTransition::Location::Path.saved_before_login?(from) &&
+    PageTransition::Location::Path.saved_after_login?(from) &&
     (!from&.include?("/frames") || !from&.include?("user_profile"))
   end
 end

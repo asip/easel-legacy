@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# PageTransition::Path class
-class PageTransition::Path
+# PageTransition::Location::Path class
+class PageTransition::Location::Path
   def self.redirect(from:)
     if from.blank?
       to_path = "/admins/sign_in"
