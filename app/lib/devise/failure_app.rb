@@ -1,20 +1,10 @@
 # frozen_string_literal: true
 
-# devise
+require_relative "../redirect_overwrite/devise/failure_app"
+
+# Devise::FailureApp
 module Devise
-  # Failure App
   class FailureApp
-    def redirect
-      store_location!
-      if is_flashing_format?
-        if flash[:timedout] && flash[:alert]
-          flash.keep(:timedout)
-          flash.keep(:alert)
-        else
-          flash[:alert] = i18n_message
-        end
-      end
-      redirect_to PageTransition::Location::Path.redirect(from: request.referer)
-    end
+    prepend RedirectOverwrite::Devise::FailureApp
   end
 end
