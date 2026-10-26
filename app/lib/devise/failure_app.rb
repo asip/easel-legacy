@@ -2,8 +2,8 @@
 
 require_relative "../redirect_overwrite/devise/failure_app"
 
-# Devise::FailureApp
 module Devise
+  # Devise::FailureApp class
   class FailureApp
     prepend RedirectOverwrite::Devise::FailureApp
   end

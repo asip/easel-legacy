@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# RedirectOverwrite::Devise::FailureApp module
 module RedirectOverwrite
   module Devise
+    # RedirectOverwrite::Devise::FailureApp module
     module FailureApp
       def redirect
         store_location!
