@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-# api
 module Api
-  # Pagination class
-  class Pagination
-    def self.resources_with_pagination(pagy)
-      {
-        meta: {
+  module Pagination
+    # Api::Pagination::Pagy class
+    class Pagy
+      def self.pagination_resource(pagy)
+        {
           pagination: {
             count: pagy.count,
             pages: pagy.pages,
@@ -14,7 +13,7 @@ module Api
             per: pagy.limit
           }
         }
-      }
+      end
     end
   end
 end
