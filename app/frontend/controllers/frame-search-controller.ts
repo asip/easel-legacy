@@ -20,9 +20,10 @@ export default class FrameSearchController extends ApplicationController {
 
   connect(): void {
     if (this.hasWordTarget && this.hasTagTarget) {
-      const { form, criteria } = useFrameSearch()
       const { value: wordValue } = useElement(this.wordTarget, { property: 'value' })
       const { value: tagValue } = useElement(this.tagTarget, { property: 'value' })
+
+      const { form, criteria } = useFrameSearch()
 
       form.value.word = criteria.value?.word ?? ''
       form.value.tag_name = criteria.value?.tag_name ?? ''
@@ -34,11 +35,12 @@ export default class FrameSearchController extends ApplicationController {
   async submit(ev: SubmitEvent): Promise<void> {
     ev.preventDefault()
 
-    const { form, submit, r$ } = useFrameSearch()
     const { value: wordValue } = useElement(this.wordTarget, { property: 'value' })
     const { value: tagValue } = useElement(this.tagTarget, { property: 'value' })
     const { innerHTML: wordMessage } = useElement(this.wordMessageTarget, { property: 'innerHTML' })
     const { innerHTML: tagMessage } = useElement(this.tagMessageTarget, { property: 'innerHTML' })
+
+    const { form, submit, r$ } = useFrameSearch()
 
     form.value.word = wordValue.value ?? ''
     form.value.tag_name = tagValue.value ?? ''

@@ -19,10 +19,10 @@ export default class TagifyController extends ApplicationController {
 
   connect(): void {
     if (this.hasTeTarget && this.hasTlTarget) {
-      const tagSearch = useTagSearch()
-
       const { value: tl } = useElement(this.tlTarget, { property: 'value' })
+
       const tagList = useTagList(tl)
+      const tagSearch = useTagSearch()
 
       const settings = {
         maxTags: 5,

@@ -6,6 +6,7 @@ export default class ModalController extends ApplicationController {
   static values = {
     selector: String,
   }
+
   declare readonly selectorValue: string
 
   open(): void {
