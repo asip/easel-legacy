@@ -9,7 +9,7 @@ module Jwt::Token
   # end
 
   def create_token
-    Jwt::Token.create_token_from(user: self)
+    JwtUtil.create_token_from(user: self)
   end
 
   # def token=(token_)
@@ -22,25 +22,10 @@ module Jwt::Token
 
   class_methods do
     def find_from(token:)
-      payload = Jwt::Token.decode_token(token)
+      payload = JwtUtil.decode_token(token)
       # puts payload
       user_id = payload[:sub]
       User.find(user_id)
     end
-  end
-
-  private
-
-  def self.decode_token(token)
-    secret_key = Rails.application.secret_key_base
-    decoded_token = JWT.decode(token, secret_key, true, { algorithm: "HS256" })
-    decoded_token[0].with_indifferent_access
-  end
-
-  def self.create_token_from(user:)
-    payload = { sub: user.id, iat: Time.current.to_i }
-    secret_key = Rails.application.secret_key_base
-    token = JWT.encode(payload, secret_key, "HS256")
-    token
   end
 end
