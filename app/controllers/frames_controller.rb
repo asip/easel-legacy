@@ -4,7 +4,6 @@
 class FramesController < ApplicationController
   include Frames::Authentication::Skip
   include Frames::Queries::Pagination
-  include PageTransition::Query::List
   include Frames::PageTransition::Ref
   include Frames::PageTransition::Search
   include Frames::Confirmable

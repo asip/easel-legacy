@@ -12,5 +12,13 @@ module Frame::Helper
     def paging_query_map(page:)
       ::PageTransition::Frames::List::QueryMap.build(page:)
     end
+
+    def detail_query_map(from:, page:)
+      ::PageTransition::Query::List::QueryMap.build(from:, page:)
+    end
+
+    def search_query_map(ref_items:)
+      ::PageTransition::Frames::Search::QueryMap.build(ref_items:)
+    end
   end
 end

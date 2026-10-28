@@ -8,6 +8,6 @@ module Frames::PageTransition::Search
   protected
 
   def search_query_map
-    @search_query_map ||= ::PageTransition::Frames::Search::QueryMap.build(ref_items: cookie_query_map.ref_items)
+    @search_query_map ||= Frame.search_query_map(ref_items: cookie_query_map.ref_items)
   end
 end
