@@ -8,12 +8,6 @@ class Cookies::Location
     @fallback = fallback
   end
 
-  def prev_url_for(path:)
-    @cookies["prev_url#{path.gsub("/", "_")}".to_sym] || @fallback
-  end
-
-  private :prev_url_for
-
   def prev_url(path: nil)
     if path.present?
       prev_url_for(path:)
@@ -28,5 +22,11 @@ class Cookies::Location
 
   def self.from(request, cookies, fallback)
     self.new(request, cookies, fallback)
+  end
+
+  private
+
+  def prev_url_for(path:)
+    @cookies["prev_url#{path.gsub("/", "_")}".to_sym] || @fallback
   end
 end
