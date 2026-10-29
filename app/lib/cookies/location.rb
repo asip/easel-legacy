@@ -12,8 +12,14 @@ class Cookies::Location
     @cookies["prev_url#{path.gsub("/", "_")}".to_sym] || @fallback
   end
 
-  def prev_url
-    prev_url_for(path: @request.path)
+  private :prev_url_for
+
+  def prev_url(path: nil)
+    if path.present?
+      prev_url_for(path:)
+    else
+      prev_url_for(path: @request.path)
+    end
   end
 
   def prev_url=(prev_url)
