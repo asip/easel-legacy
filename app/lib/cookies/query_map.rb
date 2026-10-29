@@ -7,28 +7,6 @@ class Cookies::QueryMap
     build
   end
 
-  def build
-    query = ::QueryMap.new
-    query.ref = cookie_ref if cookie_ref.present?
-    query.page = cookie_page if cookie_page.present? && cookie_page != "1"
-    @model = query
-  end
-
-  private :build
-
-  def cookie_ref
-    items = @cookies[:ref]
-    items.present? ? items : nil
-  end
-
-  private :cookie_ref
-
-  def cookie_page
-    @cookies[:page]
-  end
-
-  private :cookie_page
-
   attr_reader :model
 
   def ref
@@ -60,5 +38,23 @@ class Cookies::QueryMap
 
   def self.from(cookies)
     self.new(cookies)
+  end
+
+  private
+
+  def build
+    query = ::QueryMap.new
+    query.ref = cookie_ref if cookie_ref.present?
+    query.page = cookie_page if cookie_page.present? && cookie_page != "1"
+    @model = query
+  end
+
+  def cookie_ref
+    items = @cookies[:ref]
+    items.present? ? items : nil
+  end
+
+  def cookie_page
+    @cookies[:page]
   end
 end
