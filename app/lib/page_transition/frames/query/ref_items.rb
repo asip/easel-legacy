@@ -1,5 +1,5 @@
-# PageTransition::Frames::Ref::RefItems class
-class PageTransition::Frames::Ref::RefItems
+# PageTransition::Frames::Query::RefItems class
+class PageTransition::Frames::Query::RefItems
   def self.build(ref_items:)
     items = ::RefItems.new(ref_items)
     change(items:)

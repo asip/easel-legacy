@@ -3,7 +3,7 @@
 # Sessions Controller
 class SessionsController < ApplicationController
   include Sessions::Queries::Pagination
-  include PageTransition::Query::Ref
+  include PageTransition::Query
   include Sessions::Location::Store
   include Sessions::Variables
   include More

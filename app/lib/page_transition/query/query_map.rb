@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# PageTransition::Query::Ref::QueryMap class
-class PageTransition::Query::Ref::QueryMap
+# PageTransition::Query::QueryMap class
+class PageTransition::Query::QueryMap
   def self.build(ref_items:)
     query = ::QueryMap.new
     query.ref = JsonUtil.stringify(ref_items) if ref_items.present?

@@ -4,7 +4,7 @@
 class UsersController < ApplicationController
   include Users::Authentication::Skip
   include Users::Queries::Pagination
-  include Users::PageTransition::Ref
+  include Users::PageTransition::Query
   include Users::Location::Store
   include Users::Variables
   include More
