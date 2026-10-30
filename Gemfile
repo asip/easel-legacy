@@ -52,7 +52,6 @@ gem "ruby-vips", "~> 2.3.0"
 gem "image_processing", "~> 2.2.0"
 gem "shrine", "~> 3.10.2"
 
-# gem "anyway_config", "2.8.0"
 # image (processing) proxy
 gem "imgproxy", "~> 3.0.0", require: false
 
