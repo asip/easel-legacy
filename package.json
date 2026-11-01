@@ -18,7 +18,7 @@
     "@regle/core": "^1.29.5",
     "@regle/rules": "^1.29.5",
     "@regle/schemas": "^1.29.5",
-    "@vesperjs/vue": "0.15.1",
+    "@vesperjs/vue": "0.16.0",
     "@yaireo/tagify": "^4.39.0",
     "glightbox": "^3.3.1",
     "lucide-static": "^1.66.0",
