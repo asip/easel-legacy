@@ -44,7 +44,7 @@ gem "bootsnap", "~> 1.26.1", require: false
 gem "rails_vite", "~> 0.3.0"
 
 # view component
-gem "view_component", "~> 4.20.0"
+gem "view_component", "~> 4.21.0"
 
 # Shrine
 gem "aws-sdk-s3", "~> 1.237.0"
