@@ -80,7 +80,7 @@ gem "no_fly_list", "0.8.0"
 
 # json
 gem "oj", "3.17.7"
-gem "alba", "4.0.1"
+gem "alba", "4.0.2"
 gem "typelizer", "~> 0.14.0"
 
 # Rack::Locale
