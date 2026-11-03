@@ -127,7 +127,11 @@ export const useVanillaCalendarPro = function ({
 
   if (date) {
     watch(date, () => {
-      selectedDate.value = date.value
+      if (selectionDatesMode == 'single') {
+        selectedDate.value = date.value
+      } else if (selectionDatesMode == 'multiple' || selectionDatesMode == 'multiple-ranged') {
+        selectedDates.value = dates?.value
+      }
     })
   }
 
