@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.4"
+gem "rails", "~> 8.1.4.1"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.3.2"
@@ -44,10 +44,10 @@ gem "bootsnap", "~> 1.26.1", require: false
 gem "rails_vite", "~> 0.3.0"
 
 # view component
-gem "view_component", "~> 4.21.0"
+gem "view_component", "~> 4.23.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.237.0"
+gem "aws-sdk-s3", "~> 1.238.0"
 gem "ruby-vips", "~> 2.3.0"
 gem "image_processing", "~> 2.2.0"
 gem "shrine", "~> 3.10.2"
@@ -79,7 +79,7 @@ gem "pagy", "~> 43.8.1"
 gem "no_fly_list", "0.8.0"
 
 # json
-gem "oj", "3.17.7"
+gem "oj", "3.17.8"
 gem "alba", "4.0.2"
 gem "typelizer", "~> 0.14.0"
 
