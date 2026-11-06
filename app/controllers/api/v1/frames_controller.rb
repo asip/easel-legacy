@@ -4,6 +4,7 @@
 class Api::V1::FramesController < Api::V1::ApiController
   include Api::Frames::Authentication::Skip
   include Api::Frames::Variables
+  include Api::Comments::Renderable
 
   def comments
     render_comments(comment_list)

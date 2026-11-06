@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
-# Api::Resource::Renderable module
-module Api::Resource::Renderable
+# Api::Comments::Renderable module
+module Api::Comments::Renderable
   extend ActiveSupport::Concern
 
   protected
-
-  def render_account(account)
-    render_resource AccountResource.new(account).serialize
-  end
 
   def render_comment(comment)
     render_resource CommentResource.new(comment).serialize
@@ -16,9 +12,5 @@ module Api::Resource::Renderable
 
   def render_comments(comments)
     render_resource CommentResource.new(comments).serialize(root_key: :comments)
-  end
-
-  def render_tags(tags)
-    render_resource TagListResource.new(TagList.new(tags:)).serialize
   end
 end

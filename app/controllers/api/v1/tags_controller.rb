@@ -4,6 +4,7 @@
 class Api::V1::TagsController < Api::V1::ApiController
   include Api::Account::Authentication::Skip
   include Api::Tags::Variables
+  include Api::Tags::Renderable
 
   def search
     render_tags(tags)
