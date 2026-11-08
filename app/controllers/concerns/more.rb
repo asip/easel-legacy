@@ -4,8 +4,10 @@
 module More
   extend ActiveSupport::Concern
 
+  SKIP_ACTION_LIST_FOR_AUTH = %i[next prev]
+
   included do
-    skip_before_action :authenticate_user!, only: %i[next prev]
+    skip_before_action :authenticate_user!, only: SKIP_ACTION_LIST_FOR_AUTH
   end
 
   def prev
