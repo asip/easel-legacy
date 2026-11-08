@@ -10,10 +10,6 @@ module PageTransition::Query
 
   protected
 
-  def query_list
-    %i[ref page]
-  end
-
   def query_map
     @query_map ||= self.cookie_query_map.to_h
   end
