@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # tag api controller
-class Api::V1::TagsController < Api::V1::ApiController
+class Api::V1::TagsController < Api::V1::AppController
   include Api::Account::Authentication::Skip
   include Api::Tags::Variables
   include Api::Tags::Renderable

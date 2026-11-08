@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # frame api controller
-class Api::V1::FramesController < Api::V1::ApiController
+class Api::V1::FramesController < Api::V1::AppController
   include Api::Frames::Authentication::Skip
   include Api::Frames::Variables
   include Api::Comments::Renderable

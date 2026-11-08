@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # api controller
-class Api::V1::ApiController < Vesper::Api::Controller
+class Api::V1::AppController < Vesper::Api::Controller
   include ActionController::Cookies
   include Locale::Detect
   include TimeZone::Detect
