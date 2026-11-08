@@ -5,8 +5,10 @@ module Account::Passwords::Location::Store
   extend ActiveSupport::Concern
   include PageTransition::Location::Store
 
+  SKIP_ACTION_LIST_FOR_LOCATION = [ :edit ]
+
   included do
-    before_action :store_location, only: [ :edit ]
+    before_action :store_location, only: SKIP_ACTION_LIST_FOR_LOCATION
   end
 
   private
