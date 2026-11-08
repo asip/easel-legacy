@@ -15,8 +15,6 @@ module PageTransition::Query
   end
 
   def query_map
-    @query_map ||= cookies.to_hash.filter do |key, value|
-      query_list.include?(key.to_sym) if value.present?
-    end.with_indifferent_access
+    @query_map ||= self.cookie_query_map.to_h
   end
 end
