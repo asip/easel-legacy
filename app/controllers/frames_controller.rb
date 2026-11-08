@@ -6,7 +6,6 @@ class FramesController < ApplicationController
   include Frames::Queries::Pagination
   include Frames::PageTransition::Query
   include Frames::PageTransition::Location
-  include Frames::PageTransition::Search
   include Frames::Confirmable
   include Frames::Location::Store
   include Frames::Variables

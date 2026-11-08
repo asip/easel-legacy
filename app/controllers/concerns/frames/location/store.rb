@@ -19,6 +19,6 @@ module Frames::Location::Store
   end
 
   def fallback
-    root_path(search_query_map)
+    root_path(Frame.search_query_map(ref_items: cookie_query_map.ref_items))
   end
 end
