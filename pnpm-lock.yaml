@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@formkit/tempo':
-        specifier: ^1.1.0
-        version: 1.1.0
+        specifier: ^1.1.1
+        version: 1.1.1
       '@hotwired/stimulus':
         specifier: ^3.2.2
         version: 3.2.2
@@ -308,8 +308,8 @@ packages:
     resolution: {integrity: sha512-IkO+/KEUvwbVpiURZg+P7zF74z5Jxe0UgJxVni+RtoHQ6IZieXaO02kmadomap/q+l6bc/jdPGGqTjhuZnuz1Q==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@formkit/tempo@1.1.0':
-    resolution: {integrity: sha512-LF36zxNFvNO+U2uS2RX5h0SJZuL4z/JpDHbMOgumhv+re6k/Jpt9S9mZuEMLaLUtpDZlRZZE3UkIiwSS+Forig==}
+  '@formkit/tempo@1.1.1':
+    resolution: {integrity: sha512-ONW1H43AfTbIgDALg89xzG0PAQZvMMM1l3z4Oq7ZXJ+GlTK486ni0MqDHiqa8oExWcGkqE8en9Mo8YXu4AGULQ==}
 
   '@hotwired/stimulus@3.2.2':
     resolution: {integrity: sha512-eGeIqNOQpXoPAIP7tC1+1Yc1yl1xnwYqg+3mzqxyrbE5pg5YFBZcA6YoTiByJB6DKAEsiWtl6tjTJS4IYtbB7A==}
@@ -2836,7 +2836,7 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@formkit/tempo@1.1.0': {}
+  '@formkit/tempo@1.1.1': {}
 
   '@hotwired/stimulus@3.2.2': {}
 
@@ -3666,12 +3666,12 @@ snapshots:
 
   '@vesperjs/shared@0.16.0(@vue/reactivity@3.6.0-rc.14)':
     dependencies:
-      '@formkit/tempo': 1.1.0
+      '@formkit/tempo': 1.1.1
       '@vue/reactivity': 3.6.0-rc.14
 
   '@vesperjs/vue@0.16.0(@vue/devtools-api@8.2.1)(@vue/reactivity@3.6.0-rc.14)(@vue/runtime-core@3.6.0-rc.14)(@vue/runtime-dom@3.6.0-rc.14)(vue@3.6.0-rc.14(typescript@6.0.3))':
     dependencies:
-      '@formkit/tempo': 1.1.0
+      '@formkit/tempo': 1.1.1
       '@nanostores/persistent': 1.3.5(nanostores@1.5.5)
       '@nanostores/router': 2.0.1(nanostores@1.5.5)
       '@nanostores/vue': 1.1.0(@vue/devtools-api@8.2.1)(nanostores@1.5.5)(vue@3.6.0-rc.14(typescript@6.0.3))
