@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-// import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia'
 
 import { useApi, useApiError, useFlash } from '@vesperjs/vue'
 import type { BackendErrorsResource } from '@vesperjs/vue'
@@ -10,8 +10,8 @@ import { useAccountStore } from '@/stores'
 export const useAccount = function () {
   const { queryApi } = useApi()
 
-  //const { account } = storeToRefs(useAccountStore())
-  const { account } = useAccountStore()
+  const { account } = storeToRefs(useAccountStore())
+  // const { account } = useAccountStore()
 
   // const { accessToken } = useTokenCookie()
 
