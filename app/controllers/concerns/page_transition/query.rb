@@ -11,6 +11,6 @@ module PageTransition::Query
   protected
 
   def query_map
-    @query_map ||= self.cookie_query_map.to_h
+    @query_map ||= self.cookie_query_map.model.to_h
   end
 end
