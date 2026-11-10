@@ -1,4 +1,4 @@
-// import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia'
 
 import { useApi, useEntity, useApiError, useFlash } from '@vesperjs/vue'
 import type { BackendErrorsResource } from '@vesperjs/vue'
@@ -14,8 +14,7 @@ export const useComments = function () {
 
   // const { token } = useAccount()
 
-  // const { comments } = storeToRefs(useCommentsStore())
-  const { comments } = useCommentsStore()
+  const { comments } = storeToRefs(useCommentsStore())
 
   const { backendErrorInfo } = useApiError(flash)
 
