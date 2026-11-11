@@ -19,7 +19,7 @@ export const useVanillaCalendarPro = function ({
 }: VanillaCalendarProOptions) {
   const fmt = options?.fmt ?? 'YYYY/MM/DD'
   if (options?.fmt) delete options.fmt
-  const selectionDatesMode = options?.selectionDatesMode
+  // const selectionDatesMode = options?.selectionDatesMode
 
   const selectedDate = computed<Date | null | undefined>({
     get() {
@@ -87,12 +87,14 @@ export const useVanillaCalendarPro = function ({
       onClickDate(self) {
         // globalThis.console.log(`selected:${self.context.selectedDates[0]}`)
         // globalThis.console.log(`today:${self.context.dateToday}`)
-        if (selectionDatesMode == 'single') {
+        if (date /* && selectionDatesMode == 'single' */) {
           const value = (self.context.selectedDates[0] ?? '') as string
-          if (date) date.value = value ? parse(format(value, fmt), fmt) : null
-        } else if (selectionDatesMode == 'multiple' || selectionDatesMode == 'multiple-ranged') {
+          date.value = value ? parse(format(value, fmt), fmt) : null
+        } else if (
+          dates /* && (selectionDatesMode == 'multiple' || selectionDatesMode == 'multiple-ranged') */
+        ) {
           const values = self.context.selectedDates as string[]
-          if (dates) dates.value = values.map((value) => parse(format(value, fmt), fmt))
+          dates.value = values.map((value) => parse(format(value, fmt), fmt))
         }
       },
     })
@@ -125,13 +127,17 @@ export const useVanillaCalendarPro = function ({
     calendar?.destroy()
   }
 
-  if (date) {
+  if (date /* && selectionDatesMode == 'single' */) {
     watch(date, () => {
-      if (selectionDatesMode == 'single') {
-        selectedDate.value = date.value
-      } else if (selectionDatesMode == 'multiple' || selectionDatesMode == 'multiple-ranged') {
-        selectedDates.value = dates?.value
-      }
+      selectedDate.value = date.value
+    })
+  }
+
+  if (
+    dates /* && (selectionDatesMode == 'multiple' || selectionDatesMode == 'multiple-ranged') */
+  ) {
+    watch(dates, () => {
+      selectedDates.value = dates.value
     })
   }
 

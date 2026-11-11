@@ -3,7 +3,7 @@ import Tagify from '@yaireo/tagify'
 
 interface AutocompleteTagsType {
   tags: Ref<string[]>
-  filterBy: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
+  filterBy?: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
 }
 
 type TagifyOptions = Tagify.TagifySettings & {
@@ -71,10 +71,12 @@ export const useTagify = function (
     const value = ev.detail.value as string
     if (tagify) tagify.whitelist = []
 
-    controller?.abort()
-    controller = new AbortController()
+    if (autocompleteTags?.filterBy) {
+      controller?.abort()
+      controller = new AbortController()
 
-    await autocompleteTags?.filterBy(value, { signal: controller.signal })
+      await autocompleteTags.filterBy(value, { signal: controller.signal })
+    }
     autocomplete.value = value
   }
 
