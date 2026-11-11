@@ -18,7 +18,7 @@ import {
 // If running in Node.js or SSR, uncomment the following line:
 // import { URLSearchParams } from 'url'
 
-const { toast } = useToast()
+const { toasts } = useToast()
 
 const { refItems } = useRefCookie()
 
@@ -70,7 +70,7 @@ const onUpdateClick = async (): Promise<void> => {
   if (valid) {
     await updateComment()
     set404Alert()
-    toast.value = flash.value
+    toasts.value = flash.value
     if (success.value) {
       r$.$touch()
       r$.$reset()
@@ -87,7 +87,7 @@ const onDeleteClick = async (): Promise<void> => {
     await deleteComment(commentModel.value)
   }
   set404Alert()
-  toast.value = flash.value
+  toasts.value = flash.value
   if (success.value) {
     await getComments(`${commentModel.value?.frame_id}`)
   } else {

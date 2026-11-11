@@ -10,7 +10,7 @@ import {
 
 const { frameId } = defineProps<{ frameId: string }>()
 
-const { toast } = useToast()
+const { toasts } = useToast()
 
 // console.log('loggedIn:', loggedIn.value)
 
@@ -29,7 +29,7 @@ const onPostClick = async (): Promise<void> => {
   if (valid) {
     await createComment(frameId)
     set404Alert()
-    toast.value = flash.value
+    toasts.value = flash.value
     if (success.value) {
       comment.value.body = ''
       r$.$touch()
