@@ -87,12 +87,12 @@ export const useVanillaCalendarPro = function ({
       onClickDate(self) {
         // globalThis.console.log(`selected:${self.context.selectedDates[0]}`)
         // globalThis.console.log(`today:${self.context.dateToday}`)
-        if (date /* && selectionDatesMode == 'single' */) {
+        if (date) {
+          /* && selectionDatesMode == 'single' */
           const value = (self.context.selectedDates[0] ?? '') as string
           date.value = value ? parse(format(value, fmt), fmt) : null
-        } else if (
-          dates /* && (selectionDatesMode == 'multiple' || selectionDatesMode == 'multiple-ranged') */
-        ) {
+        } else if (dates) {
+          /* && (selectionDatesMode == 'multiple' || selectionDatesMode == 'multiple-ranged') */
           const values = self.context.selectedDates as string[]
           dates.value = values.map((value) => parse(format(value, fmt), fmt))
         }
@@ -127,15 +127,15 @@ export const useVanillaCalendarPro = function ({
     calendar?.destroy()
   }
 
-  if (date /* && selectionDatesMode == 'single' */) {
+  if (date) {
+    /* && selectionDatesMode == 'single' */
     watch(date, () => {
       selectedDate.value = date.value
     })
   }
 
-  if (
-    dates /* && (selectionDatesMode == 'multiple' || selectionDatesMode == 'multiple-ranged') */
-  ) {
+  if (dates) {
+    /* && (selectionDatesMode == 'multiple' || selectionDatesMode == 'multiple-ranged') */
     watch(dates, () => {
       selectedDates.value = dates.value
     })
