@@ -1,30 +1,4 @@
 allowBuilds:
   '@parcel/watcher': false
-minimumReleaseAgeExclude:
-  - '@intlify/core-base@11.4.19'
-  - '@intlify/devtools-types@11.4.19'
-  - '@intlify/message-compiler@11.4.19'
-  - '@intlify/shared@11.4.19'
-  - '@markuplint/config-presets@5.6.0'
-  - '@markuplint/erb-parser@5.6.0'
-  - '@markuplint/file-resolver@5.6.0'
-  - '@markuplint/html-parser@5.6.0'
-  - '@markuplint/html-spec@5.6.0'
-  - '@markuplint/i18n@5.6.0'
-  - '@markuplint/ml-ast@5.6.0'
-  - '@markuplint/ml-config@5.6.0'
-  - '@markuplint/ml-core@5.6.0'
-  - '@markuplint/ml-spec@5.6.0'
-  - '@markuplint/parser-utils@5.6.0'
-  - '@markuplint/rules@5.6.0'
-  - '@markuplint/selector@5.6.0'
-  - '@markuplint/shared@5.6.0'
-  - '@markuplint/types@5.6.0'
-  - '@markuplint/vue-parser@5.6.0'
-  - '@markuplint/vue-spec@5.6.0'
-  - markuplint@5.6.0
-  - rails-vite-plugin@0.4.0
-  - vue-i18n@11.4.19
-  - daisyui@5.8.0
 overrides:
   vue: ^3.6.0-rc.15
