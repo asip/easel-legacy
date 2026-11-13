@@ -1,13 +1,16 @@
 import { customRef, type Ref } from '@vue/reactivity'
 
-export const useImagePreview = function (url: Ref<string | null | undefined>) {
+export const useImagePreview = function (
+  url: Ref<string | null | undefined>,
+  ext: string | RegExp = /^image\/(jpeg|jpg|png|gif|webp|avif)$/,
+) {
   const preview = customRef<string | null | undefined, File | null | undefined>(() => {
     return {
       get() {
         return url.value
       },
       set(value: File | null) {
-        if (value?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
+        if (value?.type.match(ext)) {
           setPreview(value)
         } else {
           url.value = null
