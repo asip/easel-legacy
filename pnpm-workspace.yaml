@@ -25,5 +25,6 @@ minimumReleaseAgeExclude:
   - markuplint@5.6.0
   - rails-vite-plugin@0.4.0
   - vue-i18n@11.4.19
+  - daisyui@5.8.0
 overrides:
   vue: ^3.6.0-rc.15
