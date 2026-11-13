@@ -21,13 +21,15 @@ export const useVanillaCalendarPro = function ({
   if (options?.fmt) delete options.fmt
   // const selectionDatesMode = options?.selectionDatesMode
 
-  const selectedDate = computed<Date | null | undefined>({
-    get() {
-      return selectedDateUTC.value ? parse(format(selectedDateUTC.value, fmt)) : null
-    },
-    set(value: Date | null) {
-      selectedDateUTC.value = value ? tzDate(format(value, 'YYYY-MM-DD HH:mm:ss'), 'utc') : null
-    },
+  const selectedDate = customRef<Date | null | undefined>(() => {
+    return {
+      get() {
+        return selectedDateUTC.value ? parse(format(selectedDateUTC.value, fmt)) : null
+      },
+      set(value: Date | null) {
+        selectedDateUTC.value = value ? tzDate(format(value, 'YYYY-MM-DD HH:mm:ss'), 'utc') : null
+      },
+    }
   })
 
   // UTC Date (UTC日付)
@@ -46,17 +48,19 @@ export const useVanillaCalendarPro = function ({
     }
   })
 
-  const selectedDates = computed<Date[] | null | undefined>({
-    get() {
-      return selectedDatesUTC.value
-        ? selectedDatesUTC.value.map((date) => parse(format(date, fmt)))
-        : []
-    },
-    set(value: Date[] | null) {
-      selectedDatesUTC.value = value?.length
-        ? value.map((date) => tzDate(format(date, 'YYYY-MM-DD HH:mm:ss'), 'utc'))
-        : null
-    },
+  const selectedDates = customRef<Date[] | null | undefined>(() => {
+    return {
+      get() {
+        return selectedDatesUTC.value
+          ? selectedDatesUTC.value.map((date) => parse(format(date, fmt)))
+          : []
+      },
+      set(value: Date[] | null) {
+        selectedDatesUTC.value = value?.length
+          ? value.map((date) => tzDate(format(date, 'YYYY-MM-DD HH:mm:ss'), 'utc'))
+          : null
+      },
+    }
   })
 
   // UTC Date Array (UTC日付配列)
