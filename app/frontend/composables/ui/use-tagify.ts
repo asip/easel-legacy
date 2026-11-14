@@ -44,12 +44,10 @@ export const useTagify = function (
     }
   })
 
-  const init = (): Tagify => {
+  const init = (): void => {
     tagify = new Tagify(el, options)
 
     eventCallbacks()
-
-    return tagify
   }
 
   const eventCallbacks = (): void => {
@@ -80,5 +78,5 @@ export const useTagify = function (
     autocomplete.value = value
   }
 
-  return { tags, init }
+  return { tagify, tags, init }
 }

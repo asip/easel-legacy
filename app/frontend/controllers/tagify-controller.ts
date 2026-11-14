@@ -35,12 +35,13 @@ export default class TagifyController extends ApplicationController {
         },
       }
 
-      const { init, tags } = useTagify(this.teTarget, tagList, {
+      const { tagify, init, tags } = useTagify(this.teTarget, tagList, {
         ...settings,
         autocompleteTags: tagSearch,
       })
 
-      this.tagEditor = init()
+      init()
+      this.tagEditor = tagify
       tags.value = tagList.value
     }
   }
