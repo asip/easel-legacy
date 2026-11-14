@@ -11,6 +11,8 @@ export const usePhotoSwipe = function (
   if (options?.anchor) delete options.anchor
   const initialZoomLevel = options?.initialZoomLevel ?? 'fit'
 
+  let lightbox: PhotoSwipeLightbox | undefined
+
   const assignSize = async (): Promise<void> => {
     const anchors = globalThis.document.querySelectorAll(`${selector} ${anchor}`)
 
@@ -26,7 +28,7 @@ export const usePhotoSwipe = function (
   const init = async () => {
     await assignSize()
 
-    const lightbox = new PhotoSwipeLightbox({
+    lightbox = new PhotoSwipeLightbox({
       ...options,
       gallery: selector,
       children: anchor,
@@ -35,8 +37,6 @@ export const usePhotoSwipe = function (
     })
     // new PhotoSwipeFullscreen(lightbox) // eslint-disable-line
     lightbox.init()
-
-    return lightbox
   }
 
   const loadImage = async (src: string): Promise<HTMLImageElement> => {
@@ -46,5 +46,5 @@ export const usePhotoSwipe = function (
     return img
   }
 
-  return { init }
+  return { lightbox, init }
 }

@@ -13,16 +13,17 @@ export default class PhotoSwipeController extends ApplicationController {
   declare readonly selectorValue: string
   declare readonly anchorValue: string
 
-  lightbox: PhotoSwipeLightbox | null = null
+  lightbox: PhotoSwipeLightbox | undefined = undefined
 
   connect(): void {
     if (this.selectorValue) {
-      const { init } = usePhotoSwipe(this.selectorValue, {
+      const { lightbox, init } = usePhotoSwipe(this.selectorValue, {
         anchor: this.anchorValue,
       })
 
       void (async () => {
-        this.lightbox = await init()
+        await init()
+        this.lightbox = lightbox
       })()
     }
   }
