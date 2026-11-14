@@ -2,7 +2,7 @@ import { customRef, type Ref } from '@vue/reactivity'
 import Tagify from '@yaireo/tagify'
 
 interface AutocompleteTagsType {
-  tags: Ref<string[]>
+  list: Ref<string[]>
   filterBy?: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
 }
 
@@ -17,6 +17,8 @@ export const useTagify = function (
 ) {
   const autocompleteTags = options.autocompleteTags
   if (options.autocompleteTags) delete options.autocompleteTags
+
+  const autocompleteList = autocompleteTags?.filterBy ? [...autocompleteTags.list.value] : []
 
   let tagify: Tagify | null = null
   let controller: AbortController | null = null
@@ -38,7 +40,7 @@ export const useTagify = function (
         return tagify?.whitelist ?? []
       },
       set(value: string) {
-        if (tagify) tagify.whitelist = autocompleteTags?.tags.value ?? []
+        if (tagify) tagify.whitelist = autocompleteTags?.list.value ?? []
         tagify?.loading(false).dropdown.show(value)
       },
     }
@@ -74,6 +76,9 @@ export const useTagify = function (
       controller = new AbortController()
 
       await autocompleteTags.filterBy(value, { signal: controller.signal })
+    } else {
+      if (autocompleteTags?.list !== undefined)
+        autocompleteList.filter((tag) => tag.indexOf(value) == 0)
     }
     autocomplete.value = value
   }

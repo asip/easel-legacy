@@ -11,7 +11,7 @@ export const useTagSearch = function () {
   const { flash, clearFlash } = useFlash()
   const { backendErrorInfo } = useApiError(flash)
 
-  const tags = ref<string[]>([])
+  const list = ref<string[]>([])
 
   const filterBy = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
     const { data, error } = await queryApi<TagsResource, BackendErrorsResource>('/tags/search', {
@@ -23,13 +23,13 @@ export const useTagSearch = function () {
 
     if (error) {
       backendErrorInfo.value = error
-      tags.value = []
+      list.value = []
     } else if (data) {
-      const { tags: tagList } = data
+      const { tags } = data
       // console.log(frameList)
-      tags.value = tagList
+      list.value = tags
     }
   }
 
-  return { tags, filterBy }
+  return { list, filterBy }
 }
