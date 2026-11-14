@@ -1,6 +1,7 @@
 import { customRef, ref } from '@vue/reactivity'
 
-import { useToastify } from './use-toastify'
+import { useToastify } from './toastify'
+
 import type { Flash } from '@vesperjs/vue'
 
 export const useToast = () => {
