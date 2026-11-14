@@ -16,7 +16,7 @@ export default class CalendarController extends ApplicationController {
   declare readonly wordTarget: HTMLInputElement
   declare readonly hasWordTarget: boolean
 
-  calendar: Calendar | null = null
+  calendar: Calendar | null | undefined = undefined
 
   connect(): void {
     if (this.hasCalTarget && this.hasWordTarget) {
@@ -28,12 +28,15 @@ export default class CalendarController extends ApplicationController {
 
       word.value = dateCookie.value
 
-      const { selectedDate, init } = useVanillaCalendarPro({
+      const { calendar, selectedDate, init } = useVanillaCalendarPro({
         el: ref(this.calTarget),
         date: wordDate,
         options: { locale: locale.value },
       })
-      this.calendar = init()
+
+      init()
+
+      this.calendar = calendar
       selectedDate.value = wordDate.value
     }
   }

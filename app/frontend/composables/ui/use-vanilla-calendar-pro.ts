@@ -81,10 +81,10 @@ export const useVanillaCalendarPro = function ({
 
   const utcToday = computed<Date>(() => tzDate(new Date(), 'utc'))
 
-  const init = (): Calendar | null => {
+  const init = (): void => {
     // globalThis.console.log(utcDate.value)
 
-    if (!el?.value) return null
+    if (!el?.value) return
 
     calendar = new Calendar(el.value, {
       ...options,
@@ -104,8 +104,6 @@ export const useVanillaCalendarPro = function ({
     })
 
     calendar.init()
-
-    return calendar
   }
 
   const moveToSelectedMonth = (date: Date | null | undefined) => {
@@ -145,5 +143,5 @@ export const useVanillaCalendarPro = function ({
     })
   }
 
-  return { selectedDate, selectedDates, init, close }
+  return { calendar, selectedDate, selectedDates, init, close }
 }
