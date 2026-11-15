@@ -14,7 +14,7 @@ gem "propshaft", "~> 1.3.2"
 gem "pg", "~> 1.7.0"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 8.0.3"
+gem "puma", "~> 8.1.1"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", "~> 0.1.27", require: false
