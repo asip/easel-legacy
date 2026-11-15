@@ -39,7 +39,7 @@ export const useVanillaCalendarPro = function ({
         return calendar ? (calendar.selectedDates.at(0) as Date) : null
       },
       set(value: Date | null) {
-        moveToSelectedMonth(value)
+        selectedMonth.value = value
         if (calendar) {
           calendar.selectedDates = value ? [value] : []
           if (calendar.context.isInit) calendar.update()
@@ -70,7 +70,7 @@ export const useVanillaCalendarPro = function ({
         return calendar ? (calendar.selectedDates as Date[]) : null
       },
       set(value: Date[] | null) {
-        moveToSelectedMonth(value?.at(0))
+        selectedMonth.value = value?.at(0)
         if (calendar) {
           calendar.selectedDates = value?.length ? value : []
           if (calendar.context.isInit) calendar.update()
@@ -80,6 +80,38 @@ export const useVanillaCalendarPro = function ({
   })
 
   const utcToday = computed<Date>(() => tzDate(new Date(), 'utc'))
+
+  const selectedMonth = customRef<string | null, Date | null | undefined>(() => {
+    return {
+      get() {
+        return calendar
+          ? `${calendar.selectedYear.toString()}/${(calendar.selectedMonth + 1).toString().padStart(2, '0')}`
+          : null
+      },
+      set(value: Date | null | undefined) {
+        moveToSelectedMonth(value)
+      },
+    }
+  })
+
+  const moveToSelectedMonth = (date: Date | null | undefined) => {
+    if (calendar) {
+      calendar.selectedYear = date?.getFullYear() ?? utcToday.value.getFullYear()
+      calendar.selectedMonth = (date?.getMonth() ?? utcToday.value.getMonth()) as
+        | 0
+        | 1
+        | 2
+        | 3
+        | 4
+        | 5
+        | 6
+        | 7
+        | 8
+        | 9
+        | 10
+        | 11
+    }
+  }
 
   const init = (): void => {
     // globalThis.console.log(utcDate.value)
@@ -104,25 +136,6 @@ export const useVanillaCalendarPro = function ({
     })
 
     calendar.init()
-  }
-
-  const moveToSelectedMonth = (date: Date | null | undefined) => {
-    if (calendar) {
-      calendar.selectedYear = date?.getFullYear() ?? utcToday.value.getFullYear()
-      calendar.selectedMonth = (date?.getMonth() ?? utcToday.value.getMonth()) as
-        | 0
-        | 1
-        | 2
-        | 3
-        | 4
-        | 5
-        | 6
-        | 7
-        | 8
-        | 9
-        | 10
-        | 11
-    }
   }
 
   const close = () => {
