@@ -7,7 +7,7 @@ interface VanillaCalendarProOptions {
   date?: Ref<Date | null | undefined>
   dates?: Ref<Date[] | null | undefined>
   calendar?: Calendar | null
-  options?: Options & { fmt?: Format }
+  options?: Options & { fmt?: Format; fmtMonth?: Format }
 }
 
 export const useVanillaCalendarPro = function ({
@@ -18,6 +18,8 @@ export const useVanillaCalendarPro = function ({
   options,
 }: VanillaCalendarProOptions) {
   const fmt = options?.fmt ?? 'YYYY/MM/DD'
+  const fmtMonth = options?.fmtMonth ?? 'YYYY/MM'
+
   if (options?.fmt) delete options.fmt
   // const selectionDatesMode = options?.selectionDatesMode
 
@@ -85,7 +87,7 @@ export const useVanillaCalendarPro = function ({
     return {
       get() {
         return calendar
-          ? `${calendar.selectedYear.toString()}/${(calendar.selectedMonth + 1).toString().padStart(2, '0')}`
+          ? format(new Date(calendar.selectedYear, calendar.selectedMonth, 1), fmtMonth)
           : null
       },
       set(value: Date | null | undefined) {
