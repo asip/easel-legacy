@@ -10,21 +10,21 @@ export const useToast = () => {
     style: { 'border-radius': '5px' },
   })
 
-  const messages = ref<Flash | Record<string, string[]>>()
+  const errors = ref<Flash | Record<string, string[]>>()
 
   const toasts = customRef<Flash | Record<string, string[]> | undefined>(() => {
     return {
       get() {
-        return messages.value
+        return errors.value
       },
       set(value: Flash | Record<string, string[]>) {
-        messages.value = value
+        errors.value = value
         if (Object.keys(value).length === 0) return
 
         if ('notice' in value || 'alert' in value) {
           setFlash(value)
         } else {
-          setMessages(value as Record<string, string[]>)
+          setErrors(value as Record<string, string[]>)
         }
       },
     }
@@ -36,9 +36,9 @@ export const useToast = () => {
     }
   }
 
-  const setMessages = (flashes: Record<string, string[]>) => {
-    Object.keys(flashes).forEach((flashType: string) => {
-      flashes[flashType].reverse().forEach((message: string) => {
+  const setErrors = (errors: Record<string, string[]>) => {
+    Object.keys(errors).forEach((name: string) => {
+      errors[name].reverse().forEach((message: string) => {
         toast.value = { text: message }
       })
     })
