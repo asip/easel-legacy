@@ -1,7 +1,5 @@
 import type { PreparedPhotoSwipeOptions } from 'photoswipe'
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
-// // @ts-expect-error : @types doesn't exist
-// import PhotoSwipeFullscreen from 'photoswipe-fullscreen'
 
 export const usePhotoSwipe = function (
   selector: string,
@@ -35,8 +33,16 @@ export const usePhotoSwipe = function (
       initialZoomLevel,
       pswpModule: () => import('photoswipe'),
     })
-    // new PhotoSwipeFullscreen(lightbox) // eslint-disable-line
+
+    extensions(lightbox)
+
     lightbox.init()
+  }
+
+  let extensions: (lightbox: PhotoSwipeLightbox) => void = () => undefined
+
+  const extend = (func: (lightbox: PhotoSwipeLightbox) => void): void => {
+    extensions = func
   }
 
   const loadImage = async (src: string): Promise<HTMLImageElement> => {
@@ -46,5 +52,5 @@ export const usePhotoSwipe = function (
     return img
   }
 
-  return { lightbox, init }
+  return { lightbox, init, extend }
 }
