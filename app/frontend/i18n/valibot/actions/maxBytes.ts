@@ -1,9 +1,8 @@
+import type { Composer } from 'vue-i18n'
 import * as v from 'valibot'
 
-import { useI18nGlobal } from '@vesperjs/vue'
-
-export const maxBytes = () => {
-  const { t, locale } = useI18nGlobal()
+export const maxBytes = (i18n: Composer) => {
+  const { t, locale } = i18n
   v.setSpecificMessage(
     v.maxBytes,
     (issue) =>

@@ -1,9 +1,8 @@
+import type { Composer } from 'vue-i18n'
 import * as v from 'valibot'
 
-import { useI18nGlobal } from '@vesperjs/vue'
-
-export const maxLength = () => {
-  const { t, locale } = useI18nGlobal()
+export const maxLength = (i18n: Composer) => {
+  const { t, locale } = i18n
   v.setSpecificMessage(
     v.maxLength,
     (issue) => t('valibot.actions.maxLength', { max: issue.requirement.toString() }),

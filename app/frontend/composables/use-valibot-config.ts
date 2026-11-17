@@ -1,15 +1,23 @@
-import { useI18nGlobal } from '@vesperjs/vue'
+import * as v from 'valibot'
 
-import { useValibotI18n } from '@/composables'
-import { maxLength } from '@/i18n/valibot/actions'
+import { schemaMessage } from '@/i18n/valibot'
 
-export const useValibotConfig = () => {
-  const { locale } = useI18nGlobal()
-  const { init, setup } = useValibotI18n({ lang: locale.value })
+export const useValibotConfig = function (options: v.GlobalConfig) {
+  let actions: () => void = () => undefined
 
-  setup(() => {
-    maxLength()
-  })
+  const setup = (func: () => void): void => {
+    actions = func
+  }
 
-  init()
+  const globalConfig = () => {
+    v.setGlobalConfig(options)
+  }
+
+  const init = () => {
+    schemaMessage()
+    actions()
+    globalConfig()
+  }
+
+  return { init, setup }
 }

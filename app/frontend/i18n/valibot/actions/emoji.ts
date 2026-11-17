@@ -1,8 +1,7 @@
+import type { Composer } from 'vue-i18n'
 import * as v from 'valibot'
 
-import { useI18nGlobal } from '@vesperjs/vue'
-
-export const emoji = () => {
-  const { locale, t } = useI18nGlobal()
+export const emoji = (i18n: Composer) => {
+  const { locale, t } = i18n
   v.setSpecificMessage(v.emoji, () => t('valibot.actions.emoji', {}), locale.value)
 }
