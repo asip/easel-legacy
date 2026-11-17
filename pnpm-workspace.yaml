@@ -1,4 +1,6 @@
 allowBuilds:
   '@parcel/watcher': false
+minimumReleaseAgeExclude:
+  - turbo-mount@0.4.5
 overrides:
   vue: ^3.6.0-rc.15
