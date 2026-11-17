@@ -1,8 +1,8 @@
-import { useI18nGlobal } from '@vesperjs/vue'
+import type { Composer } from 'vue-i18n'
 import * as r from '@regle/rules'
 
-export const sameAs = () => {
-  const { t } = useI18nGlobal()
+export const sameAs = (i18n: Composer) => {
+  const { t } = i18n
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return r.withMessage(r.sameAs, ({ $params: [_, otherName = 'other'] }) =>

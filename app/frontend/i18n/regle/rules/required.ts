@@ -1,7 +1,7 @@
+import type { Composer } from 'vue-i18n'
 import * as r from '@regle/rules'
-import { useI18nGlobal } from '@vesperjs/vue'
 
-export const required = () => {
-  const { t } = useI18nGlobal()
+export const required = (i18n: Composer) => {
+  const { t } = i18n
   return r.withMessage(r.required, () => t('regle.rules.required'))
 }
