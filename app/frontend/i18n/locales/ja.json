@@ -13,12 +13,27 @@
     },
     "regle": {
       "rules": {
-        "required": "必須です。"
+        "required": "必須です。",
+        "alpha": "英字のみです。",
+        "alphaNum": "英数字のみです。",
+        "emoji": "絵文字のみです。",
+        "email": "不正なメールアドレスです。",
+        "minLength": "{min}文字以上です。",
+        "maxLength": "{max}文字までです。",
+        "sameAs": "{otherName}と一致しません。",
+        "minFileSize": "{max}MB以上です。",
+        "maxFileSize": "{max}MBまでです。"
       }
     },
     "valibot": {
       "actions": {
-        "maxLength": "{max}文字以内で入力してください"
+        "email": "不正なメールアドレスです。",
+        "emoji": "絵文字のみです。",
+        "minLength": "{min}文字以上です。",
+        "maxLength": "{max}文字以内で入力してください",
+        "minBytes": "{max}MB以上です。",
+        "maxBytes": "{max}MBまでです。",
+        "nonEmpty": "必須です。"
       },
       "schemaMessage": "無効な型です：{received}型ではなく{expected}型で入力してください"
     },

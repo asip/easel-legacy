@@ -13,12 +13,27 @@
     },
     "regle": {
       "rules": {
-        "required": "Required."
+        "required": "Required.",
+        "alpha": "In alphabetic characters.",
+        "alphaNum": "In alphanumeric characters.",
+        "email": "A invalid email address.",
+        "emoji": "Using emojis.",
+        "minLength": "More than {min} characters.",
+        "maxLength": "are limited to {max} characters.",
+        "sameAs": "must be equal to the {otherName} value",
+        "minFileSize": "More than {min} MB.",
+        "maxFileSize": "are limited to {max} MB."
       }
     },
     "valibot": {
       "actions": {
-        "maxLength": "are limited to {max} characters."
+        "emoji": "Using emojis.",
+        "email": "A invalid email address.",
+        "minLength": "More than {min} characters.",
+        "maxLength": "are limited to {max} characters.",
+        "minBytes": "More than {min} MB.",
+        "maxBytes": "are limited to {max} MB.",
+        "nonEmpty": "Required."
       },
       "schemaMessage": "Invalid type: Please enter as type {expected}, not type {received}."
     },
