@@ -1,7 +1,7 @@
 import type { Composer } from 'vue-i18n'
 import * as r from '@regle/rules'
 
-import { formatLocaleDate } from './util/locale.util'
+import { formatLocaleDate } from './util/formatLocaleDate'
 
 export const dateAfter = (i18n: Composer) => {
   const { t, locale } = i18n
