@@ -47,7 +47,7 @@ gem "rails_vite", "~> 0.4.0"
 gem "view_component", "~> 4.24.0"
 
 # Shrine
-gem "aws-sdk-s3", "~> 1.243.0"
+gem "aws-sdk-s3", "~> 1.245.0"
 gem "ruby-vips", "~> 2.3.0"
 gem "image_processing", "~> 2.2.0"
 gem "shrine", "~> 3.10.2"
@@ -73,7 +73,7 @@ gem "googleauth", "~> 1.17.7"
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.8.2"
+gem "pagy", "~> 43.8.3"
 
 # tags
 gem "no_fly_list", "0.8.0"
@@ -125,7 +125,7 @@ group :development do
   gem "annotaterb", "~> 4.26.0"
   gem "rails-erd", "~> 2.2.0"
   # Ruby style guide, linter, and formatter
-  gem "rubocop", "~> 1.92.2", require: false
+  gem "rubocop", "~> 1.92.3", require: false
   gem "rubocop-rails", "~> 2.38.0", require: false
   gem "rubocop-rails-omakase", "~> 1.1.0", require: false
   # Shopify/erb-lint
