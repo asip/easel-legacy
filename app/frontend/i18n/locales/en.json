@@ -46,11 +46,11 @@
     "valibot": {
       "actions": {
         "emoji": "should be a valid emoji",
-        "email": "A invalid email address",
+        "email": "is not a valid email address",
         "minLength": "More than {min} characters",
         "maxLength": "are limited to {max} characters",
-        "minBytes": "More than {min} MB",
-        "maxBytes": "are limited to {max} MB",
+        "minBytes": "More than {min}",
+        "maxBytes": "are limited to {max}",
         "nonEmpty": "Required"
       },
       "schemaMessage": "Invalid type: Please enter as type {expected}, not type {received}"
