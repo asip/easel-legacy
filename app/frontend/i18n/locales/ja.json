@@ -13,35 +13,53 @@
     },
     "regle": {
       "rules": {
-        "required": "必須です。",
-        "alpha": "英字のみです。",
-        "alphaNum": "英数字のみです。",
-        "emoji": "絵文字のみです。",
-        "email": "不正なメールアドレスです。",
-        "minLength": "{min}文字以上です。",
-        "maxLength": "{max}文字までです。",
-        "sameAs": "{otherName}と一致しません。",
-        "minFileSize": "{max}MB以上です。",
-        "maxFileSize": "{max}MBまでです。"
+        "required": "必須です",
+        "alpha": "英字のみです",
+        "alphaNum": "英数字のみです",
+        "boolean": "真偽値ではありません",
+        "checked": "チェック必須です",
+        "date": "日付ではありません",
+        "dateAfter": "{after}以降の日付ではありません",
+        "dateBefore": "{before}以前の日付ではありません",
+        "decimal": "10進数ではありません",
+        "domain": "不正なドメインです",
+        "email": "不正なメールアドレスです",
+        "emoji": "絵文字ではありません",
+        "file": "ファイルではありません",
+        "hexadecimal": "16進数ではありません",
+        "hostname": "不正なホストネームです",
+        "httpUrl": "不正なHTTP URLです",
+        "integer": "整数ではありません",
+        "ipv4Address": "不正なIPv4アドレスです",
+        "macAddress": "不正なMACアドレスです",
+        "minLength": "{min}文字以上です",
+        "maxLength": "{max}文字までです",
+        "minFileSize": "{max}MB以上です",
+        "maxFileSize": "{max}MBまでです",
+        "number": "numberではありません",
+        "numeric": "数値ではありません",
+        "sameAs": "{otherName}と一致しません",
+        "string": "文字列ではありません",
+        "url": "不正なURLです"
       }
     },
     "valibot": {
       "actions": {
-        "email": "不正なメールアドレスです。",
-        "emoji": "絵文字のみです。",
-        "minLength": "{min}文字以上です。",
+        "email": "不正なメールアドレスです",
+        "emoji": "絵文字ではありません",
+        "minLength": "{min}文字以上です",
         "maxLength": "{max}文字以内で入力してください",
-        "minBytes": "{max}MB以上です。",
-        "maxBytes": "{max}MBまでです。",
-        "nonEmpty": "必須です。"
+        "minBytes": "{max}MB以上です",
+        "maxBytes": "{max}MBまでです",
+        "nonEmpty": "必須です"
       },
       "schemaMessage": "無効な型です：{received}型ではなく{expected}型で入力してください"
     },
     "backend": {
       "error": {
-        "api": "不具合が発生しました。({message})",
-        "login": "ログインしなおしてください。",
-        "not_found": "この{source}は削除されています。"
+        "api": "不具合が発生しました ({message})",
+        "login": "ログインしなおしてください",
+        "not_found": "この{source}は削除されています"
       }
     }
   }
