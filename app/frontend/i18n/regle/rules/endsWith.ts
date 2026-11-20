@@ -1,0 +1,8 @@
+import type { Composer } from 'vue-i18n'
+import * as r from '@regle/rules'
+
+export const endsWith = (i18n: Composer) => {
+  const { t } = i18n
+
+  return r.withMessage(r.endsWith, ({ $params: [part] }) => t('regle.rules.endsWith', { part }))
+}
