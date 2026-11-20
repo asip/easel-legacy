@@ -50,7 +50,7 @@
         "minFileSize": "{max}以上です",
         "maxFileSize": "{max}までです",
         "minValueEqual": "{limit}以上です",
-        "minValue": "{limit}より大きくなくてはいけません",
+        "minValue": "{limit}を超えなくてはいけません",
         "maxValueEqual": "{limit}以下です",
         "maxValue": "{limit}未満でなくてはいけません",
         "number": "numberではありません",
