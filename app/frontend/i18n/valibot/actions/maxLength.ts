@@ -5,7 +5,7 @@ export const maxLength = (i18n: Composer) => {
   const { t, locale } = i18n
   v.setSpecificMessage(
     v.maxLength,
-    (issue) => t('valibot.actions.maxLength', { max: issue.requirement.toString() }),
+    (issue) => t('valibot.actions.maxLength', { requirement: issue.requirement.toString() }),
     locale.value,
   )
 }

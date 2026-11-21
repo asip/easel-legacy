@@ -3,5 +3,10 @@ import * as v from 'valibot'
 
 export const nonEmpty = (i18n: Composer) => {
   const { locale, t } = i18n
-  v.setSpecificMessage(v.nonEmpty, () => t('valibot.actions.nonEmpty', {}), locale.value)
+  v.setSpecificMessage(
+    v.nonEmpty,
+    (issue) =>
+      t('valibot.actions.nonEmpty', { expected: issue.expected, received: issue.received }),
+    locale.value,
+  )
 }

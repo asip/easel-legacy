@@ -7,7 +7,7 @@ export const minBytes = (i18n: Composer) => {
   const { t, locale } = i18n
   v.setSpecificMessage(
     v.minBytes,
-    (issue) => t('valibot.actions.minBytes', { min: formatFileSize(issue.requirement) }),
+    (issue) => t('valibot.actions.minBytes', { requirement: formatFileSize(issue.requirement) }),
     locale.value,
   )
 }

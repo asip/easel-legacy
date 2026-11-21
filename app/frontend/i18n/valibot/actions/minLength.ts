@@ -5,7 +5,7 @@ export const minLength = (i18n: Composer) => {
   const { t, locale } = i18n
   v.setSpecificMessage(
     v.minLength,
-    (issue) => t('valibot.actions.minLength', { min: issue.requirement.toString() }),
+    (issue) => t('valibot.actions.minLength', { requirement: issue.requirement.toString() }),
     locale.value,
   )
 }
