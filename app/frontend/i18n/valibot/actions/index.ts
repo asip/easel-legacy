@@ -1,6 +1,7 @@
 export { base64 } from './base64'
 export { bic } from './bic'
 export { bytes } from './bytes'
+export { check } from './check'
 export { email } from './email'
 export { emoji } from './emoji'
 export { maxLength } from './maxLength'

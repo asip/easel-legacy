@@ -69,7 +69,11 @@
       "actions": {
         "base64": "is not in base64 format",
         "bic": "is not in BIC format",
-        "bytes": "バイト列ではありません",
+        "bytes": "is not bytes",
+        "check": "is not valid",
+        "checkAsync": "is not valid",
+        "checkItems": "are not valid",
+        "checkItemsAsync": "are not valid",
         "emoji": "should be a valid emoji",
         "email": "is not a valid email address",
         "minLength": "must be at least {min} characters long",
