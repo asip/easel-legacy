@@ -54,7 +54,7 @@
         "maxValueEqual": "{limit}以下です",
         "maxValue": "{limit}未満でなくてはいけません",
         "number": "numberではありません",
-        "numeric": "数値ではありません",
+        "numeric": "数字ではありません",
         "oneOf": "{following}のうち１つです",
         "regex": "必要とされるパターンにマッチしていません",
         "requiredIf": "必須です",
@@ -67,6 +67,9 @@
     },
     "valibot": {
       "actions": {
+        "base64": "Base64ではありません",
+        "bic": "BICではありません,",
+        "bytes": "is not bytes",
         "email": "不正なメールアドレスです",
         "emoji": "絵文字ではありません",
         "minLength": "{min}文字以上です",

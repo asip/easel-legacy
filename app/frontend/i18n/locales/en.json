@@ -50,7 +50,7 @@
         "minFileSize": "must be at least {min}",
         "maxFileSize": "cannot exceed {max}",
         "minValueEqual": "must be greater than or equal to {limit}",
-        "minValue": "The value must be greater than {limit}",
+        "minValue": "must be greater than {limit}",
         "maxValueEqual": "must be less than or equal to {limit}",
         "maxValue": "must be less than {limit}",
         "number": "must be a native number",
@@ -67,6 +67,9 @@
     },
     "valibot": {
       "actions": {
+        "base64": "is not in base64 format",
+        "bic": "is not in BIC format",
+        "bytes": "バイト列ではありません",
         "emoji": "should be a valid emoji",
         "email": "is not a valid email address",
         "minLength": "must be at least {min} characters long",
