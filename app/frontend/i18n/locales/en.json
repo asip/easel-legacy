@@ -74,6 +74,8 @@
         "checkAsync": "is not valid",
         "checkItems": "are not valid",
         "checkItemsAsync": "are not valid",
+        "codePoints": "are not valid code points",
+        "creditCard": "is not a valid credit card",
         "emoji": "should be a valid emoji",
         "email": "is not a valid email address",
         "minLength": "must be at least {min} characters long",
