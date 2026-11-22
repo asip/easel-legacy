@@ -1,0 +1,11 @@
+import type { Composer } from 'vue-i18n'
+import * as v from 'valibot'
+
+export const toDate = (i18n: Composer) => {
+  const { t, locale } = i18n
+  v.setSpecificMessage(
+    v.toDate,
+    (issue) => t('valibot.actions.toDate', { received: issue.received }),
+    locale.value,
+  )
+}
