@@ -10,7 +10,7 @@
     "fmt:check": "oxfmt --check"
   },
   "dependencies": {
-    "@formkit/tempo": "^1.4.0",
+    "@formkit/tempo": "^1.5.0",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo": "^8.0.23",
     "@hotwired/turbo-rails": "^8.0.23",
@@ -21,7 +21,7 @@
     "@vesperjs/vue": "0.16.0",
     "@yaireo/tagify": "^4.39.0",
     "glightbox": "^3.3.1",
-    "lucide-static": "^1.77.0",
+    "lucide-static": "^1.78.0",
     "nanostores": "^1.5.5",
     "photoswipe": "5.4.4",
     "pinia": "4.1.0",

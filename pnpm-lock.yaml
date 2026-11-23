@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@formkit/tempo':
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.5.0
+        version: 1.5.0
       '@hotwired/stimulus':
         specifier: ^3.2.2
         version: 3.2.2
@@ -48,8 +48,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       lucide-static:
-        specifier: ^1.77.0
-        version: 1.77.0
+        specifier: ^1.78.0
+        version: 1.78.0
       nanostores:
         specifier: ^1.5.5
         version: 1.5.5
@@ -308,8 +308,8 @@ packages:
     resolution: {integrity: sha512-IkO+/KEUvwbVpiURZg+P7zF74z5Jxe0UgJxVni+RtoHQ6IZieXaO02kmadomap/q+l6bc/jdPGGqTjhuZnuz1Q==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@formkit/tempo@1.4.0':
-    resolution: {integrity: sha512-H4+xMPVkvf3DWO4L0NZcspEuAdT+5U080RSCyzRZYtz+3YhCTt0L3bO/jhrymv5fEve0dxAIIVSxejN2S/yOVQ==}
+  '@formkit/tempo@1.5.0':
+    resolution: {integrity: sha512-vgg4jHNs7Lc0H4DXEN/asrHBMbUD7eCUsjpLiB6a9M7yaF5yDJG0MlD9bTX9/oFPlzxU3AMUQ5zpkEJ1oBTUzg==}
 
   '@hotwired/stimulus@3.2.2':
     resolution: {integrity: sha512-eGeIqNOQpXoPAIP7tC1+1Yc1yl1xnwYqg+3mzqxyrbE5pg5YFBZcA6YoTiByJB6DKAEsiWtl6tjTJS4IYtbB7A==}
@@ -1898,8 +1898,8 @@ packages:
     resolution: {integrity: sha512-NxVFwLAnrd9i7KUBxC4DrUhmgjzOs+1Qm50D3oF1/oL+r1NpZ4gA7xvG0/zJ8evR7zIKn4vLf7qTNduWFtCrRw==}
     engines: {node: 20 || >=22}
 
-  lucide-static@1.77.0:
-    resolution: {integrity: sha512-v+BzpQrjlwDRWPDzzAu5IFhOkI6jVKb91fsjw1ZSS7Tsb2YvRX5olRN0DXGW99LF2wV4fycuTf5aPOMC62ZW0g==}
+  lucide-static@1.78.0:
+    resolution: {integrity: sha512-iEVJ83JKHCP8O1LA5G4x2ybQjIdr86PcyrH0GrU2Y22uHaF+rAIGKNKOiJO/Xd+qMWcpzDUjeQ6IHr7Q399VyA==}
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
@@ -2920,7 +2920,7 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@formkit/tempo@1.4.0': {}
+  '@formkit/tempo@1.5.0': {}
 
   '@hotwired/stimulus@3.2.2': {}
 
@@ -3852,12 +3852,12 @@ snapshots:
 
   '@vesperjs/shared@0.16.0(@vue/reactivity@3.6.0-rc.16)':
     dependencies:
-      '@formkit/tempo': 1.4.0
+      '@formkit/tempo': 1.5.0
       '@vue/reactivity': 3.6.0-rc.16
 
   '@vesperjs/vue@0.16.0(@vue/devtools-api@8.2.1)(@vue/reactivity@3.6.0-rc.16)(@vue/runtime-core@3.6.0-rc.16)(@vue/runtime-dom@3.6.0-rc.16)(vue@3.6.0-rc.16(typescript@6.0.3))':
     dependencies:
-      '@formkit/tempo': 1.4.0
+      '@formkit/tempo': 1.5.0
       '@nanostores/persistent': 1.3.5(nanostores@1.5.5)
       '@nanostores/router': 2.0.1(nanostores@1.5.5)
       '@nanostores/vue': 1.1.0(@vue/devtools-api@8.2.1)(nanostores@1.5.5)(vue@3.6.0-rc.16(typescript@6.0.3))
@@ -4609,7 +4609,7 @@ snapshots:
 
   lru-cache@11.3.5: {}
 
-  lucide-static@1.77.0: {}
+  lucide-static@1.78.0: {}
 
   magic-string@0.30.21:
     dependencies:
