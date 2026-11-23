@@ -2,3 +2,5 @@ ja:
   time:
     formats:
       default: '%Y/%m/%d (%a) %H:%M'
+  misc:
+    page: ''
