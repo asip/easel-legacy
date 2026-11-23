@@ -549,6 +549,7 @@ GEM
 PLATFORMS
   arm64-darwin-20
   arm64-darwin-25
+  arm64-darwin-27
 
 DEPENDENCIES
   alba (= 4.0.3)
