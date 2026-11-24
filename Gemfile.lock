@@ -211,7 +211,6 @@ GEM
       logger
     faraday-net_http (3.5.0)
       net-http (~> 0.5)
-    ffi (1.17.4)
     ffi (1.17.4-arm64-darwin)
     fugit (1.14.0)
       et-orbi (~> 1.4)
@@ -222,9 +221,6 @@ GEM
       base64 (~> 0.2)
       faraday (>= 1.0, < 3.a)
     google-logging-utils (0.2.2)
-    google-protobuf (4.36.2)
-      bigdecimal
-      rake (~> 13.3)
     google-protobuf (4.36.2-arm64-darwin)
       bigdecimal
       rake (~> 13.3)
@@ -267,7 +263,6 @@ GEM
       net-smtp
     marcel (1.2.1)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
     minitest (6.1.0)
       drb (~> 2.0)
       prism (>= 1.5, < 3)
@@ -297,9 +292,6 @@ GEM
     nio4r (2.7.5)
     no_fly_list (0.8.0)
       activerecord (>= 8.1)
-    nokogiri (1.19.7)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
     nokogiri (1.19.7-arm64-darwin)
       racc (~> 1.4)
     oauth2 (2.1.0)
@@ -338,7 +330,6 @@ GEM
     parser (3.3.14.0)
       ast (~> 2.4.1)
       racc
-    pg (1.7.0)
     pg (1.7.0-arm64-darwin)
     pg_query (6.2.5)
       google-protobuf (>= 4.34.0)
@@ -503,7 +494,6 @@ GEM
       railties (>= 6.0.0)
     tempfile (0.3.2)
     thor (1.5.0)
-    thruster (0.1.28)
     thruster (0.1.28-arm64-darwin)
     timeout (0.6.1)
     traceroute (0.8.1)
@@ -558,7 +548,7 @@ PLATFORMS
 DEPENDENCIES
   alba (= 4.0.3)
   annotaterb (~> 4.26.0)
-  aws-sdk-s3 (~> 1.245.1)
+  aws-sdk-s3 (~> 1.245.2)
   bootsnap (~> 1.26.2)
   brakeman (~> 8.1.1)
   bullet (~> 8.3.1)
