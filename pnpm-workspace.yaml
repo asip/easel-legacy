@@ -1,7 +1,4 @@
 allowBuilds:
   '@parcel/watcher': false
-minimumReleaseAgeExclude:
-  - '@formkit/tempo@1.5.0'
-  - lucide-static@1.78.0
 overrides:
   vue: ^3.6.0-rc.16
