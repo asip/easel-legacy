@@ -1,7 +1,7 @@
 import { defineRegleConfig } from '@regle/core'
 import { useI18nGlobal } from '@vesperjs/vue'
 
-import { required } from '@/i18n/regle/rules'
+import { required } from '@regle-rules/i18n'
 
 export const { useRegle: useRegleI18n } = defineRegleConfig({
   rules: () => {
