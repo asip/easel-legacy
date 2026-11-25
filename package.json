@@ -10,7 +10,7 @@
     "fmt:check": "oxfmt --check"
   },
   "dependencies": {
-    "@formkit/tempo": "^1.5.0",
+    "@formkit/tempo": "^1.6.0",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo": "^8.0.23",
     "@hotwired/turbo-rails": "^8.0.23",
@@ -29,7 +29,7 @@
     "toastify-js": "^1.12.0",
     "turbo-mount": "^0.4.5",
     "valibot": "^1.5.0",
-    "vanilla-calendar-pro": "^3.4.1",
+    "vanilla-calendar-pro": "^3.4.2",
     "vue-i18n": "^11.4.23"
   },
   "devDependencies": {

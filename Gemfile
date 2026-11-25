@@ -14,7 +14,7 @@ gem "propshaft", "~> 1.3.2"
 gem "pg", "~> 1.7.0"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 8.1.2"
+gem "puma", "~> 8.1.3"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", "~> 0.1.28", require: false
@@ -65,7 +65,7 @@ gem "rambulance", "~> 3.3.0"
 gem "devise", "5.0.4"
 gem "devise-i18n", "1.16.1"
 gem "omniauth-google-oauth2", "1.2.3"
-gem "jwt", "3.3.0"
+gem "jwt", "3.3.1"
 
 gem "googleauth", "~> 1.17.8"
 
@@ -73,7 +73,7 @@ gem "googleauth", "~> 1.17.8"
 gem "config", "~> 5.6.1"
 
 # paging
-gem "pagy", "~> 43.8.5"
+gem "pagy", "~> 43.8.7"
 
 # tags
 gem "no_fly_list", "0.8.0"
