@@ -7,6 +7,7 @@ export const useValibotConfig = function (options: v.GlobalConfig) {
 
   const setup = (func: () => void): void => {
     actions = func
+    init()
   }
 
   const globalConfig = () => {
@@ -19,5 +20,5 @@ export const useValibotConfig = function (options: v.GlobalConfig) {
     globalConfig()
   }
 
-  return { init, setup }
+  return { setup }
 }
