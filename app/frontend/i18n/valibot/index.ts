@@ -108,3 +108,5 @@ export {
 export { schemaMessage } from './schemaMessage'
 
 export { useValibotConfig } from './composables'
+
+export { locales } from './locales'
