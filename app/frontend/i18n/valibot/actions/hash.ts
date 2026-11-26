@@ -5,7 +5,7 @@ export const hash = (i18n: Composer) => {
   const { t, locale } = i18n
   v.setSpecificMessage(
     v.hash,
-    (issue) => t('valibot.actions.hash', { received: issue.received }),
+    (issue) => t('valibot.actions.hash', { requirement: issue.requirement }),
     locale.value,
   )
 }

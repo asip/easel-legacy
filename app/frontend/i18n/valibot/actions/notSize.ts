@@ -5,7 +5,7 @@ export const notSize = (i18n: Composer) => {
   const { t, locale } = i18n
   v.setSpecificMessage(
     v.notSize,
-    (issue) => t('valibot.actions.notSize', { expected: issue.expected, received: issue.received }),
+    (issue) => t('valibot.actions.notSize', { requirement: issue.requirement.toString() }),
     locale.value,
   )
 }

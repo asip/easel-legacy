@@ -5,7 +5,7 @@ export const ltValue = (i18n: Composer) => {
   const { t, locale } = i18n
   v.setSpecificMessage(
     v.ltValue,
-    (issue) => t('valibot.actions.ltValue', { expected: issue.expected, received: issue.received }),
+    (issue) => t('valibot.actions.ltValue', { requirement: issue.requirement.toString() }),
     locale.value,
   )
 }

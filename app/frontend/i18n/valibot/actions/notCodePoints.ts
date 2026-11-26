@@ -5,8 +5,7 @@ export const notCodePoints = (i18n: Composer) => {
   const { t, locale } = i18n
   v.setSpecificMessage(
     v.notCodePoints,
-    (issue) =>
-      t('valibot.actions.notCodePoints', { expected: issue.expected, received: issue.received }),
+    (issue) => t('valibot.actions.notCodePoints', { requirement: issue.requirement.toString() }),
     locale.value,
   )
 }

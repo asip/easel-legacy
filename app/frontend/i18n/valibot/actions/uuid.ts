@@ -5,7 +5,7 @@ export const uuid = (i18n: Composer) => {
   const { t, locale } = i18n
   v.setSpecificMessage(
     v.uuid,
-    (issue) => t('valibot.actions.uuid', { requirement: issue.requirement }),
+    (issue) => t('valibot.actions.uuid', { received: issue.received }),
     locale.value,
   )
 }

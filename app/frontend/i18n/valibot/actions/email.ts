@@ -3,5 +3,9 @@ import * as v from 'valibot'
 
 export const email = (i18n: Composer) => {
   const { locale, t } = i18n
-  v.setSpecificMessage(v.email, () => t('valibot.actions.email', {}), locale.value)
+  v.setSpecificMessage(
+    v.email,
+    (issue) => t('valibot.actions.email', { received: issue.received }),
+    locale.value,
+  )
 }

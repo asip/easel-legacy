@@ -3,5 +3,9 @@ import * as v from 'valibot'
 
 export const emoji = (i18n: Composer) => {
   const { locale, t } = i18n
-  v.setSpecificMessage(v.emoji, () => t('valibot.actions.emoji', {}), locale.value)
+  v.setSpecificMessage(
+    v.emoji,
+    (issue) => t('valibot.actions.emoji', { received: issue.received }),
+    locale.value,
+  )
 }

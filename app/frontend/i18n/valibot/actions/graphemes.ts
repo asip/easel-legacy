@@ -5,8 +5,7 @@ export const graphemes = (i18n: Composer) => {
   const { t, locale } = i18n
   v.setSpecificMessage(
     v.graphemes,
-    (issue) =>
-      t('valibot.actions.graphemes', { expected: issue.expected, received: issue.received }),
+    (issue) => t('valibot.actions.graphemes', { requirement: issue.requirement }),
     locale.value,
   )
 }

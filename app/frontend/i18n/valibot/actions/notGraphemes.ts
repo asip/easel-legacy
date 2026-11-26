@@ -5,8 +5,7 @@ export const notGraphemes = (i18n: Composer) => {
   const { t, locale } = i18n
   v.setSpecificMessage(
     v.notGraphemes,
-    (issue) =>
-      t('valibot.actions.notGraphemes', { expected: issue.expected, received: issue.received }),
+    (issue) => t('valibot.actions.notGraphemes', { requirement: issue.requirement.toString() }),
     locale.value,
   )
 }
