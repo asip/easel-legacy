@@ -114,6 +114,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^8.74.0
         version: 8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
+      '@valibot-i18n/vue':
+        specifier: 0.1.0
+        version: 0.1.0(typescript@6.0.3)(vue@3.6.0-rc.16(typescript@6.0.3))
       '@vitejs/plugin-vue':
         specifier: ^6.0.11
         version: 6.0.11(vite@8.4.0(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2))(vue@3.6.0-rc.16(typescript@6.0.3))
@@ -979,6 +982,9 @@ packages:
   '@typescript-eslint/visitor-keys@8.74.0':
     resolution: {integrity: sha512-XSZmOtMUbWCBIM+2BK134FyMFxmll1mW2mPLk/PSwYQYzGIPMgJAqL929U4qXVizLv7Xq5b7r41/o7Ombuwk0g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@valibot-i18n/vue@0.1.0':
+    resolution: {integrity: sha512-0HklG7qoE5erFIjhEUWsHX2sTGdGzNDo0QdMPyDlz3qRHCyI0D/cI/bb+09TXEAKUhqh9AZTU03RRiq7lMOysg==}
 
   '@vesperjs/shared@0.16.0':
     resolution: {integrity: sha512-chOUCgaNV1oduL39hT/K1LnFjz7Q698sYMg7qe1SkJluUDAbPPv1jPvQwiaakcg2qmHkaJC9mc4bOpmd0Q6sRA==}
@@ -3066,6 +3072,14 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.74.0
       eslint-visitor-keys: 5.0.1
+
+  '@valibot-i18n/vue@0.1.0(typescript@6.0.3)(vue@3.6.0-rc.16(typescript@6.0.3))':
+    dependencies:
+      valibot: 1.5.0(typescript@6.0.3)
+      vue-i18n: 11.4.24(vue@3.6.0-rc.16(typescript@6.0.3))
+    transitivePeerDependencies:
+      - typescript
+      - vue
 
   '@vesperjs/shared@0.16.0(@vue/reactivity@3.6.0-rc.16)':
     dependencies:
