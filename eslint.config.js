@@ -1,10 +1,12 @@
+import { defineConfig } from 'eslint/config'
+
 import js from '@eslint/js'
 import typescriptESLintParser from '@typescript-eslint/parser'
 import typescriptESLint from '@typescript-eslint/eslint-plugin'
 import vueESLint from 'eslint-plugin-vue'
 import vueESLintParser from 'vue-eslint-parser'
 
-export default [
+export default defineConfig([
   {
     ignores: [
       './app/assets/builds/**/*', // Ignore built files.
@@ -83,4 +85,4 @@ export default [
       'vue/no-v-html': 0,
     },
   },
-]
+])
