@@ -45,7 +45,6 @@
     "@typescript-eslint/parser": "^8.74.0",
     "@valibot-i18n/vue": "0.1.0",
     "@vitejs/plugin-vue": "^6.0.11",
-    "@vue/eslint-config-typescript": "^14.9.0",
     "daisyui": "^5.8.3",
     "eslint": "^10.15.0",
     "eslint-plugin-vue": "^10.12.1",
