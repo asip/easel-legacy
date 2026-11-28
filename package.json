@@ -42,7 +42,6 @@
     "@types/sanitize-html": "^2.16.2",
     "@types/toastify-js": "^1.12.4",
     "@types/yaireo__tagify": "^4.27.0",
-    "@typescript-eslint/eslint-plugin": "^8.74.0",
     "@typescript-eslint/parser": "^8.74.0",
     "@valibot-i18n/vue": "0.1.0",
     "@vitejs/plugin-vue": "^6.0.11",

@@ -67,7 +67,6 @@ export const useTagify = function (
   }
 
   const onInput = async (ev: CustomEvent): Promise<void> => {
-    // eslint-disable-next-line
     const value = ev.detail.value as string
     if (tagify) tagify.whitelist = []
 
