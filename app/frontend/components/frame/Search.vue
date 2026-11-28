@@ -23,7 +23,10 @@ const onFormSubmit = async (ev: globalThis.SubmitEvent) => {
   <div>
     <div class="flex justify-center mb-2">
       <div class="mx-auto">
-        <Calendar v-model="wordDate" :options="{ locale }" />
+        <Calendar
+          v-model="wordDate"
+          :options="{ locale }"
+        />
       </div>
     </div>
     <div class="flex justify-start">
@@ -31,7 +34,10 @@ const onFormSubmit = async (ev: globalThis.SubmitEvent) => {
         <tbody>
           <tr>
             <td colspan="2">
-              <div class="tooltip tooltip-top" data-tip="タグ or 名前 or 撮影/登録/更新日">
+              <div
+                class="tooltip tooltip-top"
+                data-tip="タグ or 名前 or 撮影/登録/更新日"
+              >
                 <input
                   id="word"
                   v-model="form.word"
@@ -39,9 +45,11 @@ const onFormSubmit = async (ev: globalThis.SubmitEvent) => {
                   placeholder=""
                   autocomplete="off"
                   class="input input-bordered w-60"
-                />
+                >
               </div>
-              <div class="text-red-500 text-xs mt-0.5">{{ r$.$errors.word.at(0) ?? '' }}</div>
+              <div class="text-red-500 text-xs mt-0.5">
+                {{ r$.$errors.word.at(0) ?? '' }}
+              </div>
             </td>
           </tr>
           <tr>
@@ -56,16 +64,27 @@ const onFormSubmit = async (ev: globalThis.SubmitEvent) => {
                 placeholder=""
                 autocomplete="off"
                 class="input input-bordered w-40"
-              />
-              <div class="text-red-500 text-xs mt-0.5">{{ r$.$errors.tag_name.at(0) ?? '' }}</div>
+              >
+              <div class="text-red-500 text-xs mt-0.5">
+                {{ r$.$errors.tag_name.at(0) ?? '' }}
+              </div>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <form action="/" method="get" @submit.prevent="onFormSubmit($event)">
+    <form
+      action="/"
+      method="get"
+      @submit.prevent="onFormSubmit($event)"
+    >
       <div class="flex justify-start pt-2">
-        <button type="submit" class="btn btn-outline btn-primary">検索</button>
+        <button
+          type="submit"
+          class="btn btn-outline btn-primary"
+        >
+          検索
+        </button>
       </div>
     </form>
   </div>

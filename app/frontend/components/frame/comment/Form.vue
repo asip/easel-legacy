@@ -43,10 +43,15 @@ const onPostClick = async (): Promise<void> => {
 </script>
 
 <template>
-  <div v-if="loggedIn" class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2">
+  <div
+    v-if="loggedIn"
+    class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2"
+  >
     <div class="card-body">
       <div class="flex justify-start">
-        <div class="card-title text-[16px] font-bold">コメント</div>
+        <div class="card-title text-[16px] font-bold">
+          コメント
+        </div>
       </div>
       <form>
         <div class="flex justify-center wrap-break-word">
@@ -56,12 +61,21 @@ const onPostClick = async (): Promise<void> => {
           />
         </div>
         <div class="flex flex-col">
-          <div v-for="error of r$.$errors.body" :key="error">
-            <div class="text-red-500 text-xs">{{ error }}</div>
+          <div
+            v-for="error of r$.$errors.body"
+            :key="error"
+          >
+            <div class="text-red-500 text-xs">
+              {{ error }}
+            </div>
           </div>
         </div>
         <div class="flex justify-center">
-          <button type="button" class="btn btn-outline btn-primary w-full" @click="onPostClick">
+          <button
+            type="button"
+            class="btn btn-outline btn-primary w-full"
+            @click="onPostClick"
+          >
             投稿
           </button>
         </div>

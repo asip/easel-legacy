@@ -1,10 +1,9 @@
 import { defineConfig } from 'eslint/config'
 
 import js from '@eslint/js'
-import typescriptESLintParser from '@typescript-eslint/parser'
+import tsParser from '@typescript-eslint/parser'
 import tseslint from 'typescript-eslint'
-import vueESLint from 'eslint-plugin-vue'
-import vueESLintParser from 'vue-eslint-parser'
+import vuePlugin from 'eslint-plugin-vue'
 
 export default defineConfig([
   {
@@ -18,29 +17,19 @@ export default defineConfig([
   },
   {
     files: ['**/*.vue'],
+    extends: [vuePlugin.configs['flat/strongly-recommended']],
     languageOptions: {
-      globals: {
-        'vue/setup-compiler-macros': true,
-      },
-      ecmaVersion: 2025,
-      sourceType: 'module',
-      parser: vueESLintParser,
       parserOptions: {
-        parser: typescriptESLintParser,
-        parserOptions: {
-          project: './tsconfig.json',
-        },
+        parser: tsParser,
         extraFileExtensions: ['.vue'],
       },
     },
-    plugins: {
-      vue: vueESLint,
-    },
     rules: {
-      ...vueESLint.configs['recommended'].rules,
+      ...vuePlugin.configs['recommended'].rules,
       //...vueESLint.configs['vue3-strongly-recommended'].rules,
       'no-useless-assignment': 0,
       'vue/no-v-html': 0,
+      'vue/multi-word-component-names': 0,
     },
   },
 ])

@@ -116,8 +116,15 @@ const reload401404 = async (): Promise<void> => {
     <div class="card-body">
       <div class="flex justify-between leading-8.75">
         <div class="flex items-center gap-1">
-          <a :href="`/users/${commentModel?.user_id}`" class="avatar">
-            <img :src="commentModel?.user_image_url" alt="" class="rounded w-5 h-5" />
+          <a
+            :href="`/users/${commentModel?.user_id}`"
+            class="avatar"
+          >
+            <img
+              :src="commentModel?.user_image_url"
+              alt=""
+              class="rounded w-5 h-5"
+            >
           </a>
           <a
             :href="`/users/${commentModel?.user_id}`"
@@ -134,13 +141,34 @@ const reload401404 = async (): Promise<void> => {
           v-if="loggedIn && commentModel?.user_id === account.id"
           class="flex items-center gap-1"
         >
-          <button v-if="!edit" class="link link-hover" @click="onEditClick">編集</button>
-          <button v-else class="link link-hover" @click="onCancelClick">キャンセル</button>
-          <button v-if="!edit" class="link link-hover" @click="onDeleteClick">削除</button>
+          <button
+            v-if="!edit"
+            class="link link-hover"
+            @click="onEditClick"
+          >
+            編集
+          </button>
+          <button
+            v-else
+            class="link link-hover"
+            @click="onCancelClick"
+          >
+            キャンセル
+          </button>
+          <button
+            v-if="!edit"
+            class="link link-hover"
+            @click="onDeleteClick"
+          >
+            削除
+          </button>
         </div>
       </div>
       <div class="flex justify-start">
-        <table v-if="!edit" class="table table-bordered table-rounded">
+        <table
+          v-if="!edit"
+          class="table table-bordered table-rounded"
+        >
           <tbody>
             <tr>
               <td class="wrap-break-word">
@@ -149,18 +177,30 @@ const reload401404 = async (): Promise<void> => {
             </tr>
           </tbody>
         </table>
-        <form v-else class="w-full">
+        <form
+          v-else
+          class="w-full"
+        >
           <textarea
             v-model="comment.body"
             class="block text-sm border border-gray-300 rounded w-full min-h-12.5 field-sizing-content"
           />
           <div class="flex flex-col">
-            <div v-for="error of r$.$errors.body" :key="error">
-              <div class="text-red-500 text-xs">{{ error }}</div>
+            <div
+              v-for="error of r$.$errors.body"
+              :key="error"
+            >
+              <div class="text-red-500 text-xs">
+                {{ error }}
+              </div>
             </div>
           </div>
           <div class="flex justify-center">
-            <button type="button" class="btn btn-outline btn-primary w-full" @click="onUpdateClick">
+            <button
+              type="button"
+              class="btn btn-outline btn-primary w-full"
+              @click="onUpdateClick"
+            >
               更新
             </button>
           </div>

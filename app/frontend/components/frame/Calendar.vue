@@ -5,7 +5,7 @@ import { type Options } from 'vanilla-calendar-pro'
 import { useVanillaCalendarPro } from '@/composables'
 
 const date = defineModel<Date | null>()
-const { options } = defineProps<{ options?: Options }>()
+const { options = {} } = defineProps<{ options?: Options }>()
 
 const calendarRef = useTemplateRef('calendarRef')
 
@@ -26,5 +26,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="calendarRef"></div>
+  <div ref="calendarRef" />
 </template>
