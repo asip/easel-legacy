@@ -3,7 +3,7 @@ import { Component, defineAsyncComponent } from 'vue'
 
 const { path, viewData = '{}' } = defineProps<{ path: string; viewData?: string }>()
 
-const viewDataMap = JSON.parse(viewData ?? '{}')
+const viewDataMap = JSON.parse(viewData)
 const viewDataOut = viewDataMap && Object.keys(viewDataMap).length !== 0 ? viewDataMap : null
 
 // const AsyncComponent = defineAsyncComponent(() => import(/* @vite-ignore */ `./${path}.vue`))
